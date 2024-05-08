@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bllutww37i5a8"
-path="res://.godot/imported/susane.glb-d3a8cb202f5644ce310f2acbda5a1d21.scn"
+path="res://.godot/imported/susane.glb-51b58bb0b573512e451d15a74351fb0a.scn"
 
 [deps]
 
-source_file="res://asets/susane.glb"
-dest_files=["res://.godot/imported/susane.glb-d3a8cb202f5644ce310f2acbda5a1d21.scn"]
+source_file="res://assets/3d/susane.glb"
+dest_files=["res://.godot/imported/susane.glb-51b58bb0b573512e451d15a74351fb0a.scn"]
 
 [params]
 

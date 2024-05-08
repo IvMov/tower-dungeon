@@ -47,12 +47,12 @@ shadow_mesh = SubResource("ArrayMesh_v724c")
 radius = 1.0
 
 [node name="susane" type="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.63371, 0)
 collision_layer = 2
 script = ExtResource("1_001mt")
 
 [node name="Suzanne" type="MeshInstance3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_p2g14")
 skeleton = NodePath("")
 

@@ -1,0 +1,5 @@
+[gd_resource type="BoxMesh" format=3 uid="uid://clta6k5r2s6sf"]
+
+[resource]
+resource_local_to_scene = true
+size = Vector3(6, 2, 1)
