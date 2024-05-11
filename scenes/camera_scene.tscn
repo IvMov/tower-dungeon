@@ -1,17 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://dituee6sehxvq"]
+[gd_scene load_steps=2 format=3 uid="uid://dituee6sehxvq"]
 
 [ext_resource type="Script" path="res://scenes/camera_scene.gd" id="1_84dn8"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_eo0r7"]
 
 [node name="CameraScene" type="Node3D" groups=["Camera"]]
 script = ExtResource("1_84dn8")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.939692, 0.34202, 0, -0.34202, 0.939692, 0, 3, 4)
+[node name="SpringArm3D" type="SpringArm3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+spring_length = 5.0
+margin = 0.2
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Camera3D"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Camera3D/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 0.939693, -0.34202, 0, 0.34202, 0.939693, 0, 0, 0)
-shape = SubResource("SphereShape3D_eo0r7")
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 3, 4)

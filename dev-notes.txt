@@ -1,0 +1,26 @@
+List TODO before 0.0.1:
+
+1) create character movement, jumping, dodging - done 2024-05-11
+2) create simple target 
+3) try to shoot in this target 
+4) enrich target and character with basic HP, MP etc
+5) achieve enemies AI movement and trying to attack character
+
+other TODO's: 
+- implement random procedure generated dungeons
+- add player creation screen and savings of player parameters
+
+#
+
+Dev logs:
+2024-05-04: initial commit, with adding basic mesh model from blender and camera
+2024-05-08: replace mesh with free one from Kenney assets, improve movement and test some animations
+2024-05-10: create dev log file (as I forget to do it when start project), and describe basic todo list, 
+add first static/autorun nodes to handle events, configurations and player parameters
+2024-05-11: fix moving, add shift moving, and shift jump, add camera collision with terrain, build simple training map, 
+add simple shooting prototype ( shooting from rod controlled in 2 different modes)
+#
+
+Version history:
+
+#

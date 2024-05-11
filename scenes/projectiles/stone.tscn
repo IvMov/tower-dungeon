@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5rac3bn806k0"]
+
+[ext_resource type="Script" path="res://scenes/projectiles/stone.gd" id="1_uc30u"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3awew"]
+albedo_color = Color(0.682353, 0.415686, 0.0627451, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_7aqq5"]
+material = SubResource("StandardMaterial3D_3awew")
+radius = 0.1
+height = 0.2
+radial_segments = 32
+rings = 16
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qtxek"]
+radius = 0.12
+
+[node name="Stone" type="Node3D"]
+script = ExtResource("1_uc30u")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_7aqq5")
+
+[node name="Area3D" type="Area3D" parent="MeshInstance3D"]
+collision_layer = 4
+collision_mask = 1025
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
+shape = SubResource("SphereShape3D_qtxek")

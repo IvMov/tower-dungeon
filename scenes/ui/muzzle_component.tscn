@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dd34l5w0cmc8o"]
+
+[ext_resource type="Script" path="res://scenes/ui/muzzle_component.gd" id="1_a6grs"]
+[ext_resource type="Texture2D" uid="uid://df4e6q2k8o7iq" path="res://assets/2d/mouse_shot.png" id="2_ywhiu"]
+
+[node name="MuzzleComponent" type="Node2D"]
+script = ExtResource("1_a6grs")
+
+[node name="MuzzleSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_ywhiu")

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dituee6sehxvq"]
+
+[ext_resource type="Script" path="res://scenes/camera_scene.gd" id="1_84dn8"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_eo0r7"]
+
+[node name="CameraScene" type="Node3D" groups=["Camera"]]
+script = ExtResource("1_84dn8")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 3.57628e-07, 0, -3.57628e-07, 1, 0, 3, 4)
+shape = SubResource("SphereShape3D_eo0r7")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 3, 4)

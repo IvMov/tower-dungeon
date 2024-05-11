@@ -1,5 +1,9 @@
-[gd_resource type="BoxMesh" format=3 uid="uid://clta6k5r2s6sf"]
+[gd_resource type="BoxMesh" load_steps=2 format=3 uid="uid://clta6k5r2s6sf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ek4ai"]
+albedo_color = Color(1, 0.423529, 0.141176, 1)
 
 [resource]
 resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_ek4ai")
 size = Vector3(6, 2, 1)
