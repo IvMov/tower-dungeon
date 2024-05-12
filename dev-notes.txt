@@ -1,9 +1,10 @@
 List TODO before 0.0.1:
 
 1) create character movement, jumping, dodging - done 2024-05-11
-2) create simple target 
-3) try to shoot in this target 
-4) enrich target and character with basic HP, MP etc
+1.1) add shooting possibility
+2) create simple target (enemy)
+3) try to shoot in enemy and walls
+4) enrich enemies and character with basic HP, MP etc
 5) achieve enemies AI movement and trying to attack character
 
 other TODO's: 
@@ -19,6 +20,7 @@ Dev logs:
 add first static/autorun nodes to handle events, configurations and player parameters
 2024-05-11: fix moving, add shift moving, and shift jump, add camera collision with terrain, build simple training map, 
 add simple shooting prototype ( shooting from rod controlled in 2 different modes)
+2024-05-12: rework shooting, fix camera, lot of work to adjust shooting from camera view to cursor on screen, add zoom on right button, found bug - need to rework projectiles as in high speeds - it not collide wit
 #
 
 Version history:

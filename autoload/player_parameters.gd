@@ -10,4 +10,4 @@ const JUMP_SPEED_UP_MOD: float = 1.2
 var current_speed: float = BASE_SPEED
 var current_air_speed: float = BASE_AIR_SPEED
 var current_jump_velocity: float = BASE_JUMP_VELOCITY
-var max_jumps: int = 1
+var max_jumps: int = 50

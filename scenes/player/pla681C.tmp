@@ -2205,9 +2205,6 @@ skin = SubResource("Skin_odn0i")
 mesh = SubResource("ArrayMesh_4wpqs")
 skin = SubResource("Skin_odn0i")
 
-[node name="Weapon" type="Node3D" parent="character-human/Skeleton3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_k43k4")
@@ -2215,7 +2212,7 @@ libraries = {
 autoplay = "idle"
 
 [node name="CameraScene" parent="." instance=ExtResource("1_52pv8")]
-transform = Transform3D(0.999829, 0, 0.018482, 0, 1, 0, -0.018482, 0, 0.999829, 0.545941, 0.870116, 0)
+transform = Transform3D(0.995285, 0, 0.0969923, 0, 1, 0, -0.0969923, 0, 0.995285, 0.243028, 0.423724, 0)
 
 [node name="JumpTimer" type="Timer" parent="."]
 wait_time = 0.5

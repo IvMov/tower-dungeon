@@ -4,8 +4,7 @@ extends CharacterBody3D
 @onready var camera_scene = $CameraScene
 @onready var player_model = $"character-human"
 @onready var jump_gap_timer = $JumpTimer
-@onready var muzzle_component = $MuzzleComponent
-@onready var gun = $"character-human/Skeleton3D/Gun"
+@onready var weapon = $"character-human/Skeleton3D/Weapon"
 
 
 @export var packed_projectile_test: PackedScene
@@ -13,8 +12,7 @@ extends CharacterBody3D
 var player_name: String
 var last_frame_was_on_floor: bool = true
 var jumps: int = 0
-var direction: Vector3 = Vector3.ZERO
-var is_aming_mode: bool = false
+var move_direction: Vector3 = Vector3.ZERO
 
 func _ready():
 	player_name = "test" # TODO: create simple creation screen with nickname
@@ -22,11 +20,12 @@ func _ready():
 	#camera_scene.rotation.y = 3.14/2
 
 
+
 func _physics_process(delta):
 	var input_direction: Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
-	direction = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
-	velocity.x = direction.x * PlayerParameters.current_speed
-	velocity.z = direction.z * PlayerParameters.current_speed
+	move_direction = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
+	velocity.x = move_direction.x * PlayerParameters.current_speed
+	velocity.z = move_direction.z * PlayerParameters.current_speed
 	
 	# if player change state is_on_floor - then need to handle this event (gives possibility to press jump after not on flor for a while)
 	if last_frame_was_on_floor != is_on_floor():
@@ -35,40 +34,43 @@ func _physics_process(delta):
 	
 	# animations and falling calculation
 	if is_on_floor():
-		animation_player.play("walk" if direction else "idle")
+		animation_player.play("walk" if move_direction else "idle")
 	else:
 		animation_player.play("fall")
 		velocity.y -= GameConfig.gravity * delta
+		
 	move_and_slide()
-	
+		
+
+
 
 func _unhandled_input(event):
+	# right click
 	handle_aiming(event)
+	# shift
 	handle_run(event)
+	# space
 	handle_jump(event)
+	# movement
 	handle_mouse_rotations(event)
+	# left click
 	handle_skill_use(event)
 	
 
 func handle_mouse_rotations(event: InputEvent):
-	if is_aming_mode:
-		aim_weapon(event)
-	else: 
-		move_player(event)
+	move_player(event)
 
 	
 func aim_weapon(event: InputEvent):
-	if event is InputEventMouseMotion && event.relative.y + event.relative.x != 0:
-		gun.rotate_x(event.relative.y * GameConfig.get_mouse_sensetivity())
-		gun.rotate_y(-event.relative.x * GameConfig.get_mouse_sensetivity())
+	pass
 
 func move_player(event: InputEvent):
 	if event is InputEventMouseMotion && event.relative.y + event.relative.x != 0:
 		rotate_y(-event.relative.x * GameConfig.get_mouse_sensetivity())
 		var new_angle = camera_scene.get_rotation().x - event.relative.y * GameConfig.get_mouse_sensetivity();
-		if new_angle < GameConfig.MAX_MOUSE_ROTATION_X && new_angle > GameConfig.MIN_MOUSE_ROTATION_X:
+		if new_angle < GameConfig.MAX_MOUSE_ROTATION_X && new_angle > -GameConfig.MAX_MOUSE_ROTATION_X:
 			camera_scene.rotation.x = new_angle
-			gun.rotate_x(event.relative.y * GameConfig.get_mouse_sensetivity())
+
 
 func handle_run(event: InputEvent):
 	if event.is_action_pressed("speed_up"):
@@ -87,34 +89,47 @@ func handle_jump(event: InputEvent):
 
 
 func handle_skill_use(event: InputEvent):
+	# TODO: REFACTOR!!!!! its mess but it works!
 	if event.is_action_pressed("skill_use"):
 		var stone = packed_projectile_test.instantiate()
-		
-		
-		
 		get_parent().add_child(stone)
+		var cursor = get_viewport().get_mouse_position();
+		var ray_origin = camera_scene.camera_3d.project_ray_origin(cursor)
+		var ray_normal = camera_scene.camera_3d.project_ray_normal(cursor)
 
-		var projectile_direction: Vector3 = (gun.gun_body.global_position - gun.global_position).normalized()
-		stone.direction = projectile_direction
-		stone.global_position = gun.gun_body.global_position
-		# TODO: add muzzle red dot on target when shooting (just trace in same dirrection ray and on collision - show muzzle
+		var params = PhysicsRayQueryParameters3D.create(ray_origin, ray_origin + ray_normal*50)
+		var collision = get_world_3d().direct_space_state.intersect_ray(params)
+		var some_distance: int
+		if collision:
+			some_distance = collision.position.distance_to(ray_origin)
+			if some_distance < 10:
+				some_distance = 10
+		else: 
+			some_distance = 100
+		
+		var cursor_world_position = ray_origin + ray_normal * some_distance
+		
+
+		var proj_direction = (cursor_world_position - weapon.global_position).normalized()
+		
+		stone.direction = proj_direction
+		stone.global_position = weapon.global_position + proj_direction*0.1
 
 
 func handle_aiming(event: InputEvent):
 	if event.is_action_pressed("aiming_mode"):
-		is_aming_mode = true
+		camera_scene.aiming_mode_in()
 	elif event.is_action_released("aiming_mode"):
-		is_aming_mode = false
-		gun.rotation = Vector3.ZERO
-		
+		camera_scene.aiming_mode_out()
+	
 
 		
 func do_jump(power: float):
 	animation_player.play("jump")
 	jumps += 1
 	velocity.y = power * get_physics_process_delta_time()
-	velocity.x = direction.x * PlayerParameters.current_air_speed
-	velocity.z = direction.z * PlayerParameters.current_air_speed
+	velocity.x = move_direction.x * PlayerParameters.current_air_speed
+	velocity.z = move_direction.z * PlayerParameters.current_air_speed
 
 
 func handle_jump_gap():

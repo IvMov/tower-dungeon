@@ -27,6 +27,7 @@ PlayerParameters="*res://autoload/player_parameters.tscn"
 
 window/size/viewport_width=1366
 window/size/viewport_height=768
+mouse_cursor/tooltip_position_offset=Vector2(0, 0)
 
 [filesystem]
 

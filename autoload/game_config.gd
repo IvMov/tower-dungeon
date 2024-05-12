@@ -1,7 +1,6 @@
 extends Node
 
-const MAX_MOUSE_ROTATION_X: float = 0.8
-const MIN_MOUSE_ROTATION_X: float = -0.8
+const MAX_MOUSE_ROTATION_X: float = PI/2
 
 var mouse_sensitivity_game: float = 0.003
 var mouse_sensitivity_menu: float = 0.003
