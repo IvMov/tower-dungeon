@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://w5dgd34hh3wr"]
+[gd_scene load_steps=5 format=3 uid="uid://w5dgd34hh3wr"]
 
 [ext_resource type="PackedScene" uid="uid://cnf65j1vsavti" path="res://scenes/maps/test_map.tscn" id="1_rx46b"]
 [ext_resource type="PackedScene" uid="uid://b24j4s1u7ww1k" path="res://scenes/player/player.tscn" id="2_v4j8r"]
 [ext_resource type="PackedScene" uid="uid://ieuiir4uuka5" path="res://scenes/ui/crosshair_scene.tscn" id="3_s0mh3"]
+[ext_resource type="PackedScene" uid="uid://ca0ysw5vmydwd" path="res://scenes/enemies/enemy.tscn" id="4_c2jpx"]
 
 [node name="Main" type="Node"]
 
@@ -15,3 +16,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.91811, 0)
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.081387, 28.7604, 0.180205)
 
 [node name="Crosshair" parent="." instance=ExtResource("3_s0mh3")]
+
+[node name="Enemy" parent="." instance=ExtResource("4_c2jpx")]
+transform = Transform3D(-0.83503, 0, 0.550204, 0, 1, 0, -0.550204, 0, -0.83503, 3.49212, 5.19046, -4.07031)

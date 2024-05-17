@@ -1,9 +1,10 @@
 List TODO before 0.0.1:
 
 1) create character movement, jumping, dodging - done 2024-05-11
-1.1) add shooting possibility
-2) create simple target (enemy)
-3) try to shoot in enemy and walls
+1.1) add shooting possibility - done 2024-05-15
+2) create simple target (enemy) - done 2024-05-17
+3) try to shoot in enemy and walls - done 2024-05-17
+3.1) improve enemy chasing the player with some pathfinding system
 4) enrich enemies and character with basic HP, MP etc
 5) achieve enemies AI movement and trying to attack character
 
@@ -17,10 +18,15 @@ Dev logs:
 2024-05-04: initial commit, with adding basic mesh model from blender and camera
 2024-05-08: replace mesh with free one from Kenney assets, improve movement and test some animations
 2024-05-10: create dev log file (as I forget to do it when start project), and describe basic todo list, 
-add first static/autorun nodes to handle events, configurations and player parameters
+	add first static/autorun nodes to handle events, configurations and player parameters
 2024-05-11: fix moving, add shift moving, and shift jump, add camera collision with terrain, build simple training map, 
-add simple shooting prototype ( shooting from rod controlled in 2 different modes)
-2024-05-12: rework shooting, fix camera, lot of work to adjust shooting from camera view to cursor on screen, add zoom on right button, found bug - need to rework projectiles as in high speeds - it not collide wit
+	add simple shooting prototype ( shooting from rod controlled in 2 different modes)
+2024-05-12: rework shooting, fix camera, lot of work to adjust shooting from camera view to cursor on screen, add zoom on right button, 
+	found bug - need to rework projectiles as in high speeds - it not collide with meshes
+2024-05-15: but projectiles in high speed collide with character3d and that's enough for me, 
+	added enemy for tests, firsts steps to implement enemy aggrs on player moves in his detection area
+2024-05-17: finally enemy rotates and moves in player side.
+
 #
 
 Version history:

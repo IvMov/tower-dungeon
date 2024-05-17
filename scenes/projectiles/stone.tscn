@@ -7,14 +7,14 @@ albedo_color = Color(0.682353, 0.415686, 0.0627451, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_7aqq5"]
 material = SubResource("StandardMaterial3D_3awew")
-radius = 0.1
-height = 0.2
+radius = 0.2
+height = 0.4
 radial_segments = 32
 rings = 16
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qtxek"]
 resource_local_to_scene = true
-radius = 0.12
+radius = 0.22
 
 [node name="Stone" type="Node3D"]
 script = ExtResource("1_uc30u")
@@ -28,3 +28,8 @@ collision_mask = 1025
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
 shape = SubResource("SphereShape3D_qtxek")
+
+[node name="LifeTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true

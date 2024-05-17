@@ -1,10 +1,13 @@
+class_name Player
 extends CharacterBody3D
+
 
 @onready var animation_player = $AnimationPlayer
 @onready var camera_scene = $CameraScene
 @onready var player_model = $"character-human"
 @onready var jump_gap_timer = $JumpTimer
 @onready var weapon = $"character-human/Skeleton3D/Weapon"
+@onready var agr_area = $AgrArea
 
 
 @export var packed_projectile_test: PackedScene
@@ -17,6 +20,10 @@ var move_direction: Vector3 = Vector3.ZERO
 func _ready():
 	player_name = "test" # TODO: create simple creation screen with nickname
 	GameEvents.emit_change_game_stage(1)
+	agr_area.body_entered.connect(on_body_entered)
+	agr_area.body_exited.connect(on_body_exited)
+	agr_area.area_entered.connect(on_area_entered)
+	agr_area.area_exited.connect(on_area_exited)
 	#camera_scene.rotation.y = 3.14/2
 
 
@@ -24,8 +31,8 @@ func _ready():
 func _physics_process(delta):
 	var input_direction: Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	move_direction = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
-	velocity.x = move_direction.x * PlayerParameters.current_speed
-	velocity.z = move_direction.z * PlayerParameters.current_speed
+	velocity.x = move_direction.x * PlayerParameters.current_speed * delta
+	velocity.z = move_direction.z * PlayerParameters.current_speed * delta
 	
 	# if player change state is_on_floor - then need to handle this event (gives possibility to press jump after not on flor for a while)
 	if last_frame_was_on_floor != is_on_floor():
@@ -40,8 +47,6 @@ func _physics_process(delta):
 		velocity.y -= GameConfig.gravity * delta
 		
 	move_and_slide()
-		
-
 
 
 func _unhandled_input(event):
@@ -60,9 +65,6 @@ func _unhandled_input(event):
 func handle_mouse_rotations(event: InputEvent):
 	move_player(event)
 
-	
-func aim_weapon(event: InputEvent):
-	pass
 
 func move_player(event: InputEvent):
 	if event is InputEventMouseMotion && event.relative.y + event.relative.x != 0:
@@ -114,6 +116,7 @@ func handle_skill_use(event: InputEvent):
 		
 		stone.direction = proj_direction
 		stone.global_position = weapon.global_position + proj_direction*0.1
+		print(global_position)
 
 
 func handle_aiming(event: InputEvent):
@@ -127,9 +130,10 @@ func handle_aiming(event: InputEvent):
 func do_jump(power: float):
 	animation_player.play("jump")
 	jumps += 1
-	velocity.y = power * get_physics_process_delta_time()
-	velocity.x = move_direction.x * PlayerParameters.current_air_speed
-	velocity.z = move_direction.z * PlayerParameters.current_air_speed
+	var fiz_delta = get_physics_process_delta_time()
+	velocity.y = power * fiz_delta
+	velocity.x = move_direction.x * PlayerParameters.current_air_speed * fiz_delta
+	velocity.z = move_direction.z * PlayerParameters.current_air_speed * fiz_delta
 
 
 func handle_jump_gap():
@@ -138,3 +142,25 @@ func handle_jump_gap():
 		jumps = 0	
 	else: 
 		jump_gap_timer.start()
+
+
+func on_body_entered(body: Node3D):
+	print("SDD1")
+
+
+func on_body_exited(body: Node3D):
+	print("exited body")
+
+
+func on_area_entered(area: Area3D):
+	var area_owner: Node3D = area.get_parent()
+	if area_owner is BasicEnemy:
+		area_owner.detect_target(self)
+	print("entered area")
+
+
+func on_area_exited(area: Area3D):
+	var area_owner: Node3D = area.get_parent()
+	if area_owner is BasicEnemy:
+		area_owner.lost_target()
+	print("exited")
