@@ -4,9 +4,11 @@ List TODO before 0.0.1:
 1.1) add shooting possibility - done 2024-05-15
 2) create simple target (enemy) - done 2024-05-17
 3) try to shoot in enemy and walls - done 2024-05-17
-3.1) improve enemy chasing the player with some pathfinding system
+3.1) improve enemy chasing the player with some pathfinding system - done 2024-05-18
 4) enrich enemies and character with basic HP, MP etc
 5) achieve enemies AI movement and trying to attack character
+5.1) enemies AI - trying to avoid collision with projectiles
+6) add first stage of game with some aim
 
 other TODO's: 
 - implement random procedure generated dungeons
@@ -24,8 +26,9 @@ Dev logs:
 2024-05-12: rework shooting, fix camera, lot of work to adjust shooting from camera view to cursor on screen, add zoom on right button, 
 	found bug - need to rework projectiles as in high speeds - it not collide with meshes
 2024-05-15: but projectiles in high speed collide with character3d and that's enough for me, 
-	added enemy for tests, firsts steps to implement enemy aggrs on player moves in his detection area
+	added enemy for tests, firsts steps to implement enemy agrs on player moves in his detection area
 2024-05-17: finally enemy rotates and moves in player side.
+2024-05-18: add custom simple AI for enemies - they can idle move around, and start to chasing player if he is in agr bound
 
 #
 

@@ -4,7 +4,9 @@
 [ext_resource type="Script" path="res://scenes/enemies/enemy.gd" id="1_maoj0"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_e3e2x"]
-radius = 5.0
+resource_local_to_scene = true
+height = 4.0
+radius = 4.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dd40b"]
 resource_name = "colormap"
@@ -2145,7 +2147,17 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 collision_layer = 1024
 collision_mask = 513
 wall_min_slide_angle = 0.0
+floor_snap_length = 0.05
 script = ExtResource("1_maoj0")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_height_offset = 1.0
+path_max_distance = 30.01
+debug_enabled = true
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.397904, 0)
+target_position = Vector3(0, 0, 1)
 
 [node name="AgrArea" type="Area3D" parent="."]
 collision_layer = 1024
@@ -2153,7 +2165,7 @@ collision_mask = 512
 priority = 2
 
 [node name="AgrCollision" type="CollisionShape3D" parent="AgrArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.981294, 3.93313)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5767, 1.76529)
 shape = SubResource("CylinderShape3D_e3e2x")
 
 [node name="character-orc2" type="Node3D" parent="."]
@@ -2229,3 +2241,25 @@ libraries = {
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.449204, 0)
 shape = SubResource("CapsuleShape3D_aa2io")
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="ChasePlayerTimer" type="Timer" parent="Timers"]
+wait_time = 5.0
+one_shot = true
+
+[node name="IdleMovingTimer" type="Timer" parent="Timers"]
+wait_time = 3.0
+one_shot = true
+
+[node name="IdleCooldownTimer" type="Timer" parent="Timers"]
+wait_time = 3.0
+one_shot = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="timeout" from="Timers/ChasePlayerTimer" to="." method="_on_chase_player_timer_timeout"]
+[connection signal="timeout" from="Timers/IdleMovingTimer" to="." method="_on_idle_moving_timer_timeout"]
+[connection signal="timeout" from="Timers/IdleCooldownTimer" to="." method="_on_idle_cooldown_timer_timeout"]

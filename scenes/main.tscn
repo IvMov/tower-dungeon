@@ -10,7 +10,7 @@
 [node name="TestMap" parent="." instance=ExtResource("1_rx46b")]
 
 [node name="Player" parent="." instance=ExtResource("2_v4j8r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.91811, 0)
+transform = Transform3D(0.305014, 0, -0.952348, 0, 1, 0, 0.952348, 0, 0.305014, 0, 8.91811, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.081387, 28.7604, 0.180205)
@@ -18,4 +18,16 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.0813
 [node name="Crosshair" parent="." instance=ExtResource("3_s0mh3")]
 
 [node name="Enemy" parent="." instance=ExtResource("4_c2jpx")]
-transform = Transform3D(-0.83503, 0, 0.550204, 0, 1, 0, -0.550204, 0, -0.83503, 3.49212, 5.19046, -4.07031)
+transform = Transform3D(0.970304, 0, -0.241888, 0, 1, 0, 0.241888, 0, 0.970304, 14.6953, 6.80976, 7.30185)
+
+[node name="Enemy2" parent="." instance=ExtResource("4_c2jpx")]
+transform = Transform3D(0.970304, 0, -0.241888, 0, 1, 0, 0.241888, 0, 0.970304, 5.6953, 6.80976, 7.30185)
+
+[node name="Enemy4" parent="." instance=ExtResource("4_c2jpx")]
+transform = Transform3D(0.970304, 0, -0.241888, 0, 1, 0, 0.241888, 0, 0.970304, 5.6953, 6.80976, -8.6545)
+
+[node name="Enemy5" parent="." instance=ExtResource("4_c2jpx")]
+transform = Transform3D(0.970304, 0, -0.241888, 0, 1, 0, 0.241888, 0, 0.970304, -12.6685, 6.80976, 7.30185)
+
+[node name="Enemy3" parent="." instance=ExtResource("4_c2jpx")]
+transform = Transform3D(0.970304, 0, -0.241888, 0, 1, 0, 0.241888, 0, 0.970304, 14.6953, 6.80976, -1.69815)

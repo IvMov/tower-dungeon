@@ -6,4 +6,4 @@ albedo_color = Color(1, 0.423529, 0.141176, 1)
 [resource]
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_ek4ai")
-size = Vector3(6, 2, 1)
+size = Vector3(8, 2, 1)

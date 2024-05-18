@@ -31,8 +31,8 @@ func _ready():
 func _physics_process(delta):
 	var input_direction: Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	move_direction = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
-	velocity.x = move_direction.x * PlayerParameters.current_speed * delta
-	velocity.z = move_direction.z * PlayerParameters.current_speed * delta
+	velocity.x = -move_direction.x * PlayerParameters.current_speed * delta
+	velocity.z = -move_direction.z * PlayerParameters.current_speed * delta
 	
 	# if player change state is_on_floor - then need to handle this event (gives possibility to press jump after not on flor for a while)
 	if last_frame_was_on_floor != is_on_floor():
@@ -116,7 +116,6 @@ func handle_skill_use(event: InputEvent):
 		
 		stone.direction = proj_direction
 		stone.global_position = weapon.global_position + proj_direction*0.1
-		print(global_position)
 
 
 func handle_aiming(event: InputEvent):
