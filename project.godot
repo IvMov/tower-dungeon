@@ -121,6 +121,7 @@ aiming_mode={
 [layer_names]
 
 3d_physics/layer_1="Terrain"
+3d_physics/layer_3="Projectiles_player"
 3d_physics/layer_10="Player"
 3d_physics/layer_11="Enemies"
 

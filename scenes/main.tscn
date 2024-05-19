@@ -1,11 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://w5dgd34hh3wr"]
+[gd_scene load_steps=6 format=3 uid="uid://w5dgd34hh3wr"]
 
 [ext_resource type="PackedScene" uid="uid://cnf65j1vsavti" path="res://scenes/maps/test_map.tscn" id="1_rx46b"]
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_vbbpw"]
 [ext_resource type="PackedScene" uid="uid://b24j4s1u7ww1k" path="res://scenes/player/player.tscn" id="2_v4j8r"]
 [ext_resource type="PackedScene" uid="uid://ieuiir4uuka5" path="res://scenes/ui/crosshair_scene.tscn" id="3_s0mh3"]
 [ext_resource type="PackedScene" uid="uid://ca0ysw5vmydwd" path="res://scenes/enemies/enemy.tscn" id="4_c2jpx"]
 
 [node name="Main" type="Node"]
+script = ExtResource("1_vbbpw")
+enemy = ExtResource("4_c2jpx")
 
 [node name="TestMap" parent="." instance=ExtResource("1_rx46b")]
 
@@ -31,3 +34,9 @@ transform = Transform3D(0.970304, 0, -0.241888, 0, 1, 0, 0.241888, 0, 0.970304, 
 
 [node name="Enemy3" parent="." instance=ExtResource("4_c2jpx")]
 transform = Transform3D(0.970304, 0, -0.241888, 0, 1, 0, 0.241888, 0, 0.970304, 14.6953, 6.80976, -1.69815)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

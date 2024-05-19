@@ -1,7 +1,11 @@
-[gd_scene load_steps=37 format=3 uid="uid://ca0ysw5vmydwd"]
+[gd_scene load_steps=38 format=3 uid="uid://ca0ysw5vmydwd"]
 
 [ext_resource type="Texture2D" uid="uid://c13tj2oeip7q3" path="res://assets/2d/colormap.png" id="1_jxyg6"]
 [ext_resource type="Script" path="res://scenes/enemies/enemy.gd" id="1_maoj0"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_mkikl"]
+resource_local_to_scene = true
+radius = 3.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_e3e2x"]
 resource_local_to_scene = true
@@ -149,7 +153,7 @@ tracks/8/enabled = true
 tracks/8/path = NodePath("character-orc/Skeleton3D:leg-left")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
-tracks/8/keys = PackedFloat32Array(0, 1, 0, 0, 0, -1, 0.0333333, 1, -0.0680153, 0, 0, -0.997684, 0.0666667, 1, -0.228351, 0, 0, -0.973579, 0.1, 1, -0.411514, 0, 0, -0.911403, 0.133333, 1, -0.553392, 0, 0, -0.832921, 0.166667, 1, -0.608761, 0, 0, -0.793353, 0.2, 1, -0.101403, 0, 0, -0.994845, 0.233333, 1, 0.683783, 0, 0, -0.729685, 0.266667, 1, 0.786193, 0, 0, -0.617982, 0.3, 1, 0.73183, 0, 0, -0.681488, 0.333333, 1, 0.627812, 0, 0, -0.778365, 0.366667, 1, 0.482841, 0, 0, -0.875708, 0.4, 1, 0.316974, 0, 0, -0.948434, 0.433333, 1, 0.160034, 0, 0, -0.987112, 0.466667, 1, 0.0445105, 0, 0, -0.999009, 0.5, 1, 0.0222608, 0, 0, -0.999752, 0.533333, 1, 0, 0, 0, -1)
+tracks/8/keys = PackedFloat32Array(0, 1, -0.0680153, 0, 0, -0.997684, 0.0666667, 1, -0.228351, 0, 0, -0.973579, 0.1, 1, -0.411514, 0, 0, -0.911403, 0.133333, 1, -0.553392, 0, 0, -0.832921, 0.166667, 1, -0.608761, 0, 0, -0.793353, 0.2, 1, -0.101403, 0, 0, -0.994845, 0.233333, 1, 0.683783, 0, 0, -0.729685, 0.266667, 1, 0.786193, 0, 0, -0.617982, 0.3, 1, 0.73183, 0, 0, -0.681488, 0.333333, 1, 0.628, 0, 0, -0.778, 0.366667, 1, 0.482841, 0, 0, -0.875708, 0.4, 1, 0.316974, 0, 0, -0.948434, 0.433333, 1, 0.160034, 0, 0, -0.987112, 0.5, 1, 0.0445105, 0, 0, -0.999009, 0.533333, 1, 0, 0, 0, -1)
 tracks/9/type = "position_3d"
 tracks/9/imported = true
 tracks/9/enabled = true
@@ -2143,7 +2147,6 @@ radius = 0.4
 height = 1.0
 
 [node name="Enemy" type="CharacterBody3D"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 collision_layer = 1024
 collision_mask = 513
 wall_min_slide_angle = 0.0
@@ -2153,11 +2156,18 @@ script = ExtResource("1_maoj0")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_height_offset = 1.0
 path_max_distance = 30.01
-debug_enabled = true
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.397904, 0)
 target_position = Vector3(0, 0, 1)
+
+[node name="DodgeArea" type="Area3D" parent="."]
+collision_layer = 1024
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DodgeArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.59677)
+shape = SubResource("SphereShape3D_mkikl")
 
 [node name="AgrArea" type="Area3D" parent="."]
 collision_layer = 1024
@@ -2177,7 +2187,7 @@ bones/0/name = "root"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 bones/0/enabled = true
-bones/0/position = Vector3(0, 0, 0)
+bones/0/position = Vector3(0, 0, 2.407e-06)
 bones/0/rotation = Quaternion(0, 0, 0, 1)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "leg-left"
@@ -2185,42 +2195,42 @@ bones/1/parent = 0
 bones/1/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.083571, 0.17625, -0.02375)
 bones/1/enabled = true
 bones/1/position = Vector3(0.083571, 0.17625, -0.02375)
-bones/1/rotation = Quaternion(0, 0, 0, 1)
+bones/1/rotation = Quaternion(-4.4108e-05, 0, 0, 1)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "leg-right"
 bones/2/parent = 0
 bones/2/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.083571, 0.17625, -0.02375)
 bones/2/enabled = true
 bones/2/position = Vector3(-0.083571, 0.17625, -0.02375)
-bones/2/rotation = Quaternion(0, 0, 0, 1)
+bones/2/rotation = Quaternion(6.30115e-06, 0, 0, 1)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "torso"
 bones/3/parent = 0
 bones/3/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.80478e-15, 0.17625, -0.02375)
 bones/3/enabled = true
 bones/3/position = Vector3(-1.80478e-15, 0.17625, -0.02375)
-bones/3/rotation = Quaternion(0, 0, 0, 1)
+bones/3/rotation = Quaternion(-6.30115e-06, 0, 0, 1)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "arm-left"
 bones/4/parent = 3
 bones/4/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0998968, 0.1115, 0.0115)
 bones/4/enabled = true
 bones/4/position = Vector3(0.0998968, 0.1115, 0.0115)
-bones/4/rotation = Quaternion(0, 0, -0.382683, 0.92388)
+bones/4/rotation = Quaternion(2.3286e-05, 9.64521e-06, -0.382683, 0.92388)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/name = "arm-right"
 bones/5/parent = 3
 bones/5/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0998968, 0.1115, 0.0115)
 bones/5/enabled = true
 bones/5/position = Vector3(-0.0998968, 0.1115, 0.0115)
-bones/5/rotation = Quaternion(0, 0, 0.382683, 0.92388)
+bones/5/rotation = Quaternion(-2.91075e-06, 1.20565e-06, 0.382683, 0.92388)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/name = "head"
 bones/6/parent = 3
 bones/6/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.81969e-09, 0.167, 0.0263888)
 bones/6/enabled = true
 bones/6/position = Vector3(1.81969e-09, 0.167, 0.0263888)
-bones/6/rotation = Quaternion(0, 0, 0, 1)
+bones/6/rotation = Quaternion(1.81591e-05, 0, 0, 1)
 bones/6/scale = Vector3(1, 1, 1)
 
 [node name="body-mesh" type="MeshInstance3D" parent="character-orc2/character-orc/Skeleton3D"]
@@ -2256,10 +2266,25 @@ one_shot = true
 wait_time = 3.0
 one_shot = true
 
+[node name="DodgingTimer" type="Timer" parent="Timers"]
+wait_time = 0.3
+one_shot = true
+
+[node name="DeathTimer" type="Timer" parent="Timers"]
+wait_time = 0.6
+one_shot = true
+
+[node name="DoDamageTimer" type="Timer" parent="Timers"]
+wait_time = 0.533
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
 
+[connection signal="area_entered" from="DodgeArea" to="." method="_on_dodge_area_area_entered"]
 [connection signal="timeout" from="Timers/ChasePlayerTimer" to="." method="_on_chase_player_timer_timeout"]
 [connection signal="timeout" from="Timers/IdleMovingTimer" to="." method="_on_idle_moving_timer_timeout"]
 [connection signal="timeout" from="Timers/IdleCooldownTimer" to="." method="_on_idle_cooldown_timer_timeout"]
+[connection signal="timeout" from="Timers/DodgingTimer" to="." method="_on_dodging_timer_timeout"]
+[connection signal="timeout" from="Timers/DeathTimer" to="." method="_on_death_timer_timeout"]
+[connection signal="timeout" from="Timers/DoDamageTimer" to="." method="_on_do_damage_timer_timeout"]

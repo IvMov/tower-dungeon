@@ -24,7 +24,7 @@ func _ready():
 	agr_area.body_exited.connect(on_body_exited)
 	agr_area.area_entered.connect(on_area_entered)
 	agr_area.area_exited.connect(on_area_exited)
-	#camera_scene.rotation.y = 3.14/2
+	GameEvents.damage_player.connect(on_damage_player)
 
 
 
@@ -45,7 +45,7 @@ func _physics_process(delta):
 	else:
 		animation_player.play("fall")
 		velocity.y -= GameConfig.gravity * delta
-		
+	
 	move_and_slide()
 
 
@@ -143,23 +143,35 @@ func handle_jump_gap():
 		jump_gap_timer.start()
 
 
+func get_damage(damage: float) -> void:
+	print("damaged by %0.1f" % damage)
+	camera_scene.start_shake(0.1, 8)
+	#animation_player.play("emote-yes")
+
+
 func on_body_entered(body: Node3D):
-	print("SDD1")
+	if body is BasicEnemy:
+		body.do_damage()
+
 
 
 func on_body_exited(body: Node3D):
-	print("exited body")
+	if body is BasicEnemy:
+		var damage = body.stop_damage()
+
 
 
 func on_area_entered(area: Area3D):
 	var area_owner: Node3D = area.get_parent()
-	if area_owner is BasicEnemy:
+	if area_owner && area_owner is BasicEnemy:
 		area_owner.detect_target(self)
-	print("entered area")
 
 
 func on_area_exited(area: Area3D):
 	var area_owner: Node3D = area.get_parent()
-	if area_owner is BasicEnemy:
+	if area_owner && area_owner is BasicEnemy:
 		area_owner.lost_target()
-	print("exited")
+
+
+func on_damage_player(damage: float):
+	get_damage(damage)

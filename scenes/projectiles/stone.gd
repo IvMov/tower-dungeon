@@ -1,7 +1,7 @@
 extends Node3D
 
 var direction: Vector3
-var speed: float = 50
+var speed: float = 20
 
 @onready var life_timer = $LifeTimer
 
@@ -20,6 +20,9 @@ func on_body_entered(body: Node3D):
 	speed = 0
 	set_scale(Vector3.ONE*2)
 	mesh_instance_3d.mesh.material.albedo_color = Color.WHITE
+	if body is BasicEnemy:
+		body.get_damage()
+		queue_free()
 
 
 func on_life_timer_timeout():

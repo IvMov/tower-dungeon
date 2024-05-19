@@ -6,8 +6,8 @@ List TODO before 0.0.1:
 3) try to shoot in enemy and walls - done 2024-05-17
 3.1) improve enemy chasing the player with some pathfinding system - done 2024-05-18
 4) enrich enemies and character with basic HP, MP etc
-5) achieve enemies AI movement and trying to attack character
-5.1) enemies AI - trying to avoid collision with projectiles
+5) achieve enemies AI movement and trying to attack character - done melee 2024-05-19
+5.1) enemies AI - trying to avoid collision with projectiles - done 2024-05-19
 6) add first stage of game with some aim
 
 other TODO's: 
@@ -29,6 +29,8 @@ Dev logs:
 	added enemy for tests, firsts steps to implement enemy agrs on player moves in his detection area
 2024-05-17: finally enemy rotates and moves in player side.
 2024-05-18: add custom simple AI for enemies - they can idle move around, and start to chasing player if he is in agr bound
+2024-05-19: enemies trying to avoid shots and aggr in player direction even if player is too far, add temp enemy spawner and use dead animation,
+	add enemies when reach the player start to attack player, player camera shakes on attack
 
 #
 

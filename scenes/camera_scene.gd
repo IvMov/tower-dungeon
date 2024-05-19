@@ -10,6 +10,39 @@ const MAX_ZOOM_IN: float = 1
 var in_aiming_mode: bool = false
 var current_arm_length: float
 
+var shake_amount = 0.0
+var shake_decay: int = 4
+var shake_forward: bool = true
+var shake_offset: Vector3
+func _ready():
+	pass
+
+func _physics_process(delta):
+	if shake_decay > 0:
+		if shake_forward:
+			# Apply a small random offset to the camera's position
+			shake_offset = Vector3(
+				(randf() - 0.5) * shake_amount,
+				(randf() - 0.5) * shake_amount,
+				(randf() - 0.5) * shake_amount
+			)
+			global_transform.origin += shake_offset
+		else:
+			global_transform.origin -= shake_offset
+		shake_forward = !shake_forward
+		shake_decay = max(shake_decay-1, 0)
+		if shake_decay == 0:
+			shake_amount = 0
+			shake_forward = true
+
+func start_shake(amount:float, decay: int):
+	#if shake_decay > 0:
+		#return
+	shake_amount = amount
+	shake_decay = decay
+
+
+
 func _unhandled_input(event):
 	if event is InputEventMouseButton && !in_aiming_mode:
 		var is_zoom_forward: bool = event.button_index == 4
@@ -37,17 +70,4 @@ func zoom_forward() -> void:
 
 func zoom_back() -> void:
 		spring_arm_3d.spring_length += SCROLL_POWER
-		
-#func get_crosschair_position() -> Vector3:
-	#var from = get_parent().gun.global_position
-	#var to = (get_parent().gun.gun_body.global_position * 100)
-	### Виявлення колізій для отримання точки кінця променя
-	#var space_state = get_world_3d().direct_space_state
-	#var param = PhysicsRayQueryParameters3D.create(from, to)
-	#param.exclude = [self]
-	#var result = space_state.intersect_ray(param)
-	#if result:
-		#return result.position - direction*.3
-	#else:
-		#return Vector3.ZERO
 
