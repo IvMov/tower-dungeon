@@ -8,10 +8,33 @@ List TODO before 0.0.1:
 4) enrich enemies and character with basic HP, MP etc
 5) achieve enemies AI movement and trying to attack character - done melee 2024-05-19
 5.1) enemies AI - trying to avoid collision with projectiles - done 2024-05-19
-6) add first stage of game with some aim
+6) add first stage of game with some aim (requirements in other TODO's)
+7) create character mp, hp, xp system
+8) add first simple light-impulse shot attack with mp usage and some cast time
+9) create enemy mp, hp, xp system (if enemy shoot player or hit / kill successfully - he gain exp (next generated enemies of this type and current 1 enemy will be harder + hp, + speed, + dmg)
+10) add enemy hp bar
+7) player and ? trap attacks reduce enemy hp (hp shown)
+8) add vignette - for fast movement, low hp
+9) add UI - please check ui prototype file in assets/2d
 
 other TODO's: 
-- implement random procedure generated dungeons
+- skills add fireball ( more mana usage, explode on damage, longer cast time)
+- skills add froze ray - low constant damage while handle skill (low but constant mana usage, good agains hordes in line)
+- skills add active jump/tp or etc for faster movement
+- skills add very fast cast field which push all out from player with long cd 
+
+
+
+- add random procedure generated dungeons
+	details (drawing in paper variant!):
+		1 - Entrance on stage and exit, related located at first block and last;
+		2 - Columns in each block - 1 - 4 random
+		3 - Brick/broken structures located on map (0-5) random
+		4 - Stage has random form depends on number of blocks (letter L, P, I etc) 
+		5 - Light - under top and on walls each N meters torch
+		6 - Bonus healer potions or armor - located on map. 
+		7 - ? Traps - floor zones where something can fall on head or etc
+- add shop stage after each stage finishing
 - add player creation screen and savings of player parameters
 
 #
@@ -31,7 +54,7 @@ Dev logs:
 2024-05-18: add custom simple AI for enemies - they can idle move around, and start to chasing player if he is in agr bound
 2024-05-19: enemies trying to avoid shots and aggr in player direction even if player is too far, add temp enemy spawner and use dead animation,
 	add enemies when reach the player start to attack player, player camera shakes on attack
-2024-05-28: apply addon with prototype textures for testmap
+2024-05-28: apply addon with prototype textures for testmap, add new TODO's + ui prototype
 
 
 #
