@@ -1,9 +1,12 @@
-[gd_resource type="BoxMesh" load_steps=2 format=3 uid="uid://clta6k5r2s6sf"]
+[gd_resource type="BoxMesh" load_steps=3 format=3 uid="uid://clta6k5r2s6sf"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ek4ai"]
-albedo_color = Color(1, 0.423529, 0.141176, 1)
+[ext_resource type="Texture2D" uid="uid://dl1utdyyfn4yo" path="res://addons/kenney_prototype_textures/orange/texture_01.png" id="1_unis1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tel2f"]
+albedo_texture = ExtResource("1_unis1")
+uv1_triplanar = true
 
 [resource]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_ek4ai")
+material = SubResource("StandardMaterial3D_tel2f")
 size = Vector3(8, 2, 1)

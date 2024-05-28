@@ -31,6 +31,8 @@ Dev logs:
 2024-05-18: add custom simple AI for enemies - they can idle move around, and start to chasing player if he is in agr bound
 2024-05-19: enemies trying to avoid shots and aggr in player direction even if player is too far, add temp enemy spawner and use dead animation,
 	add enemies when reach the player start to attack player, player camera shakes on attack
+2024-05-28: apply addon with prototype textures for testmap
+
 
 #
 

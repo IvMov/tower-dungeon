@@ -23,6 +23,10 @@ GameStage="*res://autoload/game_stage.tscn"
 GameEvents="*res://autoload/game_events.tscn"
 PlayerParameters="*res://autoload/player_parameters.tscn"
 
+[debug]
+
+settings/stdout/print_fps=true
+
 [display]
 
 window/size/viewport_width=1366

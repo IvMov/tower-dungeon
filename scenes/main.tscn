@@ -16,7 +16,7 @@ enemy = ExtResource("4_c2jpx")
 transform = Transform3D(0.305014, 0, -0.952348, 0, 1, 0, 0.952348, 0, 0.305014, 0, 8.91811, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.081387, 28.7604, 0.180205)
+transform = Transform3D(0.259627, 0.704972, 0.660007, -0.813909, -0.2081, 0.542444, 0.519755, -0.678019, 0.519755, 23.0814, 14.7604, 22.1802)
 
 [node name="Crosshair" parent="." instance=ExtResource("3_s0mh3")]
 
