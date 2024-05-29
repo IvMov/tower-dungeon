@@ -13,6 +13,7 @@ extends CharacterBody3D
 @onready var dodging_timer = $Timers/DodgingTimer
 @onready var death_timer = $Timers/DeathTimer
 @onready var do_damage_timer = $Timers/DoDamageTimer
+@onready var health_component = $HealthComponent
 
 
 var speed: float = 90.0
@@ -78,6 +79,9 @@ func chase_player(delta:float):
 	self.rotate_object_local(Vector3.UP, PI)
 	rotation.x = 0 # fix vertical rotation
 
+func custom_death_actions():
+	# required by health component, welcome to spagetti code
+	pass
 
 func lost_target():
 	if agr_area.disable_mode:
@@ -95,16 +99,10 @@ func stop_damage() -> void:
 	is_fighting = false
 
 
-func get_damage():
-	is_dying = true
-	agr_area.disable_mode = true
-	death_timer.start()
-	
-	animation_player.play("die")
-	await animation_player.animation_finished
-	var tween = create_tween()
-	tween.tween_property(self, "global_position", Vector3(global_position.x, global_position.y+2, global_position.z) , 0.3)
-	
+func get_damage(value: float):
+	health_component.minus_hp(value)
+
+
 
 func expand_agr_area_size():
 	agr_collision.shape.height+=4
@@ -179,4 +177,4 @@ func _on_do_damage_timer_timeout():
 		return
 	GameEvents.emit_damage_player(damage)
 	animation_player.play("attack-kick-left" if randf() > 0.5 else "attack-kick-right")
-	
+

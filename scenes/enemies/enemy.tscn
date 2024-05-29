@@ -1,7 +1,8 @@
-[gd_scene load_steps=38 format=3 uid="uid://ca0ysw5vmydwd"]
+[gd_scene load_steps=39 format=3 uid="uid://ca0ysw5vmydwd"]
 
 [ext_resource type="Texture2D" uid="uid://c13tj2oeip7q3" path="res://assets/2d/colormap.png" id="1_jxyg6"]
 [ext_resource type="Script" path="res://scenes/enemies/enemy.gd" id="1_maoj0"]
+[ext_resource type="PackedScene" uid="uid://siqrsi7fmaom" path="res://scenes/components/health_component.tscn" id="3_73i4a"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_mkikl"]
 resource_local_to_scene = true
@@ -2153,6 +2154,11 @@ wall_min_slide_angle = 0.0
 floor_snap_length = 0.05
 script = ExtResource("1_maoj0")
 
+[node name="HealthComponent" parent="." instance=ExtResource("3_73i4a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.886331, 0)
+max_hp = 2.0
+current_hp = 2.0
+
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_height_offset = 1.0
 path_max_distance = 30.01
@@ -2249,7 +2255,7 @@ libraries = {
 "": SubResource("AnimationLibrary_nxnuc")
 }
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="EnemyCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.449204, 0)
 shape = SubResource("CapsuleShape3D_aa2io")
 
@@ -2277,10 +2283,6 @@ one_shot = true
 
 [node name="DoDamageTimer" type="Timer" parent="Timers"]
 wait_time = 0.533
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.2
-one_shot = true
 
 [connection signal="area_entered" from="DodgeArea" to="." method="_on_dodge_area_area_entered"]
 [connection signal="timeout" from="Timers/ChasePlayerTimer" to="." method="_on_chase_player_timer_timeout"]

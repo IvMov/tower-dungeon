@@ -1,9 +1,10 @@
-[gd_scene load_steps=39 format=3 uid="uid://b24j4s1u7ww1k"]
+[gd_scene load_steps=40 format=3 uid="uid://b24j4s1u7ww1k"]
 
 [ext_resource type="PackedScene" uid="uid://dituee6sehxvq" path="res://scenes/camera_scene.tscn" id="1_52pv8"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_xn4w2"]
-[ext_resource type="PackedScene" uid="uid://b5rac3bn806k0" path="res://scenes/projectiles/stone.tscn" id="2_5uu74"]
+[ext_resource type="PackedScene" uid="uid://b5rac3bn806k0" path="res://scenes/projectiles/player_small_charge.tscn" id="2_5uu74"]
 [ext_resource type="Texture2D" uid="uid://c13tj2oeip7q3" path="res://assets/2d/colormap.png" id="3_t5qur"]
+[ext_resource type="PackedScene" uid="uid://siqrsi7fmaom" path="res://scenes/components/health_component.tscn" id="5_68vlw"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_46ws3"]
 
@@ -332,6 +333,7 @@ tracks/10/keys = PackedFloat32Array(0, 1, 0, 0, 0, -1, 0.0333333, 1, -0.013898, 
 [sub_resource type="Animation" id="Animation_dw8v4"]
 resource_name = "attack-melee-right"
 length = 0.416667
+step = 0.01
 tracks/0/type = "position_3d"
 tracks/0/imported = true
 tracks/0/enabled = true
@@ -2148,6 +2150,10 @@ floor_max_angle = 0.436332
 script = ExtResource("1_xn4w2")
 packed_projectile_test = ExtResource("2_5uu74")
 
+[node name="HealthComponent" parent="." instance=ExtResource("5_68vlw")]
+max_hp = 10.0
+current_hp = 10.0
+
 [node name="AgrArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0112433, 0)
 collision_layer = 512
@@ -2169,7 +2175,7 @@ bones/0/name = "root"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 bones/0/enabled = true
-bones/0/position = Vector3(0, 0, 0)
+bones/0/position = Vector3(0, 0, 0.00242963)
 bones/0/rotation = Quaternion(0, 0, 0, 1)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "leg-left"
@@ -2177,42 +2183,42 @@ bones/1/parent = 0
 bones/1/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.083571, 0.17625, -0.02375)
 bones/1/enabled = true
 bones/1/position = Vector3(0.083571, 0.17625, -0.02375)
-bones/1/rotation = Quaternion(0, 0, 0, 1)
+bones/1/rotation = Quaternion(-0.0222608, 0, 0, 0.999752)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "leg-right"
 bones/2/parent = 0
 bones/2/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.083571, 0.17625, -0.02375)
 bones/2/enabled = true
 bones/2/position = Vector3(-0.083571, 0.17625, -0.02375)
-bones/2/rotation = Quaternion(0, 0, 0, 1)
+bones/2/rotation = Quaternion(0.00636071, 0, 0, 0.99998)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "torso"
 bones/3/parent = 0
 bones/3/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.80478e-15, 0.17625, -0.02375)
 bones/3/enabled = true
 bones/3/position = Vector3(-1.80478e-15, 0.17625, -0.02375)
-bones/3/rotation = Quaternion(0, 0, 0, 1)
+bones/3/rotation = Quaternion(-0.00636071, 0, 0, 0.99998)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "arm-left"
 bones/4/parent = 3
 bones/4/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0998968, 0.1115, 0.0115)
 bones/4/enabled = true
 bones/4/position = Vector3(0.0998968, 0.1115, 0.0115)
-bones/4/rotation = Quaternion(0, 0, -0.382683, 0.92388)
+bones/4/rotation = Quaternion(0.0235037, 0.0097354, -0.382559, 0.923581)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/name = "arm-right"
 bones/5/parent = 3
 bones/5/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0998968, 0.1115, 0.0115)
 bones/5/enabled = true
 bones/5/position = Vector3(-0.0998968, 0.1115, 0.0115)
-bones/5/rotation = Quaternion(0, 0, 0.382683, 0.92388)
+bones/5/rotation = Quaternion(-0.00293828, 0.00121706, 0.382681, 0.923875)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/name = "head"
 bones/6/parent = 3
 bones/6/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.81969e-09, 0.167, 0.0263888)
 bones/6/enabled = true
 bones/6/position = Vector3(1.81969e-09, 0.167, 0.0263888)
-bones/6/rotation = Quaternion(0, 0, 0, 1)
+bones/6/rotation = Quaternion(0.0183298, 0, 0, 0.999832)
 bones/6/scale = Vector3(1, 1, 1)
 
 [node name="body-mesh" type="MeshInstance3D" parent="character-human/Skeleton3D"]
@@ -2226,7 +2232,7 @@ skin = SubResource("Skin_odn0i")
 surface_material_override/0 = SubResource("StandardMaterial3D_j85tw")
 
 [node name="Weapon" type="Node3D" parent="character-human/Skeleton3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, -8.74228e-08, -8.74228e-08, -8.74228e-08, -1, 0, -8.74228e-08, 7.64274e-15, -1, -0.339865, 0.436412, 0.0783222)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -13,3 +13,4 @@ func emit_screen_resized():
 
 func emit_damage_player(damage: float):
 	damage_player.emit(damage)
+

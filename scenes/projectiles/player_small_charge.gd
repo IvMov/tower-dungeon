@@ -1,7 +1,9 @@
 extends Node3D
+class_name PlayerSmallCharge
 
 var direction: Vector3
 var speed: float = 20
+var damage: float = 1.0
 
 @onready var life_timer = $LifeTimer
 
@@ -18,10 +20,8 @@ func _physics_process(delta):
 
 func on_body_entered(body: Node3D):
 	speed = 0
-	set_scale(Vector3.ONE*2)
-	mesh_instance_3d.mesh.material.albedo_color = Color.WHITE
 	if body is BasicEnemy:
-		body.get_damage()
+		body.get_damage(damage)
 		queue_free()
 
 

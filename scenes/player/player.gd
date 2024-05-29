@@ -10,12 +10,15 @@ extends CharacterBody3D
 @onready var agr_area = $AgrArea
 
 
+
 @export var packed_projectile_test: PackedScene
 
 var player_name: String
 var last_frame_was_on_floor: bool = true
 var jumps: int = 0
 var move_direction: Vector3 = Vector3.ZERO
+var actions_animations: Array[String] = ["attack-melee-right"]
+var is_dying: bool = false
 
 func _ready():
 	player_name = "test" # TODO: create simple creation screen with nickname
@@ -29,6 +32,8 @@ func _ready():
 
 
 func _physics_process(delta):
+	if is_dying:
+		return
 	var input_direction: Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	move_direction = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
 	velocity.x = -move_direction.x * PlayerParameters.current_speed * delta
@@ -39,12 +44,13 @@ func _physics_process(delta):
 		handle_jump_gap()
 	last_frame_was_on_floor = is_on_floor();
 	
-	# animations and falling calculation
-	if is_on_floor():
-		animation_player.play("walk" if move_direction else "idle")
-	else:
-		animation_player.play("fall")
-		velocity.y -= GameConfig.gravity * delta
+	if !actions_animations.has(animation_player.get_current_animation()):
+		
+		if is_on_floor():
+			animation_player.play("walk" if move_direction else "idle")
+		else:
+			animation_player.play("fall")
+			velocity.y -= GameConfig.gravity * delta
 	
 	move_and_slide()
 
@@ -96,14 +102,18 @@ func handle_skill_use(event: InputEvent):
 		var stone = packed_projectile_test.instantiate()
 		get_parent().add_child(stone)
 		var cursor = get_viewport().get_mouse_position();
-		var ray_origin = camera_scene.camera_3d.project_ray_origin(cursor)
-		var ray_normal = camera_scene.camera_3d.project_ray_normal(cursor)
+		var ray_origin: Vector3 = camera_scene.camera_3d.project_ray_origin(cursor)
+		print(ray_origin)
+		var ray_origin_2: Vector3 = weapon.global_position
+		print(ray_origin)
+		
+		var ray_normal:  Vector3 = camera_scene.camera_3d.project_ray_normal(cursor)
 
-		var params = PhysicsRayQueryParameters3D.create(ray_origin, ray_origin + ray_normal*50)
+		var params = PhysicsRayQueryParameters3D.create(ray_origin_2, ray_origin_2 + ray_normal*100)
 		var collision = get_world_3d().direct_space_state.intersect_ray(params)
 		var some_distance: int
 		if collision:
-			some_distance = collision.position.distance_to(ray_origin)
+			some_distance = collision.position.distance_to(ray_origin_2)
 			if some_distance < 10:
 				some_distance = 10
 		else: 
@@ -113,7 +123,7 @@ func handle_skill_use(event: InputEvent):
 		
 
 		var proj_direction = (cursor_world_position - weapon.global_position).normalized()
-		
+		animation_player.play("attack-melee-right")
 		stone.direction = proj_direction
 		stone.global_position = weapon.global_position + proj_direction*0.1
 
@@ -123,8 +133,11 @@ func handle_aiming(event: InputEvent):
 		camera_scene.aiming_mode_in()
 	elif event.is_action_released("aiming_mode"):
 		camera_scene.aiming_mode_out()
-	
 
+
+func custom_death_actions():
+	# required by health component, welcome to spagetti code
+	pass
 		
 func do_jump(power: float):
 	animation_player.play("jump")
