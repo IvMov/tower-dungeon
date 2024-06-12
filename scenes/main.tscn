@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://w5dgd34hh3wr"]
+[gd_scene load_steps=7 format=3 uid="uid://w5dgd34hh3wr"]
 
 [ext_resource type="PackedScene" uid="uid://cnf65j1vsavti" path="res://scenes/maps/test_map.tscn" id="1_rx46b"]
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_vbbpw"]
@@ -6,9 +6,16 @@
 [ext_resource type="PackedScene" uid="uid://ieuiir4uuka5" path="res://scenes/ui/crosshair_scene.tscn" id="3_s0mh3"]
 [ext_resource type="PackedScene" uid="uid://ca0ysw5vmydwd" path="res://scenes/enemies/enemy.tscn" id="4_c2jpx"]
 
+[sub_resource type="Environment" id="Environment_0f8ma"]
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.01
+
 [node name="Main" type="Node"]
 script = ExtResource("1_vbbpw")
 enemy = ExtResource("4_c2jpx")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0f8ma")
 
 [node name="TestMap" parent="." instance=ExtResource("1_rx46b")]
 
@@ -16,7 +23,8 @@ enemy = ExtResource("4_c2jpx")
 transform = Transform3D(0.305014, 0, -0.952348, 0, 1, 0, 0.952348, 0, 0.305014, 0, 8.91811, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.259627, 0.704972, 0.660007, -0.813909, -0.2081, 0.542444, 0.519755, -0.678019, 0.519755, 23.0814, 14.7604, 22.1802)
+transform = Transform3D(0.545262, 0.731632, 0.40915, -0.657681, 0.0707446, 0.749968, 0.519755, -0.678019, 0.519755, 24.4337, 24.7003, 24.5328)
+shadow_enabled = true
 
 [node name="Crosshair" parent="." instance=ExtResource("3_s0mh3")]
 

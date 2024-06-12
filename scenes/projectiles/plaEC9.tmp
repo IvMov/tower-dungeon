@@ -1,19 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://b5rac3bn806k0"]
+[gd_scene load_steps=7 format=3 uid="uid://b5rac3bn806k0"]
 
 [ext_resource type="Script" path="res://scenes/projectiles/player_small_charge.gd" id="1_imee4"]
 [ext_resource type="Material" uid="uid://b304cpbvwydhs" path="res://particles/player_small_charge.tres" id="2_pqyy1"]
-[ext_resource type="Material" uid="uid://dtpkny3bvp3yd" path="res://particles/player_explosion.tres" id="2_xg35q"]
 [ext_resource type="PlaneMesh" uid="uid://hnn3cqisno05" path="res://particles/mesh/square_mesh.tres" id="3_46rb8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uayi7"]
-vertex_color_use_as_albedo = true
 
 [sub_resource type="SphereMesh" id="SphereMesh_7aqq5"]
 material = SubResource("StandardMaterial3D_uayi7")
 radius = 0.05
 height = 0.1
-radial_segments = 8
-rings = 4
+radial_segments = 32
+rings = 16
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qtxek"]
 resource_local_to_scene = true
@@ -37,20 +35,9 @@ wait_time = 10.0
 one_shot = true
 autostart = true
 
-[node name="ProjectileParticles" type="GPUParticles3D" parent="."]
-emitting = false
-amount = 70
-one_shot = true
-transform_align = 3
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 200
+lifetime = 6.05
+trail_lifetime = 0.8
 process_material = ExtResource("2_pqyy1")
-draw_pass_1 = ExtResource("3_46rb8")
-
-[node name="CollisionParticles" type="GPUParticles3D" parent="."]
-emitting = false
-amount = 100
-lifetime = 0.5
-one_shot = true
-speed_scale = 3.0
-explosiveness = 1.0
-process_material = ExtResource("2_xg35q")
 draw_pass_1 = ExtResource("3_46rb8")

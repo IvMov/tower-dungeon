@@ -1,8 +1,9 @@
-[gd_scene load_steps=39 format=3 uid="uid://ca0ysw5vmydwd"]
+[gd_scene load_steps=42 format=3 uid="uid://ca0ysw5vmydwd"]
 
 [ext_resource type="Texture2D" uid="uid://c13tj2oeip7q3" path="res://assets/2d/colormap.png" id="1_jxyg6"]
 [ext_resource type="Script" path="res://scenes/enemies/enemy.gd" id="1_maoj0"]
 [ext_resource type="PackedScene" uid="uid://siqrsi7fmaom" path="res://scenes/components/health_component.tscn" id="3_73i4a"]
+[ext_resource type="PackedScene" uid="uid://4eygpv6ar4kx" path="res://scenes/components/damage_flash_component.tscn" id="3_c5p53"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_mkikl"]
 resource_local_to_scene = true
@@ -2033,6 +2034,170 @@ tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = PackedFloat32Array(0, 1, 0, 0, 0, -1)
 
+[sub_resource type="Animation" id="Animation_j13gr"]
+resource_name = "take-damage-1"
+length = 0.21
+step = 0.01
+tracks/0/type = "position_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("character-orc/Skeleton3D:torso")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -1.80478e-15, 0.17625, -0.02375)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("character-orc/Skeleton3D:torso")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, -1, 0.01, 1, 0.00453784, 0, 0, -0.99999, 0.02, 1, 0.0153583, 0, 0, -0.999882, 0.03, 1, 0.0282706, 0, 0, -0.9996, 0.04, 1, 0.0390854, 0, 0, -0.999236, 0.05, 1, 0.0436194, 0, 0, -0.999048, 0.06, 1, 0.0404806, 0, 0, -0.99918, 0.07, 1, 0.0324574, 0, 0, -0.999473, 0.08, 1, 0.0216404, 0, 0, -0.999766, 0.09, 1, 0.0101227, 0, 0, -0.999949, 0.1, 1, 9.31323e-10, 0, 0, -1, 0.11, 1, -0.0101227, 0, 0, -0.999949, 0.12, 1, -0.0216404, 0, 0, -0.999766, 0.13, 1, -0.0324574, 0, 0, -0.999473, 0.14, 1, -0.0404806, 0, 0, -0.99918, 0.15, 1, -0.0436194, 0, 0, -0.999048, 0.16, 1, -0.0390854, 0, 0, -0.999236, 0.17, 1, -0.0282706, 0, 0, -0.9996, 0.18, 1, -0.0153583, 0, 0, -0.999882, 0.19, 1, -0.00767938, 0, 0, -0.999971, 0.2, 1, 0, 0, 0, -1)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("character-orc/Skeleton3D:head")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, 0, -1, 0.01, 1, 0, -0.0272238, 0, -0.999629, 0.02, 1, 0, -0.092023, 0, -0.995757, 0.03, 1, 0, -0.168833, 0, -0.985645, 0.04, 1, 0, -0.232427, 0, -0.972614, 0.05, 1, 0, -0.258819, 0, -0.965926, 0.06, 1, 0, -0.240567, 0, -0.970633, 0.07, 1, 0, -0.193549, 0, -0.981091, 0.08, 1, 0, -0.129488, 0, -0.991581, 0.09, 1, 0, -0.0607001, 0, -0.998156, 0.1, 1, 0, -5.58794e-09, 0, -1, 0.11, 1, 0, 0.0607001, 0, -0.998156, 0.12, 1, 0, 0.129488, 0, -0.991581, 0.13, 1, 0, 0.193549, 0, -0.981091, 0.14, 1, 0, 0.240567, 0, -0.970633, 0.15, 1, 0, 0.258819, 0, -0.965926, 0.16, 1, 0, 0.232427, 0, -0.972614, 0.17, 1, 0, 0.168833, 0, -0.985645, 0.18, 1, 0, 0.0920229, 0, -0.995757, 0.19, 1, 0, 0.0460604, 0, -0.998939, 0.2, 1, 0, 0, 0, -1)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = true
+tracks/3/enabled = true
+tracks/3/path = NodePath("character-orc/Skeleton3D:arm-left")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0.382683, -0.92388, 0.01, 1, -0.00419242, -0.00173656, 0.38268, -0.92387, 0.02, 1, -0.0141892, -0.00587737, 0.382638, -0.923771, 0.03, 1, -0.0261186, -0.0108187, 0.382531, -0.92351, 0.04, 1, -0.0361102, -0.0149573, 0.382391, -0.923174, 0.05, 1, -0.0402991, -0.0166924, 0.382319, -0.923, 0.06, 1, -0.0373992, -0.0154912, 0.38237, -0.923122, 0.07, 1, -0.0299867, -0.0124209, 0.382482, -0.923393, 0.08, 1, -0.0199931, -0.00828142, 0.382594, -0.923663, 0.09, 1, -0.00935219, -0.0038738, 0.382664, -0.923832, 0.11, 1, 0.00935219, 0.0038738, 0.382664, -0.923832, 0.12, 1, 0.0199931, 0.00828142, 0.382594, -0.923663, 0.13, 1, 0.0299867, 0.0124209, 0.382482, -0.923393, 0.14, 1, 0.0373992, 0.0154912, 0.38237, -0.923122, 0.15, 1, 0.0402991, 0.0166924, 0.382319, -0.923, 0.16, 1, 0.0361102, 0.0149573, 0.382391, -0.923174, 0.17, 1, 0.0261186, 0.0108187, 0.382531, -0.92351, 0.18, 1, 0.0141892, 0.00587736, 0.382638, -0.923771, 0.2, 1, 0, 0, 0.382683, -0.92388)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = true
+tracks/4/enabled = true
+tracks/4/path = NodePath("character-orc/Skeleton3D:arm-right")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, 0, 0, -0.382683, -0.92388, 0.01, 1, -0.00419242, 0.00173656, -0.38268, -0.92387, 0.02, 1, -0.0141892, 0.00587737, -0.382638, -0.923771, 0.03, 1, -0.0261186, 0.0108187, -0.382531, -0.92351, 0.04, 1, -0.0361102, 0.0149573, -0.382391, -0.923174, 0.05, 1, -0.0402991, 0.0166924, -0.382319, -0.923, 0.06, 1, -0.0373992, 0.0154912, -0.38237, -0.923122, 0.07, 1, -0.0299867, 0.0124209, -0.382482, -0.923393, 0.08, 1, -0.0199931, 0.00828142, -0.382594, -0.923663, 0.09, 1, -0.00935219, 0.0038738, -0.382664, -0.923832, 0.11, 1, 0.00935219, -0.0038738, -0.382664, -0.923832, 0.12, 1, 0.0199931, -0.00828142, -0.382594, -0.923663, 0.13, 1, 0.0299867, -0.0124209, -0.382482, -0.923393, 0.14, 1, 0.0373992, -0.0154912, -0.38237, -0.923122, 0.15, 1, 0.0402991, -0.0166924, -0.382319, -0.923, 0.16, 1, 0.0361102, -0.0149573, -0.382391, -0.923174, 0.17, 1, 0.0261186, -0.0108187, -0.382531, -0.92351, 0.18, 1, 0.0141892, -0.00587736, -0.382638, -0.923771, 0.2, 1, 0, 0, -0.382683, -0.92388)
+tracks/5/type = "position_3d"
+tracks/5/imported = true
+tracks/5/enabled = true
+tracks/5/path = NodePath("character-orc/Skeleton3D:root")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = true
+tracks/6/enabled = true
+tracks/6/path = NodePath("character-orc/Skeleton3D:root")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/7/type = "position_3d"
+tracks/7/imported = true
+tracks/7/enabled = true
+tracks/7/path = NodePath("character-orc/Skeleton3D:leg-left")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 0.083571, 0.17625, -0.02375)
+tracks/8/type = "rotation_3d"
+tracks/8/imported = true
+tracks/8/enabled = true
+tracks/8/path = NodePath("character-orc/Skeleton3D:leg-left")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/9/type = "position_3d"
+tracks/9/imported = true
+tracks/9/enabled = true
+tracks/9/path = NodePath("character-orc/Skeleton3D:leg-right")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = PackedFloat32Array(0, 1, -0.083571, 0.17625, -0.02375)
+tracks/10/type = "rotation_3d"
+tracks/10/imported = true
+tracks/10/enabled = true
+tracks/10/path = NodePath("character-orc/Skeleton3D:leg-right")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_ep5lw"]
+resource_name = "take-damage-2"
+length = 0.21
+step = 0.01
+tracks/0/type = "rotation_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("character-orc/Skeleton3D:head")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, -1, 0.01, 1, 0.0136131, 0, 0, -0.999907, 0.02, 1, 0.0460604, 0, 0, -0.998939, 0.03, 1, 0.0847213, 0, 0, -0.996405, 0.04, 1, 0.117, 0, 0, -0.993, 0.05, 1, 0.130526, 0, 0, -0.991445, 0.06, 1, 0.121176, 0, 0, -0.992631, 0.07, 1, 0.0972355, 0, 0, -0.995261, 0.08, 1, 0.0648806, 0, 0, -0.997893, 0.09, 1, 0.0303641, 0, 0, -0.999539, 0.1, 1, 5.58794e-09, 0, 0, -1, 0.11, 1, -0.0303641, 0, 0, -0.999539, 0.12, 1, -0.0648807, 0, 0, -0.997893, 0.13, 1, -0.0972355, 0, 0, -0.995261, 0.14, 1, -0.121176, 0, 0, -0.992631, 0.15, 1, -0.130526, 0, 0, -0.991445, 0.16, 1, -0.117017, 0, 0, -0.99313, 0.17, 1, -0.0847213, 0, 0, -0.996405, 0.18, 1, -0.0460604, 0, 0, -0.998939, 0.19, 1, -0.0230363, 0, 0, -0.999735, 0.2, 1, 0, 0, 0, -1)
+tracks/1/type = "position_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("character-orc/Skeleton3D:torso")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -1.80478e-15, 0.17625, -0.02375)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("character-orc/Skeleton3D:torso")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, 0, -1, 0.01, 1, 0.00453784, 0, 0, -0.99999, 0.02, 1, 0.0153583, 0, 0, -0.999882, 0.03, 1, 0.0282706, 0, 0, -0.9996, 0.04, 1, 0.0390854, 0, 0, -0.999236, 0.05, 1, 0.0436194, 0, 0, -0.999048, 0.06, 1, 0.0404806, 0, 0, -0.99918, 0.07, 1, 0.0324574, 0, 0, -0.999473, 0.08, 1, 0.0216404, 0, 0, -0.999766, 0.09, 1, 0.0101227, 0, 0, -0.999949, 0.1, 1, 9.31323e-10, 0, 0, -1, 0.11, 1, -0.0101227, 0, 0, -0.999949, 0.12, 1, -0.0216404, 0, 0, -0.999766, 0.13, 1, -0.0324574, 0, 0, -0.999473, 0.14, 1, -0.0404806, 0, 0, -0.99918, 0.15, 1, -0.0436194, 0, 0, -0.999048, 0.16, 1, -0.0390854, 0, 0, -0.999236, 0.17, 1, -0.0282706, 0, 0, -0.9996, 0.18, 1, -0.0153583, 0, 0, -0.999882, 0.19, 1, -0.00767938, 0, 0, -0.999971, 0.2, 1, 0, 0, 0, -1)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = true
+tracks/3/enabled = true
+tracks/3/path = NodePath("character-orc/Skeleton3D:arm-left")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0.382683, -0.92388, 0.01, 1, -0.00419242, -0.00173656, 0.38268, -0.92387, 0.02, 1, -0.0141892, -0.00587737, 0.382638, -0.923771, 0.03, 1, -0.0261186, -0.0108187, 0.382531, -0.92351, 0.04, 1, -0.0361102, -0.0149573, 0.382391, -0.923174, 0.05, 1, -0.0402991, -0.0166924, 0.382319, -0.923, 0.06, 1, -0.0373992, -0.0154912, 0.38237, -0.923122, 0.07, 1, -0.0299867, -0.0124209, 0.382482, -0.923393, 0.08, 1, -0.0199931, -0.00828142, 0.382594, -0.923663, 0.09, 1, -0.00935219, -0.0038738, 0.382664, -0.923832, 0.11, 1, 0.00935219, 0.0038738, 0.382664, -0.923832, 0.12, 1, 0.0199931, 0.00828142, 0.382594, -0.923663, 0.13, 1, 0.0299867, 0.0124209, 0.382482, -0.923393, 0.14, 1, 0.0373992, 0.0154912, 0.38237, -0.923122, 0.15, 1, 0.0402991, 0.0166924, 0.382319, -0.923, 0.16, 1, 0.0361102, 0.0149573, 0.382391, -0.923174, 0.17, 1, 0.0261186, 0.0108187, 0.382531, -0.92351, 0.18, 1, 0.0141892, 0.00587736, 0.382638, -0.923771, 0.2, 1, 0, 0, 0.382683, -0.92388)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = true
+tracks/4/enabled = true
+tracks/4/path = NodePath("character-orc/Skeleton3D:arm-right")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, 0, 0, -0.382683, -0.92388, 0.01, 1, -0.00419242, 0.00173656, -0.38268, -0.92387, 0.02, 1, -0.0141892, 0.00587737, -0.382638, -0.923771, 0.03, 1, -0.0261186, 0.0108187, -0.382531, -0.92351, 0.04, 1, -0.0361102, 0.0149573, -0.382391, -0.923174, 0.05, 1, -0.0402991, 0.0166924, -0.382319, -0.923, 0.06, 1, -0.0373992, 0.0154912, -0.38237, -0.923122, 0.07, 1, -0.0299867, 0.0124209, -0.382482, -0.923393, 0.08, 1, -0.0199931, 0.00828142, -0.382594, -0.923663, 0.09, 1, -0.00935219, 0.0038738, -0.382664, -0.923832, 0.11, 1, 0.00935219, -0.0038738, -0.382664, -0.923832, 0.12, 1, 0.0199931, -0.00828142, -0.382594, -0.923663, 0.13, 1, 0.0299867, -0.0124209, -0.382482, -0.923393, 0.14, 1, 0.0373992, -0.0154912, -0.38237, -0.923122, 0.15, 1, 0.0402991, -0.0166924, -0.382319, -0.923, 0.16, 1, 0.0361102, -0.0149573, -0.382391, -0.923174, 0.17, 1, 0.0261186, -0.0108187, -0.382531, -0.92351, 0.18, 1, 0.0141892, -0.00587736, -0.382638, -0.923771, 0.2, 1, 0, 0, -0.382683, -0.92388)
+tracks/5/type = "position_3d"
+tracks/5/imported = true
+tracks/5/enabled = true
+tracks/5/path = NodePath("character-orc/Skeleton3D:root")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = true
+tracks/6/enabled = true
+tracks/6/path = NodePath("character-orc/Skeleton3D:root")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/7/type = "position_3d"
+tracks/7/imported = true
+tracks/7/enabled = true
+tracks/7/path = NodePath("character-orc/Skeleton3D:leg-left")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 0.083571, 0.17625, -0.02375)
+tracks/8/type = "rotation_3d"
+tracks/8/imported = true
+tracks/8/enabled = true
+tracks/8/path = NodePath("character-orc/Skeleton3D:leg-left")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/9/type = "position_3d"
+tracks/9/imported = true
+tracks/9/enabled = true
+tracks/9/path = NodePath("character-orc/Skeleton3D:leg-right")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = PackedFloat32Array(0, 1, -0.083571, 0.17625, -0.02375)
+tracks/10/type = "rotation_3d"
+tracks/10/imported = true
+tracks/10/enabled = true
+tracks/10/path = NodePath("character-orc/Skeleton3D:leg-right")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+
 [sub_resource type="Animation" id="Animation_hcse1"]
 resource_name = "walk"
 length = 0.666667
@@ -2140,12 +2305,14 @@ _data = {
 "sit": SubResource("Animation_7f3kl"),
 "sprint": SubResource("Animation_td1bp"),
 "static": SubResource("Animation_jqykx"),
+"take-damage-1": SubResource("Animation_j13gr"),
+"take-damage-2": SubResource("Animation_ep5lw"),
 "walk": SubResource("Animation_hcse1")
 }
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aa2io"]
 radius = 0.4
-height = 1.0
+height = 0.8
 
 [node name="Enemy" type="CharacterBody3D"]
 collision_layer = 1024
@@ -2153,6 +2320,10 @@ collision_mask = 513
 wall_min_slide_angle = 0.0
 floor_snap_length = 0.05
 script = ExtResource("1_maoj0")
+
+[node name="DamageFlashComponent" parent="." node_paths=PackedStringArray("health_component", "meshes") instance=ExtResource("3_c5p53")]
+health_component = NodePath("../HealthComponent")
+meshes = [NodePath("../character-orc2/character-orc/Skeleton3D/body-mesh"), NodePath("../character-orc2/character-orc/Skeleton3D/head-mesh")]
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_73i4a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.886331, 0)
@@ -2162,7 +2333,6 @@ current_hp = 2.0
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_height_offset = 1.0
 path_max_distance = 30.01
-debug_enabled = true
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.397904, 0)
@@ -2194,7 +2364,7 @@ bones/0/name = "root"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 bones/0/enabled = true
-bones/0/position = Vector3(0, 0, 2.407e-06)
+bones/0/position = Vector3(0, 0, 0)
 bones/0/rotation = Quaternion(0, 0, 0, 1)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "leg-left"
@@ -2202,42 +2372,42 @@ bones/1/parent = 0
 bones/1/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.083571, 0.17625, -0.02375)
 bones/1/enabled = true
 bones/1/position = Vector3(0.083571, 0.17625, -0.02375)
-bones/1/rotation = Quaternion(-4.4108e-05, 0, 0, 1)
+bones/1/rotation = Quaternion(0, 0, 0, 1)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "leg-right"
 bones/2/parent = 0
 bones/2/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.083571, 0.17625, -0.02375)
 bones/2/enabled = true
 bones/2/position = Vector3(-0.083571, 0.17625, -0.02375)
-bones/2/rotation = Quaternion(6.30115e-06, 0, 0, 1)
+bones/2/rotation = Quaternion(0, 0, 0, 1)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "torso"
 bones/3/parent = 0
 bones/3/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.80478e-15, 0.17625, -0.02375)
 bones/3/enabled = true
 bones/3/position = Vector3(-1.80478e-15, 0.17625, -0.02375)
-bones/3/rotation = Quaternion(-6.30115e-06, 0, 0, 1)
+bones/3/rotation = Quaternion(-0.0390854, 0, 0, 0.999236)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "arm-left"
 bones/4/parent = 3
 bones/4/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0998968, 0.1115, 0.0115)
 bones/4/enabled = true
 bones/4/position = Vector3(0.0998968, 0.1115, 0.0115)
-bones/4/rotation = Quaternion(2.3286e-05, 9.64521e-06, -0.382683, 0.92388)
+bones/4/rotation = Quaternion(0.0361102, 0.0149573, -0.382391, 0.923174)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/name = "arm-right"
 bones/5/parent = 3
 bones/5/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0998968, 0.1115, 0.0115)
 bones/5/enabled = true
 bones/5/position = Vector3(-0.0998968, 0.1115, 0.0115)
-bones/5/rotation = Quaternion(-2.91075e-06, 1.20565e-06, 0.382683, 0.92388)
+bones/5/rotation = Quaternion(0.0361102, -0.0149573, 0.382391, 0.923174)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/name = "head"
 bones/6/parent = 3
 bones/6/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.81969e-09, 0.167, 0.0263888)
 bones/6/enabled = true
 bones/6/position = Vector3(1.81969e-09, 0.167, 0.0263888)
-bones/6/rotation = Quaternion(1.81591e-05, 0, 0, 1)
+bones/6/rotation = Quaternion(-0.117015, 0, 0, 0.99313)
 bones/6/scale = Vector3(1, 1, 1)
 
 [node name="body-mesh" type="MeshInstance3D" parent="character-orc2/character-orc/Skeleton3D"]
@@ -2256,7 +2426,7 @@ libraries = {
 }
 
 [node name="EnemyCollision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.449204, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39895, 0)
 shape = SubResource("CapsuleShape3D_aa2io")
 
 [node name="Timers" type="Node" parent="."]

@@ -8,6 +8,9 @@ extends CharacterBody3D
 @onready var jump_gap_timer = $JumpTimer
 @onready var weapon = $"character-human/Skeleton3D/Weapon"
 @onready var agr_area = $AgrArea
+@onready var health_component = $HealthComponent
+@onready var body_mesh = $"character-human/Skeleton3D/body-mesh"
+@onready var head_mesh = $"character-human/Skeleton3D/head-mesh"
 
 
 
@@ -17,7 +20,7 @@ var player_name: String
 var last_frame_was_on_floor: bool = true
 var jumps: int = 0
 var move_direction: Vector3 = Vector3.ZERO
-var actions_animations: Array[String] = ["attack-melee-right"]
+var actions_animations: Array[String] = ["attack-melee-right", "attack-melee-left", "take-damage-1", "take-damage-2", "die"]
 var is_dying: bool = false
 
 func _ready():
@@ -104,21 +107,23 @@ func handle_skill_use(event: InputEvent):
 		var cursor = get_viewport().get_mouse_position();
 		var ray_origin: Vector3 = camera_scene.camera_3d.project_ray_origin(cursor)
 		print(ray_origin)
-		var ray_origin_2: Vector3 = weapon.global_position
+		#var ray_origin_2: Vector3 = weapon.global_position
 		print(ray_origin)
 		
 		var ray_normal:  Vector3 = camera_scene.camera_3d.project_ray_normal(cursor)
 
-		var params = PhysicsRayQueryParameters3D.create(ray_origin_2, ray_origin_2 + ray_normal*100)
+		var params = PhysicsRayQueryParameters3D.create(ray_origin, ray_origin + ray_normal*100)
 		var collision = get_world_3d().direct_space_state.intersect_ray(params)
 		var some_distance: int
 		if collision:
-			some_distance = collision.position.distance_to(ray_origin_2)
+			some_distance = collision.position.distance_to(ray_origin)
+			print(some_distance)
 			if some_distance < 10:
-				some_distance = 10
+					some_distance = 10
 		else: 
 			some_distance = 100
 		
+		#var cursor_world_position = ray_origin + ray_normal * some_distance
 		var cursor_world_position = ray_origin + ray_normal * some_distance
 		
 
@@ -156,10 +161,10 @@ func handle_jump_gap():
 		jump_gap_timer.start()
 
 
-func get_damage(damage: float) -> void:
-	print("damaged by %0.1f" % damage)
+func get_damage(value: float) -> void:
+	health_component.minus_hp(value)
+	print("damaged by %0.1f" % value)
 	camera_scene.start_shake(0.1, 8)
-	#animation_player.play("emote-yes")
 
 
 func on_body_entered(body: Node3D):

@@ -1,0 +1,10 @@
+[gd_resource type="PlaneMesh" load_steps=2 format=3 uid="uid://hnn3cqisno05"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sgy8l"]
+vertex_color_use_as_albedo = true
+
+[resource]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_sgy8l")
+size = Vector2(0.05, 0.05)
+orientation = 2

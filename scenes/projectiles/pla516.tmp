@@ -6,14 +6,13 @@
 [ext_resource type="PlaneMesh" uid="uid://hnn3cqisno05" path="res://particles/mesh/square_mesh.tres" id="3_46rb8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uayi7"]
-vertex_color_use_as_albedo = true
 
 [sub_resource type="SphereMesh" id="SphereMesh_7aqq5"]
 material = SubResource("StandardMaterial3D_uayi7")
 radius = 0.05
 height = 0.1
-radial_segments = 8
-rings = 4
+radial_segments = 32
+rings = 16
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qtxek"]
 resource_local_to_scene = true
@@ -38,9 +37,9 @@ one_shot = true
 autostart = true
 
 [node name="ProjectileParticles" type="GPUParticles3D" parent="."]
-emitting = false
-amount = 70
-one_shot = true
+visible = false
+amount = 40
+lifetime = 0.3
 transform_align = 3
 process_material = ExtResource("2_pqyy1")
 draw_pass_1 = ExtResource("3_46rb8")

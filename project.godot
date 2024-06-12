@@ -122,6 +122,10 @@ aiming_mode={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://assets/translation/translations.en  .translation", "res://assets/translation/translations.lt.translation", "res://assets/translation/translations.ua.translation")
+
 [layer_names]
 
 3d_physics/layer_1="Terrain"

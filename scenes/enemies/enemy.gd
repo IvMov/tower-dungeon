@@ -19,6 +19,7 @@ extends CharacterBody3D
 var speed: float = 90.0
 var damage: float = randf()*2 + 1
 var damage_frequency: float = randf() + 0.2
+var actions_animations: Array[String] = ["attack-melee-right", "attack-melee-left", "take-damage-1", "take-damage-2", "die"]
 
 var player: Player
 var direction: Vector3
@@ -42,14 +43,15 @@ func _physics_process(delta):
 	if is_dodging && dodging_timer.is_stopped():
 		dodging_timer.start()
 		relocate_enemy(delta)
-	if is_on_floor():
-		if !is_fighting:
-			animation_player.play("walk" if velocity.length() > 0.1 else "idle")
-		if ray_cast_3d.get_collider() && !player:
-			relocate_enemy(delta)
-	else:
-		animation_player.play("fall")
-		velocity.y -= GameConfig.gravity * delta
+	if !actions_animations.has(animation_player.get_current_animation()):
+		if is_on_floor():
+			if !is_fighting:
+				animation_player.play("walk" if velocity.length() > 0.1 else "idle")
+			if ray_cast_3d.get_collider() && !player:
+				relocate_enemy(delta)
+		else:
+			animation_player.play("fall")
+			velocity.y -= GameConfig.gravity * delta
 
 	
 	if player && dodging_timer.is_stopped():
@@ -101,7 +103,7 @@ func stop_damage() -> void:
 
 func get_damage(value: float):
 	health_component.minus_hp(value)
-
+	
 
 
 func expand_agr_area_size():
@@ -128,7 +130,11 @@ func relocate_enemy(delta: float) -> void:
 	var forward = direction
 	var new_basis = Basis(right, up, forward)
 	transform.basis = new_basis
-	var current_speed = speed*3 if is_dodging else speed
+	var current_speed = speed;
+	if is_dodging:
+		current_speed = speed*2
+		animation_player.play("sprint");
+	
 	velocity.x = direction.x * current_speed * delta
 	velocity.z = direction.z * current_speed * delta
 
@@ -172,7 +178,6 @@ func _on_death_timer_timeout():
 
 
 func _on_do_damage_timer_timeout():
-	print(do_damage_timer.wait_time)
 	if is_dying:
 		return
 	GameEvents.emit_damage_player(damage)
