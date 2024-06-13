@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://b5rac3bn806k0"]
 
-[ext_resource type="Script" path="res://scenes/projectiles/player_small_charge.gd" id="1_imee4"]
-[ext_resource type="Material" uid="uid://b304cpbvwydhs" path="res://particles/player_small_charge.tres" id="2_pqyy1"]
-[ext_resource type="Material" uid="uid://dtpkny3bvp3yd" path="res://particles/player_explosion.tres" id="2_xg35q"]
-[ext_resource type="PlaneMesh" uid="uid://hnn3cqisno05" path="res://particles/mesh/square_mesh.tres" id="3_46rb8"]
+[ext_resource type="Script" path="res://scenes/projectiles/spark_projectile.gd" id="1_q658l"]
+[ext_resource type="Material" uid="uid://b304cpbvwydhs" path="res://particles/player_small_charge.tres" id="2_m687c"]
+[ext_resource type="PlaneMesh" uid="uid://hnn3cqisno05" path="res://particles/mesh/square_mesh.tres" id="3_v1etk"]
+[ext_resource type="Material" uid="uid://dtpkny3bvp3yd" path="res://particles/player_explosion.tres" id="4_0cqs3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uayi7"]
 vertex_color_use_as_albedo = true
@@ -19,8 +19,8 @@ rings = 4
 resource_local_to_scene = true
 radius = 0.11
 
-[node name="PlayerSmallCharge" type="Node3D"]
-script = ExtResource("1_imee4")
+[node name="SparkProjectile" type="Node3D"]
+script = ExtResource("1_q658l")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_7aqq5")
@@ -42,8 +42,8 @@ emitting = false
 amount = 70
 one_shot = true
 transform_align = 3
-process_material = ExtResource("2_pqyy1")
-draw_pass_1 = ExtResource("3_46rb8")
+process_material = ExtResource("2_m687c")
+draw_pass_1 = ExtResource("3_v1etk")
 
 [node name="CollisionParticles" type="GPUParticles3D" parent="."]
 emitting = false
@@ -52,5 +52,5 @@ lifetime = 0.5
 one_shot = true
 speed_scale = 3.0
 explosiveness = 1.0
-process_material = ExtResource("2_xg35q")
-draw_pass_1 = ExtResource("3_46rb8")
+process_material = ExtResource("4_0cqs3")
+draw_pass_1 = ExtResource("3_v1etk")

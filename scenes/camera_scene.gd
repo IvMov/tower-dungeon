@@ -1,4 +1,4 @@
-extends Node3D 
+class_name CameraScene extends Node3D 
 
 @onready var camera_3d = $SpringArm3D/Camera3D
 @onready var spring_arm_3d = $SpringArm3D
@@ -35,12 +35,15 @@ func _physics_process(delta):
 			shake_amount = 0
 			shake_forward = true
 
-func start_shake(amount:float, decay: int):
-	#if shake_decay > 0:
-		#return
+func start_shake(amount:float, decay: int) -> void:
 	shake_amount = amount
 	shake_decay = decay
 
+func get_camera_distance() -> float:
+	return spring_arm_3d.spring_length
+
+func get_camera_position() -> Vector3:
+	return camera_3d.global_position
 
 
 func _unhandled_input(event):
@@ -54,7 +57,7 @@ func _unhandled_input(event):
 			zoom_back()
 
 func aiming_mode_in() -> void:
-	current_arm_length = spring_arm_3d.spring_length
+	current_arm_length = get_camera_distance()
 	spring_arm_3d.spring_length = MAX_ZOOM_IN
 	in_aiming_mode = true
 	

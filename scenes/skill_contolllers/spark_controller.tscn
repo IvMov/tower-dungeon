@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://b33x7pg0061x5"]
+
+[ext_resource type="Script" path="res://scenes/skill_contolllers/spark_controller.gd" id="1_qx1os"]
+[ext_resource type="PackedScene" uid="uid://b5rac3bn806k0" path="res://scenes/projectiles/spark_projectile.tscn" id="2_nq4yx"]
+
+[node name="SparkController" type="Node3D" groups=["spark_skill"]]
+script = ExtResource("1_qx1os")
+spark_projectile = ExtResource("2_nq4yx")

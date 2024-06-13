@@ -1,5 +1,4 @@
-class_name BasicEnemy
-extends CharacterBody3D
+class_name BasicEnemy extends CharacterBody3D
 
 @onready var animation_player = $"character-orc2/AnimationPlayer"
 @onready var agr_area = $AgrArea

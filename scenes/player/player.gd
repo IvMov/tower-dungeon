@@ -1,9 +1,9 @@
-class_name Player
-extends CharacterBody3D
+class_name Player extends CharacterBody3D
 
+@export var first_skill: Skill
 
 @onready var animation_player = $AnimationPlayer
-@onready var camera_scene = $CameraScene
+@onready var camera_scene: CameraScene = $CameraScene
 @onready var player_model = $"character-human"
 @onready var jump_gap_timer = $JumpTimer
 @onready var weapon = $"character-human/Skeleton3D/Weapon"
@@ -11,10 +11,8 @@ extends CharacterBody3D
 @onready var health_component = $HealthComponent
 @onready var body_mesh = $"character-human/Skeleton3D/body-mesh"
 @onready var head_mesh = $"character-human/Skeleton3D/head-mesh"
-
-
-
-@export var packed_projectile_test: PackedScene
+@onready var skill_box: Node = $SkillBox
+@onready var player_skill_controller: PlayerSkillController = $PlayerSkillController
 
 var player_name: String
 var last_frame_was_on_floor: bool = true
@@ -31,7 +29,7 @@ func _ready():
 	agr_area.area_entered.connect(on_area_entered)
 	agr_area.area_exited.connect(on_area_exited)
 	GameEvents.damage_player.connect(on_damage_player)
-
+	preload_first_skill()
 
 
 func _physics_process(delta):
@@ -69,7 +67,10 @@ func _unhandled_input(event):
 	handle_mouse_rotations(event)
 	# left click
 	handle_skill_use(event)
-	
+
+
+func preload_first_skill() -> void:
+	GameEvents.emit_add_skill(first_skill)
 
 func handle_mouse_rotations(event: InputEvent):
 	move_player(event)
@@ -102,35 +103,19 @@ func handle_jump(event: InputEvent):
 func handle_skill_use(event: InputEvent):
 	# TODO: REFACTOR!!!!! its mess but it works!
 	if event.is_action_pressed("skill_use"):
-		var stone = packed_projectile_test.instantiate()
-		get_parent().add_child(stone)
-		var cursor = get_viewport().get_mouse_position();
-		var ray_origin: Vector3 = camera_scene.camera_3d.project_ray_origin(cursor)
-		print(ray_origin)
-		#var ray_origin_2: Vector3 = weapon.global_position
-		print(ray_origin)
-		
-		var ray_normal:  Vector3 = camera_scene.camera_3d.project_ray_normal(cursor)
+		player_skill_controller.use_active_skill()
 
-		var params = PhysicsRayQueryParameters3D.create(ray_origin, ray_origin + ray_normal*100)
-		var collision = get_world_3d().direct_space_state.intersect_ray(params)
-		var some_distance: int
-		if collision:
-			some_distance = collision.position.distance_to(ray_origin)
-			print(some_distance)
-			if some_distance < 10:
-					some_distance = 10
-		else: 
-			some_distance = 100
-		
-		#var cursor_world_position = ray_origin + ray_normal * some_distance
-		var cursor_world_position = ray_origin + ray_normal * some_distance
-		
 
-		var proj_direction = (cursor_world_position - weapon.global_position).normalized()
-		animation_player.play("attack-melee-right")
-		stone.direction = proj_direction
-		stone.global_position = weapon.global_position + proj_direction*0.1
+func calc_projectile_direction() -> Vector3: 
+	var cursor: Vector2 = get_viewport().get_mouse_position();
+	var ray_origin: Vector3 = camera_scene.camera_3d.project_ray_origin(cursor)
+	var ray_normal: Vector3 = camera_scene.camera_3d.project_ray_normal(cursor)
+	var params: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(ray_origin, ray_origin + ray_normal*100)
+	var collision: Dictionary = get_world_3d().direct_space_state.intersect_ray(params)
+	var distance_to_target: int = collision.position.distance_to(ray_origin) if collision else 100
+	var cursor_world_position = ray_origin + ray_normal * distance_to_target
+	
+	return (cursor_world_position - camera_scene.get_camera_position()).normalized();
 
 
 func handle_aiming(event: InputEvent):

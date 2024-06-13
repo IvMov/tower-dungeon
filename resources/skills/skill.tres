@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://dr3iw4dhe35nw"]
+
+[ext_resource type="Script" path="res://resources/skills/skill.gd" id="1_6bdfw"]
+
+[resource]
+script = ExtResource("1_6bdfw")
+name = ""
+description = ""
+is_offensive = false
+base_damage = 0.0
+base_speed = 0.0
+base_energy_cost = 0.0
+base_distance = 0.0
+base_life_time = 0.0

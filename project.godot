@@ -23,10 +23,6 @@ GameStage="*res://autoload/game_stage.tscn"
 GameEvents="*res://autoload/game_events.tscn"
 PlayerParameters="*res://autoload/player_parameters.tscn"
 
-[debug]
-
-settings/stdout/print_fps=true
-
 [display]
 
 window/size/viewport_width=1366
@@ -124,7 +120,7 @@ aiming_mode={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://assets/translation/translations.en  .translation", "res://assets/translation/translations.lt.translation", "res://assets/translation/translations.ua.translation")
+locale/translations=PackedStringArray("res://assets/translation/text.en.translation", "res://assets/translation/text.lt.translation", "res://assets/translation/text.ua.translation")
 
 [layer_names]
 

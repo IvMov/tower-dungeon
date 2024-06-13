@@ -1,0 +1,33 @@
+﻿key,en,ua,lt
+menu,Menu,Меню,Menu
+greeting,Hi,Привіт,Labas
+name,Name,Назва,
+description,Description,Опис,
+value,Value,Значення,
+speed,Speed,Швидкість,
+distance,Distance,Відстань,
+energy_cost,Energy Cost,Вартість енергії,
+cast_time,Cast Time,Час виклику,
+duration,Duration,Тривалість,
+cooldown,Cooldown,Час до готовності,
+price,Price,Ціна,
+,,,
+,,,
+skill,Skill,Навичка,
+base_value,Base Value,Базове Значення,
+base_speed,Base Speed,Базова швидкість,
+base_distance,Base Distance,Базова відстань,
+base_energy_cost,Base Energy Cost,Базові вартість енергії,
+base_cast_time,Base Cast Time,Базовий час виклику,
+base_duration,Base Duration,Базова тривалість,
+base_cooldown,Base Cooldown,Базовий час до готовності,
+skill_price,Skill Price,Базова ціна,
+,,,
+,,,
+,,,
+skill_upgrade,Skill Upgrade,Покращення навички,
+parameter_name,Parameter Name,Назва параметру,
+max_lvl,Max level,Максимальний рівень,
+,,,
+spark_skill_name,Spark,Іскра,Kibirkštis
+spark_skill_description,Spark is esential skill of every wizard. Be like Zeus throw yout sparks on your enemies!,"Іскра - базован навичка гожного мага. Будь як Зевс, закидай ворогів іскрами!","Kibirkštis yra pagrindinis kiekvieno mago įgūdis. Būkite kaip Zeusas, meskite kibirkštis į savo priešus!"
