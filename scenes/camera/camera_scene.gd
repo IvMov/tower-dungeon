@@ -6,7 +6,8 @@ class_name CameraScene extends Node3D
 
 const SCROLL_POWER: float = 0.15
 const MAX_ZOOM_OUT: float = 10.0
-const MAX_ZOOM_IN: float = 1
+const MAX_ZOOM_IN: float = 2
+const MAX_ZOOM_AIM: float = 1
 var in_aiming_mode: bool = false
 var current_arm_length: float
 
@@ -58,7 +59,7 @@ func _unhandled_input(event):
 
 func aiming_mode_in() -> void:
 	current_arm_length = get_camera_distance()
-	spring_arm_3d.spring_length = MAX_ZOOM_IN
+	spring_arm_3d.spring_length = MAX_ZOOM_AIM
 	in_aiming_mode = true
 	
 func aiming_mode_out() -> void:

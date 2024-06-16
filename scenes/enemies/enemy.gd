@@ -101,7 +101,7 @@ func stop_damage() -> void:
 
 
 func get_damage(value: float):
-	health_component.minus_hp(value)
+	health_component.minus(value)
 	
 
 

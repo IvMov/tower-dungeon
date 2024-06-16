@@ -2,8 +2,43 @@ class_name SparkController extends BaseController
 
 @export var spark_projectile: PackedScene
 @onready var projectiles_box: Node = get_tree().get_first_node_in_group("projectiles")
+var player: Player
+	
 
-func use_skill(player: Player) -> void:
+func start_cast() -> void:
+	cast_timer.wait_time = base_cast_time
+	cooldown_timer.wait_time = base_cooldown
+	if is_on_cooldown:
+		GameEvents.emit_skill_call_failed(Enums.SkillCallFailedReason.ON_CD)
+		print("ON CD")
+	elif is_idle: 
+		print("IDLE")
+		GameEvents.emit_skill_call_failed(Enums.SkillCallFailedReason.IDLE)
+	elif !player.mana_component.minus(base_energy_cost):
+		print("NO FCKING MANA")
+		# TODO: create energy component and health component abstraction layer with minus plus and etc methods.
+		GameEvents.emit_skill_call_failed(Enums.SkillCallFailedReason.NO_MANA)
+	else:
+		#TODO: play cast animation 
+		super.start_cast()
+
+
+func finish_cast() -> void:
+	super.finish_cast()
+	if skill_cast_finished:
+		use_skill()
+		print(player.mana_component.current_value)
+		skill_cast_finished = false
+	else:
+		revert_cast()
+	
+
+func revert_cast() -> void:
+	player.mana_component.plus(base_energy_cost*0.8)
+	super.revert_cast()
+
+
+func use_skill() -> void:
 	if !player:
 		return
 	var projectile: SparkProjectile = spark_projectile.instantiate()
@@ -14,7 +49,8 @@ func use_skill(player: Player) -> void:
 	projectile.damage = calc_projectile_damage()
 	projectile.speed = calc_projectile_speed()
 	projectile.direction = proj_direction
-	projectile.global_position = player.camera_scene.get_camera_position() + proj_direction  * player.camera_scene.get_camera_distance() * 1.2
+	projectile.global_position = player.camera_scene.get_camera_position() + proj_direction  * player.camera_scene.get_camera_distance() * 1.1
+	
 
 func calc_projectile_damage() -> float:
 	#TODO: implement upgrade influence system
@@ -36,3 +72,6 @@ func calc_projectile_direction(player: Player) -> Vector3:
 	var cursor_world_position = ray_origin + ray_normal * distance_to_target
 	
 	return (cursor_world_position - player.camera_scene.get_camera_position()).normalized();
+
+
+

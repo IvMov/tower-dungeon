@@ -1,8 +1,8 @@
 class_name SparkProjectile extends Node3D
 
 var direction: Vector3
-var speed: float = 5 #looks good to apgrade speed of projectile 15 up to 30 ? 
-var damage: float = 1.0 
+var speed: float
+var damage: float
 
 @onready var life_timer: Timer = $LifeTimer
 

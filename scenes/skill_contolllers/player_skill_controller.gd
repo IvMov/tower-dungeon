@@ -13,12 +13,17 @@ func _ready() -> void:
 func choose_active_skill(id: String) -> void:
 	active_skill = player_skills[id]
 
-
+func cast_active_skill() -> void:
+	if !player:
+		return
+	var skill_controller: BaseController = get_tree().get_first_node_in_group(active_skill.name)
+	skill_controller.start_cast()
+	
 func use_active_skill() -> void:
 	if !player:
 		return
-	var skill_controller = get_tree().get_first_node_in_group(active_skill.name)
-	skill_controller.use_skill(player)
+	var skill_controller: BaseController = get_tree().get_first_node_in_group(active_skill.name)
+	skill_controller.finish_cast()
 
 
 func on_add_skill(skill: Skill) -> void:
@@ -29,6 +34,8 @@ func on_add_skill(skill: Skill) -> void:
 	controller_instance.add_to_group(skill.name)
 	player.skill_box.add_child(controller_instance)
 	map_skill_to_controller(controller_instance, skill)
+	controller_instance.player = player
+	
 	if !active_skill:
 		active_skill = skill
 

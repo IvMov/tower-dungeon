@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c13tj2oeip7q3" path="res://assets/2d/colormap.png" id="1_jxyg6"]
 [ext_resource type="Script" path="res://scenes/enemies/enemy.gd" id="1_maoj0"]
-[ext_resource type="PackedScene" uid="uid://siqrsi7fmaom" path="res://scenes/components/health_component.tscn" id="3_73i4a"]
+[ext_resource type="PackedScene" uid="uid://siqrsi7fmaom" path="res://scenes/components/stats/health_component.tscn" id="3_73i4a"]
 [ext_resource type="PackedScene" uid="uid://4eygpv6ar4kx" path="res://scenes/components/damage_flash_component.tscn" id="3_c5p53"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_mkikl"]
@@ -2325,10 +2325,11 @@ script = ExtResource("1_maoj0")
 health_component = NodePath("../HealthComponent")
 meshes = [NodePath("../character-orc2/character-orc/Skeleton3D/body-mesh"), NodePath("../character-orc2/character-orc/Skeleton3D/head-mesh")]
 
-[node name="HealthComponent" parent="." instance=ExtResource("3_73i4a")]
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("owner_node") instance=ExtResource("3_73i4a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.886331, 0)
-max_hp = 2.0
-current_hp = 2.0
+owner_node = NodePath("..")
+max_value = 3.2
+current_value = 3.2
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_height_offset = 1.0

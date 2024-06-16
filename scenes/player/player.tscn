@@ -1,12 +1,13 @@
-[gd_scene load_steps=44 format=3 uid="uid://b24j4s1u7ww1k"]
+[gd_scene load_steps=45 format=3 uid="uid://b24j4s1u7ww1k"]
 
-[ext_resource type="PackedScene" uid="uid://dituee6sehxvq" path="res://scenes/camera_scene.tscn" id="1_52pv8"]
+[ext_resource type="PackedScene" uid="uid://dituee6sehxvq" path="res://scenes/camera/camera_scene.tscn" id="1_52pv8"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_xn4w2"]
 [ext_resource type="Resource" uid="uid://dn8xijky5tuis" path="res://resources/skills/spark/spark.tres" id="2_6cf6a"]
 [ext_resource type="Texture2D" uid="uid://c13tj2oeip7q3" path="res://assets/2d/colormap.png" id="3_t5qur"]
 [ext_resource type="PackedScene" uid="uid://4eygpv6ar4kx" path="res://scenes/components/damage_flash_component.tscn" id="3_v6oxs"]
 [ext_resource type="PackedScene" uid="uid://c4u0x0titwwsi" path="res://scenes/skill_contolllers/player_skill_controller.tscn" id="4_luhgc"]
-[ext_resource type="PackedScene" uid="uid://siqrsi7fmaom" path="res://scenes/components/health_component.tscn" id="5_68vlw"]
+[ext_resource type="PackedScene" uid="uid://siqrsi7fmaom" path="res://scenes/components/stats/health_component.tscn" id="5_68vlw"]
+[ext_resource type="PackedScene" uid="uid://cu40ycwrt7set" path="res://scenes/components/stats/mana_component.tscn" id="6_5qlxb"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_46ws3"]
 
@@ -2321,16 +2322,26 @@ script = ExtResource("1_xn4w2")
 first_skill = ExtResource("2_6cf6a")
 
 [node name="DamageFlashComponent" parent="." node_paths=PackedStringArray("health_component", "meshes") instance=ExtResource("3_v6oxs")]
-health_component = NodePath("../HealthComponent")
+health_component = NodePath("../StatsBox/HealthComponent")
 meshes = [NodePath("../character-human/Skeleton3D/body-mesh"), NodePath("../character-human/Skeleton3D/head-mesh")]
 
 [node name="PlayerSkillController" parent="." instance=ExtResource("4_luhgc")]
 
-[node name="SkillBox" type="Node3D" parent="."]
+[node name="StatsBox" type="Node3D" parent="."]
 
-[node name="HealthComponent" parent="." instance=ExtResource("5_68vlw")]
-max_hp = 100.0
-current_hp = 100.0
+[node name="HealthComponent" parent="StatsBox" node_paths=PackedStringArray("owner_node") instance=ExtResource("5_68vlw")]
+owner_node = NodePath("../..")
+max_value = 10.0
+current_value = 10.0
+regen = 1.0
+
+[node name="ManaComponent" parent="StatsBox" node_paths=PackedStringArray("owner_node") instance=ExtResource("6_5qlxb")]
+owner_node = NodePath("../..")
+max_value = 10.0
+current_value = 10.0
+regen = 1.0
+
+[node name="SkillBox" type="Node3D" parent="."]
 
 [node name="AgrArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0112433, 0)
@@ -2408,9 +2419,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_2tnlb")
 mesh = SubResource("ArrayMesh_4wpqs")
 skin = SubResource("Skin_odn0i")
 surface_material_override/0 = SubResource("StandardMaterial3D_j85tw")
-
-[node name="Weapon" type="Node3D" parent="character-human/Skeleton3D"]
-transform = Transform3D(1, -8.74228e-08, -8.74228e-08, -8.74228e-08, -1, 0, -8.74228e-08, 7.64274e-15, -1, -0.339865, 0.505317, -0.505675)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

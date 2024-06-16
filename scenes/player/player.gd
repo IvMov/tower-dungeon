@@ -6,13 +6,13 @@ class_name Player extends CharacterBody3D
 @onready var camera_scene: CameraScene = $CameraScene
 @onready var player_model = $"character-human"
 @onready var jump_gap_timer = $JumpTimer
-@onready var weapon = $"character-human/Skeleton3D/Weapon"
 @onready var agr_area = $AgrArea
-@onready var health_component = $HealthComponent
 @onready var body_mesh = $"character-human/Skeleton3D/body-mesh"
 @onready var head_mesh = $"character-human/Skeleton3D/head-mesh"
 @onready var skill_box: Node = $SkillBox
 @onready var player_skill_controller: PlayerSkillController = $PlayerSkillController
+@onready var health_component: HealthComponent = $StatsBox/HealthComponent
+@onready var mana_component: ManaComponent = $StatsBox/ManaComponent
 
 var player_name: String
 var last_frame_was_on_floor: bool = true
@@ -101,8 +101,9 @@ func handle_jump(event: InputEvent):
 
 
 func handle_skill_use(event: InputEvent):
-	# TODO: REFACTOR!!!!! its mess but it works!
 	if event.is_action_pressed("skill_use"):
+		player_skill_controller.cast_active_skill()
+	elif event.is_action_released("skill_use"):
 		player_skill_controller.use_active_skill()
 
 
@@ -147,7 +148,7 @@ func handle_jump_gap():
 
 
 func get_damage(value: float) -> void:
-	health_component.minus_hp(value)
+	health_component.minus(value)
 	print("damaged by %0.1f" % value)
 	camera_scene.start_shake(0.1, 8)
 

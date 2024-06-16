@@ -1,28 +1,24 @@
-class_name HealthComponent
-extends Node
+class_name HealthComponent extends StatsComponent
 
 signal health_changed(value: float)
 
-@export var owner_node: CharacterBody3D
-@export var max_hp: float
-@export var current_hp: float
-@export var hp_regen: float
-
-
-func minus_hp(value: float):
-	current_hp = max(0, current_hp - value)
+func minus(value: float) -> bool:
+	current_value = max(0, current_value - value)
 	emit_health_changed(-1 * value)
-	if current_hp == 0:
+	if current_value == 0:
 		die()
 	else:
 		play_damage_animation()
+		
+	return true
 
 
-func plus_hp(value: float):
-	if current_hp == max_hp:
-		return
-	current_hp = min(max_hp, current_hp + value)
-	emit_health_changed(value)
+func plus(value: float) -> bool:
+	var health_changed: bool = super.plus(value)
+	if health_changed:
+		emit_health_changed(value)
+	
+	return health_changed
 
 func play_damage_animation():
 	var name = "take-damage-1" if randf() > 0.5 else "take-damage-2"
