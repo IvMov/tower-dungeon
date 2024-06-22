@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Skill" load_steps=3 format=3 uid="uid://dn8xijky5tuis"]
 
-[ext_resource type="PackedScene" uid="uid://cjsi116sgbxr6" path="res://scenes/skill_contolllers/spark_controller.tscn" id="1_60fd1"]
+[ext_resource type="PackedScene" uid="uid://cjsi116sgbxr6" path="res://scenes/skill_contolllers/mana/spark_controller.tscn" id="1_60fd1"]
 [ext_resource type="Script" path="res://resources/skills/skill.gd" id="1_v2ceh"]
 
 [resource]

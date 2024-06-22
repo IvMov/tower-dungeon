@@ -40,6 +40,13 @@ func use_skill() -> void:
 	is_on_cooldown = true
 	cooldown_timer.start()
 
+func stop_skill() -> void:
+	pass
+
+func use_skill_with_event(_event: InputEvent) -> void:
+	is_on_cooldown = true
+	cooldown_timer.start()
+
 func _on_cast_timer_timeout() -> void:
 	skill_cast_finished = true
 

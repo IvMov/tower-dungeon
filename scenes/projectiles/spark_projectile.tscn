@@ -7,6 +7,7 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uayi7"]
 vertex_color_use_as_albedo = true
+albedo_color = Color(20, 20, 1, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_7aqq5"]
 material = SubResource("StandardMaterial3D_uayi7")

@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://siqrsi7fmaom"]
+[gd_scene load_steps=3 format=3 uid="uid://brwji28kmyilf"]
 
+[ext_resource type="PackedScene" uid="uid://b16sln1ua5oaj" path="res://scenes/components/stats/stats_component.tscn" id="1_26i1b"]
 [ext_resource type="Script" path="res://scenes/components/stats/health_component.gd" id="1_dpmph"]
 
-[node name="HealthComponent" type="Node3D"]
+[node name="HealthComponent" instance=ExtResource("1_26i1b")]
 script = ExtResource("1_dpmph")
 
-[node name="HealthBar" type="Node3D" parent="."]
+[node name="RegenTimer" parent="." index="0"]
+one_shot = true
+autostart = true

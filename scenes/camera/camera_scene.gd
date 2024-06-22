@@ -18,7 +18,7 @@ var shake_offset: Vector3
 func _ready():
 	pass
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if shake_decay > 0:
 		if shake_forward:
 			# Apply a small random offset to the camera's position

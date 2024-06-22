@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ca0ysw5vmydwd" path="res://scenes/enemies/enemy.tscn" id="4_c2jpx"]
 
 [sub_resource type="Environment" id="Environment_0f8ma"]
+glow_enabled = true
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.01
 
@@ -17,6 +18,13 @@ enemy = ExtResource("4_c2jpx")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0f8ma")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "LABas"
+
 [node name="TestMap" parent="." instance=ExtResource("1_rx46b")]
 
 [node name="Player" parent="." instance=ExtResource("2_v4j8r")]
@@ -24,24 +32,15 @@ transform = Transform3D(0.305014, 0, -0.952348, 0, 1, 0, 0.952348, 0, 0.305014, 
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.545262, 0.731632, 0.40915, -0.657681, 0.0707446, 0.749968, 0.519755, -0.678019, 0.519755, 24.4337, 24.7003, 24.5328)
+light_energy = 0.305
+light_volumetric_fog_energy = 2.055
 shadow_enabled = true
+sky_mode = 1
 
 [node name="Crosshair" parent="." instance=ExtResource("3_s0mh3")]
 
 [node name="Enemy" parent="." instance=ExtResource("4_c2jpx")]
-transform = Transform3D(0.970304, 0, -0.241888, 0, 1, 0, 0.241888, 0, 0.970304, 14.6953, 6.80976, 7.30185)
-
-[node name="Enemy2" parent="." instance=ExtResource("4_c2jpx")]
-transform = Transform3D(0.970304, 0, -0.241888, 0, 1, 0, 0.241888, 0, 0.970304, 5.6953, 6.80976, 7.30185)
-
-[node name="Enemy4" parent="." instance=ExtResource("4_c2jpx")]
-transform = Transform3D(0.970304, 0, -0.241888, 0, 1, 0, 0.241888, 0, 0.970304, 5.6953, 6.80976, -8.6545)
-
-[node name="Enemy5" parent="." instance=ExtResource("4_c2jpx")]
-transform = Transform3D(0.970304, 0, -0.241888, 0, 1, 0, 0.241888, 0, 0.970304, -12.6685, 6.80976, 7.30185)
-
-[node name="Enemy3" parent="." instance=ExtResource("4_c2jpx")]
-transform = Transform3D(0.970304, 0, -0.241888, 0, 1, 0, 0.241888, 0, 0.970304, 14.6953, 6.80976, -1.69815)
+transform = Transform3D(0.970304, 0, -0.241888, 0, 1, 0, 0.241888, 0, 0.970304, 8.69233, 6.80976, -3.92157)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0

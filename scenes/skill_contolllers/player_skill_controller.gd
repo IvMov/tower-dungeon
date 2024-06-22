@@ -5,6 +5,11 @@ var player: Player
 var player_skills: Dictionary
 var active_skill: Skill
 
+@export var jump_skill: JumpSkillController
+@export var run_skill: RunSkillController
+@export var aim_skill: AimSkillController
+
+
 func _ready() -> void:
 	player = get_parent()
 	GameEvents.add_skill.connect(on_add_skill)
@@ -51,3 +56,6 @@ func map_skill_to_controller(controller: BaseController, skill: Skill) -> void:
 	controller.base_cast_time = skill.base_cast_time
 	controller.base_duration = skill.base_duration
 	controller.base_cooldown = skill.base_cooldown
+
+
+

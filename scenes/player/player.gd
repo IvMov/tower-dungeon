@@ -5,18 +5,20 @@ class_name Player extends CharacterBody3D
 @onready var animation_player = $AnimationPlayer
 @onready var camera_scene: CameraScene = $CameraScene
 @onready var player_model = $"character-human"
-@onready var jump_gap_timer = $JumpTimer
 @onready var agr_area = $AgrArea
 @onready var body_mesh = $"character-human/Skeleton3D/body-mesh"
 @onready var head_mesh = $"character-human/Skeleton3D/head-mesh"
 @onready var skill_box: Node = $SkillBox
+
 @onready var player_skill_controller: PlayerSkillController = $PlayerSkillController
+
 @onready var health_component: HealthComponent = $StatsBox/HealthComponent
 @onready var mana_component: ManaComponent = $StatsBox/ManaComponent
+@onready var stamina_component: StaminaComponent = $StatsBox/StaminaComponent
+
+
 
 var player_name: String
-var last_frame_was_on_floor: bool = true
-var jumps: int = 0
 var move_direction: Vector3 = Vector3.ZERO
 var actions_animations: Array[String] = ["attack-melee-right", "attack-melee-left", "take-damage-1", "take-damage-2", "die"]
 var is_dying: bool = false
@@ -39,20 +41,15 @@ func _physics_process(delta):
 	move_direction = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
 	velocity.x = -move_direction.x * PlayerParameters.current_speed * delta
 	velocity.z = -move_direction.z * PlayerParameters.current_speed * delta
-	
-	# if player change state is_on_floor - then need to handle this event (gives possibility to press jump after not on flor for a while)
-	if last_frame_was_on_floor != is_on_floor():
-		handle_jump_gap()
-	last_frame_was_on_floor = is_on_floor();
-	
+
 	if !actions_animations.has(animation_player.get_current_animation()):
-		
+
 		if is_on_floor():
 			animation_player.play("walk" if move_direction else "idle")
 		else:
 			animation_player.play("fall")
 			velocity.y -= GameConfig.gravity * delta
-	
+
 	move_and_slide()
 
 
@@ -76,7 +73,7 @@ func handle_mouse_rotations(event: InputEvent):
 	move_player(event)
 
 
-func move_player(event: InputEvent):
+func move_player(event: InputEvent) -> void:
 	if event is InputEventMouseMotion && event.relative.y + event.relative.x != 0:
 		rotate_y(-event.relative.x * GameConfig.get_mouse_sensetivity())
 		var new_angle = camera_scene.get_rotation().x - event.relative.y * GameConfig.get_mouse_sensetivity();
@@ -85,20 +82,13 @@ func move_player(event: InputEvent):
 
 
 func handle_run(event: InputEvent):
-	if event.is_action_pressed("speed_up"):
-		PlayerParameters.current_speed = PlayerParameters.BASE_SPEED * PlayerParameters.MOVE_SPEED_UP_MOD
-	elif event.is_action_released("speed_up"):
-		PlayerParameters.current_speed = PlayerParameters.BASE_SPEED
-
+	player_skill_controller.run_skill.use_skill_with_event(event)
 
 func handle_jump(event: InputEvent):
-	var is_second_jump_possible = jumps > 0 && jumps < PlayerParameters.max_jumps
-	if is_on_floor() || !jump_gap_timer.is_stopped() || is_second_jump_possible:
-		if jumps < PlayerParameters.max_jumps && event.is_action_pressed("big_jump"):
-			do_jump(PlayerParameters.current_jump_velocity * PlayerParameters.JUMP_SPEED_UP_MOD)
-		elif jumps < PlayerParameters.max_jumps && event.is_action_pressed("jump"):
-			do_jump(PlayerParameters.current_jump_velocity)
+	player_skill_controller.jump_skill.use_skill_with_event(event)
 
+func handle_aiming(event: InputEvent):
+	player_skill_controller.aim_skill.use_skill_with_event(event)
 
 func handle_skill_use(event: InputEvent):
 	if event.is_action_pressed("skill_use"):
@@ -107,62 +97,23 @@ func handle_skill_use(event: InputEvent):
 		player_skill_controller.use_active_skill()
 
 
-func calc_projectile_direction() -> Vector3: 
-	var cursor: Vector2 = get_viewport().get_mouse_position();
-	var ray_origin: Vector3 = camera_scene.camera_3d.project_ray_origin(cursor)
-	var ray_normal: Vector3 = camera_scene.camera_3d.project_ray_normal(cursor)
-	var params: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(ray_origin, ray_origin + ray_normal*100)
-	var collision: Dictionary = get_world_3d().direct_space_state.intersect_ray(params)
-	var distance_to_target: int = collision.position.distance_to(ray_origin) if collision else 100
-	var cursor_world_position = ray_origin + ray_normal * distance_to_target
-	
-	return (cursor_world_position - camera_scene.get_camera_position()).normalized();
-
-
-func handle_aiming(event: InputEvent):
-	if event.is_action_pressed("aiming_mode"):
-		camera_scene.aiming_mode_in()
-	elif event.is_action_released("aiming_mode"):
-		camera_scene.aiming_mode_out()
-
-
 func custom_death_actions():
 	# required by health component, welcome to spagetti code
 	pass
-		
-func do_jump(power: float):
-	animation_player.play("jump")
-	jumps += 1
-	var fiz_delta = get_physics_process_delta_time()
-	velocity.y = power * fiz_delta
-	velocity.x = move_direction.x * PlayerParameters.current_air_speed * fiz_delta
-	velocity.z = move_direction.z * PlayerParameters.current_air_speed * fiz_delta
-
-
-func handle_jump_gap():
-	if is_on_floor():
-		jump_gap_timer.stop()
-		jumps = 0	
-	else: 
-		jump_gap_timer.start()
-
 
 func get_damage(value: float) -> void:
 	health_component.minus(value)
 	print("damaged by %0.1f" % value)
 	camera_scene.start_shake(0.1, 8)
 
-
 func on_body_entered(body: Node3D):
 	if body is BasicEnemy:
 		body.do_damage()
 
 
-
 func on_body_exited(body: Node3D):
 	if body is BasicEnemy:
-		var damage = body.stop_damage()
-
+		body.stop_damage()
 
 
 func on_area_entered(area: Area3D):

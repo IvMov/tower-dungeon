@@ -1,6 +1,31 @@
-[gd_scene load_steps=2 format=3 uid="uid://4eygpv6ar4kx"]
+[gd_scene load_steps=7 format=3 uid="uid://4eygpv6ar4kx"]
 
 [ext_resource type="Script" path="res://scenes/components/damage_flash_component.gd" id="1_diwfx"]
+[ext_resource type="Material" uid="uid://cgmec1v7lguua" path="res://particles/heal_particles.tres" id="2_ooi4k"]
 
-[node name="DamageFlashComponent" type="Node"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6eru1"]
+albedo_color = Color(0, 2, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_pu0f0"]
+material = SubResource("StandardMaterial3D_6eru1")
+size = Vector2(0.12, 0.04)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tevgt"]
+albedo_color = Color(0, 2, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_6lppl"]
+material = SubResource("StandardMaterial3D_tevgt")
+size = Vector2(0.04, 0.12)
+
+[node name="DamageFlashComponent" type="Node3D"]
 script = ExtResource("1_diwfx")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 5
+lifetime = 0.7
+one_shot = true
+process_material = ExtResource("2_ooi4k")
+draw_passes = 2
+draw_pass_1 = SubResource("QuadMesh_pu0f0")
+draw_pass_2 = SubResource("QuadMesh_6lppl")

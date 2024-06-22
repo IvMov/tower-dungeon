@@ -5,9 +5,11 @@ const ANIMATION_TIME: float = 0.3
 
 @export var health_component: HealthComponent
 @export var meshes: Array[MeshInstance3D]
+@onready var gpu_particles_3d = $GPUParticles3D
 
 var tween: Tween
 var last_hp: float
+var color: Color
 
 
 func _ready():
@@ -15,10 +17,13 @@ func _ready():
 
 
 func on_health_changed(value: float) -> void:
-	tween = prepare_tween()
-	change_color_to(Color.RED)
-	tween.chain()
-	change_color_to(Color.WHITE)
+	if value < 0:
+		tween = prepare_tween()
+		change_color_to(Color.RED)
+		tween.chain()
+		change_color_to(Color.WHITE)
+	else:
+		gpu_particles_3d.emitting = true
 
 
 func change_color_to(color: Color) -> void: 

@@ -4,3 +4,7 @@
 
 [node name="StatsComponent" type="Node3D"]
 script = ExtResource("1_cetgc")
+
+[node name="RegenTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="RegenTimer" to="." method="_on_regen_timer_timeout"]

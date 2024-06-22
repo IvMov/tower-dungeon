@@ -3,7 +3,8 @@ class_name SparkController extends BaseController
 @export var spark_projectile: PackedScene
 @onready var projectiles_box: Node = get_tree().get_first_node_in_group("projectiles")
 var player: Player
-	
+var cast_enabled: bool = false
+
 
 func start_cast() -> void:
 	cast_timer.wait_time = base_cast_time
@@ -19,11 +20,15 @@ func start_cast() -> void:
 		# TODO: create energy component and health component abstraction layer with minus plus and etc methods.
 		GameEvents.emit_skill_call_failed(Enums.SkillCallFailedReason.NO_MANA)
 	else:
+		cast_enabled = true
 		#TODO: play cast animation 
 		super.start_cast()
 
 
 func finish_cast() -> void:
+	if !cast_enabled:
+		return
+	cast_enabled = false
 	super.finish_cast()
 	if skill_cast_finished:
 		use_skill()
@@ -42,7 +47,7 @@ func use_skill() -> void:
 	if !player:
 		return
 	var projectile: SparkProjectile = spark_projectile.instantiate()
-	var proj_direction: Vector3 = calc_projectile_direction(player)
+	var proj_direction: Vector3 = calc_projectile_direction()
 	
 	projectiles_box.add_child(projectile)
 	player.animation_player.play("attack-melee-right")
@@ -62,7 +67,7 @@ func calc_projectile_speed() -> float:
 	return base_speed
 
 
-func calc_projectile_direction(player: Player) -> Vector3:
+func calc_projectile_direction() -> Vector3:
 	var cursor: Vector2 = get_viewport().get_mouse_position();
 	var ray_origin: Vector3 = player.camera_scene.camera_3d.project_ray_origin(cursor)
 	var ray_normal: Vector3 = player.camera_scene.camera_3d.project_ray_normal(cursor)

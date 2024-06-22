@@ -6,7 +6,11 @@ class_name StatsComponent extends Node3D
 @export var current_value: float
 @export var regen: float
 
-func minus(value: float) -> bool:
+@onready var regen_timer = $RegenTimer
+
+var can_regen: bool = false
+
+func minus(_value: float) -> bool:
 	return false
 
 func plus(value: float) -> bool:
@@ -14,3 +18,13 @@ func plus(value: float) -> bool:
 		return false
 	current_value = min(max_value, current_value + value)
 	return true
+
+func run_regen() -> void:
+	if can_regen && regen_timer.is_stopped() && regen > 0 && max_value > current_value:
+		plus(regen)
+		regen_timer.start()
+
+func _on_regen_timer_timeout() -> void:
+	run_regen()
+	print("%s stats" % current_value)
+	

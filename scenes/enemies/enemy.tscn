@@ -1,9 +1,11 @@
-[gd_scene load_steps=42 format=3 uid="uid://ca0ysw5vmydwd"]
+[gd_scene load_steps=44 format=3 uid="uid://ca0ysw5vmydwd"]
 
 [ext_resource type="Texture2D" uid="uid://c13tj2oeip7q3" path="res://assets/2d/colormap.png" id="1_jxyg6"]
 [ext_resource type="Script" path="res://scenes/enemies/enemy.gd" id="1_maoj0"]
-[ext_resource type="PackedScene" uid="uid://siqrsi7fmaom" path="res://scenes/components/stats/health_component.tscn" id="3_73i4a"]
+[ext_resource type="PackedScene" uid="uid://brwji28kmyilf" path="res://scenes/components/stats/health_component.tscn" id="3_73i4a"]
 [ext_resource type="PackedScene" uid="uid://4eygpv6ar4kx" path="res://scenes/components/damage_flash_component.tscn" id="3_c5p53"]
+[ext_resource type="PackedScene" uid="uid://bp1sun7nnmiix" path="res://scenes/components/stats/mana_component.tscn" id="4_y8djd"]
+[ext_resource type="PackedScene" uid="uid://c5b0526vcqecl" path="res://scenes/components/stats/stamina_component.tscn" id="5_y26qn"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_mkikl"]
 resource_local_to_scene = true
@@ -2322,14 +2324,26 @@ floor_snap_length = 0.05
 script = ExtResource("1_maoj0")
 
 [node name="DamageFlashComponent" parent="." node_paths=PackedStringArray("health_component", "meshes") instance=ExtResource("3_c5p53")]
-health_component = NodePath("../HealthComponent")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.387121, 0)
+health_component = NodePath("../StatsBox/HealthComponent")
 meshes = [NodePath("../character-orc2/character-orc/Skeleton3D/body-mesh"), NodePath("../character-orc2/character-orc/Skeleton3D/head-mesh")]
 
-[node name="HealthComponent" parent="." node_paths=PackedStringArray("owner_node") instance=ExtResource("3_73i4a")]
+[node name="StatsBox" type="Node3D" parent="."]
+
+[node name="HealthComponent" parent="StatsBox" node_paths=PackedStringArray("owner_node") instance=ExtResource("3_73i4a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.886331, 0)
-owner_node = NodePath("..")
-max_value = 3.2
-current_value = 3.2
+owner_node = NodePath("../..")
+max_value = 8.0
+current_value = 8.0
+regen = 0.5
+
+[node name="ManaComponent" parent="StatsBox" node_paths=PackedStringArray("owner_node") instance=ExtResource("4_y8djd")]
+owner_node = NodePath("../..")
+
+[node name="StaminaComponent" parent="StatsBox" node_paths=PackedStringArray("owner_node") instance=ExtResource("5_y26qn")]
+owner_node = NodePath("../..")
+max_value = 5.0
+current_value = 5.0
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_height_offset = 1.0
@@ -2387,28 +2401,28 @@ bones/3/parent = 0
 bones/3/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.80478e-15, 0.17625, -0.02375)
 bones/3/enabled = true
 bones/3/position = Vector3(-1.80478e-15, 0.17625, -0.02375)
-bones/3/rotation = Quaternion(-0.0390854, 0, 0, 0.999236)
+bones/3/rotation = Quaternion(0, 0, 0, 1)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "arm-left"
 bones/4/parent = 3
 bones/4/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0998968, 0.1115, 0.0115)
 bones/4/enabled = true
 bones/4/position = Vector3(0.0998968, 0.1115, 0.0115)
-bones/4/rotation = Quaternion(0.0361102, 0.0149573, -0.382391, 0.923174)
+bones/4/rotation = Quaternion(0, 0, -0.382683, 0.92388)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/name = "arm-right"
 bones/5/parent = 3
 bones/5/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0998968, 0.1115, 0.0115)
 bones/5/enabled = true
 bones/5/position = Vector3(-0.0998968, 0.1115, 0.0115)
-bones/5/rotation = Quaternion(0.0361102, -0.0149573, 0.382391, 0.923174)
+bones/5/rotation = Quaternion(0, 0, 0.382683, 0.92388)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/name = "head"
 bones/6/parent = 3
 bones/6/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.81969e-09, 0.167, 0.0263888)
 bones/6/enabled = true
 bones/6/position = Vector3(1.81969e-09, 0.167, 0.0263888)
-bones/6/rotation = Quaternion(-0.117015, 0, 0, 0.99313)
+bones/6/rotation = Quaternion(0, 0, 0, 1)
 bones/6/scale = Vector3(1, 1, 1)
 
 [node name="body-mesh" type="MeshInstance3D" parent="character-orc2/character-orc/Skeleton3D"]

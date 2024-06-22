@@ -1,0 +1,10 @@
+[gd_resource type="ParticleProcessMaterial" format=3 uid="uid://cgmec1v7lguua"]
+
+[resource]
+particle_flag_rotate_y = true
+emission_shape = 1
+emission_sphere_radius = 0.5
+angle_min = -360.0
+angle_max = 360.0
+direction = Vector3(0, 0, 0)
+gravity = Vector3(0, 2, 0)

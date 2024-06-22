@@ -12,9 +12,11 @@ class_name BasicEnemy extends CharacterBody3D
 @onready var dodging_timer = $Timers/DodgingTimer
 @onready var death_timer = $Timers/DeathTimer
 @onready var do_damage_timer = $Timers/DoDamageTimer
-@onready var health_component = $HealthComponent
+@onready var health_component: HealthComponent = $StatsBox/HealthComponent
+@onready var mana_component: ManaComponent = $StatsBox/ManaComponent
+@onready var stamina_component: StaminaComponent = $StatsBox/StaminaComponent
 
-
+var stamina_cost: float = 1.0 # temporary for tests - need to refactor
 var speed: float = 90.0
 var damage: float = randf()*2 + 1
 var damage_frequency: float = randf() + 0.2
@@ -92,7 +94,6 @@ func lost_target():
 func do_damage() -> float:
 	do_damage_timer.start()
 	is_fighting = true
-	
 	return damage
 
 func stop_damage() -> void:
@@ -167,7 +168,7 @@ func _on_dodging_timer_timeout():
 	chase_player_timer.start()
 
 
-func _on_dodge_area_area_entered(area):
+func _on_dodge_area_area_entered(_area):
 	if dodging_timer.is_stopped():
 		is_dodging = true
 
@@ -179,6 +180,9 @@ func _on_death_timer_timeout():
 func _on_do_damage_timer_timeout():
 	if is_dying:
 		return
-	GameEvents.emit_damage_player(damage)
-	animation_player.play("attack-kick-left" if randf() > 0.5 else "attack-kick-right")
-
+	if stamina_component.minus(stamina_cost):
+		GameEvents.emit_damage_player(damage)
+		animation_player.play("attack-kick-left" if randf() > 0.5 else "attack-kick-right")
+	else:
+		# animate - no stamina
+		stop_damage()

@@ -8,19 +8,24 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var full_screen: bool = false
 
 
+
 func _unhandled_input(event):
 	if event.is_action("full_screen") && event.is_released():
+		print(DisplayServer.window_get_size())
 		resize_screen()
 		
 
 
 func resize_screen():
+	request_ready()
 	var is_fullscreen = DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN
 	if is_fullscreen:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MINIMIZED)
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		
 	full_screen = !is_fullscreen
 	GameEvents.emit_screen_resized()
 
@@ -28,3 +33,5 @@ func resize_screen():
 func get_mouse_sensetivity():
 	return mouse_sensitivity_game if GameStage.current_game_stage == 1 else mouse_sensitivity_menu
 
+
+	
