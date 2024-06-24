@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://dijdgxfuh2kv6"]
+
+[ext_resource type="Script" path="res://resources/skills/skill.gd" id="2_fbs8t"]
+
+[resource]
+script = ExtResource("2_fbs8t")
+id = "kick"
+name = "kick_skill"
+description = "kick_skill_description"
+base_value = 0.0
+base_speed = 0.0
+base_distance = 0.0
+base_energy_cost = 1.0
+base_cast_time = 0.0
+base_duration = 0.0
+base_cooldown = 1.0
+price = Vector3(0, 0, 0)

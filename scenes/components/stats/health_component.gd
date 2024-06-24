@@ -33,9 +33,14 @@ func play_damage_animation() -> void:
 		owner_node.animation_player.play_backwards(animaiton_name)
 
 func die() -> void:
+	if owner_node.is_dying:
+		return
 	owner_node.custom_death_actions()
 	owner_node.is_dying = true
+	print(owner_node)
 	if owner_node is BasicEnemy:
+		owner_node.souls_drop_component.drop_soul()
+		GameEvents.emit_souls_dropped(owner_node.global_position, owner_node.soul_component.souls)
 		owner_node.agr_area.disable_mode = true
 		owner_node.death_timer.start()
 	

@@ -8,6 +8,11 @@
 
 [sub_resource type="Environment" id="Environment_0f8ma"]
 glow_enabled = true
+glow_levels/1 = 1.0
+glow_levels/2 = 1.0
+glow_levels/4 = 1.0
+glow_levels/6 = 1.0
+glow_levels/7 = 1.0
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.01
 
@@ -25,6 +30,8 @@ offset_right = 40.0
 offset_bottom = 23.0
 text = "LABas"
 
+[node name="Crosshair" parent="CanvasLayer" instance=ExtResource("3_s0mh3")]
+
 [node name="TestMap" parent="." instance=ExtResource("1_rx46b")]
 
 [node name="Player" parent="." instance=ExtResource("2_v4j8r")]
@@ -35,16 +42,18 @@ transform = Transform3D(0.545262, 0.731632, 0.40915, -0.657681, 0.0707446, 0.749
 light_energy = 0.305
 light_volumetric_fog_energy = 2.055
 shadow_enabled = true
-sky_mode = 1
-
-[node name="Crosshair" parent="." instance=ExtResource("3_s0mh3")]
-
-[node name="Enemy" parent="." instance=ExtResource("4_c2jpx")]
-transform = Transform3D(0.970304, 0, -0.241888, 0, 1, 0, 0.241888, 0, 0.970304, 8.69233, 6.80976, -3.92157)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
+autostart = true
 
 [node name="Projectiles" type="Node3D" parent="." groups=["projectiles"]]
+
+[node name="Souls" type="Node3D" parent="." groups=["souls"]]
+
+[node name="Enemies" type="Node3D" parent="." groups=["enemies"]]
+
+[node name="Enemy" parent="Enemies" instance=ExtResource("4_c2jpx")]
+transform = Transform3D(0.970304, 0, -0.241888, 0, 1, 0, 0.241888, 0, 0.970304, 8.69233, 6.80976, -3.92157)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

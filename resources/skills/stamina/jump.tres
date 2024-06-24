@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=3 format=3 uid="uid://dpgxb2jbu3u0v"]
+
+[ext_resource type="PackedScene" uid="uid://dkjj73isvgfjx" path="res://scenes/skill_contolllers/stamina/jump_skill_controller.tscn" id="1_r40fy"]
+[ext_resource type="Script" path="res://resources/skills/skill.gd" id="2_4elwy"]
+
+[resource]
+script = ExtResource("2_4elwy")
+id = "jump"
+name = "jump_skill"
+description = "jump_skill_description"
+controller = ExtResource("1_r40fy")
+base_value = 0.0
+base_speed = 0.0
+base_distance = 0.0
+base_energy_cost = 0.0
+base_cast_time = 0.0
+base_duration = 0.0
+base_cooldown = 1.0
+price = Vector3(0, 0, 0)

@@ -3,11 +3,17 @@ extends Node
 
 signal change_game_stage(game_stage)
 signal screen_resized()
+
 signal damage_player(damage: float)
+
 signal add_skill(skill: Skill)
 signal skill_call_failed(reason: Enums)
-signal stamina_skill_lock(is_locked: bool)
-signal mana_skill_lock(is_locked: bool)
+
+signal souls_dropped(position: Vector3, value: Vector3)
+signal souls_collect(position: Vector3, value: Vector3)
+
+var soul: PackedScene = preload("res://scenes/dropable/soul.tscn")
+
 
 func emit_change_game_stage(game_stage):
 	change_game_stage.emit(game_stage)
@@ -25,8 +31,9 @@ func emit_skill_call_failed(reason: Enums.SkillCallFailedReason):
 	print("skill usage failed %s " % reason)
 	skill_call_failed.emit(reason)
 
-func emit_stamina_skill_lock(is_lock: bool):
-	stamina_skill_lock.emit(is_lock)
+func emit_souls_dropped(position: Vector3, value: Vector3):
+	souls_dropped.emit(position, value)
 
-func emit_mana_skill_lock(is_lock: bool):
-	mana_skill_lock.emit(is_lock)
+
+func emit_souls_collect(position: Vector3, value: Vector3):
+	souls_collect.emit(position, value)

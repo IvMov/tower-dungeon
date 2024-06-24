@@ -1,12 +1,14 @@
-[gd_scene load_steps=49 format=3 uid="uid://b24j4s1u7ww1k"]
+[gd_scene load_steps=51 format=3 uid="uid://b24j4s1u7ww1k"]
 
 [ext_resource type="PackedScene" uid="uid://dituee6sehxvq" path="res://scenes/camera/camera_scene.tscn" id="1_52pv8"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_xn4w2"]
 [ext_resource type="Resource" uid="uid://dn8xijky5tuis" path="res://resources/skills/spark/spark.tres" id="2_6cf6a"]
 [ext_resource type="Texture2D" uid="uid://c13tj2oeip7q3" path="res://assets/2d/colormap.png" id="3_t5qur"]
-[ext_resource type="PackedScene" uid="uid://4eygpv6ar4kx" path="res://scenes/components/damage_flash_component.tscn" id="3_v6oxs"]
+[ext_resource type="PackedScene" uid="uid://4eygpv6ar4kx" path="res://scenes/components/effect_flash_component.tscn" id="3_v6oxs"]
 [ext_resource type="PackedScene" uid="uid://c4u0x0titwwsi" path="res://scenes/skill_contolllers/player_skill_controller.tscn" id="4_luhgc"]
+[ext_resource type="PackedScene" uid="uid://d3xyibv2r68ev" path="res://scenes/components/soul_component.tscn" id="4_tt1bo"]
 [ext_resource type="PackedScene" uid="uid://brwji28kmyilf" path="res://scenes/components/stats/health_component.tscn" id="5_68vlw"]
+[ext_resource type="PackedScene" uid="uid://rlhs67qqr5ug" path="res://scenes/components/souls_collecting_component.tscn" id="5_wsf6k"]
 [ext_resource type="PackedScene" uid="uid://bp1sun7nnmiix" path="res://scenes/components/stats/mana_component.tscn" id="6_5qlxb"]
 [ext_resource type="PackedScene" uid="uid://c5b0526vcqecl" path="res://scenes/components/stats/stamina_component.tscn" id="7_428qe"]
 [ext_resource type="PackedScene" uid="uid://dkjj73isvgfjx" path="res://scenes/skill_contolllers/stamina/jump_skill_controller.tscn" id="8_uyvwt"]
@@ -2325,10 +2327,15 @@ floor_max_angle = 0.436332
 script = ExtResource("1_xn4w2")
 first_skill = ExtResource("2_6cf6a")
 
-[node name="DamageFlashComponent" parent="." node_paths=PackedStringArray("health_component", "meshes") instance=ExtResource("3_v6oxs")]
+[node name="EffectFlashComponent" parent="." node_paths=PackedStringArray("health_component", "meshes") instance=ExtResource("3_v6oxs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.436412, 0)
 health_component = NodePath("../StatsBox/HealthComponent")
 meshes = [NodePath("../character-human/Skeleton3D/body-mesh"), NodePath("../character-human/Skeleton3D/head-mesh")]
+
+[node name="SoulsComponent" parent="." instance=ExtResource("4_tt1bo")]
+souls = Vector3(0, 1, 0)
+
+[node name="SoulsCollectingComponent" parent="." instance=ExtResource("5_wsf6k")]
 
 [node name="PlayerSkillController" parent="." node_paths=PackedStringArray("jump_skill", "run_skill", "aim_skill") instance=ExtResource("4_luhgc")]
 jump_skill = NodePath("../SkillBox/JumpSkillController")
@@ -2341,7 +2348,7 @@ aim_skill = NodePath("../SkillBox/AimSkillController")
 owner_node = NodePath("../..")
 max_value = 10.0
 current_value = 10.0
-regen = 1.0
+regen = 2.0
 
 [node name="ManaComponent" parent="StatsBox" node_paths=PackedStringArray("owner_node") instance=ExtResource("6_5qlxb")]
 owner_node = NodePath("../..")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://4eygpv6ar4kx"]
 
-[ext_resource type="Script" path="res://scenes/components/damage_flash_component.gd" id="1_diwfx"]
+[ext_resource type="Script" path="res://scenes/components/effect_flash_component.gd" id="1_diwfx"]
 [ext_resource type="Material" uid="uid://cgmec1v7lguua" path="res://particles/heal_particles.tres" id="2_ooi4k"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6eru1"]
@@ -17,7 +17,7 @@ albedo_color = Color(0, 2, 0, 1)
 material = SubResource("StandardMaterial3D_tevgt")
 size = Vector2(0.04, 0.12)
 
-[node name="DamageFlashComponent" type="Node3D"]
+[node name="EffectFlashComponent" type="Node3D"]
 script = ExtResource("1_diwfx")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]

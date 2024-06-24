@@ -23,14 +23,10 @@ GameStage="*res://autoload/game_stage.tscn"
 GameEvents="*res://autoload/game_events.tscn"
 PlayerParameters="*res://autoload/player_parameters.tscn"
 
-[debug]
-
-settings/stdout/print_fps=true
-
 [display]
 
-window/size/viewport_width=1366
-window/size/viewport_height=768
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 window/stretch/mode="viewport"
 mouse_cursor/tooltip_position_offset=Vector2(0, 0)
 
@@ -131,6 +127,7 @@ locale/translations=PackedStringArray("res://assets/translation/text.en.translat
 
 3d_physics/layer_1="Terrain"
 3d_physics/layer_3="Projectiles_player"
+3d_physics/layer_4="Souls"
 3d_physics/layer_10="Player"
 3d_physics/layer_11="Enemies"
 

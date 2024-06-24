@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://rlhs67qqr5ug"]
+
+[ext_resource type="Script" path="res://scenes/components/souls_collecting_component.gd" id="1_o0lh8"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ganuo"]
+radius = 5.0
+
+[node name="SoulsCollectingComponent" type="Node3D"]
+script = ExtResource("1_o0lh8")
+
+[node name="CollectArea" type="Area3D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CollectArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37524, 0)
+shape = SubResource("SphereShape3D_ganuo")

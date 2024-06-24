@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3xyibv2r68ev"]
+
+[ext_resource type="Script" path="res://scenes/components/soul_component.gd" id="1_j6t5q"]
+
+[node name="SoulsComponent" type="Node3D"]
+script = ExtResource("1_j6t5q")

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=3 format=3 uid="uid://17f7lkxmn34a"]
+
+[ext_resource type="PackedScene" uid="uid://b1r08fbxrmpbj" path="res://scenes/skill_contolllers/stamina/run_skill_controller.tscn" id="1_fohnv"]
+[ext_resource type="Script" path="res://resources/skills/skill.gd" id="2_ex3n8"]
+
+[resource]
+script = ExtResource("2_ex3n8")
+id = "run"
+name = "run_skill"
+description = "run_skill_description"
+controller = ExtResource("1_fohnv")
+base_value = 1.2
+base_speed = 0.0
+base_distance = 0.0
+base_energy_cost = 2.0
+base_cast_time = 0.0
+base_duration = 0.0
+base_cooldown = 1.0
+price = Vector3(2, 2, 0)

@@ -1,0 +1,31 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=5 format=3 uid="uid://dq3wuuvlnjd0t"]
+
+[sub_resource type="Curve" id="Curve_uk6w8"]
+min_value = -2.0
+max_value = 2.0
+_data = [Vector2(0, 1), 0.0, -1.27324, 0, 0, Vector2(0.444934, 0.373626), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_qeinu"]
+curve = SubResource("Curve_uk6w8")
+
+[sub_resource type="Curve" id="Curve_g2gh7"]
+max_value = 5.0
+_data = [Vector2(0.0176211, 2.58242), 0.0, 0.0, 0, 0, Vector2(0.969163, 3.18681), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ynxtj"]
+curve = SubResource("Curve_g2gh7")
+
+[resource]
+resource_local_to_scene = true
+emission_shape = 1
+emission_sphere_radius = 0.2
+direction = Vector3(0, 0, 0)
+orbit_velocity_min = 2.0
+orbit_velocity_max = 5.0
+orbit_velocity_curve = SubResource("CurveTexture_qeinu")
+radial_velocity_max = 1.0
+velocity_limit_curve = SubResource("CurveTexture_ynxtj")
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5

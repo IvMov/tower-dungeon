@@ -1,0 +1,63 @@
+[gd_scene load_steps=10 format=3 uid="uid://0yuowhqbaqnh"]
+
+[ext_resource type="Script" path="res://scenes/dropable/soul.gd" id="1_pe5nk"]
+[ext_resource type="Material" uid="uid://dq3wuuvlnjd0t" path="res://particles/soul.tres" id="2_onyni"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_52m38"]
+radius = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nw88x"]
+resource_local_to_scene = true
+albedo_color = Color(0.067, 20, 0.059, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_0oaxs"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_nw88x")
+radius = 0.05
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hiv6u"]
+albedo_color = Color(0.361, 9.467, 20, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_s24hr"]
+material = SubResource("StandardMaterial3D_hiv6u")
+radius = 0.075
+height = 0.15
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sm1hw"]
+albedo_color = Color(20, 0, 0.647, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ikfpb"]
+material = SubResource("StandardMaterial3D_sm1hw")
+radius = 0.1
+height = 0.2
+
+[node name="Soul" type="Node3D"]
+script = ExtResource("1_pe5nk")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_52m38")
+
+[node name="Tier1SoulParticle" type="GPUParticles3D" parent="."]
+amount = 1
+lifetime = 10.0
+process_material = ExtResource("2_onyni")
+draw_pass_1 = SubResource("SphereMesh_0oaxs")
+
+[node name="Tier2SoulParticle" type="GPUParticles3D" parent="."]
+amount = 1
+lifetime = 10.0
+process_material = ExtResource("2_onyni")
+draw_pass_1 = SubResource("SphereMesh_s24hr")
+
+[node name="Tier3SoulParticle" type="GPUParticles3D" parent="."]
+amount = 1
+lifetime = 10.0
+process_material = ExtResource("2_onyni")
+draw_pass_1 = SubResource("SphereMesh_ikfpb")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

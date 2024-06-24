@@ -15,6 +15,8 @@ class_name BasicEnemy extends CharacterBody3D
 @onready var health_component: HealthComponent = $StatsBox/HealthComponent
 @onready var mana_component: ManaComponent = $StatsBox/ManaComponent
 @onready var stamina_component: StaminaComponent = $StatsBox/StaminaComponent
+@onready var soul_component: SoulComponent = $SoulComponent
+@onready var souls_drop_component: SoulsDropComponent = $SoulsDropComponent
 
 var stamina_cost: float = 1.0 # temporary for tests - need to refactor
 var speed: float = 90.0
@@ -141,8 +143,8 @@ func relocate_enemy(delta: float) -> void:
 
 func _on_chase_player_timer_timeout():
 	reset_agr_area_size()
-	player = null
 	stop_enemy()
+	player = null
 	idle_cooldown_timer.start()
 
 
@@ -165,7 +167,8 @@ func _on_dodging_timer_timeout():
 	is_dodging = false
 	player = get_tree().get_first_node_in_group("player")
 	chase_player(get_physics_process_delta_time())
-	chase_player_timer.start()
+	if !is_fighting:
+		chase_player_timer.start()
 
 
 func _on_dodge_area_area_entered(_area):
@@ -184,5 +187,5 @@ func _on_do_damage_timer_timeout():
 		GameEvents.emit_damage_player(damage)
 		animation_player.play("attack-kick-left" if randf() > 0.5 else "attack-kick-right")
 	else:
+		print("NO STAMINA -_-")
 		# animate - no stamina
-		stop_damage()

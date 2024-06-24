@@ -49,7 +49,7 @@ draw_pass_1 = ExtResource("3_v1etk")
 [node name="CollisionParticles" type="GPUParticles3D" parent="."]
 emitting = false
 amount = 100
-lifetime = 0.5
+lifetime = 0.8
 one_shot = true
 speed_scale = 3.0
 explosiveness = 1.0

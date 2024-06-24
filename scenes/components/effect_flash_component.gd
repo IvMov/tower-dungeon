@@ -1,5 +1,4 @@
-class_name DamageFlashComponent
-extends Node
+class_name EffectFlashComponent extends Node
 
 const ANIMATION_TIME: float = 0.3
 
