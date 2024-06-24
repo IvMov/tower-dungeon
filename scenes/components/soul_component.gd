@@ -6,7 +6,8 @@ class_name SoulComponent extends Node3D
 @export var souls: Vector3
 
 func _ready():
-	souls = Vector3(randf()*8, randf()*5, randf()*2)
+	GameEvents.souls_collect.connect(on_souls_collect)
+	souls = Vector3(randf()*8, randf()*5, 0)
 
 # returns Vector3 if Vector contains - vaues - it shows tha operation is unsuccessfull
 # and negative values not enough, else -  operation successfull
@@ -22,3 +23,6 @@ func plus(value: Vector3) -> Vector3:
 	souls += value
 	
 	return souls
+
+func on_souls_collect(_location: Vector3, value: Vector3) -> void:
+	plus(value)

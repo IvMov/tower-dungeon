@@ -19,17 +19,29 @@ func emit(souls: Vector3):
 	if souls.z > 0:
 		tier_3_soul_particle.emitting = true
 
-func collect():
-	#maybe animate with tween - to move somewhere
-	tier_1_soul_particle.emitting = false
-	tier_2_soul_particle.emitting = false
-	tier_3_soul_particle.emitting = false
-	print("collected")
-	#animate collecting
-	queue_free()
+func collect() -> void:
+	if tier_1_soul_particle.emitting:
+		tier_1_soul_particle.emitting = false
+		tier_1_soul_particle.speed_scale = 2
+		tier_1_soul_particle.emitting = true
+	if tier_2_soul_particle.emitting:
+		tier_2_soul_particle.emitting = false
+		tier_2_soul_particle.speed_scale = 2
+		tier_2_soul_particle.emitting = true
+	if tier_3_soul_particle.emitting:
+		tier_3_soul_particle.emitting = false
+		tier_3_soul_particle.speed_scale = 2
+		tier_3_soul_particle.emitting = true
 	
+	var tween = create_tween().set_parallel(true)
+	tween.tween_property(tier_1_soul_particle, "transparency", 1, 0.5)
+	tween.tween_property(tier_2_soul_particle, "transparency", 1, 0.5)
+	tween.tween_property(tier_3_soul_particle, "transparency", 1, 0.5)
+	tween.chain().tween_callback(queue_free)
 
 
-func _on_area_3d_area_entered(area):
+func _on_area_3d_area_entered(area: Area3D) -> void:
 	GameEvents.emit_souls_collect(global_position, souls_count)
 	collect()
+
+

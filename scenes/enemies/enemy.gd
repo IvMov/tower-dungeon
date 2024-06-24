@@ -12,6 +12,7 @@ class_name BasicEnemy extends CharacterBody3D
 @onready var dodging_timer = $Timers/DodgingTimer
 @onready var death_timer = $Timers/DeathTimer
 @onready var do_damage_timer = $Timers/DoDamageTimer
+
 @onready var health_component: HealthComponent = $StatsBox/HealthComponent
 @onready var mana_component: ManaComponent = $StatsBox/ManaComponent
 @onready var stamina_component: StaminaComponent = $StatsBox/StaminaComponent
@@ -19,7 +20,7 @@ class_name BasicEnemy extends CharacterBody3D
 @onready var souls_drop_component: SoulsDropComponent = $SoulsDropComponent
 
 var stamina_cost: float = 1.0 # temporary for tests - need to refactor
-var speed: float = 90.0
+var speed: float = 150.0
 var damage: float = randf()*2 + 1
 var damage_frequency: float = randf() + 0.2
 var actions_animations: Array[String] = ["attack-melee-right", "attack-melee-left", "take-damage-1", "take-damage-2", "die"]
@@ -34,7 +35,7 @@ var is_dodging: bool = false
 var is_dying: bool = false
 var is_fighting: bool = false
 
-
+# TODO: REFACTOR THIS SHIT TO SKILL BOX - dodge, attack, add range attack
 func _ready():
 	idle_cooldown_timer.wait_time = randf_range(2,4)
 	idle_cooldown_timer.start()
@@ -89,14 +90,24 @@ func custom_death_actions():
 	pass
 
 func lost_target():
-	if agr_area.disable_mode:
+	if agr_area.disable_mode: 
 		return
 	chase_player_timer.start()
 
 func do_damage() -> float:
-	do_damage_timer.start()
+	damage_player()
 	is_fighting = true
 	return damage
+
+func damage_player() -> void:
+	if is_dying:
+		return
+	if stamina_component.minus(stamina_cost):
+		GameEvents.emit_damage_player(damage)
+		animation_player.play("attack-kick-left" if randf() > 0.5 else "attack-kick-right")
+	else:
+		print("NO STAMINA -_-")
+		# animate - no stamina
 
 func stop_damage() -> void:
 	do_damage_timer.stop()
@@ -134,7 +145,7 @@ func relocate_enemy(delta: float) -> void:
 	transform.basis = new_basis
 	var current_speed = speed;
 	if is_dodging:
-		current_speed = speed*2
+		current_speed = speed*1.5
 		animation_player.play("sprint");
 	
 	velocity.x = direction.x * current_speed * delta
@@ -181,11 +192,4 @@ func _on_death_timer_timeout():
 
 
 func _on_do_damage_timer_timeout():
-	if is_dying:
-		return
-	if stamina_component.minus(stamina_cost):
-		GameEvents.emit_damage_player(damage)
-		animation_player.play("attack-kick-left" if randf() > 0.5 else "attack-kick-right")
-	else:
-		print("NO STAMINA -_-")
-		# animate - no stamina
+	damage_player()

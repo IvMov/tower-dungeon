@@ -2336,6 +2336,7 @@ meshes = [NodePath("../character-human/Skeleton3D/body-mesh"), NodePath("../char
 souls = Vector3(0, 1, 0)
 
 [node name="SoulsCollectingComponent" parent="." instance=ExtResource("5_wsf6k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.298509, 0)
 
 [node name="PlayerSkillController" parent="." node_paths=PackedStringArray("jump_skill", "run_skill", "aim_skill") instance=ExtResource("4_luhgc")]
 jump_skill = NodePath("../SkillBox/JumpSkillController")

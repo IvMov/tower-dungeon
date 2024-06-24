@@ -11,12 +11,16 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_mkikl"]
 resource_local_to_scene = true
-radius = 3.0
+radius = 2.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_e3e2x"]
 resource_local_to_scene = true
 height = 4.0
 radius = 4.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aa2io"]
+radius = 0.4
+height = 0.8
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dd40b"]
 resource_name = "colormap"
@@ -2318,13 +2322,9 @@ _data = {
 "walk": SubResource("Animation_hcse1")
 }
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aa2io"]
-radius = 0.4
-height = 0.8
-
 [node name="Enemy" type="CharacterBody3D"]
 collision_layer = 1024
-collision_mask = 513
+collision_mask = 1537
 wall_min_slide_angle = 0.0
 floor_snap_length = 0.05
 script = ExtResource("1_maoj0")
@@ -2356,6 +2356,14 @@ max_value = 5.0
 current_value = 5.0
 regen = 0.5
 
+[node name="SkillBox" type="Node3D" parent="."]
+
+[node name="KickSkill" type="Node3D" parent="SkillBox"]
+
+[node name="DodgeSkill" type="Node3D" parent="SkillBox"]
+
+[node name="RangedSkill" type="Node3D" parent="SkillBox"]
+
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_height_offset = 1.0
 path_max_distance = 30.01
@@ -2369,7 +2377,7 @@ collision_layer = 1024
 collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DodgeArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.59677)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.207647, 1.29175)
 shape = SubResource("SphereShape3D_mkikl")
 
 [node name="AgrArea" type="Area3D" parent="."]
@@ -2380,6 +2388,10 @@ priority = 2
 [node name="AgrCollision" type="CollisionShape3D" parent="AgrArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5767, 1.76529)
 shape = SubResource("CylinderShape3D_e3e2x")
+
+[node name="EnemyCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39895, 0)
+shape = SubResource("CapsuleShape3D_aa2io")
 
 [node name="character-orc2" type="Node3D" parent="."]
 
@@ -2398,7 +2410,7 @@ bones/1/parent = 0
 bones/1/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.083571, 0.17625, -0.02375)
 bones/1/enabled = true
 bones/1/position = Vector3(0.083571, 0.17625, -0.02375)
-bones/1/rotation = Quaternion(0, 0, 0, 1)
+bones/1/rotation = Quaternion(0.0680153, 0, 0, 0.997684)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "leg-right"
 bones/2/parent = 0
@@ -2450,10 +2462,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_mawxo")
 libraries = {
 "": SubResource("AnimationLibrary_nxnuc")
 }
-
-[node name="EnemyCollision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39895, 0)
-shape = SubResource("CapsuleShape3D_aa2io")
 
 [node name="Timers" type="Node" parent="."]
 
