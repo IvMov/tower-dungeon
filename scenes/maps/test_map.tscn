@@ -135,8 +135,20 @@ shape = SubResource("ConcavePolygonShape3D_1yp51")
 
 [node name="DifferentMeshes" type="Node3D" parent="NavigationRegion3D"]
 
+[node name="MeshInstance3D26" type="MeshInstance3D" parent="NavigationRegion3D/DifferentMeshes"]
+transform = Transform3D(0.0388528, -0.999147, -0.0139875, -0.0652149, -0.0165037, 0.997735, -0.997114, -0.0378527, -0.0658005, 7.07161, 0.996196, 10.6448)
+transparency = 0.8
+mesh = ExtResource("1_nvnei")
+skeleton = NodePath("../../Floor/GroundMesh")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/DifferentMeshes/MeshInstance3D26"]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/DifferentMeshes/MeshInstance3D26/StaticBody3D"]
+shape = SubResource("BoxShape3D_h4q62")
+
 [node name="MeshInstance3D24" type="MeshInstance3D" parent="NavigationRegion3D/DifferentMeshes"]
-transform = Transform3D(0.884841, 0, 0.465893, 0, 1, 0, -0.465893, 0, 0.884841, 4.71093, 2.37334, 12.7336)
+transform = Transform3D(0.884841, 0, 0.465893, 0, 1, 0, -0.465893, 0, 0.884841, 7.65193, 2.37334, 12.7336)
 transparency = 0.6
 mesh = ExtResource("1_nvnei")
 skeleton = NodePath("../../Floor/GroundMesh")

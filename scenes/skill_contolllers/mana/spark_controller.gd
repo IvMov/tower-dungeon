@@ -32,7 +32,6 @@ func finish_cast() -> void:
 	super.finish_cast()
 	if skill_cast_finished:
 		use_skill()
-		print(player.mana_component.current_value)
 		skill_cast_finished = false
 	else:
 		revert_cast()
@@ -53,8 +52,11 @@ func use_skill() -> void:
 	player.animation_player.play("attack-melee-right")
 	projectile.damage = calc_projectile_damage()
 	projectile.speed = calc_projectile_speed()
+	projectile.skill_name = skill_name
 	projectile.direction = proj_direction
-	projectile.global_position = player.camera_scene.get_camera_position() + proj_direction  * player.camera_scene.get_camera_distance() * 1.1
+	projectile.global_position = player.camera_scene.get_camera_position() + proj_direction * player.camera_scene.get_camera_distance() * 1.05
+	if projectile.global_position.y <= 0:
+		projectile.global_position = player.camera_scene.get_camera_position() + proj_direction * 1.05
 	
 
 func calc_projectile_damage() -> float:

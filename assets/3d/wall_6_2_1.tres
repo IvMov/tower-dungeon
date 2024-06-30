@@ -9,4 +9,4 @@ uv1_triplanar = true
 [resource]
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_tel2f")
-size = Vector3(8, 2, 1)
+size = Vector3(8, 3, 1)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://ca0ysw5vmydwd"]
+[gd_scene load_steps=48 format=3 uid="uid://ca0ysw5vmydwd"]
 
 [ext_resource type="Texture2D" uid="uid://c13tj2oeip7q3" path="res://assets/2d/colormap.png" id="1_jxyg6"]
 [ext_resource type="Script" path="res://scenes/enemies/enemy.gd" id="1_maoj0"]
@@ -8,10 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://b3v2047p3daky" path="res://scenes/components/souls_drop_component.tscn" id="3_cpi08"]
 [ext_resource type="PackedScene" uid="uid://bp1sun7nnmiix" path="res://scenes/components/stats/mana_component.tscn" id="4_y8djd"]
 [ext_resource type="PackedScene" uid="uid://c5b0526vcqecl" path="res://scenes/components/stats/stamina_component.tscn" id="5_y26qn"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_mkikl"]
-resource_local_to_scene = true
-radius = 2.0
+[ext_resource type="PackedScene" uid="uid://bu54h1fq5wkmb" path="res://scenes/skill_contolllers/stamina/kick_skill_controller.tscn" id="8_ocwp8"]
+[ext_resource type="PackedScene" uid="uid://wrldpki8le4f" path="res://scenes/skill_contolllers/stamina/dodge_skill_controller.tscn" id="9_u0csc"]
+[ext_resource type="PackedScene" uid="uid://budg2u4t08pwr" path="res://scenes/skill_contolllers/stamina/idle_moving_controller.tscn" id="10_caaja"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_e3e2x"]
 resource_local_to_scene = true
@@ -2358,9 +2357,14 @@ regen = 0.5
 
 [node name="SkillBox" type="Node3D" parent="."]
 
-[node name="KickSkill" type="Node3D" parent="SkillBox"]
+[node name="KickSkillController" parent="SkillBox" node_paths=PackedStringArray("enemy") instance=ExtResource("8_ocwp8")]
+enemy = NodePath("../..")
 
-[node name="DodgeSkill" type="Node3D" parent="SkillBox"]
+[node name="DodgeSkillController" parent="SkillBox" node_paths=PackedStringArray("enemy") instance=ExtResource("9_u0csc")]
+enemy = NodePath("../..")
+
+[node name="IdleMovingController" parent="SkillBox" node_paths=PackedStringArray("enemy") instance=ExtResource("10_caaja")]
+enemy = NodePath("../..")
 
 [node name="RangedSkill" type="Node3D" parent="SkillBox"]
 
@@ -2371,14 +2375,6 @@ path_max_distance = 30.01
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.397904, 0)
 target_position = Vector3(0, 0, 1)
-
-[node name="DodgeArea" type="Area3D" parent="."]
-collision_layer = 1024
-collision_mask = 4
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DodgeArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.207647, 1.29175)
-shape = SubResource("SphereShape3D_mkikl")
 
 [node name="AgrArea" type="Area3D" parent="."]
 collision_layer = 1024
@@ -2469,29 +2465,4 @@ libraries = {
 wait_time = 5.0
 one_shot = true
 
-[node name="IdleMovingTimer" type="Timer" parent="Timers"]
-wait_time = 3.0
-one_shot = true
-
-[node name="IdleCooldownTimer" type="Timer" parent="Timers"]
-wait_time = 3.0
-one_shot = true
-
-[node name="DodgingTimer" type="Timer" parent="Timers"]
-wait_time = 0.3
-one_shot = true
-
-[node name="DeathTimer" type="Timer" parent="Timers"]
-wait_time = 0.6
-one_shot = true
-
-[node name="DoDamageTimer" type="Timer" parent="Timers"]
-wait_time = 0.533
-
-[connection signal="area_entered" from="DodgeArea" to="." method="_on_dodge_area_area_entered"]
 [connection signal="timeout" from="Timers/ChasePlayerTimer" to="." method="_on_chase_player_timer_timeout"]
-[connection signal="timeout" from="Timers/IdleMovingTimer" to="." method="_on_idle_moving_timer_timeout"]
-[connection signal="timeout" from="Timers/IdleCooldownTimer" to="." method="_on_idle_cooldown_timer_timeout"]
-[connection signal="timeout" from="Timers/DodgingTimer" to="." method="_on_dodging_timer_timeout"]
-[connection signal="timeout" from="Timers/DeathTimer" to="." method="_on_death_timer_timeout"]
-[connection signal="timeout" from="Timers/DoDamageTimer" to="." method="_on_do_damage_timer_timeout"]

@@ -11,7 +11,6 @@ var full_screen: bool = false
 
 func _unhandled_input(event):
 	if event.is_action("full_screen") && event.is_released():
-		print(DisplayServer.window_get_size())
 		resize_screen()
 		
 

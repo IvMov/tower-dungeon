@@ -23,6 +23,5 @@ func plus(value: float) -> bool:
 
 
 func emit_stamina_changed(value: float) -> void:
-	print("stamina changed emmited %0.1f" % value)
 	stamina_changed.emit(value)
 

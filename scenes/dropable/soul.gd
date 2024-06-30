@@ -11,7 +11,7 @@ func emit(souls: Vector3):
 	tier_1_soul_particle.amount = max(souls.x, 1)
 	tier_2_soul_particle.amount = max(souls.y, 1)
 	tier_3_soul_particle.amount = max(souls.z, 1)
-	
+
 	if souls.x > 0:
 		tier_1_soul_particle.emitting = true
 	if souls.y > 0:
@@ -40,7 +40,7 @@ func collect() -> void:
 	tween.chain().tween_callback(queue_free)
 
 
-func _on_area_3d_area_entered(area: Area3D) -> void:
+func _on_area_3d_area_entered(_area: Area3D) -> void:
 	GameEvents.emit_souls_collect(global_position, souls_count)
 	collect()
 

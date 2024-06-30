@@ -1,0 +1,31 @@
+class_name KickSkillController extends BaseController
+
+@export var enemy: BasicEnemy
+
+func _ready():
+	base_value = randf_range(1, 3)
+	base_energy_cost = 1
+
+func do_damage() -> float:
+	if enemy.is_dying:
+		return 0
+	damage_player()
+	enemy.is_fighting = true
+	return base_value
+
+func damage_player() -> void:
+	cooldown_timer.start()
+	if enemy.stamina_component.minus(base_energy_cost):
+		GameEvents.emit_damage_player(base_value)
+		EnemyParameters.add_exp(enemy.enemy_name, base_value)
+		enemy.animation_player.play("attack-kick-left" if randf() > 0.5 else "attack-kick-right")
+	else:
+		print("NO STAMINA -_-")
+		# animate - no stamina
+
+func stop_damage() -> void:
+	cooldown_timer.stop()
+	enemy.is_fighting = false
+
+func _on_cooldown_timer_timeout():
+	damage_player()

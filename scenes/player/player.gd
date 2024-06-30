@@ -9,6 +9,7 @@ class_name Player extends CharacterBody3D
 @onready var body_mesh = $"character-human/Skeleton3D/body-mesh"
 @onready var head_mesh = $"character-human/Skeleton3D/head-mesh"
 @onready var skill_box: Node = $SkillBox
+@onready var soul_component: SoulComponent = $SoulComponent
 
 @onready var player_skill_controller: PlayerSkillController = $PlayerSkillController
 
@@ -103,7 +104,6 @@ func custom_death_actions():
 
 func get_damage(value: float) -> void:
 	health_component.minus(value)
-	print("damaged by %0.1f" % value)
 	camera_scene.start_shake(0.1, 8)
 
 func on_body_entered(body: Node3D):

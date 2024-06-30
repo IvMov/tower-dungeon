@@ -26,5 +26,4 @@ func run_regen() -> void:
 
 func _on_regen_timer_timeout() -> void:
 	run_regen()
-	print("%s stats" % current_value)
 	

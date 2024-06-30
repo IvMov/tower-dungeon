@@ -37,4 +37,3 @@ func _on_cooldown_timer_timeout() -> void:
 		cooldown_timer.start()
 	else:
 		stop_skill()
-		print(player.stamina_component.current_value)

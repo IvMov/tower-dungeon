@@ -23,6 +23,5 @@ func plus(value: float) -> bool:
 
 
 func emit_mana_changed(value: float) -> void:
-	print("mana changed emmited %0.1f" % value)
 	mana_changed.emit(value)
 

@@ -11,7 +11,6 @@ func minus(value: float) -> bool:
 	if current_value == 0:
 		die()
 	else:
-		print("minus called? ")
 		run_regen()
 		play_damage_animation()
 		
@@ -37,19 +36,17 @@ func die() -> void:
 		return
 	owner_node.custom_death_actions()
 	owner_node.is_dying = true
-	print(owner_node)
 	if owner_node is BasicEnemy:
 		owner_node.souls_drop_component.drop_soul()
 		GameEvents.emit_souls_dropped(owner_node.global_position, owner_node.soul_component.souls)
 		owner_node.agr_area.disable_mode = true
-		owner_node.death_timer.start()
 	
 	owner_node.animation_player.play("die")
 	await owner_node.animation_player.animation_finished
 	var tween = create_tween()
 	tween.tween_property(owner_node, "global_position", Vector3(owner_node.global_position.x, owner_node.global_position.y+2, owner_node.global_position.z) , 0.3)
+	tween.tween_callback(owner_node.queue_free)
 
 
 func emit_health_changed(value: float) -> void:
-	print("health change emmited %0.1f" % value)
 	health_changed.emit(value)
