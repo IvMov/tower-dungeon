@@ -49,4 +49,9 @@ func die() -> void:
 
 
 func emit_health_changed(value: float) -> void:
+	if owner_node is BasicEnemy:
+		if owner_node.is_dying:
+			owner_node.hp_bar.disable()
+		else:
+			owner_node.hp_bar.update(current_value, max_value)
 	health_changed.emit(value)

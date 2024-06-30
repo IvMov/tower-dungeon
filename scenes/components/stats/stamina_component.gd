@@ -23,5 +23,7 @@ func plus(value: float) -> bool:
 
 
 func emit_stamina_changed(value: float) -> void:
+	if owner_node is BasicEnemy:
+		owner_node.stamina_bar.update(current_value, max_value)
 	stamina_changed.emit(value)
 

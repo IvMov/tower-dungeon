@@ -1,0 +1,3 @@
+class_name Healthbar extends BaseStatBar
+
+

@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://c7f2gax0157nl"]
+
+[node name="EnemyProgressBar" type="ProgressBar"]
+custom_minimum_size = Vector2(100, 4)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.0
+offset_right = 50.0
+offset_bottom = 4.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+step = 0.1
+value = 100.0
+show_percentage = false

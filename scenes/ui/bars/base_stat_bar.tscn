@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5onrp6fq8enu"]
+
+[ext_resource type="Script" path="res://scenes/ui/bars/base_stat_bar.gd" id="1_bl6i0"]
+[ext_resource type="PackedScene" uid="uid://c7f2gax0157nl" path="res://scenes/ui/bars/2d_progress_bar.tscn" id="2_r1ms1"]
+
+[node name="BaseStatBar" type="Node3D"]
+script = ExtResource("1_bl6i0")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+cast_shadow = 0
+billboard = 1
+double_sided = false
+
+[node name="SubViewport" type="SubViewport" parent="Sprite3D"]
+transparent_bg = true
+size = Vector2i(100, 4)
+
+[node name="EnemyProgressBar" parent="Sprite3D/SubViewport" instance=ExtResource("2_r1ms1")]

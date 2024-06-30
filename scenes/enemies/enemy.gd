@@ -12,6 +12,9 @@ class_name BasicEnemy extends CharacterBody3D
 @onready var mana_component: ManaComponent = $StatsBox/ManaComponent
 @onready var stamina_component: StaminaComponent = $StatsBox/StaminaComponent
 
+@onready var hp_bar: Healthbar = $BarsBox/HPBar
+@onready var stamina_bar: StaminaBar = $BarsBox/StaminaBar
+
 @onready var soul_component: SoulComponent = $SoulComponent
 @onready var souls_drop_component: SoulsDropComponent = $SoulsDropComponent
 
