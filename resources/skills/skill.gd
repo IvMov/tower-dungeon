@@ -6,6 +6,7 @@ class_name Skill extends Resource
 @export var controller: PackedScene
 
 @export var base_value: float
+@export var base_push_value: float
 @export var base_speed: float
 @export var base_distance: float
 @export var base_energy_cost: float

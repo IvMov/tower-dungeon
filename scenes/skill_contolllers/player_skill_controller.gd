@@ -8,6 +8,7 @@ var active_skill: Skill
 @export var jump_skill: JumpSkillController
 @export var run_skill: RunSkillController
 @export var aim_skill: AimSkillController
+@export var push_skill: PushEnemySkillController
 
 
 func _ready() -> void:
@@ -50,6 +51,7 @@ func map_skill_to_controller(controller: BaseController, skill: Skill) -> void:
 	controller.skill_name = skill.name
 	controller.description = skill.description
 	controller.base_value = skill.base_value
+	controller.base_push_value = skill.base_push_value
 	controller.base_speed = skill.base_speed
 	controller.base_distance = skill.base_distance
 	controller.base_energy_cost = skill.base_energy_cost

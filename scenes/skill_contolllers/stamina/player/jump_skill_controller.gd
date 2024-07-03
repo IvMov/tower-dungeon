@@ -1,4 +1,5 @@
 class_name JumpSkillController extends BaseController
+
 # No resource controller
 @export var player: Player
 var last_frame_was_on_floor: bool = true

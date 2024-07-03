@@ -11,10 +11,16 @@ func _ready():
 	sprite_3d.texture = sub_viewport.get_texture()
 
 func disable() -> void:
-	enemy_progress_bar.visible = false
+	sprite_3d.visible = false
 
+func enable() -> void:
+	sprite_3d.visible = true
 
 func update(current_value: float, max_value: float):
+	if max_value == 0 && current_value == 0:
+		disable()
+	elif !enemy_progress_bar.visible: 
+		enable()
 	# order important - first max value then value
 	enemy_progress_bar.max_value = max_value
 	enemy_progress_bar.value = current_value

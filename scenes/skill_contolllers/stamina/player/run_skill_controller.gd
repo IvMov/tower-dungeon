@@ -3,6 +3,8 @@ class_name RunSkillController extends BaseController
 
 @export var player: Player;
 
+var is_run: bool = false
+
 func _ready():
 	base_energy_cost = 1 # todo:create normal skill .tres
 
@@ -22,18 +24,25 @@ func use_skill() -> void:
 	elif !player.stamina_component.minus(base_energy_cost):
 		GameEvents.emit_skill_call_failed(Enums.SkillCallFailedReason.NO_STAMINA)
 	else:
+		is_run = true
 		PlayerParameters.lock_stamina_skill = true
 		cooldown_timer.start()
 		PlayerParameters.current_speed = PlayerParameters.BASE_SPEED * PlayerParameters.MOVE_SPEED_UP_MOD
+		GameEvents.emit_run_player(PlayerParameters.current_speed)
 
 func stop_skill() -> void:
-	if !cooldown_timer.is_stopped():
+	if is_run:
+		is_run = false
+		if !cooldown_timer.is_stopped():
+			cooldown_timer.stop()
 		PlayerParameters.lock_stamina_skill = false
 		PlayerParameters.current_speed = PlayerParameters.BASE_SPEED
-		cooldown_timer.stop()
+		GameEvents.emit_run_player(PlayerParameters.current_speed)
+		
 
 func _on_cooldown_timer_timeout() -> void:
 	if player.stamina_component.minus(base_energy_cost):
 		cooldown_timer.start()
 	else:
+		GameEvents.emit_run_player(PlayerParameters.current_speed)
 		stop_skill()

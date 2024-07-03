@@ -5,4 +5,4 @@
 
 [node name="StaminaBar" instance=ExtResource("1_w8red")]
 script = ExtResource("2_l301q")
-bar_color = Color(0.627451, 0.243137, 0, 1)
+bar_color = Color(0.898039, 0.490196, 0, 1)

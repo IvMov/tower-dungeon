@@ -1,0 +1,102 @@
+[gd_scene load_steps=19 format=3 uid="uid://cn4nsqghphlc0"]
+
+[ext_resource type="PackedScene" uid="uid://ca0ysw5vmydwd" path="res://scenes/enemies/basic_enemy.tscn" id="1_uk4uo"]
+[ext_resource type="Script" path="res://scenes/enemies/enemy_spawner.gd" id="2_6rjot"]
+[ext_resource type="PackedScene" uid="uid://cum81aptelhj7" path="res://scenes/skill_contolllers/mana/enemy/spawn_enemy_controller.tscn" id="3_h5qeo"]
+[ext_resource type="PackedScene" uid="uid://dbv1lp0pn7xhc" path="res://scenes/enemies/tier_1_enemy.tscn" id="4_mtjbe"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_urb3n"]
+albedo_color = Color(5, 5, 5, 0.196)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_yctyd"]
+material = SubResource("StandardMaterial3D_urb3n")
+radial_segments = 16
+rings = 2
+
+[sub_resource type="Animation" id="Animation_m3v5j"]
+resource_name = "attack-melee-left"
+
+[sub_resource type="Animation" id="Animation_42t1t"]
+resource_name = "attack-melee-right"
+
+[sub_resource type="Animation" id="Animation_4m6oe"]
+resource_name = "die"
+
+[sub_resource type="Animation" id="Animation_2o4dt"]
+resource_name = "fall"
+
+[sub_resource type="Animation" id="Animation_5b5u4"]
+resource_name = "idle"
+
+[sub_resource type="Animation" id="Animation_8xtam"]
+resource_name = "sprint"
+
+[sub_resource type="Animation" id="Animation_86a61"]
+resource_name = "take-damage-1"
+
+[sub_resource type="Animation" id="Animation_15hg1"]
+resource_name = "take-damage-2"
+
+[sub_resource type="Animation" id="Animation_jdfxs"]
+resource_name = "walk"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h1kjm"]
+_data = {
+"attack-melee-left": SubResource("Animation_m3v5j"),
+"attack-melee-right": SubResource("Animation_42t1t"),
+"die": SubResource("Animation_4m6oe"),
+"fall": SubResource("Animation_2o4dt"),
+"idle": SubResource("Animation_5b5u4"),
+"sprint": SubResource("Animation_8xtam"),
+"take-damage-1": SubResource("Animation_86a61"),
+"take-damage-2": SubResource("Animation_15hg1"),
+"walk": SubResource("Animation_jdfxs")
+}
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ba68u"]
+resource_local_to_scene = true
+height = 4.0
+radius = 4.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_1738h"]
+
+[node name="EnemySpawner" node_paths=PackedStringArray("animation_player") instance=ExtResource("1_uk4uo")]
+script = ExtResource("2_6rjot")
+enemy_name = "enemy_spawner"
+animation_player = NodePath("SpawnerBody/AnimationPlayer")
+
+[node name="EffectFlashComponent" parent="." index="0" node_paths=PackedStringArray("meshes")]
+meshes = [NodePath("../SpawnerBody")]
+
+[node name="SpawnerBody" type="MeshInstance3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CylinderMesh_yctyd")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SpawnerBody" index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_h1kjm")
+}
+
+[node name="BarsBox" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1, 0)
+
+[node name="ManaComponent" parent="StatsBox" index="1"]
+max_value = 20.0
+current_value = 20.0
+regen = 1.0
+
+[node name="StaminaComponent" parent="StatsBox" index="2"]
+max_value = 0.0
+current_value = 0.0
+regen = 0.0
+
+[node name="SpawnEnemyController" parent="SkillBox" index="0" node_paths=PackedStringArray("owner_enemy") instance=ExtResource("3_h5qeo")]
+owner_enemy = NodePath("../..")
+enemies = Array[PackedScene]([ExtResource("4_mtjbe")])
+
+[node name="AgrCollision" parent="AgrArea" index="0"]
+shape = SubResource("CylinderShape3D_ba68u")
+
+[node name="EnemyCollision" parent="." index="10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_1738h")

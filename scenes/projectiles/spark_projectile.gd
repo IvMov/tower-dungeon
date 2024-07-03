@@ -4,6 +4,7 @@ var direction: Vector3
 var speed: float
 var damage: float
 var skill_name: String
+var push_power: float
 
 @onready var life_timer: Timer = $LifeTimer
 
@@ -25,7 +26,7 @@ func _physics_process(delta) -> void:
 func on_body_entered(body: Node3D) -> void:
 	handleb_body_collision()
 	if body is BasicEnemy:
-		if body.get_damage(damage):
+		if body.get_damage(global_position, damage, push_power):
 			PlayerParameters.add_skill_exp(skill_name, damage)
 	
 

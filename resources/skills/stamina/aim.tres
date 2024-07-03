@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Skill" load_steps=3 format=3 uid="uid://gth146js6pp7"]
 
-[ext_resource type="PackedScene" uid="uid://cf3mxq60mx6vy" path="res://scenes/skill_contolllers/stamina/aim_skill_controller.tscn" id="1_hlmx5"]
+[ext_resource type="PackedScene" uid="uid://cf3mxq60mx6vy" path="res://scenes/skill_contolllers/stamina/player/aim_skill_controller.tscn" id="1_hlmx5"]
 [ext_resource type="Script" path="res://resources/skills/skill.gd" id="2_dvbwv"]
 
 [resource]

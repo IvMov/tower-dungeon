@@ -22,6 +22,6 @@ func _on_cooldown_timer_timeout() -> void:
 
 
 func _on_dodge_area_area_entered(area):
-	if !enemy.is_runing:
+	if !enemy.is_runing :
 		use_skill()
 		

@@ -5,12 +5,12 @@
 [ext_resource type="PlaneMesh" uid="uid://hnn3cqisno05" path="res://particles/mesh/square_mesh.tres" id="3_v1etk"]
 [ext_resource type="Material" uid="uid://dtpkny3bvp3yd" path="res://particles/player_explosion.tres" id="4_0cqs3"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uayi7"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yx4o5"]
 vertex_color_use_as_albedo = true
 albedo_color = Color(20, 20, 1, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_7aqq5"]
-material = SubResource("StandardMaterial3D_uayi7")
+material = SubResource("StandardMaterial3D_yx4o5")
 radius = 0.05
 height = 0.1
 radial_segments = 8
@@ -39,14 +39,18 @@ one_shot = true
 autostart = true
 
 [node name="ProjectileParticles" type="GPUParticles3D" parent="."]
+transparency = 0.5
+cast_shadow = 0
 emitting = false
-amount = 70
+amount = 50
 one_shot = true
 transform_align = 3
 process_material = ExtResource("2_m687c")
 draw_pass_1 = ExtResource("3_v1etk")
 
 [node name="CollisionParticles" type="GPUParticles3D" parent="."]
+transparency = 0.5
+cast_shadow = 0
 emitting = false
 amount = 100
 lifetime = 0.8

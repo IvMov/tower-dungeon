@@ -5,4 +5,4 @@
 
 [node name="HPBar" instance=ExtResource("1_rfaug")]
 script = ExtResource("2_iabal")
-bar_color = Color(0, 5, 0, 1)
+bar_color = Color(0, 2, 0, 1)

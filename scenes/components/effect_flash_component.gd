@@ -28,7 +28,10 @@ func on_health_changed(value: float) -> void:
 func change_color_to(color: Color) -> void: 
 	for mesh in meshes:	
 		var material = mesh.get_surface_override_material(0)
-		tween.tween_property(material, "albedo_color", color, ANIMATION_TIME)
+		if !material:
+			tween.kill()
+		else:
+			tween.tween_property(material, "albedo_color", color, ANIMATION_TIME)
 
 func prepare_tween() -> Tween:
 	if tween && tween.is_valid():

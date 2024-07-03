@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cum81aptelhj7"]
+
+[ext_resource type="PackedScene" uid="uid://jut3uwfl054l" path="res://scenes/skill_contolllers/base_controller.tscn" id="1_uahvx"]
+[ext_resource type="Script" path="res://scenes/skill_contolllers/mana/enemy/spawn_enemy_controller.gd" id="2_m0ek7"]
+[ext_resource type="PackedScene" uid="uid://bv4m7p8miuk1p" path="res://scenes/projectiles/enemy_spawner_projectile.tscn" id="3_itlw5"]
+
+[node name="SpawnEnemyController" instance=ExtResource("1_uahvx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+script = ExtResource("2_m0ek7")
+enemies = Array[PackedScene]([])
+projectile = ExtResource("3_itlw5")
+
+[node name="RayCast3D" type="RayCast3D" parent="." index="3"]
+target_position = Vector3(0, 0, 0)
+debug_shape_custom_color = Color(1, 0, 0, 1)

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Skill" load_steps=3 format=3 uid="uid://dn8xijky5tuis"]
 
-[ext_resource type="PackedScene" uid="uid://cjsi116sgbxr6" path="res://scenes/skill_contolllers/mana/spark_controller.tscn" id="1_60fd1"]
+[ext_resource type="PackedScene" uid="uid://cjsi116sgbxr6" path="res://scenes/skill_contolllers/mana/player/spark_controller.tscn" id="1_60fd1"]
 [ext_resource type="Script" path="res://resources/skills/skill.gd" id="1_v2ceh"]
 
 [resource]
@@ -10,6 +10,7 @@ name = "spark_skill"
 description = "spark_skill_description"
 controller = ExtResource("1_60fd1")
 base_value = 2.0
+base_push_value = 200.0
 base_speed = 20.0
 base_distance = 0.0
 base_energy_cost = 4.0

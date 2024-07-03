@@ -5,6 +5,8 @@ signal change_game_stage(game_stage)
 signal screen_resized()
 
 signal damage_player(damage: float)
+signal run_player(speed: float)
+signal aiming_player(aiming: bool)
 
 signal add_skill(skill: Skill)
 signal skill_call_failed(reason: Enums)
@@ -23,6 +25,12 @@ func emit_screen_resized():
 
 func emit_damage_player(damage: float):
 	damage_player.emit(damage)
+
+func emit_run_player(speed: float):
+	run_player.emit(speed)
+
+func emit_aiming_player(aiming: bool):
+	aiming_player.emit(aiming)
 
 func emit_add_skill(skill: Skill):
 	add_skill.emit(skill)

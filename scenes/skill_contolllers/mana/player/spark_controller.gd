@@ -24,7 +24,6 @@ func start_cast() -> void:
 		#TODO: play cast animation 
 		super.start_cast()
 
-
 func finish_cast() -> void:
 	if !cast_enabled:
 		return
@@ -35,7 +34,6 @@ func finish_cast() -> void:
 		skill_cast_finished = false
 	else:
 		revert_cast()
-	
 
 func revert_cast() -> void:
 	player.mana_component.plus(base_energy_cost*0.8)
@@ -44,6 +42,7 @@ func revert_cast() -> void:
 
 func use_skill() -> void:
 	if !player:
+		print("NO OWNER NODE SETTED TO CONTROLLER")
 		return
 	var projectile: SparkProjectile = spark_projectile.instantiate()
 	var proj_direction: Vector3 = calc_projectile_direction()
@@ -51,6 +50,7 @@ func use_skill() -> void:
 	projectiles_box.add_child(projectile)
 	player.animation_player.play("attack-melee-right")
 	projectile.damage = calc_projectile_damage()
+	projectile.push_power = base_push_value
 	projectile.speed = calc_projectile_speed()
 	projectile.skill_name = skill_name
 	projectile.direction = proj_direction

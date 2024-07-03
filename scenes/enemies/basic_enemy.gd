@@ -1,11 +1,17 @@
 class_name BasicEnemy extends CharacterBody3D
+# How to extend?
+# adjust bars global position
+# add mesh with animation player and export it
+# add skills to skillbox
+# assign to skills the enemy
+# assign to EffectFlashComponent the enemy meshes
+# add missing animations to actions_animations and animation-player
 
-@onready var animation_player = $"character-orc2/AnimationPlayer"
+
 @onready var agr_area = $AgrArea
 @onready var agr_collision = $AgrArea/AgrCollision
 @onready var ray_cast_3d = $RayCast3D
 
-@onready var chase_player_timer = $Timers/ChasePlayerTimer
 @onready var navigation_agent_3d = $NavigationAgent3D
 
 @onready var health_component: HealthComponent = $StatsBox/HealthComponent
@@ -14,19 +20,19 @@ class_name BasicEnemy extends CharacterBody3D
 
 @onready var hp_bar: Healthbar = $BarsBox/HPBar
 @onready var stamina_bar: StaminaBar = $BarsBox/StaminaBar
+@onready var mana_bar: ManaBar = $BarsBox/ManaBar
 
 @onready var soul_component: SoulComponent = $SoulComponent
 @onready var souls_drop_component: SoulsDropComponent = $SoulsDropComponent
+@onready var push_timer: Timer = $Timers/PushTimer
 
-@onready var kick_skill_controller: KickSkillController = $SkillBox/KickSkillController
-@onready var dodge_skill_controller: DodgeSkillController = $SkillBox/DodgeSkillController
-@onready var idle_moving_controller: IdleMovingController = $SkillBox/IdleMovingController
 
-var enemy_name: String = "tier_1_enemy"
-var speed: float = 150.0
+@export var enemy_name: String
+@export var speed: float
+@export var animation_player: AnimationPlayer
+
 var run_speed: float = speed * 1.5
 var current_speed: float = speed
-var damage: float = randf()*2 + 1
 var actions_animations: Array[String] = [
 	"attack-melee-right", 
 	"attack-melee-left", 
@@ -41,11 +47,17 @@ var direction: Vector3
 var rotation_speed: float = 5
 var idle_radius: float = 2
 
+var can_move: bool = true
 var is_runing: bool = false
+var is_pushed: bool = false
 var is_dying: bool = false
 var is_fighting: bool = false
 var is_target_detected: bool = false
 
+func _ready():
+	hp_bar.update(health_component.current_value, health_component.max_value)
+	stamina_bar.update(stamina_component.current_value, stamina_component.max_value)
+	mana_bar.update(mana_component.current_value, mana_component.max_value)
 
 func _physics_process(delta):
 	if is_dying:
@@ -64,36 +76,40 @@ func _physics_process(delta):
 		if ray_cast_3d.get_collider() && !player:
 			relocate_enemy()
 			current_speed = speed
-
-	chase_player()
+	if !is_pushed:
+		chase_player()
+		current_speed = speed if !is_runing else run_speed
 	accelerate_to_player(delta)
 	move_and_slide()
 
 # damage things
 func do_damage() -> float:
-	return kick_skill_controller.do_damage()
+	# to be implemented in child regarding skills
+	return 0
 
 func stop_damage() -> void:
-	kick_skill_controller.stop_damage()
+	# to be implemented in child regarding skills
+	pass
 
-func get_damage(value: float) -> bool:
+func get_damage(damager_location: Vector3, value: float, push_power: float) -> bool:
+	if push_power > 0:
+		push_back(damager_location, push_power)
 	return health_component.minus(value)
 
-
+func push_back(player_position: Vector3, push_power: float) -> void:
+	direction = global_position - player_position
+	current_speed = push_power
+	is_pushed = true
+	push_timer.start()
+	
 # targeting and movement
-func detect_target(target_player: Player):
-#need to refactor cause now enemy chase player infinitelly
-	is_target_detected = true
-	player = target_player
-	idle_moving_controller.stop_skill()
-	chase_player_timer.stop()
-	expand_agr_area_size()
+func detect_target(target_player: Player) -> void:
+	# to be implemented in child regarding skills
+	pass
 
-func lost_target():
-	if agr_area.disable_mode: 
-		return
-	is_target_detected = false
-	chase_player_timer.start()
+func lost_target() -> void:
+	# to be implemented in child regarding skills
+	pass
 
 func chase_player() -> void:
 	if !player:
@@ -118,27 +134,26 @@ func relocate_enemy() -> void:
 	transform.basis = new_basis
 
 func accelerate_to_player(delta: float) -> void:
-	current_speed = speed if !is_runing else run_speed
 	velocity.x = direction.x * current_speed * delta
 	velocity.z = direction.z * current_speed * delta
 
-func stop_enemy():
+func stop_enemy() -> void:
 	direction = Vector3.ZERO
 	velocity = Vector3.ZERO
 
 
 # agr area handling
-func expand_agr_area_size():
-	agr_collision.shape.height=8
-	agr_collision.shape.radius=8
+func expand_agr_area_size() -> void:
+	agr_collision.shape.height = 8
+	agr_collision.shape.radius = 8
 
-func reset_agr_area_size():
+func reset_agr_area_size() -> void:
 	agr_collision.shape.height = 4
 	agr_collision.shape.radius = 4
 
 
 # trash
-func custom_death_actions():
+func custom_death_actions() -> void:
 	# required by health component, welcome to spagetti code
 	pass
 
@@ -146,14 +161,5 @@ func get_random_sign() -> int:
 	return -1 if randf() <=0.5 else 1;
 
 
-# timeout and area signals handling
-func _on_chase_player_timer_timeout():
-	print(is_target_detected)
-	if !is_target_detected:
-		reset_agr_area_size()
-		stop_enemy()
-		player = null
-		idle_moving_controller.use_skill()
-
-
-
+func _on_push_timer_timeout():
+	is_pushed = false

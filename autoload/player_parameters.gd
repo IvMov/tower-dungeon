@@ -4,7 +4,8 @@ extends Node
 const BASE_SPEED: float = 200.0
 const BASE_JUMP_VELOCITY: float = 500.0
 const BASE_AIR_SPEED: float = 150.0 # not work as need to adjust velocity in process method for player
-const MOVE_SPEED_UP_MOD: float = 1.5
+const MOVE_SPEED_UP_MOD: float = 2.0
+
 const JUMP_SPEED_UP_MOD: float = 1.2
 
 var current_speed: float = BASE_SPEED
@@ -13,6 +14,8 @@ var current_jump_velocity: float = BASE_JUMP_VELOCITY
 var max_jumps: int = 50
 var lock_stamina_skill: bool = false
 var lock_mana_skill: bool = false
+var is_aiming: bool = false
+var is_runing: bool = false
 
 
 var skill_expirience: Dictionary = {

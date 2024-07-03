@@ -17,6 +17,7 @@ var description: String
 var controller: PackedScene
 
 var base_value: float
+var base_push_value: float
 var base_speed: float
 var base_distance: float
 var base_energy_cost: float

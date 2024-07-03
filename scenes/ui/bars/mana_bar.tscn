@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bl3os4c1rpj0j"]
+
+[ext_resource type="PackedScene" uid="uid://b5onrp6fq8enu" path="res://scenes/ui/bars/base_stat_bar.tscn" id="1_il5jp"]
+[ext_resource type="Script" path="res://scenes/ui/bars/mana_bar.gd" id="2_tkipk"]
+
+[node name="ManaBar" instance=ExtResource("1_il5jp")]
+script = ExtResource("2_tkipk")
+bar_color = Color(0, 0.658824, 1, 1)

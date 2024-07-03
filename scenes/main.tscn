@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://w5dgd34hh3wr"]
+[gd_scene load_steps=8 format=3 uid="uid://w5dgd34hh3wr"]
 
 [ext_resource type="PackedScene" uid="uid://cnf65j1vsavti" path="res://scenes/maps/test_map.tscn" id="1_rx46b"]
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_vbbpw"]
 [ext_resource type="PackedScene" uid="uid://b24j4s1u7ww1k" path="res://scenes/player/player.tscn" id="2_v4j8r"]
 [ext_resource type="PackedScene" uid="uid://ieuiir4uuka5" path="res://scenes/ui/crosshair_scene.tscn" id="3_s0mh3"]
-[ext_resource type="PackedScene" uid="uid://ca0ysw5vmydwd" path="res://scenes/enemies/enemy.tscn" id="4_c2jpx"]
+[ext_resource type="PackedScene" uid="uid://c7nfqu6eb7oqd" path="res://scenes/ui/vignette/vignette.tscn" id="6_f0ant"]
+[ext_resource type="PackedScene" uid="uid://cn4nsqghphlc0" path="res://scenes/enemies/enemy_spawner.tscn" id="6_nm03y"]
 
 [sub_resource type="Environment" id="Environment_0f8ma"]
 glow_enabled = true
@@ -18,7 +19,6 @@ volumetric_fog_density = 0.01
 
 [node name="Main" type="Node"]
 script = ExtResource("1_vbbpw")
-enemy = ExtResource("4_c2jpx")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0f8ma")
@@ -35,7 +35,7 @@ text = "LABas"
 [node name="TestMap" parent="." instance=ExtResource("1_rx46b")]
 
 [node name="Player" parent="." instance=ExtResource("2_v4j8r")]
-transform = Transform3D(0.305014, 0, -0.952348, 0, 1, 0, 0.952348, 0, 0.305014, 0, 8.91811, 0)
+transform = Transform3D(0.305014, 0, -0.952348, 0, 1, 0, 0.952348, 0, 0.305014, 25.2254, 14.8242, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.545262, 0.731632, 0.40915, -0.657681, 0.0707446, 0.749968, 0.519755, -0.678019, 0.519755, 24.4337, 24.7003, 24.5328)
@@ -43,17 +43,13 @@ light_energy = 0.305
 light_volumetric_fog_energy = 2.055
 shadow_enabled = true
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 3.0
-autostart = true
-
 [node name="Projectiles" type="Node3D" parent="." groups=["projectiles"]]
 
 [node name="Souls" type="Node3D" parent="." groups=["souls"]]
 
 [node name="Enemies" type="Node3D" parent="." groups=["enemies"]]
 
-[node name="Enemy" parent="Enemies" instance=ExtResource("4_c2jpx")]
-transform = Transform3D(0.970304, 0, -0.241888, 0, 1, 0, 0.241888, 0, 0.970304, 8.69233, 6.80976, -3.92157)
+[node name="EnemySpawner" parent="." instance=ExtResource("6_nm03y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.4795, 1.5965, 0.429049)
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="Vignette" parent="." instance=ExtResource("6_f0ant")]

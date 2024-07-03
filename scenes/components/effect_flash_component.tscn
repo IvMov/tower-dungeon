@@ -21,6 +21,8 @@ size = Vector2(0.04, 0.12)
 script = ExtResource("1_diwfx")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transparency = 0.8
+cast_shadow = 0
 emitting = false
 amount = 5
 lifetime = 0.7

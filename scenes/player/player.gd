@@ -18,11 +18,18 @@ class_name Player extends CharacterBody3D
 @onready var stamina_component: StaminaComponent = $StatsBox/StaminaComponent
 
 
-
 var player_name: String
 var move_direction: Vector3 = Vector3.ZERO
-var actions_animations: Array[String] = ["attack-melee-right", "attack-melee-left", "take-damage-1", "take-damage-2", "die"]
+var actions_animations: Array[String] = [
+	"attack-melee-right", 
+	"attack-melee-left", 
+	"take-damage-1", 
+	"take-damage-2", 
+	"die",
+	"holding-both-shoot",
+	"sprint"]
 var is_dying: bool = false
+
 
 func _ready():
 	player_name = "test" # TODO: create simple creation screen with nickname
@@ -50,7 +57,6 @@ func _physics_process(delta):
 		else:
 			animation_player.play("fall")
 			velocity.y -= GameConfig.gravity * delta
-
 	move_and_slide()
 
 
@@ -61,6 +67,8 @@ func _unhandled_input(event):
 	handle_run(event)
 	# space
 	handle_jump(event)
+		# space
+	handle_push_enemy(event)
 	# movement
 	handle_mouse_rotations(event)
 	# left click
@@ -70,10 +78,9 @@ func _unhandled_input(event):
 func preload_first_skill() -> void:
 	GameEvents.emit_add_skill(first_skill)
 
-func handle_mouse_rotations(event: InputEvent):
+func handle_mouse_rotations(event: InputEvent) -> void:
 	move_player(event)
-
-
+	
 func move_player(event: InputEvent) -> void:
 	if event is InputEventMouseMotion && event.relative.y + event.relative.x != 0:
 		rotate_y(-event.relative.x * GameConfig.get_mouse_sensetivity())
@@ -81,17 +88,21 @@ func move_player(event: InputEvent) -> void:
 		if new_angle < GameConfig.MAX_MOUSE_ROTATION_X && new_angle > -GameConfig.MAX_MOUSE_ROTATION_X:
 			camera_scene.rotation.x = new_angle
 
+func handle_push_enemy(event: InputEvent) -> void:
+	if event.is_action_pressed("push_enemy"):
+		animation_player.play("holding-both-shoot")
+		player_skill_controller.push_skill.use_skill()
 
-func handle_run(event: InputEvent):
+func handle_run(event: InputEvent) -> void:
 	player_skill_controller.run_skill.use_skill_with_event(event)
 
-func handle_jump(event: InputEvent):
+func handle_jump(event: InputEvent) -> void:
 	player_skill_controller.jump_skill.use_skill_with_event(event)
 
-func handle_aiming(event: InputEvent):
+func handle_aiming(event: InputEvent) -> void:
 	player_skill_controller.aim_skill.use_skill_with_event(event)
 
-func handle_skill_use(event: InputEvent):
+func handle_skill_use(event: InputEvent) -> void:
 	if event.is_action_pressed("skill_use"):
 		player_skill_controller.cast_active_skill()
 	elif event.is_action_released("skill_use"):
