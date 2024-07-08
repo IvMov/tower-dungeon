@@ -24,7 +24,8 @@ height = 0.8
 collision_layer = 1024
 collision_mask = 1537
 wall_min_slide_angle = 0.0
-floor_snap_length = 0.05
+floor_snap_length = 0.2
+platform_floor_layers = 4278190081
 script = ExtResource("1_f284f")
 
 [node name="EffectFlashComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_c5p53")]
@@ -68,8 +69,9 @@ regen = 0.5
 [node name="SkillBox" type="Node3D" parent="."]
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-path_height_offset = 1.0
+path_height_offset = 0.5
 path_max_distance = 30.01
+debug_enabled = true
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.397904, 0)

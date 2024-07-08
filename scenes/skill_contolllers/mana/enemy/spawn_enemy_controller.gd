@@ -13,9 +13,9 @@ var next_enemy_position: Vector3
 
 func _ready():
 	idle_timer.start()
-	base_cast_time = 3
-	base_cooldown = 2
-	base_energy_cost = 10
+	base_cast_time = 0.5
+	base_cooldown = 0.5
+	base_energy_cost = 5
 
 func get_sign() -> int:
 	return -1 if randf() <0.5 else 1

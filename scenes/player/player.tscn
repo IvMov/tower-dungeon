@@ -2323,8 +2323,7 @@ _data = {
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 collision_layer = 512
 collision_mask = 1025
-wall_min_slide_angle = 0.0872665
-floor_max_angle = 0.436332
+floor_snap_length = 0.2
 script = ExtResource("1_xn4w2")
 first_skill = ExtResource("2_6cf6a")
 
@@ -2361,9 +2360,9 @@ regen = 1.0
 
 [node name="StaminaComponent" parent="StatsBox" node_paths=PackedStringArray("owner_node") instance=ExtResource("7_428qe")]
 owner_node = NodePath("../..")
-max_value = 2.0
-current_value = 2.0
-regen = 0.5
+max_value = 10.0
+current_value = 10.0
+regen = 2.0
 
 [node name="SkillBox" type="Node3D" parent="."]
 
@@ -2429,14 +2428,14 @@ bones/4/parent = 3
 bones/4/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0998968, 0.1115, 0.0115)
 bones/4/enabled = true
 bones/4/position = Vector3(0.0998968, 0.1115, 0.0115)
-bones/4/rotation = Quaternion(0, -0.5, 0, 0.866025)
+bones/4/rotation = Quaternion(0, 0, -0.382683, 0.92388)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/name = "arm-right"
 bones/5/parent = 3
 bones/5/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0998968, 0.1115, 0.0115)
 bones/5/enabled = true
 bones/5/position = Vector3(-0.0998968, 0.1115, 0.0115)
-bones/5/rotation = Quaternion(0, 0.5, 0, 0.866025)
+bones/5/rotation = Quaternion(0, 0, 0.382683, 0.92388)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/name = "head"
 bones/6/parent = 3
