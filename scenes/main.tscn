@@ -34,7 +34,7 @@ text = "LABas"
 [node name="Crosshair" parent="CanvasLayer" instance=ExtResource("3_s0mh3")]
 
 [node name="Player" parent="." instance=ExtResource("2_v4j8r")]
-transform = Transform3D(0.305014, 0, -0.952348, 0, 1, 0, 0.952348, 0, 0.305014, -0.02038, 8.30324, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 4)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.545262, 0.731632, 0.40915, -0.657681, 0.0707445, 0.749967, 0.519755, -0.678019, 0.519755, 37.9179, 8.47832, 10.2021)

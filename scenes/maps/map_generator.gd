@@ -40,7 +40,6 @@ func _ready():
 
 func generate_level() -> void:
 	prepare_blank_map()
-	#generate_room(randf_range(4, 10), randf_range(4, 10))
 	calculate_room_size()
 	generate_room(room_size.x, room_size.y)
 
@@ -70,49 +69,54 @@ func add_room_exit() -> void:
 	set_current_dirrection_to_available_random()
 	var door_coordinates: Vector2 = Vector2.ZERO
 	var door_rotation: float = 0.0
+	current_direction = pick_random()
 	match current_direction:
 		Vector2.LEFT: 
-			var left_x = next_x_position.x - room_size.x * 2
-			var left_y = calc_rand_y_door_position()
+			var left_x = calc_rand_x_door_position()
+			var left_y = next_y_position.y - (room_size.y * 2) - 2
 			print("exit to the LEFT")
 			door_coordinates = Vector2(left_x, left_y)
-			door_rotation = PI/2
 		Vector2.RIGHT:
-			var right_x = next_x_position.x
-			var right_y = calc_rand_y_door_position()
+			#TODO: DEBUG WHY NOT RIGHT SPAWN EXIT LITTLE BIT LEFTER SOMETIME
+			var right_x = calc_rand_x_door_position()
+			var right_y = next_y_position.y
 			print("exit to the RIGHT")
 			door_coordinates = Vector2(right_x, right_y)
-			door_rotation = PI/2
+			
 		Vector2.DOWN:
-			var down_x = calc_rand_x_door_position()
-			var down_y = next_y_position.y - room_size.y * 2
+			var down_x = next_x_position.x - (room_size.x * 2) - 2
+			var down_y = calc_rand_y_door_position()
 			print("exit to the DOWN")
 			door_coordinates = Vector2(down_x, down_y)
+			door_rotation = PI/2
 		Vector2.UP: 
-			var top_x = calc_rand_x_door_position()
-			var top_y = next_y_position.y
+			var up_x = next_x_position.x
+			var up_y = calc_rand_y_door_position()
 			print("exit to the UP")
-			door_coordinates = Vector2(top_x, top_y)
+			door_coordinates = Vector2(up_x, up_y)
+			door_rotation = PI/2
+			
 	print(door_coordinates)
 	#choose_room_exit_direction
 	var tunel: Node3D = packed_tunel.instantiate()
 	map.add_tile(tunel)
 	tunel.global_position = Vector3(door_coordinates.x, 0, door_coordinates.y)
 	tunel.rotate_y(door_rotation)
-	print(next_x_position)
-	print(next_y_position)
+
 
 
 func calc_rand_y_door_position() -> int:
 	var current_y: int = next_y_position.y
-	var possible_locations = (int) (current_y / 4)	
+	var possible_locations = (int) (current_y / 4) - 1	
+	print(possible_locations)
 	return (randi_range(0, possible_locations) * 4) + 1
 
 
 func calc_rand_x_door_position() -> int:
 	var current_x: int = next_x_position.x
-	var possible_locations = (int) (current_x / 4)	
-	return (randi_range(0, possible_locations) * 4) + 1
+	var possible_locations = (int) (current_x / 4)- 1
+	print(possible_locations)
+	return (randi_range(0, possible_locations) * 4)+ 1
 
 
 func prepare_blank_map() -> void:

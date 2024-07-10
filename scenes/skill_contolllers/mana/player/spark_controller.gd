@@ -41,6 +41,7 @@ func revert_cast() -> void:
 
 
 func use_skill() -> void:
+	print(player.global_position)
 	if !player:
 		print("NO OWNER NODE SETTED TO CONTROLLER")
 		return

@@ -1,0 +1,12 @@
+[gd_scene load_steps=5 format=3 uid="uid://ci4hotqkt3ope"]
+
+[ext_resource type="Script" path="res://scenes/maps/map_generator.gd" id="1_2pkgg"]
+[ext_resource type="PackedScene" uid="uid://4mvg628edryx" path="res://scenes/maps/parts/floor_2_2.tscn" id="2_knf83"]
+[ext_resource type="PackedScene" uid="uid://bvcrxg7s5jq4f" path="res://scenes/maps/parts/blank_map.tscn" id="3_2lv8p"]
+[ext_resource type="PackedScene" uid="uid://coieh5bfnjmyk" path="res://scenes/maps/parts/tunel_4_4_3.tscn" id="3_ofibn"]
+
+[node name="MapGenerator" type="Node3D"]
+script = ExtResource("1_2pkgg")
+packed_floor = ExtResource("2_knf83")
+packed_tunel = ExtResource("3_ofibn")
+paked_blank_map = ExtResource("3_2lv8p")
