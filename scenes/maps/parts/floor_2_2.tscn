@@ -45,7 +45,7 @@ albedo_texture = ExtResource("1_okbaa")
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_kydlj"]
 points = PackedVector3Array(1.01587, 0.015873, 1.01587, -1.01587, -0.015873, -1.01587, -1.01587, 0.015873, -1.01587, 1.01587, -0.015873, -1.01587, -1.01587, -0.015873, 1.01587, -1.01587, 0.015873, 1.01587, 1.01587, 0.015873, -1.01587, 1.01587, -0.015873, 1.01587)
 
-[node name="floor2_2" type="Node3D"]
+[node name="floor2_2" type="Node3D" groups=["floor"]]
 
 [node name="floor" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_hurit")
