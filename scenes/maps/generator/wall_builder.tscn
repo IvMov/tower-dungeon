@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ds3nsw5rlsqqb"]
+
+[ext_resource type="Script" path="res://scenes/maps/generator/wall_builder.gd" id="1_jpjnu"]
+
+[node name="WallBuilder" type="Node3D"]
+script = ExtResource("1_jpjnu")

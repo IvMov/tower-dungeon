@@ -1,0 +1,26 @@
+[gd_scene load_steps=8 format=3 uid="uid://ci4hotqkt3ope"]
+
+[ext_resource type="Script" path="res://scenes/maps/generator/map_generator.gd" id="1_2pkgg"]
+[ext_resource type="PackedScene" uid="uid://4mvg628edryx" path="res://scenes/maps/parts/floor_2_2.tscn" id="2_knf83"]
+[ext_resource type="PackedScene" uid="uid://bvcrxg7s5jq4f" path="res://scenes/maps/parts/blank_map.tscn" id="3_2lv8p"]
+[ext_resource type="PackedScene" uid="uid://coieh5bfnjmyk" path="res://scenes/maps/parts/tunel_4_4_3.tscn" id="3_ofibn"]
+[ext_resource type="PackedScene" uid="uid://k5kg3pwlsy28" path="res://scenes/maps/parts/wall_2_4_10.tscn" id="4_as2nw"]
+[ext_resource type="PackedScene" uid="uid://ds3nsw5rlsqqb" path="res://scenes/maps/generator/wall_builder.tscn" id="6_53wkv"]
+[ext_resource type="PackedScene" uid="uid://87vtfqxsafi3" path="res://scenes/maps/generator/surface_builder.tscn" id="7_q6gww"]
+
+[node name="MapGenerator" type="Node3D"]
+script = ExtResource("1_2pkgg")
+packed_tunel = ExtResource("3_ofibn")
+paked_blank_map = ExtResource("3_2lv8p")
+MAX_ROOMS = 10
+DEADEND_POSSIBILITY = 1.0
+MIN_ROOM_SIZE = 8
+MAX_ROOM_SIZE = 24
+MIN_TUNEL_LENGTH = 2
+MAX_TUNEL_LENGTH = 8
+
+[node name="WallBuilder" parent="." instance=ExtResource("6_53wkv")]
+packed_wall = ExtResource("4_as2nw")
+
+[node name="SurfaceBuilder" parent="." instance=ExtResource("7_q6gww")]
+floors_packed = Array[PackedScene]([ExtResource("2_knf83")])
