@@ -3,12 +3,12 @@
 [ext_resource type="Script" path="res://scenes/camera/camera_scene.gd" id="1_84dn8"]
 
 [node name="CameraScene" type="Node3D" groups=["Camera"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_84dn8")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
 spring_length = 5.0
-margin = 0.2
+margin = 0.1
 
 [node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.399501, 0.97288, 5.31567)
+keep_aspect = 0
+near = 0.2

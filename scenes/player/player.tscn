@@ -19,7 +19,7 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_46ws3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i78ih"]
-radius = 0.3
+radius = 0.4
 height = 0.8
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tkl3f"]
@@ -2327,6 +2327,9 @@ floor_snap_length = 0.2
 script = ExtResource("1_xn4w2")
 first_skill = ExtResource("2_6cf6a")
 
+[node name="CameraScene" parent="." instance=ExtResource("1_52pv8")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.2, 1, 0)
+
 [node name="EffectFlashComponent" parent="." node_paths=PackedStringArray("health_component", "meshes") instance=ExtResource("3_v6oxs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.436412, 0)
 health_component = NodePath("../StatsBox/HealthComponent")
@@ -2388,7 +2391,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49, 0)
 shape = SubResource("SphereShape3D_46ws3")
 
 [node name="PlayerColiision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.405, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.403121, 0)
 shape = SubResource("CapsuleShape3D_i78ih")
 
 [node name="character-human" type="Node3D" parent="."]
@@ -2460,6 +2463,3 @@ libraries = {
 "": SubResource("AnimationLibrary_k43k4")
 }
 autoplay = "idle"
-
-[node name="CameraScene" parent="." instance=ExtResource("1_52pv8")]
-transform = Transform3D(-0.999829, 0, -0.0184819, 0, 1, 0, 0.0184819, 0, -0.999829, -0.518679, 0.87012, 0)

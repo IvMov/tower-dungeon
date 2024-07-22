@@ -9,9 +9,6 @@ const CORE_TILE_SIZE: int = 2
 
 func build_surface(room: Room, map: BlankMap, is_ceil_to_build: bool = false) -> void:
 	next_position = room.start_point
-	print("will build floor for room size %s" % room.size)
-	print("start %s" % room.start_point)
-	print("entrance_coordinates %s" % room.entrance)
 	for i in room.size.x:
 		for j in room.size.y:
 			floor_part = floors_packed.pick_random().instantiate()

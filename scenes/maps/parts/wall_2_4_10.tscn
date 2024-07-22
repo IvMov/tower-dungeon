@@ -6,8 +6,8 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dekej"]
 albedo_texture = ExtResource("2_h33hw")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4j83m"]
-points = PackedVector3Array(-1, 0.378308, -1.9127, 0.956349, 10.8122, 2, -1, 10.6217, 1.92857, 0.964286, 10.8545, -2, 0.956349, 0.187831, 2, 0.964286, 0.145503, -2, -1, 0.378308, 1.92857, -1, 10.6217, -1.9127)
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_a7a52"]
+points = PackedVector3Array(1, 11, 2, 1, 11, -2, -1, 11, 2, 1, 0, 2, -1, 11, -2, 1, 0, -2, -1, 0, 2, -1, 0, -2)
 
 [node name="wall2_4_10" instance=ExtResource("1_xo21q")]
 
@@ -17,4 +17,4 @@ surface_material_override/0 = SubResource("StandardMaterial3D_dekej")
 [node name="StaticBody3D" type="StaticBody3D" parent="wall" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="wall/StaticBody3D" index="0"]
-shape = SubResource("ConvexPolygonShape3D_4j83m")
+shape = SubResource("ConvexPolygonShape3D_a7a52")

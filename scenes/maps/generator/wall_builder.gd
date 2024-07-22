@@ -52,9 +52,5 @@ func add_walls(room: Room, map: BlankMap) -> void:
 
 
 func check_is_ocupied_position(room: Room, desired_position: Vector2) -> bool:
-	print("check_is_ocupied_position called with room: %s, pos: %s" %[room, desired_position])
-	print(room.entrance == desired_position)
-	print(room.exit == desired_position)
-	print(room.deadend_exit == desired_position)
 	return room.entrance == desired_position ||  room.exit == desired_position || room.deadend_exit == desired_position
 	
