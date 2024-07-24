@@ -2,64 +2,63 @@ class_name MapGenerator extends Node3D
 
 @onready var wall_builder: WallBuilder = $WallBuilder
 @onready var surface_builder: SurfaceBuilder = $SurfaceBuilder
+@onready var tunel_builder: TunelBuilder = $TunelBuilder
 
-@export var packed_tunel: PackedScene
 @export var paked_blank_map: PackedScene
 
 @export var MAX_ROOMS: int = 1 # how many rooms will be on map
 @export var DEADEND_POSSIBILITY: float = 0.0
-
 @export var MIN_ROOM_SIZE: int = 4 # must be dividible by CORE_TILE_SIZE
 @export var MAX_ROOM_SIZE: int = 4 # must be dividible by CORE_TILE_SIZE
 @export var MIN_TUNEL_LENGTH: int = 13 # how long tunels could be
 @export var MAX_TUNEL_LENGTH: int = 14 # how long tunels could be
 @export var DIRECTION_AVAILABILITY_CD: int = 5 # how long steps the oposite tile could not be installed
-var room_size: Vector2 = Vector2(2, 8)
 
 const CORE_TILE_SIZE: int = 2 
 const CORE_TUNEL_SIZE: int = 4 
+
+var room_size: Vector2 = Vector2(6, 6)
 
 var root_room_position: Vector2 = Vector2.ZERO
 var deadend_root_room_position: Vector2 = Vector2.ZERO
 
 # core datashelf
 var basic_directions: Array[Vector2] = [Vector2.LEFT, Vector2.DOWN, Vector2.RIGHT, Vector2.UP]
+var directions: Array[Vector2]
 var availability: Dictionary = {
 		Vector2.LEFT: 0,
 		Vector2.DOWN: 0,
 		Vector2.RIGHT: 0,
 		Vector2.UP: 0
 	}
-	
+
 # reusable staff
-var has_deadend_exit: bool
 var room: Room
 var map: BlankMap
-var directions: Array[Vector2]
 
 #current direction for next tunel and room
-var current_direction: Vector2
+var next_room_direction: Vector2
 #direction for next deadend tunel and deadend room
-var deadend_direction: Vector2
-
-
+var deadend_room_direction: Vector2
 var deadend_room_size: Vector2 = Vector2(4, 4)
 
-#tunel stuff
-var tunel_rotation: float
+var tunel_length: int
+# result of creation of tunel (x-y - start of tunel, z-w - end of tunel)
+var exit_and_entrance_coordinates: Vector4
 
-var entrance_coordinates: Vector2
+# room exit tunel position (start of tunel)
 var exit_coordinates: Vector2
-# exit from common room to deadend room
+# room entrance tunel position (end of tunel)
+var next_entrance_coordinates: Vector2
+# exit from common room to deadend room tunel position (start of tunel)
 var exit_to_deadend_coordinates: Vector2
-# entrance to deadend room (next after exit_to_deadend_coordinates)
+# entrance to deadend room (next after exit_to_deadend_coordinates) (end of tunel)
 var deadend_entrance_coordinates: Vector2
-
 
 
 func _ready():
 	generate_level()
-	#map_inst.bake_navigation()
+	#map.bake_navigation()
 
 
 func generate_level() -> void:
@@ -69,48 +68,22 @@ func generate_level() -> void:
 
 
 func generate_room() -> void:
-	room = Room.new()
-	room.size = room_size
-	room.entrance = entrance_coordinates
-	room.start_point = root_room_position
+	create_common_room()
 	
-	has_deadend_exit = randf() > DEADEND_POSSIBILITY
-	surface_builder.build_surface(room, map)
-	
-	add_room_exit()
-	room.exit = exit_coordinates
-	var rand: int = randi_range(MIN_TUNEL_LENGTH, MAX_TUNEL_LENGTH)
-	for i in rand:
-		entrance_coordinates = add_next_room_entrance(current_direction, entrance_coordinates)
-	tunel_rotation = 0
-	
-	
-	if has_deadend_exit:
-		add_exit_to_deadend_room()
-		room.deadend_exit = exit_to_deadend_coordinates
-		for i in rand:
-			deadend_entrance_coordinates = add_next_room_entrance(deadend_direction, deadend_entrance_coordinates)
-	
+	# deadend calcs - need to encapsulate
+	if randf() <= DEADEND_POSSIBILITY:
+		create_deadend_room()
 	# saved room required to build walls - to check all deadends and etc
-	var room = map.add_room(room)
+	room = map.add_room(room)
 	wall_builder.add_walls(room, map)
 	
 	# normal next room calcs - need to encapsulate
 	room_size = calculate_room_size()
-	root_room_position = calc_next_room_start_position(room_size, entrance_coordinates, current_direction)
-	
-	tunel_rotation = 0
-	# deadend calcs - need to encapsulate
-	if has_deadend_exit:
-		
-		deadend_room_size = calculate_room_size()
-		deadend_root_room_position = calc_next_room_start_position(deadend_room_size, deadend_entrance_coordinates, deadend_direction)
-		var deadend_room = save_deadend_room_to_map()
-		surface_builder.build_surface(deadend_room, map)
-		wall_builder.add_walls(deadend_room, map)
+	root_room_position = calc_room_start_position(room_size, next_entrance_coordinates, next_room_direction)
 	
 	#update ONLY after deadend spawns or not - if use it earlier  - some good directions will be blocked for pick_random_method
 	update_available_dirrections()
+
 
 
 func save_deadend_room_to_map() -> Room:
@@ -122,94 +95,36 @@ func save_deadend_room_to_map() -> Room:
 	room.start_point = deadend_root_room_position
 	return map.add_room(room)
 
-
-func add_room_exit() -> void:
-	current_direction = get_random_available_direction()
-	exit_coordinates = Vector2.ZERO
-	match current_direction:
-		Vector2.LEFT: 
-			var left_x = calc_rand_x_tunel_position()
-			var left_y = root_room_position.y - CORE_TILE_SIZE
-			print("exit to the LEFT")
-			exit_coordinates = Vector2(left_x, left_y)
-		Vector2.RIGHT:
-			var right_x = calc_rand_x_tunel_position()
-			var right_y = root_room_position.y + room_size.y * CORE_TILE_SIZE
-			print("exit to the RIGHT")
-			exit_coordinates = Vector2(right_x, right_y)
-		Vector2.DOWN:
-			var down_x = root_room_position.x - 2
-			var down_y = calc_rand_y_tunel_position()
-			print("exit to the DOWN")
-			exit_coordinates = Vector2(down_x, down_y)
-			tunel_rotation = PI/2
-		Vector2.UP: 
-			var up_x = root_room_position.x + room_size.x * CORE_TILE_SIZE
-			var up_y = calc_rand_y_tunel_position()
-			print("exit to the UP")
-			exit_coordinates = Vector2(up_x, up_y)
-			tunel_rotation = PI/2
-	#choose_room_exit_direction
-	var tunel: Node3D = packed_tunel.instantiate()
-	map.add_tile(tunel)
-	tunel.global_position = Vector3(exit_coordinates.x, 0, exit_coordinates.y)
-	tunel.rotate_y(tunel_rotation)
-	entrance_coordinates = exit_coordinates
-
-
-func add_exit_to_deadend_room() -> void:
-	deadend_direction = pick_random()
-	exit_to_deadend_coordinates = Vector2.ZERO
-	match deadend_direction:
-		Vector2.LEFT: 
-			var left_x = calc_rand_x_tunel_position()
-			var left_y = root_room_position.y - CORE_TILE_SIZE
-			print("exit_to_deadend_coordinates to the LEFT")
-			exit_to_deadend_coordinates = Vector2(left_x, left_y)
-			print(exit_to_deadend_coordinates)
-		Vector2.RIGHT:
-			var right_x = calc_rand_x_tunel_position()
-			var right_y = root_room_position.y + room_size.y * CORE_TILE_SIZE + CORE_TILE_SIZE
-			print("exit_to_deadend_coordinates to the RIGHT")
-			exit_to_deadend_coordinates = Vector2(right_x, right_y)
-		Vector2.DOWN:
-			var down_x = root_room_position.x - CORE_TILE_SIZE
-			var down_y = calc_rand_y_tunel_position()
-			print("exit_to_deadend_coordinates to the DOWN")
-			exit_to_deadend_coordinates = Vector2(down_x, down_y)
-			tunel_rotation = PI/2
-		Vector2.UP: 
-			var up_x = root_room_position.x + room_size.x * CORE_TILE_SIZE + CORE_TILE_SIZE
-			var up_y = calc_rand_y_tunel_position()
-			print("exit_to_deadend_coordinates to the UP")
-			exit_to_deadend_coordinates = Vector2(up_x, up_y)
-			tunel_rotation = PI/2
-	#choose_room_exit_direction
-	var tunel: Node3D = packed_tunel.instantiate()
-	map.add_tile(tunel)
-	tunel.global_position = Vector3(exit_to_deadend_coordinates.x, 0, exit_to_deadend_coordinates.y)
-	tunel.rotate_y(tunel_rotation)
-	deadend_entrance_coordinates = exit_to_deadend_coordinates
-
-
-func add_next_room_entrance(direction: Vector2, entrance: Vector2) -> Vector2:
-	var tunel: Node3D = packed_tunel.instantiate()
-	map.add_tile(tunel)
-	match direction:
-		Vector2.LEFT: 
-			entrance = Vector2(entrance.x, entrance.y - CORE_TUNEL_SIZE)
-		Vector2.RIGHT:
-			entrance = Vector2(entrance.x, entrance.y + CORE_TUNEL_SIZE)
-		Vector2.DOWN:
-			entrance = Vector2(entrance.x - CORE_TUNEL_SIZE, entrance.y)
-		Vector2.UP: 
-			entrance = Vector2(entrance.x + CORE_TUNEL_SIZE, entrance.y)
-	tunel.global_position = Vector3(entrance.x, 0, entrance.y)
-	tunel.rotate_y(tunel_rotation)
-	return entrance;
-
+func create_common_room() -> void:
+	room = Room.new()
+	room.size = room_size
+	room.entrance = next_entrance_coordinates
+	room.start_point = root_room_position
 	
-func calc_next_room_start_position(room: Vector2, entrance: Vector2, some_direction: Vector2) -> Vector2:
+	surface_builder.build_surface(room, map, true)
+	next_room_direction = get_random_available_direction()
+	tunel_length = randi_range(MIN_TUNEL_LENGTH, MAX_TUNEL_LENGTH)
+	exit_and_entrance_coordinates = tunel_builder.add_tunel(tunel_length, next_room_direction, room, map)
+	exit_coordinates = Vector2(exit_and_entrance_coordinates.x, exit_and_entrance_coordinates.y)
+	next_entrance_coordinates = Vector2(exit_and_entrance_coordinates.z, exit_and_entrance_coordinates.w)
+	room.exit = exit_coordinates
+
+
+func create_deadend_room() -> void: 
+		tunel_length = randi_range(MIN_TUNEL_LENGTH, MAX_TUNEL_LENGTH)
+		deadend_room_direction = pick_random()
+		exit_and_entrance_coordinates = tunel_builder.add_tunel(tunel_length, deadend_room_direction, room, map)
+		exit_to_deadend_coordinates = Vector2(exit_and_entrance_coordinates.x, exit_and_entrance_coordinates.y) 
+		deadend_entrance_coordinates = Vector2(exit_and_entrance_coordinates.z, exit_and_entrance_coordinates.w)
+		room.deadend_exit = exit_to_deadend_coordinates
+		deadend_room_size = calculate_room_size()
+		deadend_root_room_position = calc_room_start_position(deadend_room_size, deadend_entrance_coordinates, deadend_room_direction)
+		var deadend_room = save_deadend_room_to_map()
+		surface_builder.build_surface(deadend_room, map)
+		wall_builder.add_walls(deadend_room, map)
+
+
+func calc_room_start_position(room: Vector2, entrance: Vector2, some_direction: Vector2) -> Vector2:
 	var next_room_start_point: Vector2
 	match some_direction:
 		Vector2.LEFT: 
@@ -228,38 +143,13 @@ func calc_next_room_start_position(room: Vector2, entrance: Vector2, some_direct
 	return next_room_start_point
 
 
-func calc_deadend_room_params() -> void:
-	match deadend_direction:
-		Vector2.LEFT: 
-			deadend_root_room_position.x = calc_rand_x_root_room_position(deadend_room_size, deadend_entrance_coordinates)
-			deadend_root_room_position.y = deadend_entrance_coordinates.y - (deadend_room_size.y * CORE_TILE_SIZE)
-		Vector2.RIGHT:
-			deadend_root_room_position.x = calc_rand_x_root_room_position(deadend_room_size, deadend_entrance_coordinates)
-			deadend_root_room_position.y = deadend_entrance_coordinates.y + CORE_TILE_SIZE
-		Vector2.DOWN:
-			deadend_root_room_position.x = deadend_entrance_coordinates.x - (deadend_room_size.x * CORE_TILE_SIZE)
-			deadend_root_room_position.y = calc_rand_y_root_room_position(deadend_room_size, deadend_entrance_coordinates)
-		Vector2.UP: 
-			deadend_root_room_position.x = deadend_entrance_coordinates.x + CORE_TILE_SIZE
-			deadend_root_room_position.y = calc_rand_y_root_room_position(deadend_room_size, deadend_entrance_coordinates)
-	tunel_rotation = 0
-
 func calc_rand_x_root_room_position(room: Vector2, entrance: Vector2) -> int:
-	var possible_locations = ((room.x * CORE_TILE_SIZE) / CORE_TUNEL_SIZE) - 1
-	return (entrance.x - CORE_TILE_SIZE - (possible_locations * CORE_TUNEL_SIZE)) + (randi_range(0, possible_locations) * CORE_TUNEL_SIZE) +1
+	var possible_locations = ((room.x * CORE_TILE_SIZE) / CORE_TUNEL_SIZE) - CORE_TILE_SIZE/2
+	return (entrance.x - CORE_TILE_SIZE - (possible_locations * CORE_TUNEL_SIZE)) + (randi_range(0, possible_locations) * CORE_TUNEL_SIZE) + CORE_TILE_SIZE/2
 
 func calc_rand_y_root_room_position(room: Vector2, entrance: Vector2) -> int:
-	var possible_locations = ((room.y * CORE_TILE_SIZE) / CORE_TUNEL_SIZE) - 1
-	return (entrance.y - CORE_TILE_SIZE - (possible_locations * CORE_TUNEL_SIZE)) + (randi_range(0, possible_locations) * CORE_TUNEL_SIZE) +1
-
-func calc_rand_x_tunel_position() -> int:
-	# cause each tunel need 4m plate (and room size has n-plates with size 4m, so can contain n/2) -1 -calcualtions from 0 
-	var possible_locations = (room_size.x / CORE_TILE_SIZE) - 1
-	return (root_room_position.x + randi_range(0,  possible_locations) * CORE_TUNEL_SIZE) + 1
-
-func calc_rand_y_tunel_position() -> int:
-	var possible_locations = (room_size.y / CORE_TILE_SIZE) - 1 
-	return (root_room_position.y + randi_range(0,  possible_locations) * CORE_TUNEL_SIZE) + 1
+	var possible_locations = ((room.y * CORE_TILE_SIZE) / CORE_TUNEL_SIZE) - CORE_TILE_SIZE/2
+	return (entrance.y - CORE_TILE_SIZE - (possible_locations * CORE_TUNEL_SIZE)) + (randi_range(0, possible_locations) * CORE_TUNEL_SIZE) + CORE_TILE_SIZE/2
 
 
 func prepare_blank_map() -> void:
@@ -277,7 +167,7 @@ func get_random_available_direction() -> Vector2:
 
 # add availability cd for new dirrection oposite dir
 func update_available_dirrections() -> void:
-	match current_direction:
+	match next_room_direction:
 		Vector2.LEFT: 
 			availability[Vector2.RIGHT] = DIRECTION_AVAILABILITY_CD
 		Vector2.RIGHT:
@@ -304,7 +194,6 @@ func pick_random() -> Vector2:
 	if availability[direction] > 0:
 		return pick_random()
 	return direction
-
 
 
 func calculate_room_size() -> Vector2:

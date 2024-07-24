@@ -136,7 +136,3 @@ locale/translations=PackedStringArray("res://assets/translation/text.en.translat
 3d_physics/layer_4="Souls"
 3d_physics/layer_10="Player"
 3d_physics/layer_11="Enemies"
-
-[physics]
-
-3d/default_gravity=25.0

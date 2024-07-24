@@ -12,12 +12,13 @@
 [node name="MapGenerator" type="Node3D"]
 script = ExtResource("1_2pkgg")
 paked_blank_map = ExtResource("3_2lv8p")
-MAX_ROOMS = 15
+MAX_ROOMS = 10
 DEADEND_POSSIBILITY = 0.5
-MIN_ROOM_SIZE = 12
-MAX_ROOM_SIZE = 32
+MIN_ROOM_SIZE = 8
+MAX_ROOM_SIZE = 24
 MIN_TUNEL_LENGTH = 3
 MAX_TUNEL_LENGTH = 8
+DIRECTION_AVAILABILITY_CD = null
 
 [node name="SurfaceBuilder" parent="." instance=ExtResource("7_q6gww")]
 floors_packed = Array[PackedScene]([ExtResource("2_knf83")])

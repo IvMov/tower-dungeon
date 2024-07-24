@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfo41ixivy0xh"]
+
+[ext_resource type="Script" path="res://scenes/maps/generator/tunel_builder.gd" id="1_0i00j"]
+
+[node name="TunelBuilder" type="Node3D"]
+script = ExtResource("1_0i00j")
