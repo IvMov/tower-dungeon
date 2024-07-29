@@ -12,10 +12,9 @@ var start_tunel_coordinates: Vector2
 var end_tunel_coordinates: Vector2
 
 
-
 func add_tunel(length: int, direction: Vector2, room: Room, map: BlankMap) -> Vector4:
 	add_start(direction, room, map)
-	add_end(length, direction, room, map)
+	add_end(length, direction, map)
 	
 	return Vector4(start_tunel_coordinates.x, start_tunel_coordinates.y, end_tunel_coordinates.x, end_tunel_coordinates.y)
 
@@ -50,7 +49,7 @@ func add_start(direction: Vector2, room: Room, map: BlankMap) -> void:
 	tunel.rotate_y(tunel_rotation)
 
 
-func add_end(length: int, direction: Vector2, room: Room, map: BlankMap) -> void:
+func add_end(length: int, direction: Vector2, map: BlankMap) -> void:
 	end_tunel_coordinates = start_tunel_coordinates
 	for i in length:
 		end_tunel_coordinates = add_next_tunel_part(direction, end_tunel_coordinates, map)

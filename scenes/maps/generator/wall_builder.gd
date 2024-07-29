@@ -3,13 +3,15 @@ class_name WallBuilder extends Node3D
 # WallBuilder - can build walls around the room, avoiding tunels with height of 3 m
 # i'm noob so this map builder works now only with walls 4x2 size
 
-@export var packed_wall: PackedScene
+@export var packed_wall_10: PackedScene
+@export var packed_wall_15: PackedScene
+@export var packed_wall_20: PackedScene
 
 const CORE_TILE_SIZE: int = 2
 
 func add_walls(room: Room, map: BlankMap) -> void:
 	print("add_walls called")
-	
+	var packed_wall = choose_wall_and_heigh_of_room(room)
 	var wall_front_pos = room.start_point + Vector2(CORE_TILE_SIZE/2, -CORE_TILE_SIZE)
 	var wall_back_pos = room.start_point + Vector2(CORE_TILE_SIZE/2, room.size.y*CORE_TILE_SIZE)
 	var y_position: int
@@ -49,6 +51,18 @@ func add_walls(room: Room, map: BlankMap) -> void:
 		map.add_tile(wall_back)
 		y_position = 3 if check_is_ocupied_position(room, wall_back_pos) else 0
 		wall_back.global_position = Vector3(wall_back_pos.x, y_position, wall_back_pos.y)
+
+func choose_wall_and_heigh_of_room(room: Room) -> PackedScene:
+	var length: float = room.size.length()
+	if length < 20:
+		room.ceil_height = 10
+		return packed_wall_10
+	elif length < 40:
+		room.ceil_height = 15
+		return packed_wall_15
+	else: 
+		room.ceil_height = 20
+		return packed_wall_20
 
 
 func check_is_ocupied_position(room: Room, desired_position: Vector2) -> bool:

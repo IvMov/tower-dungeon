@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://4mvg628edryx"]
+[gd_scene load_steps=6 format=3 uid="uid://4mvg628edryx"]
 
 [ext_resource type="Texture2D" uid="uid://cd6hnyliwnab4" path="res://assets/2d/textures/colormap.png" id="1_okbaa"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m2m6b"]
 resource_name = "colormap"
 cull_mode = 2
+albedo_texture = ExtResource("1_okbaa")
 texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_wb6pr"]
@@ -39,9 +40,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_wb6pr")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oigfw"]
-albedo_texture = ExtResource("1_okbaa")
-
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_kydlj"]
 points = PackedVector3Array(1.01587, 0.015873, 1.01587, -1.01587, -0.015873, -1.01587, -1.01587, 0.015873, -1.01587, 1.01587, -0.015873, -1.01587, -1.01587, -0.015873, 1.01587, -1.01587, 0.015873, 1.01587, 1.01587, 0.015873, -1.01587, 1.01587, -0.015873, 1.01587)
 
@@ -49,8 +47,6 @@ points = PackedVector3Array(1.01587, 0.015873, 1.01587, -1.01587, -0.015873, -1.
 
 [node name="floor" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_hurit")
-skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_oigfw")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="floor"]
 

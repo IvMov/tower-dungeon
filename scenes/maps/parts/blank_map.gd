@@ -10,7 +10,6 @@ func add_room(room: Room) -> Room:
 		room.id = id_counter
 		room.previous_room_id = room.id - 1 # -1 for first room
 	room.floor_height = 0 # static floor level
-	room.ceil_height = 10 # static ceil level
 	rooms[room.id] = room
 	id_counter+=1
 	return room

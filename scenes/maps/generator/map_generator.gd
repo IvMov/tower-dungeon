@@ -1,5 +1,6 @@
 class_name MapGenerator extends Node3D
 
+@export var has_ceil: bool = false
 @onready var wall_builder: WallBuilder = $WallBuilder
 @onready var surface_builder: SurfaceBuilder = $SurfaceBuilder
 @onready var tunel_builder: TunelBuilder = $TunelBuilder
@@ -93,6 +94,7 @@ func save_deadend_room_to_map() -> Room:
 	room.deadend_exit = Vector2.ZERO
 	room.size = deadend_room_size
 	room.start_point = deadend_root_room_position
+	room.floor_height = 0
 	return map.add_room(room)
 
 func create_common_room() -> void:
@@ -100,8 +102,10 @@ func create_common_room() -> void:
 	room.size = room_size
 	room.entrance = next_entrance_coordinates
 	room.start_point = root_room_position
+	room.floor_height = 0
+	adjust_room_height(room)
 	
-	surface_builder.build_surface(room, map, true)
+	surface_builder.build_surface(room, map, has_ceil)
 	next_room_direction = get_random_available_direction()
 	tunel_length = randi_range(MIN_TUNEL_LENGTH, MAX_TUNEL_LENGTH)
 	exit_and_entrance_coordinates = tunel_builder.add_tunel(tunel_length, next_room_direction, room, map)
@@ -110,18 +114,35 @@ func create_common_room() -> void:
 	room.exit = exit_coordinates
 
 
-func create_deadend_room() -> void: 
+func create_deadend_room() -> void:
 		tunel_length = randi_range(MIN_TUNEL_LENGTH, MAX_TUNEL_LENGTH)
 		deadend_room_direction = pick_random()
-		exit_and_entrance_coordinates = tunel_builder.add_tunel(tunel_length, deadend_room_direction, room, map)
-		exit_to_deadend_coordinates = Vector2(exit_and_entrance_coordinates.x, exit_and_entrance_coordinates.y) 
-		deadend_entrance_coordinates = Vector2(exit_and_entrance_coordinates.z, exit_and_entrance_coordinates.w)
-		room.deadend_exit = exit_to_deadend_coordinates
-		deadend_room_size = calculate_room_size()
-		deadend_root_room_position = calc_room_start_position(deadend_room_size, deadend_entrance_coordinates, deadend_room_direction)
-		var deadend_room = save_deadend_room_to_map()
-		surface_builder.build_surface(deadend_room, map)
-		wall_builder.add_walls(deadend_room, map)
+		if deadend_room_direction:
+			exit_and_entrance_coordinates = tunel_builder.add_tunel(tunel_length, deadend_room_direction, room, map)
+			exit_to_deadend_coordinates = Vector2(exit_and_entrance_coordinates.x, exit_and_entrance_coordinates.y) 
+			deadend_entrance_coordinates = Vector2(exit_and_entrance_coordinates.z, exit_and_entrance_coordinates.w)
+			room.deadend_exit = exit_to_deadend_coordinates
+			deadend_room_size = calculate_room_size()
+			deadend_root_room_position = calc_room_start_position(deadend_room_size, deadend_entrance_coordinates, deadend_room_direction)
+			var deadend_room = save_deadend_room_to_map()
+			adjust_room_height(deadend_room)
+			surface_builder.build_surface(deadend_room, map, has_ceil)
+			wall_builder.add_walls(deadend_room, map)
+			deadend_update_available_dirrections()
+		else:
+			print("NO FREE DIRRECTIONS FOR DEADEND ROOM!")
+			deadend_entrance_coordinates = Vector2.ZERO
+			exit_to_deadend_coordinates = Vector2.ZERO
+
+func adjust_room_height(room: Room) -> void:
+	var length: float = room.size.length()
+	if length < 20:
+		room.ceil_height = 10
+	elif length < 40:
+		room.ceil_height = 15
+	else: 
+		room.ceil_height = 20
+
 
 
 func calc_room_start_position(room: Vector2, entrance: Vector2, some_direction: Vector2) -> Vector2:
@@ -165,8 +186,10 @@ func get_random_available_direction() -> Vector2:
 	return picked_direction
 
 
+
 # add availability cd for new dirrection oposite dir
 func update_available_dirrections() -> void:
+	print(availability)
 	match next_room_direction:
 		Vector2.LEFT: 
 			availability[Vector2.RIGHT] = DIRECTION_AVAILABILITY_CD
@@ -176,7 +199,18 @@ func update_available_dirrections() -> void:
 			availability[Vector2.UP] = DIRECTION_AVAILABILITY_CD
 		Vector2.UP: 
 			availability[Vector2.DOWN] = DIRECTION_AVAILABILITY_CD
+	
 
+func deadend_update_available_dirrections() -> void:
+	match deadend_room_direction:
+		Vector2.LEFT: 
+			availability[Vector2.LEFT] = DIRECTION_AVAILABILITY_CD-2
+		Vector2.RIGHT:
+			availability[Vector2.RIGHT] = DIRECTION_AVAILABILITY_CD-2
+		Vector2.DOWN:
+			availability[Vector2.DOWN] = DIRECTION_AVAILABILITY_CD-2
+		Vector2.UP: 
+			availability[Vector2.UP] = DIRECTION_AVAILABILITY_CD-2
 
 # handle cd of availability dirrections 
 func update_dirrections_cd() -> void:

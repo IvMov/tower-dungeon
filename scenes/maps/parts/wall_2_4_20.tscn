@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://baeud0si54r0j"]
+
+[ext_resource type="PackedScene" uid="uid://dinea0nsd5ufu" path="res://assets/3d/my/wall2_4_20.glb" id="1_etopp"]
+[ext_resource type="Texture2D" uid="uid://cd6hnyliwnab4" path="res://assets/2d/textures/colormap.png" id="2_my0eq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1x423"]
+albedo_texture = ExtResource("2_my0eq")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_odkg3"]
+points = PackedVector3Array(1, 22, 2, 1, 22, -2, -1, 22, 2, 1, 0, 2, -1, 22, -2, 1, 0, -2, -1, 0, 2, -1, 0, -2)
+
+[node name="wall2_4_20" instance=ExtResource("1_etopp")]
+
+[node name="wall" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_1x423")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_odkg3")
