@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c7nfqu6eb7oqd" path="res://scenes/ui/vignette/vignette.tscn" id="6_f0ant"]
 
 [sub_resource type="Environment" id="Environment_0f8ma"]
+background_energy_multiplier = 0.3
 glow_enabled = true
 glow_levels/1 = 1.0
 glow_levels/2 = 1.0
@@ -35,12 +36,6 @@ text = "LABas"
 
 [node name="Player" parent="." instance=ExtResource("2_v4j8r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.50122, 1, 1.48285)
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.545262, 0.731632, 0.40915, -0.657681, 0.0707445, 0.749967, 0.519755, -0.678019, 0.519755, 37.9179, 8.47832, 10.2021)
-light_color = Color(1, 1, 0.898039, 1)
-light_volumetric_fog_energy = 2.055
-shadow_enabled = true
 
 [node name="Projectiles" type="Node3D" parent="." groups=["projectiles"]]
 

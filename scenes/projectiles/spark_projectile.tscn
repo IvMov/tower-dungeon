@@ -23,6 +23,12 @@ radius = 0.11
 [node name="SparkProjectile" type="Node3D"]
 script = ExtResource("1_q658l")
 
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_energy = 0.5
+light_indirect_energy = 0.5
+shadow_enabled = true
+omni_shadow_mode = 0
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_7aqq5")
 

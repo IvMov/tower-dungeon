@@ -16,10 +16,9 @@
 script = ExtResource("1_2pkgg")
 has_ceil = true
 paked_blank_map = ExtResource("3_2lv8p")
-DEADEND_POSSIBILITY = 0.5
-MIN_ROOM_SIZE = 12
-MAX_ROOM_SIZE = 32
-MIN_TUNEL_LENGTH = 3
+MIN_ROOM_SIZE = 6
+MAX_ROOM_SIZE = 30
+MIN_TUNEL_LENGTH = 2
 MAX_TUNEL_LENGTH = 8
 
 [node name="SurfaceBuilder" parent="." instance=ExtResource("7_q6gww")]
