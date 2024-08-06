@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c7nfqu6eb7oqd" path="res://scenes/ui/vignette/vignette.tscn" id="6_f0ant"]
 
 [sub_resource type="Environment" id="Environment_0f8ma"]
-background_energy_multiplier = 0.3
+background_energy_multiplier = 3.0
 glow_enabled = true
 glow_levels/1 = 1.0
 glow_levels/2 = 1.0
@@ -46,3 +46,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.50122, 1, 1.48285)
 [node name="Maps" type="Node3D" parent="." groups=["maps"]]
 
 [node name="Vignette" parent="." instance=ExtResource("6_f0ant")]
+visible = false

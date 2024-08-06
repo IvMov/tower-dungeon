@@ -1,0 +1,95 @@
+[gd_scene load_steps=12 format=3 uid="uid://3u5p44i1b8o0"]
+
+[ext_resource type="Material" uid="uid://clptb0rjqplxi" path="res://assets/textures/brown_wood.tres" id="1_pgbnx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hbob3"]
+albedo_color = Color(10, 10, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_eu3do"]
+material = SubResource("StandardMaterial3D_hbob3")
+radius = 0.1
+height = 0.5
+radial_segments = 8
+rings = 4
+
+[sub_resource type="Gradient" id="Gradient_jrb3o"]
+offsets = PackedFloat32Array(0, 0.523573, 1)
+colors = PackedColorArray(3, 0, 0, 1, 3.09297, 0.599007, 0, 1, 3.551, 3.55, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_eprhs"]
+gradient = SubResource("Gradient_jrb3o")
+
+[sub_resource type="Curve" id="Curve_ca8nj"]
+_data = [Vector2(0.0139211, 0.054945), 0.0, 0.0, 0, 0, Vector2(0.25522, 1), 0.0, 0.0, 0, 0, Vector2(0.758701, 0.989011), 0.0, 0.0, 0, 0, Vector2(0.99536, 0.0241441), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_2mqrn"]
+curve = SubResource("Curve_ca8nj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ilq7o"]
+particle_flag_rotate_y = true
+emission_shape = 1
+emission_sphere_radius = 0.2
+angle_min = -180.0
+angle_max = 180.0
+gravity = Vector3(0, 5, 0)
+scale_min = 0.2
+scale_curve = SubResource("CurveTexture_2mqrn")
+color_ramp = SubResource("GradientTexture1D_eprhs")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o6835"]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3gemd"]
+resource_local_to_scene = true
+lightmap_size_hint = Vector2i(2, 2)
+material = SubResource("StandardMaterial3D_o6835")
+size = Vector2(0.1, 0.1)
+orientation = 2
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_sm6id"]
+material = ExtResource("1_pgbnx")
+radius = 0.06
+height = 1.0
+radial_segments = 8
+rings = 4
+
+[node name="Torch" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.214, 6.24808, 0.843736)
+
+[node name="Head" type="MeshInstance3D" parent="."]
+cast_shadow = 0
+visibility_range_end = 50.0
+visibility_range_end_margin = 5.0
+visibility_range_fade_mode = 1
+mesh = SubResource("CapsuleMesh_eu3do")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.43051e-05, 0)
+light_color = Color(1, 1, 0.631373, 1)
+light_bake_mode = 0
+shadow_enabled = true
+shadow_opacity = 0.8
+shadow_blur = 5.0
+distance_fade_enabled = true
+distance_fade_begin = 30.0
+distance_fade_shadow = 20.0
+omni_range = 10.0
+omni_attenuation = 0.574349
+omni_shadow_mode = 0
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Head"]
+transform = Transform3D(-0.0170161, 0, -0.999855, 0, 1, 0, 0.999855, 0, -0.0170161, 0, 0, 0)
+cast_shadow = 0
+amount = 2
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_ilq7o")
+draw_pass_1 = SubResource("PlaneMesh_3gemd")
+
+[node name="Body" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.652249, 0)
+cast_shadow = 0
+visibility_range_end = 40.0
+visibility_range_end_margin = 5.0
+visibility_range_fade_mode = 1
+mesh = SubResource("CapsuleMesh_sm6id")

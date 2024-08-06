@@ -1,0 +1,99 @@
+[gd_scene load_steps=14 format=3 uid="uid://dsfklcrmsh38d"]
+
+[ext_resource type="Material" uid="uid://clptb0rjqplxi" path="res://assets/textures/brown_wood.tres" id="1_30ngq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m4r5d"]
+albedo_color = Color(10, 10, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_hllg6"]
+material = SubResource("StandardMaterial3D_m4r5d")
+radius = 0.03
+height = 0.1
+radial_segments = 6
+rings = 2
+
+[sub_resource type="Gradient" id="Gradient_ey45t"]
+offsets = PackedFloat32Array(0, 0.523573, 1)
+colors = PackedColorArray(3, 0, 0, 1, 3.09297, 0.599007, 0, 1, 3.551, 3.55, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_e3rx8"]
+gradient = SubResource("Gradient_ey45t")
+
+[sub_resource type="Curve" id="Curve_wsmdu"]
+_data = [Vector2(0.0139211, 0.054945), 0.0, 0.0, 0, 0, Vector2(0.25522, 1), 0.0, 0.0, 0, 0, Vector2(0.758701, 0.989011), 0.0, 0.0, 0, 0, Vector2(0.99536, 0.0241441), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_pruf5"]
+curve = SubResource("Curve_wsmdu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g8q8t"]
+particle_flag_rotate_y = true
+emission_shape = 1
+emission_sphere_radius = 0.2
+angle_min = -180.0
+angle_max = 180.0
+gravity = Vector3(0, 5, 0)
+scale_min = 0.2
+scale_curve = SubResource("CurveTexture_pruf5")
+color_ramp = SubResource("GradientTexture1D_e3rx8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_74h4h"]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ssvn1"]
+resource_local_to_scene = true
+lightmap_size_hint = Vector2i(2, 2)
+material = SubResource("StandardMaterial3D_74h4h")
+size = Vector2(0.06, 0.06)
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bjxro"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vfdwx"]
+material = SubResource("StandardMaterial3D_bjxro")
+top_radius = 0.05
+bottom_radius = 0.05
+height = 0.4
+radial_segments = 8
+rings = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_hj3hx"]
+material = ExtResource("1_30ngq")
+size = Vector3(0.2, 0.02, 0.2)
+
+[node name="Candle" type="Node3D"]
+
+[node name="Head" type="MeshInstance3D" parent="."]
+cast_shadow = 0
+visibility_range_end = 50.0
+visibility_range_end_margin = 5.0
+visibility_range_fade_mode = 1
+mesh = SubResource("CapsuleMesh_hllg6")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, 0.4, 0)
+light_color = Color(1, 1, 0.631373, 1)
+distance_fade_enabled = true
+distance_fade_begin = 20.0
+distance_fade_length = 5.0
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Head"]
+transform = Transform3D(-0.0170161, 0, -0.999855, 0, 1, 0, 0.999855, 0, -0.0170161, 0, 0, 0)
+cast_shadow = 0
+amount = 2
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_g8q8t")
+draw_pass_1 = SubResource("PlaneMesh_ssvn1")
+
+[node name="Body" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.237252, 0)
+cast_shadow = 0
+visibility_range_end = 40.0
+visibility_range_end_margin = 5.0
+visibility_range_fade_mode = 2
+mesh = SubResource("CylinderMesh_vfdwx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.214929, 0)
+cast_shadow = 0
+mesh = SubResource("BoxMesh_hj3hx")

@@ -57,15 +57,12 @@ var exit_to_deadend_coordinates: Vector2
 var deadend_entrance_coordinates: Vector2
 
 
-func _ready():
-	generate_level()
-	#map.bake_navigation()
-
 
 func generate_level() -> void:
 	prepare_blank_map()
 	for i in MAX_ROOMS:
 		generate_room()
+	map.bake_navigation()
 
 
 func generate_room() -> void:
