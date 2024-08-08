@@ -1,0 +1,94 @@
+[gd_scene load_steps=15 format=3 uid="uid://csr5y4nb77hu4"]
+
+[ext_resource type="Script" path="res://scenes/maps/parts/tunel_my_4_4_3.gd" id="1_3gva3"]
+[ext_resource type="Texture2D" uid="uid://cgo1exyp0iy2c" path="res://assets/textures/Brick 1 - 128x128.png" id="1_5k7re"]
+[ext_resource type="Texture2D" uid="uid://cu1eweixkj7sb" path="res://assets/textures/Tile 24 - 128x128.png" id="1_6l0ex"]
+[ext_resource type="PackedScene" uid="uid://dsfklcrmsh38d" path="res://scenes/maps/parts/candle.tscn" id="3_f34ju"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3nv8r"]
+albedo_texture = ExtResource("1_6l0ex")
+albedo_texture_force_srgb = true
+uv1_scale = Vector3(3, 3, 3)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5y6bp"]
+material = SubResource("StandardMaterial3D_3nv8r")
+size = Vector2(4, 4)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2hp05"]
+points = PackedVector3Array(-2, 0, -2, -2, 0, 2, 2, 0, -2, 2, 0, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s2u7w"]
+shading_mode = 0
+albedo_texture = ExtResource("1_5k7re")
+albedo_texture_force_srgb = true
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_ov5t0"]
+material = SubResource("StandardMaterial3D_s2u7w")
+size = Vector3(0.3, 2.7, 4)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_yb70c"]
+points = PackedVector3Array(-0.15, -1.5, -2, 0.15, -1.5, -2, -0.15, -1.5, 2, -0.15, 1.5, -2, 0.15, 1.5, -2, 0.15, -1.5, 2, -0.15, 1.5, 2, 0.15, 1.5, 2)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_smsnw"]
+points = PackedVector3Array(-0.15, -1.5, -2, 0.15, -1.5, -2, -0.15, -1.5, 2, -0.15, 1.5, -2, 0.15, 1.5, -2, 0.15, -1.5, 2, -0.15, 1.5, 2, 0.15, 1.5, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xv662"]
+shading_mode = 0
+albedo_texture = ExtResource("1_5k7re")
+albedo_texture_force_srgb = true
+uv1_offset = Vector3(0, 1, 0)
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_yvk2h"]
+lightmap_size_hint = Vector2i(44, 29)
+material = SubResource("StandardMaterial3D_xv662")
+size = Vector3(4, 0.3, 4)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_6k25d"]
+points = PackedVector3Array(-2, -0.15, -2, -2, 0.15, -2, 2, -0.15, -2, -2, -0.15, 2, -2, 0.15, 2, 2, 0.15, -2, 2, -0.15, 2, 2, 0.15, 2)
+
+[node name="TunelMy4_4_3" type="Node3D"]
+script = ExtResource("1_3gva3")
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
+mesh = SubResource("PlaneMesh_5y6bp")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_2hp05")
+
+[node name="SideWall" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.85, 1.35, 0)
+mesh = SubResource("BoxMesh_ov5t0")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor/SideWall"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/SideWall/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_yb70c")
+
+[node name="Candle2" parent="Floor/SideWall" instance=ExtResource("3_f34ju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23, 0.5, 0)
+
+[node name="SideWall2" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.85, 1.35, 0)
+mesh = SubResource("BoxMesh_ov5t0")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor/SideWall2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/SideWall2/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_smsnw")
+
+[node name="Candle" parent="Floor/SideWall2" instance=ExtResource("3_f34ju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23, 0.5, 0)
+
+[node name="Ceil" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.86, 0)
+mesh = SubResource("BoxMesh_yvk2h")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor/Ceil"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Ceil/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_6k25d")

@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://dhiqjctihnpkm"]
+
+[ext_resource type="Texture2D" uid="uid://du4kwq2r1x0ru" path="res://assets/textures/Brick 25 - 128x128.png" id="1_rmqds"]
+[ext_resource type="PackedScene" uid="uid://dsfklcrmsh38d" path="res://scenes/maps/parts/candle.tscn" id="2_mnwi0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ic60"]
+shading_mode = 0
+albedo_texture = ExtResource("1_rmqds")
+albedo_texture_force_srgb = true
+uv1_triplanar = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_anaff"]
+material = SubResource("StandardMaterial3D_7ic60")
+top_radius = 0.8
+bottom_radius = 0.8
+height = 20.0
+radial_segments = 12
+rings = 1
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_kitfv"]
+points = PackedVector3Array(-0.8, -10, 0, -0.692874, -10, -0.4, -0.692874, -10, 0.399843, -0.8, 10, 0, -0.4, -10, -0.692874, -0.692874, 10, -0.4, -0.4, -10, 0.692717, -0.692874, 10, 0.399843, 0, -10, -0.8, -0.4, 10, -0.692874, 0, -10, 0.8, -0.4, 10, 0.692717, 0.4, -10, -0.692874, 0, 10, -0.8, 0.4, -10, 0.692717, 0, 10, 0.8, 0.692717, -10, -0.400157, 0.4, 10, -0.692874, 0.692717, -10, 0.4, 0.4, 10, 0.692717, 0.8, -10, 0, 0.692717, 10, -0.400157, 0.692717, 10, 0.4, 0.8, 10, 0)
+
+[node name="Column1" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+mesh = SubResource("CylinderMesh_anaff")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_kitfv")
+
+[node name="Candle" parent="." instance=ExtResource("2_mnwi0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0.85)
+
+[node name="Candle2" parent="." instance=ExtResource("2_mnwi0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -0.85)

@@ -27,8 +27,9 @@ script = ExtResource("1_q658l")
 light_energy = 0.5
 light_indirect_energy = 0.5
 distance_fade_enabled = true
-distance_fade_begin = 30.0
-distance_fade_length = 5.0
+distance_fade_begin = 200.0
+distance_fade_length = 20.0
+omni_attenuation = 0.707107
 omni_shadow_mode = 0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

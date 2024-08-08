@@ -1,33 +1,46 @@
-[gd_scene load_steps=12 format=3 uid="uid://ci4hotqkt3ope"]
+[gd_scene load_steps=16 format=3 uid="uid://ci4hotqkt3ope"]
 
 [ext_resource type="Script" path="res://scenes/maps/generator/map_generator.gd" id="1_2pkgg"]
 [ext_resource type="PackedScene" uid="uid://4mvg628edryx" path="res://scenes/maps/parts/floor_2_2.tscn" id="2_knf83"]
 [ext_resource type="PackedScene" uid="uid://bvcrxg7s5jq4f" path="res://scenes/maps/parts/blank_map.tscn" id="3_2lv8p"]
-[ext_resource type="PackedScene" uid="uid://coieh5bfnjmyk" path="res://scenes/maps/parts/tunel_4_4_3.tscn" id="3_ofibn"]
-[ext_resource type="PackedScene" uid="uid://k5kg3pwlsy28" path="res://scenes/maps/parts/wall_2_4_10.tscn" id="4_as2nw"]
 [ext_resource type="PackedScene" uid="uid://bh1qy5fdd3jh0" path="res://scenes/maps/parts/floor_2_2_dec.tscn" id="5_fwckc"]
 [ext_resource type="PackedScene" uid="uid://ds3nsw5rlsqqb" path="res://scenes/maps/generator/wall_builder.tscn" id="6_53wkv"]
 [ext_resource type="PackedScene" uid="uid://cfo41ixivy0xh" path="res://scenes/maps/generator/tunel_builder.tscn" id="6_t1a4l"]
+[ext_resource type="PackedScene" uid="uid://csr5y4nb77hu4" path="res://scenes/maps/parts/tunel_my_4_4_3.tscn" id="7_puuxx"]
 [ext_resource type="PackedScene" uid="uid://87vtfqxsafi3" path="res://scenes/maps/generator/surface_builder.tscn" id="7_q6gww"]
+[ext_resource type="PackedScene" uid="uid://dlcryiwkxw85a" path="res://scenes/maps/parts/wall_my_2_4_10.tscn" id="9_5bcqq"]
 [ext_resource type="PackedScene" uid="uid://e3l36ifd8hps" path="res://scenes/maps/parts/wall_2_4_15.tscn" id="10_xq0ec"]
 [ext_resource type="PackedScene" uid="uid://baeud0si54r0j" path="res://scenes/maps/parts/wall_2_4_20.tscn" id="11_7feia"]
+[ext_resource type="PackedScene" uid="uid://cxn0cofct1v1b" path="res://scenes/maps/generator/torch_builder.tscn" id="12_gx14e"]
+[ext_resource type="PackedScene" uid="uid://3u5p44i1b8o0" path="res://scenes/maps/parts/torch.tscn" id="13_kpnu2"]
+[ext_resource type="PackedScene" uid="uid://dowdei5kin5si" path="res://scenes/maps/generator/column_builder.tscn" id="14_45211"]
+[ext_resource type="PackedScene" uid="uid://dhiqjctihnpkm" path="res://scenes/maps/parts/column_1.tscn" id="15_fbdav"]
 
 [node name="MapGenerator" type="Node3D"]
 script = ExtResource("1_2pkgg")
-has_ceil = true
+has_walls = true
+has_torches = true
 paked_blank_map = ExtResource("3_2lv8p")
-MIN_ROOM_SIZE = 6
-MAX_ROOM_SIZE = 30
-MIN_TUNEL_LENGTH = 2
-MAX_TUNEL_LENGTH = 8
+MAX_ROOMS = 5
+DEADEND_POSSIBILITY = 1.0
+MIN_ROOM_SIZE = 8
+MAX_ROOM_SIZE = 25
+MIN_TUNEL_LENGTH = 6
+MAX_TUNEL_LENGTH = 12
 
 [node name="SurfaceBuilder" parent="." instance=ExtResource("7_q6gww")]
 floors_packed = Array[PackedScene]([ExtResource("2_knf83"), ExtResource("5_fwckc")])
 
 [node name="TunelBuilder" parent="." instance=ExtResource("6_t1a4l")]
-packed_tunel = ExtResource("3_ofibn")
+packed_tunel = ExtResource("7_puuxx")
 
 [node name="WallBuilder" parent="." instance=ExtResource("6_53wkv")]
-packed_wall_10 = ExtResource("4_as2nw")
+packed_wall_10 = ExtResource("9_5bcqq")
 packed_wall_15 = ExtResource("10_xq0ec")
 packed_wall_20 = ExtResource("11_7feia")
+
+[node name="TorchBuilder" parent="." instance=ExtResource("12_gx14e")]
+packed_torch = ExtResource("13_kpnu2")
+
+[node name="ColumnBuilder" parent="." instance=ExtResource("14_45211")]
+packed_column = ExtResource("15_fbdav")

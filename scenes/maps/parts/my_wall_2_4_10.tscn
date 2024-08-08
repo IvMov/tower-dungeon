@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://m7mtn3chnr7u"]
+
+[ext_resource type="PackedScene" uid="uid://bxmebiiyw11tc" path="res://assets/3d/my/wall2_4_10.glb" id="1_l708q"]
+[ext_resource type="Texture2D" uid="uid://cd6hnyliwnab4" path="res://assets/2d/textures/colormap.png" id="2_7das8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dekej"]
+albedo_texture = ExtResource("2_7das8")
+metallic = 0.3
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_a7a52"]
+points = PackedVector3Array(1, 11, 2, 1, 11, -2, -1, 11, 2, 1, 0, 2, -1, 11, -2, 1, 0, -2, -1, 0, 2, -1, 0, -2)
+
+[node name="wall2_4_10" instance=ExtResource("1_l708q")]
+
+[node name="wall" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_dekej")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="wall" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_a7a52")

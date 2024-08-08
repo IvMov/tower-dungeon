@@ -1,9 +1,13 @@
 class_name MapGenerator extends Node3D
 
 @export var has_ceil: bool = false
+@export var has_walls: bool = false
+@export var has_torches: bool = false
 @onready var wall_builder: WallBuilder = $WallBuilder
 @onready var surface_builder: SurfaceBuilder = $SurfaceBuilder
 @onready var tunel_builder: TunelBuilder = $TunelBuilder
+@onready var torch_builder: TorchBuilder = $TorchBuilder
+@onready var column_builder = $ColumnBuilder
 
 @export var paked_blank_map: PackedScene
 
@@ -11,14 +15,14 @@ class_name MapGenerator extends Node3D
 @export var DEADEND_POSSIBILITY: float = 0.0
 @export var MIN_ROOM_SIZE: int = 4 # must be dividible by CORE_TILE_SIZE
 @export var MAX_ROOM_SIZE: int = 4 # must be dividible by CORE_TILE_SIZE
-@export var MIN_TUNEL_LENGTH: int = 13 # how long tunels could be
-@export var MAX_TUNEL_LENGTH: int = 14 # how long tunels could be
+@export var MIN_TUNEL_LENGTH: int = 1 # how long tunels could be
+@export var MAX_TUNEL_LENGTH: int = 2 # how long tunels could be
 @export var DIRECTION_AVAILABILITY_CD: int = 5 # how long steps the oposite tile could not be installed
 
 const CORE_TILE_SIZE: int = 2 
 const CORE_TUNEL_SIZE: int = 4 
 
-var room_size: Vector2 = Vector2(18,70)
+var room_size: Vector2 = Vector2(46,46)
 
 var root_room_position: Vector2 = Vector2.ZERO
 var deadend_root_room_position: Vector2 = Vector2.ZERO
@@ -73,7 +77,11 @@ func generate_room() -> void:
 		create_deadend_room()
 	# saved room required to build walls - to check all deadends and etc
 	room = map.add_room(room)
-	wall_builder.add_walls(room, map)
+	if has_walls:
+		wall_builder.add_walls(room, map)
+	if has_torches:
+		torch_builder.add_torches(room, map)
+	column_builder.add_columns(room, map)
 	
 	# normal next room calcs - need to encapsulate
 	room_size = calculate_room_size()
@@ -81,7 +89,6 @@ func generate_room() -> void:
 	
 	#update ONLY after deadend spawns or not - if use it earlier  - some good directions will be blocked for pick_random_method
 	update_available_dirrections()
-
 
 
 func save_deadend_room_to_map() -> Room:
@@ -121,10 +128,14 @@ func create_deadend_room() -> void:
 			room.deadend_exit = exit_to_deadend_coordinates
 			deadend_room_size = calculate_room_size()
 			deadend_root_room_position = calc_room_start_position(deadend_room_size, deadend_entrance_coordinates, deadend_room_direction)
-			var deadend_room = save_deadend_room_to_map()
+			var deadend_room: Room = save_deadend_room_to_map()
 			adjust_room_height(deadend_room)
 			surface_builder.build_surface(deadend_room, map, has_ceil)
-			wall_builder.add_walls(deadend_room, map)
+			if has_walls:
+				wall_builder.add_walls(deadend_room, map)
+			if has_torches:
+				torch_builder.add_torches(deadend_room, map)
+			column_builder.add_columns(deadend_room, map)
 			deadend_update_available_dirrections()
 		else:
 			print("NO FREE DIRRECTIONS FOR DEADEND ROOM!")

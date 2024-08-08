@@ -1,4 +1,9 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://clptb0rjqplxi"]
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://clptb0rjqplxi"]
+
+[ext_resource type="Texture2D" uid="uid://dpo2ynfyebydj" path="res://assets/textures/Wood 9 - 128x128.png" id="1_t1io3"]
 
 [resource]
+shading_mode = 0
 albedo_color = Color(1, 0.556863, 0.380392, 1)
+albedo_texture = ExtResource("1_t1io3")
+albedo_texture_force_srgb = true

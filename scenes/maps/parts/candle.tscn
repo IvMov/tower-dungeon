@@ -65,8 +65,8 @@ size = Vector3(0.2, 0.02, 0.2)
 
 [node name="Head" type="MeshInstance3D" parent="."]
 cast_shadow = 0
-visibility_range_end = 50.0
-visibility_range_end_margin = 5.0
+visibility_range_end = 75.0
+visibility_range_end_margin = 10.0
 visibility_range_fade_mode = 1
 mesh = SubResource("CapsuleMesh_hllg6")
 
@@ -74,8 +74,7 @@ mesh = SubResource("CapsuleMesh_hllg6")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, 0.4, 0)
 light_color = Color(1, 1, 0.631373, 1)
 distance_fade_enabled = true
-distance_fade_begin = 20.0
-distance_fade_length = 5.0
+distance_fade_begin = 50.0
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="Head"]
 transform = Transform3D(-0.0170161, 0, -0.999855, 0, 1, 0, 0.999855, 0, -0.0170161, 0, 0, 0)
@@ -88,8 +87,8 @@ draw_pass_1 = SubResource("PlaneMesh_ssvn1")
 [node name="Body" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.237252, 0)
 cast_shadow = 0
-visibility_range_end = 40.0
-visibility_range_end_margin = 5.0
+visibility_range_end = 80.0
+visibility_range_end_margin = 10.0
 visibility_range_fade_mode = 2
 mesh = SubResource("CylinderMesh_vfdwx")
 

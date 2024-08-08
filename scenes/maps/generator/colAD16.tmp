@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dowdei5kin5si"]
+
+[ext_resource type="Script" path="res://scenes/maps/generator/column_builder.gd" id="1_nvtib"]
+
+[node name="ColumnBuilder" type="Node3D"]
+script = ExtResource("1_nvtib")

@@ -9,6 +9,7 @@ class_name WallBuilder extends Node3D
 
 const CORE_TILE_SIZE: int = 2
 
+
 func add_walls(room: Room, map: BlankMap) -> void:
 	print("add_walls called")
 	var packed_wall = choose_wall_and_heigh_of_room(room)
@@ -54,7 +55,8 @@ func add_walls(room: Room, map: BlankMap) -> void:
 
 func choose_wall_and_heigh_of_room(room: Room) -> PackedScene:
 	var length: float = room.size.length()
-	if length < 20:
+	#if length < 20: temporary to test my wall
+	if length < 110:
 		room.ceil_height = 10
 		return packed_wall_10
 	elif length < 40:
