@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://2c1wuft5elx7"
-path="res://.godot/imported/banner.glb-cd788374c2d6493267ad02fbef470079.scn"
+uid="uid://cqha8afkaddv4"
+path="res://.godot/imported/wizard_asset_fot_tower_of_the_wizard_scene.glb-5ef6b1c4dac1f8dbf7740afd6d655d3b.scn"
 
 [deps]
 
-source_file="res://assets/3d/terrain_kenney/banner.glb"
-dest_files=["res://.godot/imported/banner.glb-cd788374c2d6493267ad02fbef470079.scn"]
+source_file="res://assets/3d/wizard_asset_fot_tower_of_the_wizard_scene.glb"
+dest_files=["res://.godot/imported/wizard_asset_fot_tower_of_the_wizard_scene.glb-5ef6b1c4dac1f8dbf7740afd6d655d3b.scn"]
 
 [params]
 

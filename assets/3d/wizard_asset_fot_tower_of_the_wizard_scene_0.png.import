@@ -2,17 +2,18 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d38xfuyorpxgt"
-path.s3tc="res://.godot/imported/texture_13.png-c605315a13e63ad953ac2b8690e0a87b.s3tc.ctex"
+uid="uid://c1njj5527e0k3"
+path.s3tc="res://.godot/imported/wizard_asset_fot_tower_of_the_wizard_scene_0.png-58def51c2b5545277217a765a4e49c8b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={}
 
 [deps]
 
-source_file="res://assets/2d/textures/texture_13.png"
-dest_files=["res://.godot/imported/texture_13.png-c605315a13e63ad953ac2b8690e0a87b.s3tc.ctex"]
+source_file="res://assets/3d/wizard_asset_fot_tower_of_the_wizard_scene_0.png"
+dest_files=["res://.godot/imported/wizard_asset_fot_tower_of_the_wizard_scene_0.png-58def51c2b5545277217a765a4e49c8b.s3tc.ctex"]
 
 [params]
 

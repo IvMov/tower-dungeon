@@ -1,9 +1,9 @@
 [gd_scene load_steps=29 format=3 uid="uid://cnf65j1vsavti"]
 
-[ext_resource type="Texture2D" uid="uid://ohpevpebeqsc" path="res://assets/2d/textures/texture_09.png" id="1_h0cgu"]
+[ext_resource type="Texture2D" uid="uid://ohpevpebeqsc" path="res://assets/textures/texture_09.png" id="1_h0cgu"]
 [ext_resource type="BoxMesh" uid="uid://clta6k5r2s6sf" path="res://assets/3d/wall_6_2_1.tres" id="1_nvnei"]
-[ext_resource type="Texture2D" uid="uid://d38xfuyorpxgt" path="res://assets/2d/textures/texture_13.png" id="2_jw0mm"]
-[ext_resource type="Texture2D" uid="uid://cr4psdcl7j5km" path="res://assets/2d/textures/texture_02.png" id="4_uvyj7"]
+[ext_resource type="Texture2D" uid="uid://d38xfuyorpxgt" path="res://assets/textures/texture_13.png" id="2_jw0mm"]
+[ext_resource type="Texture2D" uid="uid://cr4psdcl7j5km" path="res://assets/textures/texture_02.png" id="4_uvyj7"]
 [ext_resource type="PackedScene" uid="uid://k5kg3pwlsy28" path="res://scenes/maps/parts/wall_2_4_10.tscn" id="5_lbi6g"]
 [ext_resource type="PackedScene" uid="uid://coieh5bfnjmyk" path="res://scenes/maps/parts/tunel_4_4_3.tscn" id="6_du3fr"]
 [ext_resource type="PackedScene" uid="uid://3u5p44i1b8o0" path="res://scenes/maps/parts/torch.tscn" id="6_l6x2k"]

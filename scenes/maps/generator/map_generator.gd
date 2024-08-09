@@ -22,7 +22,7 @@ class_name MapGenerator extends Node3D
 const CORE_TILE_SIZE: int = 2 
 const CORE_TUNEL_SIZE: int = 4 
 
-var room_size: Vector2 = Vector2(46,46)
+var room_size: Vector2 = Vector2(50,50)
 
 var root_room_position: Vector2 = Vector2.ZERO
 var deadend_root_room_position: Vector2 = Vector2.ZERO

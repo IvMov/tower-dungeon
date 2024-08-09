@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bh1qy5fdd3jh0"]
 
 [ext_resource type="PackedScene" uid="uid://bdkhk2xkjc8v5" path="res://assets/3d/my/floor2_2_dec.glb" id="1_axege"]
-[ext_resource type="Texture2D" uid="uid://cd6hnyliwnab4" path="res://assets/2d/textures/colormap.png" id="2_wahm1"]
+[ext_resource type="Texture2D" uid="uid://cd6hnyliwnab4" path="res://assets/textures/colormap.png" id="2_wahm1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f2lam"]
 cull_mode = 2
