@@ -1,72 +1,72 @@
 class_name WallBuilder extends Node3D
 
-# WallBuilder - can build walls around the room, avoiding tunels with height of 3 m
-# i'm noob so this map builder works now only with walls 4x2 size
+@onready var ray_cast_3d: RayCast3D = $RayCast3D
+@onready var timer: Timer = $Timer
 
-@export var packed_wall_10: PackedScene
-@export var packed_wall_15: PackedScene
+# WallBuilder - can build walls around the room, avoiding tunels with height of 4 m
+const WALL_TUNEL_MARGIN: float = Constants.WALL_HALF + Constants.CORE_TILE_SIZE/2
+
 @export var packed_wall_20: PackedScene
+@export var packed_wall_16: PackedScene
 
-const CORE_TILE_SIZE: int = 2
-
+var wall_front: Node3D
+var wall_back: Node3D
 
 func add_walls(room: Room, map: BlankMap) -> void:
+	timer.start() # give time to create previous tiles or parts
+	await timer.timeout
 	print("add_walls called")
-	var packed_wall = choose_wall_and_heigh_of_room(room)
-	var wall_front_pos = room.start_point + Vector2(CORE_TILE_SIZE/2, -CORE_TILE_SIZE)
-	var wall_back_pos = room.start_point + Vector2(CORE_TILE_SIZE/2, room.size.y*CORE_TILE_SIZE)
+	var wall_front_pos = room.start_point + Vector2(0, -Constants.CORE_TILE_SIZE/2 - Constants.WALL_HALF)
+	var wall_back_pos = room.start_point + Vector2(0, room.size.y*Constants.CORE_TILE_SIZE - Constants.CORE_TILE_SIZE/2 + Constants.WALL_HALF)
+	var is_ocupied: bool
 	var y_position: int
 	
-	for i in room.size.x/CORE_TILE_SIZE:
+	for i in room.size.x:
 		# front side
 		if i != 0:
-			wall_front_pos += Vector2(CORE_TILE_SIZE*2, 0)
-		y_position = 3 if check_is_ocupied_position(room, wall_front_pos) else 0
-		var wall_front: Node3D = packed_wall.instantiate()
+			wall_front_pos += Vector2(Constants.CORE_TILE_SIZE, 0)
+		is_ocupied = check_is_ocupied_position(room, wall_front_pos)
+		y_position = 4 if is_ocupied else 0
+		wall_front = packed_wall_20.instantiate() if !is_ocupied else packed_wall_16.instantiate()
 		map.add_tile(wall_front)
 		wall_front.global_position = Vector3(wall_front_pos.x, y_position, wall_front_pos.y)
 		wall_front.rotate_y(PI/2)
 		# back side
 		if i != 0:
-			wall_back_pos += Vector2(CORE_TILE_SIZE*2, 0)
-		y_position = 3 if check_is_ocupied_position(room, wall_back_pos) else 0
-		var wall_back: Node3D = packed_wall.instantiate()
+			wall_back_pos += Vector2(Constants.CORE_TILE_SIZE, 0)
+		is_ocupied = check_is_ocupied_position(room, wall_back_pos)
+		y_position = 4 if is_ocupied else 0
+		wall_back = packed_wall_20.instantiate() if !is_ocupied else packed_wall_16.instantiate()
 		map.add_tile(wall_back)
 		wall_back.global_position = Vector3(wall_back_pos.x, y_position, wall_back_pos.y)
 		wall_back.rotate_y(PI/2)
 		
 
-	wall_front_pos = room.start_point + Vector2(-CORE_TILE_SIZE, CORE_TILE_SIZE/2)
-	wall_back_pos = room.start_point + Vector2(room.size.x*CORE_TILE_SIZE, CORE_TILE_SIZE/2)
+	wall_front_pos = room.start_point + Vector2(-Constants.CORE_TILE_SIZE/2 - Constants.WALL_HALF, 0)
+	wall_back_pos = room.start_point + Vector2(room.size.x*Constants.CORE_TILE_SIZE - Constants.CORE_TILE_SIZE/2 + Constants.WALL_HALF, 0)
 	
-	for i in room.size.y/CORE_TILE_SIZE:
+	for i in room.size.y:
 		# front side
 		if i != 0:
-			wall_front_pos += Vector2(0, CORE_TILE_SIZE*2)
-			wall_back_pos += Vector2(0, CORE_TILE_SIZE*2)
-		var wall_front: Node3D = packed_wall.instantiate()
+			wall_front_pos += Vector2(0, Constants.CORE_TILE_SIZE)
+			wall_back_pos += Vector2(0, Constants.CORE_TILE_SIZE)
+		is_ocupied = check_is_ocupied_position(room, wall_front_pos)
+		y_position = 4 if is_ocupied else 0
+		wall_front = packed_wall_20.instantiate() if !is_ocupied else packed_wall_16.instantiate()
 		map.add_tile(wall_front)
-		y_position = 3 if check_is_ocupied_position(room, wall_front_pos) else 0
 		wall_front.global_position = Vector3(wall_front_pos.x, y_position, wall_front_pos.y)
-		var wall_back: Node3D = packed_wall.instantiate()
+		
+		is_ocupied = check_is_ocupied_position(room, wall_back_pos)
+		wall_back = packed_wall_20.instantiate() if !is_ocupied else packed_wall_16.instantiate()
 		map.add_tile(wall_back)
-		y_position = 3 if check_is_ocupied_position(room, wall_back_pos) else 0
+		y_position = 4 if is_ocupied else 0
 		wall_back.global_position = Vector3(wall_back_pos.x, y_position, wall_back_pos.y)
-
-func choose_wall_and_heigh_of_room(room: Room) -> PackedScene:
-	var length: float = room.size.length()
-	#if length < 20: temporary to test my wall
-	if length < 110:
-		room.ceil_height = 10
-		return packed_wall_10
-	elif length < 40:
-		room.ceil_height = 15
-		return packed_wall_15
-	else: 
-		room.ceil_height = 20
-		return packed_wall_20
 
 
 func check_is_ocupied_position(room: Room, desired_position: Vector2) -> bool:
-	return room.entrance == desired_position ||  room.exit == desired_position || room.deadend_exit == desired_position
-	
+	#
+	ray_cast_3d.transform.origin = Vector3(desired_position.x, 6, desired_position.y)
+	ray_cast_3d.set_target_position(Vector3(desired_position.x, 2, desired_position.y) - ray_cast_3d.global_position)
+	ray_cast_3d.force_raycast_update()
+
+	return ray_cast_3d.is_colliding()

@@ -8,6 +8,7 @@ radius = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nw88x"]
 resource_local_to_scene = true
+shading_mode = 0
 albedo_color = Color(0.067, 20, 0.059, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_0oaxs"]
@@ -15,22 +16,30 @@ resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_nw88x")
 radius = 0.05
 height = 0.1
+radial_segments = 12
+rings = 6
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hiv6u"]
+shading_mode = 0
 albedo_color = Color(0.361, 9.467, 20, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_s24hr"]
 material = SubResource("StandardMaterial3D_hiv6u")
 radius = 0.075
 height = 0.15
+radial_segments = 12
+rings = 6
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sm1hw"]
+shading_mode = 0
 albedo_color = Color(20, 0, 0.647, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_ikfpb"]
 material = SubResource("StandardMaterial3D_sm1hw")
 radius = 0.1
 height = 0.2
+radial_segments = 12
+rings = 6
 
 [node name="Soul" type="Node3D"]
 script = ExtResource("1_pe5nk")

@@ -12,9 +12,8 @@ var attemts = 0
 var next_enemy_position: Vector3
 
 func _ready():
-	idle_timer.start()
-	base_cast_time = 0.5
-	base_cooldown = 0.5
+	base_cast_time = 3
+	base_cooldown = 2
 	base_energy_cost = 5
 
 func get_sign() -> int:
@@ -46,6 +45,9 @@ func start_cast() -> void:
 		tween.tween_property(proj_inst, "scale", Vector3.ONE * 2, 0.3)
 	cast_timer.start()
 
+func stop_casting() -> void:
+	cast_timer.stop()
+	cooldown_timer.stop()
 
 func use_skill() -> void:
 	if !owner_enemy:
@@ -64,7 +66,7 @@ func calc_enemy_position() -> Vector3:
 	var target: Vector3 = global_position + Vector3(randf_range(0,10)*get_sign(), 5, randf_range(0,10) * get_sign())
 	# spend lot of time - TARGET_POSITION is not TARGET but direction VECTOR between target AND SOURCE!
 	ray_cast_3d.set_target_position(target - global_position)
-	ray_cast_3d.force_raycast_update()
+	#ray_cast_3d.force_raycast_update()
 	if !ray_cast_3d.get_collider():
 		return target
 	else:
@@ -88,7 +90,3 @@ func _on_cast_timer_timeout() -> void:
 func _on_cooldown_timer_timeout() -> void:
 	start_cast()
 
-
-func _on_idle_timer_timeout() -> void:
-	#temporary - replace with agr zone
-	start_cast()

@@ -1,4 +1,4 @@
-class_name SparkController extends BaseController
+class_name SparkControllerOld extends BaseController
 
 @export var spark_projectile: PackedScene
 @onready var projectiles_box: Node = get_tree().get_first_node_in_group("projectiles")
@@ -9,8 +9,10 @@ var cast_enabled: bool = false
 func start_cast() -> void:
 	cast_timer.wait_time = base_cast_time
 	cooldown_timer.wait_time = base_cooldown
-	
-	if is_idle: 
+	if is_on_cooldown:
+		GameEvents.emit_skill_call_failed(Enums.SkillCallFailedReason.ON_CD)
+		print("ON CD")
+	elif is_idle: 
 		print("IDLE")
 		GameEvents.emit_skill_call_failed(Enums.SkillCallFailedReason.IDLE)
 	elif !player.mana_component.minus(base_energy_cost):
@@ -20,11 +22,7 @@ func start_cast() -> void:
 	else:
 		cast_enabled = true
 		#TODO: play cast animation 
-		#no cast required it's instant skill
-		skill_cast_finished = true
-		finish_cast()
-		is_idle = true
-		
+		super.start_cast()
 
 func finish_cast() -> void:
 	if !cast_enabled:
@@ -36,7 +34,6 @@ func finish_cast() -> void:
 		skill_cast_finished = false
 	else:
 		revert_cast()
-	is_idle = false
 
 func revert_cast() -> void:
 	player.mana_component.plus(base_energy_cost*0.8)
@@ -58,10 +55,9 @@ func use_skill() -> void:
 	projectile.speed = calc_projectile_speed()
 	projectile.skill_name = skill_name
 	projectile.direction = proj_direction
-	projectile.global_position = player.camera_scene.get_camera_position() + proj_direction * player.camera_scene.get_camera_distance() * 1.01
+	projectile.global_position = player.camera_scene.get_camera_position() + proj_direction * player.camera_scene.get_camera_distance() * 1.05
 	if projectile.global_position.y <= 0:
-		print("camera staff? ")
-		projectile.global_position = player.camera_scene.get_camera_position() + proj_direction * 1.01
+		projectile.global_position = player.camera_scene.get_camera_position() + proj_direction * 1.05
 	
 
 func calc_projectile_damage() -> float:

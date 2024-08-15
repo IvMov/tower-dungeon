@@ -1,14 +1,17 @@
-[gd_scene load_steps=14 format=3 uid="uid://ci4hotqkt3ope"]
+[gd_scene load_steps=17 format=3 uid="uid://ci4hotqkt3ope"]
 
 [ext_resource type="Script" path="res://scenes/maps/generator/map_generator.gd" id="1_2pkgg"]
-[ext_resource type="PackedScene" uid="uid://4mvg628edryx" path="res://scenes/maps/parts/floor_2_2.tscn" id="2_knf83"]
+[ext_resource type="PackedScene" uid="uid://cn4nsqghphlc0" path="res://scenes/enemies/enemy_spawner.tscn" id="2_w3y2w"]
 [ext_resource type="PackedScene" uid="uid://bvcrxg7s5jq4f" path="res://scenes/maps/parts/blank_map.tscn" id="3_2lv8p"]
-[ext_resource type="PackedScene" uid="uid://bh1qy5fdd3jh0" path="res://scenes/maps/parts/floor_2_2_dec.tscn" id="5_fwckc"]
+[ext_resource type="PackedScene" uid="uid://hivbwnh6ppe1" path="res://scenes/maps/parts/8m/floor_8_8.tscn" id="4_67k0v"]
+[ext_resource type="PackedScene" uid="uid://dbv1lp0pn7xhc" path="res://scenes/enemies/tier_1_enemy.tscn" id="4_84v8g"]
+[ext_resource type="PackedScene" uid="uid://ccl06jblai5cf" path="res://scenes/maps/parts/8m/ceil_8_8.tscn" id="5_881ds"]
 [ext_resource type="PackedScene" uid="uid://ds3nsw5rlsqqb" path="res://scenes/maps/generator/wall_builder.tscn" id="6_53wkv"]
 [ext_resource type="PackedScene" uid="uid://cfo41ixivy0xh" path="res://scenes/maps/generator/tunel_builder.tscn" id="6_t1a4l"]
-[ext_resource type="PackedScene" uid="uid://csr5y4nb77hu4" path="res://scenes/maps/parts/tunel_my_4_4_3.tscn" id="7_puuxx"]
+[ext_resource type="PackedScene" uid="uid://dcui50rm1jgnl" path="res://scenes/maps/parts/8m/tunel_8_8_4.tscn" id="7_ff3e5"]
 [ext_resource type="PackedScene" uid="uid://87vtfqxsafi3" path="res://scenes/maps/generator/surface_builder.tscn" id="7_q6gww"]
-[ext_resource type="PackedScene" uid="uid://dlcryiwkxw85a" path="res://scenes/maps/parts/wall_my_2_4_10.tscn" id="9_5bcqq"]
+[ext_resource type="PackedScene" uid="uid://bxxa1p0mphroe" path="res://scenes/maps/parts/8m/wall_8_1_20.tscn" id="9_db3iy"]
+[ext_resource type="PackedScene" uid="uid://dikuuklrfrey4" path="res://scenes/maps/parts/8m/wall_8_1_16.tscn" id="10_emyw1"]
 [ext_resource type="PackedScene" uid="uid://cxn0cofct1v1b" path="res://scenes/maps/generator/torch_builder.tscn" id="12_gx14e"]
 [ext_resource type="PackedScene" uid="uid://3u5p44i1b8o0" path="res://scenes/maps/parts/torch.tscn" id="13_kpnu2"]
 [ext_resource type="PackedScene" uid="uid://dowdei5kin5si" path="res://scenes/maps/generator/column_builder.tscn" id="14_45211"]
@@ -16,25 +19,35 @@
 
 [node name="MapGenerator" type="Node3D"]
 script = ExtResource("1_2pkgg")
+has_ceil = true
 has_walls = true
 has_torches = true
+has_columns = true
+MAX_ROOMS = 3
+DEADEND_POSSIBILITY = 0.2
+MIN_ROOM_SIZE = 3
+MAX_ROOM_SIZE = 10
+MIN_TUNEL_LENGTH = 2
+MAX_TUNEL_LENGTH = 7
+ROOM_SIZE = Vector2(5, 5)
 paked_blank_map = ExtResource("3_2lv8p")
-MAX_ROOMS = 50
-MIN_ROOM_SIZE = 25
-MAX_ROOM_SIZE = 25
-MIN_TUNEL_LENGTH = 10
-MAX_TUNEL_LENGTH = 10
+enemy_spawner = ExtResource("2_w3y2w")
+enemy_packed = ExtResource("4_84v8g")
 
 [node name="SurfaceBuilder" parent="." instance=ExtResource("7_q6gww")]
-floors_packed = Array[PackedScene]([ExtResource("2_knf83"), ExtResource("5_fwckc")])
+floor_packed = ExtResource("4_67k0v")
+ceil_packed = ExtResource("5_881ds")
 
 [node name="TunelBuilder" parent="." instance=ExtResource("6_t1a4l")]
-packed_tunel = ExtResource("7_puuxx")
+packed_tunel = ExtResource("7_ff3e5")
+base_candle_cd = 1
 
 [node name="WallBuilder" parent="." instance=ExtResource("6_53wkv")]
-packed_wall_10 = ExtResource("9_5bcqq")
+packed_wall_20 = ExtResource("9_db3iy")
+packed_wall_16 = ExtResource("10_emyw1")
 
 [node name="TorchBuilder" parent="." instance=ExtResource("12_gx14e")]
+torch_step = 3
 packed_torch = ExtResource("13_kpnu2")
 
 [node name="ColumnBuilder" parent="." instance=ExtResource("14_45211")]

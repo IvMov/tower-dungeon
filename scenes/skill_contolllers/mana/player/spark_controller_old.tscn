@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddp60ct8halhn"]
+
+[ext_resource type="PackedScene" uid="uid://jut3uwfl054l" path="res://scenes/skill_contolllers/base_controller.tscn" id="1_ak7us"]
+[ext_resource type="Script" path="res://scenes/skill_contolllers/mana/player/spark_controller_old.gd" id="2_ufbfl"]
+
+[node name="SparkControllerOld" instance=ExtResource("1_ak7us")]
+script = ExtResource("2_ufbfl")
+spark_projectile = null
+
+[node name="IdleTimer" parent="." index="2"]
+wait_time = 0.3

@@ -1,6 +1,5 @@
 class_name TorchBuilder extends Node3D
 
-const CORE_TILE_SIZE: int = 2
 
 @export var torch_height: int = 5
 @export var margin: float = 0.1
@@ -18,22 +17,22 @@ func add_torches(room: Room, map: BlankMap)-> void:
 	print("add_torches called")
 	
 	#left side
-	var torch_position = room.start_point + Vector2(-CORE_TILE_SIZE/2, -CORE_TILE_SIZE/2 + margin)
+	var torch_position = room.start_point + Vector2(-Constants.CORE_TILE_SIZE/2, -Constants.CORE_TILE_SIZE/2 + margin)
 	var num: int = calc_num(room.size.x)
 	place_torches(torch_position, num, 1, 1, 0)
 	
 	#front side
-	torch_position = room.start_point + Vector2(room.size.x * CORE_TILE_SIZE - CORE_TILE_SIZE/2 - margin, -CORE_TILE_SIZE/2)
+	torch_position = room.start_point + Vector2(room.size.x * Constants.CORE_TILE_SIZE - Constants.CORE_TILE_SIZE/2 - margin, -Constants.CORE_TILE_SIZE/2)
 	num = calc_num(room.size.y)
 	place_torches(torch_position, num, 1, 0, 1)
 
 	#right side
-	torch_position = room.start_point + Vector2(room.size.x * CORE_TILE_SIZE - CORE_TILE_SIZE/2, room.size.y * CORE_TILE_SIZE - CORE_TILE_SIZE/2 - margin)
+	torch_position = room.start_point + Vector2(room.size.x * Constants.CORE_TILE_SIZE - Constants.CORE_TILE_SIZE/2, room.size.y * Constants.CORE_TILE_SIZE - Constants.CORE_TILE_SIZE/2 - margin)
 	num = calc_num(room.size.x)
 	place_torches(torch_position, num, -1, 1, 0)
 
 	#back side
-	torch_position = room.start_point + Vector2(-CORE_TILE_SIZE/2 + margin, room.size.y * CORE_TILE_SIZE - CORE_TILE_SIZE/2)
+	torch_position = room.start_point + Vector2(-Constants.CORE_TILE_SIZE/2 + margin, room.size.y * Constants.CORE_TILE_SIZE - Constants.CORE_TILE_SIZE/2)
 	num = calc_num(room.size.y)
 	place_torches(torch_position, num, -1, 0, 1)
 	
@@ -42,13 +41,13 @@ func add_torches(room: Room, map: BlankMap)-> void:
 #  order ->  1 or -1 to achieve minus functionality(stepback order)
 #  x_step and or y_step 1 yes 0 no
 func place_torches(start_pos: Vector2, num: int, order: int, x_step: int, y_step: int) -> void:
-	var core_step: float = CORE_TILE_SIZE * (torch_step - old_remainder)
+	var core_step: float = Constants.CORE_TILE_SIZE * (torch_step - old_remainder)
 	var torch_position: Vector2 = start_pos
 	for i in num:
 		torch_position += Vector2(core_step * x_step * order, core_step * y_step * order)
 		create_torch(torch_position)
 		if i == 0:
-			core_step = CORE_TILE_SIZE * torch_step
+			core_step = Constants.CORE_TILE_SIZE * torch_step
 
 
 func calc_num(side_length: float)-> int:

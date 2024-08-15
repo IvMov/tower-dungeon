@@ -23,6 +23,7 @@ GameStage="*res://autoload/game_stage.tscn"
 GameEvents="*res://autoload/game_events.tscn"
 PlayerParameters="*res://autoload/player_parameters.tscn"
 EnemyParameters="*res://autoload/enemy_parameters.tscn"
+Constants="*res://autoload/constants.tscn"
 
 [display]
 
@@ -136,3 +137,7 @@ locale/translations=PackedStringArray("res://assets/translation/text.en.translat
 3d_physics/layer_4="Souls"
 3d_physics/layer_10="Player"
 3d_physics/layer_11="Enemies"
+
+[physics]
+
+3d/default_gravity=20.0

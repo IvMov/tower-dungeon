@@ -13,8 +13,6 @@ func _ready():
 
 # damage things
 func do_damage() -> float:
-	print(global_position) 
-	print(player.global_position)
 	return kick_skill_controller.do_damage()
 
 func stop_damage() -> void:
@@ -22,6 +20,7 @@ func stop_damage() -> void:
 
 # targeting and movement
 func detect_target(target_player: Player):
+	print("detected")
 	is_target_detected = true
 	player = target_player
 	idle_moving_controller.stop_skill()

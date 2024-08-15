@@ -2315,7 +2315,7 @@ radius = 4.0
 [node name="Tier1Enemy" node_paths=PackedStringArray("animation_player") instance=ExtResource("1_4vmlr")]
 script = ExtResource("2_ahays")
 enemy_name = "tier_1_enemy"
-speed = 100.0
+speed = 180.0
 animation_player = NodePath("character-orc2/AnimationPlayer")
 
 [node name="EffectFlashComponent" parent="." index="0" node_paths=PackedStringArray("meshes")]
@@ -2350,7 +2350,7 @@ bones/1/parent = 0
 bones/1/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.083571, 0.17625, -0.02375)
 bones/1/enabled = true
 bones/1/position = Vector3(0.083571, 0.17625, -0.02375)
-bones/1/rotation = Quaternion(0.0680153, 0, 0, 0.997684)
+bones/1/rotation = Quaternion(0, 0, 0, 1)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "leg-right"
 bones/2/parent = 0
@@ -2409,3 +2409,5 @@ shape = SubResource("CylinderShape3D_nuw01")
 [node name="ChasePlayerTimer" type="Timer" parent="Timers" index="0"]
 wait_time = 5.0
 one_shot = true
+
+[connection signal="timeout" from="Timers/ChasePlayerTimer" to="." method="_on_chase_player_timer_timeout"]

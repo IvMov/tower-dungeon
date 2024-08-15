@@ -4,7 +4,7 @@ class_name IdleMovingController extends BaseController
 var should_move: bool = false
 
 func _ready():
-	base_cooldown = 4
+	base_cooldown = 2
 	base_cast_time = 3
 	# cooldown - changes walking and not walking periods
 	cooldown_timer.wait_time = randf_range(base_cooldown/2, base_cooldown*2)

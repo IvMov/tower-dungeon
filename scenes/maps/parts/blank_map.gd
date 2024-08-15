@@ -1,6 +1,7 @@
 class_name  BlankMap extends Node3D
 
 @onready var navigation_region_3d: NavigationRegion3D = $NavigationRegion3D
+@onready var environment: Node3D = $Environment
 
 var rooms: Dictionary
 var id_counter: int = 0
@@ -17,7 +18,17 @@ func add_room(room: Room) -> Room:
 func get_room_by_id(room_id: int) -> Room:
 	return rooms[room_id]
 
+func add_object(object: Node3D) -> void:
+	if !environment:
+		environment = $Environment
+	environment.add_child(object)
+
 func add_tile(tile: Node3D) -> void:
+	if !environment:
+		environment = $Environment
+	environment.add_child(tile)
+
+func add_navigation_tile(tile: Node3D) -> void:
 	if !navigation_region_3d:
 		navigation_region_3d = $NavigationRegion3D
 	navigation_region_3d.add_child(tile)

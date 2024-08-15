@@ -12,7 +12,7 @@ albedo_color = Color(30.1765, 1, 1, 0.564706)
 material = SubResource("StandardMaterial3D_ofynk")
 radius = 0.2
 height = 0.4
-radial_segments = 16
+radial_segments = 8
 rings = 4
 
 [node name="EnemySpawnerProjectile" type="Node3D"]

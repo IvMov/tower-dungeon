@@ -31,7 +31,7 @@ class_name BasicEnemy extends CharacterBody3D
 @export var speed: float
 @export var animation_player: AnimationPlayer
 
-var run_speed: float = speed * 1.5
+var run_speed: float = speed * 3
 var current_speed: float = speed
 var actions_animations: Array[String] = [
 	"attack-melee-right", 
@@ -44,11 +44,13 @@ var actions_animations: Array[String] = [
 
 var player: Player
 var direction: Vector3
-var rotation_speed: float = 5
+var rotation_speed: float = 10
 var idle_radius: float = 2
+var agr_radius: float = 4
 
 var can_move: bool = true
 var is_runing: bool = false
+var is_dodging: bool = false
 var is_pushed: bool = false
 var is_dying: bool = false
 var is_fighting: bool = false
@@ -76,9 +78,11 @@ func _physics_process(delta):
 		if ray_cast_3d.get_collider() && !player:
 			relocate_enemy()
 			current_speed = speed
-	if !is_pushed:
+	if !is_pushed && !is_dodging:
 		chase_player()
 		current_speed = speed if !is_runing else run_speed
+	if is_dodging:
+		current_speed = speed * 1.5
 	accelerate_to_player(delta)
 	move_and_slide()
 
@@ -112,7 +116,7 @@ func lost_target() -> void:
 	pass
 
 func chase_player() -> void:
-	if !player:
+	if !player || is_dodging:
 		return
 	navigation_agent_3d.target_position = player.global_position
 	var next_position = navigation_agent_3d.get_next_path_position()
@@ -125,9 +129,10 @@ func chase_player() -> void:
 	rotation.x = 0 # fix vertical rotation
 
 func relocate_enemy() -> void:
+	current_speed = run_speed
 	var target_point: Vector3 = Vector3(global_position.x + (idle_radius * randf() * get_random_sign()), global_position.y, global_position.z + (get_random_sign()* idle_radius * randf())) 
 	direction = (target_point - transform.origin).normalized()
-	var up = Vector3(0, 1, 0) # Assuming up is the Y-axis
+	var up = Vector3(0, 1, 0) 
 	var right = up.cross(direction).normalized()
 	var forward = direction
 	var new_basis = Basis(right, up, forward)
@@ -144,12 +149,12 @@ func stop_enemy() -> void:
 
 # agr area handling
 func expand_agr_area_size() -> void:
-	agr_collision.shape.height = 8
-	agr_collision.shape.radius = 8
+	agr_collision.shape.height = agr_radius * 2
+	agr_collision.shape.radius = agr_radius * 2
 
 func reset_agr_area_size() -> void:
-	agr_collision.shape.height = 4
-	agr_collision.shape.radius = 4
+	agr_collision.shape.height = agr_radius
+	agr_collision.shape.radius = agr_radius
 
 
 # trash

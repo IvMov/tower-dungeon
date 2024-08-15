@@ -4,3 +4,14 @@
 
 [node name="WallBuilder" type="Node3D"]
 script = ExtResource("1_jpjnu")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+exclude_parent = false
+target_position = Vector3(0, -2, 0)
+hit_from_inside = true
+collide_with_areas = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true

@@ -56,7 +56,7 @@ height = 1.0
 radial_segments = 8
 rings = 4
 
-[node name="Torch" type="Node3D"]
+[node name="Torch" type="MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.214, 6.24808, 0.843736)
 
 [node name="Head" type="MeshInstance3D" parent="."]
@@ -69,7 +69,6 @@ mesh = SubResource("CapsuleMesh_eu3do")
 [node name="OmniLight3D" type="OmniLight3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.43051e-05, 0)
 light_color = Color(1, 1, 0.631373, 1)
-shadow_enabled = true
 shadow_bias = 0.5
 shadow_transmittance_bias = 0.1
 shadow_opacity = 0.8
