@@ -43,5 +43,3 @@ func collect() -> void:
 func _on_area_3d_area_entered(_area: Area3D) -> void:
 	GameEvents.emit_souls_collect(global_position, souls_count)
 	collect()
-
-

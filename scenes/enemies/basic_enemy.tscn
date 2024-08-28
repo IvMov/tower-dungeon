@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ca0ysw5vmydwd"]
+[gd_scene load_steps=14 format=3 uid="uid://ca0ysw5vmydwd"]
 
 [ext_resource type="Script" path="res://scenes/enemies/basic_enemy.gd" id="1_f284f"]
 [ext_resource type="PackedScene" uid="uid://d3xyibv2r68ev" path="res://scenes/components/soul_component.tscn" id="3_7qqhi"]
@@ -10,6 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://c5b0526vcqecl" path="res://scenes/components/stats/stamina_component.tscn" id="5_y26qn"]
 [ext_resource type="PackedScene" uid="uid://dru8xg5iulexd" path="res://scenes/ui/bars/stamina_bar.tscn" id="6_eviuc"]
 [ext_resource type="PackedScene" uid="uid://bl3os4c1rpj0j" path="res://scenes/ui/bars/mana_bar.tscn" id="7_5sd50"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_2mbyc"]
+resource_local_to_scene = true
+height = 0.2
+radius = 0.2
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_e3e2x"]
 resource_local_to_scene = true
@@ -77,6 +82,13 @@ path_max_distance = 30.01
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.397904, 0)
 target_position = Vector3(0, 0, 1)
 
+[node name="CallEnemyAreaClient" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2048
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CallEnemyAreaClient"]
+shape = SubResource("CylinderShape3D_2mbyc")
+
 [node name="AgrArea" type="Area3D" parent="."]
 collision_layer = 1024
 collision_mask = 512
@@ -92,8 +104,14 @@ shape = SubResource("CapsuleShape3D_aa2io")
 
 [node name="Timers" type="Node" parent="."]
 
+[node name="ChasePlayerTimer" type="Timer" parent="Timers"]
+wait_time = 4.0
+one_shot = true
+
 [node name="PushTimer" type="Timer" parent="Timers"]
 wait_time = 0.5
 one_shot = true
 
+[connection signal="area_exited" from="CallEnemyAreaClient" to="." method="_on_call_enemy_area_client_area_exited"]
+[connection signal="timeout" from="Timers/ChasePlayerTimer" to="." method="_on_chase_player_timer_timeout"]
 [connection signal="timeout" from="Timers/PushTimer" to="." method="_on_push_timer_timeout"]

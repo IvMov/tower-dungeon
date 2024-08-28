@@ -1,12 +1,12 @@
 class_name Tier1Enemy extends BasicEnemy
 
-@onready var chase_player_timer = $Timers/ChasePlayerTimer
-
 @onready var kick_skill_controller: KickSkillController = $SkillBox/KickSkillController
 @onready var dodge_skill_controller: DodgeSkillController = $SkillBox/DodgeSkillController
 @onready var idle_moving_controller: IdleMovingController = $SkillBox/IdleMovingController
+@onready var call_other_enemies_controller: CallOtherEnemiesController = $SkillBox/CallOtherEnemiesController
 
 func _ready():
+	agr_radius = 8
 	hp_bar.update(health_component.current_value, health_component.max_value)
 	stamina_bar.update(stamina_component.current_value, stamina_component.max_value)
 	mana_bar.update(mana_component.current_value, mana_component.max_value)
@@ -26,7 +26,12 @@ func detect_target(target_player: Player):
 	idle_moving_controller.stop_skill()
 	chase_player_timer.stop()
 	expand_agr_area_size()
-	
+	call_other_enemies_controller.use_skill()
+
+func agr_on_player():
+	super.agr_on_player()
+	call_other_enemies_controller.use_skill()
+
 func push_back(player_position: Vector3, push_power: float) -> void:
 	if is_runing:
 		stamina_component.plus(dodge_skill_controller.base_energy_cost)
@@ -39,11 +44,11 @@ func lost_target():
 	is_target_detected = false
 	chase_player_timer.start()
 
+
 # timeout and area signals handling
 func _on_chase_player_timer_timeout():
+	super._on_chase_player_timer_timeout();
 	if !is_target_detected:
 		reset_agr_area_size()
-		stop_enemy()
-		player = null
 		idle_moving_controller.use_skill()
 

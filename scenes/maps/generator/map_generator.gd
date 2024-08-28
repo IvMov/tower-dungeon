@@ -142,7 +142,7 @@ func create_deadend_room() -> void:
 			deadend_room.ceil_height = 20
 			surface_builder.build_surface(deadend_room, map, has_ceil)
 			if has_walls:
-				wall_builder.add_wall(deadend_room, map)
+				wall_builder.add_walls(deadend_room, map)
 			if has_torches:
 				torch_builder.add_torches(deadend_room, map)
 			if has_columns:

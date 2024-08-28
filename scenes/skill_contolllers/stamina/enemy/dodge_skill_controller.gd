@@ -16,11 +16,8 @@ func use_skill() -> void:
 		# animate - no stamina
 
 func _on_cooldown_timer_timeout() -> void:
-	enemy.is_runing = false
-	enemy.is_dodging = false
-	enemy.player = get_tree().get_first_node_in_group("player")
-	enemy.chase_player_timer.start()
+	enemy.agr_on_player()
 
 func _on_dodge_area_area_entered(_area: Area3D):
-	if !enemy.is_runing :
+	if !enemy.is_runing:
 		use_skill()

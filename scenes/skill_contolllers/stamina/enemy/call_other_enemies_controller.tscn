@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://crd6vmrg3liuw"]
+
+[ext_resource type="PackedScene" uid="uid://jut3uwfl054l" path="res://scenes/skill_contolllers/base_controller.tscn" id="1_l1n6x"]
+[ext_resource type="Script" path="res://scenes/skill_contolllers/stamina/enemy/call_other_enemies_controller.gd" id="2_5p8cy"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_e6exe"]
+resource_local_to_scene = true
+height = 1.0
+radius = 0.1
+
+[node name="CallOtherEnemiesController" instance=ExtResource("1_l1n6x")]
+script = ExtResource("2_5p8cy")
+
+[node name="CooldownTimer" parent="." index="1"]
+wait_time = 5.0
+
+[node name="CallArea" type="Area3D" parent="." index="3"]
+collision_layer = 2048
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CallArea" index="0"]
+shape = SubResource("CylinderShape3D_e6exe")

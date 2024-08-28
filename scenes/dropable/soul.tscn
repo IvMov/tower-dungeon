@@ -8,38 +8,48 @@ radius = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nw88x"]
 resource_local_to_scene = true
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
 shading_mode = 0
-albedo_color = Color(0.067, 20, 0.059, 1)
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 10, 0, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_0oaxs"]
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_nw88x")
 radius = 0.05
 height = 0.1
-radial_segments = 12
-rings = 6
+radial_segments = 8
+rings = 4
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hiv6u"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
 shading_mode = 0
-albedo_color = Color(0.361, 9.467, 20, 1)
+albedo_color = Color(0, 5, 10, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_s24hr"]
 material = SubResource("StandardMaterial3D_hiv6u")
 radius = 0.075
 height = 0.15
-radial_segments = 12
-rings = 6
+radial_segments = 8
+rings = 4
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sm1hw"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
 shading_mode = 0
-albedo_color = Color(20, 0, 0.647, 1)
+albedo_color = Color(10, 0, 0, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_ikfpb"]
 material = SubResource("StandardMaterial3D_sm1hw")
 radius = 0.1
 height = 0.2
-radial_segments = 12
-rings = 6
+radial_segments = 8
+rings = 4
 
 [node name="Soul" type="Node3D"]
 script = ExtResource("1_pe5nk")
@@ -54,7 +64,6 @@ shape = SubResource("SphereShape3D_52m38")
 [node name="Tier1SoulParticle" type="GPUParticles3D" parent="."]
 transparency = 0.9
 cast_shadow = 0
-emitting = false
 amount = 1
 lifetime = 10.0
 interp_to_end = 1.0
@@ -64,7 +73,6 @@ draw_pass_1 = SubResource("SphereMesh_0oaxs")
 [node name="Tier2SoulParticle" type="GPUParticles3D" parent="."]
 transparency = 0.9
 cast_shadow = 0
-emitting = false
 amount = 1
 lifetime = 10.0
 interp_to_end = 1.0
@@ -74,11 +82,13 @@ draw_pass_1 = SubResource("SphereMesh_s24hr")
 [node name="Tier3SoulParticle" type="GPUParticles3D" parent="."]
 transparency = 0.9
 cast_shadow = 0
-emitting = false
 amount = 1
 lifetime = 10.0
 interp_to_end = 1.0
 process_material = ExtResource("2_onyni")
 draw_pass_1 = SubResource("SphereMesh_ikfpb")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+omni_range = 1.0
 
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

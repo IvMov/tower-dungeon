@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cn4nsqghphlc0"]
+[gd_scene load_steps=20 format=3 uid="uid://cn4nsqghphlc0"]
 
 [ext_resource type="PackedScene" uid="uid://ca0ysw5vmydwd" path="res://scenes/enemies/basic_enemy.tscn" id="1_uk4uo"]
 [ext_resource type="Script" path="res://scenes/enemies/enemy_spawner.gd" id="2_6rjot"]
@@ -53,6 +53,11 @@ _data = {
 "walk": SubResource("Animation_jdfxs")
 }
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_v63dg"]
+resource_local_to_scene = true
+height = 0.2
+radius = 0.2
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_58i0a"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_1738h"]
@@ -91,10 +96,13 @@ regen = 0.0
 owner_enemy = NodePath("../..")
 enemies = Array[PackedScene]([ExtResource("4_mtjbe")])
 
+[node name="CollisionShape3D" parent="CallEnemyAreaClient" index="0"]
+shape = SubResource("CylinderShape3D_v63dg")
+
 [node name="AgrCollision" parent="AgrArea" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
 shape = SubResource("BoxShape3D_58i0a")
 
-[node name="EnemyCollision" parent="." index="10"]
+[node name="EnemyCollision" parent="." index="11"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CylinderShape3D_1738h")

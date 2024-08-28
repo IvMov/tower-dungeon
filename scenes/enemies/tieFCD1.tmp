@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://dbv1lp0pn7xhc"]
+[gd_scene load_steps=43 format=3 uid="uid://dbv1lp0pn7xhc"]
 
 [ext_resource type="PackedScene" uid="uid://ca0ysw5vmydwd" path="res://scenes/enemies/basic_enemy.tscn" id="1_4vmlr"]
 [ext_resource type="Script" path="res://scenes/enemies/tier_1_enemy.gd" id="2_ahays"]
@@ -2308,11 +2308,6 @@ _data = {
 "walk": SubResource("Animation_hcse1")
 }
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_ogdi0"]
-resource_local_to_scene = true
-height = 0.2
-radius = 0.2
-
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_nuw01"]
 resource_local_to_scene = true
 height = 4.0
@@ -2410,9 +2405,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_nuqbu")
 libraries = {
 "": SubResource("AnimationLibrary_nxnuc")
 }
-
-[node name="CollisionShape3D" parent="CallEnemyAreaClient" index="0"]
-shape = SubResource("CylinderShape3D_ogdi0")
 
 [node name="AgrCollision" parent="AgrArea" index="0"]
 shape = SubResource("CylinderShape3D_nuw01")

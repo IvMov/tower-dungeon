@@ -7,8 +7,8 @@ class_name BasicEnemy extends CharacterBody3D
 # assign to EffectFlashComponent the enemy meshes
 # add missing animations to actions_animations and animation-player
 
-
-@onready var agr_area = $AgrArea
+@onready var call_enemy_area_client: Area3D = $CallEnemyAreaClient
+@onready var agr_area: Area3D = $AgrArea
 @onready var agr_collision = $AgrArea/AgrCollision
 @onready var ray_cast_3d = $RayCast3D
 
@@ -25,6 +25,7 @@ class_name BasicEnemy extends CharacterBody3D
 @onready var soul_component: SoulComponent = $SoulComponent
 @onready var souls_drop_component: SoulsDropComponent = $SoulsDropComponent
 @onready var push_timer: Timer = $Timers/PushTimer
+@onready var chase_player_timer: Timer = $Timers/ChasePlayerTimer
 
 
 @export var enemy_name: String
@@ -115,6 +116,12 @@ func lost_target() -> void:
 	# to be implemented in child regarding skills
 	pass
 
+func agr_on_player() -> void:
+	is_runing = false
+	is_dodging = false
+	player = get_tree().get_first_node_in_group("player")
+	chase_player_timer.start()
+
 func chase_player() -> void:
 	if !player || is_dodging:
 		return
@@ -149,12 +156,10 @@ func stop_enemy() -> void:
 
 # agr area handling
 func expand_agr_area_size() -> void:
-	agr_collision.shape.height = agr_radius * 2
 	agr_collision.shape.radius = agr_radius * 2
 
 func reset_agr_area_size() -> void:
-	agr_collision.shape.height = agr_radius
-	agr_collision.shape.radius = agr_radius
+		agr_collision.shape.radius = agr_radius
 
 
 # trash
@@ -168,3 +173,13 @@ func get_random_sign() -> int:
 
 func _on_push_timer_timeout():
 	is_pushed = false
+
+func _on_chase_player_timer_timeout():
+	if !is_target_detected:
+		stop_enemy()
+		player = null
+
+
+func _on_call_enemy_area_client_area_exited(area):
+	if !is_dying:
+		agr_on_player()
