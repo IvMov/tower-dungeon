@@ -19,12 +19,16 @@
 
 [node name="MapGenerator" type="Node3D"]
 script = ExtResource("1_2pkgg")
+has_ceil = true
 has_walls = true
+has_torches = true
 has_columns = true
-MAX_ROOMS = 15
+MAX_ROOMS = 10
 DEADEND_POSSIBILITY = 0.5
 MIN_ROOM_SIZE = 3
-MAX_ROOM_SIZE = 5
+MAX_ROOM_SIZE = 6
+MIN_TUNEL_LENGTH = 2
+MAX_TUNEL_LENGTH = 4
 ROOM_SIZE = Vector2(5, 5)
 paked_blank_map = ExtResource("3_2lv8p")
 enemy_spawner = ExtResource("2_w3y2w")

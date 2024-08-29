@@ -19,12 +19,19 @@ func agr_on_player() -> void:
 
 func detect_target(target_player: Player) -> void:
 	if boost_cast:
-		spawn_enemy_controller.start_boost_cast(boost_enemies_num)
 		boost_cast = false
+		spawn_enemy_controller.start_boost_cast(boost_enemies_num)
+		
 	else:
 		spawn_enemy_controller.start_cast()
 	is_player_near = true
 
+func get_damage(damager_location: Vector3, value: float, push_power: float) -> bool:
+	if boost_cast:
+		boost_cast = false
+		spawn_enemy_controller.start_boost_cast(boost_enemies_num)
+		value = value if is_player_near else value/3
+	return health_component.minus(value)
 
 func lost_target() -> void:
 	spawn_enemy_controller.stop_casting()

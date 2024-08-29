@@ -6,7 +6,9 @@ class_name Tier1Enemy extends BasicEnemy
 @onready var call_other_enemies_controller: CallOtherEnemiesController = $SkillBox/CallOtherEnemiesController
 
 func _ready():
+	run_speed = speed * 2
 	agr_radius = 8
+	chase_player_timer.wait_time = randi_range(1, 10)
 	hp_bar.update(health_component.current_value, health_component.max_value)
 	stamina_bar.update(stamina_component.current_value, stamina_component.max_value)
 	mana_bar.update(mana_component.current_value, mana_component.max_value)
@@ -39,16 +41,22 @@ func push_back(player_position: Vector3, push_power: float) -> void:
 	super.push_back(player_position, push_power)
 	
 func lost_target():
+	speed_up_timer.stop()
+	is_runing = false
 	if agr_area.disable_mode: 
 		return
 	is_target_detected = false
 	chase_player_timer.start()
+	print("chase timer %s" % chase_player_timer.wait_time)
 
 
 # timeout and area signals handling
 func _on_chase_player_timer_timeout():
 	super._on_chase_player_timer_timeout();
+	
 	if !is_target_detected:
+		speed_up_timer.stop()
+		is_runing = false
 		reset_agr_area_size()
 		idle_moving_controller.use_skill()
 

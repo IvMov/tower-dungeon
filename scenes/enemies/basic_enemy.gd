@@ -27,6 +27,7 @@ class_name BasicEnemy extends CharacterBody3D
 @onready var push_timer: Timer = $Timers/PushTimer
 @onready var chase_player_timer: Timer = $Timers/ChasePlayerTimer
 @onready var start_timer: Timer = $Timers/StartTimer
+@onready var speed_up_timer = $Timers/SpeedUpTimer
 
 
 @export var enemy_name: String
@@ -34,7 +35,7 @@ class_name BasicEnemy extends CharacterBody3D
 @export var animation_player: AnimationPlayer
 
 var start_position: Vector3
-var run_speed: float = speed * 3
+var run_speed: float = speed * 2
 var current_speed: float = speed
 var actions_animations: Array[String] = [
 	"attack-melee-right", 
@@ -81,11 +82,10 @@ func _physics_process(delta):
 		if ray_cast_3d.get_collider() && !player:
 			relocate_enemy()
 			current_speed = speed
-	if !is_pushed && !is_dodging:
+	if !is_pushed:
 		chase_player()
 		current_speed = speed if !is_runing else run_speed
-	if is_dodging:
-		current_speed = speed * 1.5
+		current_speed = speed * 1.5 if is_dodging else current_speed
 	accelerate_to_player(delta)
 	move_and_slide()
 
@@ -120,7 +120,9 @@ func lost_target() -> void:
 
 func agr_on_player() -> void:
 	print("aggr called?")
-	is_runing = false
+	random_speed()
+	if speed_up_timer.is_stopped():
+		speed_up_timer.start()
 	is_dodging = false
 	player = get_tree().get_first_node_in_group("player")
 	chase_player_timer.start()
@@ -128,6 +130,9 @@ func agr_on_player() -> void:
 func chase_player() -> void:
 	if !player || is_dodging:
 		return
+	if speed_up_timer.is_stopped():
+		speed_up_timer.start()
+		random_speed()
 	navigation_agent_3d.target_position = player.global_position
 	var next_position = navigation_agent_3d.get_next_path_position()
 	direction = (next_position - global_position).normalized()
@@ -156,6 +161,8 @@ func stop_enemy() -> void:
 	direction = Vector3.ZERO
 	velocity = Vector3.ZERO
 
+func random_speed() -> void:
+	is_runing = randf() < 0.2
 
 # agr area handling
 func expand_agr_area_size() -> void:
@@ -186,3 +193,11 @@ func _on_chase_player_timer_timeout():
 func _on_call_enemy_area_client_area_exited(area):
 	if !is_dying && start_timer.is_stopped():
 		agr_on_player()
+
+
+func _on_speed_up_timer_timeout():
+	random_speed()
+	if player:
+		speed_up_timer.start()
+	else:
+		is_runing = false
