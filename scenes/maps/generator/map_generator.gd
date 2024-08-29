@@ -114,12 +114,10 @@ func create_common_room() -> void:
 	if is_spawner:
 		var spawn: EnemySpawner = enemy_spawner.instantiate()
 		map.add_child(spawn)
+		spawn.boost_enemies_num = (room.size.x + room.size.y)
 		spawn.agr_collision.shape.size = Vector3(ROOM_SIZE.x * Constants.CORE_TILE_SIZE, room.ceil_height, ROOM_SIZE.y * Constants.CORE_TILE_SIZE)
 		spawn.global_position = Vector3(room.start_point.x + room.size.x * Constants.CORE_TILE_SIZE/2 + randi_range(-3, 3), 0,room.start_point.y +  room.size.y*Constants.CORE_TILE_SIZE/2 + randi_range(-3, 3))
-		for i in (room.size.x + room.size.y):
-			var enemy = enemy_packed.instantiate()
-			map.add_child(enemy)
-			enemy.global_position = Vector3(room.start_point.x + randf_range(1, room.size.x-1) * Constants.CORE_TILE_SIZE, randf_range(1, 10), room.start_point.y + randf_range(1, room.size.y-1) * Constants.CORE_TILE_SIZE)
+
 	next_room_direction = get_random_available_direction()
 	tunel_length = randi_range(MIN_TUNEL_LENGTH, MAX_TUNEL_LENGTH)
 	exit_and_entrance_coordinates = tunel_builder.add_tunel(tunel_length, next_room_direction, room, map)

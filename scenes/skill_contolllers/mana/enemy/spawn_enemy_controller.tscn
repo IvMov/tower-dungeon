@@ -12,4 +12,4 @@ projectile = ExtResource("3_itlw5")
 
 [node name="RayCast3D" type="RayCast3D" parent="." index="3"]
 target_position = Vector3(0, 0, 0)
-debug_shape_custom_color = Color(1, 0, 0, 1)
+collide_with_areas = true

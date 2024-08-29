@@ -26,12 +26,14 @@ class_name BasicEnemy extends CharacterBody3D
 @onready var souls_drop_component: SoulsDropComponent = $SoulsDropComponent
 @onready var push_timer: Timer = $Timers/PushTimer
 @onready var chase_player_timer: Timer = $Timers/ChasePlayerTimer
+@onready var start_timer: Timer = $Timers/StartTimer
 
 
 @export var enemy_name: String
 @export var speed: float
 @export var animation_player: AnimationPlayer
 
+var start_position: Vector3
 var run_speed: float = speed * 3
 var current_speed: float = speed
 var actions_animations: Array[String] = [
@@ -117,6 +119,7 @@ func lost_target() -> void:
 	pass
 
 func agr_on_player() -> void:
+	print("aggr called?")
 	is_runing = false
 	is_dodging = false
 	player = get_tree().get_first_node_in_group("player")
@@ -181,5 +184,5 @@ func _on_chase_player_timer_timeout():
 
 
 func _on_call_enemy_area_client_area_exited(area):
-	if !is_dying:
+	if !is_dying && start_timer.is_stopped():
 		agr_on_player()
