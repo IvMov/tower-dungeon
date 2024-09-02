@@ -111,6 +111,9 @@ func handle_skill_use(event: InputEvent) -> void:
 
 func custom_death_actions():
 	# required by health component, welcome to spagetti code
+	#- minus life
+	#- minus half of Souls
+	#- move player to last fontain
 	pass
 
 func get_damage(value: float) -> void:
