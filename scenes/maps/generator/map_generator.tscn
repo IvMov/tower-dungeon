@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://ci4hotqkt3ope"]
+[gd_scene load_steps=18 format=3 uid="uid://ci4hotqkt3ope"]
 
 [ext_resource type="Script" path="res://scenes/maps/generator/map_generator.gd" id="1_2pkgg"]
 [ext_resource type="PackedScene" uid="uid://cn4nsqghphlc0" path="res://scenes/enemies/enemy_spawner.tscn" id="2_w3y2w"]
 [ext_resource type="PackedScene" uid="uid://bvcrxg7s5jq4f" path="res://scenes/maps/parts/blank_map.tscn" id="3_2lv8p"]
 [ext_resource type="PackedScene" uid="uid://hivbwnh6ppe1" path="res://scenes/maps/parts/8m/floor_8_8.tscn" id="4_67k0v"]
 [ext_resource type="PackedScene" uid="uid://dbv1lp0pn7xhc" path="res://scenes/enemies/tier_1_enemy.tscn" id="4_84v8g"]
+[ext_resource type="PackedScene" uid="uid://btey3yhuspcew" path="res://scenes/maps/parts/player_fontain.tscn" id="4_d5frl"]
 [ext_resource type="PackedScene" uid="uid://ccl06jblai5cf" path="res://scenes/maps/parts/8m/ceil_8_8.tscn" id="5_881ds"]
 [ext_resource type="PackedScene" uid="uid://ds3nsw5rlsqqb" path="res://scenes/maps/generator/wall_builder.tscn" id="6_53wkv"]
 [ext_resource type="PackedScene" uid="uid://cfo41ixivy0xh" path="res://scenes/maps/generator/tunel_builder.tscn" id="6_t1a4l"]
@@ -24,14 +25,15 @@ has_walls = true
 has_torches = true
 has_columns = true
 MAX_ROOMS = 10
-DEADEND_POSSIBILITY = 0.5
+DEADEND_POSSIBILITY = 1.0
 MIN_ROOM_SIZE = 3
 MAX_ROOM_SIZE = 6
 MIN_TUNEL_LENGTH = 2
 MAX_TUNEL_LENGTH = 4
-ROOM_SIZE = Vector2(5, 5)
+ROOM_SIZE = Vector2(4, 8)
 paked_blank_map = ExtResource("3_2lv8p")
 enemy_spawner = ExtResource("2_w3y2w")
+packed_fontain = ExtResource("4_d5frl")
 enemy_packed = ExtResource("4_84v8g")
 
 [node name="SurfaceBuilder" parent="." instance=ExtResource("7_q6gww")]
@@ -40,7 +42,7 @@ ceil_packed = ExtResource("5_881ds")
 
 [node name="TunelBuilder" parent="." instance=ExtResource("6_t1a4l")]
 packed_tunel = ExtResource("7_ff3e5")
-base_candle_cd = 1
+base_candle_cd = 2
 
 [node name="WallBuilder" parent="." instance=ExtResource("6_53wkv")]
 packed_wall_20 = ExtResource("9_db3iy")
@@ -52,3 +54,5 @@ packed_torch = ExtResource("13_kpnu2")
 
 [node name="ColumnBuilder" parent="." instance=ExtResource("14_45211")]
 packed_column = ExtResource("15_fbdav")
+
+[node name="PlayerFontainBuilder" type="Node3D" parent="."]

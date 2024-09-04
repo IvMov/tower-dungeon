@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://w5dgd34hh3wr"]
+[gd_scene load_steps=8 format=3 uid="uid://w5dgd34hh3wr"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_vbbpw"]
 [ext_resource type="PackedScene" uid="uid://ci4hotqkt3ope" path="res://scenes/maps/generator/map_generator.tscn" id="2_ux27j"]
 [ext_resource type="PackedScene" uid="uid://b24j4s1u7ww1k" path="res://scenes/player/player.tscn" id="2_v4j8r"]
 [ext_resource type="PackedScene" uid="uid://ieuiir4uuka5" path="res://scenes/ui/crosshair_scene.tscn" id="3_s0mh3"]
 [ext_resource type="PackedScene" uid="uid://c7nfqu6eb7oqd" path="res://scenes/ui/vignette/vignette.tscn" id="6_f0ant"]
+[ext_resource type="PackedScene" uid="uid://btey3yhuspcew" path="res://scenes/maps/parts/player_fontain.tscn" id="6_yfn6a"]
 
 [sub_resource type="Environment" id="Environment_0f8ma"]
 background_energy_multiplier = 3.0
@@ -43,7 +44,7 @@ text = "LABas"
 [node name="Crosshair" parent="CanvasLayer" instance=ExtResource("3_s0mh3")]
 
 [node name="Player" parent="." instance=ExtResource("2_v4j8r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.3, 0.3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 3, -0.7)
 
 [node name="Projectiles" type="Node3D" parent="." groups=["projectiles"]]
 
@@ -55,3 +56,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.3, 0.3)
 
 [node name="Vignette" parent="." instance=ExtResource("6_f0ant")]
 visible = false
+
+[node name="PlayerFontain" parent="." instance=ExtResource("6_yfn6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 1, 0.3)

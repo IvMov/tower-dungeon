@@ -21,6 +21,7 @@ class_name MapGenerator extends Node3D
 
 @export var paked_blank_map: PackedScene
 @export var enemy_spawner: PackedScene
+@export var packed_fontain: PackedScene
 @export var enemy_packed: PackedScene
 
 var root_room_position: Vector2 = Vector2.ZERO
@@ -114,7 +115,8 @@ func create_common_room() -> void:
 	if is_spawner:
 		var spawn: EnemySpawner = enemy_spawner.instantiate()
 		map.add_child(spawn)
-		spawn.boost_enemies_num = (room.size.x + room.size.y)
+		spawn.spawn_distance = max(ROOM_SIZE.x * Constants.CORE_TILE_SIZE / 2, ROOM_SIZE.y * Constants.CORE_TILE_SIZE / 2) 
+		spawn.boost_enemies_num = (room.size.x + room.size.y)*2
 		spawn.agr_collision.shape.size = Vector3(ROOM_SIZE.x * Constants.CORE_TILE_SIZE, room.ceil_height, ROOM_SIZE.y * Constants.CORE_TILE_SIZE)
 		spawn.global_position = Vector3(room.start_point.x + room.size.x * Constants.CORE_TILE_SIZE/2 + randi_range(-3, 3), 0,room.start_point.y +  room.size.y*Constants.CORE_TILE_SIZE/2 + randi_range(-3, 3))
 

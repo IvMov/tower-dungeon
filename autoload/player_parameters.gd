@@ -8,6 +8,7 @@ const MOVE_SPEED_UP_MOD: float = 2.0
 
 const JUMP_SPEED_UP_MOD: float = 1.2
 
+var lifes: int = 3
 var current_speed: float = BASE_SPEED
 var current_air_speed: float = BASE_AIR_SPEED
 var current_jump_velocity: float = BASE_JUMP_VELOCITY

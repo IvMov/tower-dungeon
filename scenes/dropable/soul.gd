@@ -14,10 +14,13 @@ func emit(souls: Vector3):
 
 	if souls.x > 0:
 		tier_1_soul_particle.emitting = true
+		tier_1_soul_particle.speed_scale = 0.5
 	if souls.y > 0:
 		tier_2_soul_particle.emitting = true
+		tier_2_soul_particle.speed_scale = 0.5
 	if souls.z > 0:
 		tier_3_soul_particle.emitting = true
+		tier_3_soul_particle.speed_scale = 0.5
 
 func collect() -> void:
 	if tier_1_soul_particle.emitting:
@@ -34,9 +37,9 @@ func collect() -> void:
 		tier_3_soul_particle.emitting = true
 	
 	var tween = create_tween().set_parallel(true)
-	tween.tween_property(tier_1_soul_particle, "transparency", 1, 0.5)
-	tween.tween_property(tier_2_soul_particle, "transparency", 1, 0.5)
-	tween.tween_property(tier_3_soul_particle, "transparency", 1, 0.5)
+	tween.tween_property(tier_1_soul_particle, "transparency", 1, 1)
+	tween.tween_property(tier_2_soul_particle, "transparency", 1, 1)
+	tween.tween_property(tier_3_soul_particle, "transparency", 1, 1)
 	tween.chain().tween_callback(queue_free)
 
 

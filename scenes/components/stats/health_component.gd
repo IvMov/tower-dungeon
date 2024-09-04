@@ -34,18 +34,20 @@ func play_damage_animation() -> void:
 func die() -> void:
 	if owner_node.is_dying:
 		return
-	owner_node.custom_death_actions()
 	owner_node.is_dying = true
-	if owner_node is BasicEnemy:
-		owner_node.souls_drop_component.drop_soul()
-		GameEvents.emit_souls_dropped(owner_node.global_position, owner_node.soul_component.souls)
-		owner_node.agr_area.disable_mode = true
+	owner_node.custom_death_actions()
+	if owner_node.is_dying:
+		if owner_node is BasicEnemy:
+			owner_node.souls_drop_component.drop_soul()
+			GameEvents.emit_souls_dropped(owner_node.global_position, owner_node.soul_component.souls)
+			owner_node.agr_area.disable_mode = true
+		
+		owner_node.animation_player.play("die")
+		await owner_node.animation_player.animation_finished
+		var tween = create_tween()
+		tween.tween_property(owner_node, "global_position", Vector3(owner_node.global_position.x, owner_node.global_position.y+2, owner_node.global_position.z) , 0.3)
+		tween.tween_callback(owner_node.queue_free)
 	
-	owner_node.animation_player.play("die")
-	await owner_node.animation_player.animation_finished
-	var tween = create_tween()
-	tween.tween_property(owner_node, "global_position", Vector3(owner_node.global_position.x, owner_node.global_position.y+2, owner_node.global_position.z) , 0.3)
-	tween.tween_callback(owner_node.queue_free)
 
 
 func emit_health_changed(value: float) -> void:

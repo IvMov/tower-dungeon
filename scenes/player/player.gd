@@ -29,7 +29,7 @@ var actions_animations: Array[String] = [
 	"holding-both-shoot",
 	"sprint"]
 var is_dying: bool = false
-
+var last_fontain_coordinates: Vector3
 
 func _ready():
 	player_name = "test" # TODO: create simple creation screen with nickname
@@ -40,6 +40,7 @@ func _ready():
 	agr_area.area_exited.connect(on_area_exited)
 	GameEvents.damage_player.connect(on_damage_player)
 	preload_first_skill()
+	last_fontain_coordinates = global_position
 
 
 func _physics_process(delta):
@@ -110,11 +111,14 @@ func handle_skill_use(event: InputEvent) -> void:
 
 
 func custom_death_actions():
-	# required by health component, welcome to spagetti code
-	#- minus life
-	#- minus half of Souls
-	#- move player to last fontain
-	pass
+	if PlayerParameters.lifes - 1 < 0:
+		#show game end screen - menu to back to game menu, and restart game. 
+		#god of death consume all souls and paid you with some gold which can be spent to buy some heaks and bombs
+		return
+	PlayerParameters.lifes -= 1;
+	soul_component.minus(Vector3(soul_component.souls.x/2, soul_component.souls.y/2, soul_component.souls.z/2))
+	is_dying = false
+	global_position = last_fontain_coordinates
 
 func get_damage(value: float) -> void:
 	health_component.minus(value)

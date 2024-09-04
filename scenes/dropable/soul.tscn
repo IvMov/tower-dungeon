@@ -64,6 +64,7 @@ shape = SubResource("SphereShape3D_52m38")
 [node name="Tier1SoulParticle" type="GPUParticles3D" parent="."]
 transparency = 0.9
 cast_shadow = 0
+emitting = false
 amount = 1
 lifetime = 10.0
 interp_to_end = 1.0
@@ -73,6 +74,7 @@ draw_pass_1 = SubResource("SphereMesh_0oaxs")
 [node name="Tier2SoulParticle" type="GPUParticles3D" parent="."]
 transparency = 0.9
 cast_shadow = 0
+emitting = false
 amount = 1
 lifetime = 10.0
 interp_to_end = 1.0
@@ -82,6 +84,7 @@ draw_pass_1 = SubResource("SphereMesh_s24hr")
 [node name="Tier3SoulParticle" type="GPUParticles3D" parent="."]
 transparency = 0.9
 cast_shadow = 0
+emitting = false
 amount = 1
 lifetime = 10.0
 interp_to_end = 1.0

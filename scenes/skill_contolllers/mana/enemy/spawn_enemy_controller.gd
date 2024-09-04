@@ -15,6 +15,7 @@ var positions: Array[Vector3]
 var cast_stopped: bool = false
 
 
+
 func _ready():
 	base_cast_time = 3
 	base_cooldown = 2
@@ -50,7 +51,7 @@ func start_cast() -> void:
 		skill_cast_finished = true
 		#TODO: play cast animation 
 		#TODO: REFACTOR THIS STUF
-		next_enemy_position = calc_enemy_position()
+		next_enemy_position = calc_enemy_position(owner_enemy.spawn_distance)
 		var tween = create_tween()
 		var proj_inst = projectile.instantiate()
 		enemy_box.add_child(proj_inst)
@@ -78,16 +79,19 @@ func use_skill() -> void:
 	if !enemy_packed:
 		print("NO ENEMIES IN ENEMY SPAWN CONTROLLER")
 		return
-	var inst = enemy_packed.instantiate()
+	var inst: BasicEnemy = enemy_packed.instantiate()
 	enemy_box.add_child(inst)
 	inst.global_position = positions.pop_front()
-	cooldown_timer.start()
+	if randf() < 0.5:
+		inst.agr_on_player()
+	if cooldown_timer.is_stopped():
+		cooldown_timer.start()
 
-func calc_enemy_position() -> Vector3:
-	var target: Vector3 = global_position + Vector3(randf_range(0,10)*get_sign(), 5, randf_range(0,10) * get_sign())
+func calc_enemy_position(max_distanse: float) -> Vector3:
+	var target: Vector3 = global_position + Vector3(randf_range(0.1, max_distanse) * get_sign(), randf_range(5, 10), randf_range(0.1, max_distanse) * get_sign())
 	# spend lot of time - TARGET_POSITION is not TARGET but direction VECTOR between target AND SOURCE!
 	ray_cast_3d.set_target_position(target - global_position)
-	#ray_cast_3d.force_raycast_update()
+	ray_cast_3d.force_raycast_update()
 	if !ray_cast_3d.get_collider():
 		return target
 	else:
@@ -95,7 +99,7 @@ func calc_enemy_position() -> Vector3:
 		if(attemts > 10):
 			print("FIX ME - CANT SPAWN ENEMIES NORMALY, TOO MUCH TRIES!")
 			return Vector3.ONE
-		return calc_enemy_position()
+		return calc_enemy_position(max(1, max_distanse-1))
 
 
 func _on_cast_timer_timeout() -> void:

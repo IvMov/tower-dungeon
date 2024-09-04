@@ -7,3 +7,4 @@ shading_mode = 0
 albedo_color = Color(1, 0.556863, 0.380392, 1)
 albedo_texture = ExtResource("1_t1io3")
 albedo_texture_force_srgb = true
+uv1_triplanar = true

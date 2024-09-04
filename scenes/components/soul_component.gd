@@ -14,11 +14,13 @@ func minus(value: Vector3) -> Vector3:
 	var result: Vector3 = souls - value;
 	if result.x >= 0 && result.y >= 0 || result.z >= 0:
 		souls = result
-	
+	else: 
+		souls = Vector3(max(0, result.x),max(0, result.y), max(0, result.z))
 	return result
 
 # can apply negative numbers (for example fake souls - which consume some amount of souls)
 func plus(value: Vector3) -> Vector3:
+	print(value)
 	souls += value
-	
+	print("souls %s" % souls )
 	return souls
