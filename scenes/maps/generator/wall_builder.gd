@@ -15,7 +15,6 @@ var wall_back: Node3D
 func add_walls(room: Room, map: BlankMap) -> void:
 	timer.start() # give time to create previous tiles or parts
 	await timer.timeout
-	print("add_walls called")
 	var wall_front_pos = room.start_point + Vector2(0, -Constants.CORE_TILE_SIZE/2 - Constants.WALL_HALF)
 	var wall_back_pos = room.start_point + Vector2(0, room.size.y*Constants.CORE_TILE_SIZE - Constants.CORE_TILE_SIZE/2 + Constants.WALL_HALF)
 	var is_ocupied: bool

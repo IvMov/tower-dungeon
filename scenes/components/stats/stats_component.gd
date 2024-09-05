@@ -1,5 +1,7 @@
 class_name StatsComponent extends Node3D
 
+signal max_value_changed(value:float)
+
 @export var owner_node: CharacterBody3D
 
 @export var max_value: float
@@ -27,3 +29,5 @@ func run_regen() -> void:
 func _on_regen_timer_timeout() -> void:
 	run_regen()
 	
+func emit_max_value_changed(value: float) -> void:
+	max_value_changed.emit()

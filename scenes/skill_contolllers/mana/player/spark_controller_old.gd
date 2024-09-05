@@ -16,7 +16,7 @@ func start_cast() -> void:
 		print("IDLE")
 		GameEvents.emit_skill_call_failed(Enums.SkillCallFailedReason.IDLE)
 	elif !player.mana_component.minus(base_energy_cost):
-		print("NO FCKING MANA")
+		print("NO MANA")
 		# TODO: create energy component and health component abstraction layer with minus plus and etc methods.
 		GameEvents.emit_skill_call_failed(Enums.SkillCallFailedReason.NO_MANA)
 	else:
@@ -41,7 +41,6 @@ func revert_cast() -> void:
 
 
 func use_skill() -> void:
-	print(player.global_position)
 	if !player:
 		print("NO OWNER NODE SETTED TO CONTROLLER")
 		return

@@ -4,6 +4,7 @@ extends Node
 signal change_game_stage(game_stage)
 signal screen_resized()
 
+signal player_entered(player: Player)
 signal damage_player(damage: float)
 signal run_player(speed: float)
 signal aiming_player(aiming: bool)
@@ -22,6 +23,9 @@ func emit_change_game_stage(game_stage):
 
 func emit_screen_resized():
 	screen_resized.emit()
+
+func emit_player_entered(player: Player):
+	player_entered.emit(player)
 
 func emit_damage_player(damage: float):
 	damage_player.emit(damage)

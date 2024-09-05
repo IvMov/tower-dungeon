@@ -28,7 +28,6 @@ func get_sign() -> int:
 	return -1 if randf() <0.5 else 1
 	
 func start_boost_cast(num: int) -> void:
-	print("boost CALLS!")
 	fast_cast = true
 	for i in num:
 		start_cast()
@@ -63,7 +62,6 @@ func start_cast() -> void:
 		tween.tween_property(proj_inst, "global_position", next_enemy_position, base_cast_time-0.3)
 		tween.tween_property(proj_inst, "scale", Vector3.ONE * 2, 0.3)
 		positions.append(next_enemy_position)
-		print(positions)
 	if !fast_cast:
 		cast_timer.start()
 
@@ -93,6 +91,7 @@ func calc_enemy_position(max_distanse: float) -> Vector3:
 	ray_cast_3d.set_target_position(target - global_position)
 	ray_cast_3d.force_raycast_update()
 	if !ray_cast_3d.get_collider():
+		attemts = 0
 		return target
 	else:
 		attemts+=1

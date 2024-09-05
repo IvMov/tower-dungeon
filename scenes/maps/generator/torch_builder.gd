@@ -14,7 +14,6 @@ var map: BlankMap
 #API for build torch
 func add_torches(room: Room, map: BlankMap)-> void:
 	self.map = map
-	print("add_torches called")
 	
 	#left side
 	var torch_position = room.start_point + Vector2(-Constants.CORE_TILE_SIZE/2, -Constants.CORE_TILE_SIZE/2 + margin)

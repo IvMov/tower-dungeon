@@ -4,11 +4,13 @@ class_name MapGenerator extends Node3D
 @export var has_walls: bool = false
 @export var has_torches: bool = false
 @export var has_columns: bool = false
+
 @onready var wall_builder: WallBuilder = $WallBuilder
 @onready var surface_builder: SurfaceBuilder = $SurfaceBuilder
 @onready var tunel_builder: TunelBuilder = $TunelBuilder
 @onready var torch_builder: TorchBuilder = $TorchBuilder
-@onready var column_builder = $ColumnBuilder
+@onready var column_builder: ColumnBuilder = $ColumnBuilder
+@onready var player_fontain_builder: PlayerFontainBuilder = $PlayerFontainBuilder
 
 @export var MAX_ROOMS: int = 1 # how many rooms will be on map
 @export var DEADEND_POSSIBILITY: float = 0.0
@@ -21,7 +23,6 @@ class_name MapGenerator extends Node3D
 
 @export var paked_blank_map: PackedScene
 @export var enemy_spawner: PackedScene
-@export var packed_fontain: PackedScene
 @export var enemy_packed: PackedScene
 
 var root_room_position: Vector2 = Vector2.ZERO
@@ -82,10 +83,10 @@ func generate_room() -> void:
 		torch_builder.add_torches(room, map)
 	if has_columns:
 		column_builder.add_columns(room, map)
+	player_fontain_builder.add_fontain(room, map)
 	
 	# normal next room calcs - need to encapsulate
 	ROOM_SIZE = calculate_ROOM_SIZE()
-	print("room size %s" % ROOM_SIZE)
 	root_room_position = calc_room_start_position(ROOM_SIZE, next_entrance_coordinates, next_room_direction)
 	
 	#update ONLY after deadend spawns or not - if use it earlier  - some good directions will be blocked for pick_random_method
@@ -171,7 +172,6 @@ func calc_room_start_position(room: Vector2, entrance: Vector2, some_direction: 
 		Vector2.UP: 
 			next_room_start_point.x = entrance.x + Constants.CORE_TILE_SIZE - Constants.TUNEL_PADDING
 			next_room_start_point.y = calc_rand_y_root_room_position(room, entrance)
-	print("next_room_start_point %s" % next_room_start_point)
 	return next_room_start_point
 
 
@@ -200,7 +200,6 @@ func get_random_available_direction() -> Vector2:
 
 # add availability cd for new dirrection oposite dir
 func update_available_dirrections() -> void:
-	print(availability)
 	match next_room_direction:
 		Vector2.LEFT: 
 			availability[Vector2.RIGHT] = DIRECTION_AVAILABILITY_CD

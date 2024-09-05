@@ -24,24 +24,20 @@ func add_start(direction: Vector2, room: Room, map: BlankMap) -> void:
 		Vector2.LEFT: 
 			var left_x = calc_rand_x_tunel_position(room)
 			var left_y = room.start_point.y - Constants.CORE_TILE_SIZE + Constants.TUNEL_PADDING
-			print("exit to the LEFT")
 			start_tunel_coordinates = Vector2(left_x, left_y)
 			tunel_rotation = PI/2
 		Vector2.RIGHT:
 			var right_x = calc_rand_x_tunel_position(room)
 			var right_y = room.start_point.y + room.size.y * Constants.CORE_TILE_SIZE - Constants.TUNEL_PADDING
-			print("exit to the RIGHT")
 			start_tunel_coordinates = Vector2(right_x, right_y)
 			tunel_rotation = PI/2
 		Vector2.DOWN:
 			var down_x = room.start_point.x - Constants.CORE_TILE_SIZE + Constants.TUNEL_PADDING
 			var down_y = calc_rand_y_tunel_position(room)
-			print("exit to the DOWN")
 			start_tunel_coordinates = Vector2(down_x, down_y)
 		Vector2.UP: 
 			var up_x = room.start_point.x + room.size.x * Constants.CORE_TILE_SIZE - Constants.TUNEL_PADDING
 			var up_y = calc_rand_y_tunel_position(room)
-			print("exit to the UP")
 			start_tunel_coordinates = Vector2(up_x, up_y)
 			
 	#choose_room_exit_direction

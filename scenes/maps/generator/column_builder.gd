@@ -19,10 +19,7 @@ func add_columns(room:Room, map: BlankMap) -> void:
 		coordinates+= Vector2(0, step/2)
 	for i in x_num:
 		for j in y_num:
-			print(coordinates)
 			add_column(coordinates, map)
-			if(i == 0):
-				print("asd %s" % coordinates)
 			coordinates+=Vector2(0, step)
 		coordinates+=Vector2(step, 0)
 		coordinates.y = room.start_point.y + y_margin/2

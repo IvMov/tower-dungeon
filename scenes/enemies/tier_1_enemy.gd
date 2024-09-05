@@ -22,7 +22,6 @@ func stop_damage() -> void:
 
 # targeting and movement
 func detect_target(target_player: Player):
-	print("detected")
 	is_target_detected = true
 	player = target_player
 	idle_moving_controller.stop_skill()
@@ -47,7 +46,6 @@ func lost_target():
 		return
 	is_target_detected = false
 	chase_player_timer.start()
-	print("chase timer %s" % chase_player_timer.wait_time)
 
 
 # timeout and area signals handling

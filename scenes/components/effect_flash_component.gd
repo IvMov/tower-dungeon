@@ -15,7 +15,7 @@ func _ready():
 	health_component.health_changed.connect(on_health_changed)
 
 
-func on_health_changed(value: float) -> void:
+func on_health_changed(value: float, current_value: float) -> void:
 	if value < 0:
 		tween = prepare_tween()
 		change_color_to(Color.RED)

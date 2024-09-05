@@ -24,7 +24,6 @@ func add_exp(enemy_name: String, value: float) -> void:
 			add_exp(enemy_name, value - required_exp)
 	else:
 		enemy["exp"] += value
-	print(enemy_expirience)
 
 func get_enemy_data(enemy_name: String) -> Dictionary:
 	if !enemy_expirience.has(enemy_name):

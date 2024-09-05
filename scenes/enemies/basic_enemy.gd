@@ -119,7 +119,6 @@ func lost_target() -> void:
 	pass
 
 func agr_on_player() -> void:
-	print("aggr called?")
 	random_speed()
 	if speed_up_timer.is_stopped():
 		speed_up_timer.start()

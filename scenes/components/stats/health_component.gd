@@ -1,9 +1,11 @@
 class_name HealthComponent extends StatsComponent
 
-signal health_changed(value: float)
+signal health_changed(value: float, current_value: float)
 
 func _ready() -> void:
 	can_regen = true
+	emit_max_value_changed(max_value)
+	
 
 func minus(value: float) -> bool:
 	current_value = max(0, current_value - value)
@@ -56,4 +58,4 @@ func emit_health_changed(value: float) -> void:
 			owner_node.hp_bar.disable()
 		else:
 			owner_node.hp_bar.update(current_value, max_value)
-	health_changed.emit(value)
+	health_changed.emit(value, current_value)

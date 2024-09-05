@@ -36,6 +36,10 @@ mouse_cursor/tooltip_position_offset=Vector2(0, 0)
 
 import/fbx/enabled=false
 
+[gui]
+
+theme/custom="res://resources/main_theme.tres"
+
 [input]
 
 ui_left={
@@ -142,3 +146,7 @@ locale/translations=PackedStringArray("res://assets/translation/text.en.translat
 [physics]
 
 3d/default_gravity=20.0
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

@@ -20,7 +20,5 @@ func minus(value: Vector3) -> Vector3:
 
 # can apply negative numbers (for example fake souls - which consume some amount of souls)
 func plus(value: Vector3) -> Vector3:
-	print(value)
 	souls += value
-	print("souls %s" % souls )
 	return souls

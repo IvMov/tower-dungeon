@@ -2351,21 +2351,21 @@ push_skill = NodePath("../SkillBox/PushEnemySkillController")
 
 [node name="HealthComponent" parent="StatsBox" node_paths=PackedStringArray("owner_node") instance=ExtResource("5_68vlw")]
 owner_node = NodePath("../..")
-max_value = 10.0
-current_value = 10.0
+max_value = 50.0
+current_value = 50.0
 regen = 2.0
 
 [node name="ManaComponent" parent="StatsBox" node_paths=PackedStringArray("owner_node") instance=ExtResource("6_5qlxb")]
 owner_node = NodePath("../..")
 max_value = 10.0
 current_value = 10.0
-regen = 1.0
+regen = 0.5
 
 [node name="StaminaComponent" parent="StatsBox" node_paths=PackedStringArray("owner_node") instance=ExtResource("7_428qe")]
 owner_node = NodePath("../..")
 max_value = 10.0
 current_value = 10.0
-regen = 2.0
+regen = 0.5
 
 [node name="SkillBox" type="Node3D" parent="."]
 

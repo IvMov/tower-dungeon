@@ -41,6 +41,8 @@ func _ready():
 	GameEvents.damage_player.connect(on_damage_player)
 	preload_first_skill()
 	last_fontain_coordinates = global_position
+	GameEvents.emit_player_entered(self)
+	
 
 
 func _physics_process(delta):

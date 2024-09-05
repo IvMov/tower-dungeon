@@ -1,0 +1,85 @@
+[gd_scene load_steps=12 format=3 uid="uid://dh12qdjp1pf6y"]
+
+[ext_resource type="Script" path="res://scenes/ui/bars/player_bars_box.gd" id="1_8k2yp"]
+[ext_resource type="Texture2D" uid="uid://b6dw7dspqxbmj" path="res://assets/2d/hp_texture.png" id="1_iwq5y"]
+[ext_resource type="Texture2D" uid="uid://vayqbodxmy6x" path="res://assets/2d/mp_texture.png" id="2_7b3b2"]
+[ext_resource type="Texture2D" uid="uid://cod83m3evg7g3" path="res://assets/2d/stamina_texture.png" id="3_t3k1t"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4u8f8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fs6n1"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bkqw7"]
+resource_local_to_scene = true
+texture = ExtResource("1_iwq5y")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(0, 8, 22, 22)
+modulate_color = Color(1, 1, 1, 0.588235)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aus4e"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f4le4"]
+texture = ExtResource("2_7b3b2")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(6, 2, 26, 26)
+modulate_color = Color(1, 1, 1, 0.588235)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_khrlf"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oac12"]
+texture = ExtResource("3_t3k1t")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(10, 2, 22, 24)
+modulate_color = Color(1, 1, 1, 0.588235)
+
+[node name="PlayerBarsBox" type="PanelContainer"]
+self_modulate = Color(1, 1, 1, 0.588235)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_type_variation = &"PanelContainer2"
+script = ExtResource("1_8k2yp")
+
+[node name="BarsContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="HpContainer" type="PanelContainer" parent="BarsContainer"]
+material = SubResource("CanvasItemMaterial_4u8f8")
+custom_minimum_size = Vector2(400, 40)
+layout_mode = 2
+
+[node name="HpBar" type="ProgressBar" parent="BarsContainer/HpContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxEmpty_fs6n1")
+theme_override_styles/fill = SubResource("StyleBoxTexture_bkqw7")
+value = 54.18
+
+[node name="MpContainer" type="PanelContainer" parent="BarsContainer"]
+custom_minimum_size = Vector2(400, 40)
+layout_mode = 2
+
+[node name="MpBar" type="ProgressBar" parent="BarsContainer/MpContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxEmpty_aus4e")
+theme_override_styles/fill = SubResource("StyleBoxTexture_f4le4")
+value = 50.0
+
+[node name="StaminaContainer" type="PanelContainer" parent="BarsContainer"]
+custom_minimum_size = Vector2(400, 40)
+layout_mode = 2
+
+[node name="StaminaBar" type="ProgressBar" parent="BarsContainer/StaminaContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxEmpty_khrlf")
+theme_override_styles/fill = SubResource("StyleBoxTexture_oac12")
+value = 50.0
