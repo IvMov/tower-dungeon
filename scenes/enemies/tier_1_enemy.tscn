@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://dbv1lp0pn7xhc"]
+[gd_scene load_steps=45 format=3 uid="uid://dbv1lp0pn7xhc"]
 
 [ext_resource type="PackedScene" uid="uid://ca0ysw5vmydwd" path="res://scenes/enemies/basic_enemy.tscn" id="1_4vmlr"]
 [ext_resource type="Script" path="res://scenes/enemies/tier_1_enemy.gd" id="2_ahays"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bu54h1fq5wkmb" path="res://scenes/skill_contolllers/stamina/enemy/kick_skill_controller.tscn" id="3_dpkme"]
 [ext_resource type="PackedScene" uid="uid://wrldpki8le4f" path="res://scenes/skill_contolllers/stamina/enemy/dodge_skill_controller.tscn" id="4_t7pnn"]
 [ext_resource type="PackedScene" uid="uid://budg2u4t08pwr" path="res://scenes/skill_contolllers/stamina/enemy/idle_moving_controller.tscn" id="5_k3ujr"]
+[ext_resource type="PackedScene" uid="uid://41gcnflwbed5" path="res://scenes/skill_contolllers/stamina/enemy/battle_move_controller.tscn" id="6_0g0ut"]
 [ext_resource type="PackedScene" uid="uid://crd6vmrg3liuw" path="res://scenes/skill_contolllers/stamina/enemy/call_other_enemies_controller.tscn" id="6_wkmid"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dd40b"]
@@ -2339,7 +2340,10 @@ enemy = NodePath("../..")
 [node name="IdleMovingController" parent="SkillBox" index="2" node_paths=PackedStringArray("enemy") instance=ExtResource("5_k3ujr")]
 enemy = NodePath("../..")
 
-[node name="CallOtherEnemiesController" parent="SkillBox" index="3" instance=ExtResource("6_wkmid")]
+[node name="BattleMoveController" parent="SkillBox" index="3" node_paths=PackedStringArray("enemy") instance=ExtResource("6_0g0ut")]
+enemy = NodePath("../..")
+
+[node name="CallOtherEnemiesController" parent="SkillBox" index="4" instance=ExtResource("6_wkmid")]
 
 [node name="character-orc2" type="Node3D" parent="." index="6"]
 
@@ -2410,6 +2414,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_nuqbu")
 libraries = {
 "": SubResource("AnimationLibrary_nxnuc")
 }
+
+[node name="NavigationAgent3D" parent="." index="7"]
+debug_enabled = false
 
 [node name="CollisionShape3D" parent="CallEnemyAreaClient" index="0"]
 shape = SubResource("CylinderShape3D_ogdi0")

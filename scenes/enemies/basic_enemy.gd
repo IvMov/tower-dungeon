@@ -51,6 +51,10 @@ var direction: Vector3
 var rotation_speed: float = 10
 var idle_radius: float = 2
 var agr_radius: float = 4
+var angular_velocity: float = 1.0
+var current_angle: float
+var battle_move_radius: float = 3
+var battle_direction_when_radial: int = 1
 
 var can_move: bool = true
 var is_runing: bool = false
@@ -58,9 +62,18 @@ var is_dodging: bool = false
 var is_pushed: bool = false
 var is_dying: bool = false
 var is_fighting: bool = false
+
+var is_battle_move: bool = false
+var is_side_move: bool = false
+var is_back_move: bool = false
+var is_front_move: bool = false
+
 var is_target_detected: bool = false
 
+
 func _ready():
+	battle_move_radius = randf_range(2, 6)
+	battle_direction_when_radial = get_random_sign()
 	hp_bar.update(health_component.current_value, health_component.max_value)
 	stamina_bar.update(stamina_component.current_value, stamina_component.max_value)
 	mana_bar.update(mana_component.current_value, mana_component.max_value)
@@ -79,14 +92,15 @@ func _physics_process(delta):
 	if !actions_animations.has(animation_player.get_current_animation()):
 		if !is_fighting:
 			animation_player.play("walk" if velocity.length() > 0.1 else "idle")
-		if ray_cast_3d.get_collider() && !player:
-			relocate_enemy()
-			current_speed = speed
+	if ray_cast_3d.get_collider() && !player:
+		relocate_enemy()
+		current_speed
 	if !is_pushed:
-		chase_player()
 		current_speed = speed if !is_runing else run_speed
 		current_speed = speed * 1.5 if is_dodging else current_speed
-	accelerate_to_player(delta)
+		chase_player()
+	if player:
+		accelerate_to_player(delta)
 	move_and_slide()
 
 # damage things
@@ -129,12 +143,32 @@ func agr_on_player() -> void:
 func chase_player() -> void:
 	if !player || is_dodging:
 		return
+	
 	if speed_up_timer.is_stopped():
 		speed_up_timer.start()
 		random_speed()
-	navigation_agent_3d.target_position = player.global_position
-	var next_position = navigation_agent_3d.get_next_path_position()
-	direction = (next_position - global_position).normalized()
+
+	var next_position: Vector3
+	if is_front_move:
+		navigation_agent_3d.target_position = player.global_position
+		next_position = navigation_agent_3d.get_next_path_position()
+		direction = (next_position - global_position).normalized()
+	elif is_back_move:
+		current_speed = speed
+		navigation_agent_3d.target_position = player.global_position
+		next_position = navigation_agent_3d.get_next_path_position()
+		direction = (next_position - global_position).normalized()
+		direction = Vector3(-direction.x, direction.y, -direction.z)
+	elif is_side_move: 
+		current_speed = speed
+		next_position = player.global_position
+		direction = (next_position - global_position).normalized()
+		direction = (next_position - global_position).normalized()
+		direction = direction.rotated(Vector3.UP, battle_direction_when_radial * PI/2)
+	else:
+		navigation_agent_3d.target_position = player.global_position
+		next_position = navigation_agent_3d.get_next_path_position()
+		direction = (next_position - global_position).normalized()
 	var target_rotation = (next_position - global_transform.origin).normalized()
 	var current_rotation = global_transform.basis.z.normalized()
 	var new_rotation = current_rotation.lerp(target_rotation, rotation_speed * get_physics_process_delta_time())
@@ -143,6 +177,8 @@ func chase_player() -> void:
 	rotation.x = 0 # fix vertical rotation
 
 func relocate_enemy() -> void:
+	if is_front_move || is_back_move || is_side_move:
+		return
 	current_speed = run_speed
 	var target_point: Vector3 = Vector3(global_position.x + (idle_radius * randf() * get_random_sign()), global_position.y, global_position.z + (get_random_sign()* idle_radius * randf())) 
 	direction = (target_point - transform.origin).normalized()
@@ -156,12 +192,14 @@ func accelerate_to_player(delta: float) -> void:
 	velocity.x = direction.x * current_speed * delta
 	velocity.z = direction.z * current_speed * delta
 
+
 func stop_enemy() -> void:
 	direction = Vector3.ZERO
 	velocity = Vector3.ZERO
 
 func random_speed() -> void:
-	is_runing = randf() < 0.2
+	is_runing = randf() < 0.2 && is_front_move
+	
 
 # agr area handling
 func expand_agr_area_size() -> void:

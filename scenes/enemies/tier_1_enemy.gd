@@ -4,6 +4,7 @@ class_name Tier1Enemy extends BasicEnemy
 @onready var dodge_skill_controller: DodgeSkillController = $SkillBox/DodgeSkillController
 @onready var idle_moving_controller: IdleMovingController = $SkillBox/IdleMovingController
 @onready var call_other_enemies_controller: CallOtherEnemiesController = $SkillBox/CallOtherEnemiesController
+@onready var battle_move_controller: BattleMoveController = $SkillBox/BattleMoveController
 
 func _ready():
 	run_speed = speed * 2
@@ -13,8 +14,14 @@ func _ready():
 	stamina_bar.update(stamina_component.current_value, stamina_component.max_value)
 	mana_bar.update(mana_component.current_value, mana_component.max_value)
 
+func chase_player() -> void:
+	super.chase_player()
+	if player && is_instance_valid(player) && !is_battle_move && battle_move_radius >= global_position.distance_to(player.global_position):
+		battle_move_controller.use_skill()
+	
 # damage things
 func do_damage() -> float:
+	battle_direction_when_radial = get_random_sign()
 	return kick_skill_controller.do_damage()
 
 func stop_damage() -> void:
@@ -28,6 +35,7 @@ func detect_target(target_player: Player):
 	chase_player_timer.stop()
 	expand_agr_area_size()
 	call_other_enemies_controller.use_skill()
+	
 
 func agr_on_player():
 	super.agr_on_player()
@@ -46,6 +54,7 @@ func lost_target():
 		return
 	is_target_detected = false
 	chase_player_timer.start()
+	battle_move_controller.stop_skill()
 
 
 # timeout and area signals handling
