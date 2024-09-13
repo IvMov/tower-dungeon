@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bx0ydm3hsik0a"]
+
+[ext_resource type="PackedScene" uid="uid://cxg0uj7h5i450" path="res://assets/3d/my/first_tablet.glb" id="1_8e7wq"]
+
+[node name="SparkTablet" instance=ExtResource("1_8e7wq")]

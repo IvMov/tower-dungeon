@@ -53,8 +53,8 @@ var idle_radius: float = 2
 var agr_radius: float = 4
 var angular_velocity: float = 1.0
 var current_angle: float
-var battle_move_radius: float = 3
-var battle_direction_when_radial: int = 1
+var battle_move_radius: float =  randf_range(2, 6)
+var battle_direction_when_radial: int = get_random_sign()
 
 var can_move: bool = true
 var is_runing: bool = false
@@ -72,8 +72,6 @@ var is_target_detected: bool = false
 
 
 func _ready():
-	battle_move_radius = randf_range(2, 6)
-	battle_direction_when_radial = get_random_sign()
 	hp_bar.update(health_component.current_value, health_component.max_value)
 	stamina_bar.update(stamina_component.current_value, stamina_component.max_value)
 	mana_bar.update(mana_component.current_value, mana_component.max_value)

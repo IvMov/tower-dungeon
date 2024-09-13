@@ -33,7 +33,6 @@ func _on_cooldown_timer_timeout() -> void:
 	if !enemy.player:
 		stop_skill()
 	else:
-		print("front move started")
 		cast_timer.start()
 		enemy.is_back_move = false
 		enemy.is_side_move = false

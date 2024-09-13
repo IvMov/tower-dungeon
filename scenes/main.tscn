@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://w5dgd34hh3wr"]
+[gd_scene load_steps=10 format=3 uid="uid://w5dgd34hh3wr"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_vbbpw"]
 [ext_resource type="PackedScene" uid="uid://ci4hotqkt3ope" path="res://scenes/maps/generator/map_generator.tscn" id="2_ux27j"]
 [ext_resource type="PackedScene" uid="uid://b24j4s1u7ww1k" path="res://scenes/player/player.tscn" id="2_v4j8r"]
 [ext_resource type="PackedScene" uid="uid://ieuiir4uuka5" path="res://scenes/ui/crosshair_scene.tscn" id="3_s0mh3"]
 [ext_resource type="PackedScene" uid="uid://bwggo1cxds18" path="res://scenes/ui/ui.tscn" id="4_0dxvj"]
+[ext_resource type="PackedScene" uid="uid://cmbt4pr5tvx2s" path="res://scenes/ui/inventory_screen.tscn" id="5_520yb"]
 [ext_resource type="PackedScene" uid="uid://c7nfqu6eb7oqd" path="res://scenes/ui/vignette/vignette.tscn" id="6_f0ant"]
 [ext_resource type="PackedScene" uid="uid://btey3yhuspcew" path="res://scenes/maps/parts/player_fontain.tscn" id="6_yfn6a"]
 
@@ -35,16 +36,18 @@ script = ExtResource("1_vbbpw")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0f8ma")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="UIWrapper" type="CanvasLayer" parent="."]
 
-[node name="Label" type="Label" parent="CanvasLayer"]
+[node name="Label" type="Label" parent="UIWrapper"]
 offset_right = 40.0
 offset_bottom = 23.0
 text = "LABas"
 
-[node name="Crosshair" parent="CanvasLayer" instance=ExtResource("3_s0mh3")]
+[node name="Crosshair" parent="UIWrapper" instance=ExtResource("3_s0mh3")]
 
-[node name="UI" parent="CanvasLayer" instance=ExtResource("4_0dxvj")]
+[node name="UI" parent="UIWrapper" instance=ExtResource("4_0dxvj")]
+
+[node name="InventoryScreen" parent="UIWrapper" instance=ExtResource("5_520yb")]
 
 [node name="Player" parent="." instance=ExtResource("2_v4j8r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 3, -0.7)

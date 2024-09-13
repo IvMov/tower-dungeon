@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bbq1kysj1003m"]
+
+[node name="PlayerHandsBox" type="PanelContainer"]
+theme_type_variation = &"PanelContainer2"
+
+[node name="Hands" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="LeftHand" type="PanelContainer" parent="Hands"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Hands/LeftHand"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 32
+text = "Left"
+
+[node name="RightHand" type="PanelContainer" parent="Hands"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Hands/RightHand"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 32
+text = "Right"
