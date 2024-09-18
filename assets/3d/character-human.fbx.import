@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cqha8afkaddv4"
-path="res://.godot/imported/wizard_asset_fot_tower_of_the_wizard_scene.glb-5ef6b1c4dac1f8dbf7740afd6d655d3b.scn"
+uid="uid://cgm4ssnxu0rps"
+path="res://.godot/imported/character-human.fbx-adad05df919b8cd675eb84c971adf06d.scn"
 
 [deps]
 
-source_file="res://assets/3d/wizard_asset_fot_tower_of_the_wizard_scene.glb"
-dest_files=["res://.godot/imported/wizard_asset_fot_tower_of_the_wizard_scene.glb-5ef6b1c4dac1f8dbf7740afd6d655d3b.scn"]
+source_file="res://assets/3d/character-human.fbx"
+dest_files=["res://.godot/imported/character-human.fbx-adad05df919b8cd675eb84c971adf06d.scn"]
 
 [params]
 
@@ -27,10 +27,11 @@ meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
-animation/trimming=false
+animation/trimming=true
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={}
-gltf/naming_version=1
-gltf/embedded_image_handling=1
+fbx/importer=0
+fbx/allow_geometry_helper_nodes=false
+fbx/embedded_image_handling=1
