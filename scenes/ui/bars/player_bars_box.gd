@@ -1,5 +1,7 @@
 class_name PlayerBarsBox extends PanelContainer
 
+@onready var bars_container: VBoxContainer = $BarsContainer
+
 @onready var hp_bar: ProgressBar = $BarsContainer/HpContainer/HpBar
 @onready var mp_bar: ProgressBar = $BarsContainer/MpContainer/MpBar
 @onready var stamina_bar: ProgressBar = $BarsContainer/StaminaContainer/StaminaBar
@@ -39,7 +41,9 @@ func on_player_entered(player: Player):
 	mp_bar.max_value = player.mana_component.max_value
 	stamina_bar.max_value = player.stamina_component.max_value
 
-
+func resize():
+	for child in bars_container.get_children():
+		child.custom_minimum_size =  Vector2(GameConfig.grid_block*5, GameConfig.grid_block/3)
 
 func on_max_value_changed(value: float, bar: ProgressBar) -> void:
 	recalc_bar_max_value(bar, value)

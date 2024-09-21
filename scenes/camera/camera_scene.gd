@@ -48,7 +48,7 @@ func get_camera_position() -> Vector3:
 
 
 func _unhandled_input(event):
-	if event is InputEventMouseButton && !in_aiming_mode:
+	if event is InputEventMouseButton && !in_aiming_mode && GameStage.is_stage(GameStage.Stage.GAME):
 		var is_zoom_forward: bool = event.button_index == 4
 		var is_zoom_back: bool = event.button_index == 5
 		
@@ -74,4 +74,3 @@ func zoom_forward() -> void:
 
 func zoom_back() -> void:
 		spring_arm_3d.spring_length += SCROLL_POWER
-

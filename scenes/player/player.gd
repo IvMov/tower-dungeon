@@ -16,6 +16,7 @@ class_name Player extends CharacterBody3D
 @onready var health_component: HealthComponent = $StatsBox/HealthComponent
 @onready var mana_component: ManaComponent = $StatsBox/ManaComponent
 @onready var stamina_component: StaminaComponent = $StatsBox/StaminaComponent
+@onready var inventory: Inventory = $Inventory
 
 
 var player_name: String
@@ -64,6 +65,8 @@ func _physics_process(delta):
 
 
 func _unhandled_input(event):
+	if !GameStage.is_stage(GameStage.Stage.GAME):
+		return
 	# right click
 	handle_aiming(event)
 	# shift

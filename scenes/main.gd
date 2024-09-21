@@ -6,9 +6,6 @@ extends Node
 
 func _ready():
 	map_generator.generate_level()
-	inventory_screen.draw_inventory()
 
 func _physics_process(_delta):
 	label.text = "FPS: %f" % Engine.get_frames_per_second()
-
-

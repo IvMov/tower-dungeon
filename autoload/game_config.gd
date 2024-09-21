@@ -1,19 +1,23 @@
 extends Node
 
 const MAX_MOUSE_ROTATION_X: float = PI/2
-
+const V_BLOCKS: int = 18
 var mouse_sensitivity_game: float = 0.003
 var mouse_sensitivity_menu: float = 0.003
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var full_screen: bool = false
+# 1/N part of vertical screen to be sure that all blocks are alligned
+var grid_block: float
 
-
+func _ready() -> void:
+	recalculate_screen_grid_block()
 
 func _unhandled_input(event):
 	if event.is_action("full_screen") && event.is_released():
 		resize_screen()
-		
 
+func recalculate_screen_grid_block() -> void:
+	grid_block = get_window().size.x / V_BLOCKS
 
 func resize_screen():
 	request_ready()
@@ -21,10 +25,9 @@ func resize_screen():
 	if is_fullscreen:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MINIMIZED)
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-		
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-		
+	recalculate_screen_grid_block()
 	full_screen = !is_fullscreen
 	GameEvents.emit_screen_resized()
 

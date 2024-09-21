@@ -27,7 +27,7 @@ class_name MapGenerator extends Node3D
 
 var root_room_position: Vector2 = Vector2.ZERO
 var deadend_root_room_position: Vector2 = Vector2.ZERO
-var is_spawner = true
+var is_spawner = false
 # core datashelf
 var basic_directions: Array[Vector2] = [Vector2.LEFT, Vector2.DOWN, Vector2.RIGHT, Vector2.UP]
 var directions: Array[Vector2]

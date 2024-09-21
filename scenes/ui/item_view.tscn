@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfhmdyjuhsxsd"]
+
+[ext_resource type="Texture2D" uid="uid://cs74ol76s3pn0" path="res://assets/2d/items/spark_tablet.png" id="1_0vpmi"]
+[ext_resource type="Script" path="res://scenes/ui/item_view.gd" id="1_g86p4"]
+
+[node name="ItemView" type="TextureRect"]
+tooltip_text = "lorem	ipsum lorem	ipsum lorem	ipsum lorem	ipsum lorem	ipsumlorem	ipsum lorem	ipsum lorem	ipsum lorem	ipsum lorem	ipsumlorem	ipsum lorem	ipsum lorem	ipsum lorem	ipsum lorem	ipsum"
+texture = ExtResource("1_0vpmi")
+script = ExtResource("1_g86p4")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Quantity" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 32
+text = "1"
