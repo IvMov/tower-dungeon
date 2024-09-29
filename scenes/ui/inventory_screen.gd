@@ -1,23 +1,19 @@
-class_name InventoryScreen extends Node2D
+class_name InventoryScreen extends PanelContainer
 
-@export var item_view: PackedScene
+@onready var label: Label = $VBoxContainer/Label
+@onready var rows: VBoxContainer = $VBoxContainer/Rows
 
-@onready var canvas_layer: CanvasLayer = $CanvasLayer
-@onready var rows: VBoxContainer = $CanvasLayer/MarginContainer/VBoxContainer/Rows
-
-var inventory: Inventory
 var done: bool = false
 
 func _ready() -> void:
-	GameEvents.player_entered.connect(on_player_entered)
 	GameEvents.change_game_stage.connect(on_change_game_stage)
-	GameEvents.screen_resized.connect(on_screen_resized)
+
 
 func draw_inventory() -> void: 
 	if done:
-		canvas_layer.visible = true
+		visible = true
 	else:
-		canvas_layer.visible = true
+		visible = true
 		init_inventory()
 		done = true
 
@@ -27,40 +23,35 @@ func init_inventory() -> void:
 	
 
 func draw_inventory_grid() -> void:
-	for i in inventory.HEIGHT:
+	for i in PlayerParameters.inventory.size.x:
 		var vbox: HBoxContainer = HBoxContainer.new()
-		for j in inventory.WIDTH:
-			var panel: PanelContainer = PanelContainer.new()
-			panel.custom_minimum_size =  Vector2(GameConfig.grid_block, GameConfig.grid_block)
-			vbox.add_child(panel)
 		rows.add_child(vbox)
+		for j in PlayerParameters.inventory.size.y:
+			var item_view_holder: ItemViewHolder = Constants.ITEM_VIEW_HOLDER.instantiate()
+			vbox.add_child(item_view_holder)
+			item_view_holder.set_location(Vector3(PlayerParameters.inventory.id, i, j))
+
 
 
 func draw_items() -> void:
-	var items: Dictionary = inventory.items;
-	for coordinate in items:
-		var item_view_inst: ItemView = item_view.instantiate()
-		var item: Item = items[coordinate]["item"]
-		item_view_inst.item  = item
-		item_view_inst.quantity = items[coordinate]["quantity"]
-		rows.get_child(coordinate.x).get_child(coordinate.y).add_child(item_view_inst)
+	for coordinate in PlayerParameters.inventory.items:
+		var item_bulk: ItemBulk = PlayerParameters.inventory.items.get(coordinate)
+		var item_view: ItemView = rows.get_child(coordinate.x).get_child(coordinate.y).item_view
+		item_view.item_bulk = item_bulk
+		item_view.draw_item()
+		
 
 
-func on_player_entered(player: Player) -> void:
-	inventory = player.inventory
+func resize() -> void:
+	label.add_theme_font_size_override("font_size", GameConfig.grid_block/4)
+	for row in rows.get_children():
+		for child in row.get_children():
+			child.custom_minimum_size =  Vector2(GameConfig.grid_block, GameConfig.grid_block)
+
 
 
 func on_change_game_stage(game_stage: GameStage.Stage):
 	if game_stage == GameStage.Stage.INVENTORY:
 		draw_inventory()
 	else: 
-		canvas_layer.visible = false
-
-
-func on_screen_resized():
-	done = false
-	for child in rows.get_children():
-		rows.remove_child(child)
-		child.queue_free()
-	if GameStage.is_stage(GameStage.Stage.INVENTORY):
-		draw_inventory()
+		visible = false

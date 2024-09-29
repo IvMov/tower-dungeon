@@ -12,6 +12,9 @@ signal aiming_player(aiming: bool)
 signal add_skill(skill: Skill)
 signal skill_call_failed(reason: Enums)
 
+signal item_remove(from: Vector3, quantity: int)
+signal item_add(to: Vector3, item: ItemBulk)
+
 signal souls_dropped(position: Vector3, value: Vector3)
 signal souls_collect(position: Vector3, value: Vector3)
 
@@ -49,3 +52,9 @@ func emit_souls_dropped(position: Vector3, value: Vector3):
 
 func emit_souls_collect(position: Vector3, value: Vector3):
 	souls_collect.emit(position, value)
+
+func emit_item_remove(from: Vector3, quantity: int):
+	item_remove.emit(from, quantity)
+
+func emit_item_add(to: Vector3, item: ItemBulk):
+	item_add.emit(to, item)

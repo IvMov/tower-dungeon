@@ -16,7 +16,11 @@ class_name Player extends CharacterBody3D
 @onready var health_component: HealthComponent = $StatsBox/HealthComponent
 @onready var mana_component: ManaComponent = $StatsBox/ManaComponent
 @onready var stamina_component: StaminaComponent = $StatsBox/StaminaComponent
-@onready var inventory: Inventory = $Inventory
+
+# storages
+@onready var inventory: Inventory = $Storages/Inventory
+@onready var hands: Hands = $Storages/Hands
+@onready var belt: Belt = $Storages/Belt
 
 
 var player_name: String

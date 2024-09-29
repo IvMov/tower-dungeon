@@ -59,6 +59,7 @@ size_flags_vertical = 1
 theme_override_styles/background = SubResource("StyleBoxEmpty_fs6n1")
 theme_override_styles/fill = SubResource("StyleBoxTexture_bkqw7")
 value = 54.18
+show_percentage = false
 
 [node name="MpContainer" type="PanelContainer" parent="BarsContainer"]
 custom_minimum_size = Vector2(400, 40)
@@ -71,6 +72,7 @@ size_flags_vertical = 1
 theme_override_styles/background = SubResource("StyleBoxEmpty_aus4e")
 theme_override_styles/fill = SubResource("StyleBoxTexture_f4le4")
 value = 50.0
+show_percentage = false
 
 [node name="StaminaContainer" type="PanelContainer" parent="BarsContainer"]
 custom_minimum_size = Vector2(400, 40)
@@ -83,3 +85,4 @@ size_flags_vertical = 1
 theme_override_styles/background = SubResource("StyleBoxEmpty_khrlf")
 theme_override_styles/fill = SubResource("StyleBoxTexture_oac12")
 value = 50.0
+show_percentage = false

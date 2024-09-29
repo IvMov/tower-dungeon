@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bbq1kysj1003m"]
+[gd_scene load_steps=3 format=3 uid="uid://bbq1kysj1003m"]
 
 [ext_resource type="Script" path="res://scenes/ui/bars/player_hands_box.gd" id="1_kydb2"]
+[ext_resource type="PackedScene" uid="uid://c7mskp4sx4mtj" path="res://scenes/ui/item_view_holder.tscn" id="2_j2aha"]
 
 [node name="PlayerHandsBox" type="PanelContainer"]
 theme_type_variation = &"PanelContainer2"
@@ -9,24 +10,8 @@ script = ExtResource("1_kydb2")
 [node name="Hands" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="LeftHand" type="PanelContainer" parent="Hands"]
-custom_minimum_size = Vector2(120, 120)
+[node name="LeftHand" parent="Hands" instance=ExtResource("2_j2aha")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Hands/LeftHand"]
+[node name="RightHand" parent="Hands" instance=ExtResource("2_j2aha")]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-theme_override_font_sizes/font_size = 32
-text = "Left"
-
-[node name="RightHand" type="PanelContainer" parent="Hands"]
-custom_minimum_size = Vector2(120, 120)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Hands/RightHand"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-theme_override_font_sizes/font_size = 32
-text = "Right"

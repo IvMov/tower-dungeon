@@ -3,12 +3,10 @@
 [ext_resource type="Script" path="res://scenes/ui/item_view.gd" id="1_g86p4"]
 
 [node name="ItemView" type="TextureRect"]
-tooltip_text = "Click and hold to drag the item.
-Press RMB to take item in right hand."
-expand_mode = 1
 script = ExtResource("1_g86p4")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

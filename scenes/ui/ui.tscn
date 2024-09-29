@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bwggo1cxds18"]
+[gd_scene load_steps=6 format=3 uid="uid://bwggo1cxds18"]
 
 [ext_resource type="PackedScene" uid="uid://dh12qdjp1pf6y" path="res://scenes/ui/bars/player_bars_box.tscn" id="1_a0cn0"]
 [ext_resource type="Script" path="res://scenes/ui/ui.gd" id="1_gs6v2"]
 [ext_resource type="PackedScene" uid="uid://b6oypgt1q0wwx" path="res://scenes/ui/bars/player_belt_box.tscn" id="2_1dkid"]
 [ext_resource type="PackedScene" uid="uid://bbq1kysj1003m" path="res://scenes/ui/bars/player_hands_box.tscn" id="3_hhhye"]
+[ext_resource type="PackedScene" uid="uid://cmbt4pr5tvx2s" path="res://scenes/ui/inventory_screen.tscn" id="5_0kpsu"]
 
 [node name="UI" type="Node2D"]
 script = ExtResource("1_gs6v2")
@@ -29,3 +30,9 @@ size_flags_vertical = 8
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
+
+[node name="InventoryScreen" parent="CanvasLayer/MarginContainer" instance=ExtResource("5_0kpsu")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_type_variation = &"PanelContainer2"

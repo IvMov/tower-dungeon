@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dubjhblvsiufx"]
+
+[ext_resource type="Script" path="res://game_cache.gd" id="1_wef6j"]
+
+[node name="GameCache" type="Node"]
+script = ExtResource("1_wef6j")

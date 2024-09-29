@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://48gifcwkviaf"]
+[gd_scene load_steps=4 format=3 uid="uid://48gifcwkviaf"]
 
 [ext_resource type="Script" path="res://scenes/player/inventory.gd" id="1_1f2kj"]
+[ext_resource type="Resource" uid="uid://dvchjgjhfi6ra" path="res://resources/items/spark_tablet.tres" id="2_g88kh"]
+[ext_resource type="Resource" uid="uid://cw8ej827nieo2" path="res://resources/items/zoom_tablet.tres" id="3_uxvk5"]
 
 [node name="Inventory" type="Node"]
 script = ExtResource("1_1f2kj")
+spark_tablet = ExtResource("2_g88kh")
+zoom_in_tablet = ExtResource("3_uxvk5")

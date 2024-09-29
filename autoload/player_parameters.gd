@@ -1,11 +1,11 @@
 extends Node
 # TODO: after add saving and different players, add method to update var values from saving
 
+
 const BASE_SPEED: float = 300.0
 const BASE_JUMP_VELOCITY: float = 500.0
 const BASE_AIR_SPEED: float = 250.0 # not work as need to adjust velocity in process method for player
 const MOVE_SPEED_UP_MOD: float = 2.0
-
 const JUMP_SPEED_UP_MOD: float = 1.2
 
 var lifes: int = 3
@@ -18,6 +18,9 @@ var lock_mana_skill: bool = false
 var is_aiming: bool = false
 var is_runing: bool = false
 
+var inventory: Inventory
+var belt: Belt
+var hands: Hands
 
 var skill_expirience: Dictionary = {
 	"spark_skill": {
@@ -28,6 +31,8 @@ var skill_expirience: Dictionary = {
 	}
 }
 
+func _ready() -> void:
+	GameEvents.player_entered.connect(on_player_entered)
 
 func add_skill_exp(skill_name: String, value: float) -> void:
 	var skill: Dictionary = get_skill_data(skill_name)
@@ -51,6 +56,7 @@ func get_skill_data(skill_name: String) -> Dictionary:
 	return skill_expirience[skill_name]
 
 
+
 func lvl_up_skill(skill: Dictionary) -> bool:
 	if skill["max_lvl"] <= skill["lvl"]:
 		print("skill has max lvl already!")
@@ -60,3 +66,9 @@ func lvl_up_skill(skill: Dictionary) -> bool:
 		skill["exp"] = 0.0
 		skill["next_lvl_exp"] = skill["next_lvl_exp"] + (skill["lvl"] * skill["max_lvl"]) + skill["max_lvl"]
 		return true
+
+
+func on_player_entered(player: Player) -> void:
+	inventory = player.inventory
+	belt = player.belt
+	hands = player.hands

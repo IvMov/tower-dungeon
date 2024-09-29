@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7mskp4sx4mtj"]
+
+[ext_resource type="Script" path="res://scenes/ui/item_view_holder.gd" id="1_bj0pa"]
+[ext_resource type="PackedScene" uid="uid://cfhmdyjuhsxsd" path="res://scenes/ui/item_view.tscn" id="2_nypsx"]
+
+[node name="ItemViewHolder" type="PanelContainer"]
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("1_bj0pa")
+
+[node name="ItemView" parent="." instance=ExtResource("2_nypsx")]
+layout_mode = 2
+
+[node name="Info" type="Label" parent="."]
+z_index = 10
+layout_mode = 2
+size_flags_vertical = 8
+horizontal_alignment = 1
+vertical_alignment = 2
