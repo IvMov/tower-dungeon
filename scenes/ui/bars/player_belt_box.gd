@@ -1,6 +1,7 @@
 class_name PlayerBeltBox extends PanelContainer
 
 @onready var h_box_container: HBoxContainer = $HBoxContainer
+@onready var cd_timer: Timer = $CdTimer
 
 
 
@@ -25,19 +26,19 @@ func draw_belt_items() -> void:
 		item_view.draw_item()
 
 func _unhandled_input(event: InputEvent) -> void:
-	#OUTDATED CODE REWRITE to change LMB skill
-	if GameStage.is_stage(GameStage.Stage.INVENTORY) && GameCache.preselected_item:
-		if event.is_action_released("1"):
-			var child: PanelContainer = h_box_container.get_child(0)
-			var item_view: ItemView = Constants.ITEM_VIEW_SCENE.instantiate()
-			item_view.item = GameCache.preselected_item
-			GameCache.preselected_item = null
-			child.add_child(item_view)
+	if !GameStage.is_stage(GameStage.Stage.INVENTORY) && cd_timer.is_stopped():
+		var key: int = int(event.as_text())
+		if key > 0 && event.is_released() && key < 6:
+			var item_view: ItemView = h_box_container.get_child(key-1).item_view
+			if item_view.item_bulk:
+				GameEvents.emit_item_to_hand(item_view)
+				cd_timer.start()
+
 
 func resize() -> void:
 	for child in h_box_container.get_children():
 		child.custom_minimum_size =  Vector2(GameConfig.grid_block, GameConfig.grid_block)
 
-func on_player_entered(player: Player) -> void:
+func on_player_entered(_player: Player) -> void:
 	draw_belt()
 	draw_belt_items()

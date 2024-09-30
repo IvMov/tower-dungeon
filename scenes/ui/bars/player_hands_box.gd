@@ -6,6 +6,7 @@ extends PanelContainer
 
 func _ready() -> void:
 	GameEvents.player_entered.connect(on_player_entered)
+	GameEvents.item_to_hand.connect(on_item_to_hand)
 
 func draw_items() -> void:
 	for coordinate in PlayerParameters.hands.items:
@@ -18,7 +19,10 @@ func resize():
 	for child in hands.get_children():
 		child.custom_minimum_size =  Vector2(GameConfig.grid_block*1.2, GameConfig.grid_block*1.2)
 
-func on_player_entered(player: Player) -> void:
+func on_player_entered(_player: Player) -> void:
 	left_hand.set_location(Vector3(PlayerParameters.hands.id, 0, 0))
 	right_hand.set_location(Vector3(PlayerParameters.hands.id, 0, 1))
 	draw_items()
+
+func on_item_to_hand(item_view: ItemView) -> void:
+	left_hand.item_view.put_item(item_view)

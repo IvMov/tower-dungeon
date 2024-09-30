@@ -18,7 +18,7 @@ func _unhandled_input(event):
 		resize_screen()
 
 func recalculate_screen_grid_block() -> void:
-	grid_block = get_window().size.x / V_BLOCKS
+	grid_block = float(get_window().size.x) / V_BLOCKS
 
 func resize_screen() -> void:
 	request_ready()
@@ -35,7 +35,7 @@ func resize_screen() -> void:
 
 func resize_font() -> void:
 	
-	theme.default_font_size = grid_block/3
+	theme.default_font_size = int(grid_block/3)
 	self.set_theme(theme)
 
 func get_mouse_sensetivity():

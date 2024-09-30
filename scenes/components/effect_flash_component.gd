@@ -15,7 +15,7 @@ func _ready():
 	health_component.health_changed.connect(on_health_changed)
 
 
-func on_health_changed(value: float, current_value: float) -> void:
+func on_health_changed(value: float, _current_value: float) -> void:
 	if value < 0:
 		tween = prepare_tween()
 		change_color_to(Color.RED)
@@ -25,13 +25,13 @@ func on_health_changed(value: float, current_value: float) -> void:
 		gpu_particles_3d.emitting = true
 
 
-func change_color_to(color: Color) -> void: 
+func change_color_to(new_color: Color) -> void: 
 	for mesh in meshes:	
 		var material = mesh.get_surface_override_material(0)
 		if !material:
 			tween.kill()
 		else:
-			tween.tween_property(material, "albedo_color", color, ANIMATION_TIME)
+			tween.tween_property(material, "albedo_color", new_color, ANIMATION_TIME)
 
 func prepare_tween() -> Tween:
 	if tween && tween.is_valid():

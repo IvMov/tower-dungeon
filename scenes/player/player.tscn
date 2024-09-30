@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=4 uid="uid://b24j4s1u7ww1k"]
+[gd_scene load_steps=55 format=4 uid="uid://b24j4s1u7ww1k"]
 
 [ext_resource type="PackedScene" uid="uid://dituee6sehxvq" path="res://scenes/camera/camera_scene.tscn" id="1_52pv8"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_xn4w2"]
@@ -12,33 +12,12 @@
 [ext_resource type="PackedScene" uid="uid://bp1sun7nnmiix" path="res://scenes/components/stats/mana_component.tscn" id="6_5qlxb"]
 [ext_resource type="PackedScene" uid="uid://c5b0526vcqecl" path="res://scenes/components/stats/stamina_component.tscn" id="7_428qe"]
 [ext_resource type="PackedScene" uid="uid://48gifcwkviaf" path="res://scenes/player/inventory.tscn" id="7_tdhfp"]
-[ext_resource type="Texture2D" uid="uid://cs74ol76s3pn0" path="res://assets/2d/items/spark_tablet.png" id="8_r82vy"]
 [ext_resource type="PackedScene" uid="uid://dkjj73isvgfjx" path="res://scenes/skill_contolllers/stamina/player/jump_skill_controller.tscn" id="8_uyvwt"]
 [ext_resource type="PackedScene" uid="uid://b6panuodv8emk" path="res://scenes/player/belt.tscn" id="9_6mowg"]
-[ext_resource type="PackedScene" uid="uid://bx0ydm3hsik0a" path="res://scenes/items/spark_tablet.tscn" id="9_nl227"]
 [ext_resource type="PackedScene" uid="uid://b1r08fbxrmpbj" path="res://scenes/skill_contolllers/stamina/player/run_skill_controller.tscn" id="9_onr5v"]
-[ext_resource type="Script" path="res://resources/items/item.gd" id="10_0qxt4"]
 [ext_resource type="PackedScene" uid="uid://cf3mxq60mx6vy" path="res://scenes/skill_contolllers/stamina/player/aim_skill_controller.tscn" id="10_xiojt"]
 [ext_resource type="PackedScene" uid="uid://biy8bohcnc57t" path="res://scenes/player/hands.tscn" id="11_2y4ov"]
 [ext_resource type="PackedScene" uid="uid://com0vq1f7a8mc" path="res://scenes/skill_contolllers/stamina/player/push_enemy_skill_controller.tscn" id="13_vqp0o"]
-
-[sub_resource type="Resource" id="Resource_0d5fy"]
-resource_local_to_scene = true
-script = ExtResource("10_0qxt4")
-id = 0
-title = "Spart tablet"
-image = ExtResource("8_r82vy")
-descrition = "spark_tablet_description"
-scene = ExtResource("9_nl227")
-
-[sub_resource type="Resource" id="Resource_81qfc"]
-resource_local_to_scene = true
-script = ExtResource("10_0qxt4")
-id = 0
-title = "Spart tablet"
-image = ExtResource("8_r82vy")
-descrition = "spark_tablet_description"
-scene = ExtResource("9_nl227")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_46ws3"]
 
@@ -2368,12 +2347,10 @@ player = NodePath("..")
 [node name="Storages" type="Node" parent="."]
 
 [node name="Inventory" parent="Storages" instance=ExtResource("7_tdhfp")]
-spark_tablet = SubResource("Resource_0d5fy")
 
 [node name="Hands" parent="Storages" instance=ExtResource("11_2y4ov")]
 
 [node name="Belt" parent="Storages" instance=ExtResource("9_6mowg")]
-spark_tablet = SubResource("Resource_81qfc")
 
 [node name="PlayerSkillController" parent="." node_paths=PackedStringArray("jump_skill", "run_skill", "aim_skill", "push_skill") instance=ExtResource("4_luhgc")]
 jump_skill = NodePath("../SkillBox/JumpSkillController")

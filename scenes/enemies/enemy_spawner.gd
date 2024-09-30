@@ -9,16 +9,16 @@ var spawn_distance: float = 10
 func _ready():
 	agr_radius = 8
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	pass
 
-func push_back(player_position: Vector3, push_power: float) -> void:
+func push_back(_player_position: Vector3, _push_power: float) -> void:
 	print("PUSH YOURSELF! I'm static!")
 
 func agr_on_player() -> void:
 	print("Agr yourself! I'm spawner - i'm not chasing player")
 
-func detect_target(target_player: Player) -> void:
+func detect_target(_target_player: Player) -> void:
 	if boost_cast:
 		boost_cast = false
 		spawn_enemy_controller.start_boost_cast(boost_enemies_num)
@@ -27,7 +27,7 @@ func detect_target(target_player: Player) -> void:
 		spawn_enemy_controller.start_cast()
 	is_player_near = true
 
-func get_damage(damager_location: Vector3, value: float, push_power: float) -> bool:
+func get_damage(_damager_location: Vector3, value: float, _push_power: float) -> bool:
 	if boost_cast:
 		boost_cast = false
 		spawn_enemy_controller.start_boost_cast(boost_enemies_num)

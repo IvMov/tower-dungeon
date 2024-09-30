@@ -9,3 +9,5 @@ func _ready() -> void:
 	
 func set_location(location: Vector3) -> void:
 	item_view.location = location
+	if item_view.location.x == 3:
+		item_view.connect_to_item_add()

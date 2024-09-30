@@ -12,8 +12,8 @@ var remainder: float
 var map: BlankMap
 
 #API for build torch
-func add_torches(room: Room, map: BlankMap)-> void:
-	self.map = map
+func add_torches(room: Room, target_map: BlankMap)-> void:
+	map = target_map
 	
 	#left side
 	var torch_position = room.start_point + Vector2(-Constants.CORE_TILE_SIZE/2, -Constants.CORE_TILE_SIZE/2 + margin)

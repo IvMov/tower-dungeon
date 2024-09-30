@@ -16,14 +16,17 @@ func _input(event: InputEvent) -> void:
 		dragged = false
 		visible = true
 
+func connect_to_item_add() -> void:
+	GameEvents.item_add.connect(on_item_add)
+	GameEvents.item_remove.connect(on_item_remove)
 
 func draw_item() -> void:
 	if item_bulk:
 		texture = item_bulk.item.image
 		quantity_label.text = str(item_bulk.quantity)
 
-func add(item_bulk: ItemBulk) -> void:
-	self.item_bulk = item_bulk
+func add(new_item_bulk: ItemBulk) -> void:
+	item_bulk = new_item_bulk
 	texture = item_bulk.item.image
 	quantity_label.text = str(item_bulk.quantity)
 
@@ -48,7 +51,7 @@ func _get_drag_data(_at_position: Vector2) -> Variant:
 		return 
 		
 	var preview: TextureRect = TextureRect.new()
-	preview.expand_mode = 1
+	preview.expand_mode = ExpandMode.EXPAND_IGNORE_SIZE
 	preview.texture = item_bulk.item.image
 	preview.size = Vector2(GameConfig.grid_block, GameConfig.grid_block)
 	var control: Control = Control.new()
@@ -62,21 +65,32 @@ func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
 	return data is ItemView
 
 func _drop_data(_at_position: Vector2, data: Variant) -> void:
+	put_item(data)
+	
+ 
+func put_item(item_view: ItemView) -> void:
 	if !item_bulk:
-		add(data.item_bulk)
+		add(item_view.item_bulk)
 		draw_item()
-		GameEvents.emit_item_add(location, data.item_bulk)
-		data.reset()
-	elif item_bulk.item.id == data.item_bulk.item.id:
-		GameEvents.emit_item_add(location, data.item_bulk)
+		GameEvents.emit_item_add(location, item_view.item_bulk)
+		item_view.reset()
+	elif item_bulk.item.id == item_view.item_bulk.item.id:
+		GameEvents.emit_item_add(location, item_view.item_bulk)
 		draw_item()
-		data.reset()
+		item_view.reset()
 	else: 
 		var temp_item: ItemBulk = item_bulk;
 		reset()
-		GameEvents.emit_item_add(location, data.item_bulk)
-		add(data.item_bulk)
-		data.reset()
-		data.add(temp_item)
-		GameEvents.emit_item_add(data.location, temp_item)
- 
+		GameEvents.emit_item_add(location, item_view.item_bulk)
+		add(item_view.item_bulk)
+		item_view.reset()
+		item_view.add(temp_item)
+		GameEvents.emit_item_add(item_view.location, temp_item)
+
+func on_item_add(to: Vector3, new_item_bulk: ItemBulk):
+	if to.x == 3:
+		GameEvents.emit_add_skill(to.z, new_item_bulk.item.skill)
+
+func on_item_remove(from: Vector3, _quantity: int):
+	if from.x == 3:
+		GameEvents.emit_remove_skill(from.z)

@@ -48,5 +48,5 @@ func resize():
 func on_max_value_changed(value: float, bar: ProgressBar) -> void:
 	recalc_bar_max_value(bar, value)
 
-func on_value_changed(value: float, current_value: float, bar: ProgressBar) -> void:
+func on_value_changed(_value: float, current_value: float, bar: ProgressBar) -> void:
 	recalc_bar_value(bar, current_value)

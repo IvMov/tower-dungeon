@@ -58,6 +58,3 @@ func _on_cooldown_timer_timeout() -> void:
 
 func _on_idle_timer_timeout() -> void:
 	is_idle = false
-
-
-

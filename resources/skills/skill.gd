@@ -5,6 +5,7 @@ class_name Skill extends Resource
 @export var description: String
 @export var controller: PackedScene
 
+@export var is_holdable: bool
 @export var base_value: float
 @export var base_push_value: float
 @export var base_speed: float
@@ -15,5 +16,3 @@ class_name Skill extends Resource
 @export var base_cooldown: float
 
 @export var price: Vector3
-
-

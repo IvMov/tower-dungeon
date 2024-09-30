@@ -29,5 +29,5 @@ func run_regen() -> void:
 func _on_regen_timer_timeout() -> void:
 	run_regen()
 	
-func emit_max_value_changed(value: float) -> void:
+func emit_max_value_changed(_value: float) -> void:
 	max_value_changed.emit()

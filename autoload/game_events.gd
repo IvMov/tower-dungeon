@@ -9,11 +9,13 @@ signal damage_player(damage: float)
 signal run_player(speed: float)
 signal aiming_player(aiming: bool)
 
-signal add_skill(skill: Skill)
+signal add_skill(hand: int, skill: Skill)
+signal remove_skill(hand: int)
 signal skill_call_failed(reason: Enums)
 
 signal item_remove(from: Vector3, quantity: int)
 signal item_add(to: Vector3, item: ItemBulk)
+signal item_to_hand(item_view: ItemView)
 
 signal souls_dropped(position: Vector3, value: Vector3)
 signal souls_collect(position: Vector3, value: Vector3)
@@ -39,8 +41,8 @@ func emit_run_player(speed: float):
 func emit_aiming_player(aiming: bool):
 	aiming_player.emit(aiming)
 
-func emit_add_skill(skill: Skill):
-	add_skill.emit(skill)
+func emit_add_skill(hand: int, skill: Skill):
+	add_skill.emit(hand, skill)
 
 func emit_skill_call_failed(reason: Enums.SkillCallFailedReason):
 	print("skill usage failed %s " % reason)
@@ -58,3 +60,9 @@ func emit_item_remove(from: Vector3, quantity: int):
 
 func emit_item_add(to: Vector3, item: ItemBulk):
 	item_add.emit(to, item)
+
+func emit_item_to_hand(item_view: ItemView):
+	item_to_hand.emit(item_view)
+
+func emit_remove_skill(hand: int): 
+	remove_skill.emit(hand)

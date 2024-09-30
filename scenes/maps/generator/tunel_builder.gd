@@ -75,7 +75,7 @@ func add_next_tunel_part(direction: Vector2, entrance: Vector2, map: BlankMap) -
 
 func calc_rand_x_tunel_position(room: Room) -> int:
 	# cause each tunel need 4m plate (and room size has n-plates with size 4m, so can contain n/2) -1 -calcualtions from 0 
-	var possible_locations = room.size.x - 1
+	var possible_locations: int = room.size.x - 1
 	return (room.start_point.x + randi_range(0,  possible_locations) * Constants.CORE_TILE_SIZE)
 
 func calc_rand_y_tunel_position(room: Room) -> int:

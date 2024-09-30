@@ -94,14 +94,16 @@ func generate_room() -> void:
 
 
 func save_deadend_room_to_map() -> Room:
-	var room: Room = Room.new()
-	room.entrance = deadend_entrance_coordinates
-	room.exit = Vector2.ZERO
-	room.deadend_exit = Vector2.ZERO
-	room.size = deadend_ROOM_SIZE
-	room.start_point = deadend_root_room_position
-	room.floor_height = 0
-	return map.add_room(room)
+	var new_room: Room = Room.new()
+	new_room.entrance = deadend_entrance_coordinates
+	new_room.exit = Vector2.ZERO
+	new_room.deadend_exit = Vector2.ZERO
+	new_room.size = deadend_ROOM_SIZE
+	new_room.start_point = deadend_root_room_position
+	new_room.floor_height = 0
+	
+	return map.add_room(new_room)
+
 
 func create_common_room() -> void:
 	room = Room.new()
@@ -157,30 +159,30 @@ func create_deadend_room() -> void:
 
 
 
-func calc_room_start_position(room: Vector2, entrance: Vector2, some_direction: Vector2) -> Vector2:
+func calc_room_start_position(target_room: Vector2, entrance: Vector2, some_direction: Vector2) -> Vector2:
 	var next_room_start_point: Vector2
 	match some_direction:
 		Vector2.LEFT: 
-			next_room_start_point.x = calc_rand_x_root_room_position(room, entrance)
-			next_room_start_point.y = entrance.y - (room.y * Constants.CORE_TILE_SIZE) + Constants.TUNEL_PADDING
+			next_room_start_point.x = calc_rand_x_root_room_position(target_room, entrance)
+			next_room_start_point.y = entrance.y - (target_room.y * Constants.CORE_TILE_SIZE) + Constants.TUNEL_PADDING
 		Vector2.RIGHT:
-			next_room_start_point.x = calc_rand_x_root_room_position(room, entrance)
+			next_room_start_point.x = calc_rand_x_root_room_position(target_room, entrance)
 			next_room_start_point.y = entrance.y + Constants.CORE_TILE_SIZE - Constants.TUNEL_PADDING
 		Vector2.DOWN:
-			next_room_start_point.x = entrance.x - (room.x * Constants.CORE_TILE_SIZE) + Constants.TUNEL_PADDING
-			next_room_start_point.y = calc_rand_y_root_room_position(room, entrance)
+			next_room_start_point.x = entrance.x - (target_room.x * Constants.CORE_TILE_SIZE) + Constants.TUNEL_PADDING
+			next_room_start_point.y = calc_rand_y_root_room_position(target_room, entrance)
 		Vector2.UP: 
 			next_room_start_point.x = entrance.x + Constants.CORE_TILE_SIZE - Constants.TUNEL_PADDING
-			next_room_start_point.y = calc_rand_y_root_room_position(room, entrance)
+			next_room_start_point.y = calc_rand_y_root_room_position(target_room, entrance)
 	return next_room_start_point
 
 
-func calc_rand_x_root_room_position(room: Vector2, entrance: Vector2) -> int:
-	var possible_locations = room.x - 1
+func calc_rand_x_root_room_position(target_room: Vector2, entrance: Vector2) -> int:
+	var possible_locations = target_room.x - 1
 	return entrance.x - randi_range(0, possible_locations) * Constants.CORE_TILE_SIZE
 
-func calc_rand_y_root_room_position(room: Vector2, entrance: Vector2) -> int:
-	var possible_locations = room.y - 1
+func calc_rand_y_root_room_position(target_room: Vector2, entrance: Vector2) -> int:
+	var possible_locations = target_room.y - 1
 	return entrance.y - randi_range(0, possible_locations) * Constants.CORE_TILE_SIZE
 
 

@@ -92,7 +92,6 @@ func _physics_process(delta):
 			animation_player.play("walk" if velocity.length() > 0.1 else "idle")
 	if ray_cast_3d.get_collider() && !player:
 		relocate_enemy()
-		current_speed
 	if !is_pushed:
 		current_speed = speed if !is_runing else run_speed
 		current_speed = speed * 1.5 if is_dodging else current_speed
@@ -122,7 +121,7 @@ func push_back(player_position: Vector3, push_power: float) -> void:
 	push_timer.start()
 	
 # targeting and movement
-func detect_target(target_player: Player) -> void:
+func detect_target(_target_player: Player) -> void:
 	# to be implemented in child regarding skills
 	pass
 
@@ -225,7 +224,7 @@ func _on_chase_player_timer_timeout():
 		player = null
 
 
-func _on_call_enemy_area_client_area_exited(area):
+func _on_call_enemy_area_client_area_exited(_area):
 	if !is_dying && start_timer.is_stopped():
 		agr_on_player()
 

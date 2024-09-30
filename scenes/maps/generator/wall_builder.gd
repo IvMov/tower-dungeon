@@ -62,7 +62,7 @@ func add_walls(room: Room, map: BlankMap) -> void:
 		wall_back.global_position = Vector3(wall_back_pos.x, y_position, wall_back_pos.y)
 
 
-func check_is_ocupied_position(room: Room, desired_position: Vector2) -> bool:
+func check_is_ocupied_position(_room: Room, desired_position: Vector2) -> bool:
 	#
 	ray_cast_3d.transform.origin = Vector3(desired_position.x, 6, desired_position.y)
 	ray_cast_3d.set_target_position(Vector3(desired_position.x, 2, desired_position.y) - ray_cast_3d.global_position)

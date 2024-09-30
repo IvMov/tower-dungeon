@@ -44,7 +44,6 @@ func _ready():
 	agr_area.area_entered.connect(on_area_entered)
 	agr_area.area_exited.connect(on_area_exited)
 	GameEvents.damage_player.connect(on_damage_player)
-	preload_first_skill()
 	last_fontain_coordinates = global_position
 	GameEvents.emit_player_entered(self)
 	
@@ -71,8 +70,7 @@ func _physics_process(delta):
 func _unhandled_input(event):
 	if !GameStage.is_stage(GameStage.Stage.GAME):
 		return
-	# right click
-	handle_aiming(event)
+
 	# shift
 	handle_run(event)
 	# space
@@ -82,11 +80,10 @@ func _unhandled_input(event):
 	# movement
 	handle_mouse_rotations(event)
 	# left click
-	handle_skill_use(event)
+	handle_primary_skill_use(event)
+	# right click
+	handle_secondary_skill_use(event)
 
-
-func preload_first_skill() -> void:
-	GameEvents.emit_add_skill(first_skill)
 
 func handle_mouse_rotations(event: InputEvent) -> void:
 	move_player(event)
@@ -109,14 +106,17 @@ func handle_run(event: InputEvent) -> void:
 func handle_jump(event: InputEvent) -> void:
 	player_skill_controller.jump_skill.use_skill_with_event(event)
 
-func handle_aiming(event: InputEvent) -> void:
-	player_skill_controller.aim_skill.use_skill_with_event(event)
+func handle_primary_skill_use(event: InputEvent) -> void:
+	if event.is_action_pressed("LMB"):
+		player_skill_controller.cast_active_skill(0, true)
+	elif event.is_action_released("LMB"):
+		player_skill_controller.use_active_skill(0, false)
 
-func handle_skill_use(event: InputEvent) -> void:
-	if event.is_action_pressed("skill_use"):
-		player_skill_controller.cast_active_skill()
-	elif event.is_action_released("skill_use"):
-		player_skill_controller.use_active_skill()
+func handle_secondary_skill_use(event: InputEvent) -> void:
+	if event.is_action_pressed("RMB"):
+		player_skill_controller.cast_active_skill(1, true)
+	elif event.is_action_released("RMB"):
+		player_skill_controller.use_active_skill(1, false)
 
 
 func custom_death_actions():
