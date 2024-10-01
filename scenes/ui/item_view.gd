@@ -70,6 +70,10 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
  
 func put_item(item_view: ItemView) -> void:
 	if !item_bulk:
+		if location.x == 2:
+			print("dropped")
+			drop_item(item_view)
+			return 
 		add(item_view.item_bulk)
 		draw_item()
 		GameEvents.emit_item_add(location, item_view.item_bulk)
@@ -86,6 +90,10 @@ func put_item(item_view: ItemView) -> void:
 		item_view.reset()
 		item_view.add(temp_item)
 		GameEvents.emit_item_add(item_view.location, temp_item)
+
+func drop_item(item_view: ItemView) -> void: 
+	GameEvents.emit_item_add(Vector3(2, 0, 0), item_view.item_bulk)
+	item_view.reset()
 
 func on_item_add(to: Vector3, new_item_bulk: ItemBulk):
 	if to.x == 3:

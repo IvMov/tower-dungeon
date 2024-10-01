@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmbt4pr5tvx2s"]
+[gd_scene load_steps=3 format=3 uid="uid://cmbt4pr5tvx2s"]
 
 [ext_resource type="Script" path="res://scenes/ui/inventory_screen.gd" id="1_7o0k2"]
+[ext_resource type="PackedScene" uid="uid://c7mskp4sx4mtj" path="res://scenes/ui/item_view_holder.tscn" id="2_08gbw"]
 
 [node name="InventoryScreen" type="PanelContainer"]
 clip_children = 2
@@ -20,3 +21,6 @@ text = "- I N V E N T O R Y -"
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+
+[node name="DropItemBlock" parent="VBoxContainer" instance=ExtResource("2_08gbw")]
+layout_mode = 2

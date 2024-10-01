@@ -16,6 +16,8 @@ signal skill_call_failed(reason: Enums)
 signal item_remove(from: Vector3, quantity: int)
 signal item_add(to: Vector3, item: ItemBulk)
 signal item_to_hand(item_view: ItemView)
+signal item_to_map(to: Vector3, item: PackedScene)
+signal item_from_map(from: Vector3)
 
 signal souls_dropped(position: Vector3, value: Vector3)
 signal souls_collect(position: Vector3, value: Vector3)
@@ -66,3 +68,9 @@ func emit_item_to_hand(item_view: ItemView):
 
 func emit_remove_skill(hand: int): 
 	remove_skill.emit(hand)
+
+func emit_item_to_map(to: Vector3, item: PackedScene):
+	item_to_map.emit(to, item)
+
+func emit_item_from_map(from: Vector3):
+	item_from_map.emit(from)

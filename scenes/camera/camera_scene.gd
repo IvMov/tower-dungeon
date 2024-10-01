@@ -2,6 +2,7 @@ class_name CameraScene extends Node3D
 
 @onready var camera_3d = $SpringArm3D/Camera3D
 @onready var spring_arm_3d = $SpringArm3D
+@onready var ray_cast_3d: RayCast3D = $RayCast3D
 
 
 const SCROLL_POWER: float = 0.15
@@ -46,6 +47,10 @@ func get_camera_distance() -> float:
 func get_camera_position() -> Vector3:
 	return camera_3d.global_position
 
+func get_target_object() -> Node3D:
+	if ray_cast_3d.is_colliding():
+		return ray_cast_3d.get_collider().get_parent().get_parent()
+	return null
 
 func _unhandled_input(event):
 	if event is InputEventMouseButton && !in_aiming_mode && GameStage.is_stage(GameStage.Stage.GAME):

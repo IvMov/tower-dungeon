@@ -1,0 +1,45 @@
+class_name Storage extends Node
+
+
+signal item_added(location: Vector2)
+
+# x - 0 means inventory, 1 - belt, 2 - map, 3 - hands
+var id: int
+#x - rows, y - columns
+var size: Vector2
+
+# key - vector2 (coordinates)
+# value - item (with quantity!)
+var items: Dictionary
+
+
+func reset() -> void:
+	items.clear()
+
+func add(key: Vector3, item_bulk: ItemBulk) -> void:
+	var key_2d: Vector2 = Vector2(key.y, key.z)
+	if items.has(key_2d):
+		items.get(key_2d).quantity += item_bulk.quantity
+	else:
+		items[key_2d] = item_bulk
+
+func remove(key: Vector3,  quantity: int) -> void: 
+	var key_2d: Vector2 = Vector2(key.y, key.z)
+	if items.has(key_2d) && items.get(key_2d).quantity < quantity:
+		items.get(key_2d).quantity -= quantity
+		if items.get(key_2d).quantity <=0:
+			items.erase(key_2d)	
+	else:
+		items.erase(key_2d)
+
+func on_item_add(to: Vector3, item_bulk: ItemBulk):
+	if to.x == id:
+		add(to, item_bulk)
+
+func on_item_remove(from: Vector3, quantity: int):
+	if from.x == id:
+		remove(from, quantity)
+
+
+func emit_item_added(location: Vector2):
+	item_added.emit(location)

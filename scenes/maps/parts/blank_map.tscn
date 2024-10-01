@@ -17,3 +17,5 @@ script = ExtResource("1_ko6yf")
 navigation_mesh = SubResource("NavigationMesh_ia46o")
 
 [node name="Environment" type="Node3D" parent="."]
+
+[node name="Items" type="Node3D" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://w5dgd34hh3wr"]
+[gd_scene load_steps=10 format=3 uid="uid://w5dgd34hh3wr"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_vbbpw"]
 [ext_resource type="PackedScene" uid="uid://ci4hotqkt3ope" path="res://scenes/maps/generator/map_generator.tscn" id="2_ux27j"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bwggo1cxds18" path="res://scenes/ui/ui.tscn" id="4_0dxvj"]
 [ext_resource type="PackedScene" uid="uid://c7nfqu6eb7oqd" path="res://scenes/ui/vignette/vignette.tscn" id="6_f0ant"]
 [ext_resource type="PackedScene" uid="uid://btey3yhuspcew" path="res://scenes/maps/parts/player_fontain.tscn" id="6_yfn6a"]
+[ext_resource type="PackedScene" uid="uid://by7yynke4it2l" path="res://scenes/maps/storage/map_storage.tscn" id="8_ng268"]
 
 [sub_resource type="Environment" id="Environment_0f8ma"]
 background_energy_multiplier = 3.0
@@ -62,3 +63,5 @@ visible = false
 
 [node name="PlayerFontain" parent="." instance=ExtResource("6_yfn6a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 2, 0.3)
+
+[node name="MapStorage" parent="." instance=ExtResource("8_ng268")]

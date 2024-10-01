@@ -2,9 +2,13 @@ class_name  BlankMap extends Node3D
 
 @onready var navigation_region_3d: NavigationRegion3D = $NavigationRegion3D
 @onready var environment: Node3D = $Environment
+@onready var items: Node3D = $Items
 
 var rooms: Dictionary
 var id_counter: int = 0
+
+func _ready() -> void:
+	GameEvents.item_to_map.connect(on_item_to_map)
 
 func add_room(room: Room) -> Room:
 	if room.id == 0:
@@ -35,3 +39,8 @@ func add_navigation_tile(tile: Node3D) -> void:
 
 func bake_navigation() -> void:
 	navigation_region_3d.bake_navigation_mesh()
+
+func on_item_to_map(to: Vector3, item: PackedScene): 
+	var instance: Node3D = item.instantiate();
+	items.add_child(instance)
+	instance.global_position = to

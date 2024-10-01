@@ -83,6 +83,9 @@ func _unhandled_input(event):
 	handle_primary_skill_use(event)
 	# right click
 	handle_secondary_skill_use(event)
+	
+	# E - action button
+	handle_action_button(event)
 
 
 func handle_mouse_rotations(event: InputEvent) -> void:
@@ -117,6 +120,21 @@ func handle_secondary_skill_use(event: InputEvent) -> void:
 		player_skill_controller.cast_active_skill(1, true)
 	elif event.is_action_released("RMB"):
 		player_skill_controller.use_active_skill(1, false)
+
+func handle_action_button(event: InputEvent) -> void:
+	if event.is_action_pressed("action"):
+		var obj: Node3D = camera_scene.get_target_object()
+		if obj == null:
+			return
+		GameEvents.emit_item_from_map(obj.global_position)
+		obj.queue_free()
+		print(obj.global_position)
+		#get object from camera scene
+		#check is object pickable or activating or other
+		#emit signal - pick item, activate something or etc
+	if event.is_action_released("action"):
+		#maybe some maintainable actions which require to hold action button
+		pass
 
 
 func custom_death_actions():
