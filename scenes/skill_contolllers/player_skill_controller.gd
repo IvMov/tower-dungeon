@@ -12,7 +12,6 @@ var secondary_skill_controller: BaseController
 
 @export var jump_skill: JumpSkillController
 @export var run_skill: RunSkillController
-@export var aim_skill: AimSkillController
 @export var push_skill: PushEnemySkillController
 
 
@@ -30,7 +29,7 @@ func cast_active_skill(hand: int, is_pressed: bool) -> void:
 	var skill_controller: BaseController = primary_skill_controller if hand == 0 else secondary_skill_controller
 	if !player || !skill_controller:
 		return
-	if skill.is_holdable && is_pressed:
+	if skill.is_maintainable && is_pressed:
 		skill_controller.use_skill()
 	else:
 		skill_controller.start_cast()
@@ -41,7 +40,7 @@ func use_active_skill(hand: int, is_pressed: bool) -> void:
 	var skill_controller: BaseController = primary_skill_controller if hand == 0 else secondary_skill_controller
 	if !player || !skill_controller:
 		return
-	if skill.is_holdable && !is_pressed:
+	if skill.is_maintainable && !is_pressed:
 		skill_controller.stop_skill()
 	else:
 		skill_controller.finish_cast()
@@ -77,6 +76,7 @@ func on_add_skill(hand:int, skill: Skill) -> void:
 	elif !secondary_skill && hand == 1:
 		secondary_skill = skill
 		secondary_skill_controller = get_tree().get_first_node_in_group(skill.name)
+	print(player_skills)
 
 func on_remove_skill(hand: int):
 	if hand == 0:

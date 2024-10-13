@@ -1,0 +1,85 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjtr2mltc47uu"]
+
+[ext_resource type="Script" path="res://scenes/ui/item_info_holder.gd" id="1_2wlyi"]
+[ext_resource type="PackedScene" uid="uid://b2ewffvy400tt" path="res://scenes/ui/parts/label_key_value.tscn" id="2_60s34"]
+[ext_resource type="PackedScene" uid="uid://b0l5cf4kkf0oc" path="res://scenes/ui/parts/lvl_up_container.tscn" id="3_qabrw"]
+
+[node name="ItemInfoHolder" type="PanelContainer"]
+custom_minimum_size = Vector2(400, 500)
+layout_direction = 1
+offset_right = 37.0
+offset_bottom = 22.0
+script = ExtResource("1_2wlyi")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 9
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+text = "- Spark tablet - 
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+uppercase = true
+
+[node name="Rarity" type="ColorRect" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Description" type="Label" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Sprak tablet is newbuys tablet type of weapons to survive in this hard dangeons. Consumes mana on usage and produce sparks that can hurt your enemies.  "
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Rarity2" type="ColorRect" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="CharacteristicContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="LabelKeyValue" parent="MarginContainer/VBoxContainer/CharacteristicContainer" instance=ExtResource("2_60s34")]
+layout_mode = 2
+
+[node name="Rarity3" type="ColorRect" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="HowToUse" type="Label" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+text = "Press LMB to use the skill."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Rarity4" type="ColorRect" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="LvlUpContainer" parent="MarginContainer/VBoxContainer" instance=ExtResource("3_qabrw")]
+layout_mode = 2
+
+[node name="QuantityLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "Quantity: 1"

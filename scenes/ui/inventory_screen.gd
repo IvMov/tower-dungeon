@@ -8,6 +8,7 @@ var done: bool = false
 
 func _ready() -> void:
 	GameEvents.change_game_stage.connect(on_change_game_stage)
+	GameEvents.item_added.connect(on_item_added)
 	config_drop_on_floor_box()
 
 
@@ -25,7 +26,6 @@ func init_inventory() -> void:
 	
 
 func draw_inventory_grid() -> void:
-	PlayerParameters.inventory.item_added.connect(on_item_added)
 	for i in PlayerParameters.inventory.size.x:
 		var vbox: HBoxContainer = HBoxContainer.new()
 		rows.add_child(vbox)
@@ -61,8 +61,9 @@ func on_change_game_stage(game_stage: GameStage.Stage):
 		visible = false
 
 
-func on_item_added(to: Vector2):
-	var item_bulk: ItemBulk = PlayerParameters.inventory.items.get(to)
-	var item_view: ItemView = rows.get_child(to.x).get_child(to.y).item_view
-	item_view.item_bulk = item_bulk
-	item_view.draw_item()
+func on_item_added(to: Vector3):
+	if to.x == 0:
+		var item_bulk: ItemBulk = PlayerParameters.inventory.items.get(Vector2(to.y, to.z))
+		var item_view: ItemView = rows.get_child(to.y).get_child(to.z).item_view
+		item_view.item_bulk = item_bulk
+		item_view.draw_item()

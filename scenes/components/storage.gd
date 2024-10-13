@@ -1,8 +1,5 @@
 class_name Storage extends Node
 
-
-signal item_added(location: Vector2)
-
 # x - 0 means inventory, 1 - belt, 2 - map, 3 - hands
 var id: int
 #x - rows, y - columns
@@ -39,7 +36,3 @@ func on_item_add(to: Vector3, item_bulk: ItemBulk):
 func on_item_remove(from: Vector3, quantity: int):
 	if from.x == id:
 		remove(from, quantity)
-
-
-func emit_item_added(location: Vector2):
-	item_added.emit(location)

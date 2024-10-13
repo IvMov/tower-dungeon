@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2ewffvy400tt"]
+
+[ext_resource type="Script" path="res://scenes/ui/parts/label_key_value.gd" id="1_fqiux"]
+
+[node name="LabelKeyValue" type="MarginContainer"]
+offset_right = 175.0
+offset_bottom = 14.0
+script = ExtResource("1_fqiux")
+
+[node name="Key" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "D"
+
+[node name="Value" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "10"
+horizontal_alignment = 2

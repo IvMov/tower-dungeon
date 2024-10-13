@@ -15,9 +15,14 @@ signal skill_call_failed(reason: Enums)
 
 signal item_remove(from: Vector3, quantity: int)
 signal item_add(to: Vector3, item: ItemBulk)
+signal item_added(location: Vector2)
 signal item_to_hand(item_view: ItemView)
 signal item_to_map(to: Vector3, item: PackedScene)
-signal item_from_map(from: Vector3)
+signal item_from_map(item: Node3D)
+signal cant_pick_item()
+signal item_hovered(item: ItemBulk)
+signal item_unhovered()
+
 
 signal souls_dropped(position: Vector3, value: Vector3)
 signal souls_collect(position: Vector3, value: Vector3)
@@ -63,14 +68,27 @@ func emit_item_remove(from: Vector3, quantity: int):
 func emit_item_add(to: Vector3, item: ItemBulk):
 	item_add.emit(to, item)
 
-func emit_item_to_hand(item_view: ItemView):
-	item_to_hand.emit(item_view)
-
-func emit_remove_skill(hand: int): 
-	remove_skill.emit(hand)
+func emit_item_added(location: Vector3):
+	item_added.emit(location)
 
 func emit_item_to_map(to: Vector3, item: PackedScene):
 	item_to_map.emit(to, item)
 
-func emit_item_from_map(from: Vector3):
-	item_from_map.emit(from)
+func emit_item_from_map(item: Node3D):
+	item_from_map.emit(item)
+
+func emit_cant_pick_item():
+	cant_pick_item.emit()
+
+func emit_item_to_hand(item_view: ItemView):
+	item_to_hand.emit(item_view)
+
+#related to items (skill_from_hand)
+func emit_remove_skill(hand: int): 
+	remove_skill.emit(hand)
+
+func emit_item_hovered(item: ItemBulk):
+	item_hovered.emit(item)
+
+func emit_item_unhovered():
+	item_unhovered.emit()

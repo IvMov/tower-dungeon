@@ -66,7 +66,15 @@ func generate_level() -> void:
 	prepare_blank_map()
 	for i in MAX_ROOMS:
 		generate_room()
+		# map storage as map of each empty map
+		# each_room_generate pickable items - add them to map_storage
+		
 	map.bake_navigation()
+	# TODO: think about map save (below - copied from internet)
+	#var node_to_save = $Node2D
+	#var scene = PackedScene.new()
+	#scene.pack(node_to_save)
+	#ResourceSaver.save(scene, "res://MyScene.tscn")
 
 
 func generate_room() -> void:

@@ -126,9 +126,7 @@ func handle_action_button(event: InputEvent) -> void:
 		var obj: Node3D = camera_scene.get_target_object()
 		if obj == null:
 			return
-		GameEvents.emit_item_from_map(obj.global_position)
-		obj.queue_free()
-		print(obj.global_position)
+		GameEvents.emit_item_from_map(obj)
 		#get object from camera scene
 		#check is object pickable or activating or other
 		#emit signal - pick item, activate something or etc
