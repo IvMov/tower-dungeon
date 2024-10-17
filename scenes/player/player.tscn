@@ -2352,10 +2352,9 @@ player = NodePath("..")
 
 [node name="Belt" parent="Storages" instance=ExtResource("9_6mowg")]
 
-[node name="PlayerSkillController" parent="." node_paths=PackedStringArray("jump_skill", "run_skill", "aim_skill", "push_skill") instance=ExtResource("4_luhgc")]
+[node name="PlayerSkillController" parent="." node_paths=PackedStringArray("jump_skill", "run_skill", "push_skill") instance=ExtResource("4_luhgc")]
 jump_skill = NodePath("../SkillBox/JumpSkillController")
 run_skill = NodePath("../SkillBox/RunSkillController")
-aim_skill = NodePath("../SkillBox/AimSkillController")
 push_skill = NodePath("../SkillBox/PushEnemySkillController")
 
 [node name="StatsBox" type="Node3D" parent="."]

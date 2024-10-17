@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://ltthhymb32w2"]
+
+[ext_resource type="PackedScene" uid="uid://jut3uwfl054l" path="res://scenes/skill_contolllers/base_controller.tscn" id="1_w1itm"]
+[ext_resource type="Script" path="res://scenes/skill_contolllers/stamina/player/stone_throw_controller.gd" id="2_rgp3v"]
+[ext_resource type="PackedScene" uid="uid://dhisb5g4kf3le" path="res://scenes/projectiles/stone_projectile.tscn" id="3_33ns0"]
+
+[node name="StoneThrowController" instance=ExtResource("1_w1itm")]
+script = ExtResource("2_rgp3v")
+projectile_pack = ExtResource("3_33ns0")
+
+[node name="IdleTimer" parent="." index="2"]
+wait_time = 0.3

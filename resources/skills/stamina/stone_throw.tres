@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=3 format=3 uid="uid://dq51j2ua438qf"]
+
+[ext_resource type="PackedScene" uid="uid://ltthhymb32w2" path="res://scenes/skill_contolllers/stamina/player/stone_throw_controller.tscn" id="1_43261"]
+[ext_resource type="Script" path="res://resources/skills/skill.gd" id="2_7k1hk"]
+
+[resource]
+script = ExtResource("2_7k1hk")
+id = "stone"
+title = "stone_skill_title"
+description = "stone_skill_description"
+controller = ExtResource("1_43261")
+is_maintainable = false
+is_offensive = true
+is_consumable = true
+is_upgradable = false
+parameter = ""
+base_value = 1.0
+base_push_value = 100.0
+base_speed = 20.0
+base_distance = 0.0
+energy_type = ""
+base_energy_cost = 1.0
+base_cast_time = 0.1
+base_duration = 5.0
+base_cooldown = 0.1
+value_per_lvl = 0.5
+push_value_per_lvl = 0.0
+speed_per_lvl = 0.0
+distance_per_lvl = 0.0
+energy_per_lvl = 0.0
+cast_time_per_lvl = 0.0
+duration_per_lvl = 0.0
+cooldown_per_lvl = 0.0
+max_lvl = 0
+base_exp = 0.0
+exp_multiplier = 0.0
+sell_price = Vector3(0, 0, 0)
+buy_price = Vector3(0, 0, 0)

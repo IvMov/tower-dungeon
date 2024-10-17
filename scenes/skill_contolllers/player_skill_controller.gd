@@ -48,7 +48,7 @@ func use_active_skill(hand: int, is_pressed: bool) -> void:
 
 func map_skill_to_controller(controller: BaseController, skill: Skill) -> void:
 	controller.id = skill.id
-	controller.skill_name = skill.name
+	controller.skill_name = skill.title
 	controller.description = skill.description
 	controller.base_value = skill.base_value
 	controller.base_push_value = skill.base_push_value
@@ -65,17 +65,17 @@ func on_add_skill(hand:int, skill: Skill) -> void:
 		return
 	player_skills[skill.id] = skill;
 	var controller_instance: BaseController = skill.controller.instantiate()
-	controller_instance.add_to_group(skill.name)
+	controller_instance.add_to_group(skill.title)
 	player.skill_box.add_child(controller_instance)
 	map_skill_to_controller(controller_instance, skill)
 	controller_instance.player = player
 	
 	if !primary_skill && hand == 0:
 		primary_skill = skill
-		primary_skill_controller = get_tree().get_first_node_in_group(skill.name)
+		primary_skill_controller = get_tree().get_first_node_in_group(skill.title)
 	elif !secondary_skill && hand == 1:
 		secondary_skill = skill
-		secondary_skill_controller = get_tree().get_first_node_in_group(skill.name)
+		secondary_skill_controller = get_tree().get_first_node_in_group(skill.title)
 	print(player_skills)
 
 func on_remove_skill(hand: int):

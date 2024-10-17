@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=3 uid="uid://dhisb5g4kf3le"]
+
+[ext_resource type="Script" path="res://scenes/projectiles/stone_projectile.gd" id="1_7e6ep"]
+[ext_resource type="SphereMesh" uid="uid://004wttwvhpwe" path="res://assets/3d/my/stone_mesh.tres" id="2_mv7th"]
+[ext_resource type="PlaneMesh" uid="uid://hnn3cqisno05" path="res://particles/mesh/square_mesh.tres" id="3_287by"]
+[ext_resource type="Material" uid="uid://dtpkny3bvp3yd" path="res://particles/player_explosion.tres" id="4_p3qcy"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_gelvw"]
+resource_local_to_scene = true
+radius = 0.11
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jfoij"]
+gravity = Vector3(0, -1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vwjab"]
+shading_mode = 0
+albedo_color = Color(3, 3, 3, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_p77uj"]
+lightmap_size_hint = Vector2i(2, 2)
+material = SubResource("StandardMaterial3D_vwjab")
+size = Vector2(0.05, 0.05)
+orientation = 2
+
+[node name="StoneProjectile" type="Node3D"]
+script = ExtResource("1_7e6ep")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_energy = 0.2
+light_indirect_energy = 0.2
+distance_fade_enabled = true
+distance_fade_begin = 200.0
+distance_fade_length = 20.0
+omni_range = 2.0
+omni_attenuation = 0.707107
+omni_shadow_mode = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_mv7th")
+
+[node name="Area3D" type="Area3D" parent="MeshInstance3D"]
+collision_layer = 4
+collision_mask = 1025
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
+shape = SubResource("SphereShape3D_gelvw")
+
+[node name="LifeTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="GravityBitch" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="ProjectileParticles" type="GPUParticles3D" parent="."]
+cast_shadow = 0
+emitting = false
+amount = 10
+transform_align = 3
+process_material = SubResource("ParticleProcessMaterial_jfoij")
+draw_pass_1 = SubResource("PlaneMesh_p77uj")
+
+[node name="CollisionParticles" type="GPUParticles3D" parent="."]
+transparency = 0.5
+cast_shadow = 0
+emitting = false
+amount = 100
+lifetime = 0.8
+one_shot = true
+speed_scale = 3.0
+explosiveness = 1.0
+process_material = ExtResource("4_p3qcy")
+draw_pass_1 = ExtResource("3_287by")

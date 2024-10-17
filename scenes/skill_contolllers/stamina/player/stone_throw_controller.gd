@@ -1,6 +1,6 @@
-class_name SparkControllerOld extends BaseController
+class_name StoneThrowController extends BaseController
 
-@export var spark_projectile: PackedScene
+@export var projectile_pack: PackedScene
 @onready var projectiles_box: Node = get_tree().get_first_node_in_group("projectiles")
 var player: Player
 var cast_enabled: bool = false
@@ -9,20 +9,17 @@ var cast_enabled: bool = false
 func start_cast() -> void:
 	cast_timer.wait_time = base_cast_time
 	cooldown_timer.wait_time = base_cooldown
-	if is_on_cooldown:
-		GameEvents.emit_skill_call_failed(Enums.SkillCallFailedReason.ON_CD)
-		print("ON CD")
-	elif is_idle: 
-		print("IDLE")
+	
+	if is_idle:
 		GameEvents.emit_skill_call_failed(Enums.SkillCallFailedReason.IDLE)
-	elif !player.mana_component.minus(base_energy_cost):
-		print("NO MANA")
-		# TODO: create energy component and health component abstraction layer with minus plus and etc methods.
+	elif !player.stamina_component.minus(base_energy_cost):
 		GameEvents.emit_skill_call_failed(Enums.SkillCallFailedReason.NO_MANA)
 	else:
 		cast_enabled = true
-		#TODO: play cast animation 
-		super.start_cast()
+		skill_cast_finished = true
+		finish_cast()
+		is_idle = true
+
 
 func finish_cast() -> void:
 	if !cast_enabled:
@@ -34,6 +31,7 @@ func finish_cast() -> void:
 		skill_cast_finished = false
 	else:
 		revert_cast()
+	is_idle = false
 
 func revert_cast() -> void:
 	player.mana_component.plus(base_energy_cost*0.8)
@@ -44,7 +42,7 @@ func use_skill() -> void:
 	if !player:
 		print("NO OWNER NODE SETTED TO CONTROLLER")
 		return
-	var projectile: SparkProjectile = spark_projectile.instantiate()
+	var projectile: StoneProjectile = projectile_pack.instantiate()
 	var proj_direction: Vector3 = calc_projectile_direction()
 	
 	projectiles_box.add_child(projectile)
@@ -54,9 +52,9 @@ func use_skill() -> void:
 	projectile.speed = calc_projectile_speed()
 	projectile.skill_name = skill_name
 	projectile.direction = proj_direction
-	projectile.global_position = player.camera_scene.get_camera_position() + proj_direction * player.camera_scene.get_camera_distance() * 1.05
+	projectile.global_position = player.camera_scene.get_camera_position() + proj_direction * player.camera_scene.get_camera_distance() * 1.01
 	if projectile.global_position.y <= 0:
-		projectile.global_position = player.camera_scene.get_camera_position() + proj_direction * 1.05
+		projectile.global_position = player.camera_scene.get_camera_position() + proj_direction * 1.01
 	
 
 func calc_projectile_damage() -> float:

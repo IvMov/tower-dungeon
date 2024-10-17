@@ -71,7 +71,6 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 func put_item(item_view: ItemView) -> void:
 	if !item_bulk:
 		if location.x == 2:
-			print("dropped")
 			drop_item(item_view)
 			return 
 		add(item_view.item_bulk)

@@ -1,0 +1,17 @@
+[gd_resource type="SphereMesh" load_steps=3 format=3 uid="uid://004wttwvhpwe"]
+
+[ext_resource type="Texture2D" uid="uid://byivlgs4ro8tm" path="res://assets/textures/Tile 8 - 128x128.png" id="1_hj1gm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wq011"]
+shading_mode = 0
+albedo_texture = ExtResource("1_hj1gm")
+albedo_texture_force_srgb = true
+uv1_scale = Vector3(7.83, 7.83, 7.83)
+uv1_triplanar = true
+
+[resource]
+material = SubResource("StandardMaterial3D_wq011")
+radius = 0.11
+height = 0.15
+radial_segments = 5
+rings = 3

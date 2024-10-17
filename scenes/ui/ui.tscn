@@ -39,6 +39,7 @@ size_flags_vertical = 4
 theme_type_variation = &"PanelContainer2"
 
 [node name="ItemInfoHolder" parent="CanvasLayer/MarginContainer" instance=ExtResource("6_nxa7a")]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4

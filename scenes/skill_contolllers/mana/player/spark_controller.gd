@@ -82,6 +82,3 @@ func calc_projectile_direction() -> Vector3:
 	var cursor_world_position = ray_origin + ray_normal * distance_to_target
 	
 	return (cursor_world_position - player.camera_scene.get_camera_position()).normalized();
-
-
-

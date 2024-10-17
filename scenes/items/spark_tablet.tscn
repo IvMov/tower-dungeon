@@ -7,6 +7,12 @@ points = PackedVector3Array(0.036992, 0.0325147, 0.162935, 0.0359629, 0.168925, 
 
 [node name="SparkTablet" instance=ExtResource("1_8e7wq")]
 
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="0"]
+light_color = Color(1, 1, 0.67451, 1)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="OmniLight3D" index="0"]
+light_color = Color(1, 1, 0.67451, 1)
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Cube" index="0"]
 collision_layer = 16
 collision_mask = 0

@@ -1,28 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://3j1ghro251mo"]
+[gd_scene load_steps=3 format=3 uid="uid://3j1ghro251mo"]
 
-[ext_resource type="Texture2D" uid="uid://brw7ipjey3g2j" path="res://assets/textures/Tile 22 - 128x128.png" id="1_rej3r"]
+[ext_resource type="SphereMesh" uid="uid://004wttwvhpwe" path="res://assets/3d/my/stone_mesh.tres" id="1_ffdy0"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_62sck"]
-shading_mode = 0
-albedo_texture = ExtResource("1_rej3r")
-albedo_texture_force_srgb = true
-uv1_triplanar = true
-
-[sub_resource type="BoxMesh" id="BoxMesh_pqllr"]
-material = SubResource("StandardMaterial3D_62sck")
-size = Vector3(0.2, 0.2, 0.2)
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_lnjof"]
-data = PackedVector3Array(-0.1, 0.1, 0.1, 0.1, 0.1, 0.1, -0.1, -0.1, 0.1, 0.1, 0.1, 0.1, 0.1, -0.1, 0.1, -0.1, -0.1, 0.1, 0.1, 0.1, -0.1, -0.1, 0.1, -0.1, 0.1, -0.1, -0.1, -0.1, 0.1, -0.1, -0.1, -0.1, -0.1, 0.1, -0.1, -0.1, 0.1, 0.1, 0.1, 0.1, 0.1, -0.1, 0.1, -0.1, 0.1, 0.1, 0.1, -0.1, 0.1, -0.1, -0.1, 0.1, -0.1, 0.1, -0.1, 0.1, -0.1, -0.1, 0.1, 0.1, -0.1, -0.1, -0.1, -0.1, 0.1, 0.1, -0.1, -0.1, 0.1, -0.1, -0.1, -0.1, 0.1, 0.1, 0.1, -0.1, 0.1, 0.1, 0.1, 0.1, -0.1, -0.1, 0.1, 0.1, -0.1, 0.1, -0.1, 0.1, 0.1, -0.1, -0.1, -0.1, 0.1, 0.1, -0.1, 0.1, -0.1, -0.1, -0.1, 0.1, -0.1, 0.1, 0.1, -0.1, -0.1, -0.1, -0.1, -0.1)
+[sub_resource type="SphereShape3D" id="SphereShape3D_fhxy5"]
+radius = 0.11
 
 [node name="Stone" type="Node3D"]
 
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(1, 1, 0.647059, 1)
+light_size = 0.1
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_pqllr")
+mesh = ExtResource("1_ffdy0")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
 collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_lnjof")
+shape = SubResource("SphereShape3D_fhxy5")
