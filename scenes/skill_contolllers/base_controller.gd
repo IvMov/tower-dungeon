@@ -6,24 +6,11 @@ class_name BaseController extends Node3D
 @onready var idle_timer: Timer = $IdleTimer
 
 
+var skill: Skill
 var skill_cast_finished: bool
 var is_on_cooldown: bool
 var is_idle: bool
-
-
-var id: String
-var skill_name: String
-var description: String
-var controller: PackedScene
-
-var base_value: float
-var base_push_value: float
-var base_speed: float
-var base_distance: float
-var base_energy_cost: float
-var base_cast_time: float
-var base_duration: float
-var base_cooldown: float
+var hand: int = -1
 
 
 func start_cast() -> void:
@@ -40,6 +27,8 @@ func revert_cast() -> void:
 func use_skill() -> void:
 	is_on_cooldown = true
 	cooldown_timer.start()
+	if skill.is_consumable:
+			GameEvents.emit_item_consumed(0, skill.id)
 
 func stop_skill() -> void:
 	pass

@@ -12,15 +12,22 @@ func _ready() -> void:
 	id = 2
 
 #override to save 3d coordinates
-func add(_key: Vector3, item_bulk: ItemBulk) -> void:
-	var key_3d: Vector3 = get_tree().get_first_node_in_group("player").global_position
-	key_3d = key_3d + Vector3(randf_range(-RAND, RAND), RAND, randf_range(-RAND, RAND))
-	if items.has(key_3d):
-		items.get(key_3d).quantity += item_bulk.quantity
+func add(key: Vector3, item_bulk: ItemBulk) -> void:
+	
+	if items.has(key):
+		items.get(key).quantity += item_bulk.quantity
 	else:
-		items[key_3d] = item_bulk
-	GameEvents.emit_item_to_map(key_3d, item_bulk.item.scene)
+		items[key] = item_bulk
+	GameEvents.emit_item_to_map(key, item_bulk.item.scene)
 
+func on_item_add(to: Vector3, item_bulk: ItemBulk, map_pos: Vector3):
+	if to.x == id:
+		if map_pos == Vector3.ZERO:
+			var key: Vector3 = get_tree().get_first_node_in_group("player").global_position
+			key = key + Vector3(randf_range(-RAND, RAND), RAND, randf_range(-RAND, RAND))
+			add(key, item_bulk)
+		else:
+			add(map_pos, item_bulk)
 
 func on_item_from_map(item: Node3D):
 	var from: Vector3 = item.global_position

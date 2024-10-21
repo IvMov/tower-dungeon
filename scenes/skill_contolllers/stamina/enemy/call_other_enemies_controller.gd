@@ -4,7 +4,8 @@ class_name CallOtherEnemiesController extends BaseController
 
 
 func _ready():
-	base_energy_cost = 3
+	skill = Skill.new()
+	skill.base_energy_cost = 3
 
 func use_skill() -> void:
 	if cooldown_timer.is_stopped():

@@ -65,6 +65,6 @@ amount = 100
 lifetime = 0.8
 one_shot = true
 speed_scale = 3.0
-explosiveness = 1.0
+explosiveness = 0.88
 process_material = ExtResource("4_0cqs3")
 draw_pass_1 = ExtResource("3_v1etk")

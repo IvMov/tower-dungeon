@@ -22,14 +22,14 @@ func add(key: Vector3, item_bulk: ItemBulk) -> void:
 
 func remove(key: Vector3,  quantity: int) -> void: 
 	var key_2d: Vector2 = Vector2(key.y, key.z)
-	if items.has(key_2d) && items.get(key_2d).quantity < quantity:
+	if items.has(key_2d) && items.get(key_2d).quantity > quantity:
 		items.get(key_2d).quantity -= quantity
-		if items.get(key_2d).quantity <=0:
-			items.erase(key_2d)	
 	else:
 		items.erase(key_2d)
+		if key.x == 3: 
+			GameEvents.emit_item_from_hand(key.z)
 
-func on_item_add(to: Vector3, item_bulk: ItemBulk):
+func on_item_add(to: Vector3, item_bulk: ItemBulk, _map_pos: Vector3):
 	if to.x == id:
 		add(to, item_bulk)
 

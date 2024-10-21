@@ -5,6 +5,7 @@ var speed: float
 var damage: float
 var skill_name: String
 var push_power: float
+
 @onready var gravity_bitch: Timer = $GravityBitch
 
 @onready var life_timer: Timer = $LifeTimer
@@ -26,7 +27,7 @@ func _ready() -> void:
 func _physics_process(delta) -> void:
 	if direction != Vector3.ZERO:
 		direction.y = direction.y - delta * speed / 30
-	translate(direction * speed * delta)
+	translate(speed * direction * delta)
 
 
 func on_body_entered(body: Node3D) -> void:
@@ -39,10 +40,13 @@ func on_body_entered(body: Node3D) -> void:
 func handleb_body_collision() -> void:
 	speed = 0
 	collision_particles.emitting = true	
-	stone.visible = false
-	life_timer.wait_time = 0.5
+	
+	life_timer.wait_time = 0.3
 	life_timer.start()
 
 	
 func on_life_timer_timeout() -> void:
+	stone.visible = false
+	var item: ItemBulk = ItemBulk.new(Constants.ITEM_STONE, 1)
+	GameEvents.emit_item_add(Vector3(2, global_position.x, global_position.z), item, global_position)
 	queue_free()

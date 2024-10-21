@@ -4,9 +4,6 @@ class_name AimSkillController extends BaseController
 
 var is_aiming: bool = false
 
-func _ready():
-	base_energy_cost = 1 # todo:create normal skill .tres
-
 func use_skill_with_event(event: InputEvent):
 	if event.is_action_pressed("aiming_mode"):
 		use_skill()
@@ -19,7 +16,7 @@ func use_skill() -> void:
 		GameEvents.emit_skill_call_failed(Enums.SkillCallFailedReason.IDLE)
 	elif PlayerParameters.lock_stamina_skill:
 		GameEvents.emit_skill_call_failed(Enums.SkillCallFailedReason.LOCK)	
-	elif !player.stamina_component.minus(base_energy_cost):
+	elif !player.stamina_component.minus(skill.base_energy_cost):
 		GameEvents.emit_skill_call_failed(Enums.SkillCallFailedReason.NO_STAMINA)
 	else:
 		is_aiming = true
@@ -40,7 +37,7 @@ func stop_skill() -> void:
 
 # consume stamina each time after timeout
 func _on_cooldown_timer_timeout() -> void:
-	if player.stamina_component.minus(base_energy_cost):
+	if player.stamina_component.minus(skill.base_energy_cost):
 		cooldown_timer.start()
 	else:
 		stop_skill()

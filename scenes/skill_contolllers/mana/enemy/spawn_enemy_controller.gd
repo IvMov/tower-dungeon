@@ -17,12 +17,11 @@ var cast_stopped: bool = false
 
 
 func _ready():
-	base_cast_time = 3
-	base_cooldown = 2
-	base_energy_cost = 5
-	idle_timer.wait_time = base_cast_time
-	cast_timer.wait_time = base_cast_time
-	cooldown_timer.wait_time = base_cooldown
+	skill = Skill.new()
+	skill.base_energy_cost = 5
+	idle_timer.wait_time = 0.5
+	cast_timer.wait_time = 3
+	cooldown_timer.wait_time = 2
 
 func get_sign() -> int:
 	return -1 if randf() <0.5 else 1
@@ -44,7 +43,7 @@ func cast_lot(num: int) -> void:
 		start_cast()
 
 func start_cast() -> void:
-	if !fast_cast && !owner_enemy.mana_component.minus(base_energy_cost):
+	if !fast_cast && !owner_enemy.mana_component.minus(skill.base_energy_cost):
 		skill_cast_finished = false
 	else:
 		skill_cast_finished = true
@@ -56,10 +55,10 @@ func start_cast() -> void:
 		enemy_box.add_child(proj_inst)
 		proj_inst.global_position = global_position
 		
-		proj_inst.life_timer.wait_time = base_cast_time
+		proj_inst.life_timer.wait_time = skill.base_cast_time
 		proj_inst.life_timer.stop()
 		proj_inst.life_timer.start()
-		tween.tween_property(proj_inst, "global_position", next_enemy_position, base_cast_time-0.3)
+		tween.tween_property(proj_inst, "global_position", next_enemy_position, skill.base_cast_time-0.3)
 		tween.tween_property(proj_inst, "scale", Vector3.ONE * 2, 0.3)
 		positions.append(next_enemy_position)
 	if !fast_cast:
@@ -120,4 +119,3 @@ func _on_cast_timer_timeout() -> void:
 
 func _on_cooldown_timer_timeout() -> void:
 	start_cast()
-

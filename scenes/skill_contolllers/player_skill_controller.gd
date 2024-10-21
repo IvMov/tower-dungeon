@@ -33,7 +33,8 @@ func cast_active_skill(hand: int, is_pressed: bool) -> void:
 		skill_controller.use_skill()
 	else:
 		skill_controller.start_cast()
-	
+
+
 func use_active_skill(hand: int, is_pressed: bool) -> void:
 	var skill: Skill = primary_skill if hand == 0 else secondary_skill
 	
@@ -44,20 +45,12 @@ func use_active_skill(hand: int, is_pressed: bool) -> void:
 		skill_controller.stop_skill()
 	else:
 		skill_controller.finish_cast()
+		print("me?")
+
 
 
 func map_skill_to_controller(controller: BaseController, skill: Skill) -> void:
-	controller.id = skill.id
-	controller.skill_name = skill.title
-	controller.description = skill.description
-	controller.base_value = skill.base_value
-	controller.base_push_value = skill.base_push_value
-	controller.base_speed = skill.base_speed
-	controller.base_distance = skill.base_distance
-	controller.base_energy_cost = skill.base_energy_cost
-	controller.base_cast_time = skill.base_cast_time
-	controller.base_duration = skill.base_duration
-	controller.base_cooldown = skill.base_cooldown
+	controller.skill = skill
 
 
 func on_add_skill(hand:int, skill: Skill) -> void:
@@ -73,9 +66,11 @@ func on_add_skill(hand:int, skill: Skill) -> void:
 	if !primary_skill && hand == 0:
 		primary_skill = skill
 		primary_skill_controller = get_tree().get_first_node_in_group(skill.title)
+		primary_skill_controller.hand = 0;
 	elif !secondary_skill && hand == 1:
 		secondary_skill = skill
 		secondary_skill_controller = get_tree().get_first_node_in_group(skill.title)
+		secondary_skill_controller.hand = 1;
 	print(player_skills)
 
 func on_remove_skill(hand: int):

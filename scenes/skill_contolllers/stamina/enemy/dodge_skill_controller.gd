@@ -3,10 +3,11 @@ class_name DodgeSkillController extends BaseController
 @export var enemy: BasicEnemy
 
 func _ready():
-	base_energy_cost = 3
+	skill = Skill.new()
+	skill.base_energy_cost = 3
 
 func use_skill() -> void:
-	if enemy.stamina_component.minus(base_energy_cost): 
+	if enemy.stamina_component.minus(skill.base_energy_cost): 
 		enemy.is_runing = true
 		enemy.is_dodging = true
 		enemy.relocate_enemy()
