@@ -1,38 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://3j1ghro251mo"]
+[gd_scene load_steps=3 format=3 uid="uid://3j1ghro251mo"]
 
 [ext_resource type="SphereMesh" uid="uid://004wttwvhpwe" path="res://assets/3d/my/stone_mesh.tres" id="1_ffdy0"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_07co3"]
-shading_mode = 0
-albedo_color = Color(2, 2, 2, 1)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_8syef"]
-material = SubResource("StandardMaterial3D_07co3")
-size = Vector2(0.03, 0.03)
-orientation = 0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_fhxy5"]
 radius = 0.18
 
 [node name="Stone" type="Node3D"]
 
-[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.113025, 0)
-amount = 1
-lifetime = 0.5
-randomness = 0.15
-mesh = SubResource("PlaneMesh_8syef")
-particle_flag_rotate_y = true
-direction = Vector3(0, 0, 0)
-gravity = Vector3(0, 0, 0)
-initial_velocity_max = 1.0
-radial_accel_min = -1.0
-radial_accel_max = 1.0
-angle_min = -180.0
-angle_max = 180.0
-scale_amount_min = 0.2
-scale_amount_max = 2.0
-color = Color(2, 2, 2, 1)
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.019133, 0)
+light_bake_mode = 0
+omni_range = 0.3
+omni_shadow_mode = 0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = ExtResource("1_ffdy0")

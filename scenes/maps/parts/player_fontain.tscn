@@ -102,6 +102,7 @@ transform = Transform3D(0.479772, -0.62044, -0.620381, -0.3795, 0.490768, -0.784
 mesh = SubResource("CylinderMesh_mviag")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+collision_layer = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_8vlwq")

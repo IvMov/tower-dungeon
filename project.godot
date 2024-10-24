@@ -191,6 +191,7 @@ locale/translations=PackedStringArray("res://assets/translation/text.en.translat
 [layer_names]
 
 3d_physics/layer_1="Terrain"
+3d_physics/layer_2="Terrain_floor"
 3d_physics/layer_3="Projectiles_player"
 3d_physics/layer_4="Souls"
 3d_physics/layer_5="Pickable_items"

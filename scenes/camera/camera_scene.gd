@@ -48,8 +48,9 @@ func get_camera_position() -> Vector3:
 	return camera_3d.global_position
 
 func get_target_object() -> Node3D:
-	if ray_cast_3d.is_colliding():
-		return ray_cast_3d.get_collider().get_parent().get_parent()
+	var collider: Node3D = ray_cast_3d.get_collider()
+	if collider:
+		return collider.get_parent().get_parent()
 	return null
 
 func _unhandled_input(event):

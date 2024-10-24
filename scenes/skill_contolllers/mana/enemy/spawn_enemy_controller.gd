@@ -18,10 +18,13 @@ var cast_stopped: bool = false
 
 func _ready():
 	skill = Skill.new()
+	
+	skill.base_cast_time = 3
+	skill.base_cooldown = 2
 	skill.base_energy_cost = 5
-	idle_timer.wait_time = 0.5
-	cast_timer.wait_time = 3
-	cooldown_timer.wait_time = 2
+	idle_timer.wait_time = skill.base_cast_time
+	cast_timer.wait_time = skill.base_cast_time
+	cooldown_timer.wait_time = skill.base_cooldown
 
 func get_sign() -> int:
 	return -1 if randf() <0.5 else 1

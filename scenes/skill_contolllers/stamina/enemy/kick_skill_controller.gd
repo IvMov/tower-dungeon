@@ -3,6 +3,7 @@ class_name KickSkillController extends BaseController
 @export var enemy: BasicEnemy
 
 func _ready():
+	skill = Skill.new()
 	skill.base_value = randf_range(2, 5)
 	skill.base_energy_cost = 1
 

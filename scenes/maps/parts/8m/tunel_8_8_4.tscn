@@ -52,9 +52,11 @@ script = ExtResource("1_gtmxg")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
+layers = 3
 mesh = SubResource("PlaneMesh_6th1a")
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="MeshInstance3D"]
+collision_layer = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D2"]
 shape = SubResource("ConcavePolygonShape3D_6p1ov")

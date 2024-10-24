@@ -34,6 +34,8 @@ func on_item_from_map(item: Node3D):
 	if items.has(from):
 		cache_item = item
 		GameEvents.emit_item_add(Vector3(0, 0, 0), items.get(from))
+	else:
+		item.queue_free()
 
 func on_item_added(_to: Vector3):
 	if cache_item:

@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cu1eweixkj7sb" path="res://assets/textures/Tile 24 - 128x128.png" id="1_ibxwt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7jx6h"]
+shading_mode = 2
 albedo_texture = ExtResource("1_ibxwt")
 albedo_texture_force_srgb = true
 uv1_scale = Vector3(0.5, 0.5, 0.5)
@@ -18,9 +19,11 @@ size = Vector3(8, 0.01, 8)
 [node name="Floor8_8" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+layers = 3
 mesh = SubResource("PlaneMesh_ejuje")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+collision_layer = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("BoxShape3D_vjtjy")

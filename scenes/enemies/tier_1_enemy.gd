@@ -43,7 +43,7 @@ func agr_on_player():
 
 func push_back(player_position: Vector3, push_power: float) -> void:
 	if is_runing:
-		stamina_component.plus(dodge_skill_controller.base_energy_cost)
+		stamina_component.plus(dodge_skill_controller.skill.base_energy_cost)
 		is_runing = false
 	super.push_back(player_position, push_power)
 	
@@ -66,4 +66,3 @@ func _on_chase_player_timer_timeout():
 		is_runing = false
 		reset_agr_area_size()
 		idle_moving_controller.use_skill()
-
