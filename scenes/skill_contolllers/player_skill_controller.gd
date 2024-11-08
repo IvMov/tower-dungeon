@@ -45,7 +45,6 @@ func use_active_skill(hand: int, is_pressed: bool) -> void:
 		skill_controller.stop_skill()
 	else:
 		skill_controller.finish_cast()
-		print("me?")
 
 
 
@@ -71,7 +70,6 @@ func on_add_skill(hand:int, skill: Skill) -> void:
 		secondary_skill = skill
 		secondary_skill_controller = get_tree().get_first_node_in_group(skill.title)
 		secondary_skill_controller.hand = 1;
-	print(player_skills)
 
 func on_remove_skill(hand: int):
 	if hand == 0:

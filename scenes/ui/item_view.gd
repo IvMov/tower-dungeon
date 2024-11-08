@@ -16,13 +16,9 @@ func _input(event: InputEvent) -> void:
 		dragged = false
 		visible = true
 
-func connect_to_item_add() -> void:
-	GameEvents.item_add.connect(on_item_add)
-	GameEvents.item_remove.connect(on_item_remove)
 
 func draw_item() -> void:
 	if item_bulk:
-		print(item_bulk.quantity)
 		texture = item_bulk.item.image
 		quantity_label.text = str(item_bulk.quantity)
 
@@ -96,11 +92,3 @@ func put_item(item_view: ItemView) -> void:
 func drop_item(item_view: ItemView) -> void: 
 	GameEvents.emit_item_add(Vector3(2, 0, 0), item_view.item_bulk)
 	item_view.reset()
-
-func on_item_add(to: Vector3, new_item_bulk: ItemBulk, _map_pos: Vector3):
-	if to.x == 3:
-		GameEvents.emit_add_skill(to.z, new_item_bulk.item.skill)
-
-func on_item_remove(from: Vector3, _quantity: int):
-	if from.x == 3:
-		GameEvents.emit_remove_skill(from.z)

@@ -5,7 +5,7 @@ signal health_changed(value: float, current_value: float)
 func _ready() -> void:
 	can_regen = true
 	emit_max_value_changed(max_value)
-	
+
 
 func minus(value: float) -> bool:
 	current_value = max(0, current_value - value)

@@ -8,6 +8,7 @@ signal player_entered(player: Player)
 signal damage_player(damage: float)
 signal run_player(speed: float)
 signal aiming_player(aiming: bool)
+signal push_player_back()
 
 signal add_skill(hand: int, skill: Skill)
 signal remove_skill(hand: int)
@@ -25,6 +26,7 @@ signal item_hovered(item: ItemBulk)
 signal item_unhovered()
 signal item_consumed(position: int, item_id: String)
 signal item_update_hand_view(hand: int)
+signal redraw_item(key: Vector3)
 
 
 signal souls_dropped(position: Vector3, value: Vector3)
@@ -104,3 +106,9 @@ func emit_item_consumed(position: int, item_id: String):
 
 func emit_item_update_hand_view(hand: int):
 	item_update_hand_view.emit(hand)
+
+func emit_redraw_item(key: Vector3):
+	redraw_item.emit(key)
+
+func emit_push_player_back():
+	push_player_back.emit()

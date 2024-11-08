@@ -4,7 +4,7 @@ class_name MapGenerator extends Node3D
 @export var has_walls: bool = false
 @export var has_torches: bool = false
 @export var has_columns: bool = false
-var is_spawner = true
+var is_spawner = false
 
 @onready var wall_builder: WallBuilder = $WallBuilder
 @onready var surface_builder: SurfaceBuilder = $SurfaceBuilder

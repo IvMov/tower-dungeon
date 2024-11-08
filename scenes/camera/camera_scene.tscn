@@ -7,7 +7,7 @@ script = ExtResource("1_84dn8")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 target_position = Vector3(0, 0, -2)
-collision_mask = 16
+collision_mask = 48
 
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
 spring_length = 5.0
@@ -16,3 +16,9 @@ margin = 0.1
 [node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
 keep_aspect = 0
 near = 0.2
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

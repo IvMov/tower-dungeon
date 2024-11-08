@@ -7,7 +7,7 @@ class_name PlayerBeltBox extends PanelContainer
 
 func _ready() -> void:
 	GameEvents.player_entered.connect(on_player_entered)
-	
+	GameEvents.redraw_item.connect(on_redraw_item)
 		#add new BeltSections and fill them with data from inventory node 
 		#(for instance row 99 will be for belt, and then I can control its lengt)
 
@@ -42,3 +42,9 @@ func resize() -> void:
 func on_player_entered(_player: Player) -> void:
 	draw_belt()
 	draw_belt_items()
+
+func on_redraw_item(key: Vector3):
+	if key.x != 1:
+		return
+	var item_view: ItemView = h_box_container.get_child(key.z).item_view
+	item_view.draw_item()

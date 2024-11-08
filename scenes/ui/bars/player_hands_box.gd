@@ -9,6 +9,8 @@ func _ready() -> void:
 	GameEvents.item_to_hand.connect(on_item_to_hand)
 	GameEvents.item_update_hand_view.connect(on_item_update_hand_view)
 	GameEvents.item_from_hand.connect(on_item_from_hand)
+	GameEvents.item_remove.connect(on_item_remove)
+	GameEvents.item_add.connect(on_item_add)
 
 func draw_items() -> void:
 	for coordinate in PlayerParameters.hands.items:
@@ -41,3 +43,14 @@ func on_item_update_hand_view(hand: int):
 		left_hand.item_view.draw_item()
 	else:
 		right_hand.item_view.draw_item()
+
+
+func on_item_remove(from: Vector3, quantity: int):
+	if from.x == 3 && !left_hand.item_view.item_bulk:
+		GameEvents.emit_remove_skill(0)
+	elif from.x == 3 && !right_hand.item_view.item_bulk:
+		GameEvents.emit_remove_skill(1)
+
+func on_item_add(to: Vector3, new_item_bulk: ItemBulk, _map_pos: Vector3):
+	if to.x == 3:
+		GameEvents.emit_add_skill(to.z, new_item_bulk.item.skill)

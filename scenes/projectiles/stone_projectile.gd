@@ -40,7 +40,8 @@ func on_body_entered(body: Node3D) -> void:
 	
 
 func handleb_body_collision(body: Node3D) -> void:
-	if is_falling || body.collision_layer == 3:
+	print(body.collision_layer)
+	if is_falling || body.get_collision_layer_value(2):
 		speed = 0
 		direction = Vector3.ZERO
 		life_timer.wait_time = RAND

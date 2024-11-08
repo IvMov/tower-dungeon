@@ -9,6 +9,7 @@ var done: bool = false
 func _ready() -> void:
 	GameEvents.change_game_stage.connect(on_change_game_stage)
 	GameEvents.item_added.connect(on_item_added)
+	GameEvents.redraw_item.connect(on_redraw_item)
 	config_drop_on_floor_box()
 
 
@@ -27,11 +28,11 @@ func init_inventory() -> void:
 
 func draw_inventory_grid() -> void:
 	for i in PlayerParameters.inventory.size.x:
-		var vbox: HBoxContainer = HBoxContainer.new()
-		rows.add_child(vbox)
+		var hbox: HBoxContainer = HBoxContainer.new()
+		rows.add_child(hbox)
 		for j in PlayerParameters.inventory.size.y:
 			var item_view_holder: ItemViewHolder = Constants.ITEM_VIEW_HOLDER.instantiate()
-			vbox.add_child(item_view_holder)
+			hbox.add_child(item_view_holder)
 			item_view_holder.set_location(Vector3(PlayerParameters.inventory.id, i, j))
 
 
@@ -67,3 +68,10 @@ func on_item_added(to: Vector3):
 		var item_view: ItemView = rows.get_child(to.y).get_child(to.z).item_view
 		item_view.item_bulk = item_bulk
 		item_view.draw_item()
+
+func on_redraw_item(key: Vector3):
+	if key.x != 0 || rows.get_children().size() == 0:
+		return
+		
+	var item_view: ItemView = rows.get_child(key.y).get_child(key.z).item_view
+	item_view.draw_item()

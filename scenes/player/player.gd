@@ -22,6 +22,8 @@ class_name Player extends CharacterBody3D
 @onready var hands: Hands = $Storages/Hands
 @onready var belt: Belt = $Storages/Belt
 
+@onready var action_hold_timer: Timer = $ActionHoldTimer
+
 
 var player_name: String
 var move_direction: Vector3 = Vector3.ZERO
@@ -36,6 +38,7 @@ var actions_animations: Array[String] = [
 var is_dying: bool = false
 var last_fontain_coordinates: Vector3
 
+
 func _ready():
 	player_name = "test" # TODO: create simple creation screen with nickname
 	GameEvents.emit_change_game_stage(1)
@@ -46,6 +49,7 @@ func _ready():
 	GameEvents.damage_player.connect(on_damage_player)
 	last_fontain_coordinates = global_position
 	GameEvents.emit_player_entered(self)
+	GameEvents.push_player_back.connect(on_push_player_back)
 	
 
 
@@ -83,9 +87,10 @@ func _unhandled_input(event):
 	handle_primary_skill_use(event)
 	# right click
 	handle_secondary_skill_use(event)
-	
 	# E - action button
 	handle_action_button(event)
+	# B - returns back to last checkpoint lost the life
+	handle_back_to_fontain(event)
 
 
 func handle_mouse_rotations(event: InputEvent) -> void:
@@ -123,18 +128,26 @@ func handle_secondary_skill_use(event: InputEvent) -> void:
 
 func handle_action_button(event: InputEvent) -> void:
 	if event.is_action_pressed("action"):
-		var obj: Node3D = camera_scene.get_target_object()
-		if obj == null:
-			return
-		print(obj)
-		GameEvents.emit_item_from_map(obj)
-		#get object from camera scene
-		#check is object pickable or activating or other
-		#emit signal - pick item, activate something or etc
+		do_actions()
+		action_hold_timer.start()
 	if event.is_action_released("action"):
 		#maybe some maintainable actions which require to hold action button
-		pass
+		action_hold_timer.stop()
+		action_hold_timer.wait_time = 0.5
 
+func handle_back_to_fontain(event: InputEvent) -> void:
+	if event.is_action_pressed("restart"):
+		#removes life but teleports you to last fontain
+		custom_death_actions()
+
+func do_actions() -> void:
+	var collider: Node3D = camera_scene.get_target_object()
+	if collider == null:
+		return
+	if collider.get_collision_layer_value(5):
+		GameEvents.emit_item_from_map(collider.get_parent().get_parent())
+	elif collider.get_collision_layer_value(6):
+		collider.get_parent().get_parent().add_stone()
 
 func custom_death_actions():
 	if PlayerParameters.lifes - 1 < 0:
@@ -150,27 +163,34 @@ func get_damage(value: float) -> void:
 	health_component.minus(value)
 	camera_scene.start_shake(0.1, 8)
 
+func _on_action_hold_timer_timeout() -> void:
+	do_actions()
+	action_hold_timer.wait_time = max(0.07, action_hold_timer.wait_time-0.05)
+
+
 func on_body_entered(body: Node3D):
 	if body is BasicEnemy:
 		body.do_damage()
 
-
 func on_body_exited(body: Node3D):
 	if body is BasicEnemy:
 		body.stop_damage()
-
 
 func on_area_entered(area: Area3D):
 	var area_owner: Node3D = area.get_parent()
 	if area_owner && area_owner is BasicEnemy:
 		area_owner.detect_target(self)
 
-
 func on_area_exited(area: Area3D):
 	var area_owner: Node3D = area.get_parent()
 	if area_owner && area_owner is BasicEnemy:
 		area_owner.lost_target()
 
-
 func on_damage_player(damage: float):
 	get_damage(damage)
+
+func on_push_player_back():
+	var dir = camera_scene.get_direction().normalized()
+	velocity.x = dir.x * 100 * get_process_delta_time()
+	velocity.z = dir.z * 100 * get_process_delta_time()
+	translate(velocity)

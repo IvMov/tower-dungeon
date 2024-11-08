@@ -9,6 +9,7 @@ const SCROLL_POWER: float = 0.15
 const MAX_ZOOM_OUT: float = 10.0
 const MAX_ZOOM_IN: float = 2
 const MAX_ZOOM_AIM: float = 1
+
 var in_aiming_mode: bool = false
 var current_arm_length: float
 
@@ -16,6 +17,9 @@ var shake_amount = 0.0
 var shake_decay: int = 4
 var shake_forward: bool = true
 var shake_offset: Vector3
+
+var last_collider: Node3D
+
 func _ready():
 	pass
 
@@ -47,10 +51,13 @@ func get_camera_distance() -> float:
 func get_camera_position() -> Vector3:
 	return camera_3d.global_position
 
+func get_direction() -> Vector3:
+	return ray_cast_3d.target_position - global_position
+
 func get_target_object() -> Node3D:
 	var collider: Node3D = ray_cast_3d.get_collider()
 	if collider:
-		return collider.get_parent().get_parent()
+		return collider
 	return null
 
 func _unhandled_input(event):
@@ -80,3 +87,19 @@ func zoom_forward() -> void:
 
 func zoom_back() -> void:
 		spring_arm_3d.spring_length += SCROLL_POWER
+
+
+func _on_timer_timeout() -> void:
+	var collider: Node3D = ray_cast_3d.get_collider()
+	if !collider && last_collider:
+		last_collider.mouse_exited.emit()
+		last_collider = null
+	if collider && collider.get_collision_layer_value(6):
+		if last_collider && last_collider != collider:
+			last_collider.mouse_exited.emit()
+			last_collider = collider
+			last_collider.mouse_entered.emit()
+		elif !last_collider:
+			last_collider = collider
+			last_collider.mouse_entered.emit()
+	

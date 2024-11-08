@@ -38,7 +38,6 @@ func add(key: Vector3, item_bulk: ItemBulk) -> void:
 		items[key_2d] = item_bulk
 		GameEvents.emit_item_added(key)
 
-
 func calc_slot(key: Vector2, item_id: int) -> Vector2:
 	for i in size.x:
 		for j in size.y:

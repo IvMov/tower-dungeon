@@ -55,7 +55,24 @@ func get_skill_data(skill_name: String) -> Dictionary:
 		return {}
 	return skill_expirience[skill_name]
 
+func find_item(position: Vector3) -> ItemBulk:
+	var result: ItemBulk = inventory.items.get(position)
+	if position.x == 0:
+		result = inventory.items.get(position)
+	elif position.x == 1:
+		result = belt.items.get(position)
+	elif position.x == 3:
+		result = hands.items.get(position)
+	return result
 
+func find_item_position_by_id(item_id: int) -> Vector3:
+	var negative_result = Vector3.ONE * -1
+	var result: Vector3 = inventory.find_location_by_id(item_id)
+	if result == Vector3(-1,-1,-1):
+		result = belt.find_location_by_id(item_id)
+	if result == Vector3(-1,-1,-1):
+		result = hands.find_location_by_id(item_id) 
+	return result
 
 func lvl_up_skill(skill: Dictionary) -> bool:
 	if skill["max_lvl"] <= skill["lvl"]:
