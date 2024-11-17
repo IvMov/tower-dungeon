@@ -7,6 +7,7 @@ class_name FontainStairs extends Hoverable
 @onready var invisible_pillar: MeshInstance3D = $StairsMesh/InvisiblePillar
 
 const MAX_STONES: int = 10
+const STONE_ID: int = 6
 
 var tween: Tween
 var min: float = 0.2
@@ -18,12 +19,12 @@ var stone_position: Vector3
 func do_action() -> void: 
 	var success: bool = false
 	var item_bulk: ItemBulk = PlayerParameters.find_item(stone_position)
-	if stone_position && item_bulk && item_bulk.item.id == 3:
+	if stone_position && item_bulk && item_bulk.item.id == STONE_ID:
 		GameEvents.emit_item_remove(stone_position, 1)
 		success = true
 		stones+=1
 	else:
-		stone_position = PlayerParameters.find_item_position_by_id(3)
+		stone_position = PlayerParameters.find_item_position_by_id(STONE_ID)
 		if stone_position != Vector3.ONE * -1:
 			GameEvents.emit_item_remove(stone_position, 1)
 			success = true
