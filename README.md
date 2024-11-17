@@ -21,8 +21,16 @@ Embark on an adventure as a wizard trapped in a mysterious dungeon! Your mission
 
 ### Key Features:
 - **Exploration:** Traverse through randomly generated dungeons.
+    ![Alt text](images/map.png)
+    ![Alt text](images/investigate.png)
 - **Combat:** Battle enemies with unique AI behavior. Enemies can fight strategically or call reinforcements.
+    ![Alt text](images/fight_1.png)
+    ![Alt text](images/fight_2.png)
+
 - **Item Collection:** Find, collect, and use various items to assist you in battles and building paths.
+    ![Alt text](images/collect.png)
+    ![Alt text](images/build.png)
+
 - **Unique system of upgrades:** No expirience and level of character, but each usage of weapons enchance the skill of usage this weapon! Unlock upgrades and use weapons and consumables more effective!
 
 Can you survive the dungeon's challenges and uncover the truth behind it?
