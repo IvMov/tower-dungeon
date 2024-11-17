@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://3j1ghro251mo"]
+[gd_scene load_steps=5 format=3 uid="uid://3j1ghro251mo"]
 
 [ext_resource type="SphereMesh" uid="uid://004wttwvhpwe" path="res://assets/3d/my/stone_mesh.tres" id="1_ffdy0"]
+[ext_resource type="Script" path="res://scenes/items/stone.gd" id="1_iiuf1"]
+[ext_resource type="PackedScene" uid="uid://vl4e41tw5b8v" path="res://scenes/ui/parts/flying_text.tscn" id="3_jlrq4"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_fhxy5"]
 radius = 0.18
 
 [node name="Stone" type="Node3D"]
+script = ExtResource("1_iiuf1")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.019133, 0)
@@ -21,3 +24,10 @@ collision_layer = 16
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("SphereShape3D_fhxy5")
+
+[node name="FlyingText" parent="." instance=ExtResource("3_jlrq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00827873, 0)
+visible = false
+
+[connection signal="mouse_entered" from="MeshInstance3D/StaticBody3D" to="." method="_on_static_body_3d_mouse_entered"]
+[connection signal="mouse_exited" from="MeshInstance3D/StaticBody3D" to="." method="_on_static_body_3d_mouse_exited"]

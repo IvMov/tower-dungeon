@@ -8,7 +8,7 @@ func _ready() -> void:
 	GameEvents.player_entered.connect(on_player_entered)
 	GameEvents.item_to_hand.connect(on_item_to_hand)
 	GameEvents.item_update_hand_view.connect(on_item_update_hand_view)
-	GameEvents.item_from_hand.connect(on_item_from_hand)
+	GameEvents.item_from_storage.connect(on_item_from_storage)
 	GameEvents.item_remove.connect(on_item_remove)
 	GameEvents.item_add.connect(on_item_add)
 
@@ -31,12 +31,14 @@ func on_player_entered(_player: Player):
 func on_item_to_hand(item_view: ItemView):
 	left_hand.item_view.put_item(item_view)
 
-func on_item_from_hand(hand: int):
-	if hand == 0:
+func on_item_from_storage(from: Vector3):
+	if from.x !=3:
+		return
+	if from.z == 0:
 		left_hand.item_view.clear()
 	else:
 		right_hand.item_view.clear()
-	GameEvents.emit_remove_skill(hand)
+	GameEvents.emit_remove_skill(from.z)
 
 func on_item_update_hand_view(hand: int):
 	if hand == 0:

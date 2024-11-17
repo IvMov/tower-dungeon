@@ -82,7 +82,7 @@ func _physics_process(delta):
 
 	if is_runing:
 		animation_player.play("sprint")
-		
+
 	if !is_on_floor():
 		animation_player.play("fall")
 		velocity.y -= GameConfig.gravity * delta
@@ -119,7 +119,7 @@ func push_back(player_position: Vector3, push_power: float) -> void:
 	current_speed = push_power
 	is_pushed = true
 	push_timer.start()
-	
+
 # targeting and movement
 func detect_target(_target_player: Player) -> void:
 	# to be implemented in child regarding skills

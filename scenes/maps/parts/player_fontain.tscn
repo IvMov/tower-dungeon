@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://darkyqw48k8nh" path="res://assets/textures/Grass 15 - 128x128.png" id="1_y5orh"]
 [ext_resource type="Texture2D" uid="uid://dpo2ynfyebydj" path="res://assets/textures/Wood 9 - 128x128.png" id="2_pf5hw"]
 [ext_resource type="Material" uid="uid://clptb0rjqplxi" path="res://assets/textures/brown_wood.tres" id="3_00qye"]
-[ext_resource type="PackedScene" uid="uid://cf715q64u028v" path="res://stairs.tscn" id="5_484il"]
+[ext_resource type="PackedScene" uid="uid://bhit0b8br8bsc" path="res://scenes/maps/parts/fontain_stairs.tscn" id="5_484il"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1mkgj"]
 shading_mode = 0
@@ -46,6 +46,7 @@ size = Vector3(0.19, 0.255, 0.1)
 [node name="PlayerFontain" type="Node3D"]
 
 [node name="Fontain" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.794937)
 mesh = SubResource("CylinderMesh_01nvt")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Fontain"]
@@ -108,4 +109,5 @@ mesh = SubResource("CylinderMesh_mviag")
 transform = Transform3D(0.479772, -0.62044, -0.620381, -0.3795, 0.490768, -0.7843, 0.791074, 0.61172, -3.45789e-08, -0.426463, 1.1463, 0.673518)
 mesh = SubResource("CylinderMesh_mviag")
 
-[node name="Stairs" parent="." instance=ExtResource("5_484il")]
+[node name="FontainStairs" parent="." instance=ExtResource("5_484il")]
+transform = Transform3D(0.0564837, 0, 0.998404, 0, 1, 0, -0.998404, 0, 0.0564837, 3.48708, -1.00325, -0.613545)

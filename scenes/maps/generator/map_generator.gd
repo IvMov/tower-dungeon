@@ -4,7 +4,7 @@ class_name MapGenerator extends Node3D
 @export var has_walls: bool = false
 @export var has_torches: bool = false
 @export var has_columns: bool = false
-var is_spawner = false
+@export var is_spawner = true
 
 @onready var wall_builder: WallBuilder = $WallBuilder
 @onready var surface_builder: SurfaceBuilder = $SurfaceBuilder
@@ -13,7 +13,7 @@ var is_spawner = false
 @onready var column_builder: ColumnBuilder = $ColumnBuilder
 @onready var player_fontain_builder: PlayerFontainBuilder = $PlayerFontainBuilder
 
-@export var MAX_ROOMS: int = 1 # how many rooms will be on map
+@export var ROOMS: int = 1 # how many rooms will be on map
 @export var DEADEND_POSSIBILITY: float = 0.0
 @export var MIN_ROOM_SIZE: int = 4 # must be dividible by CORE_TILE_SIZE
 @export var MAX_ROOM_SIZE: int = 4 # must be dividible by CORE_TILE_SIZE
@@ -64,7 +64,8 @@ var deadend_entrance_coordinates: Vector2
 
 func generate_level() -> void:
 	prepare_blank_map()
-	for i in MAX_ROOMS:
+	for i in ROOMS:
+		print("new room %d" % i)
 		generate_room()
 		# map storage as map of each empty map
 		# each_room_generate pickable items - add them to map_storage

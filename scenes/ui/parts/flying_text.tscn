@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://vl4e41tw5b8v"]
+
+[ext_resource type="Script" path="res://scenes/ui/parts/flying_text.gd" id="1_e168t"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_lvu0g"]
+viewport_path = NodePath("Sprite3D/SubViewport")
+
+[node name="FlyingText" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_e168t")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_lvu0g")
+
+[node name="SubViewport" type="SubViewport" parent="Sprite3D"]
+transparent_bg = true
+sdf_oversize = 0
+sdf_scale = 2
+size = Vector2i(400, 100)
+
+[node name="MarginContainer" type="MarginContainer" parent="Sprite3D/SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Sprite3D/SubViewport/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+text = "Press E to put items.
+0 / 100 "
+horizontal_alignment = 1

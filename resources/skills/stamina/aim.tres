@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("2_dvbwv")
-id = "aim"
+id = 1
 title = "aim_skill_title"
 description = "aim_skill_description"
 controller = ExtResource("1_hlmx5")

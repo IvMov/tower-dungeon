@@ -18,7 +18,7 @@ func put_fontain(room:Room, map: BlankMap) -> void:
 	if attempts <= 0:
 		print("Too much tries, no fontain here, sorry!")
 		return 
-	var coord: Vector2 = Vector2(room.start_point.x + randf_range(2, room.size.x-2) * Constants.CORE_TILE_SIZE, room.start_point.y + randf_range(2, room.size.y-2) * Constants.CORE_TILE_SIZE)
+	var coord: Vector2 = Vector2(room.start_point.x + randf_range(1, room.size.x-1) * Constants.CORE_TILE_SIZE, room.start_point.y + randf_range(1, room.size.y-1) * Constants.CORE_TILE_SIZE)
 	shape_cast_3d.global_position = Vector3(coord.x, 1.5, coord.y)
 	shape_cast_3d.force_shapecast_update()
 	attempts-=1
@@ -27,7 +27,7 @@ func put_fontain(room:Room, map: BlankMap) -> void:
 	var fontain = packed_fontain.instantiate()
 	map.add_object(fontain)
 	fontain.global_position = shape_cast_3d.global_position
+	fontain.rotation.y = randf_range(-PI, PI)
+	shape_cast_3d.queue_free()
 	attempts = 10
-	#- get coordinates
-	# build it
 	

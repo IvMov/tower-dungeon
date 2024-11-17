@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://cww1i3ceuy1hp"]
+
+[ext_resource type="Script" path="res://scenes/items/crystal.gd" id="1_ak4bc"]
+[ext_resource type="PackedScene" uid="uid://vl4e41tw5b8v" path="res://scenes/ui/parts/flying_text.tscn" id="2_jdivq"]
+[ext_resource type="PrismMesh" uid="uid://c5x02ui4xuaqn" path="res://assets/3d/my/crystal_mesh.tres" id="2_ua2nh"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_470tv"]
+radius = 0.3
+
+[node name="Crystal" type="Node3D"]
+script = ExtResource("1_ak4bc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_ua2nh")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+collision_layer = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("SphereShape3D_470tv")
+
+[node name="FlyingText" parent="." instance=ExtResource("2_jdivq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.396518, 0.00432062)
+visible = false
+
+[connection signal="mouse_entered" from="MeshInstance3D/StaticBody3D" to="." method="_on_static_body_3d_mouse_entered"]
+[connection signal="mouse_exited" from="MeshInstance3D/StaticBody3D" to="." method="_on_static_body_3d_mouse_exited"]

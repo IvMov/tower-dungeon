@@ -2477,6 +2477,11 @@ autoplay = "idle"
 [node name="ActionHoldTimer" type="Timer" parent="."]
 wait_time = 0.5
 
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.860812, 0)
+omni_range = 10.0
+omni_shadow_mode = 0
+
 [connection signal="body_entered" from="AgrArea" to="." method="_on_agr_area_body_entered"]
 [connection signal="body_exited" from="AgrArea" to="." method="_on_agr_area_body_exited"]
 [connection signal="timeout" from="ActionHoldTimer" to="." method="_on_action_hold_timer_timeout"]

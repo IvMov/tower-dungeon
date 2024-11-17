@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://4eygpv6ar4kx"]
+[gd_scene load_steps=8 format=3 uid="uid://4eygpv6ar4kx"]
 
 [ext_resource type="Script" path="res://scenes/components/effect_flash_component.gd" id="1_diwfx"]
+[ext_resource type="PackedScene" uid="uid://cfivvn8vyesq7" path="res://particles/scenes/damage_particles.tscn" id="2_abops"]
 [ext_resource type="Material" uid="uid://cgmec1v7lguua" path="res://particles/heal_particles.tres" id="2_ooi4k"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6eru1"]
@@ -19,6 +20,7 @@ size = Vector2(0.04, 0.12)
 
 [node name="EffectFlashComponent" type="Node3D"]
 script = ExtResource("1_diwfx")
+damage_particles_scene = ExtResource("2_abops")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transparency = 0.8

@@ -9,7 +9,6 @@ var current_game_stage: Stage = Stage.GAME
 
 func _ready():
 	GameEvents.change_game_stage.connect(on_change_game_stage)
-	print(current_game_stage)
 
 func _unhandled_input(event):
 	if event.is_action("exit")  && event.is_released() && current_game_stage == Stage.INVENTORY:

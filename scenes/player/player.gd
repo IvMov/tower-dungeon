@@ -38,7 +38,6 @@ var actions_animations: Array[String] = [
 var is_dying: bool = false
 var last_fontain_coordinates: Vector3
 
-
 func _ready():
 	player_name = "test" # TODO: create simple creation screen with nickname
 	GameEvents.emit_change_game_stage(1)
@@ -49,8 +48,6 @@ func _ready():
 	GameEvents.damage_player.connect(on_damage_player)
 	last_fontain_coordinates = global_position
 	GameEvents.emit_player_entered(self)
-	GameEvents.push_player_back.connect(on_push_player_back)
-	
 
 
 func _physics_process(delta):
@@ -58,9 +55,9 @@ func _physics_process(delta):
 		return
 	var input_direction: Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	move_direction = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
+
 	velocity.x = -move_direction.x * PlayerParameters.current_speed * delta
 	velocity.z = -move_direction.z * PlayerParameters.current_speed * delta
-
 	if !actions_animations.has(animation_player.get_current_animation()):
 
 		if is_on_floor():
@@ -147,7 +144,7 @@ func do_actions() -> void:
 	if collider.get_collision_layer_value(5):
 		GameEvents.emit_item_from_map(collider.get_parent().get_parent())
 	elif collider.get_collision_layer_value(6):
-		collider.get_parent().get_parent().add_stone()
+		collider.get_parent().get_parent().do_action()
 
 func custom_death_actions():
 	if PlayerParameters.lifes - 1 < 0:
@@ -188,9 +185,3 @@ func on_area_exited(area: Area3D):
 
 func on_damage_player(damage: float):
 	get_damage(damage)
-
-func on_push_player_back():
-	var dir = camera_scene.get_direction().normalized()
-	velocity.x = dir.x * 100 * get_process_delta_time()
-	velocity.z = dir.z * 100 * get_process_delta_time()
-	translate(velocity)

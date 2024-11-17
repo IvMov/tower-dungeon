@@ -11,3 +11,5 @@ func _ready():
 	items[Vector2(0,1)] = item_bulk
 	var item_bulk2: ItemBulk = ItemBulk.new(SPARK_TABLET, 3)
 	items[Vector2(0,3)] = item_bulk2
+	var item_bulk3: ItemBulk = ItemBulk.new(Constants.ITEM_CRYSTAL, 50)
+	items[Vector2(0,0)] = item_bulk3

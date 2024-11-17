@@ -25,10 +25,9 @@ func remove(key: Vector3,  quantity: int) -> void:
 	var key_2d: Vector2 = Vector2(key.y, key.z)
 	if items.has(key_2d) && items.get(key_2d).quantity > quantity:
 		items.get(key_2d).quantity -= quantity
-	else:
+	elif quantity == items.get(key_2d).quantity:
 		items.erase(key_2d)
-		if key.x == 3: 
-			GameEvents.emit_item_from_hand(key.z)
+		GameEvents.emit_item_from_storage(key)
 	GameEvents.emit_redraw_item(key)
 
 func find_location_by_id(item_id: int) -> Vector3:

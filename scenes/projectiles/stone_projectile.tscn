@@ -10,13 +10,13 @@ radius = 0.15
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jfoij"]
 gravity = Vector3(0, -1, 0)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vwjab"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4frfk"]
 shading_mode = 0
 albedo_color = Color(2, 2, 2, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_p77uj"]
 lightmap_size_hint = Vector2i(2, 2)
-material = SubResource("StandardMaterial3D_vwjab")
+material = SubResource("StandardMaterial3D_4frfk")
 size = Vector2(0.03, 0.03)
 orientation = 2
 
@@ -26,7 +26,7 @@ radial_velocity_max = 2.99998
 gravity = Vector3(0, 0.5, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_tnvrm"]
-material = SubResource("StandardMaterial3D_vwjab")
+material = SubResource("StandardMaterial3D_4frfk")
 size = Vector2(0.03, 0.03)
 
 [node name="StoneProjectile" type="Node3D"]

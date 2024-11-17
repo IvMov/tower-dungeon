@@ -6,7 +6,7 @@
 script = ExtResource("1_84dn8")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
-target_position = Vector3(0, 0, -2)
+target_position = Vector3(0, 0, -3)
 collision_mask = 48
 
 [node name="SpringArm3D" type="SpringArm3D" parent="."]

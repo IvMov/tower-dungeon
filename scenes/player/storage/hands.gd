@@ -8,7 +8,7 @@ func _ready():
 	id = 3
 
 
-func on_item_consumed(hand: int, item_id: String):
+func on_item_consumed(hand: int, item_id: int):
 	var coord: Vector3 = Vector3(3,0, hand)
 	remove(coord, 1)
 	GameEvents.emit_item_update_hand_view(hand)

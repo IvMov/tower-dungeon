@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("2_7k1hk")
-id = "stone"
+id = 6
 title = "stone_skill_title"
 description = "stone_skill_description"
 controller = ExtResource("1_43261")

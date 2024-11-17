@@ -16,7 +16,8 @@ func push_back(_player_position: Vector3, _push_power: float) -> void:
 	print("PUSH YOURSELF! I'm static!")
 
 func agr_on_player() -> void:
-	print("Agr yourself! I'm spawner - i'm not chasing player")
+	#print("Agr yourself! I'm spawner - i'm not chasing player")
+	pass
 
 func detect_target(_target_player: Player) -> void:
 	if boost_cast:

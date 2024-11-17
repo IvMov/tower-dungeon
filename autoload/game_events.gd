@@ -8,7 +8,6 @@ signal player_entered(player: Player)
 signal damage_player(damage: float)
 signal run_player(speed: float)
 signal aiming_player(aiming: bool)
-signal push_player_back()
 
 signal add_skill(hand: int, skill: Skill)
 signal remove_skill(hand: int)
@@ -18,13 +17,13 @@ signal item_remove(from: Vector3, quantity: int)
 signal item_add(to: Vector3, item: ItemBulk, map_pos: Vector3)
 signal item_added(location: Vector2)
 signal item_to_hand(item_view: ItemView)
-signal item_from_hand(hand: int)
+signal item_from_storage(from: Vector3)
 signal item_to_map(to: Vector3, item: PackedScene)
 signal item_from_map(item: Node3D)
 signal cant_pick_item()
 signal item_hovered(item: ItemBulk)
 signal item_unhovered()
-signal item_consumed(position: int, item_id: String)
+signal item_consumed(position: int, item_id: int)
 signal item_update_hand_view(hand: int)
 signal redraw_item(key: Vector3)
 
@@ -88,8 +87,8 @@ func emit_cant_pick_item():
 func emit_item_to_hand(item_view: ItemView):
 	item_to_hand.emit(item_view)
 
-func emit_item_from_hand(hand: int):
-	item_from_hand.emit(hand)
+func emit_item_from_storage(from: Vector3):
+	item_from_storage.emit(from)
 
 #related to items (skill_from_hand)
 func emit_remove_skill(hand: int): 
@@ -101,7 +100,7 @@ func emit_item_hovered(item: ItemBulk):
 func emit_item_unhovered():
 	item_unhovered.emit()
 
-func emit_item_consumed(position: int, item_id: String):
+func emit_item_consumed(position: int, item_id: int):
 	item_consumed.emit(position, item_id)
 
 func emit_item_update_hand_view(hand: int):
@@ -109,6 +108,3 @@ func emit_item_update_hand_view(hand: int):
 
 func emit_redraw_item(key: Vector3):
 	redraw_item.emit(key)
-
-func emit_push_player_back():
-	push_player_back.emit()

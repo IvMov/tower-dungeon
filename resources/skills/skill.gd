@@ -1,6 +1,7 @@
 class_name Skill extends Resource
 
-@export var id: String
+@export var id: int
+
 @export var title: String
 @export var description: String
 @export var controller: PackedScene

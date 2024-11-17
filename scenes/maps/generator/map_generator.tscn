@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ci4hotqkt3ope"]
+[gd_scene load_steps=21 format=3 uid="uid://ci4hotqkt3ope"]
 
 [ext_resource type="Script" path="res://scenes/maps/generator/map_generator.gd" id="1_2pkgg"]
 [ext_resource type="PackedScene" uid="uid://cn4nsqghphlc0" path="res://scenes/enemies/enemy_spawner.tscn" id="2_w3y2w"]
@@ -17,6 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://3u5p44i1b8o0" path="res://scenes/maps/parts/torch.tscn" id="13_kpnu2"]
 [ext_resource type="PackedScene" uid="uid://dowdei5kin5si" path="res://scenes/maps/generator/column_builder.tscn" id="14_45211"]
 [ext_resource type="PackedScene" uid="uid://dhiqjctihnpkm" path="res://scenes/maps/parts/column_1.tscn" id="15_fbdav"]
+[ext_resource type="PackedScene" uid="uid://3j1ghro251mo" path="res://scenes/items/stone.tscn" id="17_1shfc"]
+[ext_resource type="PackedScene" uid="uid://cww1i3ceuy1hp" path="res://scenes/items/crystal.tscn" id="17_rwmq6"]
 [ext_resource type="PackedScene" uid="uid://jnf650ela5mt" path="res://scenes/maps/generator/player_fontain_builder.tscn" id="17_xibrp"]
 
 [node name="MapGenerator" type="Node3D"]
@@ -25,11 +27,9 @@ has_ceil = true
 has_walls = true
 has_torches = true
 has_columns = true
-MIN_ROOM_SIZE = 1
-MAX_ROOM_SIZE = 6
-MIN_TUNEL_LENGTH = 2
-MAX_TUNEL_LENGTH = 5
-ROOM_SIZE = Vector2(3, 5)
+MIN_ROOM_SIZE = 5
+MAX_ROOM_SIZE = 10
+ROOM_SIZE = Vector2(5, 5)
 paked_blank_map = ExtResource("3_2lv8p")
 enemy_spawner = ExtResource("2_w3y2w")
 enemy_packed = ExtResource("4_84v8g")
@@ -52,6 +52,8 @@ packed_torch = ExtResource("13_kpnu2")
 
 [node name="ColumnBuilder" parent="." instance=ExtResource("14_45211")]
 packed_column = ExtResource("15_fbdav")
+packed_stone = ExtResource("17_1shfc")
+packed_crystal = ExtResource("17_rwmq6")
 step = 8
 
 [node name="PlayerFontainBuilder" parent="." instance=ExtResource("17_xibrp")]

@@ -5,6 +5,8 @@ class_name Tier1Enemy extends BasicEnemy
 @onready var idle_moving_controller: IdleMovingController = $SkillBox/IdleMovingController
 @onready var call_other_enemies_controller: CallOtherEnemiesController = $SkillBox/CallOtherEnemiesController
 @onready var battle_move_controller: BattleMoveController = $SkillBox/BattleMoveController
+@onready var body_mesh: MeshInstance3D = $"character-orc2/character-orc/Skeleton3D/body-mesh"
+
 
 func _ready():
 	run_speed = speed * 2
@@ -13,7 +15,15 @@ func _ready():
 	hp_bar.update(health_component.current_value, health_component.max_value)
 	stamina_bar.update(stamina_component.current_value, stamina_component.max_value)
 	mana_bar.update(mana_component.current_value, mana_component.max_value)
+	choose_color()
 
+
+func choose_color() -> void:
+	var material = body_mesh.get_surface_override_material(0)
+	material.albedo_color = Color(randf(), randf(), randf())	
+
+	
+	
 func chase_player() -> void:
 	super.chase_player()
 	if player && is_instance_valid(player) && !is_battle_move && battle_move_radius >= global_position.distance_to(player.global_position):

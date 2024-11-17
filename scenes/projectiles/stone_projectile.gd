@@ -1,10 +1,10 @@
 class_name StoneProjectile extends Node3D
 
-const RAND: float = 0.1
+const RAND: float = 0.5
 var direction: Vector3
 var speed: float
 var damage: float
-var skill_name: String
+var skill_id: int
 var push_power: float
 var is_falling: bool
 
@@ -36,15 +36,14 @@ func on_body_entered(body: Node3D) -> void:
 	handleb_body_collision(body)
 	if body is BasicEnemy:
 		if body.get_damage(global_position, damage, push_power):
-			PlayerParameters.add_skill_exp(skill_name, damage)
+			PlayerParameters.add_skill_exp(skill_id, damage)
 	
 
 func handleb_body_collision(body: Node3D) -> void:
-	print(body.collision_layer)
 	if is_falling || body.get_collision_layer_value(2):
 		speed = 0
 		direction = Vector3.ZERO
-		life_timer.wait_time = RAND
+		life_timer.wait_time = 0.5
 		life_timer.start()
 		collision_particles.emitting = true
 	else:
@@ -56,6 +55,7 @@ func handleb_body_collision(body: Node3D) -> void:
 
 	
 func on_life_timer_timeout() -> void:
+	await collision_particles.finished
 	stone.visible = false
 	var item: ItemBulk = ItemBulk.new(Constants.ITEM_STONE, 1)
 	global_position =global_position + Vector3(randf_range(-RAND, RAND), RAND/2, randf_range(-RAND, RAND))

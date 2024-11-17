@@ -51,9 +51,6 @@ func get_camera_distance() -> float:
 func get_camera_position() -> Vector3:
 	return camera_3d.global_position
 
-func get_direction() -> Vector3:
-	return ray_cast_3d.target_position - global_position
-
 func get_target_object() -> Node3D:
 	var collider: Node3D = ray_cast_3d.get_collider()
 	if collider:
@@ -83,18 +80,31 @@ func aiming_mode_out() -> void:
 func zoom_forward() -> void:
 		spring_arm_3d.spring_length -= SCROLL_POWER
 
-		
 
 func zoom_back() -> void:
 		spring_arm_3d.spring_length += SCROLL_POWER
 
+func calc_direction() -> Vector3:
+	var cursor: Vector2 = get_viewport().get_mouse_position();
+	var ray_origin: Vector3 = camera_3d.project_ray_origin(cursor)
+	var ray_normal: Vector3 = camera_3d.project_ray_normal(cursor)
+	var params: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(ray_origin, ray_origin + ray_normal*100)
+	var collision: Dictionary = get_world_3d().direct_space_state.intersect_ray(params)
+	var distance_to_target: int = collision.position.distance_to(ray_origin) if collision else 100
+	var cursor_world_position = ray_origin + ray_normal * distance_to_target
+	
+	return (cursor_world_position - get_camera_position()).normalized();
+
+
 
 func _on_timer_timeout() -> void:
 	var collider: Node3D = ray_cast_3d.get_collider()
+	if !is_instance_valid(last_collider):
+		last_collider = null
 	if !collider && last_collider:
 		last_collider.mouse_exited.emit()
 		last_collider = null
-	if collider && collider.get_collision_layer_value(6):
+	if collider && (collider.get_collision_layer_value(6) || collider.get_collision_layer_value(5)):
 		if last_collider && last_collider != collider:
 			last_collider.mouse_exited.emit()
 			last_collider = collider

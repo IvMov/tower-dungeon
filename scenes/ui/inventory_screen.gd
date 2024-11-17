@@ -10,21 +10,23 @@ func _ready() -> void:
 	GameEvents.change_game_stage.connect(on_change_game_stage)
 	GameEvents.item_added.connect(on_item_added)
 	GameEvents.redraw_item.connect(on_redraw_item)
+	GameEvents.item_from_storage.connect(on_item_from_storage)
+	GameEvents.player_entered.connect(on_player_entered)
 	config_drop_on_floor_box()
 
 
 func draw_inventory() -> void: 
-	if done:
-		visible = true
-	else:
-		visible = true
-		init_inventory()
-		done = true
+	visible = true
+
 
 func init_inventory() -> void:
 	draw_inventory_grid()
 	draw_items()
 	
+func do_done() -> void:
+	if !done: 
+		init_inventory()
+		done = true
 
 func draw_inventory_grid() -> void:
 	for i in PlayerParameters.inventory.size.x:
@@ -75,3 +77,12 @@ func on_redraw_item(key: Vector3):
 		
 	var item_view: ItemView = rows.get_child(key.y).get_child(key.z).item_view
 	item_view.draw_item()
+
+
+func on_item_from_storage(from: Vector3):
+	if from.x != 0:
+		return
+	rows.get_child(from.y).get_child(from.z).item_view.clear()
+
+func on_player_entered(_player: Player):
+	do_done()

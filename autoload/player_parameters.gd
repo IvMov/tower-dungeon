@@ -23,7 +23,7 @@ var belt: Belt
 var hands: Hands
 
 var skill_expirience: Dictionary = {
-	"spark_skill": {
+	0: {
 		"lvl": 0, 
 		"exp" : 0.0, 
 		"next_lvl_exp": 10.0, 
@@ -34,8 +34,8 @@ var skill_expirience: Dictionary = {
 func _ready() -> void:
 	GameEvents.player_entered.connect(on_player_entered)
 
-func add_skill_exp(skill_name: String, value: float) -> void:
-	var skill: Dictionary = get_skill_data(skill_name)
+func add_skill_exp(skill_id: int, value: float) -> void:
+	var skill: Dictionary = get_skill_data(skill_id)
 	if skill.is_empty() || skill["max_lvl"] == skill["lvl"]:
 		print("Skill %s is max lvl already or not found - exp lost!" % skill)
 		return
@@ -44,16 +44,16 @@ func add_skill_exp(skill_name: String, value: float) -> void:
 	if required_exp <= value :
 		skill["exp"] = skill["next_lvl_exp"]
 		if lvl_up_skill(skill):
-			add_skill_exp(skill_name, value - required_exp)
+			add_skill_exp(skill_id, value - required_exp)
 	else:
 		skill["exp"] += value
 	print(skill_expirience)
 
-func get_skill_data(skill_name: String) -> Dictionary:
-	if !skill_expirience.has(skill_name):
-		print("NO SUCH SKILL FOUND TO OBTAIN AN EXP! with name %s" % skill_name)
+func get_skill_data(skill_id: int) -> Dictionary:
+	if !skill_expirience.has(skill_id):
+		print("NO SUCH SKILL FOUND TO OBTAIN AN EXP! with name %d" % skill_id)
 		return {}
-	return skill_expirience[skill_name]
+	return skill_expirience[skill_id]
 
 func find_item(position: Vector3) -> ItemBulk:
 	var result: ItemBulk = inventory.items.get(position)

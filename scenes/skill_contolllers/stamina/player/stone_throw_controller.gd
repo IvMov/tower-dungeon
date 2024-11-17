@@ -53,7 +53,7 @@ func use_skill() -> void:
 	projectile.damage = calc_projectile_damage()
 	projectile.push_power = skill.base_push_value
 	projectile.speed = calc_projectile_speed()
-	projectile.skill_name = skill.title
+	projectile.skill_id = skill.id
 	projectile.direction = proj_direction
 	projectile.global_position = player.camera_scene.get_camera_position() + proj_direction * player.camera_scene.get_camera_distance() * 1.01
 	if projectile.global_position.y <= 0:

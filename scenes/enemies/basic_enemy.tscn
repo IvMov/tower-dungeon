@@ -110,7 +110,7 @@ wait_time = 4.0
 one_shot = true
 
 [node name="PushTimer" type="Timer" parent="Timers"]
-wait_time = 0.5
+wait_time = 0.3
 one_shot = true
 
 [node name="StartTimer" type="Timer" parent="Timers"]
