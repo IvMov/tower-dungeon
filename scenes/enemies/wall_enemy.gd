@@ -1,15 +1,13 @@
-class_name EnemySpawner extends BasicEnemy
+class_name WallEnemy extends BasicEnemy
 
 @onready var spawn_enemy_controller: SpawnEnemyController = $SkillBox/SpawnEnemyController
 var is_player_near: bool = false
-var boost_cast: bool = true
-var boost_enemies_num: int
 
 #spawner related spagetti
-var spawn_distance: float = 10
-var min_height: float = 3
-var max_height: float = 15
-var spawn_rate: float = 1
+var spawn_distance: float = 4
+var min_height: float = -1.5
+var max_height: float = 1.5
+var spawn_rate: float = 0.4
 
 func _ready():
 	agr_radius = 8
@@ -21,25 +19,15 @@ func push_back(_player_position: Vector3, _push_power: float) -> void:
 	print("PUSH YOURSELF! I'm static!")
 
 func agr_on_player() -> void:
-	#print("Agr yourself! I'm spawner - i'm not chasing player")
+	print("Agr yourself!")
 	pass
 
 func detect_target(_target_player: Player) -> void:
-	if boost_cast:
-		boost_cast = false
-		spawn_enemy_controller.start_boost_cast(boost_enemies_num)
-	else:
-		spawn_enemy_controller.cast_stopped = false
-		spawn_enemy_controller.start_cast()
+	spawn_enemy_controller.start_cast()
+	print("wALL DETECTS me")
 	is_player_near = true
 
 func get_damage(_damager_location: Vector3, value: float, _push_power: float) -> bool:
-	if boost_cast:
-		boost_cast = false
-		spawn_enemy_controller.start_boost_cast(boost_enemies_num)
-	
-	elif !is_player_near:
-		spawn_enemy_controller.start_boost_cast(1)
 	value = value if is_player_near else value/5
 	return health_component.minus(value)
 

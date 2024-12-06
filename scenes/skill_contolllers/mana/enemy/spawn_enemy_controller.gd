@@ -19,9 +19,12 @@ var cast_stopped: bool = false
 func _ready():
 	skill = Skill.new()
 	
-	skill.base_cast_time = 3
-	skill.base_cooldown = 2
+	#skill.base_cast_time = 3
+	#skill.base_cooldown = 2
 	skill.base_energy_cost = 5
+	
+	skill.base_cast_time = owner_enemy.spawn_rate * 2
+	skill.base_cooldown = owner_enemy.spawn_rate
 	idle_timer.wait_time = skill.base_cast_time
 	cast_timer.wait_time = skill.base_cast_time
 	cooldown_timer.wait_time = skill.base_cooldown
@@ -46,13 +49,16 @@ func cast_lot(num: int) -> void:
 		start_cast()
 
 func start_cast() -> void:
+	print("started")
 	if !fast_cast && !owner_enemy.mana_component.minus(skill.base_energy_cost):
 		skill_cast_finished = false
 	else:
 		skill_cast_finished = true
 		#TODO: play cast animation 
 		#TODO: REFACTOR THIS STUF
-		next_enemy_position = calc_enemy_position(owner_enemy.spawn_distance)
+		print("min %f, max %f" % [owner_enemy.min_height, owner_enemy.max_height])
+		next_enemy_position = calc_enemy_position(owner_enemy.spawn_distance, owner_enemy.min_height, owner_enemy.max_height)
+		print("wall position: %s, spawn pos: %s" % [owner_enemy.global_position, next_enemy_position])
 		var tween = create_tween()
 		var proj_inst = projectile.instantiate()
 		enemy_box.add_child(proj_inst)
@@ -66,6 +72,7 @@ func start_cast() -> void:
 		positions.append(next_enemy_position)
 	if !fast_cast:
 		cast_timer.start()
+		
 
 
 func stop_casting() -> void:
@@ -79,16 +86,20 @@ func use_skill() -> void:
 	if !enemy_packed:
 		print("NO ENEMIES IN ENEMY SPAWN CONTROLLER")
 		return
-	var inst: BasicEnemy = enemy_packed.instantiate()
-	enemy_box.add_child(inst)
-	inst.global_position = positions.pop_front()
-	if randf() < 0.5:
-		inst.agr_on_player()
+	
+	if !positions.is_empty():
+		var inst: BasicEnemy = enemy_packed.instantiate()
+		enemy_box.add_child(inst)
+		inst.global_position = positions.pop_front()
+		if randf() < 0.5:
+			inst.agr_on_player()
+	else: 
+		print("ERROR - not found position for next enemy!")
 	if cooldown_timer.is_stopped():
 		cooldown_timer.start()
 
-func calc_enemy_position(max_distanse: float) -> Vector3:
-	var target: Vector3 = global_position + Vector3(randf_range(0.1, max_distanse) * get_sign(), randf_range(5, 10), randf_range(0.1, max_distanse) * get_sign())
+func calc_enemy_position(max_distanse: float, min_height: float, max_height: float) -> Vector3:
+	var target: Vector3 = global_position + Vector3(randf_range(0.1, max_distanse) * get_sign(), randf_range(min_height, max_height), randf_range(0.1, max_distanse) * get_sign())
 	# spend lot of time - TARGET_POSITION is not TARGET but direction VECTOR between target AND SOURCE!
 	ray_cast_3d.set_target_position(target - global_position)
 	ray_cast_3d.force_raycast_update()
@@ -100,7 +111,7 @@ func calc_enemy_position(max_distanse: float) -> Vector3:
 		if(attemts > 10):
 			print("FIX ME - CANT SPAWN ENEMIES NORMALY, TOO MUCH TRIES!")
 			return Vector3.ONE
-		return calc_enemy_position(max(1, max_distanse-1))
+		return calc_enemy_position(max(1, max_distanse - 1), min_height, max_height)
 
 
 func _on_cast_timer_timeout() -> void:

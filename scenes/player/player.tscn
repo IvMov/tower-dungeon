@@ -2325,7 +2325,7 @@ _data = {
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 collision_layer = 512
-collision_mask = 1025
+collision_mask = 5121
 floor_snap_length = 0.2
 script = ExtResource("1_xn4w2")
 first_skill = ExtResource("2_6cf6a")

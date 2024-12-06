@@ -4,7 +4,7 @@ class_name MapGenerator extends Node3D
 @export var has_walls: bool = false
 @export var has_torches: bool = false
 @export var has_columns: bool = false
-@export var is_spawner = true
+@export var has_spawner = true
 
 @onready var wall_builder: WallBuilder = $WallBuilder
 @onready var surface_builder: SurfaceBuilder = $SurfaceBuilder
@@ -14,9 +14,10 @@ class_name MapGenerator extends Node3D
 @onready var player_fontain_builder: PlayerFontainBuilder = $PlayerFontainBuilder
 
 @export var ROOMS: int = 1 # how many rooms will be on map
-@export var DEADEND_POSSIBILITY: float = 0.0
-@export var MIN_ROOM_SIZE: int = 4 # must be dividible by CORE_TILE_SIZE
-@export var MAX_ROOM_SIZE: int = 4 # must be dividible by CORE_TILE_SIZE
+@export var DEADEND_INIT_POSSIBILITY: float = 0.2
+@export var MIN_SIZE: int = 4 # must be dividible by CORE_TILE_SIZE
+@export var MAX_SIZE: int = 4 # must be dividible by CORE_TILE_SIZE
+
 @export var MIN_TUNEL_LENGTH: int = 1 # how long tunels could be
 @export var MAX_TUNEL_LENGTH: int = 2 # how long tunels could be
 @export var DIRECTION_AVAILABILITY_CD: int = 5 # how long steps the oposite tile could not be installed
@@ -24,6 +25,7 @@ class_name MapGenerator extends Node3D
 
 @export var paked_blank_map: PackedScene
 @export var enemy_spawner: PackedScene
+@export var wall_enemy: PackedScene
 @export var enemy_packed: PackedScene
 
 var root_room_position: Vector2 = Vector2.ZERO
@@ -39,6 +41,8 @@ var availability: Dictionary = {
 	}
 
 # reusable staff
+var deadend_possibility: float
+var blocked_room: bool = false
 var room: Room
 var map: BlankMap
 
@@ -63,13 +67,13 @@ var deadend_entrance_coordinates: Vector2
 
 
 func generate_level() -> void:
+	deadend_possibility = DEADEND_INIT_POSSIBILITY
 	prepare_blank_map()
 	for i in ROOMS:
 		print("new room %d" % i)
 		generate_room()
 		# map storage as map of each empty map
 		# each_room_generate pickable items - add them to map_storage
-		
 	map.bake_navigation()
 	# TODO: think about map save (below - copied from internet)
 	#var node_to_save = $Node2D
@@ -82,17 +86,37 @@ func generate_room() -> void:
 	create_common_room()
 	
 	# deadend calcs - need to encapsulate
-	if randf() <= DEADEND_POSSIBILITY:
+	if randf() <= deadend_possibility:
 		create_deadend_room()
+		deadend_possibility = DEADEND_INIT_POSSIBILITY
+		print("bingo - deadend")
+	else:
+		deadend_possibility = min(1, deadend_possibility + randf_range(0.05, 0.15))
+		print("No deadend, possibility for next room! %f" % deadend_possibility)
+	if blocked_room:
+		#block exit from room
+		var wall_enemy_inst: WallEnemy = wall_enemy.instantiate()
+		
+		map.add_child(wall_enemy_inst)
+		wall_enemy_inst.global_position.y = -2
+		wall_enemy_inst.global_position = Vector3(room.exit.x, 0.0, room.exit.y)
+		if next_room_direction == Vector2.LEFT || next_room_direction == Vector2.RIGHT:
+			wall_enemy_inst.rotate_y(PI/2)
+
+		player_fontain_builder.add_fontain(room, map)
+		print("blocked room generated")
+		blocked_room = false
+		
 	# saved room required to build walls - to check all deadends and etc
 	room = map.add_room(room)
+	
 	if has_walls:
 		wall_builder.add_walls(room, map)
 	if has_torches:
 		torch_builder.add_torches(room, map)
 	if has_columns:
 		column_builder.add_columns(room, map)
-	player_fontain_builder.add_fontain(room, map)
+	
 	
 	# normal next room calcs - need to encapsulate
 	ROOM_SIZE = calculate_ROOM_SIZE()
@@ -100,6 +124,8 @@ func generate_room() -> void:
 	
 	#update ONLY after deadend spawns or not - if use it earlier  - some good directions will be blocked for pick_random_method
 	update_available_dirrections()
+	if room.deadend_exit != Vector2.ZERO:
+		blocked_room = true
 
 
 func save_deadend_room_to_map() -> Room:
@@ -110,7 +136,7 @@ func save_deadend_room_to_map() -> Room:
 	new_room.size = deadend_ROOM_SIZE
 	new_room.start_point = deadend_root_room_position
 	new_room.floor_height = 0
-	
+	print(new_room)
 	return map.add_room(new_room)
 
 
@@ -124,11 +150,11 @@ func create_common_room() -> void:
 	
 	surface_builder.build_surface(room, map, has_ceil)
 	
-	if is_spawner:
+	if has_spawner:
 		var spawn: EnemySpawner = enemy_spawner.instantiate()
 		map.add_child(spawn)
 		spawn.spawn_distance = max(ROOM_SIZE.x * Constants.CORE_TILE_SIZE / 2, ROOM_SIZE.y * Constants.CORE_TILE_SIZE / 2) 
-		spawn.boost_enemies_num = (room.size.x + room.size.y)*2
+		spawn.boost_enemies_num = (room.size.x + room.size.y)
 		spawn.agr_collision.shape.size = Vector3(ROOM_SIZE.x * Constants.CORE_TILE_SIZE, room.ceil_height, ROOM_SIZE.y * Constants.CORE_TILE_SIZE)
 		spawn.global_position = Vector3(room.start_point.x + room.size.x * Constants.CORE_TILE_SIZE/2 + randi_range(-3, 3), 0,room.start_point.y +  room.size.y*Constants.CORE_TILE_SIZE/2 + randi_range(-3, 3))
 
@@ -252,8 +278,10 @@ func pick_random() -> Vector2:
 
 
 func calculate_ROOM_SIZE() -> Vector2:
-	var current_x: int = randi_range(MIN_ROOM_SIZE, MAX_ROOM_SIZE)
-	var current_y: int = randi_range(MIN_ROOM_SIZE, MAX_ROOM_SIZE)
-	
+	print(MIN_SIZE)
+	print(MAX_SIZE)
+	var current_x: int = randi_range(MIN_SIZE, MAX_SIZE)
+	var current_y: int = randi_range(MIN_SIZE, MAX_SIZE)
+	print("x: %d, y: %d" % [current_x, current_y])
 	return Vector2(current_x, current_y)
 	

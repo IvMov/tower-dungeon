@@ -37,7 +37,7 @@ mesh = SubResource("SphereMesh_7aqq5")
 
 [node name="Area3D" type="Area3D" parent="MeshInstance3D"]
 collision_layer = 4
-collision_mask = 1025
+collision_mask = 5121
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
 shape = SubResource("SphereShape3D_qtxek")

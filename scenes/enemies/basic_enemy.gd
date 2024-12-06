@@ -203,7 +203,7 @@ func expand_agr_area_size() -> void:
 	agr_collision.shape.radius = agr_radius * 2
 
 func reset_agr_area_size() -> void:
-		agr_collision.shape.radius = agr_radius
+	agr_collision.shape.radius = agr_radius
 
 
 # trash

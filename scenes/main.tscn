@@ -32,7 +32,7 @@ volumetric_fog_sky_affect = 0.0
 script = ExtResource("1_vbbpw")
 
 [node name="MapGenerator" parent="." instance=ExtResource("2_ux27j")]
-MIN_ROOM_SIZE = 2
+DEADEND_INIT_POSSIBILITY = 0.2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0f8ma")
@@ -49,7 +49,7 @@ text = "LABas"
 [node name="UI" parent="UIWrapper" instance=ExtResource("4_0dxvj")]
 
 [node name="Player" parent="." instance=ExtResource("2_v4j8r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 3, -0.7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 5.2566, -0.7)
 
 [node name="Projectiles" type="Node3D" parent="." groups=["projectiles"]]
 
