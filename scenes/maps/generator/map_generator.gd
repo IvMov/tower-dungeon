@@ -103,7 +103,7 @@ func generate_room() -> void:
 		if next_room_direction == Vector2.LEFT || next_room_direction == Vector2.RIGHT:
 			wall_enemy_inst.rotate_y(PI/2)
 
-		player_fontain_builder.add_fontain(room, map)
+		player_fontain_builder.add_fontain(room, map, wall_enemy_inst)
 		print("blocked room generated")
 		blocked_room = false
 		

@@ -6,15 +6,14 @@ var base_fontain_cd: int = 1
 var fontain_cd: int = 1
 var attempts: int = 10
 
-
-func add_fontain(room:Room, map: BlankMap) -> void: 
+func add_fontain(room:Room, map: BlankMap, wall_enemy: WallEnemy) -> void: 
 	fontain_cd -= 1
 	if fontain_cd == 0:
 		fontain_cd = base_fontain_cd
-		put_fontain(room, map)
+		put_fontain(room, map, wall_enemy)
 
 
-func put_fontain(room:Room, map: BlankMap) -> void:
+func put_fontain(room:Room, map: BlankMap, wall_enemy: WallEnemy) -> void:
 	if attempts <= 0:
 		print("Too much tries, no fontain here, sorry!")
 		return 
@@ -23,10 +22,11 @@ func put_fontain(room:Room, map: BlankMap) -> void:
 	shape_cast_3d.force_shapecast_update()
 	attempts-=1
 	if shape_cast_3d.is_colliding():
-		put_fontain(room, map)
+		put_fontain(room, map, wall_enemy)
 	var fontain = packed_fontain.instantiate()
 	map.add_object(fontain)
 	fontain.global_position = shape_cast_3d.global_position
+	fontain.fire.wall_enemy = wall_enemy
 	fontain.rotation.y = randf_range(-PI, PI)
 	shape_cast_3d.queue_free()
 	attempts = 10

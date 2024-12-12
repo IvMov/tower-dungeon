@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://pc60giw114ym"]
+
+[ext_resource type="Script" path="res://scenes/projectiles/fire_projectile.gd" id="1_qfrry"]
+[ext_resource type="SphereMesh" uid="uid://d3p58vnsuip03" path="res://scenes/projectiles/fire_projectile_mesh.tres" id="2_osbv1"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_uql1o"]
+radius = 0.1
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7jlw6"]
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = -2.23517e-06
+
+[node name="FireProjectile" type="Node3D"]
+script = ExtResource("1_qfrry")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+
+[node name="LifeTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_osbv1")
+
+[node name="Area3D" type="Area3D" parent="MeshInstance3D"]
+collision_layer = 4
+collision_mask = 5120
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
+shape = SubResource("SphereShape3D_uql1o")
+
+[node name="ProjectileParticles" type="GPUParticles3D" parent="."]
+amount = 10
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_7jlw6")
+draw_pass_1 = ExtResource("2_osbv1")

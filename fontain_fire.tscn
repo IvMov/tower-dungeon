@@ -29,42 +29,12 @@ script = ExtResource("2_8m8ue")
 [node name="FlyingText" parent="." index="0"]
 visible = false
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="." index="1"]
-transform = Transform3D(0.995736, 0.0922489, -4.03233e-09, 0, -4.37114e-08, -1, -0.0922489, 0.995736, -4.3525e-08, 0.138, 0, 0)
-mesh = SubResource("CylinderMesh_nf7ql")
-skeleton = NodePath("../..")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="." index="2"]
-transform = Transform3D(0.349079, -0.937093, -1.52587e-08, -4.37114e-08, 1.91069e-15, -1, 0.937093, 0.349079, -4.09616e-08, 0.164, 0, 0)
-mesh = SubResource("CylinderMesh_nf7ql")
-skeleton = NodePath("../..")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="3"]
-transform = Transform3D(-0.825665, 0, 0.56416, 0, 1, 0, -0.56416, 0, -0.825665, 0.058814, 0.112116, 0)
-mesh = SubResource("PrismMesh_6mgfk")
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="." index="4"]
-transform = Transform3D(0.967762, 0, 0.251867, 0, 1, 0, -0.251867, 0, 0.967762, 0.249467, 0.112116, 0)
-mesh = SubResource("PrismMesh_6mgfk")
-
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="." index="5"]
-transform = Transform3D(0.639694, 0, 0.76863, 0, 1, 0, -0.76863, 0, 0.639694, 0.182128, 0.112116, -0.0743614)
-mesh = SubResource("PrismMesh_6mgfk")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D5" index="0"]
-transform = Transform3D(0.639694, 0, -0.76863, 0, 1, 0, 0.76863, 0, 0.639694, 0, 0, 0)
-collision_layer = 34
-collision_mask = 513
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D5/StaticBody3D" index="0"]
-shape = SubResource("SphereShape3D_negcd")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="." index="6"]
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0998134, 0.263934, 0)
 light_color = Color(1, 1, 0.615686, 1)
 light_energy = 2.0
 
-[node name="AddCrystalParticles" type="GPUParticles3D" parent="." index="7"]
+[node name="AddCrystalParticles" type="GPUParticles3D" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03022, 0)
 emitting = false
 amount = 4
@@ -73,5 +43,44 @@ one_shot = true
 process_material = ExtResource("5_7vnp8")
 draw_pass_1 = ExtResource("4_4h4pn")
 
-[connection signal="mouse_entered" from="MeshInstance3D5/StaticBody3D" to="." method="_on_static_body_3d_mouse_entered"]
-[connection signal="mouse_exited" from="MeshInstance3D5/StaticBody3D" to="." method="_on_static_body_3d_mouse_exited"]
+[node name="Timer" type="Timer" parent="." index="3"]
+wait_time = 0.5
+
+[node name="MeshWrap" type="Node3D" parent="." index="4"]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshWrap" index="0"]
+transform = Transform3D(0.995736, 0.0922489, -4.03233e-09, 0, -4.37114e-08, -1, -0.0922489, 0.995736, -4.3525e-08, 0.138, 0, 0)
+mesh = SubResource("CylinderMesh_nf7ql")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshWrap" index="1"]
+transform = Transform3D(0.349079, -0.937093, -1.52587e-08, -4.37114e-08, 1.91069e-15, -1, 0.937093, 0.349079, -4.09616e-08, 0.164, 0, 0)
+mesh = SubResource("CylinderMesh_nf7ql")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshWrap" index="2"]
+transform = Transform3D(-0.825665, 0, 0.56416, 0, 1, 0, -0.56416, 0, -0.825665, 0.058814, 0.112116, 0)
+mesh = SubResource("PrismMesh_6mgfk")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="MeshWrap" index="3"]
+transform = Transform3D(0.967762, 0, 0.251867, 0, 1, 0, -0.251867, 0, 0.967762, 0.249467, 0.112116, 0)
+mesh = SubResource("PrismMesh_6mgfk")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="MeshWrap" index="4"]
+transform = Transform3D(0.639694, 0, 0.76863, 0, 1, 0, -0.76863, 0, 0.639694, 0.182128, 0.112116, -0.0743614)
+mesh = SubResource("PrismMesh_6mgfk")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshWrap" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.182128, 0.112116, -0.0743614)
+collision_layer = 34
+collision_mask = 513
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshWrap/StaticBody3D" index="0"]
+shape = SubResource("SphereShape3D_negcd")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="mouse_entered" from="MeshWrap/StaticBody3D" to="." method="_on_static_body_3d_mouse_entered"]
+[connection signal="mouse_exited" from="MeshWrap/StaticBody3D" to="." method="_on_static_body_3d_mouse_exited"]

@@ -1,0 +1,10 @@
+[gd_resource type="SphereMesh" load_steps=2 format=3 uid="uid://d3p58vnsuip03"]
+
+[ext_resource type="Material" uid="uid://ib4x5j4dsvat" path="res://scenes/projectiles/fire_projectile.tres" id="1_dxk4n"]
+
+[resource]
+material = ExtResource("1_dxk4n")
+radius = 0.1
+height = 0.2
+radial_segments = 4
+rings = 2
