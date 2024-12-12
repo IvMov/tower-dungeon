@@ -29,6 +29,7 @@ has_walls = true
 has_torches = true
 has_columns = true
 ROOMS = 10
+DEADEND_INIT_POSSIBILITY = 1.0
 MIN_SIZE = 3
 MAX_SIZE = 6
 MAX_TUNEL_LENGTH = 4

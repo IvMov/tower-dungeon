@@ -14,7 +14,7 @@ class_name MapGenerator extends Node3D
 @onready var player_fontain_builder: PlayerFontainBuilder = $PlayerFontainBuilder
 
 @export var ROOMS: int = 1 # how many rooms will be on map
-@export var DEADEND_INIT_POSSIBILITY: float = 0.2
+@export var DEADEND_INIT_POSSIBILITY: float = 0.8
 @export var MIN_SIZE: int = 4 # must be dividible by CORE_TILE_SIZE
 @export var MAX_SIZE: int = 4 # must be dividible by CORE_TILE_SIZE
 

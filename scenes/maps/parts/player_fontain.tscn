@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://btey3yhuspcew"]
+[gd_scene load_steps=12 format=3 uid="uid://btey3yhuspcew"]
 
 [ext_resource type="Texture2D" uid="uid://darkyqw48k8nh" path="res://assets/textures/Grass 15 - 128x128.png" id="1_y5orh"]
 [ext_resource type="Texture2D" uid="uid://dpo2ynfyebydj" path="res://assets/textures/Wood 9 - 128x128.png" id="2_pf5hw"]
 [ext_resource type="Material" uid="uid://clptb0rjqplxi" path="res://assets/textures/brown_wood.tres" id="3_00qye"]
 [ext_resource type="PackedScene" uid="uid://bhit0b8br8bsc" path="res://scenes/maps/parts/fontain_stairs.tscn" id="5_484il"]
+[ext_resource type="PackedScene" uid="uid://jv0prokpjsrw" path="res://fontain_fire.tscn" id="5_fauyd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1mkgj"]
 shading_mode = 0
@@ -35,19 +36,14 @@ top_radius = 0.05
 bottom_radius = 0.05
 height = 0.4
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ry18x"]
-albedo_color = Color(5, 5, 0, 1)
-
-[sub_resource type="PrismMesh" id="PrismMesh_sous0"]
-material = SubResource("StandardMaterial3D_ry18x")
-left_to_right = 0.0
-size = Vector3(0.19, 0.255, 0.1)
-
 [node name="PlayerFontain" type="Node3D"]
 
 [node name="Fontain" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.794937)
 mesh = SubResource("CylinderMesh_01nvt")
+
+[node name="FontainFire" parent="Fontain" instance=ExtResource("5_fauyd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.37254, 1.025, -0.817937)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Fontain"]
 collision_layer = 3
@@ -58,36 +54,6 @@ shape = SubResource("ConcavePolygonShape3D_8vlwq")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Fontain"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.915053, 1.15, 0)
 mesh = SubResource("BoxMesh_0q6wx")
-
-[node name="FirePlace" type="Node3D" parent="Fontain"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.025, 0)
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Fontain/FirePlace"]
-transform = Transform3D(0.995736, 0.0922489, -4.03233e-09, 0, -4.37114e-08, -1, -0.0922489, 0.995736, -4.3525e-08, 0.138, 0, 0)
-mesh = SubResource("CylinderMesh_mviag")
-skeleton = NodePath("../..")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Fontain/FirePlace"]
-transform = Transform3D(0.349079, -0.937093, -1.52587e-08, -4.37114e-08, 1.91069e-15, -1, 0.937093, 0.349079, -4.09616e-08, 0.164, 0, 0)
-mesh = SubResource("CylinderMesh_mviag")
-skeleton = NodePath("../..")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Fontain/FirePlace"]
-transform = Transform3D(-0.825665, 0, 0.56416, 0, 1, 0, -0.56416, 0, -0.825665, 0.058814, 0.112116, 0)
-mesh = SubResource("PrismMesh_sous0")
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="Fontain/FirePlace"]
-transform = Transform3D(0.967762, 0, 0.251867, 0, 1, 0, -0.251867, 0, 0.967762, 0.249467, 0.112116, 0)
-mesh = SubResource("PrismMesh_sous0")
-
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="Fontain/FirePlace"]
-transform = Transform3D(0.639694, 0, 0.76863, 0, 1, 0, -0.76863, 0, 0.639694, 0.182128, 0.112116, -0.0743614)
-mesh = SubResource("PrismMesh_sous0")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Fontain/FirePlace"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0998134, 0.263934, 0)
-light_color = Color(1, 1, 0.615686, 1)
-light_energy = 2.0
 
 [node name="MeshInstance3D6" type="MeshInstance3D" parent="Fontain"]
 transform = Transform3D(0.995736, 0.0922489, -4.03233e-09, 0, -4.37114e-08, -1, -0.0922489, 0.995736, -4.3525e-08, -0.497306, 1.025, 0.820137)

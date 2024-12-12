@@ -23,6 +23,7 @@ func agr_on_player() -> void:
 	pass
 
 func detect_target(_target_player: Player) -> void:
+	spawn_enemy_controller.cast_stopped = false
 	spawn_enemy_controller.start_cast()
 	print("wALL DETECTS me")
 	is_player_near = true
