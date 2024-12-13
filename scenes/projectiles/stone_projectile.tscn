@@ -1,10 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://dhisb5g4kf3le"]
+[gd_scene load_steps=11 format=3 uid="uid://dhisb5g4kf3le"]
 
 [ext_resource type="Script" path="res://scenes/projectiles/stone_projectile.gd" id="1_7e6ep"]
 [ext_resource type="SphereMesh" uid="uid://004wttwvhpwe" path="res://assets/3d/my/stone_mesh.tres" id="2_mv7th"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6w63m"]
+rough = true
+bounce = 0.3
+absorbent = true
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_gelvw"]
 resource_local_to_scene = true
+radius = 0.11
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bblb0"]
 radius = 0.15
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jfoij"]
@@ -29,27 +37,35 @@ gravity = Vector3(0, 0.5, 0)
 material = SubResource("StandardMaterial3D_4frfk")
 size = Vector2(0.03, 0.03)
 
-[node name="StoneProjectile" type="Node3D"]
-script = ExtResource("1_7e6ep")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = ExtResource("2_mv7th")
-
-[node name="Area3D" type="Area3D" parent="MeshInstance3D"]
+[node name="StoneProjectile" type="RigidBody3D"]
 collision_layer = 4
 collision_mask = 5123
-gravity_space_override = 1
+physics_material_override = SubResource("PhysicsMaterial_6w63m")
+gravity_scale = 0.5
+continuous_cd = true
+script = ExtResource("1_7e6ep")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+light_color = Color(1, 1, 0.654902, 1)
+omni_range = 1.0
+omni_shadow_mode = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_gelvw")
+
+[node name="Stone" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_mv7th")
+
+[node name="StaticBody3D" type="Area3D" parent="Stone"]
+collision_layer = 0
+collision_mask = 5120
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stone/StaticBody3D"]
+shape = SubResource("SphereShape3D_bblb0")
 
 [node name="LifeTimer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
-autostart = true
-
-[node name="GravityBitch" type="Timer" parent="."]
-wait_time = 0.1
 autostart = true
 
 [node name="ProjectileParticles" type="GPUParticles3D" parent="."]
@@ -70,7 +86,4 @@ explosiveness = 0.77
 process_material = SubResource("ParticleProcessMaterial_iin2b")
 draw_pass_1 = SubResource("PlaneMesh_tnvrm")
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="."]
-light_color = Color(1, 1, 0.654902, 1)
-omni_range = 1.0
-omni_shadow_mode = 0
+[connection signal="body_entered" from="Stone/StaticBody3D" to="." method="_on_static_body_3d_body_entered"]

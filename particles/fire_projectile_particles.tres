@@ -1,0 +1,10 @@
+[gd_resource type="ParticleProcessMaterial" format=3 uid="uid://0ibbwc8fw2fa"]
+
+[resource]
+orbit_velocity_min = 9.49949e-08
+orbit_velocity_max = 3.0
+radial_velocity_min = -2.23517e-05
+radial_velocity_max = 2.99998
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -2.23517e-06
+radial_accel_max = 3.0

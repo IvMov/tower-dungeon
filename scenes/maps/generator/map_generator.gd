@@ -14,7 +14,7 @@ class_name MapGenerator extends Node3D
 @onready var player_fontain_builder: PlayerFontainBuilder = $PlayerFontainBuilder
 
 @export var ROOMS: int = 1 # how many rooms will be on map
-@export var DEADEND_INIT_POSSIBILITY: float = 0.8
+@export var DEADEND_INIT_POSSIBILITY: float = 0.3
 @export var MIN_SIZE: int = 4 # must be dividible by CORE_TILE_SIZE
 @export var MAX_SIZE: int = 4 # must be dividible by CORE_TILE_SIZE
 
@@ -89,9 +89,9 @@ func generate_room() -> void:
 	if randf() <= deadend_possibility:
 		create_deadend_room()
 		deadend_possibility = DEADEND_INIT_POSSIBILITY
-		print("bingo - deadend")
+		print("bingo - deadend, current possibility %s" % deadend_possibility)
 	else:
-		deadend_possibility = min(1, deadend_possibility + randf_range(0.05, 0.15))
+		deadend_possibility = min(1, deadend_possibility + randf_range(0.1, 0.3))
 		print("No deadend, possibility for next room! %f" % deadend_possibility)
 	if blocked_room:
 		#block exit from room
@@ -150,7 +150,7 @@ func create_common_room() -> void:
 	
 	surface_builder.build_surface(room, map, has_ceil)
 	
-	if has_spawner:
+	if has_spawner && randf() > deadend_possibility:
 		var spawn: EnemySpawner = enemy_spawner.instantiate()
 		map.add_child(spawn)
 		spawn.spawn_distance = max(ROOM_SIZE.x * Constants.CORE_TILE_SIZE / 2, ROOM_SIZE.y * Constants.CORE_TILE_SIZE / 2) 

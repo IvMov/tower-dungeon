@@ -56,6 +56,7 @@ func use_skill() -> void:
 	projectile.skill_id = skill.id
 	projectile.direction = proj_direction
 	projectile.global_position = player.camera_scene.get_camera_position() + proj_direction * player.camera_scene.get_camera_distance() * 1.01
+	projectile.apply_central_impulse(proj_direction * projectile.speed)
 	if projectile.global_position.y <= 0:
 		projectile.global_position = player.camera_scene.get_camera_position() + proj_direction * 1.01
 	

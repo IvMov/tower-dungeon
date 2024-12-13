@@ -2375,7 +2375,7 @@ regen = 0.5
 owner_node = NodePath("../..")
 max_value = 10.0
 current_value = 10.0
-regen = 0.5
+regen = 3.0
 
 [node name="SkillBox" type="Node3D" parent="."]
 
