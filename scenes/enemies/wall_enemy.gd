@@ -25,7 +25,6 @@ func agr_on_player() -> void:
 func detect_target(_target_player: Player) -> void:
 	spawn_enemy_controller.cast_stopped = false
 	spawn_enemy_controller.start_cast()
-	print("wALL DETECTS me")
 	is_player_near = true
 
 func get_damage(_damager_location: Vector3, value: float, _push_power: float) -> bool:

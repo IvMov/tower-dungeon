@@ -110,7 +110,6 @@ func _on_timer_timeout() -> void:
 			last_collider = collider
 			last_collider.mouse_entered.emit()
 		elif !last_collider:
-			print(collider)
 			last_collider = collider
 			last_collider.mouse_entered.emit()
 	

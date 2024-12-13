@@ -11,6 +11,7 @@ func use_skill_with_event(event: InputEvent):
 		stop_skill()
 
 func use_skill() -> void:
+	is_idle = false #fix for bad architecture (shame on me)
 	if is_idle: 
 		GameEvents.emit_skill_call_failed(Enums.SkillCallFailedReason.IDLE)
 	elif PlayerParameters.lock_stamina_skill:

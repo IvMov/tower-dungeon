@@ -32,7 +32,6 @@ volumetric_fog_sky_affect = 0.0
 script = ExtResource("1_vbbpw")
 
 [node name="MapGenerator" parent="." instance=ExtResource("2_ux27j")]
-DEADEND_INIT_POSSIBILITY = 0.2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0f8ma")

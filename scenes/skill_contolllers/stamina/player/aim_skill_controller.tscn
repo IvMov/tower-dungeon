@@ -5,3 +5,9 @@
 
 [node name="AimSkillController" instance=ExtResource("1_kai3q")]
 script = ExtResource("2_qidcn")
+
+[node name="CooldownTimer" parent="." index="1"]
+one_shot = false
+
+[node name="IdleTimer" parent="." index="2"]
+one_shot = false

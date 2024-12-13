@@ -209,6 +209,7 @@ locale/translations=PackedStringArray("res://assets/translation/text.en.translat
 [physics]
 
 3d/default_gravity=20.0
+3d/default_linear_damp=1.0
 
 [rendering]
 

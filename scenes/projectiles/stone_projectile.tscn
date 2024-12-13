@@ -1,12 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://dhisb5g4kf3le"]
 
 [ext_resource type="Script" path="res://scenes/projectiles/stone_projectile.gd" id="1_7e6ep"]
+[ext_resource type="PhysicsMaterial" uid="uid://cgwq52o87akpq" path="res://resources/materials/drop_physics_material.tres" id="1_futb6"]
 [ext_resource type="SphereMesh" uid="uid://004wttwvhpwe" path="res://assets/3d/my/stone_mesh.tres" id="2_mv7th"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6w63m"]
-rough = true
-bounce = 0.3
-absorbent = true
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_gelvw"]
 resource_local_to_scene = true
@@ -40,8 +36,9 @@ size = Vector2(0.03, 0.03)
 [node name="StoneProjectile" type="RigidBody3D"]
 collision_layer = 4
 collision_mask = 5123
-physics_material_override = SubResource("PhysicsMaterial_6w63m")
-gravity_scale = 0.5
+mass = 0.5
+physics_material_override = ExtResource("1_futb6")
+gravity_scale = 0.6
 continuous_cd = true
 script = ExtResource("1_7e6ep")
 
@@ -56,11 +53,11 @@ shape = SubResource("SphereShape3D_gelvw")
 [node name="Stone" type="MeshInstance3D" parent="."]
 mesh = ExtResource("2_mv7th")
 
-[node name="StaticBody3D" type="Area3D" parent="Stone"]
+[node name="Area3D" type="Area3D" parent="Stone"]
 collision_layer = 0
 collision_mask = 5120
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Stone/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stone/Area3D"]
 shape = SubResource("SphereShape3D_bblb0")
 
 [node name="LifeTimer" type="Timer" parent="."]
@@ -86,4 +83,4 @@ explosiveness = 0.77
 process_material = SubResource("ParticleProcessMaterial_iin2b")
 draw_pass_1 = SubResource("PlaneMesh_tnvrm")
 
-[connection signal="body_entered" from="Stone/StaticBody3D" to="." method="_on_static_body_3d_body_entered"]
+[connection signal="body_entered" from="Stone/Area3D" to="." method="_on_static_body_3d_body_entered"]

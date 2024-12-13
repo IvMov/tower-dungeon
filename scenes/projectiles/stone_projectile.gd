@@ -18,7 +18,6 @@ func _ready() -> void:
 
 	
 func on_life_timer_timeout() -> void:
-	print("LIFETIME ENDS")
 	stone.visible = false
 	var item: ItemBulk = ItemBulk.new(Constants.ITEM_STONE, 1)
 	global_position = global_position + Vector3(randf_range(-RAND, RAND), 0, randf_range(-RAND, RAND))
@@ -27,7 +26,6 @@ func on_life_timer_timeout() -> void:
 
 
 func _on_static_body_3d_body_entered(body: Node3D) -> void:
-	print("BODY ENTERED?")
 	collision_particles.emitting = true
 	life_timer.wait_time = 1
 	life_timer.start()
