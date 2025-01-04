@@ -55,3 +55,6 @@ explosiveness = 1.0
 randomness = 0.5
 process_material = ExtResource("3_yolwn")
 draw_pass_1 = SubResource("SphereMesh_s06my")
+
+[connection signal="area_entered" from="MeshInstance3D/Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="body_entered" from="MeshInstance3D/Area3D" to="." method="_on_area_3d_body_entered"]

@@ -54,7 +54,7 @@ shape = SubResource("SphereShape3D_gelvw")
 mesh = ExtResource("2_mv7th")
 
 [node name="Area3D" type="Area3D" parent="Stone"]
-collision_layer = 0
+collision_layer = 4
 collision_mask = 5120
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Stone/Area3D"]
@@ -83,4 +83,5 @@ explosiveness = 0.77
 process_material = SubResource("ParticleProcessMaterial_iin2b")
 draw_pass_1 = SubResource("PlaneMesh_tnvrm")
 
+[connection signal="area_entered" from="Stone/Area3D" to="." method="_on_area_3d_area_entered"]
 [connection signal="body_entered" from="Stone/Area3D" to="." method="_on_static_body_3d_body_entered"]

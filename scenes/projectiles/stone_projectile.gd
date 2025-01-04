@@ -32,5 +32,16 @@ func _on_static_body_3d_body_entered(body: Node3D) -> void:
 	if body is BasicEnemy:
 		if body.get_damage(global_position, damage, push_power):
 			PlayerParameters.add_skill_exp(skill_id, damage)
-	
-	
+
+
+
+func _on_area_3d_area_entered(area: Area3D) -> void:
+	collision_particles.emitting = true
+	life_timer.wait_time = 1
+	life_timer.start()
+	if !area.get_parent():
+		return
+	var body: Node3D =  area.get_parent().get_parent();
+	if body is BasicEnemy:
+		if body.get_damage(global_position, damage, push_power):
+			PlayerParameters.add_skill_exp(skill_id, damage)

@@ -12,7 +12,7 @@ class_name BasicEnemy extends CharacterBody3D
 @onready var agr_collision = $AgrArea/AgrCollision
 @onready var ray_cast_3d = $RayCast3D
 
-@onready var navigation_agent_3d = $NavigationAgent3D
+@onready var navigation_agent_3d: NavigationAgent3D = $Node3D/NavigationAgent3D
 
 @onready var health_component: HealthComponent = $StatsBox/HealthComponent
 @onready var mana_component: ManaComponent = $StatsBox/ManaComponent
@@ -53,9 +53,11 @@ var idle_radius: float = 2
 var agr_radius: float = 4
 var angular_velocity: float = 1.0
 var current_angle: float
+var battle_distance: float = 0
 var battle_move_radius: float =  randf_range(2, 6)
 var battle_direction_when_radial: int = get_random_sign()
 
+var is_ranged: bool = false
 var can_move: bool = true
 var is_runing: bool = false
 var is_dodging: bool = false
@@ -96,7 +98,10 @@ func _physics_process(delta):
 		current_speed = speed if !is_runing else run_speed
 		current_speed = speed * 1.5 if is_dodging else current_speed
 		chase_player()
-	if player:
+	if player :
+		if is_ranged && is_fighting && navigation_agent_3d.distance_to_target() < battle_distance:
+			velocity = Vector3.ZERO
+			return
 		accelerate_to_player(delta)
 	move_and_slide()
 

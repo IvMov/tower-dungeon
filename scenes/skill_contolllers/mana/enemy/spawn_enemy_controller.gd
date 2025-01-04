@@ -49,16 +49,13 @@ func cast_lot(num: int) -> void:
 		start_cast()
 
 func start_cast() -> void:
-	print("started")
 	if !fast_cast && !owner_enemy.mana_component.minus(skill.base_energy_cost):
 		skill_cast_finished = false
 	else:
 		skill_cast_finished = true
 		#TODO: play cast animation 
 		#TODO: REFACTOR THIS STUF
-		print("min %f, max %f" % [owner_enemy.min_height, owner_enemy.max_height])
 		next_enemy_position = calc_enemy_position(owner_enemy.spawn_distance, owner_enemy.min_height, owner_enemy.max_height)
-		print("wall position: %s, spawn pos: %s" % [owner_enemy.global_position, next_enemy_position])
 		var tween = create_tween()
 		var proj_inst = projectile.instantiate()
 		enemy_box.add_child(proj_inst)

@@ -2,19 +2,20 @@
 
 [ext_resource type="PackedScene" uid="uid://ca0ysw5vmydwd" path="res://scenes/enemies/basic_enemy.tscn" id="1_jaywe"]
 [ext_resource type="Script" path="res://scenes/enemies/wall_enemy.gd" id="2_53gxl"]
-[ext_resource type="Texture2D" uid="uid://darkyqw48k8nh" path="res://assets/textures/Grass 15 - 128x128.png" id="3_3ypxr"]
+[ext_resource type="Texture2D" uid="uid://du4kwq2r1x0ru" path="res://assets/textures/Brick 25 - 128x128.png" id="3_m4812"]
 [ext_resource type="PackedScene" uid="uid://cum81aptelhj7" path="res://scenes/skill_contolllers/mana/enemy/spawn_enemy_controller.tscn" id="3_wbe7l"]
 [ext_resource type="PackedScene" uid="uid://dbv1lp0pn7xhc" path="res://scenes/enemies/tier_1_enemy.tscn" id="4_we6ev"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jq26x"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ux2x"]
 shading_mode = 0
-albedo_texture = ExtResource("3_3ypxr")
+albedo_color = Color(2, 1, 1, 1)
+albedo_texture = ExtResource("3_m4812")
 albedo_texture_force_srgb = true
 uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_wo5iq"]
 lightmap_size_hint = Vector2i(43, 70)
-material = SubResource("StandardMaterial3D_jq26x")
+material = SubResource("StandardMaterial3D_2ux2x")
 size = Vector3(1, 3, 6.8)
 
 [sub_resource type="Animation" id="Animation_m3v5j"]

@@ -40,3 +40,13 @@ func handleb_body_collision() -> void:
 	
 func on_life_timer_timeout() -> void:
 	queue_free()
+
+
+func _on_area_3d_area_entered(area: Area3D) -> void:
+	if !area.get_parent():
+		return
+	var body: Node3D =  area.get_parent().get_parent();
+	if body is BasicEnemy:
+		handleb_body_collision()
+		if body.get_damage(global_position, damage, push_power):
+			PlayerParameters.add_skill_exp(skill_id, damage)

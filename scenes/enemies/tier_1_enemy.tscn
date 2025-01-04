@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=4 uid="uid://dbv1lp0pn7xhc"]
+[gd_scene load_steps=46 format=4 uid="uid://dbv1lp0pn7xhc"]
 
 [ext_resource type="PackedScene" uid="uid://ca0ysw5vmydwd" path="res://scenes/enemies/basic_enemy.tscn" id="1_4vmlr"]
 [ext_resource type="Script" path="res://scenes/enemies/tier_1_enemy.gd" id="2_ahays"]
@@ -2319,6 +2319,11 @@ resource_local_to_scene = true
 height = 4.0
 radius = 4.0
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t31c1"]
+resource_local_to_scene = true
+radius = 0.4
+height = 0.8
+
 [node name="Tier1Enemy" node_paths=PackedStringArray("animation_player") instance=ExtResource("1_4vmlr")]
 script = ExtResource("2_ahays")
 enemy_name = "tier_1_enemy"
@@ -2415,7 +2420,7 @@ libraries = {
 "": SubResource("AnimationLibrary_nxnuc")
 }
 
-[node name="NavigationAgent3D" parent="." index="7"]
+[node name="NavigationAgent3D" parent="Node3D" index="0"]
 debug_enabled = false
 
 [node name="CollisionShape3D" parent="CallEnemyAreaClient" index="0"]
@@ -2423,3 +2428,6 @@ shape = SubResource("CylinderShape3D_ogdi0")
 
 [node name="AgrCollision" parent="AgrArea" index="0"]
 shape = SubResource("CylinderShape3D_nuw01")
+
+[node name="EnemyCollision" parent="." index="11"]
+shape = SubResource("CapsuleShape3D_t31c1")

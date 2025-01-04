@@ -20,19 +20,9 @@ var explosion: bool = false
 
 
 func _ready() -> void:
-	area_3d.body_entered.connect(on_body_entered)
 	life_timer.timeout.connect(on_life_timer_timeout)
 	projectile_particles.emitting = true
 
-
-func on_body_entered(body: Node3D) -> void:
-	if body is BasicEnemy:
-		if !explosion:
-			do_explosion()
-			explosion_timer.stop()
-			body.get_damage(global_position, damage, push_power)
-		elif body.get_damage(global_position, damage, push_power):
-			PlayerParameters.add_skill_exp(skill_id, damage)
 
 func do_explosion() -> void:
 	explosion = true
@@ -56,3 +46,26 @@ func on_life_timer_timeout() -> void:
 
 func _on_explosion_timer_timeout() -> void:
 	do_explosion()
+
+
+func _on_area_3d_area_entered(area: Area3D) -> void:
+	if !area.get_parent():
+		return
+	var body: Node3D =  area.get_parent().get_parent();
+	if body is BasicEnemy:
+		if !explosion:
+			do_explosion()
+			explosion_timer.stop()
+			body.get_damage(global_position, damage, push_power)
+		elif body.get_damage(global_position, damage, push_power):
+			PlayerParameters.add_skill_exp(skill_id, damage)
+
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	if body is BasicEnemy:
+		if !explosion:
+			do_explosion()
+			explosion_timer.stop()
+			body.get_damage(global_position, damage, push_power)
+		elif body.get_damage(global_position, damage, push_power):
+			PlayerParameters.add_skill_exp(skill_id, damage)

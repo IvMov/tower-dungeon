@@ -205,6 +205,7 @@ locale/translations=PackedStringArray("res://assets/translation/text.en.translat
 3d_physics/layer_11="Enemies"
 3d_physics/layer_12="Enemies_call"
 3d_physics/layer_13="Enemies_spawners"
+3d_physics/layer_14="Enemies_flying"
 
 [physics]
 

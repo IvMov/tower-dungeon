@@ -68,3 +68,5 @@ speed_scale = 3.0
 explosiveness = 0.88
 process_material = ExtResource("4_0cqs3")
 draw_pass_1 = ExtResource("3_v1etk")
+
+[connection signal="area_entered" from="MeshInstance3D/Area3D" to="." method="_on_area_3d_area_entered"]

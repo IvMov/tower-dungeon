@@ -136,7 +136,6 @@ func save_deadend_room_to_map() -> Room:
 	new_room.size = deadend_ROOM_SIZE
 	new_room.start_point = deadend_root_room_position
 	new_room.floor_height = 0
-	print(new_room)
 	return map.add_room(new_room)
 
 
@@ -156,7 +155,7 @@ func create_common_room() -> void:
 		spawn.spawn_distance = max(ROOM_SIZE.x * Constants.CORE_TILE_SIZE / 2, ROOM_SIZE.y * Constants.CORE_TILE_SIZE / 2) 
 		spawn.boost_enemies_num = (room.size.x + room.size.y)
 		spawn.agr_collision.shape.size = Vector3(ROOM_SIZE.x * Constants.CORE_TILE_SIZE, room.ceil_height, ROOM_SIZE.y * Constants.CORE_TILE_SIZE)
-		spawn.global_position = Vector3(room.start_point.x + room.size.x * Constants.CORE_TILE_SIZE/2 + randi_range(-3, 3), 0,room.start_point.y +  room.size.y*Constants.CORE_TILE_SIZE/2 + randi_range(-3, 3))
+		spawn.global_position = Vector3(room.start_point.x + room.size.x * Constants.CORE_TILE_SIZE/2 + randi_range(-3, 3), randf_range(1, 5),room.start_point.y +  room.size.y*Constants.CORE_TILE_SIZE/2 + randi_range(-3, 3))
 
 	next_room_direction = get_random_available_direction()
 	tunel_length = randi_range(MIN_TUNEL_LENGTH, MAX_TUNEL_LENGTH)
@@ -278,10 +277,7 @@ func pick_random() -> Vector2:
 
 
 func calculate_ROOM_SIZE() -> Vector2:
-	print(MIN_SIZE)
-	print(MAX_SIZE)
 	var current_x: int = randi_range(MIN_SIZE, MAX_SIZE)
 	var current_y: int = randi_range(MIN_SIZE, MAX_SIZE)
-	print("x: %d, y: %d" % [current_x, current_y])
 	return Vector2(current_x, current_y)
 	
