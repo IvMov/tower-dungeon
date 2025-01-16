@@ -2,6 +2,7 @@ class_name SoulTypeUi extends MarginContainer
 
 @onready var sprite: TextureRect = $Sprite
 @onready var quantity_label: Label = $QuantityLabel
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @export var image: CompressedTexture2D;
 @export var quantity: int = 0

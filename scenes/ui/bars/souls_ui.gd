@@ -16,5 +16,8 @@ func resize():
 
 func on_souls_update_view(value: Vector3) -> void:
 	soul_type_ui.quantity_label.text = str(value.x)
+	soul_type_ui.animation_player.play("add")
 	soul_type_ui_2.quantity_label.text = str(value.y)
+	soul_type_ui_2.animation_player.play("add")
 	soul_type_ui_3.quantity_label.text = str(value.z)
+	soul_type_ui_3.animation_player.play("add")
