@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://vtc4imj2ymwb"]
+
+[ext_resource type="Script" path="res://scenes/ui/bars/souls_ui.gd" id="1_1hy07"]
+[ext_resource type="PackedScene" uid="uid://cri7ni48w3r7m" path="res://scenes/ui/bars/soul_type_ui.tscn" id="1_kh0f2"]
+[ext_resource type="Texture2D" uid="uid://da68ojgypdeav" path="res://assets/2d/ui/soul_1.png" id="3_i72jx"]
+[ext_resource type="Texture2D" uid="uid://die0ad3peb6yx" path="res://assets/2d/ui/soul_2.png" id="4_0s8wt"]
+[ext_resource type="Texture2D" uid="uid://ca3dk7ilbavr6" path="res://assets/2d/ui/soul_3.png" id="5_k25hj"]
+
+[node name="SoulsView" type="VBoxContainer"]
+offset_right = 138.0
+offset_bottom = 316.0
+size_flags_horizontal = 3
+script = ExtResource("1_1hy07")
+
+[node name="SoulTypeUi" parent="." instance=ExtResource("1_kh0f2")]
+layout_mode = 2
+image = ExtResource("3_i72jx")
+
+[node name="SoulTypeUi2" parent="." instance=ExtResource("1_kh0f2")]
+layout_mode = 2
+size_flags_vertical = 4
+image = ExtResource("4_0s8wt")
+
+[node name="SoulTypeUi3" parent="." instance=ExtResource("1_kh0f2")]
+layout_mode = 2
+size_flags_vertical = 8
+image = ExtResource("5_k25hj")

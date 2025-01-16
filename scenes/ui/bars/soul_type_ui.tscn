@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://cri7ni48w3r7m"]
+
+[ext_resource type="Script" path="res://scenes/ui/bars/soul_type_ui.gd" id="1_6qooq"]
+[ext_resource type="Texture2D" uid="uid://da68ojgypdeav" path="res://assets/2d/ui/soul_1.png" id="2_6qgr8"]
+
+[node name="SoulTypeUi" type="MarginContainer"]
+custom_minimum_size = Vector2(150, 0)
+offset_right = 50.0
+offset_bottom = 50.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+script = ExtResource("1_6qooq")
+
+[node name="Sprite" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("2_6qgr8")
+expand_mode = 1
+
+[node name="QuantityLabel" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "100
+"
