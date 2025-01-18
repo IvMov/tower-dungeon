@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dpo2ynfyebydj" path="res://assets/textures/Wood 9 - 128x128.png" id="2_pf5hw"]
 [ext_resource type="Material" uid="uid://clptb0rjqplxi" path="res://assets/textures/brown_wood.tres" id="3_00qye"]
 [ext_resource type="PackedScene" uid="uid://bhit0b8br8bsc" path="res://scenes/maps/parts/fontain_stairs.tscn" id="5_484il"]
-[ext_resource type="PackedScene" uid="uid://jv0prokpjsrw" path="res://fontain_fire.tscn" id="5_fauyd"]
+[ext_resource type="PackedScene" uid="uid://jv0prokpjsrw" path="res://scenes/maps/parts/fontain_fire.tscn" id="5_fauyd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1mkgj"]
 shading_mode = 0

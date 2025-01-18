@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://mn8seb7clfaa"]
+
+[ext_resource type="PackedScene" uid="uid://dgx4dmy8jeqee" path="res://scenes/ui/parts/hoverable.tscn" id="1_jcqy7"]
+[ext_resource type="Script" path="res://scenes/maps/parts/traider_button.gd" id="2_evwal"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ljukm"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wfyvf"]
+material = SubResource("StandardMaterial3D_ljukm")
+size = Vector3(3, 5, 5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_xmxrr"]
+points = PackedVector3Array(1.5, 2.5, 2.5, -1.5, 2.5, 2.5, 1.5, -2.5, 2.5, 1.5, 2.5, -2.5, -1.5, 2.5, -2.5, -1.5, -2.5, 2.5, 1.5, -2.5, -2.5, -1.5, -2.5, -2.5)
+
+[node name="TraiderButton" instance=ExtResource("1_jcqy7")]
+script = ExtResource("2_evwal")
+
+[node name="FlyingText" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.785982, 0)
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="1"]
+mesh = SubResource("BoxMesh_wfyvf")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" index="0"]
+collision_layer = 33
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_xmxrr")
+
+[connection signal="mouse_entered" from="MeshInstance3D/StaticBody3D" to="." method="_on_static_body_3d_mouse_entered"]
+[connection signal="mouse_exited" from="MeshInstance3D/StaticBody3D" to="." method="_on_static_body_3d_mouse_exited"]

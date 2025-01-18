@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://jv0prokpjsrw"]
 
 [ext_resource type="PackedScene" uid="uid://dgx4dmy8jeqee" path="res://scenes/ui/parts/hoverable.tscn" id="1_2gaf0"]
-[ext_resource type="Script" path="res://fontain_fire.gd" id="2_8m8ue"]
+[ext_resource type="Script" path="res://scenes/maps/parts/fontain_fire.gd" id="2_8m8ue"]
 [ext_resource type="Material" uid="uid://clptb0rjqplxi" path="res://assets/textures/brown_wood.tres" id="2_olgiw"]
 [ext_resource type="Material" uid="uid://cisk8kcrqgw17" path="res://particles/mesh/fontain_fire_material.tres" id="4_4f0hf"]
 [ext_resource type="PrismMesh" uid="uid://c5x02ui4xuaqn" path="res://assets/3d/my/crystal_mesh.tres" id="4_4h4pn"]
