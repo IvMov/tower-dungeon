@@ -27,6 +27,7 @@ signal item_consumed(position: int, item_id: int)
 signal item_update_hand_view(hand: int)
 signal redraw_item(key: Vector3)
 
+signal from_stage_to_shop()
 
 signal souls_dropped(position: Vector3, value: Vector3)
 signal souls_collect(position: Vector3, value: Vector3)
@@ -112,3 +113,6 @@ func emit_item_update_hand_view(hand: int):
 
 func emit_redraw_item(key: Vector3):
 	redraw_item.emit(key)
+
+func emit_from_stage_to_shop():
+	from_stage_to_shop.emit()

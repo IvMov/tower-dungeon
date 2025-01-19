@@ -1,0 +1,96 @@
+[gd_scene load_steps=9 format=3 uid="uid://c521w1yv0o3ri"]
+
+[ext_resource type="Material" uid="uid://de3hjukfgxgh" path="res://assets/textures/materials/floor_material.tres" id="1_fhqsb"]
+[ext_resource type="PackedScene" uid="uid://dsfklcrmsh38d" path="res://scenes/maps/parts/candle.tscn" id="2_j0n6g"]
+[ext_resource type="Material" uid="uid://cw8oxk75ogtt0" path="res://assets/textures/materials/wall_material.tres" id="3_brk7s"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ajxli"]
+size = Vector3(3, 0.5, 8)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_tv5bp"]
+size = Vector2(16, 8)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0lipl"]
+size = Vector2(16, 8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2mds2"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.168627, 0.168627, 0.168627, 0.905882)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fw587"]
+material = SubResource("StandardMaterial3D_2mds2")
+size = Vector2(8, 8)
+
+[node name="StairsForView" type="Node3D"]
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.02584, -0.887573, 0)
+material_override = ExtResource("1_fhqsb")
+mesh = SubResource("BoxMesh_ajxli")
+skeleton = NodePath("../../MeshInstance3D")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.98875, -0.383881, 0)
+material_override = ExtResource("1_fhqsb")
+mesh = SubResource("BoxMesh_ajxli")
+skeleton = NodePath("../../MeshInstance3D")
+
+[node name="Candle3" parent="MeshInstance3D7" instance=ExtResource("2_j0n6g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.574445, 0.757265, -2.98602)
+
+[node name="Candle4" parent="MeshInstance3D7" instance=ExtResource("2_j0n6g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.574445, 0.757265, 3.04125)
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.98875, 0.112427, 0)
+material_override = ExtResource("1_fhqsb")
+mesh = SubResource("BoxMesh_ajxli")
+skeleton = NodePath("../../MeshInstance3D")
+
+[node name="Candle5" parent="MeshInstance3D8" instance=ExtResource("2_j0n6g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.42556, 1.24091, -2.98602)
+
+[node name="Candle6" parent="MeshInstance3D8" instance=ExtResource("2_j0n6g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.42556, 1.24091, 3.04125)
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.9888, 0.611511, 0)
+material_override = ExtResource("1_fhqsb")
+mesh = SubResource("BoxMesh_ajxli")
+skeleton = NodePath("../../MeshInstance3D")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9888, 1.08536, 0)
+material_override = ExtResource("1_fhqsb")
+mesh = SubResource("BoxMesh_ajxli")
+skeleton = NodePath("../../MeshInstance3D")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.988715, 0.149812, 0, -0.149812, -0.988715, 0, 0, 0, 1, 11.8165, 6.04356, 0)
+material_override = ExtResource("3_brk7s")
+mesh = SubResource("PlaneMesh_tv5bp")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 10.3174, 3.11243, 3.95877)
+material_override = ExtResource("3_brk7s")
+mesh = SubResource("PlaneMesh_0lipl")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, 0, 0, 0, 1, 8.74228e-08, 1, 0, 10.3174, 3.11243, -4.04123)
+material_override = ExtResource("3_brk7s")
+mesh = SubResource("PlaneMesh_0lipl")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.107895, -0.994162, 0, 0.994162, 0.107895, 0, 0, 0, 1, 17.514, 4.90863, -6.10352e-05)
+mesh = SubResource("PlaneMesh_fw587")
+skeleton = NodePath("../..")
+
+[node name="Candle" parent="MeshInstance3D5" instance=ExtResource("2_j0n6g")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.0186596, -1.94516, -2.98602)
+
+[node name="Candle2" parent="MeshInstance3D5" instance=ExtResource("2_j0n6g")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.0186596, -1.94516, 3.04125)

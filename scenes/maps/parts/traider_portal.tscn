@@ -1,40 +1,20 @@
-[gd_scene load_steps=14 format=3 uid="uid://c1e65nbn04dw4"]
+[gd_scene load_steps=7 format=3 uid="uid://c1e65nbn04dw4"]
 
 [ext_resource type="PackedScene" uid="uid://dgx4dmy8jeqee" path="res://scenes/ui/parts/hoverable.tscn" id="1_8wjkn"]
 [ext_resource type="Script" path="res://traider_portal.gd" id="2_tggcj"]
-[ext_resource type="PackedScene" uid="uid://dsfklcrmsh38d" path="res://scenes/maps/parts/candle.tscn" id="3_ud3fd"]
-[ext_resource type="Material" uid="uid://de3hjukfgxgh" path="res://assets/textures/materials/floor_material.tres" id="3_uii1j"]
-[ext_resource type="Material" uid="uid://cw8oxk75ogtt0" path="res://assets/textures/materials/wall_material.tres" id="5_enpq8"]
+[ext_resource type="PackedScene" uid="uid://c521w1yv0o3ri" path="res://scenes/maps/parts/stairs_for_view.tscn" id="3_vl5ga"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mucye"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8oytt"]
 transparency = 1
 shading_mode = 0
 albedo_color = Color(0.105882, 0.266667, 0.0392157, 0.458824)
 
 [sub_resource type="BoxMesh" id="BoxMesh_stcj4"]
-material = SubResource("StandardMaterial3D_mucye")
+material = SubResource("StandardMaterial3D_8oytt")
 size = Vector3(1, 4, 8)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_aap0a"]
 points = PackedVector3Array(-0.5, -2, -4, 0.5, -2, -4, -0.5, -2, 4, -0.5, 2, -4, 0.5, 2, -4, 0.5, -2, 4, -0.5, 2, 4, 0.5, 2, 4)
-
-[sub_resource type="BoxMesh" id="BoxMesh_ajxli"]
-size = Vector3(3, 1, 8)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_tv5bp"]
-size = Vector2(16, 8)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_0lipl"]
-size = Vector2(16, 8)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2mds2"]
-transparency = 1
-shading_mode = 0
-albedo_color = Color(0.168627, 0.168627, 0.168627, 0.905882)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_fw587"]
-material = SubResource("StandardMaterial3D_2mds2")
-size = Vector2(8, 8)
 
 [node name="TraiderPortal" instance=ExtResource("1_8wjkn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
@@ -53,62 +33,7 @@ collision_layer = 33
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" index="0"]
 shape = SubResource("ConvexPolygonShape3D_aap0a")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02584, -2, 0)
-material_override = ExtResource("3_uii1j")
-mesh = SubResource("BoxMesh_ajxli")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.98875, -1, 0)
-material_override = ExtResource("3_uii1j")
-mesh = SubResource("BoxMesh_ajxli")
-
-[node name="Candle3" parent="MeshInstance3D/MeshInstance3D2" index="0" instance=ExtResource("3_ud3fd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.574445, 0.98134, -2.98602)
-
-[node name="Candle4" parent="MeshInstance3D/MeshInstance3D2" index="1" instance=ExtResource("3_ud3fd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.574445, 0.98134, 3.04125)
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshInstance3D" index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.98875, 0, 0)
-material_override = ExtResource("3_uii1j")
-mesh = SubResource("BoxMesh_ajxli")
-
-[node name="Candle5" parent="MeshInstance3D/MeshInstance3D3" index="0" instance=ExtResource("3_ud3fd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.42556, 1.98134, -2.98602)
-
-[node name="Candle6" parent="MeshInstance3D/MeshInstance3D3" index="1" instance=ExtResource("3_ud3fd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.42556, 1.98134, 3.04125)
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="MeshInstance3D" index="4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.98875, 1, 0)
-material_override = ExtResource("3_uii1j")
-mesh = SubResource("BoxMesh_ajxli")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="." index="2"]
-transform = Transform3D(-0.988715, 0.149812, 0, -0.149812, -0.988715, 0, 0, 0, 1, 11.8165, 5.93113, 0)
-material_override = ExtResource("5_enpq8")
-mesh = SubResource("PlaneMesh_tv5bp")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="." index="3"]
-transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 10.3174, 3, 3.95877)
-material_override = ExtResource("5_enpq8")
-mesh = SubResource("PlaneMesh_0lipl")
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="." index="4"]
-transform = Transform3D(-1, 8.74228e-08, 0, 0, 0, 1, 8.74228e-08, 1, 0, 10.3174, 3, -4.04123)
-material_override = ExtResource("5_enpq8")
-mesh = SubResource("PlaneMesh_0lipl")
-
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="." index="5"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 17.514, 5, 0)
-mesh = SubResource("PlaneMesh_fw587")
-
-[node name="Candle" parent="MeshInstance3D5" index="0" instance=ExtResource("3_ud3fd")]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.0186596, -2.94516, -2.98602)
-
-[node name="Candle2" parent="MeshInstance3D5" index="1" instance=ExtResource("3_ud3fd")]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.0186596, -2.94516, 3.04125)
+[node name="StairsForView" parent="." index="2" instance=ExtResource("3_vl5ga")]
 
 [connection signal="mouse_entered" from="MeshInstance3D/StaticBody3D" to="." method="_on_static_body_3d_mouse_entered"]
 [connection signal="mouse_exited" from="MeshInstance3D/StaticBody3D" to="." method="_on_static_body_3d_mouse_exited"]

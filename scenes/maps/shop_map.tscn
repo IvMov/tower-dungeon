@@ -81,7 +81,7 @@ points = PackedVector3Array(1, 0.5, 0.25, 1, 0.5, -0.25, -1, 0.5, 0.25, 1, -0.5,
 points = PackedVector3Array(1, 0.5, 0.25, 1, 0.5, -0.25, -1, 0.5, 0.25, 1, -0.5, 0.25, 1, -0.5, -0.25, -1, 0.5, -0.25, -1, -0.5, 0.25, -1, -0.5, -0.25)
 
 [node name="ShopMap" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.179, 0, -9.84)
 
 [node name="Floor" type="Node3D" parent="."]
 
@@ -168,7 +168,6 @@ mesh = SubResource("PlaneMesh_qbast")
 shape = SubResource("ConvexPolygonShape3D_dntc6")
 
 [node name="Ceil" type="Node3D" parent="."]
-visible = false
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Ceil"]
 transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 0, 10, 0)

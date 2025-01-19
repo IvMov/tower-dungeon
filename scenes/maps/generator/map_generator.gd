@@ -69,9 +69,12 @@ var deadend_entrance_coordinates: Vector2
 func generate_level() -> void:
 	deadend_possibility = DEADEND_INIT_POSSIBILITY
 	prepare_blank_map()
+	
 	for i in ROOMS:
 		print("new room %d" % i)
 		generate_room()
+		if i == 0:
+			create_entrance()
 		# map storage as map of each empty map
 		# each_room_generate pickable items - add them to map_storage
 	generate_portal_to_traider()
@@ -81,6 +84,21 @@ func generate_level() -> void:
 	#var scene = PackedScene.new()
 	#scene.pack(node_to_save)
 	#ResourceSaver.save(scene, "res://MyScene.tscn")
+
+func create_entrance() -> void:
+	var entrance_dir: Vector2 = pick_random()
+	var start: Vector4 = tunel_builder.add_tunel(2, entrance_dir, room, map)
+	var entrance = preload("res://entrance_to_stage.tscn").instantiate()
+	map.add_tile(entrance)
+	match entrance_dir:
+		Vector2.LEFT: 
+			entrance.rotate_y(PI/2)
+		Vector2.RIGHT:
+			entrance.rotate_y(PI + PI/2)
+		Vector2.DOWN:
+			entrance.rotate_y(PI)	
+	entrance.global_position = Vector3(start.z, 0, start.w)
+	update_available_directions(entrance_dir, DIRECTION_AVAILABILITY_CD-1)
 
 
 func generate_room() -> void:
@@ -124,7 +142,7 @@ func generate_room() -> void:
 	root_room_position = calc_room_start_position(ROOM_SIZE, next_entrance_coordinates, next_room_direction)
 	
 	#update ONLY after deadend spawns or not - if use it earlier  - some good directions will be blocked for pick_random_method
-	update_available_dirrections()
+	update_available_directions(next_room_direction)
 	if room.deadend_exit != Vector2.ZERO:
 		blocked_room = true
 
@@ -197,7 +215,7 @@ func create_deadend_room() -> void:
 				torch_builder.add_torches(deadend_room, map)
 			if has_columns:
 				column_builder.add_columns(deadend_room, map)
-			deadend_update_available_dirrections()
+			update_available_directions(deadend_room_direction, 2)
 		else:
 			print("NO FREE DIRRECTIONS FOR DEADEND ROOM!")
 			deadend_entrance_coordinates = Vector2.ZERO
@@ -248,28 +266,17 @@ func get_random_available_direction() -> Vector2:
 
 
 # add availability cd for new dirrection oposite dir
-func update_available_dirrections() -> void:
-	match next_room_direction:
-		Vector2.LEFT: 
-			availability[Vector2.RIGHT] = DIRECTION_AVAILABILITY_CD
-		Vector2.RIGHT:
-			availability[Vector2.LEFT] = DIRECTION_AVAILABILITY_CD
-		Vector2.DOWN:
-			availability[Vector2.UP] = DIRECTION_AVAILABILITY_CD
-		Vector2.UP: 
-			availability[Vector2.DOWN] = DIRECTION_AVAILABILITY_CD
-	
 
-func deadend_update_available_dirrections() -> void:
-	match deadend_room_direction:
+func update_available_directions(direction: Vector2, cd: int = 0) -> void:
+	match direction:
 		Vector2.LEFT: 
-			availability[Vector2.LEFT] = DIRECTION_AVAILABILITY_CD-2
+			availability[Vector2.RIGHT] = DIRECTION_AVAILABILITY_CD - cd
 		Vector2.RIGHT:
-			availability[Vector2.RIGHT] = DIRECTION_AVAILABILITY_CD-2
+			availability[Vector2.LEFT] = DIRECTION_AVAILABILITY_CD - cd
 		Vector2.DOWN:
-			availability[Vector2.DOWN] = DIRECTION_AVAILABILITY_CD-2
+			availability[Vector2.UP] = DIRECTION_AVAILABILITY_CD - cd
 		Vector2.UP: 
-			availability[Vector2.UP] = DIRECTION_AVAILABILITY_CD-2
+			availability[Vector2.DOWN] = DIRECTION_AVAILABILITY_CD - cd
 
 # handle cd of availability dirrections 
 func update_dirrections_cd() -> void:
