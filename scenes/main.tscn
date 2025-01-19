@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://w5dgd34hh3wr"]
+[gd_scene load_steps=10 format=3 uid="uid://w5dgd34hh3wr"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_vbbpw"]
 [ext_resource type="PackedScene" uid="uid://ci4hotqkt3ope" path="res://scenes/maps/generator/map_generator.tscn" id="2_ux27j"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://ieuiir4uuka5" path="res://scenes/ui/crosshair_scene.tscn" id="3_s0mh3"]
 [ext_resource type="PackedScene" uid="uid://bwggo1cxds18" path="res://scenes/ui/ui.tscn" id="4_0dxvj"]
 [ext_resource type="PackedScene" uid="uid://c7nfqu6eb7oqd" path="res://scenes/ui/vignette/vignette.tscn" id="6_f0ant"]
-[ext_resource type="PackedScene" uid="uid://dwmp17walymun" path="res://scenes/maps/shop_map.tscn" id="6_fahky"]
 [ext_resource type="PackedScene" uid="uid://btey3yhuspcew" path="res://scenes/maps/parts/player_fontain.tscn" id="6_yfn6a"]
 [ext_resource type="PackedScene" uid="uid://by7yynke4it2l" path="res://scenes/maps/storage/map_storage.tscn" id="8_ng268"]
 
@@ -49,7 +48,7 @@ text = "LABas"
 [node name="UI" parent="UIWrapper" instance=ExtResource("4_0dxvj")]
 
 [node name="Player" parent="." instance=ExtResource("2_v4j8r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.3424, -0.7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 6.84063, -0.7)
 
 [node name="Projectiles" type="Node3D" parent="." groups=["projectiles"]]
 
@@ -59,13 +58,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.3424, -0.7)
 
 [node name="Maps" type="Node3D" parent="." groups=["maps"]]
 
-[node name="ShopMap" parent="Maps" instance=ExtResource("6_fahky")]
-
 [node name="Vignette" parent="." instance=ExtResource("6_f0ant")]
 visible = false
 
 [node name="PlayerFontain" parent="." instance=ExtResource("6_yfn6a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 17.5748, 0.3)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 2, 0.3)
 
 [node name="MapStorage" parent="." instance=ExtResource("8_ng268")]

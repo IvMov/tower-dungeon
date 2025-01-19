@@ -74,6 +74,7 @@ func generate_level() -> void:
 		generate_room()
 		# map storage as map of each empty map
 		# each_room_generate pickable items - add them to map_storage
+	generate_portal_to_traider()
 	map.bake_navigation()
 	# TODO: think about map save (below - copied from internet)
 	#var node_to_save = $Node2D
@@ -127,7 +128,19 @@ func generate_room() -> void:
 	if room.deadend_exit != Vector2.ZERO:
 		blocked_room = true
 
-
+func generate_portal_to_traider() -> void:
+	
+	var portal: Hoverable = preload("res://scenes/maps/parts/traider_portal.tscn").instantiate()
+	map.add_tile(portal)
+	match next_room_direction:
+		Vector2.LEFT: 
+			portal.rotate_y(PI/2)
+		Vector2.RIGHT:
+			portal.rotate_y(-PI/2)
+		Vector2.DOWN:
+			portal.rotate_y(PI)
+	portal.global_position = Vector3(next_entrance_coordinates.x, 1, next_entrance_coordinates.y)
+	
 func save_deadend_room_to_map() -> Room:
 	var new_room: Room = Room.new()
 	new_room.entrance = deadend_entrance_coordinates

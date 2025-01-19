@@ -26,9 +26,7 @@
 script = ExtResource("1_2pkgg")
 has_ceil = true
 has_walls = true
-has_torches = true
-has_columns = true
-ROOMS = 10
+has_spawner = false
 DEADEND_INIT_POSSIBILITY = 0.2
 MIN_SIZE = 3
 MAX_SIZE = 6

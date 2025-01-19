@@ -2,6 +2,7 @@ class_name Hoverable extends Node3D
 
 @onready var flying_text: FlyingText = $FlyingText
 
+
 #to use
 #1) create inherited scene, attach new script inherited this
 #2) add area3d + connect signals on inherited sceene
