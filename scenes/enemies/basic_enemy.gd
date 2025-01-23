@@ -69,6 +69,7 @@ var is_battle_move: bool = false
 var is_side_move: bool = false
 var is_back_move: bool = false
 var is_front_move: bool = false
+var is_iddle_move: bool = false
 
 var is_target_detected: bool = false
 
@@ -181,7 +182,7 @@ func chase_player() -> void:
 func relocate_enemy() -> void:
 	if is_front_move || is_back_move || is_side_move:
 		return
-	current_speed = run_speed
+	current_speed = run_speed if is_dodging else speed
 	var target_point: Vector3 = Vector3(global_position.x + (idle_radius * randf() * get_random_sign()), global_position.y, global_position.z + (get_random_sign()* idle_radius * randf())) 
 	direction = (target_point - transform.origin).normalized()
 	var up = Vector3(0, 1, 0) 
@@ -189,6 +190,7 @@ func relocate_enemy() -> void:
 	var forward = direction
 	var new_basis = Basis(right, up, forward)
 	transform.basis = new_basis
+	accelerate_to_player(get_physics_process_delta_time())
 
 func accelerate_to_player(delta: float) -> void:
 	velocity.x = direction.x * current_speed * delta

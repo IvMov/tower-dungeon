@@ -77,11 +77,11 @@ func stop_casting() -> void:
 
 func use_skill() -> void:
 	if !owner_enemy:
-		print("NO OWNER NODE SETTED TO CONTROLLER")
+		print("ERROR: NO OWNER NODE SETTED TO CONTROLLER")
 		return
 	var enemy_packed: PackedScene = enemies.pick_random()
 	if !enemy_packed:
-		print("NO ENEMIES IN ENEMY SPAWN CONTROLLER")
+		print("ERROR: NO ENEMIES IN ENEMY SPAWN CONTROLLER")
 		return
 	
 	if !positions.is_empty():
@@ -91,7 +91,7 @@ func use_skill() -> void:
 		if randf() < 0.5:
 			inst.agr_on_player()
 	else: 
-		print("ERROR - not found position for next enemy!")
+		print("ERROR: not found position for next enemy!")
 	if cooldown_timer.is_stopped():
 		cooldown_timer.start()
 
@@ -106,7 +106,7 @@ func calc_enemy_position(max_distanse: float, min_height: float, max_height: flo
 	else:
 		attemts+=1
 		if(attemts > 10):
-			print("FIX ME - CANT SPAWN ENEMIES NORMALY, TOO MUCH TRIES!")
+			print("ERROR: FIX ME - CANT SPAWN ENEMIES NORMALY, TOO MUCH TRIES!")
 			return Vector3.ONE
 		return calc_enemy_position(max(1, max_distanse - 1), min_height, max_height)
 

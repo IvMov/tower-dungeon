@@ -42,7 +42,7 @@ func revert_cast() -> void:
 
 func use_skill() -> void:
 	if !player:
-		print("NO OWNER NODE SETTED TO CONTROLLER")
+		print("ERROR: NO OWNER NODE SETTED TO CONTROLLER")
 		return
 	
 	var projectile: StoneProjectile = projectile_pack.instantiate()

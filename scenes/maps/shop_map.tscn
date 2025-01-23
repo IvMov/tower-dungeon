@@ -3,6 +3,7 @@
 [ext_resource type="Material" uid="uid://de3hjukfgxgh" path="res://assets/textures/materials/floor_material.tres" id="1_xjrum"]
 [ext_resource type="Material" uid="uid://cw8oxk75ogtt0" path="res://assets/textures/materials/wall_material.tres" id="2_pkf8s"]
 [ext_resource type="PackedScene" uid="uid://dsfklcrmsh38d" path="res://scenes/maps/parts/candle.tscn" id="3_6v22b"]
+[ext_resource type="PackedScene" uid="uid://dv8nvt63j6h3x" path="res://scenes/maps/parts/exit_from_shop.tscn" id="3_gtf8u"]
 [ext_resource type="PackedScene" uid="uid://cti1xk3if4l7g" path="res://scenes/npc/traider_wizard.tscn" id="3_jad3k"]
 [ext_resource type="Material" uid="uid://clptb0rjqplxi" path="res://assets/textures/brown_wood.tres" id="3_tqul0"]
 [ext_resource type="PackedScene" uid="uid://mn8seb7clfaa" path="res://scenes/maps/parts/traider_button.tscn" id="5_w5nn2"]
@@ -44,19 +45,16 @@ points = PackedVector3Array(-1.57905, -0.079334, -5.07738, 1.59493, 0.079334, 5.
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_o750o"]
 points = PackedVector3Array(-1.57905, -0.079334, -5.07738, 1.59493, 0.079334, 5.07738, 1.59493, -0.079334, 5.07738, 1.59493, 0.079334, -5.07738, -1.57905, 0.079334, 5.07738, -1.57905, -0.079334, 5.07738, 1.59493, -0.079334, -5.07738, -1.57905, 0.079334, -5.07738)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yfelq"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_opjey"]
 transparency = 1
 shading_mode = 0
 albedo_color = Color(0.0745098, 0.0745098, 0.0745098, 0.972549)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_qbast"]
-material = SubResource("StandardMaterial3D_yfelq")
+material = SubResource("StandardMaterial3D_opjey")
 size = Vector2(4, 10)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_k7vud"]
-points = PackedVector3Array(-2.07937, -0.079334, -5.07738, 2.04762, 0.079334, 5.07738, 2.04762, -0.079334, 5.07738, 2.04762, 0.079334, -5.07738, -2.07937, 0.079334, 5.07738, -2.07937, -0.079334, 5.07738, 2.04762, -0.079334, -5.07738, -2.07937, 0.079334, -5.07738)
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dntc6"]
 points = PackedVector3Array(-2.07937, -0.079334, -5.07738, 2.04762, 0.079334, 5.07738, 2.04762, -0.079334, 5.07738, 2.04762, 0.079334, -5.07738, -2.07937, 0.079334, 5.07738, -2.07937, -0.079334, 5.07738, 2.04762, -0.079334, -5.07738, -2.07937, 0.079334, -5.07738)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_t3cbk"]
@@ -158,14 +156,8 @@ mesh = SubResource("PlaneMesh_qbast")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/DoorWall/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_k7vud")
 
-[node name="DoorWall2" type="MeshInstance3D" parent="Walls"]
-transform = Transform3D(1, 0, 0, 0, -8.74228e-08, -1, 0, 1, -8.74228e-08, 2, 5, -12)
-mesh = SubResource("PlaneMesh_qbast")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Walls/DoorWall2"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/DoorWall2/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_dntc6")
+[node name="ExitFromShop" parent="Walls" instance=ExtResource("3_gtf8u")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 2, 5, -12)
 
 [node name="Ceil" type="Node3D" parent="."]
 

@@ -37,9 +37,6 @@ func damage_player() -> void:
 			gpu_particles_3d.emitting = true
 		else:
 			gpu_particles_3d.restart()
-		
-		print("emmit? ")
-		print(gpu_particles_3d.emitting)
 	else:
 		print("NO STAMINA -_-")
 		# animate - no stamina
@@ -57,12 +54,9 @@ func stop_damage() -> void:
 func _on_cooldown_timer_timeout():
 	if enemy.player && enemy.navigation_agent_3d.distance_to_target() <= enemy.battle_distance:
 		do_damage()
-		print("damage?")
 	elif enemy.player && enemy.is_fighting && enemy.navigation_agent_3d.distance_to_target() > enemy.battle_distance:
 		stop_damage()
 	cooldown_timer.start()
-	print("timeout? ")
-
 
 func _on_cast_timer_timeout() -> void:
 	pass

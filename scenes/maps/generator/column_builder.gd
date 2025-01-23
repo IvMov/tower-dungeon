@@ -13,7 +13,7 @@ func add_columns(room:Room, map: BlankMap) -> void:
 	var y_num = round((room.size.y * Constants.CORE_TILE_SIZE) / step) - 2
 	var y_margin = room.size.y * Constants.CORE_TILE_SIZE - y_num * step
 	if x_num * y_num <= 0: 
-		print("OMG > to small room for columns")
+		print("MapGen EXCEPTION: OMG > to small room for columns")
 		return
 	var coordinates: Vector2 = Vector2(room.start_point.x + x_margin/2, room.start_point.y + y_margin/2)
 	if x_num == 1:

@@ -37,7 +37,7 @@ func _ready() -> void:
 func add_skill_exp(skill_id: int, value: float) -> void:
 	var skill: Dictionary = get_skill_data(skill_id)
 	if skill.is_empty() || skill["max_lvl"] == skill["lvl"]:
-		print("Skill %s is max lvl already or not found - exp lost!" % skill)
+		print("EXCEPTION: Skill %s is max lvl already or not found - exp lost!" % skill)
 		return
 		
 	var required_exp: float = skill["next_lvl_exp"] - skill["exp"]
@@ -47,11 +47,10 @@ func add_skill_exp(skill_id: int, value: float) -> void:
 			add_skill_exp(skill_id, value - required_exp)
 	else:
 		skill["exp"] += value
-	print(skill_expirience)
 
 func get_skill_data(skill_id: int) -> Dictionary:
 	if !skill_expirience.has(skill_id):
-		print("NO SUCH SKILL FOUND TO OBTAIN AN EXP! with name %d" % skill_id)
+		print("EXCEPTION: NO SUCH SKILL FOUND TO OBTAIN AN EXP! with name %d" % skill_id)
 		return {}
 	return skill_expirience[skill_id]
 
@@ -76,7 +75,7 @@ func find_item_position_by_id(item_id: int) -> Vector3:
 
 func lvl_up_skill(skill: Dictionary) -> bool:
 	if skill["max_lvl"] <= skill["lvl"]:
-		print("skill has max lvl already!")
+		print("INFO: skill has max lvl already!")
 		return false
 	else:
 		skill["lvl"]+=1

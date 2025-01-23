@@ -53,7 +53,7 @@ func do_action() -> void:
 
 
 func shoot_the_wall() -> void:
-	print("RUN ANIMATION OF SHOOTING THE WALL!")
+	print("TODO: RUN ANIMATION OF SHOOTING THE WALL!")
 	timer.start()
 	
 

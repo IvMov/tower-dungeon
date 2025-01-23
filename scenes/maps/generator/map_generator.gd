@@ -13,6 +13,7 @@ class_name MapGenerator extends Node3D
 @onready var column_builder: ColumnBuilder = $ColumnBuilder
 @onready var player_fontain_builder: PlayerFontainBuilder = $PlayerFontainBuilder
 
+#pay attention rooms temporarry setted in main scene for random diapasone (in two places main.gd)
 @export var ROOMS: int = 1 # how many rooms will be on map
 @export var DEADEND_INIT_POSSIBILITY: float = 0.3
 @export var MIN_SIZE: int = 4 # must be dividible by CORE_TILE_SIZE
@@ -20,7 +21,7 @@ class_name MapGenerator extends Node3D
 
 @export var MIN_TUNEL_LENGTH: int = 1 # how long tunels could be
 @export var MAX_TUNEL_LENGTH: int = 2 # how long tunels could be
-@export var DIRECTION_AVAILABILITY_CD: int = 5 # how long steps the oposite tile could not be installed
+@export var DIRECTION_AVAILABILITY_CD: int = 4 # how long steps the oposite tile could not be installed
 @export var ROOM_SIZE: Vector2 = Vector2(1,1)
 
 @export var paked_blank_map: PackedScene
@@ -65,16 +66,34 @@ var exit_to_deadend_coordinates: Vector2
 # entrance to deadend room (next after exit_to_deadend_coordinates) (end of tunel)
 var deadend_entrance_coordinates: Vector2
 
+func reset() -> void:
+	root_room_position = Vector2.ZERO
+	deadend_root_room_position = Vector2.ZERO
+	availability = {
+		Vector2.LEFT: 0,
+		Vector2.DOWN: 0,
+		Vector2.RIGHT: 0,
+		Vector2.UP: 0
+	}
 
-func generate_level() -> void:
+#returns coordinates of start point of the level
+func generate_level() -> Vector3:
 	deadend_possibility = DEADEND_INIT_POSSIBILITY
 	prepare_blank_map()
-	
+	var entrance: Vector3
+	#pay attention rooms temporarry setted in main scene for random diapasone (in two places main.gd)
 	for i in ROOMS:
-		print("new room %d" % i)
+		print("MapGen INFO: new room %d" % i)
+		directions = basic_directions.duplicate()
 		generate_room()
 		if i == 0:
-			create_entrance()
+			#level entrance
+			entrance = create_level_entrance()
+			create_level_entrance()
+		#this must be called here because: 
+			#deadend room and entrance should not be blocked to spawn in oposite direction of next room
+		update_available_directions(get_oposite_direction(next_room_direction))
+		update_dirrections_cd()
 		# map storage as map of each empty map
 		# each_room_generate pickable items - add them to map_storage
 	generate_portal_to_traider()
@@ -84,12 +103,16 @@ func generate_level() -> void:
 	#var scene = PackedScene.new()
 	#scene.pack(node_to_save)
 	#ResourceSaver.save(scene, "res://MyScene.tscn")
+	return entrance
 
-func create_entrance() -> void:
+
+func create_level_entrance() -> Vector3:
 	var entrance_dir: Vector2 = pick_random()
 	var start: Vector4 = tunel_builder.add_tunel(2, entrance_dir, room, map)
-	var entrance = preload("res://entrance_to_stage.tscn").instantiate()
+	var entrance = preload("res://scenes/maps/parts/entrance_to_stage.tscn").instantiate()
 	map.add_tile(entrance)
+	print("MapGen INFO: entrance coord %s" % entrance_dir)
+	
 	match entrance_dir:
 		Vector2.LEFT: 
 			entrance.rotate_y(PI/2)
@@ -98,7 +121,8 @@ func create_entrance() -> void:
 		Vector2.DOWN:
 			entrance.rotate_y(PI)	
 	entrance.global_position = Vector3(start.z, 0, start.w)
-	update_available_directions(entrance_dir, DIRECTION_AVAILABILITY_CD-1)
+	update_available_directions(entrance_dir, 1)
+	return entrance.global_position
 
 
 func generate_room() -> void:
@@ -108,10 +132,10 @@ func generate_room() -> void:
 	if randf() <= deadend_possibility:
 		create_deadend_room()
 		deadend_possibility = DEADEND_INIT_POSSIBILITY
-		print("bingo - deadend, current possibility %s" % deadend_possibility)
+		print("MapGen INFO: bingo - deadend, current possibility %s" % deadend_possibility)
 	else:
 		deadend_possibility = min(1, deadend_possibility + randf_range(0.1, 0.3))
-		print("No deadend, possibility for next room! %f" % deadend_possibility)
+		print("MapGen INFO: No deadend, possibility for next room! %f" % deadend_possibility)
 	if blocked_room:
 		#block exit from room
 		var wall_enemy_inst: WallEnemy = wall_enemy.instantiate()
@@ -123,9 +147,9 @@ func generate_room() -> void:
 			wall_enemy_inst.rotate_y(PI/2)
 
 		player_fontain_builder.add_fontain(room, map, wall_enemy_inst)
-		print("blocked room generated")
+		print("MapGen INFO: room with blocked exit generated")
 		blocked_room = false
-		
+	
 	# saved room required to build walls - to check all deadends and etc
 	room = map.add_room(room)
 	
@@ -141,8 +165,6 @@ func generate_room() -> void:
 	ROOM_SIZE = calculate_ROOM_SIZE()
 	root_room_position = calc_room_start_position(ROOM_SIZE, next_entrance_coordinates, next_room_direction)
 	
-	#update ONLY after deadend spawns or not - if use it earlier  - some good directions will be blocked for pick_random_method
-	update_available_directions(next_room_direction)
 	if room.deadend_exit != Vector2.ZERO:
 		blocked_room = true
 
@@ -188,12 +210,14 @@ func create_common_room() -> void:
 		spawn.agr_collision.shape.size = Vector3(ROOM_SIZE.x * Constants.CORE_TILE_SIZE, room.ceil_height, ROOM_SIZE.y * Constants.CORE_TILE_SIZE)
 		spawn.global_position = Vector3(room.start_point.x + room.size.x * Constants.CORE_TILE_SIZE/2 + randi_range(-3, 3), randf_range(1, 5),room.start_point.y +  room.size.y*Constants.CORE_TILE_SIZE/2 + randi_range(-3, 3))
 
-	next_room_direction = get_random_available_direction()
+	next_room_direction = pick_random()
 	tunel_length = randi_range(MIN_TUNEL_LENGTH, MAX_TUNEL_LENGTH)
 	exit_and_entrance_coordinates = tunel_builder.add_tunel(tunel_length, next_room_direction, room, map)
 	exit_coordinates = Vector2(exit_and_entrance_coordinates.x, exit_and_entrance_coordinates.y)
 	next_entrance_coordinates = Vector2(exit_and_entrance_coordinates.z, exit_and_entrance_coordinates.w)
 	room.exit = exit_coordinates
+	update_available_directions(next_room_direction, 1)
+	
 
 
 func create_deadend_room() -> void:
@@ -215,9 +239,9 @@ func create_deadend_room() -> void:
 				torch_builder.add_torches(deadend_room, map)
 			if has_columns:
 				column_builder.add_columns(deadend_room, map)
-			update_available_directions(deadend_room_direction, 2)
+			update_available_directions(deadend_room_direction, 1)
 		else:
-			print("NO FREE DIRRECTIONS FOR DEADEND ROOM!")
+			print("MapGen ERROR: NO FREE DIRRECTIONS FOR DEADEND ROOM!")
 			deadend_entrance_coordinates = Vector2.ZERO
 			exit_to_deadend_coordinates = Vector2.ZERO
 
@@ -256,28 +280,26 @@ func prepare_blank_map() -> void:
 	get_tree().get_first_node_in_group("maps").add_child(map)
 
 
-func get_random_available_direction() -> Vector2:
-	update_dirrections_cd()
-	directions = basic_directions.duplicate()
-	var picked_direction = pick_random()
-	
-	return picked_direction
 
 
+# add cd for cirrent direction
+func update_available_directions(direction: Vector2, cd: int = DIRECTION_AVAILABILITY_CD) -> void:
+	availability[direction] = cd
 
-# add availability cd for new dirrection oposite dir
-
-func update_available_directions(direction: Vector2, cd: int = 0) -> void:
+func get_oposite_direction(direction: Vector2) -> Vector2:
 	match direction:
 		Vector2.LEFT: 
-			availability[Vector2.RIGHT] = DIRECTION_AVAILABILITY_CD - cd
+			return Vector2.RIGHT
 		Vector2.RIGHT:
-			availability[Vector2.LEFT] = DIRECTION_AVAILABILITY_CD - cd
+			return Vector2.LEFT
 		Vector2.DOWN:
-			availability[Vector2.UP] = DIRECTION_AVAILABILITY_CD - cd
+			return Vector2.UP
 		Vector2.UP: 
-			availability[Vector2.DOWN] = DIRECTION_AVAILABILITY_CD - cd
-
+			return Vector2.DOWN
+	print("MapGen EXCEPTION: cant find oposite direction for current direction.")
+	return direction;
+	
+	
 # handle cd of availability dirrections 
 func update_dirrections_cd() -> void:
 	for dir in availability:
@@ -287,12 +309,14 @@ func update_dirrections_cd() -> void:
 
 func pick_random() -> Vector2:
 	if directions.is_empty():
-		print("FCK - something wrong! CHECK GENERATOR OF MAP!")
+		print("MapGen ERROR: FCK - something wrong! CHECK GENERATOR OF MAP!")
 		return Vector2(0, 0)
 	directions.shuffle()
 	var direction: Vector2 = directions.pop_front()
+	print(availability[direction])
 	if availability[direction] > 0:
 		return pick_random()
+	print("MapGen INFO: random direction choosen %s" % direction)
 	return direction
 
 

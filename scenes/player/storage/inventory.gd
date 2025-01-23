@@ -31,7 +31,7 @@ func add(key: Vector3, item_bulk: ItemBulk) -> void:
 			var slot: Vector2 =  calc_slot(key_2d, item_id)
 			if slot == key_2d:
 				GameEvents.emit_cant_pick_item()
-				print("NO PLACE IN INVENTORY, sorry!!")
+				print("EXCEPTION: NO PLACE IN INVENTORY, sorry!!")
 			else: 
 				add(Vector3(0, slot.x, slot.y), item_bulk)
 	else:

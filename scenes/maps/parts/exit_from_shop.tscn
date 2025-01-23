@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://dv8nvt63j6h3x"]
+
+[ext_resource type="PackedScene" uid="uid://dgx4dmy8jeqee" path="res://scenes/ui/parts/hoverable.tscn" id="1_qqun7"]
+[ext_resource type="Script" path="res://scenes/maps/parts/exit_from_shop.gd" id="2_hl1vs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yfelq"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.0745098, 0.0745098, 0.0745098, 0.972549)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_v8xco"]
+material = SubResource("StandardMaterial3D_yfelq")
+size = Vector2(4, 10)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_rq3au"]
+points = PackedVector3Array(-2.07937, -0.079334, -5.07738, 2.04762, 0.079334, 5.07738, 2.04762, -0.079334, 5.07738, 2.04762, 0.079334, -5.07738, -2.07937, 0.079334, 5.07738, -2.07937, -0.079334, 5.07738, 2.04762, -0.079334, -5.07738, -2.07937, 0.079334, -5.07738)
+
+[node name="ExitFromShop" instance=ExtResource("1_qqun7")]
+script = ExtResource("2_hl1vs")
+
+[node name="FlyingText" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.499993, 3)
+visible = false
+
+[node name="DoorWall2" type="MeshInstance3D" parent="." index="1"]
+mesh = SubResource("PlaneMesh_v8xco")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="DoorWall2" index="0"]
+collision_layer = 33
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DoorWall2/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_rq3au")
+
+[connection signal="mouse_entered" from="DoorWall2/StaticBody3D" to="." method="_on_static_body_3d_mouse_entered"]
+[connection signal="mouse_exited" from="DoorWall2/StaticBody3D" to="." method="_on_static_body_3d_mouse_exited"]

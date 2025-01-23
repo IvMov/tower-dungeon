@@ -14,7 +14,7 @@ var enemy_expirience: Dictionary = {
 func add_exp(enemy_name: String, value: float) -> void:
 	var enemy: Dictionary = get_enemy_data(enemy_name)
 	if enemy.is_empty() || enemy["max_lvl"] == enemy["lvl"]:
-		print("Enemy %s is max lvl already or not found - exp lost!" % enemy_name)
+		print("EXCEPTION: Enemy %s is max lvl already or not found - exp lost!" % enemy_name)
 		return
 		
 	var required_exp: float = enemy["next_lvl_exp"] - enemy["exp"]
@@ -27,14 +27,14 @@ func add_exp(enemy_name: String, value: float) -> void:
 
 func get_enemy_data(enemy_name: String) -> Dictionary:
 	if !enemy_expirience.has(enemy_name):
-		print("NO SUCH ENEMY FOUND TO OBTAIN AN EXP! with name %s" % enemy_name)
+		print("EXCEPTION: NO SUCH ENEMY FOUND TO OBTAIN AN EXP! with name %s" % enemy_name)
 		return {}
 	return enemy_expirience[enemy_name]
 
 
 func lvl_up(enemy: Dictionary) -> bool:
 	if enemy["max_lvl"] <= enemy["lvl"]:
-		print("enemy has max lvl already!")
+		print("INFO: enemy has max lvl already!")
 		return false
 	else:
 		enemy["lvl"]+=1
