@@ -49,7 +49,6 @@ func use_skill() -> void:
 		return
 	var projectile: SparkProjectile = spark_projectile.instantiate()
 	var proj_direction: Vector3 = calc_projectile_direction()
-	
 	projectiles_box.add_child(projectile)
 	player.animation_player.play("attack-melee-right")
 	projectile.damage = calc_projectile_damage()
@@ -57,10 +56,11 @@ func use_skill() -> void:
 	projectile.speed = calc_projectile_speed()
 	projectile.skill_id = skill.id
 	projectile.direction = proj_direction
-	projectile.global_position = player.camera_scene.get_camera_position() + proj_direction * player.camera_scene.get_camera_distance() * 1.01
-	if projectile.global_position.y <= 0:
-		projectile.global_position = player.camera_scene.get_camera_position() + proj_direction * 1.01
-	
+	var camera_position: Vector3 = player.camera_scene.get_camera_position()
+	var camera_distance: float = (player.global_position - camera_position).length()
+	projectile.global_position = camera_position + proj_direction * camera_distance * 0.95
+
+
 
 func calc_projectile_damage() -> float:
 	#TODO: implement upgrade influence system

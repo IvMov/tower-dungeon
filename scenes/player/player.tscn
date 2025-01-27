@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://dituee6sehxvq" path="res://scenes/camera/camera_scene.tscn" id="1_52pv8"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_xn4w2"]
-[ext_resource type="Resource" uid="uid://dn8xijky5tuis" path="res://resources/skills/spark/spark.tres" id="2_6cf6a"]
 [ext_resource type="Texture2D" uid="uid://c13tj2oeip7q3" path="res://assets/2d/colormap.png" id="3_t5qur"]
 [ext_resource type="PackedScene" uid="uid://4eygpv6ar4kx" path="res://scenes/components/effect_flash_component.tscn" id="3_v6oxs"]
 [ext_resource type="PackedScene" uid="uid://c4u0x0titwwsi" path="res://scenes/skill_contolllers/player_skill_controller.tscn" id="4_luhgc"]
@@ -18,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://cf3mxq60mx6vy" path="res://scenes/skill_contolllers/stamina/player/aim_skill_controller.tscn" id="10_xiojt"]
 [ext_resource type="PackedScene" uid="uid://biy8bohcnc57t" path="res://scenes/player/storage/hands.tscn" id="11_2y4ov"]
 [ext_resource type="PackedScene" uid="uid://com0vq1f7a8mc" path="res://scenes/skill_contolllers/stamina/player/push_enemy_skill_controller.tscn" id="13_vqp0o"]
+[ext_resource type="PackedScene" uid="uid://cma4sf7e6aj07" path="res://scenes/skill_contolllers/stamina/player/dash_skill_controller.tscn" id="18_vxj10"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_46ws3"]
 
@@ -2328,7 +2328,6 @@ collision_layer = 512
 collision_mask = 5121
 floor_snap_length = 0.2
 script = ExtResource("1_xn4w2")
-first_skill = ExtResource("2_6cf6a")
 
 [node name="CameraScene" parent="." instance=ExtResource("1_52pv8")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.2, 1, 0)
@@ -2352,10 +2351,11 @@ player = NodePath("..")
 
 [node name="Belt" parent="Storages" instance=ExtResource("9_6mowg")]
 
-[node name="PlayerSkillController" parent="." node_paths=PackedStringArray("jump_skill", "run_skill", "push_skill") instance=ExtResource("4_luhgc")]
+[node name="PlayerSkillController" parent="." node_paths=PackedStringArray("jump_skill", "run_skill", "push_skill", "dash_skill") instance=ExtResource("4_luhgc")]
 jump_skill = NodePath("../SkillBox/JumpSkillController")
 run_skill = NodePath("../SkillBox/RunSkillController")
 push_skill = NodePath("../SkillBox/PushEnemySkillController")
+dash_skill = NodePath("../SkillBox/DashSkillController")
 
 [node name="StatsBox" type="Node3D" parent="."]
 
@@ -2390,6 +2390,9 @@ player = NodePath("../..")
 
 [node name="PushEnemySkillController" parent="SkillBox" instance=ExtResource("13_vqp0o")]
 transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 0, 0, 0)
+
+[node name="DashSkillController" parent="SkillBox" node_paths=PackedStringArray("player") instance=ExtResource("18_vxj10")]
+player = NodePath("../..")
 
 [node name="AgrArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0112433, 0)

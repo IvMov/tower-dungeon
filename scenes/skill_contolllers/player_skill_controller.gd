@@ -13,6 +13,7 @@ var secondary_skill_controller: BaseController
 @export var jump_skill: JumpSkillController
 @export var run_skill: RunSkillController
 @export var push_skill: PushEnemySkillController
+@export var dash_skill: DashSkillController
 
 
 func _ready() -> void:

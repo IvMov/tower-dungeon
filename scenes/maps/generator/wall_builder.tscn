@@ -4,6 +4,7 @@
 
 [node name="WallBuilder" type="Node3D"]
 script = ExtResource("1_jpjnu")
+walls_color = Color(1, 1, 1, 1)
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

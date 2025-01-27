@@ -45,9 +45,6 @@ func start_shake(amount:float, decay: int) -> void:
 	shake_amount = amount
 	shake_decay = decay
 
-func get_camera_distance() -> float:
-	return spring_arm_3d.spring_length
-
 func get_camera_position() -> Vector3:
 	return camera_3d.global_position
 
@@ -68,7 +65,7 @@ func _unhandled_input(event):
 			zoom_back()
 
 func aiming_mode_in() -> void:
-	current_arm_length = get_camera_distance()
+	current_arm_length = spring_arm_3d.spring_length
 	spring_arm_3d.spring_length = MAX_ZOOM_AIM
 	in_aiming_mode = true
 	
@@ -91,6 +88,8 @@ func calc_direction() -> Vector3:
 	var params: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(ray_origin, ray_origin + ray_normal*100)
 	var collision: Dictionary = get_world_3d().direct_space_state.intersect_ray(params)
 	var distance_to_target: int = collision.position.distance_to(ray_origin) if collision else 100
+	if distance_to_target == 0:
+		distance_to_target = 10
 	var cursor_world_position = ray_origin + ray_normal * distance_to_target
 	
 	return (cursor_world_position - get_camera_position()).normalized();

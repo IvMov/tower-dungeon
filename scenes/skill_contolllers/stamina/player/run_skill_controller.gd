@@ -10,9 +10,11 @@ func _ready():
 	skill.base_energy_cost = 1 # todo:create normal skill .tres
 
 func use_skill_with_event(event: InputEvent):
-	if event.is_action_pressed("speed_up"):
+	if event.is_action_pressed("move_forward") && idle_timer.is_stopped():
+		idle_timer.start()
+	elif event.is_action_pressed("move_forward") && !idle_timer.is_stopped():
 		use_skill()
-	elif event.is_action_released("speed_up"):
+	elif event.is_action_released("move_forward") && is_run:
 		stop_skill()
 
 

@@ -1,7 +1,5 @@
 class_name Player extends CharacterBody3D
 
-@export var first_skill: Skill
-
 @onready var animation_player = $AnimationPlayer
 @onready var camera_scene: CameraScene = $CameraScene
 @onready var player_model = $"character-human"
@@ -36,6 +34,7 @@ var actions_animations: Array[String] = [
 	"holding-both-shoot",
 	"sprint"]
 var is_dying: bool = false
+var is_immune_to_damage: bool 
 var last_fontain_coordinates: Vector3
 
 func _ready():
@@ -55,7 +54,6 @@ func _physics_process(delta):
 		return
 	var input_direction: Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	move_direction = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
-
 	velocity.x = -move_direction.x * PlayerParameters.current_speed * delta
 	velocity.z = -move_direction.z * PlayerParameters.current_speed * delta
 	if !actions_animations.has(animation_player.get_current_animation()):
@@ -71,12 +69,13 @@ func _physics_process(delta):
 func _unhandled_input(event):
 	if !GameStage.is_stage(GameStage.Stage.GAME):
 		return
-
 	# shift
+	handle_dash(event)
+	# doble forward
 	handle_run(event)
 	# space
 	handle_jump(event)
-		# space
+	# q
 	handle_push_enemy(event)
 	# movement
 	handle_mouse_rotations(event)
@@ -104,6 +103,12 @@ func handle_push_enemy(event: InputEvent) -> void:
 	if event.is_action_pressed("push_enemy"):
 		animation_player.play("holding-both-shoot")
 		player_skill_controller.push_skill.use_skill()
+
+func handle_dash(event: InputEvent) -> void:
+	if event.is_action_pressed("speed_up"):
+		player_skill_controller.dash_skill.use_skill()
+	#if event.is_action_released("speed_up"):
+		#player_skill_controller.dash_skill.stop_skill()
 
 func handle_run(event: InputEvent) -> void:
 	player_skill_controller.run_skill.use_skill_with_event(event)
@@ -157,6 +162,8 @@ func custom_death_actions():
 	global_position = last_fontain_coordinates
 
 func get_damage(value: float) -> void:
+	if is_immune_to_damage:
+		return
 	health_component.minus(value)
 	camera_scene.start_shake(0.1, 8)
 

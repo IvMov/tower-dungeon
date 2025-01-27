@@ -8,6 +8,7 @@ const WALL_TUNEL_MARGIN: float = Constants.WALL_HALF + Constants.CORE_TILE_SIZE/
 
 @export var packed_wall_20: PackedScene
 @export var packed_wall_16: PackedScene
+@export var walls_color: Color
 
 var wall_front: Node3D
 var wall_back: Node3D
@@ -26,7 +27,7 @@ func add_walls(room: Room, map: BlankMap) -> void:
 			wall_front_pos += Vector2(Constants.CORE_TILE_SIZE, 0)
 		is_ocupied = check_is_ocupied_position(room, wall_front_pos)
 		y_position = 4 if is_ocupied else 0
-		wall_front = packed_wall_20.instantiate() if !is_ocupied else packed_wall_16.instantiate()
+		wall_front = instantiate_wall(is_ocupied)
 		map.add_tile(wall_front)
 		wall_front.global_position = Vector3(wall_front_pos.x, y_position, wall_front_pos.y)
 		wall_front.rotate_y(PI/2)
@@ -35,7 +36,7 @@ func add_walls(room: Room, map: BlankMap) -> void:
 			wall_back_pos += Vector2(Constants.CORE_TILE_SIZE, 0)
 		is_ocupied = check_is_ocupied_position(room, wall_back_pos)
 		y_position = 4 if is_ocupied else 0
-		wall_back = packed_wall_20.instantiate() if !is_ocupied else packed_wall_16.instantiate()
+		wall_back = instantiate_wall(is_ocupied)
 		map.add_tile(wall_back)
 		wall_back.global_position = Vector3(wall_back_pos.x, y_position, wall_back_pos.y)
 		wall_back.rotate_y(PI/2)
@@ -51,19 +52,28 @@ func add_walls(room: Room, map: BlankMap) -> void:
 			wall_back_pos += Vector2(0, Constants.CORE_TILE_SIZE)
 		is_ocupied = check_is_ocupied_position(room, wall_front_pos)
 		y_position = 4 if is_ocupied else 0
-		wall_front = packed_wall_20.instantiate() if !is_ocupied else packed_wall_16.instantiate()
+		wall_front = instantiate_wall(is_ocupied)
 		map.add_tile(wall_front)
 		wall_front.global_position = Vector3(wall_front_pos.x, y_position, wall_front_pos.y)
 		
 		is_ocupied = check_is_ocupied_position(room, wall_back_pos)
-		wall_back = packed_wall_20.instantiate() if !is_ocupied else packed_wall_16.instantiate()
+		wall_back = instantiate_wall(is_ocupied)
 		map.add_tile(wall_back)
 		y_position = 4 if is_ocupied else 0
 		wall_back.global_position = Vector3(wall_back_pos.x, y_position, wall_back_pos.y)
 
+#returns ready to locate wall
+func instantiate_wall(is_ocupied: bool) -> Node3D:
+	var wall: Node3D = packed_wall_20.instantiate() if !is_ocupied else packed_wall_16.instantiate()
+	recolor_wall(wall)
+	
+	return wall
+
+#recolor walls to active color of the stage
+func recolor_wall(wall: Node3D) -> void:
+	wall.get_child(0).get_active_material(0).albedo_color = walls_color
 
 func check_is_ocupied_position(_room: Room, desired_position: Vector2) -> bool:
-	#
 	ray_cast_3d.transform.origin = Vector3(desired_position.x, 6, desired_position.y)
 	ray_cast_3d.set_target_position(Vector3(desired_position.x, 2, desired_position.y) - ray_cast_3d.global_position)
 	ray_cast_3d.force_raycast_update()

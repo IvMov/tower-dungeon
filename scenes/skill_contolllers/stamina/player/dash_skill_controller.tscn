@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cma4sf7e6aj07"]
+
+[ext_resource type="PackedScene" uid="uid://jut3uwfl054l" path="res://scenes/skill_contolllers/base_controller.tscn" id="1_72jvv"]
+[ext_resource type="Script" path="res://scenes/skill_contolllers/stamina/player/dash_skill_controller.gd" id="2_c3c1p"]
+
+[node name="DashSkillController" instance=ExtResource("1_72jvv")]
+script = ExtResource("2_c3c1p")
+
+[node name="CastTimer" parent="." index="0"]
+wait_time = 0.3

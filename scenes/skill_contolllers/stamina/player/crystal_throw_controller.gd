@@ -54,11 +54,11 @@ func use_skill() -> void:
 	projectile.damage = calc_projectile_damage()
 	projectile.push_power = skill.base_push_value
 	projectile.skill_id = skill.id
-	projectile.global_position = player.camera_scene.get_camera_position() + proj_direction * player.camera_scene.get_camera_distance() * 1.01
+	var camera_position: Vector3 = player.camera_scene.get_camera_position()
+	var camera_distance: float = (player.global_position - camera_position).length()
+	projectile.global_position = camera_position + proj_direction * camera_distance * 0.95
 	projectile.apply_central_impulse(proj_direction * calc_projectile_speed())
-	if projectile.global_position.y <= 0:
-		projectile.global_position = player.camera_scene.get_camera_position() + proj_direction * 1.01
-	
+
 
 func calc_projectile_damage() -> float:
 	#TODO: implement upgrade influence system

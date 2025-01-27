@@ -23,6 +23,7 @@ func _physics_process(_delta):
 func on_from_stage_to_shop():
 	maps.get_child(0).queue_free()
 	for enemy in enemies.get_children(): 
+		enemy.is_dying = true
 		enemy.queue_free()
 	var shop: Node3D = SHOP_MAP.instantiate()
 	maps.add_child(shop)

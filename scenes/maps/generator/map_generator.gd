@@ -66,6 +66,11 @@ var exit_to_deadend_coordinates: Vector2
 # entrance to deadend room (next after exit_to_deadend_coordinates) (end of tunel)
 var deadend_entrance_coordinates: Vector2
 
+var used_colors: Array
+
+func _ready() -> void:
+	set_random_color_for_stage()
+
 func reset() -> void:
 	root_room_position = Vector2.ZERO
 	deadend_root_room_position = Vector2.ZERO
@@ -75,6 +80,26 @@ func reset() -> void:
 		Vector2.RIGHT: 0,
 		Vector2.UP: 0
 	}
+	set_random_color_for_stage()
+
+func set_random_color_for_stage() -> void:
+	var next_stage_color: Color = Color(rand_float_with_step(), rand_float_with_step(), rand_float_with_step())
+	print("random color %s" % next_stage_color)
+	if used_colors.has(next_stage_color) || (next_stage_color.r == next_stage_color.g && next_stage_color.b == next_stage_color.g):
+		set_random_color_for_stage()
+	else:
+		if next_stage_color.r > next_stage_color.g && next_stage_color.r > next_stage_color.b:
+			next_stage_color.r+=0.7
+		elif next_stage_color.g > next_stage_color.r && next_stage_color.r > next_stage_color.b:
+			next_stage_color.g+=0.7
+		else:
+			next_stage_color.b+=0.7
+		used_colors.append(next_stage_color)
+		wall_builder.walls_color = next_stage_color
+
+
+func rand_float_with_step(step: float = 0.2) -> float:
+	return (randi_range(0, 4) * step)
 
 #returns coordinates of start point of the level
 func generate_level() -> Vector3:

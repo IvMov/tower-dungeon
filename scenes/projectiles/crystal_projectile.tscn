@@ -66,7 +66,7 @@ gravity_space_override = 1
 shape = SubResource("SphereShape3D_4k6pj")
 
 [node name="LifeTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 3.0
 one_shot = true
 autostart = true
 

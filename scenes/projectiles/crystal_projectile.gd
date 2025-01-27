@@ -33,13 +33,15 @@ func do_explosion() -> void:
 	tween.tween_property(collision_shape_3d.shape, "radius", 4.0, 0.4)
 	tween.tween_property(collision_shape_3d.shape, "radius", 0.3, 0.2)
 	await tween.finished
-	life_timer.stop()
-	on_life_timer_timeout()
+	area_3d.set_collision_mask_value(11, false)
+	area_3d.set_collision_mask_value(13, false)
+
 
 
 func on_life_timer_timeout() -> void:
 	var item: ItemBulk = ItemBulk.new(Constants.ITEM_CRYSTAL, 1)
-	global_position =global_position + Vector3(randf_range(-RAND, RAND), RAND, randf_range(-RAND, RAND))
+	global_position = global_position + Vector3(randf_range(-RAND, RAND), 0, randf_range(-RAND, RAND))
+	global_position.y = RAND
 	GameEvents.emit_item_add(Vector3(2, global_position.x, global_position.z), item, global_position)
 	queue_free()
 
