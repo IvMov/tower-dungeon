@@ -36,6 +36,9 @@ func handleb_body_collision() -> void:
 	mesh_instance_3d.visible = false
 	life_timer.wait_time = 0.5
 	life_timer.start()
+	area_3d.set_collision_mask_value(11, false)
+	area_3d.set_collision_mask_value(13, false)
+	area_3d.set_collision_mask_value(14, false)
 
 	
 func on_life_timer_timeout() -> void:

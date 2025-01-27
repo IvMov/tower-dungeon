@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b2yb2ffgq8gub"]
+[gd_scene load_steps=12 format=3 uid="uid://b2yb2ffgq8gub"]
 
 [ext_resource type="Script" path="res://scenes/projectiles/crystal_projectile.gd" id="1_i07fs"]
 [ext_resource type="PrismMesh" uid="uid://c5x02ui4xuaqn" path="res://assets/3d/my/crystal_mesh.tres" id="1_mw1na"]
@@ -38,6 +38,20 @@ linear_accel_max = 10.0
 scale_min = 0.2
 scale_max = 0.6
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ixwl4"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.671, 1, 1, 0.004)
+
+[sub_resource type="SphereMesh" id="SphereMesh_lnjq8"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_ixwl4")
+radius = 0.1
+height = 0.1
+radial_segments = 16
+rings = 16
+
 [node name="CrystalProjectile" type="RigidBody3D"]
 collision_layer = 4
 collision_mask = 5123
@@ -59,7 +73,7 @@ mesh = ExtResource("1_mw1na")
 
 [node name="Area3D" type="Area3D" parent="Crystal"]
 collision_layer = 4
-collision_mask = 5120
+collision_mask = 0
 gravity_space_override = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Crystal/Area3D"]
@@ -80,8 +94,8 @@ draw_pass_1 = SubResource("PlaneMesh_arrt6")
 
 [node name="CollisionParticles" type="GPUParticles3D" parent="."]
 emitting = false
-amount = 50
-lifetime = 0.6
+amount = 60
+lifetime = 0.5
 one_shot = true
 speed_scale = 1.5
 explosiveness = 1.0
@@ -91,6 +105,10 @@ draw_pass_1 = ExtResource("1_mw1na")
 [node name="ExplosionTimer" type="Timer" parent="."]
 one_shot = true
 autostart = true
+
+[node name="VisualRadiusOfExsplosion" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("SphereMesh_lnjq8")
 
 [connection signal="area_entered" from="Crystal/Area3D" to="." method="_on_area_3d_area_entered"]
 [connection signal="body_entered" from="Crystal/Area3D" to="." method="_on_area_3d_body_entered"]

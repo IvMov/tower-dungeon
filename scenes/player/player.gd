@@ -57,8 +57,10 @@ func _physics_process(delta):
 	velocity.x = -move_direction.x * PlayerParameters.current_speed * delta
 	velocity.z = -move_direction.z * PlayerParameters.current_speed * delta
 	if !actions_animations.has(animation_player.get_current_animation()):
-
-		if is_on_floor():
+	
+		if is_immune_to_damage && velocity.length() > 10:
+			animation_player.play("crouch")
+		elif is_on_floor():
 			animation_player.play("walk" if move_direction else "idle")
 		else:
 			animation_player.play("fall")
@@ -173,11 +175,15 @@ func _on_action_hold_timer_timeout() -> void:
 
 
 func on_body_entered(body: Node3D):
-	if body is BasicEnemy:
+	if !is_immune_to_damage && body.get_collision_layer_value(7) == true:
+		is_immune_to_damage = true
+	elif body is BasicEnemy:
 		body.do_damage()
 
 func on_body_exited(body: Node3D):
-	if body is BasicEnemy:
+	if is_immune_to_damage && body.get_collision_layer_value(7) == true:
+		is_immune_to_damage = false
+	elif body is BasicEnemy:
 		body.stop_damage()
 
 func on_area_entered(area: Area3D):

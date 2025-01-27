@@ -51,9 +51,11 @@ func use_skill() -> void:
 	
 	projectiles_box.add_child(projectile)
 	player.animation_player.play("attack-melee-right")
+	projectile.radius = skill.base_distance
 	projectile.damage = calc_projectile_damage()
 	projectile.push_power = skill.base_push_value
 	projectile.skill_id = skill.id
+	projectile.before_explosion_time_unit = skill.base_duration
 	var camera_position: Vector3 = player.camera_scene.get_camera_position()
 	var camera_distance: float = (player.global_position - camera_position).length()
 	projectile.global_position = camera_position + proj_direction * camera_distance * 0.95

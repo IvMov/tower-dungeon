@@ -5,5 +5,6 @@ shading_mode = 0
 albedo_color = Color(0.467, 2, 2, 1)
 
 [resource]
+resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_p5rym")
 size = Vector3(0.2, 0.3, 0.1)

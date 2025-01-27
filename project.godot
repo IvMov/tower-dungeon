@@ -202,6 +202,7 @@ locale/translations=PackedStringArray("res://assets/translation/text.en.translat
 3d_physics/layer_4="Souls"
 3d_physics/layer_5="Pickable_items"
 3d_physics/layer_6="Interactable"
+3d_physics/layer_7="Safe_zone"
 3d_physics/layer_10="Player"
 3d_physics/layer_11="Enemies"
 3d_physics/layer_12="Enemies_call"
