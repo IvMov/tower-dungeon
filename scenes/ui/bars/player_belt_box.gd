@@ -38,8 +38,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func resize() -> void:
 	for child in h_box_container.get_children():
-		child.custom_minimum_size =  Vector2(GameConfig.grid_block, GameConfig.grid_block)
-
+		if child is ItemViewHolder:
+			child.resize()
+		
 func on_player_entered(_player: Player) -> void:
 	draw_belt()
 	draw_belt_items()

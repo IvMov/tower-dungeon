@@ -11,5 +11,6 @@ id = 1
 title = "Zoom tablet"
 image = ExtResource("1_anly1")
 descrition = "bla"
+type = "item_type_skill"
 scene = ExtResource("2_kg2wo")
 skill = ExtResource("3_usb8g")

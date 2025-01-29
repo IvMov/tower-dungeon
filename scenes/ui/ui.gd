@@ -10,7 +10,8 @@ func _ready() -> void:
 func on_screen_resized() -> void:
 	change_margins()
 	for child in margin_container.get_children():
-		child.resize()
+		if child.visible:
+			child.resize()
 
 func change_margins() -> void:
 	margin_container.add_theme_constant_override("margin_top", GameConfig.grid_block/10)

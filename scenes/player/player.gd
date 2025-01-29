@@ -132,26 +132,33 @@ func handle_secondary_skill_use(event: InputEvent) -> void:
 
 func handle_action_button(event: InputEvent) -> void:
 	if event.is_action_pressed("action"):
-		do_actions()
-		action_hold_timer.start()
+		if do_actions():
+			action_hold_timer.start()
 	if event.is_action_released("action"):
+		print("released")
 		#maybe some maintainable actions which require to hold action button
-		action_hold_timer.stop()
-		action_hold_timer.wait_time = 0.5
+		if !action_hold_timer.is_stopped():
+			action_hold_timer.stop()
+			action_hold_timer.wait_time = 0.5
 
 func handle_back_to_fontain(event: InputEvent) -> void:
 	if event.is_action_pressed("restart"):
 		#removes life but teleports you to last fontain
 		custom_death_actions()
 
-func do_actions() -> void:
+
+#returns true if it's maintainable action, else false
+func do_actions() -> bool:
 	var collider: Node3D = camera_scene.get_target_object()
 	if collider == null:
-		return
+		return false
 	if collider.get_collision_layer_value(5):
 		GameEvents.emit_item_from_map(collider.get_parent().get_parent())
+		return true
 	elif collider.get_collision_layer_value(6):
-		collider.get_parent().get_parent().do_action()
+		return collider.get_parent().get_parent().do_action()
+	else: 
+		return false
 
 func custom_death_actions():
 	if PlayerParameters.lifes - 1 < 0:

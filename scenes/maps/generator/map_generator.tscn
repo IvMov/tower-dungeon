@@ -28,7 +28,6 @@ has_ceil = true
 has_walls = true
 has_torches = true
 has_columns = true
-ROOMS = 4
 MIN_SIZE = 3
 MAX_SIZE = 6
 MAX_TUNEL_LENGTH = 4

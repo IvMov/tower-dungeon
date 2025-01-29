@@ -100,8 +100,7 @@ func calc_how_to_use_info() -> String:
 	else:
 		return "how_to_use_click"
 	
-	
-		
+
 func reset_fields() -> void:
 	set_rarity_color(Color.WHITE)
 	self_modulate = Color.WHITE

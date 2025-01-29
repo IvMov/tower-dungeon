@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b0l5cf4kkf0oc" path="res://scenes/ui/parts/lvl_up_container.tscn" id="3_qabrw"]
 
 [node name="ItemInfoHolder" type="PanelContainer"]
+z_index = 5
 custom_minimum_size = Vector2(400, 500)
 layout_direction = 1
 offset_right = 37.0

@@ -11,5 +11,7 @@ id = 7
 title = "crystal_skill_title"
 image = ExtResource("1_h6ak4")
 descrition = "crystal_skill_desctiption"
+type = "item_type_consumable"
+price = Vector3(50, 20, 2)
 scene = ExtResource("2_tbtvf")
 skill = ExtResource("4_xufg7")

@@ -1,0 +1,81 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvil6wyxv6nu0"]
+
+[ext_resource type="Script" path="res://scenes/screens/traider_item.gd" id="1_ivt2a"]
+[ext_resource type="PackedScene" uid="uid://c7mskp4sx4mtj" path="res://scenes/ui/item_view_holder.tscn" id="1_iyb6s"]
+
+[node name="TraiderItem" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ivt2a")
+
+[node name="HBoxContainer" type="GridContainer" parent="."]
+layout_mode = 2
+columns = 7
+
+[node name="ItemViewHolder" parent="HBoxContainer" instance=ExtResource("1_iyb6s")]
+z_index = 100
+layout_mode = 2
+
+[node name="Title" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Spark tablet"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Type" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Skill"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Price" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "R: 5 B: 3 R:1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Quantity" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OptionButton" type="OptionButton" parent="HBoxContainer/Quantity"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+alignment = 1
+fit_to_longest_item = false
+item_count = 6
+popup/item_0/text = "1"
+popup/item_0/id = 1
+popup/item_1/text = "2"
+popup/item_1/id = 2
+popup/item_2/text = "3"
+popup/item_2/id = 3
+popup/item_3/text = "5"
+popup/item_3/id = 5
+popup/item_4/text = "10"
+popup/item_4/id = 10
+popup/item_5/text = "all"
+popup/item_5/id = 100
+popup/item_5/disabled = true
+
+[node name="TotalPrice" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "R: 5 B: 3 R:1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonBuy" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Buy"
+
+[connection signal="item_selected" from="HBoxContainer/Quantity/OptionButton" to="." method="_on_option_button_item_selected"]

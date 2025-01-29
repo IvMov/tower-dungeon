@@ -11,5 +11,6 @@ id = 0
 title = "Spark tablet"
 image = ExtResource("1_kqebe")
 descrition = "asdasd"
+type = "item_type_skill"
 scene = ExtResource("2_qwerb")
 skill = ExtResource("4_vnbij")

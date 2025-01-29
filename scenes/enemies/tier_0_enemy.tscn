@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://banbap6p0glja"]
+[gd_scene load_steps=48 format=4 uid="uid://banbap6p0glja"]
 
 [ext_resource type="PackedScene" uid="uid://ca0ysw5vmydwd" path="res://scenes/enemies/basic_enemy.tscn" id="1_y8pbg"]
 [ext_resource type="Script" path="res://scenes/enemies/tier_0_enemy.gd" id="2_sjwt3"]
@@ -370,49 +370,32 @@ tracks/5/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_53byj"]
 resource_name = "die"
-length = 0.333333
-tracks/0/type = "position_3d"
-tracks/0/imported = true
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("character-ghost/root")
+tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.0333333, 1, 0, 0.088, -0.01262, 0.0666667, 1, 0, 0.224, -0.041701, 0.1, 1, 0, 0.2458, -0.0740741, 0.133333, 1, 0, 0.2176, -0.0965707, 0.166667, 1, 0, 0.175, -0.0925926, 0.2, 1, 0, 0.1324, -0.05, 0.233333, 1, 0, 0.1042, -0.00740742, 0.266667, 1, 0, 0.1, 0, 0.333333, 1, 0, 0.1, 0)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 3.14159, 1.0472), Vector3(0, 0, 2.0944), Vector3(0, -3.14159, 3.14159)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("character-ghost/root")
+tracks/1/path = NodePath(".:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, -1, 0.0666667, 1, 0, 0, 0, -1, 0.1, 1, 0.0219894, 0, 0, -0.999758, 0.133333, 1, 0.168833, 0, 0, -0.985645, 0.2, 1, 0.577573, 0, 0, -0.816339, 0.233333, 1, 0.691387, 0, 0, -0.722485, 0.266667, 1, 0.707107, 0, 0, -0.707107, 0.333333, 1, 0.707107, 0, 0, -0.707107)
-tracks/2/type = "position_3d"
-tracks/2/imported = true
-tracks/2/enabled = true
-tracks/2/path = NodePath("character-ghost/root/torso")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, -1.44382e-15, 0.223184, -7.21911e-16)
-tracks/3/type = "rotation_3d"
-tracks/3/imported = true
-tracks/3/enabled = true
-tracks/3/path = NodePath("character-ghost/root/torso")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0, -1, 0.0333333, 1, 0.0460604, 0, 0, -0.998939, 0.0666667, 1, 0.117017, 0, 0, -0.99313, 0.1, 1, 0.126891, 0, 0, -0.991917, 0.133333, 1, 0.102445, 0, 0, -0.994739, 0.2, 1, 0.0282706, 0, 0, -0.9996, 0.233333, 1, 0.00366516, 0, 0, -0.999993, 0.266667, 1, 0, 0, 0, -1, 0.333333, 1, 0, 0, 0, -1)
-tracks/4/type = "rotation_3d"
-tracks/4/imported = true
-tracks/4/enabled = true
-tracks/4/path = NodePath("character-ghost/root/torso/arm-right")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = PackedFloat32Array(0, 1, 0, 0, -0.382683, -0.92388, 0.0333333, 1, 0.430317, -0.111929, -0.225479, -0.866867, 0.0666667, 1, 0.921094, -0.0376391, -0.015822, -0.387192, 0.1, 1, 0.961954, -8.99836e-09, -3.78256e-09, -0.273213, 0.133333, 1, 0.929777, 0, 0, -0.368124, 0.2, 1, 0.777634, 0, 0, -0.628717, 0.233333, 1, 0.7108, 0, 0, -0.703394, 0.266667, 1, 0.700938, 0, 0, -0.713223, 0.333333, 1, 0.707107, 0, 0, -0.707107)
-tracks/5/type = "rotation_3d"
-tracks/5/imported = true
-tracks/5/enabled = true
-tracks/5/path = NodePath("character-ghost/root/torso/arm-left")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = PackedFloat32Array(0, 1, 0, 0, 0.382683, -0.92388, 0.0333333, 1, 0.430317, 0.111929, 0.225479, -0.866867, 0.0666667, 1, 0.921094, 0.0376391, 0.015822, -0.387192, 0.1, 1, 0.961954, 8.99836e-09, 3.78256e-09, -0.273213, 0.133333, 1, 0.929777, 0, 0, -0.368124, 0.2, 1, 0.777634, 0, 0, -0.628717, 0.233333, 1, 0.7108, 0, 0, -0.703394, 0.266667, 1, 0.700938, 0, 0, -0.713223, 0.333333, 1, 0.707107, 0, 0, -0.707107)
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(0.8, 0.8, 0.8), Vector3(0.6, 0.6, 0.6), Vector3(0.5, 0.5, 0.5)]
+}
 
 [sub_resource type="Animation" id="Animation_oy2ap"]
 resource_name = "drive"
@@ -1288,8 +1271,36 @@ tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = PackedFloat32Array(0, 1, 0, 0, -0.382683, -0.92388, 0.0333333, 1, -0.014592, -0.0381328, -0.357092, -0.933176, 0.0666667, 1, -0.0407916, -0.131614, -0.293218, -0.946064, 0.1, 1, -0.055685, -0.245495, -0.214085, -0.943821, 0.133333, 1, -0.0542705, -0.340343, -0.147821, -0.927022, 0.166667, 1, -0.0499502, -0.37941, -0.12059, -0.915976, 0.2, 1, -0.0561237, -0.351965, -0.147128, -0.922672, 0.233333, 1, -0.0637144, -0.280894, -0.211834, -0.933898, 0.266667, 1, -0.0572987, -0.184874, -0.290444, -0.937113, 0.3, 1, -0.0325154, -0.0849714, -0.355908, -0.930082, 0.333333, 1, 3.72529e-09, -1.11759e-08, -0.382683, -0.92388, 0.366667, 1, 0.0325154, 0.0849715, -0.355908, -0.930082, 0.4, 1, 0.0572987, 0.184874, -0.290443, -0.937113, 0.433333, 1, 0.0637144, 0.280894, -0.211834, -0.933898, 0.466667, 1, 0.0561237, 0.351965, -0.147128, -0.922672, 0.5, 1, 0.0499502, 0.37941, -0.12059, -0.915976, 0.533333, 1, 0.0542705, 0.340343, -0.147821, -0.927022, 0.566667, 1, 0.055685, 0.245495, -0.214085, -0.943822, 0.6, 1, 0.0407916, 0.131614, -0.293218, -0.946064, 0.633333, 1, 0.0204663, 0.0660342, -0.339118, -0.9382, 0.666667, 1, 0, 0, -0.382683, -0.92388)
 
+[sub_resource type="Animation" id="Animation_n14pq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dp86x"]
 _data = {
+"RESET": SubResource("Animation_n14pq"),
 "attack-kick-left": SubResource("Animation_87d6t"),
 "attack-kick-right": SubResource("Animation_mqjr6"),
 "attack-melee-left": SubResource("Animation_03t83"),

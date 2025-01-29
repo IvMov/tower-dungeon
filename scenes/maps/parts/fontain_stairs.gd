@@ -16,7 +16,7 @@ var animation_time: float = 0.8
 var stones: int 
 var stone_position: Vector3
 
-func do_action() -> void: 
+func do_action() -> bool: 
 	var success: bool = false
 	var item_bulk: ItemBulk = PlayerParameters.find_item(stone_position)
 	if stone_position && item_bulk && item_bulk.item.id == STONE_ID:
@@ -45,6 +45,7 @@ func do_action() -> void:
 		static_body_3d.set_collision_layer_value(1, true)
 		static_body_3d.set_collision_layer_value(6, false)
 		invisible_pillar.queue_free()
+	return true
 
  
 func _on_timer_timeout() -> void:

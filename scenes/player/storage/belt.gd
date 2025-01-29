@@ -1,6 +1,6 @@
 class_name Belt extends Storage
 
-const SPARK_TABLET = preload("res://resources/items/spark_tablet.tres")
+const SPARK_TABLET: Item = preload("res://resources/items/spark_tablet.tres")
 
 func _ready():
 	GameEvents.item_remove.connect(on_item_remove)

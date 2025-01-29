@@ -15,7 +15,8 @@ func _ready():
 	agr_radius = 8
 
 func _physics_process(_delta):
-	pass
+	if !animation_player.is_playing():
+		animation_player.play("idle")
 
 func push_back(_player_position: Vector3, _push_power: float) -> void:
 	pass
@@ -40,6 +41,7 @@ func get_damage(_damager_location: Vector3, value: float, _push_power: float) ->
 	elif !is_player_near:
 		spawn_enemy_controller.start_boost_cast(1)
 	value = value if is_player_near else value/5
+	animation_player.play("idle")
 	return health_component.minus(value)
 
 func lost_target() -> void:

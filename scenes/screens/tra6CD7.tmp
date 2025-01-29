@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvil6wyxv6nu0"]
+
+[ext_resource type="Script" path="res://scenes/screens/traider_item.gd" id="1_ivt2a"]
+[ext_resource type="PackedScene" uid="uid://c7mskp4sx4mtj" path="res://scenes/ui/item_view_holder.tscn" id="1_iyb6s"]
+
+[node name="TraiderItem" type="MarginContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 30.0
+grow_horizontal = 2
+script = ExtResource("1_ivt2a")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ItemViewHolder" parent="HBoxContainer" instance=ExtResource("1_iyb6s")]
+z_index = 100
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "asdasd"

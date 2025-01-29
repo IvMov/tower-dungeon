@@ -11,5 +11,6 @@ id = 6
 title = "Stone"
 image = ExtResource("1_btq1j")
 descrition = "some_stone"
+type = "item_type_consumable"
 scene = ExtResource("2_2aqkw")
 skill = ExtResource("4_i6lkv")

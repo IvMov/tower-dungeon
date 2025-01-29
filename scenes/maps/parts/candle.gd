@@ -8,8 +8,9 @@ class_name Candle extends Node3D
 func _ready() -> void:
 	flying_text.set_text("I'm just candle... \n Press E")
 
-func do_action() -> void: 
+func do_action() -> bool: 
 	head.visible = !head.visible
+	return false
 
 func _on_static_body_3d_mouse_entered() -> void:
 	flying_text.visible = true

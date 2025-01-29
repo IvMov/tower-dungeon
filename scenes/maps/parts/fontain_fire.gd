@@ -20,7 +20,7 @@ var crystal_position: Vector3
 var wall_enemy: WallEnemy
 var first_interaction: bool = true
 
-func do_action() -> void: 
+func do_action() -> bool: 
 	if first_interaction:
 		wall_enemy.tree_exiting.connect(on_tree_exiting)
 		first_interaction = false
@@ -50,6 +50,7 @@ func do_action() -> void:
 		mesh_instance_3d_4.get_active_material(0).albedo_color = Color(0.5, 2, 2)
 		static_body_3d.set_collision_layer_value(6, false)
 		shoot_the_wall()
+	return true
 
 
 func shoot_the_wall() -> void:

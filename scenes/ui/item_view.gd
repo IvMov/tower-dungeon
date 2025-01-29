@@ -6,7 +6,7 @@ class_name ItemView extends TextureRect
 var item_bulk: ItemBulk
 var location: Vector3
 var dragged: bool = false
-
+var is_disabled: bool = false
 
 func _ready() -> void:
 	draw_item()
@@ -46,7 +46,7 @@ func _on_mouse_exited() -> void:
 
 #drag and drop staff
 func _get_drag_data(_at_position: Vector2) -> Variant:
-	if !item_bulk:
+	if !item_bulk || is_disabled:
 		return 
 		
 	var preview: TextureRect = TextureRect.new()
@@ -61,9 +61,13 @@ func _get_drag_data(_at_position: Vector2) -> Variant:
 	return self
 
 func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
+	if is_disabled:
+		return false
 	return data is ItemView
 
 func _drop_data(_at_position: Vector2, data: Variant) -> void:
+	if is_disabled:
+		return
 	put_item(data)
 	
  
