@@ -2,6 +2,15 @@ extends MarginContainer
 
 var items: Array[ItemBulk]
 
+@onready var image: Label = $Shop/MarginContainer/ScrollContainer/TraiderItems/MarginContainer/HeaderOfTable/Image
+@onready var title: Label = $Shop/MarginContainer/ScrollContainer/TraiderItems/MarginContainer/HeaderOfTable/Title
+@onready var type: Label = $Shop/MarginContainer/ScrollContainer/TraiderItems/MarginContainer/HeaderOfTable/Type
+@onready var price: Label = $Shop/MarginContainer/ScrollContainer/TraiderItems/MarginContainer/HeaderOfTable/Price
+@onready var quantity: Label = $Shop/MarginContainer/ScrollContainer/TraiderItems/MarginContainer/HeaderOfTable/Quantity
+@onready var total_price: Label = $Shop/MarginContainer/ScrollContainer/TraiderItems/MarginContainer/HeaderOfTable/TotalPrice
+@onready var buy: Label = $Shop/MarginContainer/ScrollContainer/TraiderItems/MarginContainer/HeaderOfTable/Buy
+
+@onready var margin_container: MarginContainer = $Shop/MarginContainer
 @onready var color_rect: ColorRect = $Shop/ColorRect
 @onready var traider_items: VBoxContainer = $Shop/MarginContainer/ScrollContainer/TraiderItems
 var shield_color: Color = Color(0.18, 0.20, 0.22, 0.87)
@@ -16,10 +25,32 @@ func _ready() -> void:
 	GameEvents.from_stage_to_shop.connect(on_from_stage_to_shop)
 
 func resize() -> void:
-	custom_minimum_size =  Vector2(GameConfig.grid_block*4, GameConfig.grid_block*2)
+	change_margins()
+	resize_header()
 	for child in traider_items.get_children():
 		if child is TraiderItem:
 			child.resize()
+
+func resize_header() -> void:
+	image.custom_minimum_size = Vector2(GameConfig.grid_block, 0)
+	quantity.custom_minimum_size =  Vector2(GameConfig.grid_block * 1.5, 0)
+	price.custom_minimum_size =  Vector2(GameConfig.grid_block * 2 , 0)
+	total_price.custom_minimum_size =  Vector2(GameConfig.grid_block * 2.5 , 0)
+	type.custom_minimum_size =  Vector2(GameConfig.grid_block * 2 , 0)
+	title.custom_minimum_size =  Vector2(GameConfig.grid_block * 3.5 , 0)
+	buy.custom_minimum_size =  Vector2(GameConfig.grid_block * 2 , 0)
+
+func change_margins() -> void:
+	add_theme_constant_override("margin_top", GameConfig.grid_block*1.3)
+	add_theme_constant_override("margin_left", GameConfig.grid_block * 2.1)
+	add_theme_constant_override("margin_bottom", GameConfig.grid_block*1.3)
+	add_theme_constant_override("margin_right", GameConfig.grid_block/10)
+	
+	margin_container.add_theme_constant_override("margin_top", GameConfig.grid_block/4)
+	margin_container.add_theme_constant_override("margin_left", GameConfig.grid_block/8)
+	margin_container.add_theme_constant_override("margin_bottom", GameConfig.grid_block/4)
+	margin_container.add_theme_constant_override("margin_right", GameConfig.grid_block/8)
+
 
 func load_items() -> void:
 	items.append(ItemBulk.new(Constants.ITEM_CRYSTAL, randi_range(1,20)))

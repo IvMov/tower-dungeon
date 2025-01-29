@@ -12,6 +12,7 @@ var grid_block: float
 func _ready() -> void:
 	theme = preload("res://resources/main_theme.tres")
 	recalculate_screen_grid_block()
+	resize_font()
 
 func _unhandled_input(event):
 	if event.is_action("full_screen") && event.is_released():
@@ -34,8 +35,7 @@ func resize_screen() -> void:
 	GameEvents.emit_screen_resized()
 
 func resize_font() -> void:
-	
-	theme.default_font_size = int(grid_block/3)
+	theme.default_font_size = int(grid_block/5)
 	self.set_theme(theme)
 
 func get_mouse_sensetivity():

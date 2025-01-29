@@ -6,6 +6,8 @@ class_name TraiderItem extends MarginContainer
 @onready var price: Label = $HBoxContainer/Price
 @onready var total_price: Label = $HBoxContainer/TotalPrice
 @onready var option_button: OptionButton = $HBoxContainer/Quantity/OptionButton
+@onready var button_buy: Button = $HBoxContainer/ButtonBuy
+@onready var quantity: HBoxContainer = $HBoxContainer/Quantity
 
 var buttons_ids: Array[int] = [1, 2, 3, 5, 10, 100]
 var selected_quantity: int = 1
@@ -20,13 +22,21 @@ func build(item: ItemBulk) -> void:
 	self.price_of_one = item.item.price
 	recalc_prices()
 	update_option_buttons()
+	resize()
 
 func recalc_prices() -> void: 
-	self.price.text = "G: %d, B: %d, R: %d" % [price_of_one.x, price_of_one.y, price_of_one.z]
-	self.total_price.text = "G: %d, B: %d, R: %d" % [price_of_one.x * selected_quantity, price_of_one.y * selected_quantity, price_of_one.z * selected_quantity]
-
+	self.price.text = "%d / %d / %d" % [price_of_one.x, price_of_one.y, price_of_one.z]
+	self.total_price.text = "%d / %d / %d" % [price_of_one.x * selected_quantity, price_of_one.y * selected_quantity, price_of_one.z * selected_quantity]
+	
 func resize() -> void:
 	item_view_holder.resize()
+	quantity.custom_minimum_size =  Vector2(GameConfig.grid_block * 1.5, 0)
+	price.custom_minimum_size =  Vector2(GameConfig.grid_block * 2 , 0)
+	total_price.custom_minimum_size =  Vector2(GameConfig.grid_block * 2.5 , 0)
+	type.custom_minimum_size =  Vector2(GameConfig.grid_block * 2 , 0)
+	title.custom_minimum_size =  Vector2(GameConfig.grid_block * 3.5 , 0)
+	button_buy.custom_minimum_size =  Vector2(GameConfig.grid_block * 2 , 0)
+
 
 func update_option_buttons() -> void:
 	option_button.select(0)

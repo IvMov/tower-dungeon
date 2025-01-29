@@ -1,8 +1,8 @@
 [gd_resource type="Theme" load_steps=6 format=3 uid="uid://ds80lfmnl557w"]
 
 [ext_resource type="Texture2D" uid="uid://i3mk82t3b2m8" path="res://assets/2d/Plate (37).png" id="1_posnr"]
-[ext_resource type="FontFile" uid="uid://keslssipxnkn" path="res://assets/2d/AtariGames.ttf" id="2_sk0yg"]
 [ext_resource type="Texture2D" uid="uid://bxq7jag23obss" path="res://assets/2d/Plate (49).png" id="2_sy0yi"]
+[ext_resource type="FontFile" uid="uid://cx273or2mjuim" path="res://assets/fonts/Brygada1918-Italic-VariableFont_wght.ttf" id="3_bhsuc"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m05l4"]
 texture = ExtResource("1_posnr")
@@ -22,7 +22,7 @@ texture_margin_right = 3.0
 texture_margin_bottom = 6.0
 
 [resource]
-default_font = ExtResource("2_sk0yg")
+default_font = ExtResource("3_bhsuc")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_m05l4")
 PanelContainer2/base_type = &"PanelContainer"
 PanelContainer2/styles/panel = SubResource("StyleBoxTexture_rlp8o")

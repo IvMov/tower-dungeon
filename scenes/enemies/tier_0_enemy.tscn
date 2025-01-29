@@ -138,6 +138,33 @@ shadow_mesh = SubResource("ArrayMesh_lljt3")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j80gf"]
 albedo_texture = ExtResource("6_irtrv")
 
+[sub_resource type="Animation" id="Animation_n14pq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_87d6t"]
 resource_name = "attack-kick-left"
 length = 0.533333
@@ -1270,33 +1297,6 @@ tracks/5/path = NodePath("character-ghost/root/torso/arm-right")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = PackedFloat32Array(0, 1, 0, 0, -0.382683, -0.92388, 0.0333333, 1, -0.014592, -0.0381328, -0.357092, -0.933176, 0.0666667, 1, -0.0407916, -0.131614, -0.293218, -0.946064, 0.1, 1, -0.055685, -0.245495, -0.214085, -0.943821, 0.133333, 1, -0.0542705, -0.340343, -0.147821, -0.927022, 0.166667, 1, -0.0499502, -0.37941, -0.12059, -0.915976, 0.2, 1, -0.0561237, -0.351965, -0.147128, -0.922672, 0.233333, 1, -0.0637144, -0.280894, -0.211834, -0.933898, 0.266667, 1, -0.0572987, -0.184874, -0.290444, -0.937113, 0.3, 1, -0.0325154, -0.0849714, -0.355908, -0.930082, 0.333333, 1, 3.72529e-09, -1.11759e-08, -0.382683, -0.92388, 0.366667, 1, 0.0325154, 0.0849715, -0.355908, -0.930082, 0.4, 1, 0.0572987, 0.184874, -0.290443, -0.937113, 0.433333, 1, 0.0637144, 0.280894, -0.211834, -0.933898, 0.466667, 1, 0.0561237, 0.351965, -0.147128, -0.922672, 0.5, 1, 0.0499502, 0.37941, -0.12059, -0.915976, 0.533333, 1, 0.0542705, 0.340343, -0.147821, -0.927022, 0.566667, 1, 0.055685, 0.245495, -0.214085, -0.943822, 0.6, 1, 0.0407916, 0.131614, -0.293218, -0.946064, 0.633333, 1, 0.0204663, 0.0660342, -0.339118, -0.9382, 0.666667, 1, 0, 0, -0.382683, -0.92388)
-
-[sub_resource type="Animation" id="Animation_n14pq"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dp86x"]
 _data = {
