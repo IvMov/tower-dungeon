@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://banbap6p0glja"]
+[gd_scene load_steps=47 format=4 uid="uid://banbap6p0glja"]
 
 [ext_resource type="PackedScene" uid="uid://ca0ysw5vmydwd" path="res://scenes/enemies/basic_enemy.tscn" id="1_y8pbg"]
 [ext_resource type="Script" path="res://scenes/enemies/tier_0_enemy.gd" id="2_sjwt3"]
@@ -1328,8 +1328,6 @@ _data = {
 "walk": SubResource("Animation_gpwsc")
 }
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_4l3qs"]
-
 [node name="Tier0Enemy" node_paths=PackedStringArray("animation_player") instance=ExtResource("1_y8pbg")]
 collision_layer = 8192
 collision_mask = 8195
@@ -1399,14 +1397,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_j80gf")
 libraries = {
 "": SubResource("AnimationLibrary_dp86x")
 }
-
-[node name="Area3D" type="Area3D" parent="character-ghost2" index="2"]
-collision_layer = 1024
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="character-ghost2/Area3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("SphereShape3D_4l3qs")
 
 [node name="Timer" type="Timer" parent="." index="13"]
 wait_time = 0.5

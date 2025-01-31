@@ -1,6 +1,7 @@
 [gd_resource type="PrismMesh" load_steps=2 format=3 uid="uid://c5x02ui4xuaqn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p5rym"]
+resource_local_to_scene = true
 shading_mode = 0
 albedo_color = Color(0.467, 2, 2, 1)
 

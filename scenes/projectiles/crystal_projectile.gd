@@ -1,6 +1,8 @@
 class_name CrystalProjectile extends Node3D
 
 const CRYSTAL_SIZE: Vector3 = Vector3(0.2, 0.3, 0.1)
+const CRYSTAL_COLOR_STABLE: Color = Color(0.46, 2.0, 2.0)
+const CRYSTAL_COLOR_UNSTABLE: Color = Color(2.0, 0.2, 0.4)
 const RAND: float = 0.05
 
 
@@ -32,6 +34,7 @@ func _ready() -> void:
 	projectile_particles.emitting = true
 
 func pre_explosion() -> void:
+	crystal.get_active_material(0).albedo_color = CRYSTAL_COLOR_UNSTABLE
 	var tween: Tween = create_tween()
 	tween.set_parallel()
 	tween.set_ease(Tween.EASE_IN)
@@ -84,6 +87,7 @@ func do_explosion() -> void:
 	area_3d.set_collision_mask_value(11, false)
 	area_3d.set_collision_mask_value(14, false)
 	area_3d.set_collision_mask_value(13, false)
+	crystal.get_active_material(0).albedo_color = CRYSTAL_COLOR_STABLE
 
 
 
@@ -98,19 +102,6 @@ func on_life_timer_timeout() -> void:
 func _on_explosion_timer_timeout() -> void:
 	await pre_explosion()
 	do_explosion()
-
-
-func _on_area_3d_area_entered(area: Area3D) -> void:
-	if !area.get_parent():
-		return
-	var body: Node3D =  area.get_parent().get_parent();
-	if body is BasicEnemy:
-		if !explosion:
-			do_explosion()
-			explosion_timer.stop()
-			body.get_damage(global_position, damage, push_power)
-		elif body.get_damage(global_position, damage, push_power):
-			PlayerParameters.add_skill_exp(skill_id, damage)
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
