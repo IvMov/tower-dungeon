@@ -1,13 +1,13 @@
 [gd_scene load_steps=53 format=4 uid="uid://b64al2yi4ofhh"]
 
 [ext_resource type="PackedScene" uid="uid://ca0ysw5vmydwd" path="res://scenes/enemies/basic_enemy.tscn" id="1_ihf13"]
-[ext_resource type="PackedScene" uid="uid://bu54h1fq5wkmb" path="res://scenes/skill_contolllers/stamina/enemy/kick_skill_controller.tscn" id="2_cc1pn"]
 [ext_resource type="Script" path="res://scenes/enemies/tier_vampire_enemy.gd" id="2_coroo"]
 [ext_resource type="Texture2D" uid="uid://cu8fm1wha26cr" path="res://assets/3d/Textures/colormap.png" id="2_oxj6t"]
 [ext_resource type="PackedScene" uid="uid://wrldpki8le4f" path="res://scenes/skill_contolllers/stamina/enemy/dodge_skill_controller.tscn" id="3_pgm7c"]
 [ext_resource type="PackedScene" uid="uid://budg2u4t08pwr" path="res://scenes/skill_contolllers/stamina/enemy/idle_moving_controller.tscn" id="4_ipoc6"]
-[ext_resource type="PackedScene" uid="uid://41gcnflwbed5" path="res://scenes/skill_contolllers/stamina/enemy/battle_move_controller.tscn" id="5_fgwu8"]
 [ext_resource type="PackedScene" uid="uid://crd6vmrg3liuw" path="res://scenes/skill_contolllers/stamina/enemy/call_other_enemies_controller.tscn" id="6_6u3lk"]
+[ext_resource type="PackedScene" uid="uid://cecoxnl6a50t8" path="res://scenes/skill_contolllers/mana/enemy/vampire_range_attack_controller.tscn" id="6_uftmp"]
+[ext_resource type="PackedScene" uid="uid://b5rac3bn806k0" path="res://scenes/projectiles/spark_projectile.tscn" id="7_5eka8"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_cqyx7"]
 resource_local_to_scene = true
@@ -2490,19 +2490,17 @@ script = ExtResource("2_coroo")
 enemy_name = "tier_vampire_enemy"
 animation_player = NodePath("character-vampire2/AnimationPlayer")
 
-[node name="KickSkillController" parent="SkillBox" index="0" node_paths=PackedStringArray("enemy") instance=ExtResource("2_cc1pn")]
+[node name="DodgeSkillController" parent="SkillBox" index="0" node_paths=PackedStringArray("enemy") instance=ExtResource("3_pgm7c")]
 enemy = NodePath("../..")
 
-[node name="DodgeSkillController" parent="SkillBox" index="1" node_paths=PackedStringArray("enemy") instance=ExtResource("3_pgm7c")]
+[node name="IdleMovingController" parent="SkillBox" index="1" node_paths=PackedStringArray("enemy") instance=ExtResource("4_ipoc6")]
 enemy = NodePath("../..")
 
-[node name="IdleMovingController" parent="SkillBox" index="2" node_paths=PackedStringArray("enemy") instance=ExtResource("4_ipoc6")]
-enemy = NodePath("../..")
+[node name="CallOtherEnemiesController" parent="SkillBox" index="2" instance=ExtResource("6_6u3lk")]
 
-[node name="BattleMoveController" parent="SkillBox" index="3" node_paths=PackedStringArray("enemy") instance=ExtResource("5_fgwu8")]
+[node name="VampireRangeAttackController" parent="SkillBox" index="3" node_paths=PackedStringArray("enemy") instance=ExtResource("6_uftmp")]
 enemy = NodePath("../..")
-
-[node name="CallOtherEnemiesController" parent="SkillBox" index="4" instance=ExtResource("6_6u3lk")]
+spark_projectile = ExtResource("7_5eka8")
 
 [node name="CollisionShape3D" parent="CallEnemyAreaClient" index="0"]
 shape = SubResource("CylinderShape3D_cqyx7")

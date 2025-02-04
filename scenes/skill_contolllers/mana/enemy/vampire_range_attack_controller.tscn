@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://cecoxnl6a50t8"]
+
+[ext_resource type="PackedScene" uid="uid://jut3uwfl054l" path="res://scenes/skill_contolllers/base_controller.tscn" id="1_liqmp"]
+[ext_resource type="Script" path="res://scenes/skill_contolllers/mana/enemy/vampire_range_attack_controller.gd" id="2_uvinf"]
+
+[node name="VampireRangeAttackController" instance=ExtResource("1_liqmp")]
+script = ExtResource("2_uvinf")
+spark_projectile = null

@@ -1,42 +1,29 @@
 class_name TierVampireEnemy extends BasicEnemy
 
 
-@onready var kick_skill_controller: KickSkillController = $SkillBox/KickSkillController
 @onready var dodge_skill_controller: DodgeSkillController = $SkillBox/DodgeSkillController
 @onready var idle_moving_controller: IdleMovingController = $SkillBox/IdleMovingController
 @onready var call_other_enemies_controller: CallOtherEnemiesController = $SkillBox/CallOtherEnemiesController
-@onready var battle_move_controller: BattleMoveController = $SkillBox/BattleMoveController
+@onready var vampire_range_attack_controller: VampireRangeAttackController = $SkillBox/VampireRangeAttackController
 
 @onready var body_mesh: MeshInstance3D = $"character-vampire2/character-vampire/root/torso"
 
 func _ready():
 	run_speed = speed * 2
 	agr_radius = 8
+	battle_distance = 10
 	chase_player_timer.wait_time = randi_range(1, 10)
 	hp_bar.update(health_component.current_value, health_component.max_value)
 	stamina_bar.update(stamina_component.current_value, stamina_component.max_value)
 	mana_bar.update(mana_component.current_value, mana_component.max_value)
 	#choose_color()
+	vampire_range_attack_controller.cooldown_timer.start()
 
 
 func choose_color() -> void:
 	var material = body_mesh.get_surface_override_material(0)
 	material.albedo_color = Color(randf(), randf(), randf())	
 
-	
-	
-func chase_player() -> void:
-	super.chase_player()
-	if player && is_instance_valid(player) && !is_battle_move && battle_move_radius >= global_position.distance_to(player.global_position):
-		battle_move_controller.use_skill()
-	
-# damage things
-func do_damage() -> float:
-	battle_direction_when_radial = get_random_sign()
-	return kick_skill_controller.do_damage()
-
-func stop_damage() -> void:
-	kick_skill_controller.stop_damage()
 
 # targeting and movement
 func detect_target(target_player: Player):
@@ -65,7 +52,6 @@ func lost_target():
 		return
 	is_target_detected = false
 	chase_player_timer.start()
-	battle_move_controller.stop_skill()
 
 
 # timeout and area signals handling

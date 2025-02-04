@@ -1,11 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://cn4nsqghphlc0"]
+[gd_scene load_steps=22 format=3 uid="uid://cn4nsqghphlc0"]
 
 [ext_resource type="PackedScene" uid="uid://ca0ysw5vmydwd" path="res://scenes/enemies/basic_enemy.tscn" id="1_uk4uo"]
 [ext_resource type="Script" path="res://scenes/enemies/enemy_spawner.gd" id="2_6rjot"]
 [ext_resource type="PackedScene" uid="uid://cum81aptelhj7" path="res://scenes/skill_contolllers/mana/enemy/spawn_enemy_controller.tscn" id="3_h5qeo"]
 [ext_resource type="Texture2D" uid="uid://du4kwq2r1x0ru" path="res://assets/textures/Brick 25 - 128x128.png" id="3_sovl2"]
-[ext_resource type="PackedScene" uid="uid://dbv1lp0pn7xhc" path="res://scenes/enemies/tier_1_enemy.tscn" id="4_mtjbe"]
-[ext_resource type="PackedScene" uid="uid://banbap6p0glja" path="res://scenes/enemies/tier_0_enemy.tscn" id="6_uh0sr"]
 [ext_resource type="PackedScene" uid="uid://b64al2yi4ofhh" path="res://scenes/enemies/tier_vampire_enemy.tscn" id="7_fja2h"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x4ge0"]
@@ -229,7 +227,7 @@ regen = 0.0
 
 [node name="SpawnEnemyController" parent="SkillBox" index="0" node_paths=PackedStringArray("owner_enemy") instance=ExtResource("3_h5qeo")]
 owner_enemy = NodePath("../..")
-enemies = Array[PackedScene]([ExtResource("6_uh0sr"), ExtResource("4_mtjbe"), ExtResource("7_fja2h")])
+enemies = Array[PackedScene]([ExtResource("7_fja2h")])
 
 [node name="CollisionShape3D" parent="CallEnemyAreaClient" index="0"]
 shape = SubResource("CylinderShape3D_v63dg")

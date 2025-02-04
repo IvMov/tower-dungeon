@@ -7,7 +7,7 @@ class_name Tier0Enemy extends BasicEnemy
 @onready var range_attack_controller: RangeAttackController = $SkillBox/RangeAttackController
 
 
-func _ready():
+func _ready():  
 	is_ranged = true
 	battle_distance = 5
 	run_speed = speed * 2
