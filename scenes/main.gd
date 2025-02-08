@@ -7,17 +7,20 @@ const SHOP_MAP: PackedScene = preload("res://scenes/maps/shop_map.tscn")
 @onready var maps: Node3D = $Maps
 @onready var player: Player = $Player
 @onready var enemies: Node3D = $Enemies
+#temporary
+@onready var tier_vampire_enemy: TierVampireEnemy = $Enemies/TierVampireEnemy
 
 const PLAYER_START_POINT: Vector3 = Vector3(1, 0.2, -1)
 
 func _ready():
-	#map_generator.ROOMS = randi_range(3, 10)
-	#var start_point: Vector3 = map_generator.generate_level()
-	#player.global_position = start_point
+	map_generator.ROOMS = randi_range(3, 10)
+	var start_point: Vector3 = map_generator.generate_level()
+	player.global_position = start_point
+	#tier_vampire_enemy.global_position = start_point 
 	
 	GameEvents.from_stage_to_shop.connect(on_from_stage_to_shop)
 	GameEvents.from_shop_to_stage.connect(on_from_shop_to_stage)
-	GameEvents.emit_from_stage_to_shop()
+	#GameEvents.emit_from_stage_to_shop()
 
 func _physics_process(_delta):
 	label.text = "FPS: %f" % Engine.get_frames_per_second()

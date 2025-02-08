@@ -31,7 +31,7 @@ func chase_player() -> void:
 	
 # damage things
 func do_damage() -> float:
-	battle_direction_when_radial = get_random_sign()
+	battle_direction_when_radial= get_random_sign()
 	return kick_skill_controller.do_damage()
 
 func stop_damage() -> void:

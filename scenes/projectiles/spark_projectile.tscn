@@ -5,12 +5,12 @@
 [ext_resource type="PlaneMesh" uid="uid://hnn3cqisno05" path="res://particles/mesh/square_mesh.tres" id="3_v1etk"]
 [ext_resource type="Material" uid="uid://dtpkny3bvp3yd" path="res://particles/player_explosion.tres" id="4_0cqs3"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p76v1"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t2rip"]
 vertex_color_use_as_albedo = true
 albedo_color = Color(20, 20, 1, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_7aqq5"]
-material = SubResource("StandardMaterial3D_p76v1")
+material = SubResource("StandardMaterial3D_t2rip")
 radius = 0.05
 height = 0.1
 radial_segments = 8

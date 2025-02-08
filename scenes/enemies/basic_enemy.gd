@@ -100,7 +100,7 @@ func _physics_process(delta):
 		current_speed = speed * 1.5 if is_dodging else current_speed
 		chase_player()
 	if player :
-		if is_ranged && is_fighting && navigation_agent_3d.distance_to_target() < battle_distance:
+		if is_ranged && !is_pushed && is_fighting && navigation_agent_3d.distance_to_target() < battle_distance:
 			velocity = Vector3.ZERO
 			return
 		accelerate_to_player(delta)
@@ -136,7 +136,8 @@ func lost_target() -> void:
 	pass
 
 func agr_on_player() -> void:
-	random_speed()
+	if !is_ranged:
+		random_speed()
 	if speed_up_timer.is_stopped():
 		speed_up_timer.start()
 	is_dodging = false

@@ -1,0 +1,81 @@
+[gd_scene load_steps=9 format=3 uid="uid://bjsd0ujn41338"]
+
+[ext_resource type="Material" uid="uid://brw2r106mrxoc" path="res://assets/textures/materials/vampire_projectile_material.tres" id="1_8maeu"]
+[ext_resource type="Material" uid="uid://b304cpbvwydhs" path="res://particles/player_small_charge.tres" id="1_h66r1"]
+[ext_resource type="Script" path="res://scenes/projectiles/vampire_projectile.gd" id="1_xcj3h"]
+[ext_resource type="Material" uid="uid://dtpkny3bvp3yd" path="res://particles/player_explosion.tres" id="3_ej3x4"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_ithnn"]
+material = ExtResource("1_8maeu")
+radius = 0.05
+height = 0.1
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_oc7fn"]
+resource_local_to_scene = true
+radius = 0.11
+
+[sub_resource type="SphereMesh" id="SphereMesh_thyb0"]
+material = ExtResource("1_8maeu")
+radius = 0.04
+height = 0.08
+radial_segments = 4
+rings = 4
+
+[sub_resource type="SphereMesh" id="SphereMesh_myrf6"]
+material = ExtResource("1_8maeu")
+radius = 0.02
+height = 0.04
+radial_segments = 4
+rings = 4
+
+[node name="VampireProjectile" type="Node3D"]
+script = ExtResource("1_xcj3h")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+visible = false
+light_energy = 0.5
+light_indirect_energy = 0.5
+distance_fade_enabled = true
+distance_fade_begin = 200.0
+distance_fade_length = 20.0
+omni_attenuation = 0.707107
+omni_shadow_mode = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_ithnn")
+
+[node name="Area3D" type="Area3D" parent="MeshInstance3D"]
+collision_layer = 16384
+collision_mask = 515
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
+shape = SubResource("SphereShape3D_oc7fn")
+
+[node name="LifeTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="ProjectileParticles" type="GPUParticles3D" parent="."]
+transparency = 0.5
+cast_shadow = 0
+emitting = false
+amount = 20
+one_shot = true
+transform_align = 3
+process_material = ExtResource("1_h66r1")
+draw_pass_1 = SubResource("SphereMesh_thyb0")
+
+[node name="CollisionParticles" type="GPUParticles3D" parent="."]
+transparency = 0.5
+cast_shadow = 0
+emitting = false
+amount = 60
+lifetime = 0.8
+one_shot = true
+speed_scale = 3.0
+explosiveness = 0.88
+process_material = ExtResource("3_ej3x4")
+draw_pass_1 = SubResource("SphereMesh_myrf6")

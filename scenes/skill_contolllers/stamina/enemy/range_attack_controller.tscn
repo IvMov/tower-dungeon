@@ -13,7 +13,7 @@ linear_accel_min = 15.0
 linear_accel_max = 20.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o6kc2"]
-albedo_color = Color(2, 0.514, 0.51, 1)
+albedo_color = Color(2, 2, 2, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_3ya43"]
 material = SubResource("StandardMaterial3D_o6kc2")

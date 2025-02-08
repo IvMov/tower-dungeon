@@ -2361,9 +2361,9 @@ dash_skill = NodePath("../SkillBox/DashSkillController")
 
 [node name="HealthComponent" parent="StatsBox" node_paths=PackedStringArray("owner_node") instance=ExtResource("5_68vlw")]
 owner_node = NodePath("../..")
-max_value = 50.0
-current_value = 50.0
-regen = 2.0
+max_value = 500.0
+current_value = 500.0
+regen = 3.0
 
 [node name="ManaComponent" parent="StatsBox" node_paths=PackedStringArray("owner_node") instance=ExtResource("6_5qlxb")]
 owner_node = NodePath("../..")

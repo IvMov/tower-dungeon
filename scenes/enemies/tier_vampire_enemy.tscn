@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://wrldpki8le4f" path="res://scenes/skill_contolllers/stamina/enemy/dodge_skill_controller.tscn" id="3_pgm7c"]
 [ext_resource type="PackedScene" uid="uid://budg2u4t08pwr" path="res://scenes/skill_contolllers/stamina/enemy/idle_moving_controller.tscn" id="4_ipoc6"]
 [ext_resource type="PackedScene" uid="uid://crd6vmrg3liuw" path="res://scenes/skill_contolllers/stamina/enemy/call_other_enemies_controller.tscn" id="6_6u3lk"]
-[ext_resource type="PackedScene" uid="uid://cecoxnl6a50t8" path="res://scenes/skill_contolllers/mana/enemy/vampire_range_attack_controller.tscn" id="6_uftmp"]
-[ext_resource type="PackedScene" uid="uid://b5rac3bn806k0" path="res://scenes/projectiles/spark_projectile.tscn" id="7_5eka8"]
+[ext_resource type="PackedScene" uid="uid://dpkdbqq87a4r7" path="res://scenes/skill_contolllers/mana/enemy/vampire_range_attack_controller.tscn" id="6_uftmp"]
+[ext_resource type="PackedScene" uid="uid://bjsd0ujn41338" path="res://scenes/projectiles/vampire_projectile.tscn" id="7_afbom"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_cqyx7"]
 resource_local_to_scene = true
@@ -16,8 +16,8 @@ radius = 0.2
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_6njbg"]
 resource_local_to_scene = true
-height = 4.0
-radius = 4.0
+height = 6.0
+radius = 10.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j3l2d"]
 resource_local_to_scene = true
@@ -868,182 +868,6 @@ tracks/11/type = "rotation_3d"
 tracks/11/imported = true
 tracks/11/enabled = true
 tracks/11/path = NodePath("character-vampire/root/torso/head")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
-
-[sub_resource type="Animation" id="Animation_l1m8v"]
-resource_name = "emote-no"
-length = 0.666667
-tracks/0/type = "position_3d"
-tracks/0/imported = true
-tracks/0/enabled = true
-tracks/0/path = NodePath("character-vampire/root/torso")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, -1.44382e-15, 0.223184, -7.21911e-16)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = true
-tracks/1/enabled = true
-tracks/1/path = NodePath("character-vampire/root/torso")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, -1, 0.0333333, 1, 0.00453784, 0, 0, -0.99999, 0.0666667, 1, 0.0153583, 0, 0, -0.999882, 0.1, 1, 0.0282706, 0, 0, -0.9996, 0.133333, 1, 0.0390854, 0, 0, -0.999236, 0.166667, 1, 0.0436194, 0, 0, -0.999048, 0.2, 1, 0.0404806, 0, 0, -0.99918, 0.233333, 1, 0.0324574, 0, 0, -0.999473, 0.266667, 1, 0.0216404, 0, 0, -0.999766, 0.3, 1, 0.0101227, 0, 0, -0.999949, 0.333333, 1, 9.31323e-10, 0, 0, -1, 0.366667, 1, -0.0101227, 0, 0, -0.999949, 0.4, 1, -0.0216404, 0, 0, -0.999766, 0.433333, 1, -0.0324574, 0, 0, -0.999473, 0.466667, 1, -0.0404806, 0, 0, -0.99918, 0.5, 1, -0.0436194, 0, 0, -0.999048, 0.533333, 1, -0.0390854, 0, 0, -0.999236, 0.566667, 1, -0.0282706, 0, 0, -0.9996, 0.6, 1, -0.0153583, 0, 0, -0.999882, 0.633333, 1, -0.00767938, 0, 0, -0.999971, 0.666667, 1, 0, 0, 0, -1)
-tracks/2/type = "rotation_3d"
-tracks/2/imported = true
-tracks/2/enabled = true
-tracks/2/path = NodePath("character-vampire/root/torso/head")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, 0, -1, 0.0333333, 1, 0, -0.0272238, 0, -0.999629, 0.0666667, 1, 0, -0.092023, 0, -0.995757, 0.1, 1, 0, -0.168833, 0, -0.985645, 0.133333, 1, 0, -0.232427, 0, -0.972614, 0.166667, 1, 0, -0.258819, 0, -0.965926, 0.2, 1, 0, -0.240567, 0, -0.970633, 0.233333, 1, 0, -0.193549, 0, -0.981091, 0.266667, 1, 0, -0.129488, 0, -0.991581, 0.3, 1, 0, -0.0607001, 0, -0.998156, 0.333333, 1, 0, -5.58794e-09, 0, -1, 0.366667, 1, 0, 0.0607001, 0, -0.998156, 0.4, 1, 0, 0.129488, 0, -0.991581, 0.433333, 1, 0, 0.193549, 0, -0.981091, 0.466667, 1, 0, 0.240567, 0, -0.970633, 0.5, 1, 0, 0.258819, 0, -0.965926, 0.533333, 1, 0, 0.232427, 0, -0.972614, 0.566667, 1, 0, 0.168833, 0, -0.985645, 0.6, 1, 0, 0.0920229, 0, -0.995757, 0.633333, 1, 0, 0.0460604, 0, -0.998939, 0.666667, 1, 0, 0, 0, -1)
-tracks/3/type = "rotation_3d"
-tracks/3/imported = true
-tracks/3/enabled = true
-tracks/3/path = NodePath("character-vampire/root/torso/arm-left")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0.382683, -0.92388, 0.0333333, 1, -0.00419242, -0.00173656, 0.38268, -0.92387, 0.0666667, 1, -0.0141892, -0.00587737, 0.382638, -0.923771, 0.1, 1, -0.0261186, -0.0108187, 0.382531, -0.92351, 0.133333, 1, -0.0361102, -0.0149573, 0.382391, -0.923174, 0.166667, 1, -0.0402991, -0.0166924, 0.382319, -0.923, 0.2, 1, -0.0373992, -0.0154912, 0.38237, -0.923122, 0.233333, 1, -0.0299867, -0.0124209, 0.382482, -0.923393, 0.266667, 1, -0.0199931, -0.00828142, 0.382594, -0.923663, 0.3, 1, -0.00935219, -0.0038738, 0.382664, -0.923832, 0.366667, 1, 0.00935219, 0.0038738, 0.382664, -0.923832, 0.4, 1, 0.0199931, 0.00828142, 0.382594, -0.923663, 0.433333, 1, 0.0299867, 0.0124209, 0.382482, -0.923393, 0.466667, 1, 0.0373992, 0.0154912, 0.38237, -0.923122, 0.5, 1, 0.0402991, 0.0166924, 0.382319, -0.923, 0.533333, 1, 0.0361102, 0.0149573, 0.382391, -0.923174, 0.566667, 1, 0.0261186, 0.0108187, 0.382531, -0.92351, 0.6, 1, 0.0141892, 0.00587736, 0.382638, -0.923771, 0.666667, 1, 0, 0, 0.382683, -0.92388)
-tracks/4/type = "rotation_3d"
-tracks/4/imported = true
-tracks/4/enabled = true
-tracks/4/path = NodePath("character-vampire/root/torso/arm-right")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = PackedFloat32Array(0, 1, 0, 0, -0.382683, -0.92388, 0.0333333, 1, -0.00419242, 0.00173656, -0.38268, -0.92387, 0.0666667, 1, -0.0141892, 0.00587737, -0.382638, -0.923771, 0.1, 1, -0.0261186, 0.0108187, -0.382531, -0.92351, 0.133333, 1, -0.0361102, 0.0149573, -0.382391, -0.923174, 0.166667, 1, -0.0402991, 0.0166924, -0.382319, -0.923, 0.2, 1, -0.0373992, 0.0154912, -0.38237, -0.923122, 0.233333, 1, -0.0299867, 0.0124209, -0.382482, -0.923393, 0.266667, 1, -0.0199931, 0.00828142, -0.382594, -0.923663, 0.3, 1, -0.00935219, 0.0038738, -0.382664, -0.923832, 0.366667, 1, 0.00935219, -0.0038738, -0.382664, -0.923832, 0.4, 1, 0.0199931, -0.00828142, -0.382594, -0.923663, 0.433333, 1, 0.0299867, -0.0124209, -0.382482, -0.923393, 0.466667, 1, 0.0373992, -0.0154912, -0.38237, -0.923122, 0.5, 1, 0.0402991, -0.0166924, -0.382319, -0.923, 0.533333, 1, 0.0361102, -0.0149573, -0.382391, -0.923174, 0.566667, 1, 0.0261186, -0.0108187, -0.382531, -0.92351, 0.6, 1, 0.0141892, -0.00587736, -0.382638, -0.923771, 0.666667, 1, 0, 0, -0.382683, -0.92388)
-tracks/5/type = "position_3d"
-tracks/5/imported = true
-tracks/5/enabled = true
-tracks/5/path = NodePath("character-vampire/root")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = PackedFloat32Array(0, 1, 0, 0, 0)
-tracks/6/type = "rotation_3d"
-tracks/6/imported = true
-tracks/6/enabled = true
-tracks/6/path = NodePath("character-vampire/root")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
-tracks/7/type = "position_3d"
-tracks/7/imported = true
-tracks/7/enabled = true
-tracks/7/path = NodePath("character-vampire/root/leg-left")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = PackedFloat32Array(0, 1, 0.074204, 0.223184, -7.21911e-16)
-tracks/8/type = "rotation_3d"
-tracks/8/imported = true
-tracks/8/enabled = true
-tracks/8/path = NodePath("character-vampire/root/leg-left")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
-tracks/9/type = "position_3d"
-tracks/9/imported = true
-tracks/9/enabled = true
-tracks/9/path = NodePath("character-vampire/root/leg-right")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = PackedFloat32Array(0, 1, -0.074204, 0.223184, -7.21911e-16)
-tracks/10/type = "rotation_3d"
-tracks/10/imported = true
-tracks/10/enabled = true
-tracks/10/path = NodePath("character-vampire/root/leg-right")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
-tracks/11/type = "rotation_3d"
-tracks/11/imported = true
-tracks/11/enabled = true
-tracks/11/path = NodePath("character-vampire/root/torso/cape")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
-
-[sub_resource type="Animation" id="Animation_kitre"]
-resource_name = "emote-yes"
-length = 0.666667
-tracks/0/type = "rotation_3d"
-tracks/0/imported = true
-tracks/0/enabled = true
-tracks/0/path = NodePath("character-vampire/root/torso/head")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, -1, 0.0333333, 1, 0.0136131, 0, 0, -0.999907, 0.0666667, 1, 0.0460604, 0, 0, -0.998939, 0.1, 1, 0.0847213, 0, 0, -0.996405, 0.133333, 1, 0.117017, 0, 0, -0.99313, 0.166667, 1, 0.130526, 0, 0, -0.991445, 0.2, 1, 0.121176, 0, 0, -0.992631, 0.233333, 1, 0.0972355, 0, 0, -0.995261, 0.266667, 1, 0.0648806, 0, 0, -0.997893, 0.3, 1, 0.0303641, 0, 0, -0.999539, 0.333333, 1, 5.58794e-09, 0, 0, -1, 0.366667, 1, -0.0303641, 0, 0, -0.999539, 0.4, 1, -0.0648807, 0, 0, -0.997893, 0.433333, 1, -0.0972355, 0, 0, -0.995261, 0.466667, 1, -0.121176, 0, 0, -0.992631, 0.5, 1, -0.130526, 0, 0, -0.991445, 0.533333, 1, -0.117017, 0, 0, -0.99313, 0.566667, 1, -0.0847213, 0, 0, -0.996405, 0.6, 1, -0.0460604, 0, 0, -0.998939, 0.633333, 1, -0.0230363, 0, 0, -0.999735, 0.666667, 1, 0, 0, 0, -1)
-tracks/1/type = "position_3d"
-tracks/1/imported = true
-tracks/1/enabled = true
-tracks/1/path = NodePath("character-vampire/root/torso")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, -1.44382e-15, 0.223184, -7.21911e-16)
-tracks/2/type = "rotation_3d"
-tracks/2/imported = true
-tracks/2/enabled = true
-tracks/2/path = NodePath("character-vampire/root/torso")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, 0, -1, 0.0333333, 1, 0.00453784, 0, 0, -0.99999, 0.0666667, 1, 0.0153583, 0, 0, -0.999882, 0.1, 1, 0.0282706, 0, 0, -0.9996, 0.133333, 1, 0.0390854, 0, 0, -0.999236, 0.166667, 1, 0.0436194, 0, 0, -0.999048, 0.2, 1, 0.0404806, 0, 0, -0.99918, 0.233333, 1, 0.0324574, 0, 0, -0.999473, 0.266667, 1, 0.0216404, 0, 0, -0.999766, 0.3, 1, 0.0101227, 0, 0, -0.999949, 0.333333, 1, 9.31323e-10, 0, 0, -1, 0.366667, 1, -0.0101227, 0, 0, -0.999949, 0.4, 1, -0.0216404, 0, 0, -0.999766, 0.433333, 1, -0.0324574, 0, 0, -0.999473, 0.466667, 1, -0.0404806, 0, 0, -0.99918, 0.5, 1, -0.0436194, 0, 0, -0.999048, 0.533333, 1, -0.0390854, 0, 0, -0.999236, 0.566667, 1, -0.0282706, 0, 0, -0.9996, 0.6, 1, -0.0153583, 0, 0, -0.999882, 0.633333, 1, -0.00767938, 0, 0, -0.999971, 0.666667, 1, 0, 0, 0, -1)
-tracks/3/type = "rotation_3d"
-tracks/3/imported = true
-tracks/3/enabled = true
-tracks/3/path = NodePath("character-vampire/root/torso/arm-left")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0.382683, -0.92388, 0.0333333, 1, -0.00419242, -0.00173656, 0.38268, -0.92387, 0.0666667, 1, -0.0141892, -0.00587737, 0.382638, -0.923771, 0.1, 1, -0.0261186, -0.0108187, 0.382531, -0.92351, 0.133333, 1, -0.0361102, -0.0149573, 0.382391, -0.923174, 0.166667, 1, -0.0402991, -0.0166924, 0.382319, -0.923, 0.2, 1, -0.0373992, -0.0154912, 0.38237, -0.923122, 0.233333, 1, -0.0299867, -0.0124209, 0.382482, -0.923393, 0.266667, 1, -0.0199931, -0.00828142, 0.382594, -0.923663, 0.3, 1, -0.00935219, -0.0038738, 0.382664, -0.923832, 0.366667, 1, 0.00935219, 0.0038738, 0.382664, -0.923832, 0.4, 1, 0.0199931, 0.00828142, 0.382594, -0.923663, 0.433333, 1, 0.0299867, 0.0124209, 0.382482, -0.923393, 0.466667, 1, 0.0373992, 0.0154912, 0.38237, -0.923122, 0.5, 1, 0.0402991, 0.0166924, 0.382319, -0.923, 0.533333, 1, 0.0361102, 0.0149573, 0.382391, -0.923174, 0.566667, 1, 0.0261186, 0.0108187, 0.382531, -0.92351, 0.6, 1, 0.0141892, 0.00587736, 0.382638, -0.923771, 0.666667, 1, 0, 0, 0.382683, -0.92388)
-tracks/4/type = "rotation_3d"
-tracks/4/imported = true
-tracks/4/enabled = true
-tracks/4/path = NodePath("character-vampire/root/torso/arm-right")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = PackedFloat32Array(0, 1, 0, 0, -0.382683, -0.92388, 0.0333333, 1, -0.00419242, 0.00173656, -0.38268, -0.92387, 0.0666667, 1, -0.0141892, 0.00587737, -0.382638, -0.923771, 0.1, 1, -0.0261186, 0.0108187, -0.382531, -0.92351, 0.133333, 1, -0.0361102, 0.0149573, -0.382391, -0.923174, 0.166667, 1, -0.0402991, 0.0166924, -0.382319, -0.923, 0.2, 1, -0.0373992, 0.0154912, -0.38237, -0.923122, 0.233333, 1, -0.0299867, 0.0124209, -0.382482, -0.923393, 0.266667, 1, -0.0199931, 0.00828142, -0.382594, -0.923663, 0.3, 1, -0.00935219, 0.0038738, -0.382664, -0.923832, 0.366667, 1, 0.00935219, -0.0038738, -0.382664, -0.923832, 0.4, 1, 0.0199931, -0.00828142, -0.382594, -0.923663, 0.433333, 1, 0.0299867, -0.0124209, -0.382482, -0.923393, 0.466667, 1, 0.0373992, -0.0154912, -0.38237, -0.923122, 0.5, 1, 0.0402991, -0.0166924, -0.382319, -0.923, 0.533333, 1, 0.0361102, -0.0149573, -0.382391, -0.923174, 0.566667, 1, 0.0261186, -0.0108187, -0.382531, -0.92351, 0.6, 1, 0.0141892, -0.00587736, -0.382638, -0.923771, 0.666667, 1, 0, 0, -0.382683, -0.92388)
-tracks/5/type = "position_3d"
-tracks/5/imported = true
-tracks/5/enabled = true
-tracks/5/path = NodePath("character-vampire/root")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = PackedFloat32Array(0, 1, 0, 0, 0)
-tracks/6/type = "rotation_3d"
-tracks/6/imported = true
-tracks/6/enabled = true
-tracks/6/path = NodePath("character-vampire/root")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
-tracks/7/type = "position_3d"
-tracks/7/imported = true
-tracks/7/enabled = true
-tracks/7/path = NodePath("character-vampire/root/leg-left")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = PackedFloat32Array(0, 1, 0.074204, 0.223184, -7.21911e-16)
-tracks/8/type = "rotation_3d"
-tracks/8/imported = true
-tracks/8/enabled = true
-tracks/8/path = NodePath("character-vampire/root/leg-left")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
-tracks/9/type = "position_3d"
-tracks/9/imported = true
-tracks/9/enabled = true
-tracks/9/path = NodePath("character-vampire/root/leg-right")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = PackedFloat32Array(0, 1, -0.074204, 0.223184, -7.21911e-16)
-tracks/10/type = "rotation_3d"
-tracks/10/imported = true
-tracks/10/enabled = true
-tracks/10/path = NodePath("character-vampire/root/leg-right")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
-tracks/11/type = "rotation_3d"
-tracks/11/imported = true
-tracks/11/enabled = true
-tracks/11/path = NodePath("character-vampire/root/torso/cape")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
@@ -2368,6 +2192,184 @@ tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = PackedFloat32Array(0, 1, 0, 0, 0, -1)
 
+[sub_resource type="Animation" id="Animation_l1m8v"]
+resource_name = "emote-no"
+length = 0.3
+step = 0.015
+tracks/0/type = "position_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("character-vampire/root/torso")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -1.44382e-15, 0.223184, -7.21911e-16)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("character-vampire/root/torso")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, -1, 0.0149254, 1, 0.00453784, 0, 0, -0.99999, 0.0298507, 1, 0.0153583, 0, 0, -0.999882, 0.0447761, 1, 0.0282706, 0, 0, -0.9996, 0.0597015, 1, 0.0390854, 0, 0, -0.999236, 0.0746269, 1, 0.0436194, 0, 0, -0.999048, 0.0895522, 1, 0.0404806, 0, 0, -0.99918, 0.104478, 1, 0.0324574, 0, 0, -0.999473, 0.119403, 1, 0.0216404, 0, 0, -0.999766, 0.134328, 1, 0.0101227, 0, 0, -0.999949, 0.149254, 1, 9.31323e-10, 0, 0, -1, 0.164179, 1, -0.0101227, 0, 0, -0.999949, 0.179104, 1, -0.0216404, 0, 0, -0.999766, 0.19403, 1, -0.0324574, 0, 0, -0.999473, 0.208955, 1, -0.0404806, 0, 0, -0.99918, 0.223881, 1, -0.0436194, 0, 0, -0.999048, 0.238806, 1, -0.0390854, 0, 0, -0.999236, 0.253731, 1, -0.0282706, 0, 0, -0.9996, 0.268657, 1, -0.0153583, 0, 0, -0.999882, 0.283582, 1, -0.00767938, 0, 0, -0.999971, 0.2978, 1, 0, 0, 0, -1)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("character-vampire/root/torso/head")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, 0, -1, 0.0149254, 1, 0, -0.0272238, 0, -0.999629, 0.0298507, 1, 0, -0.092023, 0, -0.995757, 0.0447761, 1, 0, -0.168833, 0, -0.985645, 0.0597015, 1, 0, -0.232427, 0, -0.972614, 0.0746269, 1, 0, -0.258819, 0, -0.965926, 0.0895522, 1, 0, -0.240567, 0, -0.970633, 0.104478, 1, 0, -0.193549, 0, -0.981091, 0.119403, 1, 0, -0.129488, 0, -0.991581, 0.134328, 1, 0, -0.0607001, 0, -0.998156, 0.149254, 1, 0, -5.58794e-09, 0, -1, 0.164179, 1, 0, 0.0607001, 0, -0.998156, 0.179104, 1, 0, 0.129488, 0, -0.991581, 0.19403, 1, 0, 0.193549, 0, -0.981091, 0.208955, 1, 0, 0.240567, 0, -0.970633, 0.223881, 1, 0, 0.258819, 0, -0.965926, 0.238806, 1, 0, 0.232427, 0, -0.972614, 0.253731, 1, 0, 0.168833, 0, -0.985645, 0.268657, 1, 0, 0.0920229, 0, -0.995757, 0.283582, 1, 0, 0.0460604, 0, -0.998939, 0.298507, 1, 0, 0, 0, -1)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = true
+tracks/3/enabled = true
+tracks/3/path = NodePath("character-vampire/root/torso/arm-left")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0.382683, -0.92388, 0.0149254, 1, -0.00419242, -0.00173656, 0.38268, -0.92387, 0.0298507, 1, -0.0141892, -0.00587737, 0.382638, -0.923771, 0.0447761, 1, -0.0261186, -0.0108187, 0.382531, -0.92351, 0.0597015, 1, -0.0361102, -0.0149573, 0.382391, -0.923174, 0.0895522, 1, -0.0402991, -0.0166924, 0.382319, -0.923, 0.104478, 1, -0.0373992, -0.0154912, 0.38237, -0.923122, 0.119403, 1, -0.0299867, -0.0124209, 0.382482, -0.923393, 0.134328, 1, -0.0199931, -0.00828142, 0.382594, -0.923663, 0.149254, 1, -0.00935219, -0.0038738, 0.382664, -0.923832, 0.164179, 1, 0.00935219, 0.0038738, 0.382664, -0.923832, 0.179104, 1, 0.0199931, 0.00828142, 0.382594, -0.923663, 0.19403, 1, 0.0299867, 0.0124209, 0.382482, -0.923393, 0.223881, 1, 0.0373992, 0.0154912, 0.38237, -0.923122, 0.238806, 1, 0.0402991, 0.0166924, 0.382319, -0.923, 0.253731, 1, 0.0361102, 0.0149573, 0.382391, -0.923174, 0.268657, 1, 0.0261186, 0.0108187, 0.382531, -0.92351, 0.283582, 1, 0.0141892, 0.00587736, 0.382638, -0.923771, 0.298507, 1, 0, 0, 0.382683, -0.92388)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = true
+tracks/4/enabled = true
+tracks/4/path = NodePath("character-vampire/root/torso/arm-right")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, 0, 0, -0.382683, -0.92388, 0.0333333, 1, -0.00419242, 0.00173656, -0.38268, -0.92387, 0.0666667, 1, -0.0141892, 0.00587737, -0.382638, -0.923771, 0.1, 1, -0.0261186, 0.0108187, -0.382531, -0.92351, 0.133333, 1, -0.0361102, 0.0149573, -0.382391, -0.923174, 0.166667, 1, -0.0402991, 0.0166924, -0.382319, -0.923, 0.2, 1, -0.0373992, 0.0154912, -0.38237, -0.923122, 0.233333, 1, -0.0299867, 0.0124209, -0.382482, -0.923393, 0.266667, 1, -0.0199931, 0.00828142, -0.382594, -0.923663, 0.3, 1, -0.00935219, 0.0038738, -0.382664, -0.923832, 0.366667, 1, 0.00935219, -0.0038738, -0.382664, -0.923832, 0.4, 1, 0.0199931, -0.00828142, -0.382594, -0.923663, 0.433333, 1, 0.0299867, -0.0124209, -0.382482, -0.923393, 0.466667, 1, 0.0373992, -0.0154912, -0.38237, -0.923122, 0.5, 1, 0.0402991, -0.0166924, -0.382319, -0.923, 0.533333, 1, 0.0361102, -0.0149573, -0.382391, -0.923174, 0.566667, 1, 0.0261186, -0.0108187, -0.382531, -0.92351, 0.6, 1, 0.0141892, -0.00587736, -0.382638, -0.923771, 0.666667, 1, 0, 0, -0.382683, -0.92388)
+tracks/5/type = "position_3d"
+tracks/5/imported = true
+tracks/5/enabled = true
+tracks/5/path = NodePath("character-vampire/root")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = true
+tracks/6/enabled = true
+tracks/6/path = NodePath("character-vampire/root")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/7/type = "position_3d"
+tracks/7/imported = true
+tracks/7/enabled = true
+tracks/7/path = NodePath("character-vampire/root/leg-left")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 0.074204, 0.223184, -7.21911e-16)
+tracks/8/type = "rotation_3d"
+tracks/8/imported = true
+tracks/8/enabled = true
+tracks/8/path = NodePath("character-vampire/root/leg-left")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/9/type = "position_3d"
+tracks/9/imported = true
+tracks/9/enabled = true
+tracks/9/path = NodePath("character-vampire/root/leg-right")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = PackedFloat32Array(0, 1, -0.074204, 0.223184, -7.21911e-16)
+tracks/10/type = "rotation_3d"
+tracks/10/imported = true
+tracks/10/enabled = true
+tracks/10/path = NodePath("character-vampire/root/leg-right")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/11/type = "rotation_3d"
+tracks/11/imported = true
+tracks/11/enabled = true
+tracks/11/path = NodePath("character-vampire/root/torso/cape")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_kitre"]
+resource_name = "emote-yes"
+length = 0.3
+step = 0.008
+tracks/0/type = "rotation_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("character-vampire/root/torso/head")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, -1, 0.0149254, 1, 0.0136131, 0, 0, -0.999907, 0.0298507, 1, 0.0460604, 0, 0, -0.998939, 0.0447761, 1, 0.0847213, 0, 0, -0.996405, 0.0597015, 1, 0.117017, 0, 0, -0.99313, 0.0746269, 1, 0.130526, 0, 0, -0.991445, 0.0895522, 1, 0.121176, 0, 0, -0.992631, 0.100994, 1, 0.0972355, 0, 0, -0.995261, 0.119403, 1, 0.0648806, 0, 0, -0.997893, 0.134328, 1, 0.0303641, 0, 0, -0.999539, 0.149254, 1, 5.58794e-09, 0, 0, -1, 0.164179, 1, -0.0303641, 0, 0, -0.999539, 0.179104, 1, -0.0648807, 0, 0, -0.997893, 0.19403, 1, -0.0972355, 0, 0, -0.995261, 0.208955, 1, -0.121176, 0, 0, -0.992631, 0.216, 1, -0.130526, 0, 0, -0.991445, 0.224, 1, -0.117017, 0, 0, -0.99313, 0.24, 1, -0.0847213, 0, 0, -0.996405, 0.256, 1, -0.0460604, 0, 0, -0.998939, 0.28, 1, -0.0230363, 0, 0, -0.999735, 0.297334, 1, 0, 0, 0, -1)
+tracks/1/type = "position_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("character-vampire/root/torso")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -1.44382e-15, 0.223184, -7.21911e-16)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("character-vampire/root/torso")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, 0, -1, 0.0149254, 1, 0.00453784, 0, 0, -0.99999, 0.0298507, 1, 0.0153583, 0, 0, -0.999882, 0.0447761, 1, 0.0282706, 0, 0, -0.9996, 0.0597015, 1, 0.0390854, 0, 0, -0.999236, 0.0746269, 1, 0.0436194, 0, 0, -0.999048, 0.0895522, 1, 0.0404806, 0, 0, -0.99918, 0.100994, 1, 0.0324574, 0, 0, -0.999473, 0.119403, 1, 0.0216404, 0, 0, -0.999766, 0.134328, 1, 0.0101227, 0, 0, -0.999949, 0.149254, 1, 9.31323e-10, 0, 0, -1, 0.164179, 1, -0.0101227, 0, 0, -0.999949, 0.179104, 1, -0.0216404, 0, 0, -0.999766, 0.19403, 1, -0.0324574, 0, 0, -0.999473, 0.208955, 1, -0.0404806, 0, 0, -0.99918, 0.216, 1, -0.0436194, 0, 0, -0.999048, 0.224, 1, -0.0390854, 0, 0, -0.999236, 0.24, 1, -0.0282706, 0, 0, -0.9996, 0.256, 1, -0.0153583, 0, 0, -0.999882, 0.28, 1, -0.00767938, 0, 0, -0.999971, 0.297334, 1, 0, 0, 0, -1)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = true
+tracks/3/enabled = true
+tracks/3/path = NodePath("character-vampire/root/torso/arm-left")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0.382683, -0.92388, 0.0149254, 1, -0.00419242, -0.00173656, 0.38268, -0.92387, 0.0298507, 1, -0.0141892, -0.00587737, 0.382638, -0.923771, 0.0447761, 1, -0.0261186, -0.0108187, 0.382531, -0.92351, 0.0597015, 1, -0.0361102, -0.0149573, 0.382391, -0.923174, 0.0746269, 1, -0.0402991, -0.0166924, 0.382319, -0.923, 0.0895522, 1, -0.0373992, -0.0154912, 0.38237, -0.923122, 0.100994, 1, -0.0299867, -0.0124209, 0.382482, -0.923393, 0.119403, 1, -0.0199931, -0.00828142, 0.382594, -0.923663, 0.134328, 1, -0.00935219, -0.0038738, 0.382664, -0.923832, 0.164179, 1, 0.00935219, 0.0038738, 0.382664, -0.923832, 0.179104, 1, 0.0199931, 0.00828142, 0.382594, -0.923663, 0.19403, 1, 0.0299867, 0.0124209, 0.382482, -0.923393, 0.208955, 1, 0.0373992, 0.0154912, 0.38237, -0.923122, 0.216, 1, 0.0402991, 0.0166924, 0.382319, -0.923, 0.224, 1, 0.0361102, 0.0149573, 0.382391, -0.923174, 0.24, 1, 0.0261186, 0.0108187, 0.382531, -0.92351, 0.256, 1, 0.0141892, 0.00587736, 0.382638, -0.923771, 0.297334, 1, 0, 0, 0.382683, -0.92388)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = true
+tracks/4/enabled = true
+tracks/4/path = NodePath("character-vampire/root/torso/arm-right")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, 0, 0, -0.382683, -0.92388, 0.0149254, 1, -0.00419242, 0.00173656, -0.38268, -0.92387, 0.0298507, 1, -0.0141892, 0.00587737, -0.382638, -0.923771, 0.0447761, 1, -0.0261186, 0.0108187, -0.382531, -0.92351, 0.0597015, 1, -0.0361102, 0.0149573, -0.382391, -0.923174, 0.0746269, 1, -0.0402991, 0.0166924, -0.382319, -0.923, 0.0895522, 1, -0.0373992, 0.0154912, -0.38237, -0.923122, 0.100994, 1, -0.0299867, 0.0124209, -0.382482, -0.923393, 0.119403, 1, -0.0199931, 0.00828142, -0.382594, -0.923663, 0.134328, 1, -0.00935219, 0.0038738, -0.382664, -0.923832, 0.164179, 1, 0.00935219, -0.0038738, -0.382664, -0.923832, 0.179104, 1, 0.0199931, -0.00828142, -0.382594, -0.923663, 0.19403, 1, 0.0299867, -0.0124209, -0.382482, -0.923393, 0.208955, 1, 0.0373992, -0.0154912, -0.38237, -0.923122, 0.216, 1, 0.0402991, -0.0166924, -0.382319, -0.923, 0.224, 1, 0.0361102, -0.0149573, -0.382391, -0.923174, 0.24, 1, 0.0261186, -0.0108187, -0.382531, -0.92351, 0.256, 1, 0.0141892, -0.00587736, -0.382638, -0.923771, 0.297334, 1, 0, 0, -0.382683, -0.92388)
+tracks/5/type = "position_3d"
+tracks/5/imported = true
+tracks/5/enabled = true
+tracks/5/path = NodePath("character-vampire/root")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = true
+tracks/6/enabled = true
+tracks/6/path = NodePath("character-vampire/root")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/7/type = "position_3d"
+tracks/7/imported = true
+tracks/7/enabled = true
+tracks/7/path = NodePath("character-vampire/root/leg-left")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 0.074204, 0.223184, -7.21911e-16)
+tracks/8/type = "rotation_3d"
+tracks/8/imported = true
+tracks/8/enabled = true
+tracks/8/path = NodePath("character-vampire/root/leg-left")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/9/type = "position_3d"
+tracks/9/imported = true
+tracks/9/enabled = true
+tracks/9/path = NodePath("character-vampire/root/leg-right")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = PackedFloat32Array(0, 1, -0.074204, 0.223184, -7.21911e-16)
+tracks/10/type = "rotation_3d"
+tracks/10/imported = true
+tracks/10/enabled = true
+tracks/10/path = NodePath("character-vampire/root/leg-right")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/11/type = "rotation_3d"
+tracks/11/imported = true
+tracks/11/enabled = true
+tracks/11/path = NodePath("character-vampire/root/torso/cape")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+
 [sub_resource type="Animation" id="Animation_yp62p"]
 resource_name = "walk"
 length = 0.666667
@@ -2465,8 +2467,6 @@ _data = {
 "crouch": SubResource("Animation_1ii15"),
 "die": SubResource("Animation_e3j2w"),
 "drive": SubResource("Animation_ikmf7"),
-"emote-no": SubResource("Animation_l1m8v"),
-"emote-yes": SubResource("Animation_kitre"),
 "fall": SubResource("Animation_nxqet"),
 "holding-both": SubResource("Animation_ta7ad"),
 "holding-both-shoot": SubResource("Animation_40ear"),
@@ -2482,6 +2482,8 @@ _data = {
 "sit": SubResource("Animation_el6mt"),
 "sprint": SubResource("Animation_yxcix"),
 "static": SubResource("Animation_dn03m"),
+"take-damage-1": SubResource("Animation_l1m8v"),
+"take-damage-2": SubResource("Animation_kitre"),
 "walk": SubResource("Animation_yp62p")
 }
 
@@ -2489,6 +2491,22 @@ _data = {
 script = ExtResource("2_coroo")
 enemy_name = "tier_vampire_enemy"
 animation_player = NodePath("character-vampire2/AnimationPlayer")
+
+[node name="BarsBox" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.869611, 0)
+
+[node name="StatsBox" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.850928, 0)
+
+[node name="HealthComponent" parent="StatsBox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+max_value = 30.0
+current_value = 25.0
+
+[node name="ManaComponent" parent="StatsBox" index="1"]
+max_value = 100.0
+current_value = 100.0
+regen = 5.0
 
 [node name="DodgeSkillController" parent="SkillBox" index="0" node_paths=PackedStringArray("enemy") instance=ExtResource("3_pgm7c")]
 enemy = NodePath("../..")
@@ -2499,8 +2517,12 @@ enemy = NodePath("../..")
 [node name="CallOtherEnemiesController" parent="SkillBox" index="2" instance=ExtResource("6_6u3lk")]
 
 [node name="VampireRangeAttackController" parent="SkillBox" index="3" node_paths=PackedStringArray("enemy") instance=ExtResource("6_uftmp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0178138, 0.564657, 0.18851)
 enemy = NodePath("../..")
-spark_projectile = ExtResource("7_5eka8")
+vampire_projectile = ExtResource("7_afbom")
+
+[node name="RayCast3D" parent="." index="7"]
+target_position = Vector3(0, 0, 10)
 
 [node name="CollisionShape3D" parent="CallEnemyAreaClient" index="0"]
 shape = SubResource("CylinderShape3D_cqyx7")
@@ -2533,12 +2555,12 @@ mesh = SubResource("ArrayMesh_1ufk8")
 skeleton = NodePath("")
 
 [node name="arm-left" type="MeshInstance3D" parent="character-vampire2/character-vampire/root/torso" index="0"]
-transform = Transform3D(0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, 0.15, 0.2, 0.0025)
+transform = Transform3D(0.707108, 0.707106, 0, -0.707106, 0.707108, 0, 0, 0, 1, 0.15, 0.2, 0.0025)
 mesh = SubResource("ArrayMesh_8x4co")
 skeleton = NodePath("")
 
 [node name="arm-right" type="MeshInstance3D" parent="character-vampire2/character-vampire/root/torso" index="1"]
-transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, -0.15, 0.2, 0.0025)
+transform = Transform3D(0.707108, -0.707106, 0, 0.707106, 0.707108, 0, 0, 0, 1, -0.15, 0.2, 0.0025)
 mesh = SubResource("ArrayMesh_8r8pt")
 skeleton = NodePath("")
 
