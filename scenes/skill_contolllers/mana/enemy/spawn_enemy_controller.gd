@@ -86,7 +86,6 @@ func use_skill() -> void:
 	
 	if !positions.is_empty():
 		var inst: BasicEnemy = enemy_packed.instantiate()
-		inst.is_boss = true
 		enemy_box.add_child(inst)
 		
 		inst.global_position = positions.pop_front()

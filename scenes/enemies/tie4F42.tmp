@@ -1352,7 +1352,6 @@ shape = SubResource("CapsuleShape3D_jdu4k")
 
 [node name="Timer" type="Timer" parent="." index="9"]
 wait_time = 3.0
-one_shot = true
 autostart = true
 
 [node name="CallOtherEnemiesController" parent="Body/SkillBox" index="0" instance=ExtResource("3_jc16e")]
@@ -1394,7 +1393,6 @@ libraries = {
 }
 
 [node name="Area3D" type="Area3D" parent="Body/character-ghost2" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 collision_layer = 1024
 collision_mask = 4
 

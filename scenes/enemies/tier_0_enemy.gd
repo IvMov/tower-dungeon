@@ -4,6 +4,9 @@ class_name Tier0Enemy extends BasicEnemy
 @onready var idle_moving_controller: IdleMovingController = $Body/SkillBox/IdleMovingController
 @onready var call_other_enemies_controller: CallOtherEnemiesController = $Body/SkillBox/CallOtherEnemiesController
 @onready var character_ghost_2: Node3D = $"Body/character-ghost2"
+@onready var timer: Timer = $Timer
+@onready var area_3d: Area3D = $"Body/character-ghost2/Area3D"
+@onready var collision_shape_3d: CollisionShape3D = $"Body/character-ghost2/Area3D/CollisionShape3D"
 
 
 func _ready():  
@@ -17,13 +20,17 @@ func _ready():
 	stamina_bar.update(stamina_component.current_value, stamina_component.max_value)
 	mana_bar.update(mana_component.current_value, mana_component.max_value)
 	#choose_color()
-	choose_position()
 	range_attack_controller.cooldown_timer.start()
+	if is_boss:
+		range_attack_controller.skill.base_distance *= 2
 	range_attack_controller.skill.base_value *= multiply_characteristics()
+	choose_position()
 	print("INFO: tier0 instantiated, speed: %s, health: %s, damage %s " % [speed, health_component.current_value, range_attack_controller.skill.base_value])
 
 func choose_position() -> void: 
 	var rand: float = randf_range(0.3, 2.5)
+	if !is_boss:
+		rand * 2
 	character_ghost_2.global_position.y = global_position.y + rand
 	range_attack_controller.global_position.y = global_position.y + rand
 	bars_box.global_position.y = global_position.y + rand - 0.05
@@ -67,3 +74,22 @@ func _on_chase_player_timer_timeout():
 		is_runing = false
 		reset_agr_area_size()
 		idle_moving_controller.use_skill()
+
+
+#change position verticaly randomly in some bounds
+func _on_timer_timeout() -> void:
+	timer.wait_time = randf_range(2, 6)
+	var rand: float = randf_range(0.8, 2.5)
+	if is_boss:
+		rand *= 2
+
+	var tween: Tween = create_tween()
+	tween.set_parallel()
+	tween.set_ease(Tween.EASE_IN_OUT)
+
+	tween.tween_property(character_ghost_2, "global_position:y", global_position.y  + rand, 1.0)
+	tween.tween_property(range_attack_controller, "global_position:y", global_position.y + rand, 1.0)
+	tween.tween_property(bars_box, "global_position:y", global_position.y + rand, 1.0)
+	await tween.finished
+	timer.start()
+	

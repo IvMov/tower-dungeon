@@ -16,8 +16,10 @@ func _ready():
 	hp_bar.update(health_component.current_value, health_component.max_value)
 	stamina_bar.update(stamina_component.current_value, stamina_component.max_value)
 	mana_bar.update(mana_component.current_value, mana_component.max_value)
-	kick_skill_controller.skill.base_value = multiply_characteristics()
+	kick_skill_controller.skill.base_value *= multiply_characteristics()
 	choose_color()
+	print("INFO: tier1 instantiated, speed: %s, health: %s, damage %s " % [speed, health_component.current_value, kick_skill_controller.skill.base_value])
+
 
 
 func choose_color() -> void:

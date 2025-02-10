@@ -115,7 +115,7 @@ func _physics_process(delta):
 
 func multiply_characteristics() -> float:
 	var rand: float = randf_range(0.9, 1.5) if !is_boss else randf_range(3, 5)
-
+	speed = speed / rand if !is_boss else speed *  2 / (1 + rand/10)
 	self.body.scale = Vector3.ONE * rand
 	enemy_collision.shape.height *= rand
 	enemy_collision.shape.radius *= (rand * 2 / 3)
@@ -126,8 +126,6 @@ func multiply_characteristics() -> float:
 	mana_component.current_value *= rand
 	stamina_component.max_value *= rand
 	stamina_component.current_value *= rand
-	
-	
 	
 	return rand
 
