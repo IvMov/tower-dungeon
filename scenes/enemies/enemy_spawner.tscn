@@ -8,6 +8,16 @@
 [ext_resource type="PackedScene" uid="uid://dbv1lp0pn7xhc" path="res://scenes/enemies/tier_1_enemy.tscn" id="7_a65kd"]
 [ext_resource type="PackedScene" uid="uid://b64al2yi4ofhh" path="res://scenes/enemies/tier_vampire_enemy.tscn" id="7_fja2h"]
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_v63dg"]
+resource_local_to_scene = true
+height = 0.2
+radius = 0.2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_58i0a"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_c67ek"]
+radius = 1.0
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x4ge0"]
 shading_mode = 0
 albedo_color = Color(2, 1, 1, 1)
@@ -181,55 +191,14 @@ _data = {
 "walk": SubResource("Animation_jdfxs")
 }
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_v63dg"]
-resource_local_to_scene = true
-height = 0.2
-radius = 0.2
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_58i0a"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_c67ek"]
-radius = 1.0
-
 [node name="EnemySpawner" node_paths=PackedStringArray("animation_player") instance=ExtResource("1_uk4uo")]
 collision_layer = 4096
 script = ExtResource("2_6rjot")
 enemy_name = "enemy_spawner"
-animation_player = NodePath("SpawnerBody/AnimationPlayer")
+animation_player = NodePath("Body/SpawnerBody/AnimationPlayer")
 
 [node name="EffectFlashComponent" parent="." index="0" node_paths=PackedStringArray("meshes")]
-meshes = [NodePath("../SpawnerBody")]
-
-[node name="SpawnerBody" type="MeshInstance3D" parent="." index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-mesh = SubResource("SphereMesh_xq4gm")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="SpawnerBody" index="0"]
-libraries = {
-"": SubResource("AnimationLibrary_h1kjm")
-}
-autoplay = "idle"
-
-[node name="BarsBox" parent="." index="4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.86995, 0)
-
-[node name="HealthComponent" parent="StatsBox" index="0"]
-max_value = 10.0
-current_value = 7.0
-
-[node name="ManaComponent" parent="StatsBox" index="1"]
-max_value = 20.0
-current_value = 20.0
-regen = 1.0
-
-[node name="StaminaComponent" parent="StatsBox" index="2"]
-max_value = 0.0
-current_value = 0.0
-regen = 0.0
-
-[node name="SpawnEnemyController" parent="SkillBox" index="0" node_paths=PackedStringArray("owner_enemy") instance=ExtResource("3_h5qeo")]
-owner_enemy = NodePath("../..")
-enemies = Array[PackedScene]([ExtResource("7_fja2h"), ExtResource("6_gc6bk"), ExtResource("7_a65kd")])
+meshes = [NodePath("../Body/SpawnerBody")]
 
 [node name="CollisionShape3D" parent="CallEnemyAreaClient" index="0"]
 shape = SubResource("CylinderShape3D_v63dg")
@@ -238,6 +207,21 @@ shape = SubResource("CylinderShape3D_v63dg")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 shape = SubResource("BoxShape3D_58i0a")
 
-[node name="EnemyCollision" parent="." index="11"]
+[node name="EnemyCollision" parent="." index="7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("SphereShape3D_c67ek")
+
+[node name="SpawnEnemyController" parent="Body/SkillBox" index="0" node_paths=PackedStringArray("owner_enemy") instance=ExtResource("3_h5qeo")]
+owner_enemy = NodePath("../../..")
+enemies = Array[PackedScene]([ExtResource("7_fja2h"), ExtResource("6_gc6bk"), ExtResource("7_a65kd")])
+
+[node name="SpawnerBody" type="MeshInstance3D" parent="Body" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("SphereMesh_xq4gm")
+skeleton = NodePath("../..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Body/SpawnerBody" index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_h1kjm")
+}
+autoplay = "idle"

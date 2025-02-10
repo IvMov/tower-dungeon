@@ -168,7 +168,7 @@ func generate_room() -> void:
 		map.add_child(wall_enemy_inst)
 		wall_enemy_inst.global_position.y = -2
 		wall_enemy_inst.global_position = Vector3(room.exit.x, 0.0, room.exit.y)
-		if next_room_direction == Vector2.LEFT || next_room_direction == Vector2.RIGHT:
+		if next_room_direction == Vector2.UP || next_room_direction == Vector2.DOWN:
 			wall_enemy_inst.rotate_y(PI/2)
 
 		player_fontain_builder.add_fontain(room, map, wall_enemy_inst)

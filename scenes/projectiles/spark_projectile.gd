@@ -46,9 +46,9 @@ func on_life_timer_timeout() -> void:
 
 
 func _on_area_3d_area_entered(area: Area3D) -> void:
-	if !area.get_parent():
+	if !area.get_parent() || !area.get_parent().get_parent():
 		return
-	var body: Node3D =  area.get_parent().get_parent();
+	var body: Node = area.get_parent().get_parent().get_parent();
 	if body is BasicEnemy:
 		handleb_body_collision()
 		if body.get_damage(global_position, damage, push_power):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://banbap6p0glja"]
+[gd_scene load_steps=48 format=4 uid="uid://banbap6p0glja"]
 
 [ext_resource type="PackedScene" uid="uid://ca0ysw5vmydwd" path="res://scenes/enemies/basic_enemy.tscn" id="1_y8pbg"]
 [ext_resource type="Script" path="res://scenes/enemies/tier_0_enemy.gd" id="2_sjwt3"]
@@ -1328,6 +1328,8 @@ _data = {
 "walk": SubResource("Animation_gpwsc")
 }
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_t4dls"]
+
 [node name="Tier0Enemy" node_paths=PackedStringArray("animation_player") instance=ExtResource("1_y8pbg")]
 collision_layer = 8192
 collision_mask = 8195
@@ -1335,27 +1337,7 @@ platform_floor_layers = 1
 script = ExtResource("2_sjwt3")
 enemy_name = "tier_0_enemy"
 speed = 200.0
-animation_player = NodePath("character-ghost2/AnimationPlayer")
-
-[node name="BarsBox" parent="." index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-
-[node name="StatsBox" parent="." index="4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.871749, 0)
-
-[node name="HealthComponent" parent="StatsBox" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-
-[node name="CallOtherEnemiesController" parent="SkillBox" index="0" instance=ExtResource("3_jc16e")]
-
-[node name="IdleMovingController" parent="SkillBox" index="1" node_paths=PackedStringArray("enemy") instance=ExtResource("4_jgjtl")]
-enemy = NodePath("../..")
-
-[node name="RangeAttackController" parent="SkillBox" index="2" node_paths=PackedStringArray("enemy") instance=ExtResource("6_bun4k")]
-enemy = NodePath("../..")
-
-[node name="NavigationAgent3D" parent="Node3D" index="0"]
-debug_enabled = false
+animation_player = NodePath("Body/character-ghost2/AnimationPlayer")
 
 [node name="CollisionShape3D" parent="CallEnemyAreaClient" index="0"]
 shape = SubResource("CylinderShape3D_ch67v")
@@ -1364,42 +1346,57 @@ shape = SubResource("CylinderShape3D_ch67v")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1.765)
 shape = SubResource("CylinderShape3D_26ux2")
 
-[node name="EnemyCollision" parent="." index="10"]
+[node name="EnemyCollision" parent="." index="7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.37633, 0)
 shape = SubResource("CapsuleShape3D_jdu4k")
 
-[node name="character-ghost2" type="Node3D" parent="." index="12"]
+[node name="Timer" type="Timer" parent="." index="9"]
+wait_time = 0.5
+autostart = true
+
+[node name="CallOtherEnemiesController" parent="Body/SkillBox" index="0" instance=ExtResource("3_jc16e")]
+
+[node name="IdleMovingController" parent="Body/SkillBox" index="1" node_paths=PackedStringArray("enemy") instance=ExtResource("4_jgjtl")]
+enemy = NodePath("../../..")
+
+[node name="RangeAttackController" parent="Body/SkillBox" index="2" node_paths=PackedStringArray("enemy") instance=ExtResource("6_bun4k")]
+enemy = NodePath("../../..")
+
+[node name="character-ghost2" type="Node3D" parent="Body" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
-[node name="character-ghost" type="Node3D" parent="character-ghost2" index="0"]
+[node name="character-ghost" type="Node3D" parent="Body/character-ghost2" index="0"]
 
-[node name="root" type="Node3D" parent="character-ghost2/character-ghost" index="0"]
+[node name="root" type="Node3D" parent="Body/character-ghost2/character-ghost" index="0"]
 
-[node name="torso" type="MeshInstance3D" parent="character-ghost2/character-ghost/root" index="0"]
+[node name="torso" type="MeshInstance3D" parent="Body/character-ghost2/character-ghost/root" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.44382e-15, 0.223184, -7.21911e-16)
 mesh = SubResource("ArrayMesh_yfbok")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_uhite")
 
-[node name="arm-left" type="MeshInstance3D" parent="character-ghost2/character-ghost/root/torso" index="0"]
+[node name="arm-left" type="MeshInstance3D" parent="Body/character-ghost2/character-ghost/root/torso" index="0"]
 transform = Transform3D(0.707108, 0.707106, 0, -0.707106, 0.707108, 0, 0, 0, 1, 0.15, 0.225, 0.0025)
 mesh = SubResource("ArrayMesh_068p1")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_y08au")
 
-[node name="arm-right" type="MeshInstance3D" parent="character-ghost2/character-ghost/root/torso" index="1"]
+[node name="arm-right" type="MeshInstance3D" parent="Body/character-ghost2/character-ghost/root/torso" index="1"]
 transform = Transform3D(0.707108, -0.707106, 0, 0.707106, 0.707108, 0, 0, 0, 1, -0.15, 0.225, 0.0025)
 mesh = SubResource("ArrayMesh_vdllo")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_j80gf")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="character-ghost2" index="1"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Body/character-ghost2" index="1"]
 libraries = {
 "": SubResource("AnimationLibrary_dp86x")
 }
 
-[node name="Timer" type="Timer" parent="." index="13"]
-wait_time = 0.5
-autostart = true
+[node name="Area3D" type="Area3D" parent="Body/character-ghost2" index="2"]
+collision_layer = 1024
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body/character-ghost2/Area3D" index="0"]
+shape = SubResource("SphereShape3D_t4dls")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

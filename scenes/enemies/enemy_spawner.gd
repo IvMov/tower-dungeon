@@ -1,6 +1,7 @@
 class_name EnemySpawner extends BasicEnemy
 
-@onready var spawn_enemy_controller: SpawnEnemyController = $SkillBox/SpawnEnemyController
+@onready var spawn_enemy_controller: SpawnEnemyController = $Body/SkillBox/SpawnEnemyController
+
 var is_player_near: bool = false
 var boost_cast: bool = true
 var boost_enemies_num: int

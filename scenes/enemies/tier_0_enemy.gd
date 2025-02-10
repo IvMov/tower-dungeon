@@ -1,14 +1,14 @@
 class_name Tier0Enemy extends BasicEnemy
 
-@onready var idle_moving_controller: IdleMovingController = $SkillBox/IdleMovingController
-@onready var call_other_enemies_controller: CallOtherEnemiesController = $SkillBox/CallOtherEnemiesController
-@onready var character_ghost_2: Node3D = $"character-ghost2"
-@onready var bars_box: Node3D = $BarsBox
-@onready var range_attack_controller: RangeAttackController = $SkillBox/RangeAttackController
+@onready var range_attack_controller: RangeAttackController = $Body/SkillBox/RangeAttackController
+@onready var idle_moving_controller: IdleMovingController = $Body/SkillBox/IdleMovingController
+@onready var call_other_enemies_controller: CallOtherEnemiesController = $Body/SkillBox/CallOtherEnemiesController
+@onready var character_ghost_2: Node3D = $"Body/character-ghost2"
 
 
 func _ready():  
 	is_ranged = true
+	is_flying = true
 	battle_distance = 5
 	run_speed = speed * 2
 	agr_radius = 8
@@ -19,6 +19,8 @@ func _ready():
 	#choose_color()
 	choose_position()
 	range_attack_controller.cooldown_timer.start()
+	range_attack_controller.skill.base_value *= multiply_characteristics()
+	print("INFO: tier0 instantiated, speed: %s, health: %s, damage %s " % [speed, health_component.current_value, range_attack_controller.skill.base_value])
 
 func choose_position() -> void: 
 	var rand: float = randf_range(0.3, 2.5)

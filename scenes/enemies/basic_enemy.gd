@@ -14,13 +14,13 @@ class_name BasicEnemy extends CharacterBody3D
 
 @onready var navigation_agent_3d: NavigationAgent3D = $Node3D/NavigationAgent3D
 
-@onready var health_component: HealthComponent = $StatsBox/HealthComponent
-@onready var mana_component: ManaComponent = $StatsBox/ManaComponent
-@onready var stamina_component: StaminaComponent = $StatsBox/StaminaComponent
+@onready var health_component: HealthComponent = $Body/StatsBox/HealthComponent
+@onready var mana_component: ManaComponent = $Body/StatsBox/ManaComponent
+@onready var stamina_component: StaminaComponent = $Body/StatsBox/StaminaComponent
 
-@onready var hp_bar: Healthbar = $BarsBox/HPBar
-@onready var stamina_bar: StaminaBar = $BarsBox/StaminaBar
-@onready var mana_bar: ManaBar = $BarsBox/ManaBar
+@onready var hp_bar: Healthbar = $Body/BarsBox/HPBar
+@onready var stamina_bar: StaminaBar = $Body/BarsBox/StaminaBar
+@onready var mana_bar: ManaBar = $Body/BarsBox/ManaBar
 
 @onready var soul_component: SoulComponent = $SoulComponent
 @onready var souls_drop_component: SoulsDropComponent = $SoulsDropComponent
@@ -28,6 +28,11 @@ class_name BasicEnemy extends CharacterBody3D
 @onready var chase_player_timer: Timer = $Timers/ChasePlayerTimer
 @onready var start_timer: Timer = $Timers/StartTimer
 @onready var speed_up_timer = $Timers/SpeedUpTimer
+@onready var enemy_collision: CollisionShape3D = $EnemyCollision
+@onready var bars_box: Node3D = $Body/BarsBox
+@onready var stats_box: Node3D = $Body/StatsBox
+@onready var skill_box: Node3D = $Body/SkillBox
+@onready var body: Node3D = $Body
 
 
 @export var enemy_name: String
@@ -57,7 +62,9 @@ var battle_distance: float = 0
 var battle_move_radius: float =  randf_range(2, 6)
 var battle_direction_when_radial: int = get_random_sign()
 
+var is_boss: bool = false
 var is_ranged: bool = false
+var is_flying: bool = false
 var can_move: bool = true
 var is_runing: bool = false
 var is_dodging: bool = false
@@ -105,6 +112,24 @@ func _physics_process(delta):
 			return
 		accelerate_to_player(delta)
 	move_and_slide()
+
+func multiply_characteristics() -> float:
+	var rand: float = randf_range(0.9, 1.5) if !is_boss else randf_range(3, 5)
+
+	self.body.scale = Vector3.ONE * rand
+	enemy_collision.shape.height *= rand
+	enemy_collision.shape.radius *= (rand * 2 / 3)
+	enemy_collision.position.y = enemy_collision.shape.height / 2
+	health_component.max_value *= rand
+	health_component.current_value *= rand
+	mana_component.max_value *= rand
+	mana_component.current_value *= rand
+	stamina_component.max_value *= rand
+	stamina_component.current_value *= rand
+	
+	
+	
+	return rand
 
 # damage things
 func do_damage() -> float:

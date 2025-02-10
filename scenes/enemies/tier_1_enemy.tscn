@@ -9,6 +9,21 @@
 [ext_resource type="PackedScene" uid="uid://41gcnflwbed5" path="res://scenes/skill_contolllers/stamina/enemy/battle_move_controller.tscn" id="6_0g0ut"]
 [ext_resource type="PackedScene" uid="uid://crd6vmrg3liuw" path="res://scenes/skill_contolllers/stamina/enemy/call_other_enemies_controller.tscn" id="6_wkmid"]
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ogdi0"]
+resource_local_to_scene = true
+height = 0.2
+radius = 0.2
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_nuw01"]
+resource_local_to_scene = true
+height = 4.0
+radius = 4.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t31c1"]
+resource_local_to_scene = true
+radius = 0.4
+height = 0.8
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dd40b"]
 resource_name = "colormap"
 cull_mode = 2
@@ -2309,52 +2324,43 @@ _data = {
 "walk": SubResource("Animation_hcse1")
 }
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_ogdi0"]
-resource_local_to_scene = true
-height = 0.2
-radius = 0.2
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_nuw01"]
-resource_local_to_scene = true
-height = 4.0
-radius = 4.0
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t31c1"]
-resource_local_to_scene = true
-radius = 0.4
-height = 0.8
-
 [node name="Tier1Enemy" node_paths=PackedStringArray("animation_player") instance=ExtResource("1_4vmlr")]
 script = ExtResource("2_ahays")
 enemy_name = "tier_1_enemy"
-speed = 180.0
-animation_player = NodePath("character-orc2/AnimationPlayer")
+speed = 200.0
+animation_player = NodePath("Body/character-orc2/AnimationPlayer")
 
 [node name="EffectFlashComponent" parent="." index="0" node_paths=PackedStringArray("meshes")]
-meshes = [NodePath("../character-orc2/character-orc/Skeleton3D/body-mesh"), NodePath("../character-orc2/character-orc/Skeleton3D/head-mesh")]
+meshes = [NodePath("../Body/character-orc2/character-orc/Skeleton3D/body-mesh"), NodePath("../Body/character-orc2/character-orc/Skeleton3D/head-mesh")]
 
-[node name="BarsBox" parent="." index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.807021, 0)
+[node name="CollisionShape3D" parent="CallEnemyAreaClient" index="0"]
+shape = SubResource("CylinderShape3D_ogdi0")
 
-[node name="KickSkillController" parent="SkillBox" index="0" node_paths=PackedStringArray("enemy") instance=ExtResource("3_dpkme")]
-enemy = NodePath("../..")
+[node name="AgrCollision" parent="AgrArea" index="0"]
+shape = SubResource("CylinderShape3D_nuw01")
 
-[node name="DodgeSkillController" parent="SkillBox" index="1" node_paths=PackedStringArray("enemy") instance=ExtResource("4_t7pnn")]
-enemy = NodePath("../..")
+[node name="EnemyCollision" parent="." index="7"]
+shape = SubResource("CapsuleShape3D_t31c1")
 
-[node name="IdleMovingController" parent="SkillBox" index="2" node_paths=PackedStringArray("enemy") instance=ExtResource("5_k3ujr")]
-enemy = NodePath("../..")
+[node name="KickSkillController" parent="Body/SkillBox" index="0" node_paths=PackedStringArray("enemy") instance=ExtResource("3_dpkme")]
+enemy = NodePath("../../..")
 
-[node name="BattleMoveController" parent="SkillBox" index="3" node_paths=PackedStringArray("enemy") instance=ExtResource("6_0g0ut")]
-enemy = NodePath("../..")
+[node name="DodgeSkillController" parent="Body/SkillBox" index="1" node_paths=PackedStringArray("enemy") instance=ExtResource("4_t7pnn")]
+enemy = NodePath("../../..")
 
-[node name="CallOtherEnemiesController" parent="SkillBox" index="4" instance=ExtResource("6_wkmid")]
+[node name="IdleMovingController" parent="Body/SkillBox" index="2" node_paths=PackedStringArray("enemy") instance=ExtResource("5_k3ujr")]
+enemy = NodePath("../../..")
 
-[node name="character-orc2" type="Node3D" parent="." index="6"]
+[node name="BattleMoveController" parent="Body/SkillBox" index="3" node_paths=PackedStringArray("enemy") instance=ExtResource("6_0g0ut")]
+enemy = NodePath("../../..")
 
-[node name="character-orc" type="Node3D" parent="character-orc2" index="0"]
+[node name="CallOtherEnemiesController" parent="Body/SkillBox" index="4" instance=ExtResource("6_wkmid")]
 
-[node name="Skeleton3D" type="Skeleton3D" parent="character-orc2/character-orc" index="0"]
+[node name="character-orc2" type="Node3D" parent="Body" index="3"]
+
+[node name="character-orc" type="Node3D" parent="Body/character-orc2" index="0"]
+
+[node name="Skeleton3D" type="Skeleton3D" parent="Body/character-orc2/character-orc" index="0"]
 bones/0/name = "root"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -2405,29 +2411,17 @@ bones/6/position = Vector3(1.81969e-09, 0.167, 0.0263888)
 bones/6/rotation = Quaternion(0, 0, 0, 1)
 bones/6/scale = Vector3(1, 1, 1)
 
-[node name="body-mesh" type="MeshInstance3D" parent="character-orc2/character-orc/Skeleton3D" index="0"]
+[node name="body-mesh" type="MeshInstance3D" parent="Body/character-orc2/character-orc/Skeleton3D" index="0"]
 mesh = SubResource("ArrayMesh_6oevx")
 skin = SubResource("Skin_bjf3r")
 surface_material_override/0 = SubResource("StandardMaterial3D_y85u2")
 
-[node name="head-mesh" type="MeshInstance3D" parent="character-orc2/character-orc/Skeleton3D" index="1"]
+[node name="head-mesh" type="MeshInstance3D" parent="Body/character-orc2/character-orc/Skeleton3D" index="1"]
 mesh = SubResource("ArrayMesh_i7uny")
 skin = SubResource("Skin_bjf3r")
 surface_material_override/0 = SubResource("StandardMaterial3D_nuqbu")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="character-orc2" index="1"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Body/character-orc2" index="1"]
 libraries = {
 "": SubResource("AnimationLibrary_nxnuc")
 }
-
-[node name="NavigationAgent3D" parent="Node3D" index="0"]
-debug_enabled = false
-
-[node name="CollisionShape3D" parent="CallEnemyAreaClient" index="0"]
-shape = SubResource("CylinderShape3D_ogdi0")
-
-[node name="AgrCollision" parent="AgrArea" index="0"]
-shape = SubResource("CylinderShape3D_nuw01")
-
-[node name="EnemyCollision" parent="." index="11"]
-shape = SubResource("CapsuleShape3D_t31c1")

@@ -2490,38 +2490,9 @@ _data = {
 [node name="TierVampireEnemy" node_paths=PackedStringArray("animation_player") instance=ExtResource("1_ihf13")]
 script = ExtResource("2_coroo")
 enemy_name = "tier_vampire_enemy"
-animation_player = NodePath("character-vampire2/AnimationPlayer")
+animation_player = NodePath("Body/character-vampire2/AnimationPlayer")
 
-[node name="BarsBox" parent="." index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.869611, 0)
-
-[node name="StatsBox" parent="." index="4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.850928, 0)
-
-[node name="HealthComponent" parent="StatsBox" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-max_value = 30.0
-current_value = 25.0
-
-[node name="ManaComponent" parent="StatsBox" index="1"]
-max_value = 100.0
-current_value = 100.0
-regen = 5.0
-
-[node name="DodgeSkillController" parent="SkillBox" index="0" node_paths=PackedStringArray("enemy") instance=ExtResource("3_pgm7c")]
-enemy = NodePath("../..")
-
-[node name="IdleMovingController" parent="SkillBox" index="1" node_paths=PackedStringArray("enemy") instance=ExtResource("4_ipoc6")]
-enemy = NodePath("../..")
-
-[node name="CallOtherEnemiesController" parent="SkillBox" index="2" instance=ExtResource("6_6u3lk")]
-
-[node name="VampireRangeAttackController" parent="SkillBox" index="3" node_paths=PackedStringArray("enemy") instance=ExtResource("6_uftmp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0178138, 0.564657, 0.18851)
-enemy = NodePath("../..")
-vampire_projectile = ExtResource("7_afbom")
-
-[node name="RayCast3D" parent="." index="7"]
+[node name="RayCast3D" parent="." index="4"]
 target_position = Vector3(0, 0, 10)
 
 [node name="CollisionShape3D" parent="CallEnemyAreaClient" index="0"]
@@ -2530,51 +2501,69 @@ shape = SubResource("CylinderShape3D_cqyx7")
 [node name="AgrCollision" parent="AgrArea" index="0"]
 shape = SubResource("CylinderShape3D_6njbg")
 
-[node name="EnemyCollision" parent="." index="10"]
+[node name="EnemyCollision" parent="." index="7"]
 shape = SubResource("CapsuleShape3D_j3l2d")
 
-[node name="character-vampire2" type="Node3D" parent="." index="12"]
+[node name="ManaComponent" parent="Body/StatsBox" index="1"]
+max_value = 100.0
+current_value = 20.0
+regen = 1.0
 
-[node name="character-vampire" type="Node3D" parent="character-vampire2" index="0"]
+[node name="DodgeSkillController" parent="Body/SkillBox" index="0" node_paths=PackedStringArray("enemy") instance=ExtResource("3_pgm7c")]
+enemy = NodePath("../../..")
 
-[node name="root" type="Node3D" parent="character-vampire2/character-vampire" index="0"]
+[node name="IdleMovingController" parent="Body/SkillBox" index="1" node_paths=PackedStringArray("enemy") instance=ExtResource("4_ipoc6")]
+enemy = NodePath("../../..")
 
-[node name="leg-left" type="MeshInstance3D" parent="character-vampire2/character-vampire/root" index="0"]
+[node name="CallOtherEnemiesController" parent="Body/SkillBox" index="2" instance=ExtResource("6_6u3lk")]
+
+[node name="VampireRangeAttackController" parent="Body/SkillBox" index="3" node_paths=PackedStringArray("enemy") instance=ExtResource("6_uftmp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0178138, 0.564657, 0.18851)
+enemy = NodePath("../../..")
+vampire_projectile = ExtResource("7_afbom")
+
+[node name="character-vampire2" type="Node3D" parent="Body" index="3"]
+
+[node name="character-vampire" type="Node3D" parent="Body/character-vampire2" index="0"]
+
+[node name="root" type="Node3D" parent="Body/character-vampire2/character-vampire" index="0"]
+
+[node name="leg-left" type="MeshInstance3D" parent="Body/character-vampire2/character-vampire/root" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.074204, 0.223184, -7.21911e-16)
 mesh = SubResource("ArrayMesh_l2bjt")
 skeleton = NodePath("")
 
-[node name="leg-right" type="MeshInstance3D" parent="character-vampire2/character-vampire/root" index="1"]
+[node name="leg-right" type="MeshInstance3D" parent="Body/character-vampire2/character-vampire/root" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.074204, 0.223184, -7.21911e-16)
 mesh = SubResource("ArrayMesh_um78g")
 skeleton = NodePath("")
 
-[node name="torso" type="MeshInstance3D" parent="character-vampire2/character-vampire/root" index="2"]
+[node name="torso" type="MeshInstance3D" parent="Body/character-vampire2/character-vampire/root" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.44382e-15, 0.223184, -7.21911e-16)
 mesh = SubResource("ArrayMesh_1ufk8")
 skeleton = NodePath("")
 
-[node name="arm-left" type="MeshInstance3D" parent="character-vampire2/character-vampire/root/torso" index="0"]
+[node name="arm-left" type="MeshInstance3D" parent="Body/character-vampire2/character-vampire/root/torso" index="0"]
 transform = Transform3D(0.707108, 0.707106, 0, -0.707106, 0.707108, 0, 0, 0, 1, 0.15, 0.2, 0.0025)
 mesh = SubResource("ArrayMesh_8x4co")
 skeleton = NodePath("")
 
-[node name="arm-right" type="MeshInstance3D" parent="character-vampire2/character-vampire/root/torso" index="1"]
+[node name="arm-right" type="MeshInstance3D" parent="Body/character-vampire2/character-vampire/root/torso" index="1"]
 transform = Transform3D(0.707108, -0.707106, 0, 0.707106, 0.707108, 0, 0, 0, 1, -0.15, 0.2, 0.0025)
 mesh = SubResource("ArrayMesh_8r8pt")
 skeleton = NodePath("")
 
-[node name="cape" type="MeshInstance3D" parent="character-vampire2/character-vampire/root/torso" index="2"]
+[node name="cape" type="MeshInstance3D" parent="Body/character-vampire2/character-vampire/root/torso" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26, -0.1)
 mesh = SubResource("ArrayMesh_3a3qp")
 skeleton = NodePath("")
 
-[node name="head" type="MeshInstance3D" parent="character-vampire2/character-vampire/root/torso" index="3"]
+[node name="head" type="MeshInstance3D" parent="Body/character-vampire2/character-vampire/root/torso" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26, 0)
 mesh = SubResource("ArrayMesh_10dtb")
 skeleton = NodePath("")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="character-vampire2" index="1"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Body/character-vampire2" index="1"]
 libraries = {
 "": SubResource("AnimationLibrary_t0vfv")
 }

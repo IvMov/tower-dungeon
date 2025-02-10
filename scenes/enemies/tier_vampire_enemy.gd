@@ -1,12 +1,12 @@
 class_name TierVampireEnemy extends BasicEnemy
 
+@onready var character_vampire_2: Node3D = $"Body/character-vampire2"
+@onready var dodge_skill_controller: DodgeSkillController = $Body/SkillBox/DodgeSkillController
+@onready var idle_moving_controller: IdleMovingController = $Body/SkillBox/IdleMovingController
+@onready var call_other_enemies_controller: CallOtherEnemiesController = $Body/SkillBox/CallOtherEnemiesController
+@onready var vampire_range_attack_controller: VampireRangeAttackController = $Body/SkillBox/VampireRangeAttackController
 
-@onready var dodge_skill_controller: DodgeSkillController = $SkillBox/DodgeSkillController
-@onready var idle_moving_controller: IdleMovingController = $SkillBox/IdleMovingController
-@onready var call_other_enemies_controller: CallOtherEnemiesController = $SkillBox/CallOtherEnemiesController
-@onready var vampire_range_attack_controller: VampireRangeAttackController = $SkillBox/VampireRangeAttackController
-
-@onready var body_mesh: MeshInstance3D = $"character-vampire2/character-vampire/root/torso"
+@onready var body_mesh: MeshInstance3D = $"Body/character-vampire2/character-vampire/root/torso"
 
 func _ready():
 	is_ranged = true
@@ -16,12 +16,13 @@ func _ready():
 	battle_distance = agr_radius+2
 	
 	
-	chase_player_timer.wait_time = randi_range(3, 6)
+	chase_player_timer.wait_time = randi_range(2, 5)
 	hp_bar.update(health_component.current_value, health_component.max_value)
 	stamina_bar.update(stamina_component.current_value, stamina_component.max_value)
 	mana_bar.update(mana_component.current_value, mana_component.max_value)
 	#choose_color()
 	vampire_range_attack_controller.cooldown_timer.start()
+	vampire_range_attack_controller.skill.base_value *= multiply_characteristics()
 
 func _physics_process(delta: float) -> void:
 	is_runing = false

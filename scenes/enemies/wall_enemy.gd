@@ -1,6 +1,7 @@
 class_name WallEnemy extends BasicEnemy
 
-@onready var spawn_enemy_controller: SpawnEnemyController = $SkillBox/SpawnEnemyController
+@onready var spawn_enemy_controller: SpawnEnemyController = $Body/SkillBox/SpawnEnemyController
+
 var is_player_near: bool = false
 
 #spawner related spagetti

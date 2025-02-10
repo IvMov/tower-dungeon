@@ -1,20 +1,22 @@
 class_name Tier1Enemy extends BasicEnemy
 
-@onready var kick_skill_controller: KickSkillController = $SkillBox/KickSkillController
-@onready var dodge_skill_controller: DodgeSkillController = $SkillBox/DodgeSkillController
-@onready var idle_moving_controller: IdleMovingController = $SkillBox/IdleMovingController
-@onready var call_other_enemies_controller: CallOtherEnemiesController = $SkillBox/CallOtherEnemiesController
-@onready var battle_move_controller: BattleMoveController = $SkillBox/BattleMoveController
-@onready var body_mesh: MeshInstance3D = $"character-orc2/character-orc/Skeleton3D/body-mesh"
+@onready var kick_skill_controller: KickSkillController = $Body/SkillBox/KickSkillController
+@onready var dodge_skill_controller: DodgeSkillController = $Body/SkillBox/DodgeSkillController
+@onready var idle_moving_controller: IdleMovingController = $Body/SkillBox/IdleMovingController
+@onready var battle_move_controller: BattleMoveController = $Body/SkillBox/BattleMoveController
+@onready var call_other_enemies_controller: CallOtherEnemiesController = $Body/SkillBox/CallOtherEnemiesController
+@onready var character_orc_2: Node3D = $"Body/character-orc2"
+@onready var body_mesh: MeshInstance3D = $"Body/character-orc2/character-orc/Skeleton3D/body-mesh"
 
 
 func _ready():
 	run_speed = speed * 2
 	agr_radius = 8
-	chase_player_timer.wait_time = randi_range(1, 10)
+	chase_player_timer.wait_time = randi_range(3, 6)
 	hp_bar.update(health_component.current_value, health_component.max_value)
 	stamina_bar.update(stamina_component.current_value, stamina_component.max_value)
 	mana_bar.update(mana_component.current_value, mana_component.max_value)
+	kick_skill_controller.skill.base_value = multiply_characteristics()
 	choose_color()
 
 
