@@ -1,13 +1,13 @@
 extends Node
 # TODO: after add saving and different players, add method to update var values from saving
 
-
 const BASE_SPEED: float = 300.0
 const BASE_JUMP_VELOCITY: float = 500.0
 const BASE_AIR_SPEED: float = 250.0 # not work as need to adjust velocity in process method for player
 const MOVE_SPEED_UP_MOD: float = 2.0
 const JUMP_SPEED_UP_MOD: float = 1.2
 
+var timer: Timer
 var lifes: int = 3
 var current_speed: float = BASE_SPEED
 var current_air_speed: float = BASE_AIR_SPEED
@@ -17,6 +17,7 @@ var lock_stamina_skill: bool = false
 var lock_mana_skill: bool = false
 var is_aiming: bool = false
 var is_runing: bool = false
+var last_position: Vector3 = Vector3.ZERO
 
 var inventory: Inventory
 var belt: Belt
@@ -83,8 +84,27 @@ func lvl_up_skill(skill: Dictionary) -> bool:
 		skill["next_lvl_exp"] = skill["next_lvl_exp"] + (skill["lvl"] * skill["max_lvl"]) + skill["max_lvl"]
 		return true
 
+func get_position() -> Vector3:
+	if last_position != Vector3.ZERO:
+		return last_position
+	var player: Player = get_tree().get_first_node_in_group("player")
+	if player:
+		last_position = player.global_position
+		timer = Timer.new()
+		add_child(timer)
+		timer.wait_time = 5
+		timer.timeout.connect(_on_remove_position_timer_timeout)
+		timer.start()
+		return last_position
+	else:
+		print("ERROR: NO PLAYER found in tree!")
+		return last_position
 
 func on_player_entered(player: Player) -> void:
 	inventory = player.inventory
 	belt = player.belt
 	hands = player.hands
+
+
+func _on_remove_position_timer_timeout() -> void:
+	last_position = Vector3.ZERO

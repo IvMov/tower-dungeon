@@ -24,9 +24,6 @@
 
 [node name="MapGenerator" type="Node3D"]
 script = ExtResource("1_2pkgg")
-has_ceil = true
-has_walls = true
-has_torches = true
 has_columns = true
 MIN_SIZE = 3
 MAX_SIZE = 6

@@ -23,7 +23,7 @@ func add(key: Vector3, item_bulk: ItemBulk) -> void:
 func on_item_add(to: Vector3, item_bulk: ItemBulk, map_pos: Vector3):
 	if to.x == id:
 		if map_pos == Vector3.ZERO:
-			var key: Vector3 = get_tree().get_first_node_in_group("player").global_position
+			var key: Vector3 = PlayerParameters.get_position()
 			key = key + Vector3(randf_range(-RAND, RAND), RAND, randf_range(-RAND, RAND))
 			add(key, item_bulk)
 		else:

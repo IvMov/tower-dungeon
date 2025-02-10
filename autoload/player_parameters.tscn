@@ -4,3 +4,9 @@
 
 [node name="PlayerParameters" type="Node"]
 script = ExtResource("1_3bgxe")
+
+[node name="RemovePositionTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="RemovePositionTimer" to="." method="_on_remove_position_timer_timeout"]

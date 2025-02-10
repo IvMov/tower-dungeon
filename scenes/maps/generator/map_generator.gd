@@ -227,7 +227,7 @@ func create_common_room() -> void:
 	
 	surface_builder.build_surface(room, map, has_ceil)
 	
-	if has_spawner && randf() > deadend_possibility:
+	if has_spawner:
 		var spawn: EnemySpawner = enemy_spawner.instantiate()
 		map.add_child(spawn)
 		spawn.spawn_distance = max(ROOM_SIZE.x * Constants.CORE_TILE_SIZE / 2, ROOM_SIZE.y * Constants.CORE_TILE_SIZE / 2) 
