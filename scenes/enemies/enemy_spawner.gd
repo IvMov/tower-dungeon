@@ -5,6 +5,8 @@ class_name EnemySpawner extends BasicEnemy
 @onready var spawner_body: MeshInstance3D = $Body/SpawnerBody
 @onready var check_player: Timer = $CheckPlayer
 
+const MAX_PLAYER_DISTANCE: int = 150
+
 var is_temporary: bool = false
 var is_player_near: bool = false
 var boost_cast: bool = true
@@ -17,8 +19,9 @@ var max_height: float = 15
 var spawn_rate: float = 1
 
 func _ready():
-	check_player.wait_time = randf_range(4, 6)
-	check_player.start()
+	if is_temporary:
+		check_player.wait_time = randf_range(4, 6)
+		check_player.start()
 	agr_radius = 8
 
 func _physics_process(_delta):
@@ -78,5 +81,6 @@ func _on_timer_timeout() -> void:
 
 func _on_check_player_timeout() -> void:
 	var player_position: Vector3 = PlayerParameters.get_position()
-	if (global_position - player_position).length() < 100:
+	print("distance %f" % (global_position - player_position).length() )
+	if (global_position - player_position).length() < MAX_PLAYER_DISTANCE:
 		spawn_and_disapear()

@@ -23,7 +23,7 @@ func _ready():
 	#choose_color()
 	vampire_range_attack_controller.cooldown_timer.start()
 	vampire_range_attack_controller.skill.base_value *= multiply_characteristics()
-	print("INFO: tier1 instantiated, speed: %s, health: %s, damage %s " % [speed, health_component.current_value, vampire_range_attack_controller.skill.base_value])
+	print("INFO: tier_vampire instantiated, speed: %s, health: %s, damage %s " % [speed, health_component.current_value, vampire_range_attack_controller.skill.base_value])
 
 
 func _physics_process(delta: float) -> void:
