@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://4eygpv6ar4kx"]
+[gd_scene load_steps=10 format=3 uid="uid://4eygpv6ar4kx"]
 
 [ext_resource type="Script" path="res://scenes/components/effect_flash_component.gd" id="1_diwfx"]
 [ext_resource type="PackedScene" uid="uid://cfivvn8vyesq7" path="res://particles/scenes/damage_particles.tscn" id="2_abops"]
 [ext_resource type="Material" uid="uid://cgmec1v7lguua" path="res://particles/heal_particles.tres" id="2_ooi4k"]
+[ext_resource type="Material" uid="uid://qakrfenm4nma" path="res://scenes/maps/parts/add_something_material.tres" id="4_otldg"]
+[ext_resource type="ArrayMesh" uid="uid://cdxxayqndwye2" path="res://scenes/projectiles/snowflake.tres" id="5_204de"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6eru1"]
 albedo_color = Color(0, 2, 0, 1)
@@ -33,3 +35,12 @@ process_material = ExtResource("2_ooi4k")
 draw_passes = 2
 draw_pass_1 = SubResource("QuadMesh_pu0f0")
 draw_pass_2 = SubResource("QuadMesh_6lppl")
+
+[node name="SlowDownParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+emitting = false
+amount = 10
+lifetime = 0.5
+transform_align = 1
+process_material = ExtResource("4_otldg")
+draw_pass_1 = ExtResource("5_204de")

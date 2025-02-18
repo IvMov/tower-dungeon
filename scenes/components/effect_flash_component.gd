@@ -6,6 +6,7 @@ const ANIMATION_TIME: float = 0.3
 @export var health_component: HealthComponent
 @export var meshes: Array[MeshInstance3D]
 @onready var gpu_particles_3d = $GPUParticles3D
+@onready var slow_down_particles: GPUParticles3D = $SlowDownParticles
 
 
 var tween: Tween
@@ -29,6 +30,14 @@ func on_health_changed(value: float, _current_value: float) -> void:
 		damage_particles.queue_free()
 	if value > 0:
 		gpu_particles_3d.emitting = true
+
+func start_slow_down() -> void:
+	if !slow_down_particles.emitting:
+		slow_down_particles.emitting = true
+
+func stop_slow_down() -> void:
+	if slow_down_particles.emitting:
+		slow_down_particles.emitting = false
 
 
 func change_color_to(new_color: Color) -> void: 

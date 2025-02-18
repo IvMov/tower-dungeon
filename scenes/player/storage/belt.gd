@@ -13,3 +13,5 @@ func _ready():
 	items[Vector2(0,3)] = item_bulk2
 	var item_bulk3: ItemBulk = ItemBulk.new(Constants.ITEM_CRYSTAL, 50)
 	items[Vector2(0,0)] = item_bulk3
+	var item_bulk4: ItemBulk = ItemBulk.new(Constants.ITEM_SNOWBALL_TABLET, 1)
+	items[Vector2(0,4)] = item_bulk4

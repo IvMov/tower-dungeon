@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://bitwfv1j10r77"]
+
+[ext_resource type="Texture2D" uid="uid://dwdivlpo4ht7v" path="res://assets/2d/items/snowball_tablet.png" id="1_ct178"]
+[ext_resource type="Script" path="res://resources/items/item.gd" id="1_v536f"]
+[ext_resource type="PackedScene" uid="uid://bx0ydm3hsik0a" path="res://scenes/items/spark_tablet.tscn" id="2_57aqe"]
+[ext_resource type="Resource" uid="uid://cyvyvfxvw8y4u" path="res://resources/skills/snowball/snowball.tres" id="3_8jt3n"]
+
+[resource]
+script = ExtResource("1_v536f")
+id = 8
+title = "snowball_skill_title"
+image = ExtResource("1_ct178")
+descrition = "snowball_skill_description"
+type = "item_type_skill"
+price = Vector3(0, 0, 0)
+scene = ExtResource("2_57aqe")
+skill = ExtResource("3_8jt3n")

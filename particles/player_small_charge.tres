@@ -3,9 +3,11 @@
 [resource]
 resource_local_to_scene = true
 lifetime_randomness = 0.5
-particle_flag_rotate_y = true
+particle_flag_align_y = true
 emission_shape = 1
 emission_sphere_radius = 0.1
+angle_min = -180.0
+angle_max = 180.0
 direction = Vector3(0, 0, 0)
 spread = 180.0
 radial_velocity_min = -2.0

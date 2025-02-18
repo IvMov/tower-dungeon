@@ -2,7 +2,7 @@
 
 [resource]
 resource_local_to_scene = true
-particle_flag_rotate_y = true
+particle_flag_align_y = true
 emission_shape_scale = Vector3(0, 0, 0)
 angle_min = -360.0
 angle_max = 360.0

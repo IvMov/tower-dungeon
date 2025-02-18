@@ -35,10 +35,6 @@ platform_floor_layers = 4278190081
 script = ExtResource("1_f284f")
 speed = 150.0
 
-[node name="EffectFlashComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_c5p53")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.387121, 0)
-health_component = NodePath("../Body/StatsBox/HealthComponent")
-
 [node name="SoulsDropComponent" parent="." instance=ExtResource("3_cpi08")]
 
 [node name="SoulComponent" parent="." instance=ExtResource("3_7qqhi")]
@@ -92,6 +88,10 @@ autostart = true
 wait_time = 3.0
 one_shot = true
 
+[node name="SlowDownTimer" type="Timer" parent="Timers"]
+wait_time = 5.0
+one_shot = true
+
 [node name="Body" type="Node3D" parent="."]
 
 [node name="BarsBox" type="Node3D" parent="Body"]
@@ -126,7 +126,12 @@ regen = 0.5
 
 [node name="SkillBox" type="Node3D" parent="Body"]
 
+[node name="EffectFlashComponent" parent="Body" node_paths=PackedStringArray("health_component") instance=ExtResource("3_c5p53")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.807818, 0)
+health_component = NodePath("../StatsBox/HealthComponent")
+
 [connection signal="area_exited" from="CallEnemyAreaClient" to="." method="_on_call_enemy_area_client_area_exited"]
 [connection signal="timeout" from="Timers/ChasePlayerTimer" to="." method="_on_chase_player_timer_timeout"]
 [connection signal="timeout" from="Timers/PushTimer" to="." method="_on_push_timer_timeout"]
 [connection signal="timeout" from="Timers/SpeedUpTimer" to="." method="_on_speed_up_timer_timeout"]
+[connection signal="timeout" from="Timers/SlowDownTimer" to="." method="_on_slow_down_timer_timeout"]

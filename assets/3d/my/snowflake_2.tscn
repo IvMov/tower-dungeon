@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfsbnpdbjx6h0"]
+
+[ext_resource type="PackedScene" uid="uid://c0hneyr1r6gm3" path="res://assets/3d/my/snowflake2.glb" id="1_lfo40"]
+[ext_resource type="ArrayMesh" uid="uid://xt6lvxh50qlw" path="res://assets/3d/my/snowflake2.tres" id="2_ptx55"]
+
+[node name="snowflake2" instance=ExtResource("1_lfo40")]
+
+[node name="Plane" parent="." index="0"]
+mesh = ExtResource("2_ptx55")

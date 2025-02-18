@@ -7,7 +7,7 @@ const TRAIDER_ITEM: PackedScene = preload("res://scenes/screens/traider_item.tsc
 
 const ITEM_STONE: Item = preload("res://resources/items/stone.tres")
 const ITEM_CRYSTAL: Item = preload("res://resources/items/crystal.tres")
-
+const ITEM_SNOWBALL_TABLET: Item = preload("res://resources/items/snowball_tablet.tres")
 
 const CORE_TILE_SIZE: float = 8.0
 const TUNEL_PADDING: float = 1.0

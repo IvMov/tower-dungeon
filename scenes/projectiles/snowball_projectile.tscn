@@ -1,0 +1,89 @@
+[gd_scene load_steps=10 format=3 uid="uid://bfniguqvdt0mj"]
+
+[ext_resource type="Script" path="res://scenes/projectiles/snowball_projectile.gd" id="1_w823r"]
+[ext_resource type="Material" uid="uid://b304cpbvwydhs" path="res://particles/player_small_charge.tres" id="2_ye8yh"]
+[ext_resource type="ArrayMesh" uid="uid://xt6lvxh50qlw" path="res://assets/3d/my/snowflake2.tres" id="3_bjelm"]
+[ext_resource type="Material" uid="uid://dtpkny3bvp3yd" path="res://particles/player_explosion.tres" id="4_t62h2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t2rip"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.467, 2, 2, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_yayuc"]
+material = SubResource("StandardMaterial3D_t2rip")
+radius = 0.05
+height = 0.1
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_8wdoi"]
+resource_local_to_scene = true
+radius = 0.11
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ixwl4"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 0.729, 0.735, 0.1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_th3n4"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_ixwl4")
+radius = 0.1
+height = 0.1
+radial_segments = 16
+rings = 16
+
+[node name="SnowballProjectile" type="Node3D"]
+script = ExtResource("1_w823r")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_energy = 0.5
+light_indirect_energy = 0.5
+distance_fade_enabled = true
+distance_fade_begin = 200.0
+distance_fade_length = 20.0
+omni_attenuation = 0.707107
+omni_shadow_mode = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_yayuc")
+
+[node name="Area3D" type="Area3D" parent="MeshInstance3D"]
+collision_layer = 4
+collision_mask = 5121
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
+shape = SubResource("SphereShape3D_8wdoi")
+
+[node name="LifeTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="ProjectileParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+transparency = 0.5
+cast_shadow = 0
+emitting = false
+amount = 20
+process_material = ExtResource("2_ye8yh")
+draw_pass_1 = ExtResource("3_bjelm")
+
+[node name="CollisionParticles" type="GPUParticles3D" parent="."]
+transparency = 0.5
+cast_shadow = 0
+emitting = false
+amount = 30
+lifetime = 1.2
+one_shot = true
+speed_scale = 3.0
+explosiveness = 0.88
+process_material = ExtResource("4_t62h2")
+draw_pass_1 = ExtResource("3_bjelm")
+
+[node name="VisualRadiusOfExsplosion" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("SphereMesh_th3n4")
+
+[connection signal="area_entered" from="MeshInstance3D/Area3D" to="." method="_on_area_3d_area_entered"]

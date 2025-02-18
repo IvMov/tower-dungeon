@@ -11,6 +11,7 @@ class_name BasicEnemy extends CharacterBody3D
 @onready var agr_area: Area3D = $AgrArea
 @onready var agr_collision = $AgrArea/AgrCollision
 @onready var ray_cast_3d = $RayCast3D
+@onready var effect_flash_component: EffectFlashComponent = $Body/EffectFlashComponent
 
 @onready var navigation_agent_3d: NavigationAgent3D = $Node3D/NavigationAgent3D
 
@@ -25,6 +26,8 @@ class_name BasicEnemy extends CharacterBody3D
 @onready var soul_component: SoulComponent = $SoulComponent
 @onready var souls_drop_component: SoulsDropComponent = $SoulsDropComponent
 @onready var push_timer: Timer = $Timers/PushTimer
+@onready var slow_down_timer: Timer = $Timers/SlowDownTimer
+
 @onready var chase_player_timer: Timer = $Timers/ChasePlayerTimer
 @onready var start_timer: Timer = $Timers/StartTimer
 @onready var speed_up_timer = $Timers/SpeedUpTimer
@@ -71,6 +74,7 @@ var is_dodging: bool = false
 var is_pushed: bool = false
 var is_dying: bool = false
 var is_fighting: bool = false
+var is_slowed_down: bool = false
 
 var is_battle_move: bool = false
 var is_side_move: bool = false
@@ -103,8 +107,9 @@ func _physics_process(delta):
 	if ray_cast_3d.get_collider() && !player:
 		relocate_enemy()
 	if !is_pushed:
-		current_speed = speed if !is_runing else run_speed
-		current_speed = speed * 1.5 if is_dodging else current_speed
+		if !is_slowed_down:
+			current_speed = speed if !is_runing else run_speed
+			current_speed = speed * 1.5 if is_dodging else current_speed
 		chase_player()
 	if player :
 		if is_ranged && !is_pushed && is_fighting && navigation_agent_3d.distance_to_target() < battle_distance:
@@ -141,7 +146,15 @@ func stop_damage() -> void:
 func get_damage(damager_location: Vector3, value: float, push_power: float) -> bool:
 	if push_power > 0:
 		push_back(damager_location, push_power)
+	elif push_power < 0: 
+		slow_down(push_power)
 	return health_component.minus(value)
+
+func slow_down(slow_power: float) -> void:
+	effect_flash_component.start_slow_down()
+	slow_down_timer.start()
+	is_slowed_down = true
+	current_speed = speed / 2
 
 func push_back(player_position: Vector3, push_power: float) -> void:
 	direction = global_position - player_position
@@ -248,6 +261,8 @@ func get_random_sign() -> int:
 
 func _on_push_timer_timeout():
 	is_pushed = false
+	if is_slowed_down && !slow_down_timer.is_stopped():
+		current_speed = speed / 2
 
 func _on_chase_player_timer_timeout():
 	if !is_target_detected:
@@ -266,3 +281,9 @@ func _on_speed_up_timer_timeout():
 		speed_up_timer.start()
 	else:
 		is_runing = false
+
+
+func _on_slow_down_timer_timeout() -> void:
+	is_slowed_down = false
+	effect_flash_component.stop_slow_down()
+	current_speed = speed
