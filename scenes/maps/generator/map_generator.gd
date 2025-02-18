@@ -226,16 +226,8 @@ func create_common_room() -> void:
 	room.ceil_height = 20
 	
 	surface_builder.build_surface(room, map, has_ceil)
-	
 	if has_spawner && room.start_point != Vector2.ZERO:
-		var spawn: EnemySpawner = enemy_spawner.instantiate()
-		spawn.is_temporary = true
-		map.add_child(spawn)
-		spawn.spawn_distance = max(ROOM_SIZE.x * Constants.CORE_TILE_SIZE / 2, ROOM_SIZE.y * Constants.CORE_TILE_SIZE / 2) 
-		spawn.boost_enemies_num = (room.size.x + room.size.y)
-		spawn.agr_collision.shape.size = Vector3(ROOM_SIZE.x * Constants.CORE_TILE_SIZE, room.ceil_height, ROOM_SIZE.y * Constants.CORE_TILE_SIZE)
-		spawn.global_position = Vector3(room.start_point.x + room.size.x * Constants.CORE_TILE_SIZE/2 + randi_range(-3, 3), randf_range(1, 5),room.start_point.y +  room.size.y*Constants.CORE_TILE_SIZE/2 + randi_range(-3, 3))
-
+		add_spawner(true, false, room.size.x + room.size.y, room)
 	next_room_direction = pick_random()
 	tunel_length = randi_range(MIN_TUNEL_LENGTH, MAX_TUNEL_LENGTH)
 	exit_and_entrance_coordinates = tunel_builder.add_tunel(tunel_length, next_room_direction, room, map)
@@ -243,7 +235,6 @@ func create_common_room() -> void:
 	next_entrance_coordinates = Vector2(exit_and_entrance_coordinates.z, exit_and_entrance_coordinates.w)
 	room.exit = exit_coordinates
 	update_available_directions(next_room_direction, 1)
-	
 
 
 func create_deadend_room() -> void:
@@ -265,6 +256,9 @@ func create_deadend_room() -> void:
 				torch_builder.add_torches(deadend_room, map)
 			if has_columns:
 				column_builder.add_columns(deadend_room, map)
+			if has_spawner:
+				add_spawner(true, true, randi_range(1, 5), deadend_room)
+				add_spawner(false, false, 2, deadend_room)
 			update_available_directions(deadend_room_direction, 1)
 		else:
 			print("MapGen ERROR: NO FREE DIRRECTIONS FOR DEADEND ROOM!")
@@ -272,6 +266,17 @@ func create_deadend_room() -> void:
 			exit_to_deadend_coordinates = Vector2.ZERO
 
 
+func add_spawner(is_temporary: bool, is_boss_spawner: bool, quantity: int, room: Room) -> void:
+	var spawn: EnemySpawner = enemy_spawner.instantiate()
+	spawn.is_temporary = is_temporary
+	spawn.is_boss_spawner = is_boss_spawner
+	map.add_child(spawn)
+	spawn.spawn_distance = max(ROOM_SIZE.x * Constants.CORE_TILE_SIZE / 2, ROOM_SIZE.y * Constants.CORE_TILE_SIZE / 2) 
+	spawn.boost_enemies_num = quantity
+	
+	spawn.agr_collision.shape.size = Vector3(ROOM_SIZE.x * Constants.CORE_TILE_SIZE, room.ceil_height, ROOM_SIZE.y * Constants.CORE_TILE_SIZE)
+	spawn.global_position = Vector3(room.start_point.x + room.size.x * Constants.CORE_TILE_SIZE/2 + randi_range(-3, 3), randf_range(1, 5), room.start_point.y +  room.size.y*Constants.CORE_TILE_SIZE/2 + randi_range(-3, 3))
+				
 
 
 func calc_room_start_position(target_room: Vector2, entrance: Vector2, some_direction: Vector2) -> Vector2:
@@ -306,8 +311,6 @@ func prepare_blank_map() -> void:
 	get_tree().get_first_node_in_group("maps").add_child(map)
 
 
-
-
 # add cd for cirrent direction
 func update_available_directions(direction: Vector2, cd: int = DIRECTION_AVAILABILITY_CD) -> void:
 	availability[direction] = cd
@@ -324,8 +327,8 @@ func get_oposite_direction(direction: Vector2) -> Vector2:
 			return Vector2.DOWN
 	print("MapGen EXCEPTION: cant find oposite direction for current direction.")
 	return direction;
-	
-	
+
+
 # handle cd of availability dirrections 
 func update_dirrections_cd() -> void:
 	for dir in availability:
@@ -350,4 +353,3 @@ func calculate_ROOM_SIZE() -> Vector2:
 	var current_x: int = randi_range(MIN_SIZE, MAX_SIZE)
 	var current_y: int = randi_range(MIN_SIZE, MAX_SIZE)
 	return Vector2(current_x, current_y)
-	

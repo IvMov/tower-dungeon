@@ -214,6 +214,16 @@ shape = SubResource("SphereShape3D_c67ek")
 [node name="BarsBox" parent="Body" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.71358, 0)
 
+[node name="HealthComponent" parent="Body/StatsBox" index="0"]
+max_value = 100.0
+current_value = 100.0
+regen = 1.0
+
+[node name="ManaComponent" parent="Body/StatsBox" index="1"]
+max_value = 100.0
+current_value = 100.0
+regen = 1.0
+
 [node name="SpawnEnemyController" parent="Body/SkillBox" index="0" node_paths=PackedStringArray("owner_enemy") instance=ExtResource("3_h5qeo")]
 owner_enemy = NodePath("../../..")
 enemies = Array[PackedScene]([ExtResource("7_fja2h"), ExtResource("6_gc6bk"), ExtResource("7_a65kd")])

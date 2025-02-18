@@ -11,7 +11,7 @@ const SHOP_MAP: PackedScene = preload("res://scenes/maps/shop_map.tscn")
 const PLAYER_START_POINT: Vector3 = Vector3(1, 0.2, -1)
 
 func _ready():
-	map_generator.ROOMS = randi_range(3, 10)
+	#map_generator.ROOMS = randi_range(3, 10)
 	var start_point: Vector3 = map_generator.generate_level()
 	player.global_position = start_point
 	

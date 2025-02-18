@@ -2342,6 +2342,15 @@ shape = SubResource("CylinderShape3D_nuw01")
 [node name="EnemyCollision" parent="." index="7"]
 shape = SubResource("CapsuleShape3D_t31c1")
 
+[node name="HealthComponent" parent="Body/StatsBox" index="0"]
+max_value = 50.0
+current_value = 50.0
+regen = 1.0
+
+[node name="StaminaComponent" parent="Body/StatsBox" index="2"]
+max_value = 20.0
+current_value = 20.0
+
 [node name="KickSkillController" parent="Body/SkillBox" index="0" node_paths=PackedStringArray("enemy") instance=ExtResource("3_dpkme")]
 enemy = NodePath("../../..")
 

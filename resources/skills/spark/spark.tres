@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_v2ceh")
-id = "0"
+id = 0
 title = "spark_skill_title"
 description = "spark_skill_description"
 controller = ExtResource("1_60fd1")
@@ -14,7 +14,7 @@ is_offensive = true
 is_consumable = false
 is_upgradable = true
 parameter = ""
-base_value = 2.0
+base_value = 10.0
 base_push_value = 200.0
 base_speed = 20.0
 base_distance = 0.0

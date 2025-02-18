@@ -71,9 +71,9 @@ func _physics_process(delta):
 func _unhandled_input(event):
 	if !GameStage.is_stage(GameStage.Stage.GAME):
 		return
-	# shift
+	# R
 	handle_dash(event)
-	# doble forward
+	# shift
 	handle_run(event)
 	# space
 	handle_jump(event)
@@ -107,7 +107,7 @@ func handle_push_enemy(event: InputEvent) -> void:
 		player_skill_controller.push_skill.use_skill()
 
 func handle_dash(event: InputEvent) -> void:
-	if event.is_action_pressed("speed_up"):
+	if event.is_action_pressed("dash"):
 		player_skill_controller.dash_skill.use_skill()
 	#if event.is_action_released("speed_up"):
 		#player_skill_controller.dash_skill.stop_skill()

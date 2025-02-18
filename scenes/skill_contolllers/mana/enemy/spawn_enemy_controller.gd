@@ -13,7 +13,7 @@ var attemts: int = 0
 var next_enemy_position: Vector3
 var positions: Array[Vector3]
 var cast_stopped: bool = false
-
+var is_boss_spawner: bool = false
 
 
 func _ready():
@@ -49,6 +49,8 @@ func cast_lot(num: int) -> void:
 		start_cast()
 
 func start_cast() -> void:
+	if !fast_cast: 
+		print("cast after fast one?")
 	if !fast_cast && !owner_enemy.mana_component.minus(skill.base_energy_cost):
 		skill_cast_finished = false
 	else:
@@ -86,7 +88,10 @@ func use_skill() -> void:
 	
 	if !positions.is_empty():
 		var inst: BasicEnemy = enemy_packed.instantiate()
+		inst.is_boss = is_boss_spawner
 		enemy_box.add_child(inst)
+		print(is_boss_spawner)
+		
 		
 		inst.global_position = positions.pop_front()
 		if randf() < 0.5:

@@ -9,13 +9,14 @@ const MAX_PLAYER_DISTANCE: int = 150
 
 var is_temporary: bool = false
 var is_player_near: bool = false
+var is_boss_spawner: bool = false
 var boost_cast: bool = true
 var boost_enemies_num: int
 
 #spawner related spagetti
 var spawn_distance: float = 10
-var min_height: float = 3
-var max_height: float = 15
+var min_height: float = 4
+var max_height: float = 12
 var spawn_rate: float = 1
 
 func _ready():
@@ -59,6 +60,7 @@ func lost_target() -> void:
 	is_player_near = false
 
 func spawn_and_disapear() -> void:
+	spawn_enemy_controller.is_boss_spawner = is_boss_spawner
 	await spawn_enemy_controller.start_boost_cast(boost_enemies_num)
 	queue_free()
 
