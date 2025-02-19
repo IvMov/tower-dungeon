@@ -41,6 +41,5 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 
 emitting = false
 amount = 10
 lifetime = 0.5
-transform_align = 1
 process_material = ExtResource("4_otldg")
 draw_pass_1 = ExtResource("5_204de")

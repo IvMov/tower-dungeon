@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://rnx1xrjinshb"]
+
+[ext_resource type="Script" path="res://scenes/ui/parts/text.gd" id="1_i1e82"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_y61xg"]
+viewport_path = NodePath("Sprite3D/SubViewport")
+
+[node name="Text" type="Node3D"]
+script = ExtResource("1_i1e82")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+cast_shadow = 0
+billboard = 1
+double_sided = false
+texture = SubResource("ViewportTexture_y61xg")
+
+[node name="SubViewport" type="SubViewport" parent="Sprite3D"]
+transparent_bg = true
+size = Vector2i(300, 50)
+
+[node name="MarginContainer" type="MarginContainer" parent="Sprite3D/SubViewport"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Sprite3D/SubViewport/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "123"
+horizontal_alignment = 1
+vertical_alignment = 1

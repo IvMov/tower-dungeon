@@ -12,7 +12,8 @@ class_name Tier0Enemy extends BasicEnemy
 func _ready():  
 	is_ranged = true
 	is_flying = true
-	battle_distance = 5
+	battle_distance = 10
+	
 	run_speed = speed * 2
 	agr_radius = 8
 	chase_player_timer.wait_time = randi_range(1, 10)

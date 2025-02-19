@@ -4,6 +4,7 @@ const ITEM_VIEW_SCENE: PackedScene = preload("res://scenes/ui/item_view.tscn")
 const ITEM_VIEW_HOLDER: PackedScene = preload("res://scenes/ui/item_view_holder.tscn")
 const FIRE_PROJECTILE: PackedScene = preload("res://scenes/projectiles/fire_projectile.tscn")
 const TRAIDER_ITEM: PackedScene = preload("res://scenes/screens/traider_item.tscn")
+const TEXT: PackedScene = preload("res://scenes/ui/parts/text.tscn")
 
 const ITEM_STONE: Item = preload("res://resources/items/stone.tres")
 const ITEM_CRYSTAL: Item = preload("res://resources/items/crystal.tres")

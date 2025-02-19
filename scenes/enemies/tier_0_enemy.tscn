@@ -1346,14 +1346,9 @@ shape = SubResource("CylinderShape3D_ch67v")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1.765)
 shape = SubResource("CylinderShape3D_26ux2")
 
-[node name="EnemyCollision" parent="." index="7"]
+[node name="EnemyCollision" parent="." index="6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.37633, 0)
 shape = SubResource("CapsuleShape3D_jdu4k")
-
-[node name="Timer" type="Timer" parent="." index="9"]
-wait_time = 3.0
-one_shot = true
-autostart = true
 
 [node name="HealthComponent" parent="Body/StatsBox" index="0"]
 max_value = 20.0
@@ -1366,9 +1361,9 @@ current_value = 20.0
 regen = 1.0
 
 [node name="StaminaComponent" parent="Body/StatsBox" index="2"]
-max_value = 0.0
-current_value = 0.0
-regen = 0.0
+max_value = 100.0
+current_value = 100.0
+regen = 1.0
 
 [node name="CallOtherEnemiesController" parent="Body/SkillBox" index="0" instance=ExtResource("3_jc16e")]
 
@@ -1415,5 +1410,13 @@ collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Body/character-ghost2/Area3D" index="0"]
 shape = SubResource("SphereShape3D_t4dls")
+
+[node name="EffectFlashComponent" parent="Body" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2729, 0)
+
+[node name="Timer" type="Timer" parent="." index="9"]
+wait_time = 3.0
+one_shot = true
+autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

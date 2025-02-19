@@ -13,6 +13,7 @@ var tween: Tween
 var last_hp: float
 var color: Color
 var last_color: Color
+var is_player: bool = false
 
 
 func _ready():
@@ -25,11 +26,18 @@ func on_health_changed(value: float, _current_value: float) -> void:
 		var damage_particles: GPUParticles3D = damage_particles_scene.instantiate()
 		add_child(damage_particles)
 		damage_particles.emitting = true
-		#damage_particles.finished.connect(on_damage_particles_finished)
+		add_text(value)
 		await get_tree().create_timer(damage_particles.lifetime*2).timeout
+		
 		damage_particles.queue_free()
 	if value > 0:
 		gpu_particles_3d.emitting = true
+
+func add_text(value: float) -> void:
+	var text: Text = Constants.TEXT.instantiate()
+	add_child(text)
+	text.setText(value, is_player)
+	await text.play(is_player)
 
 func start_slow_down() -> void:
 	if !slow_down_particles.emitting:

@@ -8,6 +8,7 @@ class_name Player extends CharacterBody3D
 @onready var head_mesh = $"character-human/Skeleton3D/head-mesh"
 @onready var skill_box: Node = $SkillBox
 @onready var soul_component: SoulComponent = $SoulComponent
+@onready var effect_flash_component: EffectFlashComponent = $EffectFlashComponent
 
 @onready var player_skill_controller: PlayerSkillController = $PlayerSkillController
 
@@ -38,6 +39,7 @@ var is_immune_to_damage: bool
 var last_fontain_coordinates: Vector3
 
 func _ready():
+	effect_flash_component.is_player = true
 	player_name = "test" # TODO: create simple creation screen with nickname
 	GameEvents.emit_change_game_stage(1)
 	agr_area.body_entered.connect(on_body_entered)
@@ -135,7 +137,6 @@ func handle_action_button(event: InputEvent) -> void:
 		if do_actions():
 			action_hold_timer.start()
 	if event.is_action_released("action"):
-		print("released")
 		#maybe some maintainable actions which require to hold action button
 		if !action_hold_timer.is_stopped():
 			action_hold_timer.stop()
