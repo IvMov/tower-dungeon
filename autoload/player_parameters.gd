@@ -23,20 +23,17 @@ var inventory: Inventory
 var belt: Belt
 var hands: Hands
 
-var skill_expirience: Dictionary = {
-	0: {
-		"lvl": 0, 
-		"exp" : 0.0, 
-		"next_lvl_exp": 10.0, 
-		"max_lvl": 10
-	}
-}
+var skill_expirience: Dictionary = {}
+
 
 func _ready() -> void:
 	GameEvents.player_entered.connect(on_player_entered)
 
 func add_skill_exp(skill_id: int, value: float) -> void:
 	var skill: Dictionary = get_skill_data(skill_id)
+	if skill.is_empty():
+		skill = add_new_skill(skill_id, value)
+		
 	if skill.is_empty() || skill["max_lvl"] == skill["lvl"]:
 		print("EXCEPTION: Skill %s is max lvl already or not found - exp lost!" % skill)
 		return
@@ -48,6 +45,16 @@ func add_skill_exp(skill_id: int, value: float) -> void:
 			add_skill_exp(skill_id, value - required_exp)
 	else:
 		skill["exp"] += value
+	print(skill_expirience)
+
+func add_new_skill(skill_id: int, value: float) -> Dictionary:
+	skill_expirience[skill_id] =  {
+			"lvl": 0, 
+			"exp" : 0.0, 
+			"next_lvl_exp": value * 10, 
+			"max_lvl": 10
+		}
+	return skill_expirience[skill_id]
 
 func get_skill_data(skill_id: int) -> Dictionary:
 	if !skill_expirience.has(skill_id):

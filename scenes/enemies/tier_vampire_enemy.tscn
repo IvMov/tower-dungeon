@@ -2492,7 +2492,7 @@ script = ExtResource("2_coroo")
 enemy_name = "tier_vampire_enemy"
 animation_player = NodePath("Body/character-vampire2/AnimationPlayer")
 
-[node name="RayCast3D" parent="." index="4"]
+[node name="RayCast3D" parent="." index="3"]
 target_position = Vector3(0, 0, 10)
 
 [node name="CollisionShape3D" parent="CallEnemyAreaClient" index="0"]
@@ -2501,13 +2501,13 @@ shape = SubResource("CylinderShape3D_cqyx7")
 [node name="AgrCollision" parent="AgrArea" index="0"]
 shape = SubResource("CylinderShape3D_6njbg")
 
-[node name="EnemyCollision" parent="." index="7"]
+[node name="EnemyCollision" parent="." index="6"]
 shape = SubResource("CapsuleShape3D_j3l2d")
 
 [node name="HealthComponent" parent="Body/StatsBox" index="0"]
-max_value = 50.0
-current_value = 50.0
-regen = 5.0
+max_value = 100.0
+current_value = 100.0
+regen = 10.0
 
 [node name="ManaComponent" parent="Body/StatsBox" index="1"]
 max_value = 100.0

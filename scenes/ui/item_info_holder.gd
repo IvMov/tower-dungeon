@@ -33,14 +33,14 @@ func on_item_hovered(item_bulk: ItemBulk):
 	visible = true
 	
 	set_common_fields()
-	#var lvl = randi_range(0, 100) # calc lvl for modulation and other things
-	var lvl = 0 # calc lvl for modulation and other things
+	var skill: Dictionary = PlayerParameters.get_skill_data(item_bulk.item.id)
+	var lvl: int = 0 if skill.is_empty() else skill["lvl"]
 	set_uncommon_fields(lvl)
 	var color: Color = calc_color(lvl)
 	set_rarity_color(color)
 	self_modulate = color
-	#if deffensive build one fields
-	#	elif offensive build other fields
+	print("skill? %s" % skill)
+	lvl_up_container.set_info(skill)
 	
 
 
@@ -106,4 +106,5 @@ func reset_fields() -> void:
 	self_modulate = Color.WHITE
 	for child in characteristic_container.get_children():
 		characteristic_container.remove_child(child)
+	#lvl_up_container.reset()
 	

@@ -23,6 +23,10 @@ func finish_cast() -> void:
 func revert_cast() -> void:
 	cast_timer.stop()
 
+func calc_projectile_damage() -> float:
+	var skill_exp_data: Dictionary = PlayerParameters.get_skill_data(skill.id)
+	return skill.base_value if skill_exp_data.is_empty() else skill_exp_data["lvl"] * skill.value_per_lvl + skill.base_value
+
 
 func use_skill() -> void:
 	is_on_cooldown = true

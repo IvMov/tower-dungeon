@@ -62,11 +62,6 @@ func use_skill() -> void:
 
 
 
-func calc_projectile_damage() -> float:
-	#TODO: implement upgrade influence system
-	return skill.base_value
-
-
 func calc_projectile_speed() -> float:
 	#TODO: implement upgrade influence system
 	return skill.base_speed
