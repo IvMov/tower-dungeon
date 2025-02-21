@@ -11,3 +11,6 @@ class_name LabelKeyValue extends MarginContainer
 func _ready() -> void:
 	key_label.text = key
 	value_label.text = value
+
+func set_value(value: String) -> void:
+	value_label.text = value

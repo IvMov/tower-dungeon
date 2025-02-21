@@ -59,12 +59,6 @@ func use_skill() -> void:
 	projectile.global_position = camera_position + proj_direction * camera_distance * 0.95
 	projectile.apply_central_impulse(proj_direction * calc_projectile_speed())
 
-	
-
-func calc_projectile_damage() -> float:
-	#TODO: implement upgrade influence system
-	return skill.base_value
-
 
 func calc_projectile_speed() -> float:
 	#TODO: implement upgrade influence system

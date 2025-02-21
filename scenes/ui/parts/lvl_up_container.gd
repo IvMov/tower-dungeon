@@ -6,8 +6,8 @@ extends VBoxContainer
 
 func set_info(item: Dictionary) -> void:
 	if !item.is_empty():
-		label_key_value.value = str(item["lvl"])
-		label_key_value_2.value = str(item["max_lvl"])
+		label_key_value.set_value(str(item["lvl"]))
+		label_key_value_2.set_value(str(item["max_lvl"]))
 		progress_bar.max_value = item["next_lvl_exp"]
 		progress_bar.value = item["exp"]
 	else:

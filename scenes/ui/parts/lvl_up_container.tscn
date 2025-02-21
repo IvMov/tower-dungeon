@@ -9,12 +9,10 @@ script = ExtResource("1_qs6rk")
 [node name="LabelKeyValue" parent="." instance=ExtResource("1_i2sw6")]
 layout_mode = 2
 key = "Lvl:"
-value = "1"
 
 [node name="LabelKeyValue2" parent="." instance=ExtResource("1_i2sw6")]
 layout_mode = 2
 key = "Max lvl: "
-value = "100"
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2

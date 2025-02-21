@@ -6,6 +6,7 @@ var radius: float
 var damage: float
 var skill_id: int
 var push_power: float
+var is_explosing: bool = false
 
 @onready var life_timer: Timer = $LifeTimer
 
@@ -27,13 +28,15 @@ func _physics_process(delta) -> void:
 
 
 func on_body_entered(body: Node3D) -> void:
-	handleb_body_collision()
-	if body is BasicEnemy:
-		if body.get_damage(global_position, damage, push_power):
-			PlayerParameters.add_skill_exp(skill_id, damage)
+	if !is_explosing:
+		handleb_body_collision()
+		if body is BasicEnemy:
+			if body.get_damage(global_position, damage, push_power):
+				PlayerParameters.add_skill_exp(skill_id, damage)
 	
 
 func handleb_body_collision() -> void:
+	is_explosing = true
 	speed = 0
 	await do_explosion()
 	life_timer.wait_time = 0.5
