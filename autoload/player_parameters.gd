@@ -46,7 +46,6 @@ func add_skill_exp(skill_id: int, value: float) -> void:
 			add_skill_exp(skill_id, value - required_exp)
 	else:
 		skill["exp"] += value
-	print(skill_expirience)
 
 func add_new_skill(skill_id: int, value: float) -> Dictionary:
 	skill_expirience[skill_id] =  {

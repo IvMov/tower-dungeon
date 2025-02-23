@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://ked6b6st6u2v"]
+
+[ext_resource type="Texture2D" uid="uid://b1sh50rqrttne" path="res://assets/2d/items/consumable/hp_tablet.png" id="1_43i54"]
+[ext_resource type="Script" path="res://resources/items/item.gd" id="1_ghq6w"]
+[ext_resource type="PackedScene" uid="uid://bx0ydm3hsik0a" path="res://scenes/items/spark_tablet.tscn" id="1_sxga0"]
+
+[resource]
+script = ExtResource("1_ghq6w")
+id = 30
+title = "heal_skill_t"
+image = ExtResource("1_43i54")
+descrition = "heal_skill_d"
+type = "item_type_consumable"
+price = Vector3(0, 50, 0)
+scene = ExtResource("1_sxga0")

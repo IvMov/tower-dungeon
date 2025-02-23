@@ -1,7 +1,6 @@
 class_name Inventory extends Storage
 
 const SPARK_TABLET = preload("res://resources/items/spark_tablet.tres")
-const STONE = preload("res://resources/items/stone.tres")
 #@export var spark_tablet: Item
 @export var zoom_in_tablet: Item
 
@@ -10,14 +9,9 @@ func _ready():
 	GameEvents.item_add.connect(on_item_add)
 	id = 0
 	size = Vector2(4, 3)
-	#var item_bulk: ItemBulk = ItemBulk.new(SPARK_TABLET, 1)
 	var item_bulk2: ItemBulk = ItemBulk.new(zoom_in_tablet, 1)
-	#var item_bulk3: ItemBulk = ItemBulk.new(zoom_in_tablet, 1)
-	var item_bulkkk: ItemBulk = ItemBulk.new(STONE, 80)
-	#items[Vector2(0,0)] = item_bulk3
+
 	items[Vector2(1,0)] = item_bulk2
-	#items[Vector2(2,0)] = item_bulk2
-	items[Vector2(0,1)] = item_bulkkk
 
 func add(key: Vector3, item_bulk: ItemBulk) -> void:
 	var key_2d: Vector2 = Vector2(key.y, key.z)

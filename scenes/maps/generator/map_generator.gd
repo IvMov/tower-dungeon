@@ -342,7 +342,6 @@ func pick_random() -> Vector2:
 		return Vector2(0, 0)
 	directions.shuffle()
 	var direction: Vector2 = directions.pop_front()
-	print(availability[direction])
 	if availability[direction] > 0:
 		return pick_random()
 	print("MapGen INFO: random direction choosen %s" % direction)

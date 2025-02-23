@@ -25,7 +25,6 @@ func _unhandled_input(event):
 
 func on_change_game_stage(game_stage: Stage):
 	current_game_stage = game_stage
-	print(current_game_stage)
 	update_cursor()
 
 

@@ -6,8 +6,8 @@ const FIRE_PROJECTILE: PackedScene = preload("res://scenes/projectiles/fire_proj
 const TRAIDER_ITEM: PackedScene = preload("res://scenes/screens/traider_item.tscn")
 const TEXT: PackedScene = preload("res://scenes/ui/parts/text.tscn")
 
-const ITEM_STONE: Item = preload("res://resources/items/stone.tres")
-const ITEM_CRYSTAL: Item = preload("res://resources/items/crystal.tres")
+const ITEM_STONE: Item = preload("res://resources/items/consumables/stone.tres")
+const ITEM_CRYSTAL: Item = preload("res://resources/items/consumables/crystal.tres")
 const ITEM_SNOWBALL_TABLET: Item = preload("res://resources/items/snowball_tablet.tres")
 
 const CORE_TILE_SIZE: float = 8.0

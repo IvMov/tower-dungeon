@@ -12,6 +12,6 @@ title = "Stone"
 image = ExtResource("1_btq1j")
 descrition = "some_stone"
 type = "item_type_consumable"
-price = Vector3(9999, 9999, 9999)
+price = Vector3(3, 3, 0)
 scene = ExtResource("2_2aqkw")
 skill = ExtResource("4_i6lkv")

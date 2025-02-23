@@ -62,7 +62,6 @@ func _on_option_button_item_selected(index: int) -> void:
 
 
 func _on_button_buy_pressed() -> void:
-	print(item_view_holder.item_view.item_bulk.item.title)
 	item_view_holder.item_view.item_bulk.quantity -= selected_quantity
 	GameEvents.emit_item_add(Vector3.ZERO, ItemBulk.new(item_view_holder.item_view.item_bulk.item, selected_quantity))
 	PlayerParameters.souls.souls -= price_of_one * selected_quantity

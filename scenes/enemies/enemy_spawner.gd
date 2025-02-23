@@ -83,6 +83,5 @@ func _on_timer_timeout() -> void:
 
 func _on_check_player_timeout() -> void:
 	var player_position: Vector3 = PlayerParameters.get_position()
-	print("distance %f" % (global_position - player_position).length() )
 	if (global_position - player_position).length() < MAX_PLAYER_DISTANCE:
 		spawn_and_disapear()

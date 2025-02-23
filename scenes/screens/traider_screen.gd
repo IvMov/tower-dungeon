@@ -95,7 +95,6 @@ func on_change_game_stage(game_stage: GameStage.Stage):
 		visible = false
 
 func on_from_stage_to_shop():
-	print("m??????")
 	clear_old_shop()
 	load_items()
 	prepare_view()

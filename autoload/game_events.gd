@@ -59,7 +59,6 @@ func emit_add_skill(hand: int, skill: Skill):
 	add_skill.emit(hand, skill)
 
 func emit_skill_call_failed(reason: Enums.SkillCallFailedReason):
-	print("skill usage failed %s " % reason)
 	skill_call_failed.emit(reason)
 
 func emit_souls_dropped(position: Vector3, value: Vector3):

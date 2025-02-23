@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://dop7chluwc2fd"]
+
+[ext_resource type="Script" path="res://resources/items/item.gd" id="1_hl1kq"]
+[ext_resource type="Texture2D" uid="uid://vu71ue6nfrpv" path="res://assets/2d/items/consumable/damage_boost_tablet.png" id="1_seln2"]
+[ext_resource type="PackedScene" uid="uid://bx0ydm3hsik0a" path="res://scenes/items/spark_tablet.tscn" id="1_xrskh"]
+
+[resource]
+script = ExtResource("1_hl1kq")
+id = 33
+title = "damage_boost_skill_t"
+image = ExtResource("1_seln2")
+descrition = "damage_boost_skill_d"
+type = "item_type_consumable"
+price = Vector3(150, 150, 5)
+scene = ExtResource("1_xrskh")

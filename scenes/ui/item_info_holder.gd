@@ -39,7 +39,6 @@ func on_item_hovered(item_bulk: ItemBulk):
 	var color: Color = calc_color(lvl)
 	set_rarity_color(color)
 	self_modulate = color
-	print("skill? %s" % skill)
 	lvl_up_container.set_info(skill)
 	
 

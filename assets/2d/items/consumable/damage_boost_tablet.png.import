@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3ug6appl2vq5"
-path="res://.godot/imported/crystal3.png-194fb358b395e09d0abb0fb56cb83b9a.ctex"
+uid="uid://vu71ue6nfrpv"
+path="res://.godot/imported/damage_boost_tablet.png-b7b840816db4543b625067976edc18d4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/2d/items/crystal3.png"
-dest_files=["res://.godot/imported/crystal3.png-194fb358b395e09d0abb0fb56cb83b9a.ctex"]
+source_file="res://assets/2d/items/consumable/damage_boost_tablet.png"
+dest_files=["res://.godot/imported/damage_boost_tablet.png-b7b840816db4543b625067976edc18d4.ctex"]
 
 [params]
 

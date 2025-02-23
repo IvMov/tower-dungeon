@@ -28,9 +28,8 @@ func set_init_values(player: Player) -> void:
 	hp_bar.value = player.health_component.current_value
 	mp_bar.value = player.mana_component.current_value
 	stamina_bar.value = player.stamina_component.current_value
-	print("%s %s %s" % [player.health_component.current_value, player.mana_component.current_value, player.stamina_component.current_value])
 
-	
+
 func resize():
 	for child in bars_container.get_children():
 		child.custom_minimum_size =  Vector2(GameConfig.grid_block*5, GameConfig.grid_block/3)

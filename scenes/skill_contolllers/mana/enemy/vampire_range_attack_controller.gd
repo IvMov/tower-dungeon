@@ -21,7 +21,6 @@ func do_damage() -> float:
 
 func damage_player() -> void:
 	var player_position: Vector3 = calc_player_position()
-	print(player_position)
 	if player_position == Vector3.ZERO:
 		return
 
