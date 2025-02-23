@@ -62,6 +62,11 @@ func prepare_view() -> void:
 		traider_items.add_child(traider_item)
 		traider_item.build(item)
 
+func clear_old_shop() -> void:
+	items.clear()
+	for child in traider_items.get_children():
+		if child is TraiderItem:
+			child.queue_free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func on_item_hovered(item: ItemBulk): 
@@ -90,11 +95,8 @@ func on_change_game_stage(game_stage: GameStage.Stage):
 		visible = false
 
 func on_from_stage_to_shop():
+	print("m??????")
+	clear_old_shop()
 	load_items()
 	prepare_view()
-	
-
-	
-	
-	
 	

@@ -78,3 +78,4 @@ size_flags_vertical = 4
 text = "Buy"
 
 [connection signal="item_selected" from="HBoxContainer/Quantity/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="pressed" from="HBoxContainer/ButtonBuy" to="." method="_on_button_buy_pressed"]

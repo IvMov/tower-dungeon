@@ -1,7 +1,7 @@
 extends Node
 # TODO: after add saving and different players, add method to update var values from saving
 
-const BASE_SPEED: float = 300.0
+const BASE_SPEED: float = 500.0
 const BASE_JUMP_VELOCITY: float = 500.0
 const BASE_AIR_SPEED: float = 250.0 # not work as need to adjust velocity in process method for player
 const MOVE_SPEED_UP_MOD: float = 2.0
@@ -22,6 +22,7 @@ var last_position: Vector3 = Vector3.ZERO
 var inventory: Inventory
 var belt: Belt
 var hands: Hands
+var souls: SoulComponent
 
 var skill_expirience: Dictionary = {}
 
@@ -111,6 +112,7 @@ func on_player_entered(player: Player) -> void:
 	inventory = player.inventory
 	belt = player.belt
 	hands = player.hands
+	souls = player.soul_component
 
 
 func _on_remove_position_timer_timeout() -> void:

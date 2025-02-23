@@ -20,20 +20,17 @@ func recalc_bar_value(bar: ProgressBar, new_value: float):
 func recalc_bar_max_value(bar: ProgressBar, new_value: float):
 	bar.max_value = new_value
 
-func on_player_entered(player: Player):
-	player.health_component.health_changed.connect(on_value_changed.bind(hp_bar))
-	player.mana_component.mana_changed.connect(on_value_changed.bind(mp_bar))
-	player.stamina_component.stamina_changed.connect(on_value_changed.bind(stamina_bar))
-	
-	player.health_component.max_value_changed.connect(on_max_value_changed.bind(hp_bar))
-	player.mana_component.max_value_changed.connect(on_max_value_changed.bind(mp_bar))
-	player.stamina_component.max_value_changed.connect(on_max_value_changed.bind(stamina_bar))
-	
-	hp_bar.max_value = player.health_component.max_value
+func set_init_values(player: Player) -> void:
 	hp_bar.max_value = player.health_component.max_value
 	mp_bar.max_value = player.mana_component.max_value
 	stamina_bar.max_value = player.stamina_component.max_value
+	
+	hp_bar.value = player.health_component.current_value
+	mp_bar.value = player.mana_component.current_value
+	stamina_bar.value = player.stamina_component.current_value
+	print("%s %s %s" % [player.health_component.current_value, player.mana_component.current_value, player.stamina_component.current_value])
 
+	
 func resize():
 	for child in bars_container.get_children():
 		child.custom_minimum_size =  Vector2(GameConfig.grid_block*5, GameConfig.grid_block/3)
@@ -43,3 +40,17 @@ func on_max_value_changed(value: float, bar: ProgressBar) -> void:
 
 func on_value_changed(value: float, current_value: float, bar: ProgressBar) -> void:
 	recalc_bar_value(bar, current_value)
+
+func on_player_entered(player: Player):
+	player.health_component.health_changed.connect(on_value_changed.bind(hp_bar))
+	player.mana_component.mana_changed.connect(on_value_changed.bind(mp_bar))
+	player.stamina_component.stamina_changed.connect(on_value_changed.bind(stamina_bar))
+	
+	player.health_component.max_value_changed.connect(on_max_value_changed.bind(hp_bar))
+	player.mana_component.max_value_changed.connect(on_max_value_changed.bind(mp_bar))
+	player.stamina_component.max_value_changed.connect(on_max_value_changed.bind(stamina_bar))
+	
+	set_init_values(player)
+	
+	
+	

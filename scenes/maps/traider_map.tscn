@@ -1,22 +1,22 @@
 [gd_scene load_steps=29 format=3 uid="uid://dwmp17walymun"]
 
-[ext_resource type="Material" uid="uid://de3hjukfgxgh" path="res://assets/textures/materials/floor_material.tres" id="1_xjrum"]
-[ext_resource type="Material" uid="uid://cw8oxk75ogtt0" path="res://assets/textures/materials/wall_material.tres" id="2_pkf8s"]
-[ext_resource type="PackedScene" uid="uid://dsfklcrmsh38d" path="res://scenes/maps/parts/candle.tscn" id="3_6v22b"]
-[ext_resource type="PackedScene" uid="uid://dv8nvt63j6h3x" path="res://scenes/maps/parts/exit_from_shop.tscn" id="3_gtf8u"]
-[ext_resource type="PackedScene" uid="uid://cti1xk3if4l7g" path="res://scenes/npc/traider_wizard.tscn" id="3_jad3k"]
-[ext_resource type="Material" uid="uid://clptb0rjqplxi" path="res://assets/textures/brown_wood.tres" id="3_tqul0"]
-[ext_resource type="PackedScene" uid="uid://mn8seb7clfaa" path="res://scenes/maps/parts/traider_button.tscn" id="5_w5nn2"]
+[ext_resource type="Material" uid="uid://de3hjukfgxgh" path="res://assets/textures/materials/floor_material.tres" id="1_7f42e"]
+[ext_resource type="Material" uid="uid://cw8oxk75ogtt0" path="res://assets/textures/materials/wall_material.tres" id="2_4jseg"]
+[ext_resource type="PackedScene" uid="uid://dv8nvt63j6h3x" path="res://scenes/maps/parts/exit_from_traider.tscn" id="3_mfv7e"]
+[ext_resource type="PackedScene" uid="uid://dsfklcrmsh38d" path="res://scenes/maps/parts/candle.tscn" id="4_6qoet"]
+[ext_resource type="Material" uid="uid://clptb0rjqplxi" path="res://assets/textures/brown_wood.tres" id="5_eetjb"]
+[ext_resource type="PackedScene" uid="uid://cti1xk3if4l7g" path="res://scenes/npc/traider_wizard.tscn" id="6_h0s7e"]
+[ext_resource type="PackedScene" uid="uid://mn8seb7clfaa" path="res://scenes/maps/parts/traider_button.tscn" id="7_68n74"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_b62fs"]
-material = ExtResource("1_xjrum")
+material = ExtResource("1_7f42e")
 size = Vector2(14, 24)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_xqndt"]
 points = PackedVector3Array(7, 0, 12, -7, 0, 12, 7, 0, -12, -7, 0, -12)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_iua02"]
-material = ExtResource("2_pkf8s")
+material = ExtResource("2_4jseg")
 size = Vector2(24, 10)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8ptt6"]
@@ -26,7 +26,7 @@ points = PackedVector3Array(12.1881, 0.190439, 5.09524, -12.1881, -0.190439, -5.
 points = PackedVector3Array(12.1881, 0.190439, 5.09524, -12.1881, -0.190439, -5.19048, -12.1881, 0.190439, -5.19048, 12.1881, -0.190439, -5.19048, -12.1881, -0.190439, 5.09524, -12.1881, 0.190439, 5.09524, 12.1881, 0.190439, -5.19048, 12.1881, -0.190439, 5.09524)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_lhr50"]
-material = ExtResource("2_pkf8s")
+material = ExtResource("2_4jseg")
 size = Vector2(7, 10)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_se5il"]
@@ -36,7 +36,7 @@ points = PackedVector3Array(-3.57936, -0.079334, -5.07738, 3.56349, 0.079334, 5.
 points = PackedVector3Array(-3.57936, -0.079334, -5.07738, 3.56349, 0.079334, 5.07738, 3.56349, -0.079334, 5.07738, 3.56349, 0.079334, -5.07738, -3.57936, 0.079334, 5.07738, -3.57936, -0.079334, 5.07738, 3.56349, -0.079334, -5.07738, -3.57936, 0.079334, -5.07738)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ruup4"]
-material = ExtResource("2_pkf8s")
+material = ExtResource("2_4jseg")
 size = Vector2(3, 10)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_i5ttr"]
@@ -78,7 +78,7 @@ points = PackedVector3Array(1, 0.5, 0.25, 1, 0.5, -0.25, -1, 0.5, 0.25, 1, -0.5,
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hg54l"]
 points = PackedVector3Array(1, 0.5, 0.25, 1, 0.5, -0.25, -1, 0.5, 0.25, 1, -0.5, 0.25, 1, -0.5, -0.25, -1, 0.5, -0.25, -1, -0.5, 0.25, -1, -0.5, -0.25)
 
-[node name="ShopMap" type="Node3D"]
+[node name="TraiderMap" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.179, 0, -9.84)
 
 [node name="Floor" type="Node3D" parent="."]
@@ -156,7 +156,7 @@ mesh = SubResource("PlaneMesh_qbast")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/DoorWall/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_k7vud")
 
-[node name="ExitFromShop" parent="Walls" instance=ExtResource("3_gtf8u")]
+[node name="ExitFromShop" parent="Walls" instance=ExtResource("3_mfv7e")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 2, 5, -12)
 
 [node name="Ceil" type="Node3D" parent="."]
@@ -195,10 +195,10 @@ transform = Transform3D(1, 0, 0, 0, -1, 4.47035e-08, 0, -4.47035e-08, -1, 0, 10.
 mesh = SubResource("PlaneMesh_xybsu")
 skeleton = NodePath("../..")
 
-[node name="Candle" parent="OuterViewLayer/Out" instance=ExtResource("3_6v22b")]
+[node name="Candle" parent="OuterViewLayer/Out" instance=ExtResource("4_6qoet")]
 transform = Transform3D(1, 0, 0, 0, 0.999618, 0.0276076, 0, -0.0276076, 0.999618, -1.659, 9, -32.053)
 
-[node name="Candle2" parent="OuterViewLayer/Out" instance=ExtResource("3_6v22b")]
+[node name="Candle2" parent="OuterViewLayer/Out" instance=ExtResource("4_6qoet")]
 transform = Transform3D(1, 0, 0, 0, 0.996113, 0.0880774, 0, -0.0880774, 0.996113, 0.986, 9, -32.17)
 
 [node name="In" type="Node3D" parent="OuterViewLayer"]
@@ -228,7 +228,7 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5422, 0.5, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Traider"]
-material_override = ExtResource("3_tqul0")
+material_override = ExtResource("5_eetjb")
 mesh = SubResource("BoxMesh_8gyqb")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Traider/MeshInstance3D"]
@@ -238,7 +238,7 @@ shape = SubResource("ConvexPolygonShape3D_ntiit")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Traider"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.49074, 0, 1.5457)
-material_override = ExtResource("3_tqul0")
+material_override = ExtResource("5_eetjb")
 mesh = SubResource("BoxMesh_2h5et")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Traider/MeshInstance3D2"]
@@ -248,7 +248,7 @@ shape = SubResource("ConvexPolygonShape3D_qg0iq")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="Traider"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.49074, 0, -1.41181)
-material_override = ExtResource("3_tqul0")
+material_override = ExtResource("5_eetjb")
 mesh = SubResource("BoxMesh_2h5et")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Traider/MeshInstance3D3"]
@@ -256,8 +256,8 @@ mesh = SubResource("BoxMesh_2h5et")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Traider/MeshInstance3D3/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_hg54l")
 
-[node name="TraiderWizard" parent="Traider" instance=ExtResource("3_jad3k")]
+[node name="TraiderWizard" parent="Traider" instance=ExtResource("6_h0s7e")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.889246, -0.5, 0)
 
-[node name="TraiderButton" parent="Traider" instance=ExtResource("5_w5nn2")]
+[node name="TraiderButton" parent="Traider" instance=ExtResource("7_68n74")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)

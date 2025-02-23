@@ -2505,9 +2505,9 @@ shape = SubResource("CylinderShape3D_6njbg")
 shape = SubResource("CapsuleShape3D_j3l2d")
 
 [node name="HealthComponent" parent="Body/StatsBox" index="0"]
-max_value = 100.0
-current_value = 100.0
-regen = 10.0
+max_value = 40.0
+current_value = 40.0
+regen = 4.0
 
 [node name="ManaComponent" parent="Body/StatsBox" index="1"]
 max_value = 100.0

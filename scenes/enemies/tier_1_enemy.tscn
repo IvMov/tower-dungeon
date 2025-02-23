@@ -2330,21 +2330,18 @@ enemy_name = "tier_1_enemy"
 speed = 200.0
 animation_player = NodePath("Body/character-orc2/AnimationPlayer")
 
-[node name="EffectFlashComponent" parent="." index="0" node_paths=PackedStringArray("meshes")]
-meshes = [NodePath("../Body/character-orc2/character-orc/Skeleton3D/body-mesh"), NodePath("../Body/character-orc2/character-orc/Skeleton3D/head-mesh")]
-
 [node name="CollisionShape3D" parent="CallEnemyAreaClient" index="0"]
 shape = SubResource("CylinderShape3D_ogdi0")
 
 [node name="AgrCollision" parent="AgrArea" index="0"]
 shape = SubResource("CylinderShape3D_nuw01")
 
-[node name="EnemyCollision" parent="." index="7"]
+[node name="EnemyCollision" parent="." index="6"]
 shape = SubResource("CapsuleShape3D_t31c1")
 
 [node name="HealthComponent" parent="Body/StatsBox" index="0"]
-max_value = 50.0
-current_value = 50.0
+max_value = 30.0
+current_value = 30.0
 regen = 1.0
 
 [node name="StaminaComponent" parent="Body/StatsBox" index="2"]

@@ -15,20 +15,12 @@ var push_power: float
 @onready var collision_particles: GPUParticles3D = $CollisionParticles
 
 func _ready() -> void:
-	area_3d.body_entered.connect(on_body_entered)
 	life_timer.timeout.connect(on_life_timer_timeout)
 	projectile_particles.emitting = true
 
 func _physics_process(delta) -> void:
 	translate(direction * speed * delta)
 
-
-func on_body_entered(body: Node3D) -> void:
-	handleb_body_collision()
-	if body is BasicEnemy:
-		if body.get_damage(global_position, damage, push_power):
-			PlayerParameters.add_skill_exp(skill_id, damage)
-	
 
 func handleb_body_collision() -> void:
 	speed = 0
@@ -51,5 +43,12 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 	var body: Node = area.get_parent().get_parent().get_parent();
 	if body is BasicEnemy:
 		handleb_body_collision()
+		if body.get_damage(global_position, damage, push_power):
+			PlayerParameters.add_skill_exp(skill_id, damage)
+
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	handleb_body_collision()
+	if body is BasicEnemy:
 		if body.get_damage(global_position, damage, push_power):
 			PlayerParameters.add_skill_exp(skill_id, damage)

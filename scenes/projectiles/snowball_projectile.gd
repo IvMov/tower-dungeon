@@ -19,7 +19,6 @@ var is_explosing: bool = false
 @onready var collision_particles: GPUParticles3D = $CollisionParticles
 
 func _ready() -> void:
-	area_3d.body_entered.connect(on_body_entered)
 	life_timer.timeout.connect(on_life_timer_timeout)
 	projectile_particles.emitting = true
 
@@ -27,21 +26,14 @@ func _physics_process(delta) -> void:
 	translate(direction * speed * delta)
 
 
-func on_body_entered(body: Node3D) -> void:
-	if !is_explosing:
-		handleb_body_collision()
-		if body is BasicEnemy:
-			if body.get_damage(global_position, damage, push_power):
-				PlayerParameters.add_skill_exp(skill_id, damage)
-	
-
 func handleb_body_collision() -> void:
-	is_explosing = true
-	speed = 0
-	await do_explosion()
-	life_timer.wait_time = 0.5
-	life_timer.start()
-	mesh_instance_3d.visible = false
+	if !is_explosing:
+		is_explosing = true
+		speed = 0
+		await do_explosion()
+		life_timer.wait_time = 0.5
+		life_timer.start()
+		mesh_instance_3d.visible = false
 
 
 func do_explosion() -> void:
@@ -80,3 +72,11 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 		handleb_body_collision()
 		if body.get_damage(global_position, damage, push_power):
 			PlayerParameters.add_skill_exp(skill_id, damage)
+
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	handleb_body_collision()
+	if body is BasicEnemy:
+		if body.get_damage(global_position, damage, push_power):
+			PlayerParameters.add_skill_exp(skill_id, damage)
+	

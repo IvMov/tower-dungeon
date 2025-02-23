@@ -2338,7 +2338,7 @@ health_component = NodePath("../StatsBox/HealthComponent")
 meshes = [NodePath("../character-human/Skeleton3D/body-mesh"), NodePath("../character-human/Skeleton3D/head-mesh")]
 
 [node name="SoulComponent" parent="." instance=ExtResource("4_tt1bo")]
-souls = Vector3(0, 1, 0)
+souls = Vector3(100, 100, 100)
 
 [node name="SoulsCollectComponent" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_oucay")]
 player = NodePath("..")
@@ -2373,8 +2373,8 @@ regen = 2.0
 
 [node name="StaminaComponent" parent="StatsBox" node_paths=PackedStringArray("owner_node") instance=ExtResource("7_428qe")]
 owner_node = NodePath("../..")
-max_value = 10.0
-current_value = 10.0
+max_value = 300.0
+current_value = 300.0
 regen = 3.0
 
 [node name="SkillBox" type="Node3D" parent="."]

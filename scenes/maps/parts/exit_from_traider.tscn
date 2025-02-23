@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dv8nvt63j6h3x"]
 
 [ext_resource type="PackedScene" uid="uid://dgx4dmy8jeqee" path="res://scenes/ui/parts/hoverable.tscn" id="1_qqun7"]
-[ext_resource type="Script" path="res://scenes/maps/parts/exit_from_shop.gd" id="2_hl1vs"]
+[ext_resource type="Script" path="res://scenes/maps/parts/exit_from_traider.gd" id="2_hl1vs"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yfelq"]
 transparency = 1
@@ -15,7 +15,7 @@ size = Vector2(4, 10)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_rq3au"]
 points = PackedVector3Array(-2.07937, -0.079334, -5.07738, 2.04762, 0.079334, 5.07738, 2.04762, -0.079334, 5.07738, 2.04762, 0.079334, -5.07738, -2.07937, 0.079334, 5.07738, -2.07937, -0.079334, 5.07738, 2.04762, -0.079334, -5.07738, -2.07937, 0.079334, -5.07738)
 
-[node name="ExitFromShop" instance=ExtResource("1_qqun7")]
+[node name="ExitFromTraider" instance=ExtResource("1_qqun7")]
 script = ExtResource("2_hl1vs")
 
 [node name="FlyingText" parent="." index="0"]

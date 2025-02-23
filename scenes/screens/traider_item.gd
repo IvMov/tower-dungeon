@@ -20,13 +20,17 @@ func build(item: ItemBulk) -> void:
 	self.title.text = item.item.title
 	self.type.text = item.item.type
 	self.price_of_one = item.item.price
+	selected_quantity = 1
 	recalc_prices()
 	update_option_buttons()
 	resize()
+	button_buy.disabled = selected_quantity * price_of_one > PlayerParameters.souls.souls
 
 func recalc_prices() -> void: 
 	self.price.text = "%d / %d / %d" % [price_of_one.x, price_of_one.y, price_of_one.z]
 	self.total_price.text = "%d / %d / %d" % [price_of_one.x * selected_quantity, price_of_one.y * selected_quantity, price_of_one.z * selected_quantity]
+	button_buy.disabled = selected_quantity * price_of_one > PlayerParameters.souls.souls
+	self.total_price.add_theme_color_override("font_color", Color.RED if button_buy.disabled else Color.WHITE)
 	
 func resize() -> void:
 	item_view_holder.resize()
@@ -46,6 +50,8 @@ func update_option_buttons() -> void:
 			option_button.set_item_disabled(i, true)
 		else:
 			option_button.set_item_disabled(i, false)
+	#enable all btn
+	option_button.set_item_disabled(5, false)
 
 func get_all_items_quantity() -> int:
 	return self.item_view_holder.item_view.item_bulk.quantity
@@ -53,3 +59,16 @@ func get_all_items_quantity() -> int:
 func _on_option_button_item_selected(index: int) -> void:
 	selected_quantity = option_button.get_item_id(index) if index != 5 else get_all_items_quantity()
 	recalc_prices()
+
+
+func _on_button_buy_pressed() -> void:
+	print(item_view_holder.item_view.item_bulk.item.title)
+	item_view_holder.item_view.item_bulk.quantity -= selected_quantity
+	GameEvents.emit_item_add(Vector3.ZERO, ItemBulk.new(item_view_holder.item_view.item_bulk.item, selected_quantity))
+	PlayerParameters.souls.souls -= price_of_one * selected_quantity
+	GameEvents.emit_souls_update_view(PlayerParameters.souls.souls)
+	if item_view_holder.item_view.item_bulk.quantity <= 0:
+		queue_free()
+	else:
+		build(item_view_holder.item_view.item_bulk)
+		

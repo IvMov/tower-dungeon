@@ -1,12 +1,13 @@
 extends Node
 
-const SHOP_MAP: PackedScene = preload("res://scenes/maps/shop_map.tscn")
+const TRAIDER_MAP: PackedScene = preload("res://scenes/maps/traider_map.tscn")
 
 @onready var label = $UIWrapper/Label
 @onready var map_generator: MapGenerator = $MapGenerator
 @onready var maps: Node3D = $Maps
 @onready var player: Player = $Player
 @onready var enemies: Node3D = $Enemies
+@onready var souls: Node3D = $Souls
 
 const PLAYER_START_POINT: Vector3 = Vector3(1, 0.2, -1)
 
@@ -28,9 +29,12 @@ func on_from_stage_to_shop():
 	for enemy in enemies.get_children(): 
 		enemy.is_dying = true
 		enemy.queue_free()
-	var shop: Node3D = SHOP_MAP.instantiate()
+	for soul in souls.get_children():
+		soul.queue_free()
+	var shop: Node3D = TRAIDER_MAP.instantiate()
 	maps.add_child(shop)
 	player.global_position = PLAYER_START_POINT
+	player.rotate_y(PI/2)
 
 func on_from_shop_to_stage():
 	maps.get_child(0).queue_free()

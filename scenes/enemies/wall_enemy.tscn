@@ -140,13 +140,16 @@ shape = SubResource("BoxShape3D_xtxey")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 shape = SubResource("CylinderShape3D_ou6pp")
 
-[node name="EnemyCollision" parent="." index="7"]
+[node name="EnemyCollision" parent="." index="6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 shape = SubResource("BoxShape3D_lfg2o")
 
+[node name="BarsBox" parent="Body" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.13971, 0)
+
 [node name="HealthComponent" parent="Body/StatsBox" index="0"]
-max_value = 1000.0
-current_value = 1000.0
+max_value = 200.0
+current_value = 200.0
 regen = 2.0
 
 [node name="ManaComponent" parent="Body/StatsBox" index="1"]
@@ -167,3 +170,6 @@ skeleton = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_h1kjm")
 }
+
+[node name="EffectFlashComponent" parent="Body" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.12038, 0)
