@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0wgr3ajws1k8"]
+
+[ext_resource type="PackedScene" uid="uid://jut3uwfl054l" path="res://scenes/skill_contolllers/base_controller.tscn" id="1_ti732"]
+[ext_resource type="Script" path="res://scenes/skill_contolllers/consumables/speed_boost_controller.gd" id="2_rtcbf"]
+
+[node name="SpeedBoostController" instance=ExtResource("1_ti732")]
+script = ExtResource("2_rtcbf")

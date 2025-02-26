@@ -6,7 +6,7 @@ class_name SpawnEnemyController extends BaseController
 @export var projectile: PackedScene
 
 @onready var enemy_box: Node = get_tree().get_first_node_in_group("enemies")
-@onready var ray_cast_3d = $RayCast3D
+@onready var ray_cast_3d: RayCast3D = $RayCast3D
 
 var fast_cast: bool = false
 var attemts: int = 0

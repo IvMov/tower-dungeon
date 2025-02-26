@@ -28,13 +28,11 @@ var skill_expirience: Dictionary = {}
 
 
 func _ready() -> void:
+	GameEvents.add_skill.connect(on_add_skill)
 	GameEvents.player_entered.connect(on_player_entered)
 
 func add_skill_exp(skill_id: int, value: float) -> void:
 	var skill: Dictionary = get_skill_data(skill_id)
-	if skill.is_empty():
-		skill = add_new_skill(skill_id, value)
-		
 	if skill.is_empty() || skill["max_lvl"] == skill["lvl"]:
 		print("EXCEPTION: Skill %s is max lvl already or not found - exp lost!" % skill)
 		return
@@ -46,15 +44,6 @@ func add_skill_exp(skill_id: int, value: float) -> void:
 			add_skill_exp(skill_id, value - required_exp)
 	else:
 		skill["exp"] += value
-
-func add_new_skill(skill_id: int, value: float) -> Dictionary:
-	skill_expirience[skill_id] =  {
-			"lvl": 0, 
-			"exp" : 0.0, 
-			"next_lvl_exp": value * 10, 
-			"max_lvl": 10
-		}
-	return skill_expirience[skill_id]
 
 func get_skill_data(skill_id: int) -> Dictionary:
 	if !skill_expirience.has(skill_id):
@@ -88,7 +77,7 @@ func lvl_up_skill(skill: Dictionary) -> bool:
 	else:
 		skill["lvl"]+=1
 		skill["exp"] = 0.0
-		skill["next_lvl_exp"] = skill["next_lvl_exp"] + (skill["lvl"] * skill["max_lvl"]) + skill["max_lvl"]
+		skill["next_lvl_exp"] = skill["next_lvl_exp"] * skill["exp_multiplier"]
 		return true
 
 func get_position() -> Vector3:
@@ -116,3 +105,13 @@ func on_player_entered(player: Player) -> void:
 
 func _on_remove_position_timer_timeout() -> void:
 	last_position = Vector3.ZERO
+
+func on_add_skill(_hand:int, skill: Skill) -> void:
+	if skill.is_upgradable && !skill_expirience.has(skill.id):
+		skill_expirience[skill.id] =  {
+				"lvl": 0, 
+				"exp" : 0.0, 
+				"exp_multiplier": skill.exp_multiplier,
+				"next_lvl_exp": skill.base_value * 10, 
+				"max_lvl": skill.max_lvl
+			}

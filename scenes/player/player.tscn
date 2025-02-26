@@ -2363,7 +2363,7 @@ dash_skill = NodePath("../SkillBox/DashSkillController")
 owner_node = NodePath("../..")
 max_value = 500.0
 current_value = 500.0
-regen = 3.0
+regen = 10.0
 
 [node name="ManaComponent" parent="StatsBox" node_paths=PackedStringArray("owner_node") instance=ExtResource("6_5qlxb")]
 owner_node = NodePath("../..")
@@ -2444,14 +2444,14 @@ bones/4/parent = 3
 bones/4/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0998968, 0.1115, 0.0115)
 bones/4/enabled = true
 bones/4/position = Vector3(0.0998968, 0.1115, 0.0115)
-bones/4/rotation = Quaternion(0, -0.5, 0, 0.866025)
+bones/4/rotation = Quaternion(0, 0, -0.382683, 0.92388)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/name = "arm-right"
 bones/5/parent = 3
 bones/5/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0998968, 0.1115, 0.0115)
 bones/5/enabled = true
 bones/5/position = Vector3(-0.0998968, 0.1115, 0.0115)
-bones/5/rotation = Quaternion(0, 0.5, 0, 0.866025)
+bones/5/rotation = Quaternion(0, 0, 0.382683, 0.92388)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/name = "head"
 bones/6/parent = 3

@@ -27,7 +27,8 @@ func run_regen() -> void:
 		regen_timer.start()
 
 func _on_regen_timer_timeout() -> void:
-	run_regen()
+	if !owner_node.is_dying:
+		run_regen()
 	
 func emit_max_value_changed(_value: float) -> void:
 	max_value_changed.emit()

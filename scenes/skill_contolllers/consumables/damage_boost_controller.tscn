@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://v1h1yxtbyrej"]
+
+[ext_resource type="PackedScene" uid="uid://jut3uwfl054l" path="res://scenes/skill_contolllers/base_controller.tscn" id="1_fu08e"]
+[ext_resource type="Script" path="res://scenes/skill_contolllers/consumables/damage_boost_controller.gd" id="2_m5hep"]
+
+[node name="DamageBoostController" instance=ExtResource("1_fu08e")]
+script = ExtResource("2_m5hep")

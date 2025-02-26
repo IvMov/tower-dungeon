@@ -10,6 +10,10 @@ const ITEM_STONE: Item = preload("res://resources/items/consumables/stone.tres")
 const ITEM_CRYSTAL: Item = preload("res://resources/items/consumables/crystal.tres")
 const ITEM_SNOWBALL_TABLET: Item = preload("res://resources/items/snowball_tablet.tres")
 
+#consumables
+const HEAL_TABLET = preload("res://resources/items/consumables/heal_tablet.tres")
+
+
 const CORE_TILE_SIZE: float = 8.0
 const TUNEL_PADDING: float = 1.0
 const WALL_HALF: float = 0.5

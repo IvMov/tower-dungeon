@@ -197,9 +197,6 @@ script = ExtResource("2_6rjot")
 enemy_name = "enemy_spawner"
 animation_player = NodePath("Body/SpawnerBody/AnimationPlayer")
 
-[node name="EffectFlashComponent" parent="." index="0" node_paths=PackedStringArray("meshes")]
-meshes = [NodePath("../Body/SpawnerBody")]
-
 [node name="CollisionShape3D" parent="CallEnemyAreaClient" index="0"]
 shape = SubResource("CylinderShape3D_v63dg")
 
@@ -207,7 +204,7 @@ shape = SubResource("CylinderShape3D_v63dg")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 shape = SubResource("BoxShape3D_58i0a")
 
-[node name="EnemyCollision" parent="." index="7"]
+[node name="EnemyCollision" parent="." index="6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("SphereShape3D_c67ek")
 
@@ -239,12 +236,12 @@ libraries = {
 }
 autoplay = "idle"
 
-[node name="Timer" type="Timer" parent="." index="10"]
+[node name="Timer" type="Timer" parent="." index="9"]
 wait_time = 2.0
 one_shot = true
 autostart = true
 
-[node name="CheckPlayer" type="Timer" parent="." index="11"]
+[node name="CheckPlayer" type="Timer" parent="." index="10"]
 wait_time = 5.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

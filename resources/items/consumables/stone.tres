@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cew8j42ms3ysv" path="res://assets/2d/items/stone.png" id="1_btq1j"]
 [ext_resource type="Script" path="res://resources/items/item.gd" id="1_egn3c"]
 [ext_resource type="PackedScene" uid="uid://3j1ghro251mo" path="res://scenes/items/stone.tscn" id="2_2aqkw"]
-[ext_resource type="Resource" uid="uid://dq51j2ua438qf" path="res://resources/skills/stamina/stone_throw.tres" id="4_i6lkv"]
+[ext_resource type="Resource" uid="uid://dq51j2ua438qf" path="res://resources/skills/consumables/stone_throw.tres" id="4_i6lkv"]
 
 [resource]
 script = ExtResource("1_egn3c")

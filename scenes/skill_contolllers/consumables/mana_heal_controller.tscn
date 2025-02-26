@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwhppsnlt4wtn"]
+
+[ext_resource type="PackedScene" uid="uid://jut3uwfl054l" path="res://scenes/skill_contolllers/base_controller.tscn" id="1_4dcur"]
+[ext_resource type="Script" path="res://scenes/skill_contolllers/consumables/mana_heal_controller.gd" id="2_u8v64"]
+
+[node name="ManaHealController" instance=ExtResource("1_4dcur")]
+script = ExtResource("2_u8v64")

@@ -55,6 +55,8 @@ func change_margins() -> void:
 func load_items() -> void:
 	items.append(ItemBulk.new(Constants.ITEM_CRYSTAL, randi_range(1,20)))
 	items.append(ItemBulk.new(Constants.ITEM_STONE, randi_range(1,20)))
+	items.append(ItemBulk.new(Constants.HEAL_TABLET, randi_range(5,20)))
+
 
 func prepare_view() -> void:
 	for item in items:

@@ -15,8 +15,8 @@ var boost_enemies_num: int
 
 #spawner related spagetti
 var spawn_distance: float = 10
-var min_height: float = 4
-var max_height: float = 12
+var min_height: float = 5
+var max_height: float = 10
 var spawn_rate: float = 1
 
 func _ready():
@@ -77,7 +77,6 @@ func _on_timer_timeout() -> void:
 	tween.tween_property(body, "global_position:y", global_position.y + rand, 1.0)
 	tween.tween_property(spawner_body, "global_position:y", global_position.y + rand, 1.0)
 	tween.tween_property(spawner_body, "rotation", Vector3(rand/PI, rand/PI, rand/PI), 1.0)
-	await tween.finished
 	timer.start()
 
 

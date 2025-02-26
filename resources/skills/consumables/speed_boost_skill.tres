@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://bdh3wfq04muej"]
+
+[ext_resource type="Script" path="res://resources/skills/skill.gd" id="1_rbr81"]
+
+[resource]
+script = ExtResource("1_rbr81")
+id = 34
+title = "speed_boost_skill_t"
+description = "speed_boost_skill_d"
+is_maintainable = false
+is_offensive = false
+is_consumable = true
+is_upgradable = false
+parameter = "speed"
+base_value = 1.5
+base_push_value = 0.0
+base_speed = 0.0
+base_distance = 0.0
+energy_type = ""
+base_energy_cost = 0.0
+base_cast_time = 0.1
+base_duration = 0.1
+base_cooldown = 3.0
+value_per_lvl = 0.0
+push_value_per_lvl = 0.0
+speed_per_lvl = 0.0
+distance_per_lvl = 0.0
+energy_per_lvl = 0.0
+cast_time_per_lvl = 0.0
+duration_per_lvl = 0.0
+cooldown_per_lvl = 0.0
+max_lvl = 0
+exp_multiplier = 0.0

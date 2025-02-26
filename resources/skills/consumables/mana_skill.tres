@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://3mshnfv8rhkg"]
+
+[ext_resource type="Script" path="res://resources/skills/skill.gd" id="1_8oquk"]
+
+[resource]
+script = ExtResource("1_8oquk")
+id = 31
+title = "mana_skill_t"
+description = "mana_skill_d"
+is_maintainable = false
+is_offensive = false
+is_consumable = true
+is_upgradable = true
+parameter = "mana"
+base_value = 50.0
+base_push_value = 0.0
+base_speed = 0.0
+base_distance = 0.0
+energy_type = ""
+base_energy_cost = 0.0
+base_cast_time = 0.1
+base_duration = 0.1
+base_cooldown = 3.0
+value_per_lvl = 1.4
+push_value_per_lvl = 0.0
+speed_per_lvl = 0.0
+distance_per_lvl = 0.0
+energy_per_lvl = 0.0
+cast_time_per_lvl = 0.0
+duration_per_lvl = 0.0
+cooldown_per_lvl = 0.0
+max_lvl = 10
+exp_multiplier = 1.2

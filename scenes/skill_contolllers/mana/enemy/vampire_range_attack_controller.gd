@@ -31,11 +31,13 @@ func damage_player() -> void:
 		
 		projectiles_box.add_child(projectile)
 		enemy.animation_player.play("attack-melee-right")
-		projectile.damage = skill.base_value
+		projectile.damage = skill.base_value if !enemy.is_boss else skill.base_value * 2
 		projectile.push_power = 0
 		projectile.enemy_name = enemy.enemy_name
 		projectile.speed = 10
 		projectile.direction = (player_position - global_position).normalized()
+		if enemy.is_boss:
+			projectile.scale = Vector3.ONE * 2
 		projectile.global_position = global_position
 		
 	else:

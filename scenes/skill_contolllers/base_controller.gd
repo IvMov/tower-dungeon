@@ -24,8 +24,11 @@ func revert_cast() -> void:
 	cast_timer.stop()
 
 func calc_projectile_damage() -> float:
+	return calc_value_exponentially()
+
+func calc_value_exponentially()-> float:
 	var skill_exp_data: Dictionary = PlayerParameters.get_skill_data(skill.id)
-	return skill.base_value if skill_exp_data.is_empty() else skill_exp_data["lvl"] * skill.value_per_lvl + skill.base_value
+	return skill.base_value * pow(skill.value_per_lvl, skill_exp_data["lvl"])
 
 
 func use_skill() -> void:

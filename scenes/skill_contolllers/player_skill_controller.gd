@@ -56,12 +56,14 @@ func map_skill_to_controller(controller: BaseController, skill: Skill) -> void:
 func on_add_skill(hand:int, skill: Skill) -> void:
 	if !player:
 		return
-	player_skills[skill.id] = skill;
-	var controller_instance: BaseController = skill.controller.instantiate()
-	controller_instance.add_to_group(skill.title)
-	player.skill_box.add_child(controller_instance)
-	map_skill_to_controller(controller_instance, skill)
-	controller_instance.player = player
+	
+	if !player_skills.has(skill.id):
+		player_skills[skill.id] = skill;
+		var controller_instance: BaseController = skill.controller.instantiate()
+		controller_instance.add_to_group(skill.title)
+		player.skill_box.add_child(controller_instance)
+		map_skill_to_controller(controller_instance, skill)
+		controller_instance.player = player
 	
 	if !primary_skill && hand == 0:
 		primary_skill = skill

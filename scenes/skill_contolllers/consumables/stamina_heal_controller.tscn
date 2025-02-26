@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://dn6ewm5mw3qu"]
+
+[ext_resource type="PackedScene" uid="uid://jut3uwfl054l" path="res://scenes/skill_contolllers/base_controller.tscn" id="1_sp0x2"]
+[ext_resource type="Script" path="res://scenes/skill_contolllers/consumables/stamina_heal_controller.gd" id="2_pee3f"]
+
+[node name="StaminaHealController" instance=ExtResource("1_sp0x2")]
+script = ExtResource("2_pee3f")

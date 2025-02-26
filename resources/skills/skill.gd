@@ -34,9 +34,4 @@ class_name Skill extends Resource
 @export var cooldown_per_lvl: float
 
 @export var max_lvl: int
-@export var base_exp: float
-@export var exp_multiplier: float
-
-#shop related things
-@export var sell_price: Vector3
-@export var buy_price: Vector3
+@export var exp_multiplier: float 

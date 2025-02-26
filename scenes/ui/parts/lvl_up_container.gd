@@ -12,6 +12,6 @@ func set_info(item: Dictionary) -> void:
 		progress_bar.value = item["exp"]
 	else:
 		label_key_value.value = "0"
-		label_key_value_2.value = "10"
+		label_key_value_2.value = "?"
 		progress_bar.max_value = 100
 		progress_bar.value = 0
