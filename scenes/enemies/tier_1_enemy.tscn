@@ -2429,5 +2429,5 @@ surface_material_override/0 = SubResource("StandardMaterial3D_nuqbu")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Body/character-orc2" index="1"]
 libraries = {
-"": SubResource("AnimationLibrary_nxnuc")
+&"": SubResource("AnimationLibrary_nxnuc")
 }

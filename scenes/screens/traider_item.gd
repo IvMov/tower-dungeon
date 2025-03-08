@@ -24,14 +24,24 @@ func build(item: ItemBulk) -> void:
 	recalc_prices()
 	update_option_buttons()
 	resize()
-	button_buy.disabled = selected_quantity * price_of_one > PlayerParameters.souls.souls
+	update_availability()
 
 func recalc_prices() -> void: 
 	self.price.text = "%d / %d / %d" % [price_of_one.x, price_of_one.y, price_of_one.z]
 	self.total_price.text = "%d / %d / %d" % [price_of_one.x * selected_quantity, price_of_one.y * selected_quantity, price_of_one.z * selected_quantity]
-	button_buy.disabled = selected_quantity * price_of_one > PlayerParameters.souls.souls
+	update_availability()
+
+func update_availability() -> void: 
+	button_buy.disabled = !is_price_afordable()
 	self.total_price.add_theme_color_override("font_color", Color.RED if button_buy.disabled else Color.WHITE)
-	
+
+func is_price_afordable() -> bool:
+	var expected: Vector3 = selected_quantity * price_of_one;
+	var real: Vector3 = PlayerParameters.souls.souls
+	print("%s %s" % [expected, real])
+	return (expected.x <= real.x && expected.y <= real.y && expected.z <= real.z)
+
+
 func resize() -> void:
 	item_view_holder.resize()
 	quantity.custom_minimum_size =  Vector2(GameConfig.grid_block * 1.5, 0)
@@ -66,8 +76,19 @@ func _on_button_buy_pressed() -> void:
 	GameEvents.emit_item_add(Vector3.ZERO, ItemBulk.new(item_view_holder.item_view.item_bulk.item, selected_quantity))
 	PlayerParameters.souls.souls -= price_of_one * selected_quantity
 	GameEvents.emit_souls_update_view(PlayerParameters.souls.souls)
+	GameEvents.emit_update_items_prices()
 	if item_view_holder.item_view.item_bulk.quantity <= 0:
 		queue_free()
 	else:
 		build(item_view_holder.item_view.item_bulk)
 		
+
+
+
+
+func _on_button_buy_gui_input(event: InputEvent) -> void:
+	if button_buy.disabled && event.is_action_pressed("LMB"):
+		var tween: Tween = create_tween()
+		tween.tween_property(total_price, "scale", Vector2.ONE * 1.2, 0.05)
+		tween.tween_property(total_price, "scale", Vector2.ONE, 0.05)
+		GameEvents.emit_souls_update_view(PlayerParameters.souls.souls)

@@ -11,11 +11,8 @@ func start_cast() -> void:
 	cooldown_timer.wait_time = skill.base_cooldown
 	
 	if is_idle: 
-		print("IDLE")
 		GameEvents.emit_skill_call_failed(Enums.SkillCallFailedReason.IDLE)
 	elif !player.mana_component.minus(skill.base_energy_cost):
-		print("NO MANA")
-		# TODO: create energy component and health component abstraction layer with minus plus and etc methods.
 		GameEvents.emit_skill_call_failed(Enums.SkillCallFailedReason.NO_MANA)
 	else:
 		cast_enabled = true

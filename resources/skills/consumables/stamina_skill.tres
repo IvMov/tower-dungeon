@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://dtau528rri3cd"]
+[gd_resource type="Resource" script_class="Skill" load_steps=3 format=3 uid="uid://dtau528rri3cd"]
 
+[ext_resource type="PackedScene" uid="uid://dn6ewm5mw3qu" path="res://scenes/skill_contolllers/consumables/stamina_heal_controller.tscn" id="1_63klk"]
 [ext_resource type="Script" uid="uid://csgbo4gx64rma" path="res://resources/skills/skill.gd" id="1_t28hp"]
 
 [resource]
@@ -7,6 +8,7 @@ script = ExtResource("1_t28hp")
 id = 32
 title = "stamina_skill_t"
 description = "stamina_skill_d"
+controller = ExtResource("1_63klk")
 is_maintainable = false
 is_offensive = false
 is_consumable = true

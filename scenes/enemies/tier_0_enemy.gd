@@ -54,6 +54,8 @@ func detect_target(target_player: Player):
 
 func agr_on_player():
 	super.agr_on_player()
+	if !is_fighting:
+		random_speed()
 	call_other_enemies_controller.use_skill()
 
 

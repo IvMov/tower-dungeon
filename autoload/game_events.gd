@@ -29,6 +29,7 @@ signal redraw_item(key: Vector3)
 
 signal from_stage_to_shop()
 signal from_shop_to_stage()
+signal update_items_prices()
 
 signal souls_dropped(position: Vector3, value: Vector3)
 signal souls_collect(position: Vector3, value: Vector3)
@@ -119,3 +120,6 @@ func emit_from_stage_to_shop():
 
 func emit_from_shop_to_stage():
 	from_shop_to_stage.emit()
+
+func emit_update_items_prices():
+	update_items_prices.emit()

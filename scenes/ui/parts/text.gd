@@ -9,8 +9,10 @@ var tier_2: float = -4.0
 var tier_3: float = -5.0
 var tier_4: float = -10.0
 
+func set_text(text: String) -> void:
+	label.text = text
 
-func setText(value: float, is_player: bool) -> void:
+func set_float(value: float, is_player: bool) -> void:
 	label.text = "%0.2f" % value
 	if !is_player:
 		if value <= tier_4:

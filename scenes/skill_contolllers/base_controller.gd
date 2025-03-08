@@ -30,6 +30,11 @@ func calc_value_exponentially()-> float:
 	var skill_exp_data: Dictionary = PlayerParameters.get_skill_data(skill.id)
 	return skill.base_value * pow(skill.value_per_lvl, skill_exp_data["lvl"])
 
+func add_warning(text: String) -> void:
+	var text_holder: Text = Constants.TEXT.instantiate()
+	add_child(text_holder)
+	text_holder.set_text(tr(text))
+	text_holder.play(true)
 
 func use_skill() -> void:
 	is_on_cooldown = true

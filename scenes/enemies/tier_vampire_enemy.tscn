@@ -2570,5 +2570,5 @@ skeleton = NodePath("")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Body/character-vampire2" index="1"]
 libraries = {
-"": SubResource("AnimationLibrary_t0vfv")
+&"": SubResource("AnimationLibrary_t0vfv")
 }

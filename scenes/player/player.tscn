@@ -2361,21 +2361,21 @@ dash_skill = NodePath("../SkillBox/DashSkillController")
 
 [node name="HealthComponent" parent="StatsBox" node_paths=PackedStringArray("owner_node") instance=ExtResource("5_68vlw")]
 owner_node = NodePath("../..")
-max_value = 500.0
-current_value = 500.0
+max_value = 300.0
+current_value = 300.0
 regen = 10.0
 
 [node name="ManaComponent" parent="StatsBox" node_paths=PackedStringArray("owner_node") instance=ExtResource("6_5qlxb")]
 owner_node = NodePath("../..")
 max_value = 100.0
 current_value = 100.0
-regen = 2.0
+regen = 0.5
 
 [node name="StaminaComponent" parent="StatsBox" node_paths=PackedStringArray("owner_node") instance=ExtResource("7_428qe")]
 owner_node = NodePath("../..")
-max_value = 300.0
-current_value = 300.0
-regen = 3.0
+max_value = 200.0
+current_value = 200.0
+regen = 0.5
 
 [node name="SkillBox" type="Node3D" parent="."]
 
@@ -2473,7 +2473,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_j85tw")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_k43k4")
+&"": SubResource("AnimationLibrary_k43k4")
 }
 autoplay = "idle"
 

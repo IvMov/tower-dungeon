@@ -8,6 +8,7 @@ const TRAIDER_MAP: PackedScene = preload("res://scenes/maps/traider_map.tscn")
 @onready var player: Player = $Player
 @onready var enemies: Node3D = $Enemies
 @onready var souls: Node3D = $Souls
+@onready var projectiles: Node3D = $Projectiles
 
 const PLAYER_START_POINT: Vector3 = Vector3(1, 0.2, -1)
 
@@ -31,6 +32,8 @@ func on_from_stage_to_shop():
 		enemy.queue_free()
 	for soul in souls.get_children():
 		soul.queue_free()
+	for proj in projectiles.get_children():
+		proj.queue_free()
 	var shop: Node3D = TRAIDER_MAP.instantiate()
 	maps.add_child(shop)
 	player.global_position = PLAYER_START_POINT

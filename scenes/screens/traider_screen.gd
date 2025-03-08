@@ -23,6 +23,7 @@ func _ready() -> void:
 	GameEvents.item_hovered.connect(on_item_hovered)
 	GameEvents.item_unhovered.connect(on_item_unhovered)
 	GameEvents.from_stage_to_shop.connect(on_from_stage_to_shop)
+	GameEvents.update_items_prices.connect(on_update_items_prices)
 
 func resize() -> void:
 	change_margins()
@@ -56,6 +57,8 @@ func load_items() -> void:
 	items.append(ItemBulk.new(Constants.ITEM_CRYSTAL, randi_range(1,20)))
 	items.append(ItemBulk.new(Constants.ITEM_STONE, randi_range(1,20)))
 	items.append(ItemBulk.new(Constants.HEAL_TABLET, randi_range(5,20)))
+	items.append(ItemBulk.new(Constants.MANA_TABLET, randi_range(5,20)))
+	items.append(ItemBulk.new(Constants.STAMINA_TABLET, randi_range(5,20)))
 
 
 func prepare_view() -> void:
@@ -70,7 +73,12 @@ func clear_old_shop() -> void:
 		if child is TraiderItem:
 			child.queue_free()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+func update_availability() -> void:
+	for child in traider_items.get_children():
+		if child is TraiderItem:
+			child.update_availability()
+		
+
 func on_item_hovered(item: ItemBulk): 
 	if GameStage.current_game_stage != GameStage.Stage.TRAIDER:
 		return
@@ -101,3 +109,5 @@ func on_from_stage_to_shop():
 	load_items()
 	prepare_view()
 	
+func on_update_items_prices():
+	update_availability()

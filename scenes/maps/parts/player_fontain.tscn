@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://jv0prokpjsrw" path="res://scenes/maps/parts/fontain_fire.tscn" id="5_fauyd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1mkgj"]
+cull_mode = 2
 shading_mode = 0
 albedo_texture = ExtResource("1_y5orh")
 albedo_texture_force_srgb = true
@@ -15,6 +16,7 @@ uv1_scale = Vector3(1.79, 1.79, 1.79)
 uv1_triplanar = true
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_01nvt"]
+lightmap_size_hint = Vector2i(96, 44)
 material = SubResource("StandardMaterial3D_1mkgj")
 top_radius = 3.0
 radial_segments = 12

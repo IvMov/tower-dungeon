@@ -272,6 +272,9 @@ func add_spawner(is_temporary: bool, is_boss_spawner: bool, quantity: int, room:
 	spawn.is_boss_spawner = is_boss_spawner
 	map.add_child(spawn)
 	spawn.spawn_distance = max(ROOM_SIZE.x * Constants.CORE_TILE_SIZE / 2, ROOM_SIZE.y * Constants.CORE_TILE_SIZE / 2) 
+	if is_boss_spawner:
+		spawn.spawn_distance = 5
+		spawn.max_height = 0
 	spawn.boost_enemies_num = quantity
 	
 	spawn.agr_collision.shape.size = Vector3(ROOM_SIZE.x * Constants.CORE_TILE_SIZE, room.ceil_height, ROOM_SIZE.y * Constants.CORE_TILE_SIZE)

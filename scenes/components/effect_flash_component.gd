@@ -17,6 +17,7 @@ var is_player: bool = false
 
 
 func _ready():
+	GameEvents.skill_call_failed.connect(on_skill_call_failed)
 	health_component.health_changed.connect(on_health_changed)
 
 
@@ -36,7 +37,7 @@ func on_health_changed(value: float, _current_value: float) -> void:
 func add_text(value: float) -> void:
 	var text: Text = Constants.TEXT.instantiate()
 	add_child(text)
-	text.setText(value, is_player)
+	text.set_float(value, is_player)
 	await text.play(is_player)
 
 func start_slow_down() -> void:
@@ -61,3 +62,10 @@ func prepare_tween() -> Tween:
 	if tween && tween.is_valid():
 			tween.kill()
 	return create_tween().set_parallel(true)
+
+func on_skill_call_failed(m: int) -> void:
+	if is_player:
+		var text_holder: Text = Constants.TEXT.instantiate()
+		add_child(text_holder)
+		text_holder.set_text(tr(str(Enums.SkillCallFailedReason.keys()[m])))
+		text_holder.play(true)

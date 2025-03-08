@@ -1400,7 +1400,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_j80gf")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Body/character-ghost2" index="1"]
 libraries = {
-"": SubResource("AnimationLibrary_dp86x")
+&"": SubResource("AnimationLibrary_dp86x")
 }
 
 [node name="Area3D" type="Area3D" parent="Body/character-ghost2" index="2"]

@@ -12,6 +12,9 @@ func _ready() -> void:
 func minus(value: float) -> bool:
 	current_value = max(0, current_value - value)
 	emit_health_changed(-1 * value)
+	if owner_node is Tier0Enemy :
+		print("affffrrrr")
+		owner_node.agr_on_player()
 	if current_value == 0:
 		die()
 	else:

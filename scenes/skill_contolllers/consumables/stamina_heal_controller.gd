@@ -1,11 +1,13 @@
 class_name StaminaHealController extends BaseController
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+var player: Player
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func start_cast() -> void:
+	if !player:
+		print("ERROR: NO OWNER NODE SETTED TO CONTROLLER")
+	elif player.stamina_component.current_value >= player.stamina_component.max_value:
+		GameEvents.emit_skill_call_failed(Enums.SkillCallFailedReason.FULL_STAMINA)
+	else:
+		player.stamina_component.plus(skill.base_value)
+		GameEvents.emit_item_consumed(hand, skill.id)

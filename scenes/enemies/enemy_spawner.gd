@@ -14,9 +14,9 @@ var boost_cast: bool = true
 var boost_enemies_num: int
 
 #spawner related spagetti
-var spawn_distance: float = 10
-var min_height: float = 5
-var max_height: float = 10
+var spawn_distance: float = 7
+var min_height: float = -5
+var max_height: float = 5
 var spawn_rate: float = 1
 
 func _ready():

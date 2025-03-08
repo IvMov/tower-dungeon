@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://3mshnfv8rhkg"]
+[gd_resource type="Resource" script_class="Skill" load_steps=3 format=3 uid="uid://3mshnfv8rhkg"]
 
 [ext_resource type="Script" uid="uid://csgbo4gx64rma" path="res://resources/skills/skill.gd" id="1_8oquk"]
+[ext_resource type="PackedScene" uid="uid://cwhppsnlt4wtn" path="res://scenes/skill_contolllers/consumables/mana_heal_controller.tscn" id="1_t67in"]
 
 [resource]
 script = ExtResource("1_8oquk")
 id = 31
 title = "mana_skill_t"
 description = "mana_skill_d"
+controller = ExtResource("1_t67in")
 is_maintainable = false
 is_offensive = false
 is_consumable = true

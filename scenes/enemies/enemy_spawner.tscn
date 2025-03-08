@@ -232,7 +232,7 @@ skeleton = NodePath("../..")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Body/SpawnerBody" index="0"]
 libraries = {
-"": SubResource("AnimationLibrary_h1kjm")
+&"": SubResource("AnimationLibrary_h1kjm")
 }
 autoplay = "idle"
 
