@@ -1,7 +1,7 @@
 [gd_scene load_steps=24 format=3 uid="uid://cn4nsqghphlc0"]
 
 [ext_resource type="PackedScene" uid="uid://ca0ysw5vmydwd" path="res://scenes/enemies/basic_enemy.tscn" id="1_uk4uo"]
-[ext_resource type="Script" path="res://scenes/enemies/enemy_spawner.gd" id="2_6rjot"]
+[ext_resource type="Script" uid="uid://b8rjv0c0np1nc" path="res://scenes/enemies/enemy_spawner.gd" id="2_6rjot"]
 [ext_resource type="PackedScene" uid="uid://cum81aptelhj7" path="res://scenes/skill_contolllers/mana/enemy/spawn_enemy_controller.tscn" id="3_h5qeo"]
 [ext_resource type="Texture2D" uid="uid://du4kwq2r1x0ru" path="res://assets/textures/Brick 25 - 128x128.png" id="3_sovl2"]
 [ext_resource type="PackedScene" uid="uid://banbap6p0glja" path="res://scenes/enemies/tier_0_enemy.tscn" id="6_gc6bk"]
@@ -179,16 +179,16 @@ resource_name = "walk"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h1kjm"]
 _data = {
-"RESET": SubResource("Animation_ywfkp"),
-"attack-melee-left": SubResource("Animation_m3v5j"),
-"attack-melee-right": SubResource("Animation_42t1t"),
-"die": SubResource("Animation_4m6oe"),
-"fall": SubResource("Animation_2o4dt"),
-"idle": SubResource("Animation_5b5u4"),
-"sprint": SubResource("Animation_8xtam"),
-"take-damage-1": SubResource("Animation_86a61"),
-"take-damage-2": SubResource("Animation_15hg1"),
-"walk": SubResource("Animation_jdfxs")
+&"RESET": SubResource("Animation_ywfkp"),
+&"attack-melee-left": SubResource("Animation_m3v5j"),
+&"attack-melee-right": SubResource("Animation_42t1t"),
+&"die": SubResource("Animation_4m6oe"),
+&"fall": SubResource("Animation_2o4dt"),
+&"idle": SubResource("Animation_5b5u4"),
+&"sprint": SubResource("Animation_8xtam"),
+&"take-damage-1": SubResource("Animation_86a61"),
+&"take-damage-2": SubResource("Animation_15hg1"),
+&"walk": SubResource("Animation_jdfxs")
 }
 
 [node name="EnemySpawner" node_paths=PackedStringArray("animation_player") instance=ExtResource("1_uk4uo")]

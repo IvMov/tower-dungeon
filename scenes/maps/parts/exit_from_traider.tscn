@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dv8nvt63j6h3x"]
 
 [ext_resource type="PackedScene" uid="uid://dgx4dmy8jeqee" path="res://scenes/ui/parts/hoverable.tscn" id="1_qqun7"]
-[ext_resource type="Script" path="res://scenes/maps/parts/exit_from_traider.gd" id="2_hl1vs"]
+[ext_resource type="Script" uid="uid://cvseqxlpylpia" path="res://scenes/maps/parts/exit_from_traider.gd" id="2_hl1vs"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yfelq"]
 transparency = 1

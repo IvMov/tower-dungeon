@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cg2v3vqvc56f"]
 
-[ext_resource type="Script" path="res://scenes/components/souls_collect_component.gd" id="1_ha0e3"]
+[ext_resource type="Script" uid="uid://buqidx7jyj274" path="res://scenes/components/souls_collect_component.gd" id="1_ha0e3"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6r2ns"]
 radius = 0.7

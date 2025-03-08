@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Skill" load_steps=3 format=3 uid="uid://4gbcppcxh7em"]
 
 [ext_resource type="PackedScene" uid="uid://dl2fw38hnwy5p" path="res://scenes/skill_contolllers/stamina/player/crystal_throw_controller.tscn" id="1_fy6r6"]
-[ext_resource type="Script" path="res://resources/skills/skill.gd" id="2_2ngs4"]
+[ext_resource type="Script" uid="uid://csgbo4gx64rma" path="res://resources/skills/skill.gd" id="2_2ngs4"]
 
 [resource]
 script = ExtResource("2_2ngs4")

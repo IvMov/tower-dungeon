@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://dsfklcrmsh38d"]
 
 [ext_resource type="Material" uid="uid://clptb0rjqplxi" path="res://assets/textures/brown_wood.tres" id="1_30ngq"]
-[ext_resource type="Script" path="res://scenes/maps/parts/candle.gd" id="1_tjusg"]
+[ext_resource type="Script" uid="uid://b11ii64dx7ddo" path="res://scenes/maps/parts/candle.gd" id="1_tjusg"]
 [ext_resource type="PackedScene" uid="uid://vl4e41tw5b8v" path="res://scenes/ui/parts/flying_text.tscn" id="3_1s17b"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m4r5d"]

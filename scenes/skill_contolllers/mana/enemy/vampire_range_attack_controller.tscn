@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dpkdbqq87a4r7"]
 
 [ext_resource type="PackedScene" uid="uid://jut3uwfl054l" path="res://scenes/skill_contolllers/base_controller.tscn" id="1_liqmp"]
-[ext_resource type="Script" path="res://scenes/skill_contolllers/mana/enemy/vampire_range_attack_controller.gd" id="2_uvinf"]
+[ext_resource type="Script" uid="uid://lmb5a5ikw4ms" path="res://scenes/skill_contolllers/mana/enemy/vampire_range_attack_controller.gd" id="2_uvinf"]
 
 [node name="VampireRangeAttackController" instance=ExtResource("1_liqmp")]
 script = ExtResource("2_uvinf")

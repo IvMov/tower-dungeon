@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b5onrp6fq8enu"]
 
-[ext_resource type="Script" path="res://scenes/ui/bars/base_stat_bar.gd" id="1_bl6i0"]
+[ext_resource type="Script" uid="uid://d41ux6yw8bcn" path="res://scenes/ui/bars/base_stat_bar.gd" id="1_bl6i0"]
 [ext_resource type="PackedScene" uid="uid://c7f2gax0157nl" path="res://scenes/ui/bars/2d_progress_bar.tscn" id="2_r1ms1"]
 
 [node name="BaseStatBar" type="Node3D"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://jut3uwfl054l"]
 
-[ext_resource type="Script" path="res://scenes/skill_contolllers/base_controller.gd" id="1_ox68x"]
+[ext_resource type="Script" uid="uid://hynx03kho7wg" path="res://scenes/skill_contolllers/base_controller.gd" id="1_ox68x"]
 
 [node name="BaseController" type="Node3D"]
 script = ExtResource("1_ox68x")

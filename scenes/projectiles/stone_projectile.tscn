@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://dhisb5g4kf3le"]
 
-[ext_resource type="Script" path="res://scenes/projectiles/stone_projectile.gd" id="1_7e6ep"]
+[ext_resource type="Script" uid="uid://7crllti4r0hl" path="res://scenes/projectiles/stone_projectile.gd" id="1_7e6ep"]
 [ext_resource type="PhysicsMaterial" uid="uid://cgwq52o87akpq" path="res://resources/materials/drop_physics_material.tres" id="1_futb6"]
 [ext_resource type="SphereMesh" uid="uid://004wttwvhpwe" path="res://assets/3d/my/stone_mesh.tres" id="2_mv7th"]
 

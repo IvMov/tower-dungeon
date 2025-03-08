@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Skill" load_steps=3 format=3 uid="uid://17f7lkxmn34a"]
 
 [ext_resource type="PackedScene" uid="uid://b1r08fbxrmpbj" path="res://scenes/skill_contolllers/stamina/player/run_skill_controller.tscn" id="1_fohnv"]
-[ext_resource type="Script" path="res://resources/skills/skill.gd" id="2_ex3n8"]
+[ext_resource type="Script" uid="uid://csgbo4gx64rma" path="res://resources/skills/skill.gd" id="2_ex3n8"]
 
 [resource]
 script = ExtResource("2_ex3n8")
@@ -32,7 +32,4 @@ cast_time_per_lvl = 0.0
 duration_per_lvl = 0.0
 cooldown_per_lvl = 0.0
 max_lvl = 0
-base_exp = 0.0
 exp_multiplier = 0.0
-sell_price = Vector3(0, 0, 0)
-buy_price = Vector3(0, 0, 0)

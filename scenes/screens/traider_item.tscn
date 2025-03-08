@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cvil6wyxv6nu0"]
 
-[ext_resource type="Script" path="res://scenes/screens/traider_item.gd" id="1_ivt2a"]
+[ext_resource type="Script" uid="uid://bexoj06h3dag" path="res://scenes/screens/traider_item.gd" id="1_ivt2a"]
 [ext_resource type="PackedScene" uid="uid://c7mskp4sx4mtj" path="res://scenes/ui/item_view_holder.tscn" id="1_iyb6s"]
 
 [node name="TraiderItem" type="MarginContainer"]

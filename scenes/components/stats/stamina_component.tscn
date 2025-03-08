@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c5b0526vcqecl"]
 
 [ext_resource type="PackedScene" uid="uid://b16sln1ua5oaj" path="res://scenes/components/stats/stats_component.tscn" id="1_27we7"]
-[ext_resource type="Script" path="res://scenes/components/stats/stamina_component.gd" id="2_5lpc1"]
+[ext_resource type="Script" uid="uid://dsdj7nk6iajty" path="res://scenes/components/stats/stamina_component.gd" id="2_5lpc1"]
 
 [node name="StaminaComponent" instance=ExtResource("1_27we7")]
 script = ExtResource("2_5lpc1")

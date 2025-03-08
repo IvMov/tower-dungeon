@@ -2,7 +2,7 @@
 
 [ext_resource type="Material" uid="uid://brw2r106mrxoc" path="res://assets/textures/materials/vampire_projectile_material.tres" id="1_8maeu"]
 [ext_resource type="Material" uid="uid://b304cpbvwydhs" path="res://particles/player_small_charge.tres" id="1_h66r1"]
-[ext_resource type="Script" path="res://scenes/projectiles/vampire_projectile.gd" id="1_xcj3h"]
+[ext_resource type="Script" uid="uid://ctdm5gqxdwkpp" path="res://scenes/projectiles/vampire_projectile.gd" id="1_xcj3h"]
 [ext_resource type="Material" uid="uid://dtpkny3bvp3yd" path="res://particles/player_explosion.tres" id="3_ej3x4"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_ithnn"]

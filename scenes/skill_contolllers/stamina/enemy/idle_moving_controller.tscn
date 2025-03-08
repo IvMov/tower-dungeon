@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://budg2u4t08pwr"]
 
 [ext_resource type="PackedScene" uid="uid://jut3uwfl054l" path="res://scenes/skill_contolllers/base_controller.tscn" id="1_a3rbp"]
-[ext_resource type="Script" path="res://scenes/skill_contolllers/stamina/enemy/idle_moving_controller.gd" id="2_a7goh"]
+[ext_resource type="Script" uid="uid://bnr6ptqdynlhj" path="res://scenes/skill_contolllers/stamina/enemy/idle_moving_controller.gd" id="2_a7goh"]
 
 [node name="IdleMovingController" instance=ExtResource("1_a3rbp")]
 script = ExtResource("2_a7goh")

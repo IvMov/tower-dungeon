@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://pc60giw114ym"]
 
-[ext_resource type="Script" path="res://scenes/projectiles/fire_projectile.gd" id="1_qfrry"]
+[ext_resource type="Script" uid="uid://d2x2b0yoh1my5" path="res://scenes/projectiles/fire_projectile.gd" id="1_qfrry"]
 [ext_resource type="SphereMesh" uid="uid://d3p58vnsuip03" path="res://scenes/projectiles/fire_projectile_mesh.tres" id="2_osbv1"]
 [ext_resource type="Material" uid="uid://0ibbwc8fw2fa" path="res://particles/fire_projectile_particles.tres" id="3_h322l"]
 [ext_resource type="Material" uid="uid://dtpkny3bvp3yd" path="res://particles/player_explosion.tres" id="3_yolwn"]

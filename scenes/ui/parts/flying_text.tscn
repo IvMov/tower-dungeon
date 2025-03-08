@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://vl4e41tw5b8v"]
 
-[ext_resource type="Script" path="res://scenes/ui/parts/flying_text.gd" id="1_e168t"]
+[ext_resource type="Script" uid="uid://ciywnnlx82dsd" path="res://scenes/ui/parts/flying_text.gd" id="1_e168t"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_lvu0g"]
 viewport_path = NodePath("Sprite3D/SubViewport")

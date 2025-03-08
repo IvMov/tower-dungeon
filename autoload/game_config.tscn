@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c1gawghhh610k"]
 
 [ext_resource type="Theme" uid="uid://ds80lfmnl557w" path="res://resources/main_theme.tres" id="1_1umou"]
-[ext_resource type="Script" path="res://autoload/game_config.gd" id="1_qs85d"]
+[ext_resource type="Script" uid="uid://dmyuty1wm88ih" path="res://autoload/game_config.gd" id="1_qs85d"]
 
 [node name="GameConfig" type="Control"]
 layout_mode = 3

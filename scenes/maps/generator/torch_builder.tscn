@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cxn0cofct1v1b"]
 
-[ext_resource type="Script" path="res://scenes/maps/generator/torch_builder.gd" id="1_v1tmw"]
+[ext_resource type="Script" uid="uid://co4f5bgkncfjw" path="res://scenes/maps/generator/torch_builder.gd" id="1_v1tmw"]
 
 [node name="TorchBuilder" type="Node3D"]
 script = ExtResource("1_v1tmw")

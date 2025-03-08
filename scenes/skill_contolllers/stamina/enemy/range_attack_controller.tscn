@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://d0vgyjn65krd6"]
 
 [ext_resource type="PackedScene" uid="uid://jut3uwfl054l" path="res://scenes/skill_contolllers/base_controller.tscn" id="1_88hsn"]
-[ext_resource type="Script" path="res://scenes/skill_contolllers/stamina/enemy/range_attack_controller.gd" id="2_pwiy3"]
+[ext_resource type="Script" uid="uid://comiedvtwxbrr" path="res://scenes/skill_contolllers/stamina/enemy/range_attack_controller.gd" id="2_pwiy3"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3bv81"]
 resource_local_to_scene = true

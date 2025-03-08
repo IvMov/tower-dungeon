@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://48gifcwkviaf"]
 
-[ext_resource type="Script" path="res://scenes/player/storage/inventory.gd" id="1_1f2kj"]
+[ext_resource type="Script" uid="uid://bu2hg6llm2q80" path="res://scenes/player/storage/inventory.gd" id="1_1f2kj"]
 [ext_resource type="Resource" uid="uid://cw8ej827nieo2" path="res://resources/items/zoom_tablet.tres" id="3_uxvk5"]
 
 [node name="Inventory" type="Node"]

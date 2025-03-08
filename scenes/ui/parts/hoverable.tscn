@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dgx4dmy8jeqee"]
 
-[ext_resource type="Script" path="res://scenes/ui/parts/hoverable.gd" id="1_fq0gj"]
+[ext_resource type="Script" uid="uid://dee7ekswc24tp" path="res://scenes/ui/parts/hoverable.gd" id="1_fq0gj"]
 [ext_resource type="PackedScene" uid="uid://vl4e41tw5b8v" path="res://scenes/ui/parts/flying_text.tscn" id="2_e2qjg"]
 
 [node name="Hoverable" type="Node3D"]

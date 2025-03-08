@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dkjj73isvgfjx"]
 
 [ext_resource type="PackedScene" uid="uid://jut3uwfl054l" path="res://scenes/skill_contolllers/base_controller.tscn" id="1_bt6s0"]
-[ext_resource type="Script" path="res://scenes/skill_contolllers/stamina/player/jump_skill_controller.gd" id="2_fjkjr"]
+[ext_resource type="Script" uid="uid://c5k4daia4858l" path="res://scenes/skill_contolllers/stamina/player/jump_skill_controller.gd" id="2_fjkjr"]
 
 [node name="JumpSkillController" instance=ExtResource("1_bt6s0")]
 script = ExtResource("2_fjkjr")

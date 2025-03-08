@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Skill" load_steps=3 format=3 uid="uid://c84mq1pejshdu"]
 
-[ext_resource type="Script" path="res://resources/skills/skill.gd" id="1_kq5do"]
+[ext_resource type="Script" uid="uid://csgbo4gx64rma" path="res://resources/skills/skill.gd" id="1_kq5do"]
 [ext_resource type="PackedScene" uid="uid://dkqo5bcoyw0uh" path="res://scenes/skill_contolllers/consumables/health_heal_controller.tscn" id="1_wc1cm"]
 
 [resource]

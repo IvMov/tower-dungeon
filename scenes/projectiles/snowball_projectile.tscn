@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://bfniguqvdt0mj"]
 
-[ext_resource type="Script" path="res://scenes/projectiles/snowball_projectile.gd" id="1_w823r"]
+[ext_resource type="Script" uid="uid://bwgpod3dp3apl" path="res://scenes/projectiles/snowball_projectile.gd" id="1_w823r"]
 [ext_resource type="Material" uid="uid://b304cpbvwydhs" path="res://particles/player_small_charge.tres" id="2_ye8yh"]
 [ext_resource type="ArrayMesh" uid="uid://xt6lvxh50qlw" path="res://assets/3d/my/snowflake2.tres" id="3_bjelm"]
 [ext_resource type="Material" uid="uid://dtpkny3bvp3yd" path="res://particles/player_explosion.tres" id="4_t62h2"]

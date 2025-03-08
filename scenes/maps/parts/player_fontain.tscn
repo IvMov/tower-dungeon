@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://btey3yhuspcew"]
 
-[ext_resource type="Script" path="res://scenes/maps/parts/player_fontain.gd" id="1_0fp0e"]
+[ext_resource type="Script" uid="uid://b3kumijb7aloy" path="res://scenes/maps/parts/player_fontain.gd" id="1_0fp0e"]
 [ext_resource type="Texture2D" uid="uid://darkyqw48k8nh" path="res://assets/textures/Grass 15 - 128x128.png" id="1_y5orh"]
 [ext_resource type="Texture2D" uid="uid://dpo2ynfyebydj" path="res://assets/textures/Wood 9 - 128x128.png" id="2_pf5hw"]
 [ext_resource type="Material" uid="uid://clptb0rjqplxi" path="res://assets/textures/brown_wood.tres" id="3_00qye"]

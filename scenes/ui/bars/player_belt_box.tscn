@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b6oypgt1q0wwx"]
 
-[ext_resource type="Script" path="res://scenes/ui/bars/player_belt_box.gd" id="1_k1f8a"]
+[ext_resource type="Script" uid="uid://b05ksxyqn5yya" path="res://scenes/ui/bars/player_belt_box.gd" id="1_k1f8a"]
 
 [node name="PlayerBeltBox" type="PanelContainer"]
 theme_type_variation = &"PanelContainer2"

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dl2fw38hnwy5p"]
 
 [ext_resource type="PackedScene" uid="uid://jut3uwfl054l" path="res://scenes/skill_contolllers/base_controller.tscn" id="1_o4mum"]
-[ext_resource type="Script" path="res://scenes/skill_contolllers/stamina/player/crystal_throw_controller.gd" id="2_tydkg"]
+[ext_resource type="Script" uid="uid://bavpyx7lxnm21" path="res://scenes/skill_contolllers/stamina/player/crystal_throw_controller.gd" id="2_tydkg"]
 [ext_resource type="PackedScene" uid="uid://b2yb2ffgq8gub" path="res://scenes/projectiles/crystal_projectile.tscn" id="3_dftqg"]
 
 [node name="CrystalThrowController" instance=ExtResource("1_o4mum")]

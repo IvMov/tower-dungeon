@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Skill" load_steps=3 format=3 uid="uid://cfa5jb0b84clp"]
 
-[ext_resource type="Script" path="res://resources/skills/skill.gd" id="1_e4xhs"]
+[ext_resource type="Script" uid="uid://csgbo4gx64rma" path="res://resources/skills/skill.gd" id="1_e4xhs"]
 [ext_resource type="PackedScene" uid="uid://cma4sf7e6aj07" path="res://scenes/skill_contolllers/stamina/player/dash_skill_controller.tscn" id="1_nvjy5"]
 
 [resource]
@@ -32,7 +32,4 @@ cast_time_per_lvl = 0.0
 duration_per_lvl = 0.0
 cooldown_per_lvl = 0.0
 max_lvl = 10
-base_exp = 0.0
 exp_multiplier = 0.0
-sell_price = Vector3(0, 0, 0)
-buy_price = Vector3(0, 0, 0)

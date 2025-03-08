@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b0l5cf4kkf0oc"]
 
 [ext_resource type="PackedScene" uid="uid://b2ewffvy400tt" path="res://scenes/ui/parts/label_key_value.tscn" id="1_i2sw6"]
-[ext_resource type="Script" path="res://scenes/ui/parts/lvl_up_container.gd" id="1_qs6rk"]
+[ext_resource type="Script" uid="uid://s2ejt1r3adjt" path="res://scenes/ui/parts/lvl_up_container.gd" id="1_qs6rk"]
 
 [node name="LvlUpContainer" type="VBoxContainer"]
 script = ExtResource("1_qs6rk")

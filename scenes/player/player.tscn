@@ -1,7 +1,7 @@
 [gd_scene load_steps=55 format=4 uid="uid://b24j4s1u7ww1k"]
 
 [ext_resource type="PackedScene" uid="uid://dituee6sehxvq" path="res://scenes/camera/camera_scene.tscn" id="1_52pv8"]
-[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_xn4w2"]
+[ext_resource type="Script" uid="uid://cgde56cq28sxu" path="res://scenes/player/player.gd" id="1_xn4w2"]
 [ext_resource type="Texture2D" uid="uid://c13tj2oeip7q3" path="res://assets/2d/colormap.png" id="3_t5qur"]
 [ext_resource type="PackedScene" uid="uid://4eygpv6ar4kx" path="res://scenes/components/effect_flash_component.tscn" id="3_v6oxs"]
 [ext_resource type="PackedScene" uid="uid://c4u0x0titwwsi" path="res://scenes/skill_contolllers/player_skill_controller.tscn" id="4_luhgc"]
@@ -2294,33 +2294,33 @@ tracks/10/keys = PackedFloat32Array(0, 1, 0, 0, 0, -1, 0.0333333, 1, -0.0817211,
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k43k4"]
 _data = {
-"attack-kick-left": SubResource("Animation_xp8ok"),
-"attack-kick-right": SubResource("Animation_tumvy"),
-"attack-melee-left": SubResource("Animation_p854c"),
-"attack-melee-right": SubResource("Animation_dw8v4"),
-"crouch": SubResource("Animation_cdp43"),
-"die": SubResource("Animation_ew4go"),
-"drive": SubResource("Animation_ucce8"),
-"emote-no": SubResource("Animation_7dcm1"),
-"emote-yes": SubResource("Animation_md2gq"),
-"fall": SubResource("Animation_tbaca"),
-"holding-both": SubResource("Animation_7a1tq"),
-"holding-both-shoot": SubResource("Animation_c61pm"),
-"holding-left": SubResource("Animation_vcjyj"),
-"holding-left-shoot": SubResource("Animation_kdqtu"),
-"holding-right": SubResource("Animation_lshgg"),
-"holding-right-shoot": SubResource("Animation_jj5ow"),
-"idle": SubResource("Animation_mpxs4"),
-"interact-left": SubResource("Animation_g6j0o"),
-"interact-right": SubResource("Animation_3j6cx"),
-"jump": SubResource("Animation_d7umt"),
-"pick-up": SubResource("Animation_o7p7e"),
-"sit": SubResource("Animation_3tnk4"),
-"sprint": SubResource("Animation_iikqv"),
-"static": SubResource("Animation_bvni0"),
-"take-damage-1": SubResource("Animation_uk874"),
-"take-damage-2": SubResource("Animation_2wg7t"),
-"walk": SubResource("Animation_xd5u4")
+&"attack-kick-left": SubResource("Animation_xp8ok"),
+&"attack-kick-right": SubResource("Animation_tumvy"),
+&"attack-melee-left": SubResource("Animation_p854c"),
+&"attack-melee-right": SubResource("Animation_dw8v4"),
+&"crouch": SubResource("Animation_cdp43"),
+&"die": SubResource("Animation_ew4go"),
+&"drive": SubResource("Animation_ucce8"),
+&"emote-no": SubResource("Animation_7dcm1"),
+&"emote-yes": SubResource("Animation_md2gq"),
+&"fall": SubResource("Animation_tbaca"),
+&"holding-both": SubResource("Animation_7a1tq"),
+&"holding-both-shoot": SubResource("Animation_c61pm"),
+&"holding-left": SubResource("Animation_vcjyj"),
+&"holding-left-shoot": SubResource("Animation_kdqtu"),
+&"holding-right": SubResource("Animation_lshgg"),
+&"holding-right-shoot": SubResource("Animation_jj5ow"),
+&"idle": SubResource("Animation_mpxs4"),
+&"interact-left": SubResource("Animation_g6j0o"),
+&"interact-right": SubResource("Animation_3j6cx"),
+&"jump": SubResource("Animation_d7umt"),
+&"pick-up": SubResource("Animation_o7p7e"),
+&"sit": SubResource("Animation_3tnk4"),
+&"sprint": SubResource("Animation_iikqv"),
+&"static": SubResource("Animation_bvni0"),
+&"take-damage-1": SubResource("Animation_uk874"),
+&"take-damage-2": SubResource("Animation_2wg7t"),
+&"walk": SubResource("Animation_xd5u4")
 }
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]

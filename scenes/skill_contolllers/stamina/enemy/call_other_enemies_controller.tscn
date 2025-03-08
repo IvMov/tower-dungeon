@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://crd6vmrg3liuw"]
 
 [ext_resource type="PackedScene" uid="uid://jut3uwfl054l" path="res://scenes/skill_contolllers/base_controller.tscn" id="1_l1n6x"]
-[ext_resource type="Script" path="res://scenes/skill_contolllers/stamina/enemy/call_other_enemies_controller.gd" id="2_5p8cy"]
+[ext_resource type="Script" uid="uid://bbk6w3b1ol5pl" path="res://scenes/skill_contolllers/stamina/enemy/call_other_enemies_controller.gd" id="2_5p8cy"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_e6exe"]
 resource_local_to_scene = true

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://wrldpki8le4f"]
 
 [ext_resource type="PackedScene" uid="uid://jut3uwfl054l" path="res://scenes/skill_contolllers/base_controller.tscn" id="1_4v12g"]
-[ext_resource type="Script" path="res://scenes/skill_contolllers/stamina/enemy/dodge_skill_controller.gd" id="2_whm14"]
+[ext_resource type="Script" uid="uid://b451yqwp5xfhx" path="res://scenes/skill_contolllers/stamina/enemy/dodge_skill_controller.gd" id="2_whm14"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_efh5s"]
 resource_local_to_scene = true

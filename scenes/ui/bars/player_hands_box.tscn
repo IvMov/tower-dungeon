@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bbq1kysj1003m"]
 
-[ext_resource type="Script" path="res://scenes/ui/bars/player_hands_box.gd" id="1_kydb2"]
+[ext_resource type="Script" uid="uid://1kd11ukkos5y" path="res://scenes/ui/bars/player_hands_box.gd" id="1_kydb2"]
 [ext_resource type="PackedScene" uid="uid://c7mskp4sx4mtj" path="res://scenes/ui/item_view_holder.tscn" id="2_j2aha"]
 
 [node name="PlayerHandsBox" type="PanelContainer"]

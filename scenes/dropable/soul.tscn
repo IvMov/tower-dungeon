@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://0yuowhqbaqnh"]
 
-[ext_resource type="Script" path="res://scenes/dropable/soul.gd" id="1_pe5nk"]
+[ext_resource type="Script" uid="uid://ck8y8e5jiinsk" path="res://scenes/dropable/soul.gd" id="1_pe5nk"]
 [ext_resource type="Material" uid="uid://dq3wuuvlnjd0t" path="res://particles/soul.tres" id="2_onyni"]
 [ext_resource type="SphereMesh" uid="uid://dgsvb6hf7bef" path="res://scenes/dropable/soul_1.tres" id="3_cqmw1"]
 

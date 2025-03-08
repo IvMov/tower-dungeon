@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cti1xk3if4l7g"]
 
 [ext_resource type="PackedScene" uid="uid://cqha8afkaddv4" path="res://assets/3d/wizard_asset_fot_tower_of_the_wizard_scene.glb" id="1_y1ehc"]
-[ext_resource type="Script" path="res://scenes/npc/traider_wizard.gd" id="2_5udb0"]
+[ext_resource type="Script" uid="uid://bmh0t75a5jmrr" path="res://scenes/npc/traider_wizard.gd" id="2_5udb0"]
 [ext_resource type="PackedScene" uid="uid://dsfklcrmsh38d" path="res://scenes/maps/parts/candle.tscn" id="3_k88gr"]
 
 [node name="TraiderWizard" instance=ExtResource("1_y1ehc")]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://c1e65nbn04dw4"]
 
 [ext_resource type="PackedScene" uid="uid://dgx4dmy8jeqee" path="res://scenes/ui/parts/hoverable.tscn" id="1_8wjkn"]
-[ext_resource type="Script" path="res://scenes/maps/parts/traider_portal.gd" id="2_tggcj"]
+[ext_resource type="Script" uid="uid://bosgl38y8ndv5" path="res://scenes/maps/parts/traider_portal.gd" id="2_tggcj"]
 [ext_resource type="PackedScene" uid="uid://c521w1yv0o3ri" path="res://scenes/maps/parts/stairs_for_view.tscn" id="3_vl5ga"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8oytt"]

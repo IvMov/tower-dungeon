@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bp1sun7nnmiix"]
 
 [ext_resource type="PackedScene" uid="uid://b16sln1ua5oaj" path="res://scenes/components/stats/stats_component.tscn" id="1_n331p"]
-[ext_resource type="Script" path="res://scenes/components/stats/mana_component.gd" id="2_1upjx"]
+[ext_resource type="Script" uid="uid://wb4gttbtn76o" path="res://scenes/components/stats/mana_component.gd" id="2_1upjx"]
 
 [node name="ManaComponent" instance=ExtResource("1_n331p")]
 script = ExtResource("2_1upjx")

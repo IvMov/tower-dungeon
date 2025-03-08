@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c7mskp4sx4mtj"]
 
-[ext_resource type="Script" path="res://scenes/ui/item_view_holder.gd" id="1_bj0pa"]
+[ext_resource type="Script" uid="uid://b2f0h6e2l6ee" path="res://scenes/ui/item_view_holder.gd" id="1_bj0pa"]
 [ext_resource type="PackedScene" uid="uid://cfhmdyjuhsxsd" path="res://scenes/ui/item_view.tscn" id="2_nypsx"]
 
 [node name="ItemViewHolder" type="PanelContainer"]

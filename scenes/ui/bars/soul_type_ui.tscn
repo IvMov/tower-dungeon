@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cri7ni48w3r7m"]
 
-[ext_resource type="Script" path="res://scenes/ui/bars/soul_type_ui.gd" id="1_6qooq"]
+[ext_resource type="Script" uid="uid://ug6dihi6cq8s" path="res://scenes/ui/bars/soul_type_ui.gd" id="1_6qooq"]
 [ext_resource type="Texture2D" uid="uid://da68ojgypdeav" path="res://assets/2d/ui/soul_1.png" id="2_6qgr8"]
 
 [sub_resource type="Animation" id="Animation_g78tk"]
@@ -37,8 +37,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s01tn"]
 _data = {
-"RESET": SubResource("Animation_g78tk"),
-"add": SubResource("Animation_6gwr2")
+&"RESET": SubResource("Animation_g78tk"),
+&"add": SubResource("Animation_6gwr2")
 }
 
 [node name="SoulTypeUi" type="MarginContainer"]

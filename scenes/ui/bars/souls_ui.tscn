@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://vtc4imj2ymwb"]
 
-[ext_resource type="Script" path="res://scenes/ui/bars/souls_ui.gd" id="1_1hy07"]
+[ext_resource type="Script" uid="uid://dps524hll048" path="res://scenes/ui/bars/souls_ui.gd" id="1_1hy07"]
 [ext_resource type="PackedScene" uid="uid://cri7ni48w3r7m" path="res://scenes/ui/bars/soul_type_ui.tscn" id="1_kh0f2"]
 [ext_resource type="Texture2D" uid="uid://da68ojgypdeav" path="res://assets/2d/ui/soul_1.png" id="3_i72jx"]
 [ext_resource type="Texture2D" uid="uid://die0ad3peb6yx" path="res://assets/2d/ui/soul_2.png" id="4_0s8wt"]

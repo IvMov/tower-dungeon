@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://ca0ysw5vmydwd"]
 
-[ext_resource type="Script" path="res://scenes/enemies/basic_enemy.gd" id="1_f284f"]
+[ext_resource type="Script" uid="uid://b8cv1wh2endew" path="res://scenes/enemies/basic_enemy.gd" id="1_f284f"]
 [ext_resource type="PackedScene" uid="uid://d3xyibv2r68ev" path="res://scenes/components/soul_component.tscn" id="3_7qqhi"]
 [ext_resource type="PackedScene" uid="uid://brwji28kmyilf" path="res://scenes/components/stats/health_component.tscn" id="3_73i4a"]
 [ext_resource type="PackedScene" uid="uid://4eygpv6ar4kx" path="res://scenes/components/effect_flash_component.tscn" id="3_c5p53"]

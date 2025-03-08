@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cygl6245k6ebu"]
 
-[ext_resource type="Script" path="res://scenes/screens/traider_screen.gd" id="1_fn8mv"]
+[ext_resource type="Script" uid="uid://30lx0x1buck6" path="res://scenes/screens/traider_screen.gd" id="1_fn8mv"]
 
 [node name="TraiderScreen" type="MarginContainer"]
 anchors_preset = 15

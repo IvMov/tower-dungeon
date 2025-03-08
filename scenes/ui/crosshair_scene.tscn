@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ieuiir4uuka5"]
 
-[ext_resource type="Script" path="res://scenes/ui/crosshair.gd" id="1_fodfv"]
+[ext_resource type="Script" uid="uid://blgfmanmin8ov" path="res://scenes/ui/crosshair.gd" id="1_fodfv"]
 [ext_resource type="Texture2D" uid="uid://dhxngv1xwgecy" path="res://assets/2d/Crosshair3.png" id="2_3qits"]
 
 [node name="Crosshair" type="Node3D"]

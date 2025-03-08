@@ -1,7 +1,7 @@
 [gd_scene load_steps=53 format=4 uid="uid://b64al2yi4ofhh"]
 
 [ext_resource type="PackedScene" uid="uid://ca0ysw5vmydwd" path="res://scenes/enemies/basic_enemy.tscn" id="1_ihf13"]
-[ext_resource type="Script" path="res://scenes/enemies/tier_vampire_enemy.gd" id="2_coroo"]
+[ext_resource type="Script" uid="uid://bi2fsdfbakx51" path="res://scenes/enemies/tier_vampire_enemy.gd" id="2_coroo"]
 [ext_resource type="Texture2D" uid="uid://cu8fm1wha26cr" path="res://assets/3d/Textures/colormap.png" id="2_oxj6t"]
 [ext_resource type="PackedScene" uid="uid://wrldpki8le4f" path="res://scenes/skill_contolllers/stamina/enemy/dodge_skill_controller.tscn" id="3_pgm7c"]
 [ext_resource type="PackedScene" uid="uid://budg2u4t08pwr" path="res://scenes/skill_contolllers/stamina/enemy/idle_moving_controller.tscn" id="4_ipoc6"]
@@ -2460,31 +2460,31 @@ tracks/11/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t0vfv"]
 _data = {
-"attack-kick-left": SubResource("Animation_jwkjy"),
-"attack-kick-right": SubResource("Animation_raum0"),
-"attack-melee-left": SubResource("Animation_pf5eq"),
-"attack-melee-right": SubResource("Animation_xe6h8"),
-"crouch": SubResource("Animation_1ii15"),
-"die": SubResource("Animation_e3j2w"),
-"drive": SubResource("Animation_ikmf7"),
-"fall": SubResource("Animation_nxqet"),
-"holding-both": SubResource("Animation_ta7ad"),
-"holding-both-shoot": SubResource("Animation_40ear"),
-"holding-left": SubResource("Animation_80mkk"),
-"holding-left-shoot": SubResource("Animation_qs4q7"),
-"holding-right": SubResource("Animation_vmn3r"),
-"holding-right-shoot": SubResource("Animation_2uhwl"),
-"idle": SubResource("Animation_odhhp"),
-"interact-left": SubResource("Animation_8ig07"),
-"interact-right": SubResource("Animation_ajpl6"),
-"jump": SubResource("Animation_5wqoo"),
-"pick-up": SubResource("Animation_7l7ef"),
-"sit": SubResource("Animation_el6mt"),
-"sprint": SubResource("Animation_yxcix"),
-"static": SubResource("Animation_dn03m"),
-"take-damage-1": SubResource("Animation_l1m8v"),
-"take-damage-2": SubResource("Animation_kitre"),
-"walk": SubResource("Animation_yp62p")
+&"attack-kick-left": SubResource("Animation_jwkjy"),
+&"attack-kick-right": SubResource("Animation_raum0"),
+&"attack-melee-left": SubResource("Animation_pf5eq"),
+&"attack-melee-right": SubResource("Animation_xe6h8"),
+&"crouch": SubResource("Animation_1ii15"),
+&"die": SubResource("Animation_e3j2w"),
+&"drive": SubResource("Animation_ikmf7"),
+&"fall": SubResource("Animation_nxqet"),
+&"holding-both": SubResource("Animation_ta7ad"),
+&"holding-both-shoot": SubResource("Animation_40ear"),
+&"holding-left": SubResource("Animation_80mkk"),
+&"holding-left-shoot": SubResource("Animation_qs4q7"),
+&"holding-right": SubResource("Animation_vmn3r"),
+&"holding-right-shoot": SubResource("Animation_2uhwl"),
+&"idle": SubResource("Animation_odhhp"),
+&"interact-left": SubResource("Animation_8ig07"),
+&"interact-right": SubResource("Animation_ajpl6"),
+&"jump": SubResource("Animation_5wqoo"),
+&"pick-up": SubResource("Animation_7l7ef"),
+&"sit": SubResource("Animation_el6mt"),
+&"sprint": SubResource("Animation_yxcix"),
+&"static": SubResource("Animation_dn03m"),
+&"take-damage-1": SubResource("Animation_l1m8v"),
+&"take-damage-2": SubResource("Animation_kitre"),
+&"walk": SubResource("Animation_yp62p")
 }
 
 [node name="TierVampireEnemy" node_paths=PackedStringArray("animation_player") instance=ExtResource("1_ihf13")]

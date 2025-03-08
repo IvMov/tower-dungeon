@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://4eygpv6ar4kx"]
 
-[ext_resource type="Script" path="res://scenes/components/effect_flash_component.gd" id="1_diwfx"]
+[ext_resource type="Script" uid="uid://3nwermc4nas1" path="res://scenes/components/effect_flash_component.gd" id="1_diwfx"]
 [ext_resource type="PackedScene" uid="uid://cfivvn8vyesq7" path="res://particles/scenes/damage_particles.tscn" id="2_abops"]
 [ext_resource type="Material" uid="uid://cgmec1v7lguua" path="res://particles/heal_particles.tres" id="2_ooi4k"]
 [ext_resource type="Material" uid="uid://qakrfenm4nma" path="res://scenes/maps/parts/add_something_material.tres" id="4_otldg"]

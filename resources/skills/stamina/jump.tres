@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Skill" load_steps=3 format=3 uid="uid://dpgxb2jbu3u0v"]
 
 [ext_resource type="PackedScene" uid="uid://dkjj73isvgfjx" path="res://scenes/skill_contolllers/stamina/player/jump_skill_controller.tscn" id="1_r40fy"]
-[ext_resource type="Script" path="res://resources/skills/skill.gd" id="2_4elwy"]
+[ext_resource type="Script" uid="uid://csgbo4gx64rma" path="res://resources/skills/skill.gd" id="2_4elwy"]
 
 [resource]
 script = ExtResource("2_4elwy")
@@ -32,7 +32,4 @@ cast_time_per_lvl = 0.0
 duration_per_lvl = 0.0
 cooldown_per_lvl = 0.0
 max_lvl = 0
-base_exp = 0.0
 exp_multiplier = 0.0
-sell_price = Vector3(0, 0, 0)
-buy_price = Vector3(0, 0, 0)

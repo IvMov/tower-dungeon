@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://com0vq1f7a8mc"]
 
 [ext_resource type="PackedScene" uid="uid://jut3uwfl054l" path="res://scenes/skill_contolllers/base_controller.tscn" id="1_njstv"]
-[ext_resource type="Script" path="res://scenes/skill_contolllers/stamina/player/push_enemy_skill_controller.gd" id="2_wib5p"]
+[ext_resource type="Script" uid="uid://ot6o4y683lss" path="res://scenes/skill_contolllers/stamina/player/push_enemy_skill_controller.gd" id="2_wib5p"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6eqpo"]
 radius = 0.65

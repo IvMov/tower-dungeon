@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://dcui50rm1jgnl"]
 
-[ext_resource type="Script" path="res://scenes/maps/parts/8m/tunel_8_8_4.gd" id="1_gtmxg"]
+[ext_resource type="Script" uid="uid://duspt2simhxae" path="res://scenes/maps/parts/8m/tunel_8_8_4.gd" id="1_gtmxg"]
 [ext_resource type="Texture2D" uid="uid://cu1eweixkj7sb" path="res://assets/textures/Tile 24 - 128x128.png" id="1_ht837"]
 [ext_resource type="Texture2D" uid="uid://du4kwq2r1x0ru" path="res://assets/textures/Brick 25 - 128x128.png" id="2_y5acv"]
 [ext_resource type="PackedScene" uid="uid://dsfklcrmsh38d" path="res://scenes/maps/parts/candle.tscn" id="3_pl3k1"]

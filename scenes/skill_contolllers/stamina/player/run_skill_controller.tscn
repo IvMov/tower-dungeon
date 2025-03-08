@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b1r08fbxrmpbj"]
 
 [ext_resource type="PackedScene" uid="uid://jut3uwfl054l" path="res://scenes/skill_contolllers/base_controller.tscn" id="1_l1osk"]
-[ext_resource type="Script" path="res://scenes/skill_contolllers/stamina/player/run_skill_controller.gd" id="2_3saau"]
+[ext_resource type="Script" uid="uid://dwwo6qevb45ql" path="res://scenes/skill_contolllers/stamina/player/run_skill_controller.gd" id="2_3saau"]
 
 [node name="RunSkillController" instance=ExtResource("1_l1osk")]
 script = ExtResource("2_3saau")

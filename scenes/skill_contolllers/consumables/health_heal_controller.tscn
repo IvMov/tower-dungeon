@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dkqo5bcoyw0uh"]
 
 [ext_resource type="PackedScene" uid="uid://jut3uwfl054l" path="res://scenes/skill_contolllers/base_controller.tscn" id="1_qme7u"]
-[ext_resource type="Script" path="res://scenes/skill_contolllers/consumables/health_heal_controller.gd" id="2_ux48v"]
+[ext_resource type="Script" uid="uid://5a0fhivxdppt" path="res://scenes/skill_contolllers/consumables/health_heal_controller.gd" id="2_ux48v"]
 
 [node name="HealthHealController" instance=ExtResource("1_qme7u")]
 script = ExtResource("2_ux48v")
