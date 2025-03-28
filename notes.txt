@@ -1,0 +1,5 @@
+1) known bug - player can jump and put crystals into fire near fontain
+2) add skill cd animation( dodge and on itemviews)
+
+
+2025-03-28 I have no access to excel so notes will be here. important todos on top and logs above. Today fixed little bit fontain - now can't put item if you under fontain. 

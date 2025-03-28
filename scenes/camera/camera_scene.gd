@@ -100,7 +100,7 @@ func _on_timer_timeout() -> void:
 	var collider: Node3D = ray_cast_3d.get_collider()
 	if !is_instance_valid(last_collider):
 		last_collider = null
-	if !collider && last_collider:
+	if (!collider && last_collider) || (collider && collider.get_collision_layer_value(32) && last_collider):
 		last_collider.mouse_exited.emit()
 		last_collider = null
 	if collider && (collider.get_collision_layer_value(6) || collider.get_collision_layer_value(5)):

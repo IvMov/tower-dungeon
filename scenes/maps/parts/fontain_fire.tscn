@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://jv0prokpjsrw"]
+[gd_scene load_steps=11 format=3 uid="uid://jv0prokpjsrw"]
 
 [ext_resource type="PackedScene" uid="uid://dgx4dmy8jeqee" path="res://scenes/ui/parts/hoverable.tscn" id="1_2gaf0"]
 [ext_resource type="Script" uid="uid://biblr6bot0nlx" path="res://scenes/maps/parts/fontain_fire.gd" id="2_8m8ue"]
@@ -19,8 +19,11 @@ material = ExtResource("4_4f0hf")
 left_to_right = 0.0
 size = Vector3(0.19, 0.255, 0.1)
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_negcd"]
-radius = 1.0
+[sub_resource type="BoxShape3D" id="BoxShape3D_yibvs"]
+size = Vector3(1.5, 0.6, 1.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b8t3v"]
+size = Vector3(3, 0.1, 3)
 
 [node name="FontainFire" instance=ExtResource("1_2gaf0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.025, 0)
@@ -75,13 +78,21 @@ mesh = SubResource("PrismMesh_6mgfk")
 skeleton = NodePath("../..")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshWrap" index="5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.182128, 0.112116, -0.0743614)
 collision_layer = 34
 collision_mask = 513
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshWrap/StaticBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.816505, 0)
-shape = SubResource("SphereShape3D_negcd")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0691391, 0)
+shape = SubResource("BoxShape3D_yibvs")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="MeshWrap" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0224828, 0)
+collision_layer = 2147483648
+collision_mask = 512
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshWrap/StaticBody3D2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25987, 0)
+shape = SubResource("BoxShape3D_b8t3v")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="mouse_entered" from="MeshWrap/StaticBody3D" to="." method="_on_static_body_3d_mouse_entered"]

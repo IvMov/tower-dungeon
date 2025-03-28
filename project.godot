@@ -219,6 +219,7 @@ locale/translations=PackedStringArray("res://assets/translation/text.en.translat
 3d_physics/layer_13="Enemies_spawners"
 3d_physics/layer_14="Enemies_flying"
 3d_physics/layer_15="Projectiles_enemies"
+3d_physics/layer_32="block_player_raycast"
 
 [physics]
 
