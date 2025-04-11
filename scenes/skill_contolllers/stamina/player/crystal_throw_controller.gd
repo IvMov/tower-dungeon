@@ -12,9 +12,9 @@ func start_cast() -> void:
 	cooldown_timer.wait_time = skill.base_cooldown
 	
 	if is_idle:
-		GameEvents.emit_skill_call_failed(Enums.SkillCallFailedReason.IDLE)
+		GameEvents.emit_skill_call_failed(skill.id, Enums.SkillCallFailedReason.IDLE)
 	elif !player.stamina_component.minus(skill.base_energy_cost):
-		GameEvents.emit_skill_call_failed(Enums.SkillCallFailedReason.NO_MANA)
+		GameEvents.emit_skill_call_failed(skill.id, Enums.SkillCallFailedReason.NO_MANA)
 	else:
 		cast_enabled = true
 		skill_cast_finished = true
@@ -60,7 +60,7 @@ func use_skill() -> void:
 	var camera_distance: float = (player.global_position - camera_position).length()
 	projectile.global_position = camera_position + proj_direction * camera_distance * 0.95
 	projectile.apply_central_impulse(proj_direction * calc_projectile_speed())
-
+	super.cooldown()
 
 func calc_projectile_speed() -> float:
 	#TODO: implement upgrade influence system

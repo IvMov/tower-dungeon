@@ -18,11 +18,11 @@ func use_skill_with_event(event: InputEvent):
 
 func use_skill() -> void:
 	if is_idle: 
-		GameEvents.emit_skill_call_failed(Enums.SkillCallFailedReason.IDLE)
+		GameEvents.emit_skill_call_failed(skill.id, Enums.SkillCallFailedReason.IDLE)
 	elif PlayerParameters.lock_stamina_skill:
-		GameEvents.emit_skill_call_failed(Enums.SkillCallFailedReason.LOCK)
+		GameEvents.emit_skill_call_failed(skill.id, Enums.SkillCallFailedReason.LOCK)
 	elif !player.stamina_component.minus(skill.base_energy_cost):
-		GameEvents.emit_skill_call_failed(Enums.SkillCallFailedReason.NO_STAMINA)
+		GameEvents.emit_skill_call_failed(skill.id, Enums.SkillCallFailedReason.NO_STAMINA)
 	else:
 		is_run = true
 		PlayerParameters.lock_stamina_skill = true

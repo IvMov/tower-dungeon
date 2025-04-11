@@ -11,7 +11,8 @@ signal aiming_player(aiming: bool)
 
 signal add_skill(hand: int, skill: Skill)
 signal remove_skill(hand: int)
-signal skill_call_failed(reason: Enums)
+signal skill_call_failed(skill_id: int, reason: Enums)
+signal skill_on_cd(skill_id: int, time: float)
 
 signal item_remove(from: Vector3, quantity: int)
 signal item_add(to: Vector3, item: ItemBulk, map_pos: Vector3)
@@ -59,8 +60,11 @@ func emit_aiming_player(aiming: bool):
 func emit_add_skill(hand: int, skill: Skill):
 	add_skill.emit(hand, skill)
 
-func emit_skill_call_failed(reason: Enums.SkillCallFailedReason):
-	skill_call_failed.emit(reason)
+func emit_skill_call_failed(skill_id: int, reason: Enums.SkillCallFailedReason):
+	skill_call_failed.emit(skill_id, reason)
+
+func emit_skill_on_cd(skill_id: int, duration: float):
+	skill_on_cd.emit(skill_id, duration)
 
 func emit_souls_dropped(position: Vector3, value: Vector3):
 	souls_dropped.emit(position, value)

@@ -1,17 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://bbq1kysj1003m"]
+[gd_scene load_steps=4 format=3 uid="uid://bbq1kysj1003m"]
 
 [ext_resource type="Script" uid="uid://1kd11ukkos5y" path="res://scenes/ui/bars/player_hands_box.gd" id="1_kydb2"]
+[ext_resource type="PackedScene" uid="uid://b6tsc8hkivw0d" path="res://scenes/ui/dash_view.tscn" id="2_80njc"]
 [ext_resource type="PackedScene" uid="uid://c7mskp4sx4mtj" path="res://scenes/ui/item_view_holder.tscn" id="2_j2aha"]
 
 [node name="PlayerHandsBox" type="PanelContainer"]
 theme_type_variation = &"PanelContainer2"
 script = ExtResource("1_kydb2")
 
-[node name="Hands" type="HBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="LeftHand" parent="Hands" instance=ExtResource("2_j2aha")]
+[node name="DashView" parent="VBoxContainer" instance=ExtResource("2_80njc")]
 layout_mode = 2
 
-[node name="RightHand" parent="Hands" instance=ExtResource("2_j2aha")]
+[node name="Hands" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="LeftHand" parent="VBoxContainer/Hands" instance=ExtResource("2_j2aha")]
+layout_mode = 2
+
+[node name="RightHand" parent="VBoxContainer/Hands" instance=ExtResource("2_j2aha")]
 layout_mode = 2

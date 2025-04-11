@@ -37,10 +37,15 @@ func add_warning(text: String) -> void:
 	text_holder.play(true)
 
 func use_skill() -> void:
-	is_on_cooldown = true
-	cooldown_timer.start()
+	cooldown()
 	if skill.is_consumable:
 			GameEvents.emit_item_consumed(0, skill.id)
+
+func cooldown() -> void: 
+	is_on_cooldown = true
+	cooldown_timer.start()
+	GameEvents.emit_skill_on_cd(skill.id, cooldown_timer.wait_time)
+
 
 func stop_skill() -> void:
 	pass

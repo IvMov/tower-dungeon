@@ -1,8 +1,9 @@
 extends PanelContainer
 
-@onready var hands: HBoxContainer = $Hands
-@onready var left_hand: ItemViewHolder = $Hands/LeftHand
-@onready var right_hand: ItemViewHolder = $Hands/RightHand
+@onready var hands: HBoxContainer = $VBoxContainer/Hands
+@onready var left_hand: ItemViewHolder = $VBoxContainer/Hands/LeftHand
+@onready var right_hand: ItemViewHolder = $VBoxContainer/Hands/RightHand
+
 
 func _ready() -> void:
 	GameEvents.player_entered.connect(on_player_entered)

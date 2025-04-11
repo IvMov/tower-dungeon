@@ -35,3 +35,6 @@ class_name Skill extends Resource
 
 @export var max_lvl: int
 @export var exp_multiplier: float 
+
+func calc_coolldown() -> float:
+	return base_cooldown

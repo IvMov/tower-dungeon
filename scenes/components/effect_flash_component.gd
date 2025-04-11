@@ -63,9 +63,9 @@ func prepare_tween() -> Tween:
 			tween.kill()
 	return create_tween().set_parallel(true)
 
-func on_skill_call_failed(m: int) -> void:
+func on_skill_call_failed(skill_id: int, enum_num: int) -> void:
 	if is_player:
 		var text_holder: Text = Constants.TEXT.instantiate()
 		add_child(text_holder)
-		text_holder.set_text(tr(str(Enums.SkillCallFailedReason.keys()[m])))
+		text_holder.set_text(tr(str(Enums.SkillCallFailedReason.keys()[enum_num])))
 		text_holder.play(true)

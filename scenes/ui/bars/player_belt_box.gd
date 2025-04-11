@@ -16,7 +16,7 @@ func draw_belt() -> void:
 	for i in PlayerParameters.belt.size.y:
 		var item_view_holder: ItemViewHolder = Constants.ITEM_VIEW_HOLDER.instantiate()
 		h_box_container.add_child(item_view_holder)
-		item_view_holder.info.text = str(i+1)
+		item_view_holder.info.text = str("%d" % (i+1))
 		item_view_holder.set_location(Vector3(PlayerParameters.belt.id, 0, i))
 
 func draw_belt_items() -> void:

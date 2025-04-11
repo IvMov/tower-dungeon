@@ -11,11 +11,11 @@ func start_cast() -> void:
 	cast_timer.wait_time = skill.base_cast_time
 	cooldown_timer.wait_time = skill.base_cooldown
 	
-	if is_idle: 
-		GameEvents.emit_skill_call_failed(Enums.SkillCallFailedReason.IDLE)
+	if is_on_cooldown: 
+		GameEvents.emit_skill_call_failed(skill.id, Enums.SkillCallFailedReason.ON_CD)
 	elif !player.mana_component.minus(skill.base_energy_cost):
 		# TODO: create energy component and health component abstraction layer with minus plus and etc methods.
-		GameEvents.emit_skill_call_failed(Enums.SkillCallFailedReason.NO_MANA)
+		GameEvents.emit_skill_call_failed(skill.id, Enums.SkillCallFailedReason.NO_MANA)
 	else:
 		cast_enabled = true
 		#TODO: play cast animation 
@@ -59,7 +59,7 @@ func use_skill() -> void:
 	var camera_position: Vector3 = player.camera_scene.get_camera_position()
 	var camera_distance: float = (player.global_position - camera_position).length()
 	projectile.global_position = camera_position + proj_direction * camera_distance * 0.95
-
+	super.cooldown()
 
 
 func calc_projectile_speed() -> float:

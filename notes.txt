@@ -1,5 +1,29 @@
-1) known bug - player can jump and put crystals into fire near fontain
-2) add skill cd animation( dodge and on itemviews)
+0) don't fcking give up!
+0.01) blt.... need to remove both hands or left hand, as it pissing me off when you rotate weapons and they change their position on the belt.... 
+1) add skill cd animation( dodge and on itemviews)
+2) implement controllers for boost damage
+3) implement controllers for speed up
+3.1) add new weapon in shop? 
+3.2) move cold dmg weapon to shop
+4) add skeleton ( ranged) 
+5) add bars values to see, as well as regen values 
+6) implement dash cd view ( find place where to show it, find how to)
+7) Add main menu
+8) add pause
+9) add configs
+10) POLISH BALANCE for first 3-5 levels
+11) Add decorations? each wall flour have random elements? 
+
+
+
+BUGS: 
+1) top down in tunel or min camera distance - projectiles flight through ground -_- (already 10th bug like this) fck
+2) sometimes errors(timers can't start for enemies) when move from map with lot of enemies to the shop - need to add some check in enemies timers start to eliminate this erros
+3) player can jump and put crystals into fire near fontain
+4) sometimes map generates not very well ( one room went to another bounds
+
 
 
 2025-03-28 I have no access to excel so notes will be here. important todos on top and logs above. Today fixed little bit fontain - now can't put item if you under fontain. 
+2025-03-29 create signal from controller on each cd - sends signal - all item uis listen, if need - runs timers. 
+2025-04-11 add animation of skill cd, also add animation for dash cd... found problem with hands - need to remove.

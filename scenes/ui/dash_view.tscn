@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6tsc8hkivw0d"]
+
+[ext_resource type="Script" uid="uid://bticva7plncc6" path="res://scenes/ui/dash_view.gd" id="1_qk6ua"]
+[ext_resource type="Resource" uid="uid://cfa5jb0b84clp" path="res://resources/skills/stamina/dash.tres" id="2_1y26t"]
+
+[node name="DashView" type="PanelContainer"]
+custom_minimum_size = Vector2(120, 40)
+offset_right = 121.0
+offset_bottom = 31.0
+script = ExtResource("1_qk6ua")
+dash = ExtResource("2_1y26t")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "dash_skill_title"
+
+[node name="CdLabel" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "1.33"
+
+[node name="CdTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="CdTimerTemp" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+
+[connection signal="timeout" from="CdTimer" to="." method="_on_cd_timer_timeout"]
+[connection signal="timeout" from="CdTimerTemp" to="." method="_on_cd_timer_temp_timeout"]
