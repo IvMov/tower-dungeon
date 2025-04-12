@@ -176,7 +176,7 @@ func custom_death_actions():
 
 func get_damage(value: float) -> void:
 	if is_immune_to_damage:
-		GameEvents.emit_skill_call_failed(Enums.SkillCallFailedReason.IMMUNE_TO_DAMAGE)
+		GameEvents.emit_skill_call_failed(-100, Enums.SkillCallFailedReason.IMMUNE_TO_DAMAGE)
 		return
 	health_component.minus(value)
 	camera_scene.start_shake(0.1, 8)

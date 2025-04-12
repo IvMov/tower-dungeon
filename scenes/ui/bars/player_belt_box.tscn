@@ -10,5 +10,5 @@ script = ExtResource("1_k1f8a")
 layout_mode = 2
 
 [node name="CdTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.1
 one_shot = true

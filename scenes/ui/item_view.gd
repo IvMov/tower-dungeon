@@ -28,6 +28,8 @@ func _physics_process(delta: float) -> void:
 	if is_on_cd:
 		cd_label.text
 		cd_label.text = "%0.2f" % cd_timer.time_left
+		if item_bulk:
+			item_bulk.active_cd_time = cd_timer.time_left
 
 func _input(event: InputEvent) -> void:
 	if dragged && event.is_action_released("LMB"):
@@ -44,6 +46,11 @@ func add(new_item_bulk: ItemBulk) -> void:
 	item_bulk = new_item_bulk
 	texture = item_bulk.item.image
 	quantity_label.text = str(item_bulk.quantity)
+	if new_item_bulk.active_cd_time > 0:
+		on_skill_on_cd(new_item_bulk.item.id, new_item_bulk.active_cd_time)
+	else:
+		_on_cd_timer_timeout()
+		
 
 func clear() -> void:
 	dragged = false

@@ -76,11 +76,11 @@ func set_uncommon_fields(lvl: int) -> void:
 func calc_color(lvl: int) -> Color:
 	if lvl <= 0:
 		return Color.WHITE
-	elif lvl <= 24:
+	elif lvl <= 2:
 		return Color.GREEN
-	elif lvl <= 49:
+	elif lvl <= 6:
 		return Color.AQUA
-	elif lvl <= 74:
+	elif lvl <= 8:
 		return Color.ROYAL_BLUE
 	else:
 		return Color.GOLD

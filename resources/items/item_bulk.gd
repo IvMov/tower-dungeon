@@ -1,6 +1,7 @@
 class_name ItemBulk extends Node
 
 var quantity: int
+var active_cd_time: float
 var item: Item
 
 func _init(new_item: Item, new_quantity: int) -> void:

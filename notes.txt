@@ -1,6 +1,5 @@
 0) don't fcking give up!
-0.01) blt.... need to remove both hands or left hand, as it pissing me off when you rotate weapons and they change their position on the belt.... 
-1) add skill cd animation( dodge and on itemviews)
+1) DONE: add skill cd animation( dodge and on itemviews)
 2) implement controllers for boost damage
 3) implement controllers for speed up
 3.1) add new weapon in shop? 
@@ -27,3 +26,4 @@ BUGS:
 2025-03-28 I have no access to excel so notes will be here. important todos on top and logs above. Today fixed little bit fontain - now can't put item if you under fontain. 
 2025-03-29 create signal from controller on each cd - sends signal - all item uis listen, if need - runs timers. 
 2025-04-11 add animation of skill cd, also add animation for dash cd... found problem with hands - need to remove.
+2025-04-12 fix cd, will just ignore problem with hands - it will be feature of the game ;) 
