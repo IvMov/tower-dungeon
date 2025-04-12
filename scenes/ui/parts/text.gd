@@ -27,9 +27,10 @@ func set_float(value: float, is_player: bool) -> void:
 		elif value <= tier_1:
 			label.add_theme_color_override("font_color", Color.SKY_BLUE)
 	else:
-		label.add_theme_color_override("font_color", Color.LIGHT_CORAL)
-		label.add_theme_font_size_override("font_size", 16)
-	
+		label.add_theme_color_override("font_color", Color.LIGHT_GRAY)
+		label.add_theme_font_size_override("font_size", 12)
+
+
 func play(is_player: bool) -> void:
 	var tween: Tween = create_tween().set_ease(Tween.EASE_IN).set_parallel()
 	tween.tween_property(self, "global_position:y", global_position.y + 1, ANIMATION_TIME)

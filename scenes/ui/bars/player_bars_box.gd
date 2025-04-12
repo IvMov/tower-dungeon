@@ -6,6 +6,7 @@ class_name PlayerBarsBox extends PanelContainer
 @onready var mp_bar: ProgressBar = $BarsContainer/MpContainer/MpBar
 @onready var stamina_bar: ProgressBar = $BarsContainer/StaminaContainer/StaminaBar
 
+
 func _ready():
 	GameEvents.player_entered.connect(on_player_entered)
 
@@ -15,7 +16,10 @@ func reset_bars():
 	stamina_bar.value = 0
 
 func recalc_bar_value(bar: ProgressBar, new_value: float):
+	if bar.value > new_value:
+		bar.animate_minus(new_value - bar.value)
 	bar.value = new_value
+	bar.current.text = "%.2f" % new_value
 
 func recalc_bar_max_value(bar: ProgressBar, new_value: float):
 	bar.max_value = new_value
@@ -28,6 +32,14 @@ func set_init_values(player: Player) -> void:
 	hp_bar.value = player.health_component.current_value
 	mp_bar.value = player.mana_component.current_value
 	stamina_bar.value = player.stamina_component.current_value
+	
+	hp_bar.current.text = "%.2f" % hp_bar.value
+	mp_bar.current.text = "%.2f" % mp_bar.value
+	stamina_bar.current.text = "%.2f" % stamina_bar.value
+	
+	hp_bar.regen.text = "+%.2f / s" % player.health_component.regen
+	mp_bar.regen.text = "+%.2f / s" % player.mana_component.regen
+	stamina_bar.regen.text = "+%.2f / s" % player.stamina_component.regen
 
 
 func resize():

@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://dh12qdjp1pf6y"]
+[gd_scene load_steps=13 format=3 uid="uid://dh12qdjp1pf6y"]
 
 [ext_resource type="Script" uid="uid://yia40foi3qms" path="res://scenes/ui/bars/player_bars_box.gd" id="1_8k2yp"]
 [ext_resource type="Texture2D" uid="uid://b6dw7dspqxbmj" path="res://assets/2d/hp_texture.png" id="1_iwq5y"]
 [ext_resource type="Texture2D" uid="uid://vayqbodxmy6x" path="res://assets/2d/mp_texture.png" id="2_7b3b2"]
+[ext_resource type="Script" uid="uid://c4lycil6tqqfn" path="res://scenes/ui/bars/ui_bar.gd" id="3_2s1wx"]
 [ext_resource type="Texture2D" uid="uid://cod83m3evg7g3" path="res://assets/2d/stamina_texture.png" id="3_t3k1t"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4u8f8"]
@@ -60,6 +61,42 @@ theme_override_styles/background = SubResource("StyleBoxEmpty_fs6n1")
 theme_override_styles/fill = SubResource("StyleBoxTexture_bkqw7")
 value = 54.18
 show_percentage = false
+script = ExtResource("3_2s1wx")
+
+[node name="Current" type="Label" parent="BarsContainer/HpContainer/HpBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "118"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Regen" type="Label" parent="BarsContainer/HpContainer/HpBar"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.521569, 0.796078, 0.341176, 1)
+theme_override_font_sizes/font_size = 12
+text = "+ 0.5 / s"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MpContainer" type="PanelContainer" parent="BarsContainer"]
 custom_minimum_size = Vector2(400, 40)
@@ -73,6 +110,40 @@ theme_override_styles/background = SubResource("StyleBoxEmpty_aus4e")
 theme_override_styles/fill = SubResource("StyleBoxTexture_f4le4")
 value = 50.0
 show_percentage = false
+script = ExtResource("3_2s1wx")
+
+[node name="Current" type="Label" parent="BarsContainer/MpContainer/MpBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "118"
+
+[node name="Regen" type="Label" parent="BarsContainer/MpContainer/MpBar"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.521569, 0.796078, 0.341176, 1)
+theme_override_font_sizes/font_size = 12
+text = "+ 0.5 / s"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="StaminaContainer" type="PanelContainer" parent="BarsContainer"]
 custom_minimum_size = Vector2(400, 40)
@@ -86,3 +157,37 @@ theme_override_styles/background = SubResource("StyleBoxEmpty_khrlf")
 theme_override_styles/fill = SubResource("StyleBoxTexture_oac12")
 value = 50.0
 show_percentage = false
+script = ExtResource("3_2s1wx")
+
+[node name="Current" type="Label" parent="BarsContainer/StaminaContainer/StaminaBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "118"
+
+[node name="Regen" type="Label" parent="BarsContainer/StaminaContainer/StaminaBar"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.521569, 0.796078, 0.341176, 1)
+theme_override_font_sizes/font_size = 12
+text = "+ 0.5 / s"
+horizontal_alignment = 1
+vertical_alignment = 1

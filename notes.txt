@@ -5,8 +5,8 @@
 3.1) add new weapon in shop? 
 3.2) move cold dmg weapon to shop
 4) add skeleton ( ranged) 
-5) add bars values to see, as well as regen values 
-6) implement dash cd view ( find place where to show it, find how to)
+5) DONE: add bars values to see, as well as regen values 
+6) DONE: implement dash cd view ( find place where to show it, find how to)
 7) Add main menu
 8) add pause
 9) add configs
@@ -26,4 +26,4 @@ BUGS:
 2025-03-28 I have no access to excel so notes will be here. important todos on top and logs above. Today fixed little bit fontain - now can't put item if you under fontain. 
 2025-03-29 create signal from controller on each cd - sends signal - all item uis listen, if need - runs timers. 
 2025-04-11 add animation of skill cd, also add animation for dash cd... found problem with hands - need to remove.
-2025-04-12 fix cd, will just ignore problem with hands - it will be feature of the game ;) 
+2025-04-12 fix cd, will just ignore problem with hands - it will be feature of the game ;) added bars text
