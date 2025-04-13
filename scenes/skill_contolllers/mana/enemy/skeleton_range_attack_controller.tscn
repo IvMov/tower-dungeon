@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqxj208cupy3p"]
+
+[ext_resource type="PackedScene" uid="uid://jut3uwfl054l" path="res://scenes/skill_contolllers/base_controller.tscn" id="1_hv0cl"]
+[ext_resource type="Script" uid="uid://m1j4qibops8i" path="res://scenes/skill_contolllers/mana/enemy/skeleton_range_attack_controller.gd" id="2_hv0cl"]
+[ext_resource type="PackedScene" uid="uid://pe08rt7e1qut" path="res://scenes/projectiles/skeleton_projectile.tscn" id="3_6jix0"]
+
+[node name="SkeletonRangeAttackController" instance=ExtResource("1_hv0cl")]
+script = ExtResource("2_hv0cl")
+projectile_scene = ExtResource("3_6jix0")
+
+[node name="IdleTimer" parent="." index="2"]
+wait_time = 1.0
+one_shot = false

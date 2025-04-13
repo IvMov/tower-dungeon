@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://pe08rt7e1qut"]
+
+[ext_resource type="Script" uid="uid://35efq8nbtbxj" path="res://scenes/projectiles/skeleton_projectile.gd" id="1_ig8dc"]
+[ext_resource type="ArrayMesh" uid="uid://o7k6qoxcpjjw" path="res://assets/3d/my/bone_mesh.tres" id="2_3bcwe"]
+[ext_resource type="Material" uid="uid://b304cpbvwydhs" path="res://particles/player_small_charge.tres" id="3_3bcwe"]
+[ext_resource type="Material" uid="uid://dtpkny3bvp3yd" path="res://particles/player_explosion.tres" id="4_ki67v"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_yl0vp"]
+height = 0.25
+radius = 0.07
+
+[node name="SkeletonProjectile" type="Node3D"]
+script = ExtResource("1_ig8dc")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+visible = false
+light_energy = 0.5
+light_indirect_energy = 0.5
+distance_fade_enabled = true
+distance_fade_begin = 200.0
+distance_fade_length = 20.0
+omni_attenuation = 0.707107
+omni_shadow_mode = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_3bcwe")
+
+[node name="Area3D" type="Area3D" parent="MeshInstance3D"]
+collision_layer = 16384
+collision_mask = 515
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
+shape = SubResource("CylinderShape3D_yl0vp")
+
+[node name="LifeTimer" type="Timer" parent="."]
+wait_time = 7.0
+one_shot = true
+autostart = true
+
+[node name="ProjectileParticles" type="GPUParticles3D" parent="."]
+transparency = 0.8
+cast_shadow = 0
+emitting = false
+amount = 6
+one_shot = true
+process_material = ExtResource("3_3bcwe")
+draw_pass_1 = ExtResource("2_3bcwe")
+
+[node name="CollisionParticles" type="GPUParticles3D" parent="."]
+transparency = 0.8
+cast_shadow = 0
+emitting = false
+amount = 10
+lifetime = 0.8
+one_shot = true
+speed_scale = 3.0
+explosiveness = 0.88
+process_material = ExtResource("4_ki67v")
+draw_pass_1 = ExtResource("2_3bcwe")

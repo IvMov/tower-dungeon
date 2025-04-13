@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://w5dgd34hh3wr"]
+[gd_scene load_steps=11 format=3 uid="uid://w5dgd34hh3wr"]
 
 [ext_resource type="Script" uid="uid://dksgbxqkamjrr" path="res://scenes/main.gd" id="1_vbbpw"]
 [ext_resource type="PackedScene" uid="uid://ci4hotqkt3ope" path="res://scenes/maps/generator/map_generator.tscn" id="2_ux27j"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bwggo1cxds18" path="res://scenes/ui/ui.tscn" id="4_0dxvj"]
 [ext_resource type="PackedScene" uid="uid://b64al2yi4ofhh" path="res://scenes/enemies/tier_vampire_enemy.tscn" id="6_41e3f"]
 [ext_resource type="PackedScene" uid="uid://c7nfqu6eb7oqd" path="res://scenes/ui/vignette/vignette.tscn" id="6_f0ant"]
+[ext_resource type="PackedScene" uid="uid://t52mgui2nfrf" path="res://scenes/enemies/tier_skeleton_enemy.tscn" id="7_85g3d"]
 [ext_resource type="PackedScene" uid="uid://by7yynke4it2l" path="res://scenes/maps/storage/map_storage.tscn" id="8_ng268"]
 
 [sub_resource type="Environment" id="Environment_0f8ma"]
@@ -58,6 +59,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.2, -1)
 
 [node name="TierVampireEnemy" parent="Enemies" instance=ExtResource("6_41e3f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.583967, 0)
+
+[node name="TierSkeletonEnemy" parent="Enemies" instance=ExtResource("7_85g3d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.847876, 0.707605, 0)
 
 [node name="Maps" type="Node3D" parent="." groups=["maps"]]
 

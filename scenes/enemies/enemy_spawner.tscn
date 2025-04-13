@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cn4nsqghphlc0"]
+[gd_scene load_steps=25 format=3 uid="uid://cn4nsqghphlc0"]
 
 [ext_resource type="PackedScene" uid="uid://ca0ysw5vmydwd" path="res://scenes/enemies/basic_enemy.tscn" id="1_uk4uo"]
 [ext_resource type="Script" uid="uid://b8rjv0c0np1nc" path="res://scenes/enemies/enemy_spawner.gd" id="2_6rjot"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://banbap6p0glja" path="res://scenes/enemies/tier_0_enemy.tscn" id="6_gc6bk"]
 [ext_resource type="PackedScene" uid="uid://dbv1lp0pn7xhc" path="res://scenes/enemies/tier_1_enemy.tscn" id="7_a65kd"]
 [ext_resource type="PackedScene" uid="uid://b64al2yi4ofhh" path="res://scenes/enemies/tier_vampire_enemy.tscn" id="7_fja2h"]
+[ext_resource type="PackedScene" uid="uid://t52mgui2nfrf" path="res://scenes/enemies/tier_skeleton_enemy.tscn" id="7_sslve"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_v63dg"]
 resource_local_to_scene = true
@@ -223,7 +224,7 @@ regen = 1.0
 
 [node name="SpawnEnemyController" parent="Body/SkillBox" index="0" node_paths=PackedStringArray("owner_enemy") instance=ExtResource("3_h5qeo")]
 owner_enemy = NodePath("../../..")
-enemies = Array[PackedScene]([ExtResource("7_fja2h"), ExtResource("6_gc6bk"), ExtResource("7_a65kd")])
+enemies = Array[PackedScene]([ExtResource("7_fja2h"), ExtResource("6_gc6bk"), ExtResource("7_a65kd"), ExtResource("7_sslve")])
 
 [node name="SpawnerBody" type="MeshInstance3D" parent="Body" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

@@ -4,7 +4,7 @@
 3) implement controllers for speed up
 3.1) add new weapon in shop? 
 3.2) move cold dmg weapon to shop
-4) add skeleton ( ranged) 
+4) DONE: add skeleton ( ranged) 
 5) DONE: add bars values to see, as well as regen values 
 6) DONE: implement dash cd view ( find place where to show it, find how to)
 7) Add main menu
@@ -27,3 +27,4 @@ BUGS:
 2025-03-29 create signal from controller on each cd - sends signal - all item uis listen, if need - runs timers. 
 2025-04-11 add animation of skill cd, also add animation for dash cd... found problem with hands - need to remove.
 2025-04-12 fix cd, will just ignore problem with hands - it will be feature of the game ;) added bars text
+2025-04-13 add skeleton- throws bones
