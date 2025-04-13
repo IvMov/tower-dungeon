@@ -8,9 +8,9 @@
 [resource]
 script = ExtResource("1_u35nn")
 id = 1
-title = "Zoom tablet"
+title = "aim_skill_t"
 image = ExtResource("1_anly1")
-descrition = "bla"
+descrition = "aim_skill_d"
 type = "item_type_skill"
 price = Vector3(0, 0, 0)
 scene = ExtResource("2_kg2wo")

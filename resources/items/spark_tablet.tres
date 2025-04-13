@@ -8,9 +8,9 @@
 [resource]
 script = ExtResource("3_uqp10")
 id = 0
-title = "Spark tablet"
+title = "spark_skill_t"
 image = ExtResource("1_kqebe")
-descrition = "asdasd"
+descrition = "spark_skill_d"
 type = "item_type_skill"
 price = Vector3(0, 0, 0)
 scene = ExtResource("2_qwerb")

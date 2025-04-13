@@ -5,8 +5,8 @@
 [resource]
 script = ExtResource("2_fbs8t")
 id = 102
-title = ""
-description = "kick_skill_description"
+title = "kick_skill_d"
+description = "kick_skill_d"
 is_maintainable = false
 is_offensive = false
 is_consumable = false

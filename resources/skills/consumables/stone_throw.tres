@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("2_udxk4")
 id = 6
-title = "stone_skill_title"
-description = "stone_skill_description"
+title = "stone_skill_t"
+description = "stone_skill_d"
 controller = ExtResource("1_1116k")
 is_maintainable = false
 is_offensive = true

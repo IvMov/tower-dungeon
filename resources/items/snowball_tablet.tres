@@ -8,9 +8,9 @@
 [resource]
 script = ExtResource("1_v536f")
 id = 8
-title = "snowball_skill_title"
+title = "snowball_skill_t"
 image = ExtResource("1_ct178")
-descrition = "snowball_skill_description"
+descrition = "snowball_skill_d"
 type = "item_type_skill"
 price = Vector3(0, 0, 0)
 scene = ExtResource("2_57aqe")

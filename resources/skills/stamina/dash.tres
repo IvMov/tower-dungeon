@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("1_e4xhs")
 id = 104
-title = "dash_skill_title"
-description = "dash_skill_description"
+title = "dash_skill_t"
+description = "dash_skill_d"
 controller = ExtResource("1_nvjy5")
 is_maintainable = false
 is_offensive = true

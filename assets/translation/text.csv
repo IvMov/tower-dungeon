@@ -1,4 +1,4 @@
-﻿key,en,ua,lt
+key,en,ua,lt
 menu,Menu,Меню,Menu
 greeting,Hi,Привіт,Labas
 name,Name,Назва,
@@ -25,24 +25,76 @@ skill_price,Skill Price,Базова ціна,
 ,,,
 ,,,
 ,,,
+item_type_consumable,,,
+item_type_skill,,,
 skill_upgrade,Skill Upgrade,Покращення навички,
 parameter_name,Parameter Name,Назва параметру,
 max_lvl,Max level,Максимальний рівень,
 ,,,
-spark_skill_title,Spark,Іскра,Kibirkštis
-spark_skill_description,Spark is esential skill of every wizard. Be like Zeus throw yout sparks on your enemies!,"Іскра - базован навичка гожного мага. Будь як Зевс, закидай ворогів іскрами!","Kibirkštis yra pagrindinis kiekvieno mago įgūdis. Būkite kaip Zeusas, meskite kibirkštis į savo priešus!"
+__PLAYER_DAMAGE_SKILLS__,,,
 ,,,
-stone_skill_title,Stone,Камінчик,Akmenis
-stone_skill_description,Stones are usefull for building or throwing it. Please try not to throw all of them they are more usefull for small buildings.,"Камінці корисні для будівництва або кидання. Будь ласка, намагайтеся не викидати їх усі, вони більш корисні для невеликих будівель.","Akmenys naudingi statant ar mėtant. Stenkitės neišmesti jų visų, jie yra naudingesni mažiems pastatams."
+spark_skill_t,Spark,Іскра,Kibirkštis
+spark_skill_d,Spark is esential skill of every wizard. Be like Zeus throw yout sparks on your enemies!,"Іскра - базован навичка гожного мага. Будь як Зевс, закидай ворогів іскрами!","Kibirkštis yra pagrindinis kiekvieno mago įgūdis. Būkite kaip Zeusas, meskite kibirkštis į savo priešus!"
 ,,,
-crystal_skill_title,Crystal,Crystal,Crystal
-crystal_skill_description,Crystals are not very stable and are fuel for powerfull ancient weapons. Try to put in on fireplace or jsust to throw it. Lets see what will happened. ,Crystals are not very stable and are fuel for powerfull ancient weapons. Try to put in on fireplace or jsust to throw it. Lets see what will happened. ,Crystals are not very stable and are fuel for powerfull ancient weapons. Try to put in on fireplace or jsust to throw it. Lets see what will happened. 
-,,,
+snowball_skill_t,Snowball,Сніжок,
+snowball_skill_d,Snowball can clowdonw your eneies and does the damage to near standing ones.,,
 ,,,
 ,,,
-aim_skill_title,Zoom in,Приближення,Priartinti
-aim_skill_description,Allows player to zoom in enemies and other objects. Uses stamina as main resourse. Good to see you enemies from big distances.,Дозволяє гравцеві збільшувати масштаб ворогів та інших об'єктів. Використовує витривалість як основний ресурс. Приємно бачити ворогів з великої відстані.,Leidžia žaidėjui priartinti priešus ir kitus objektus. Naudoja ištvermę kaip pagrindinį resursą. Smagu matyti jus priešus iš didelių atstumų.
+,,,
+,,,
+,,,
+stone_skill_t,Stone,Камінчик,Akmenis
+stone_skill_d,Stones are usefull for building or throwing it. Please try not to throw all of them they are more usefull for small buildings.,"Камінці корисні для будівництва або кидання. Будь ласка, намагайтеся не викидати їх усі, вони більш корисні для невеликих будівель.","Akmenys naudingi statant ar mėtant. Stenkitės neišmesti jų visų, jie yra naudingesni mažiems pastatams."
+,,,
+crystal_skill_t,Crystal,Crystal,Crystal
+crystal_skill_d,Crystals are not very stable and are fuel for powerfull ancient weapons. Try to put in on fireplace or jsust to throw it. Lets see what will happened. ,Crystals are not very stable and are fuel for powerfull ancient weapons. Try to put in on fireplace or jsust to throw it. Lets see what will happened. ,Crystals are not very stable and are fuel for powerfull ancient weapons. Try to put in on fireplace or jsust to throw it. Lets see what will happened. 
+,,,
+,,,
+,,,
+__PLAYER_DEFFENSIVE_SKILLS__,Column1,Column2,Column3
+,,,
+aim_skill_t,Zoom in,Приближення,Priartinti
+aim_skill_d,Allows player to zoom in enemies and other objects. Uses stamina as main resourse. Good to see you enemies from big distances.,Дозволяє гравцеві збільшувати масштаб ворогів та інших об'єктів. Використовує витривалість як основний ресурс. Приємно бачити ворогів з великої відстані.,Leidžia žaidėjui priartinti priešus ir kitus objektus. Naudoja ištvermę kaip pagrindinį resursą. Smagu matyti jus priešus iš didelių atstumų.
+,,,
+dash_skill_t,Dash,,
+dash_skill_d,You can dash through your enemies to avoid damage or move faster. It's a best way to clean up dangeons and stay safe.,,
+,,,
+__PLAYER_CONSUMABLE_BOOST_SKILLS__,,,
+,,,
+damage_boost_skill_t,Damage boost,,
+damage_boost_skill_d,"This tablet can give you extra power on your skills! But of couse temporary, use it and go find some enemies to test new powers!",,
+,,,
+speed_boost_skill_t,Speed up!,,
+speed_boost_skill_d,"Aftrer consumtion this  - you will be unstopable...unstopable faster then before. This item after consumtion gives some extra speed. It impacts a dash and jump as well - more speed, safer you are!",,
+,,,
+heal_skill_t,Health recover,,
+heal_skill_d,"Some times we can't avoid much damage, then you can use some extra help from heal tablet. It restores some health points!",,
+,,,
+mana_skill_t,Mana recover,,
+mana_skill_d,"Take care always about your mana, as it can save your life sometimes. This restores some mana points, so you can have more using it. ",,
+,,,
+stamina_skill_t,Stamina recover,,
+stamina_skill_d,"Be strong! Sometimes you need to run far or dash more, or use skills which consumes stamina. Consume it to restore some additional amount of stamina.",,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
 ,,,
 how_to_use_maintainable,Click and hold mouse button when item in hands (LMB for left hand / RMB for right hand).,"Натисніть і утримуйте кнопку миші, коли предмет у руках (ЛКМ для лівої руки / ПКМ для правої руки).","Spustelėkite ir laikykite pelės mygtuką, kai daiktas yra rankose (LMB kairiajai rankai / RMB dešinei rankai)."
 how_to_use_click_consumable,Click LMB or RMB to use when item in one of your hands. Item will be consumed after usage!,"Клацніть ЛКМ або ПКМ, щоб використати предмет у своїх руках. Предмет буде спожито після використання!","Spustelėkite LMB arba RMB, kad naudotumėte, kai prekė yra vienoje iš jūsų rankų. Daiktas bus sunaudota po naudojimo!"
 how_to_use_click,Click LMB or RMB to use when item in one of your hands.,"Клацніть ЛКМ або ПКМ, щоб використати предмет у своїх руках.","Spustelėkite LMB arba RMB, kad naudotumėte, kai prekė yra vienoje iš jūsų rankų."
+,,,
+,,,
+__ENUMS___,,,
+,,,
+IMMUNE_TO_DAMAGE,Damage immunity,,
+NO_MANA,No enough mana,,
+NO_STAMINA,No enough stamina,,
+LOCK,Skill is on lock,,
+ON_CD,Skill is on cooldown,,
+IDLE,Skill is iddle,,
+FULL_HP,Failed cause full health,,
+FULL_MANA,Failed cause full mana,,
+FULL_STAMINA,Failed cause full stamina,,

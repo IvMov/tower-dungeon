@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("2_2ngs4")
 id = 7
-title = "crystal_skill_title"
-description = "crystal_skill_description"
+title = "crystal_skill_t"
+description = "crystal_skill_d"
 controller = ExtResource("1_fy6r6")
 is_maintainable = false
 is_offensive = false

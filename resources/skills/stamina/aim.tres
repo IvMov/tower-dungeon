@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("2_dvbwv")
 id = 1
-title = "aim_skill_title"
-description = "aim_skill_description"
+title = "aim_skill_t"
+description = "aim_skill_d"
 controller = ExtResource("1_hlmx5")
 is_maintainable = true
 is_offensive = false

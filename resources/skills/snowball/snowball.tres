@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("1_blt0w")
 id = 8
-title = "snowball_skill_title"
-description = "snowball_skill_description"
+title = "snowball_skill_t"
+description = "snowball_skill_d"
 controller = ExtResource("1_jgtq0")
 is_maintainable = false
 is_offensive = true

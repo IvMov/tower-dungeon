@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("2_ex3n8")
 id = 103
-title = ""
-description = "run_skill_description"
+title = "run_skill_t"
+description = "run_skill_d"
 controller = ExtResource("1_fohnv")
 is_maintainable = false
 is_offensive = false

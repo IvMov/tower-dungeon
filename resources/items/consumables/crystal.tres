@@ -8,9 +8,9 @@
 [resource]
 script = ExtResource("1_le0iy")
 id = 7
-title = "crystal_skill_title"
+title = "crystal_skill_t"
 image = ExtResource("1_h6ak4")
-descrition = "crystal_skill_desctiption"
+descrition = "crystal_skill_d"
 type = "item_type_consumable"
 price = Vector3(50, 30, 10)
 scene = ExtResource("2_tbtvf")
