@@ -1337,6 +1337,7 @@ platform_floor_layers = 1
 script = ExtResource("2_sjwt3")
 enemy_name = "tier_0_enemy"
 speed = 200.0
+dmg_resist = 0.15
 animation_player = NodePath("Body/character-ghost2/AnimationPlayer")
 
 [node name="CollisionShape3D" parent="CallEnemyAreaClient" index="0"]

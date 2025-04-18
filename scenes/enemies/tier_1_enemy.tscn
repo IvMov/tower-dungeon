@@ -2328,6 +2328,8 @@ _data = {
 script = ExtResource("2_ahays")
 enemy_name = "tier_1_enemy"
 speed = 200.0
+push_resist = 0.1
+dmg_resist = 0.1
 animation_player = NodePath("Body/character-orc2/AnimationPlayer")
 
 [node name="CollisionShape3D" parent="CallEnemyAreaClient" index="0"]

@@ -1,6 +1,22 @@
-[gd_resource type="ParticleProcessMaterial" format=3 uid="uid://0ibbwc8fw2fa"]
+[gd_resource type="ParticleProcessMaterial" load_steps=5 format=3 uid="uid://0ibbwc8fw2fa"]
+
+[sub_resource type="Gradient" id="Gradient_0mf6b"]
+offsets = PackedFloat32Array(0, 0.361111, 1)
+colors = PackedColorArray(0.792157, 0.364706, 0, 1, 1, 0.235294, 0.00392157, 1, 0.166514, 0, 8.3567e-06, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ocomn"]
+gradient = SubResource("Gradient_0mf6b")
+
+[sub_resource type="Curve" id="Curve_0mf6b"]
+_data = [Vector2(0, 0.014859), 0.0, 0.0, 0, 0, Vector2(0.334532, 1), 0.0, 0.0, 0, 0, Vector2(0.651079, 0.990342), 0.0, 0.0, 0, 0, Vector2(0.989209, 0.0245172), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_ocomn"]
+curve = SubResource("Curve_0mf6b")
 
 [resource]
+emission_shape = 2
+emission_sphere_radius = 0.2
 orbit_velocity_min = 9.49949e-08
 orbit_velocity_max = 3.0
 radial_velocity_min = -2.23517e-05
@@ -8,3 +24,7 @@ radial_velocity_max = 2.99998
 gravity = Vector3(0, 0, 0)
 radial_accel_min = -2.23517e-06
 radial_accel_max = 3.0
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_ocomn")
+color_ramp = SubResource("GradientTexture1D_ocomn")

@@ -2490,6 +2490,8 @@ _data = {
 [node name="TierVampireEnemy" node_paths=PackedStringArray("animation_player") instance=ExtResource("1_ihf13")]
 script = ExtResource("2_coroo")
 enemy_name = "tier_vampire_enemy"
+push_resist = 0.1
+dmg_resist = 0.2
 animation_player = NodePath("Body/character-vampire2/AnimationPlayer")
 
 [node name="RayCast3D" parent="." index="3"]

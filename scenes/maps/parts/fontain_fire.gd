@@ -4,6 +4,7 @@ class_name FontainFire extends Hoverable
 @onready var add_crystal_particles: GPUParticles3D = $AddCrystalParticles
 @onready var timer: Timer = $Timer
 @onready var mesh_wrap: Node3D = $MeshWrap
+@onready var mesh_instance_3d: MeshInstance3D = $MeshWrap/MeshInstance3D
 @onready var mesh_instance_3d_4: MeshInstance3D = $MeshWrap/MeshInstance3D4
 @onready var mesh_instance_3d_5: MeshInstance3D = $MeshWrap/MeshInstance3D5
 @onready var static_body_3d: StaticBody3D = $MeshWrap/StaticBody3D

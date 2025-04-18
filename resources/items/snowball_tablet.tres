@@ -12,6 +12,6 @@ title = "snowball_skill_t"
 image = ExtResource("1_ct178")
 descrition = "snowball_skill_d"
 type = "item_type_skill"
-price = Vector3(0, 0, 0)
+price = Vector3(200, 60, 30)
 scene = ExtResource("2_57aqe")
 skill = ExtResource("3_8jt3n")

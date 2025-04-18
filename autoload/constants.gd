@@ -10,6 +10,7 @@ const TEXT: PackedScene = preload("res://scenes/ui/parts/text.tscn")
 const ITEM_STONE: Item = preload("res://resources/items/consumables/stone.tres")
 const ITEM_CRYSTAL: Item = preload("res://resources/items/consumables/crystal.tres")
 const ITEM_SNOWBALL_TABLET: Item = preload("res://resources/items/snowball_tablet.tres")
+const FIREBALL_TABLET = preload("res://resources/items/fireball_tablet.tres")
 
 #consumables 
 const HEAL_TABLET = preload("res://resources/items/consumables/heal_tablet.tres")

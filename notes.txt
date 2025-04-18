@@ -4,6 +4,8 @@
 3) implement controllers for speed up
 3.1) add new weapon in shop? 
 3.2) move cold dmg weapon to shop
+3.3) skill on hand when ready -> then shown on left right side of player? 
+
 4) DONE: add skeleton ( ranged) 
 5) DONE: add bars values to see, as well as regen values 
 6) DONE: implement dash cd view ( find place where to show it, find how to)
@@ -20,6 +22,7 @@ BUGS:
 2) sometimes errors(timers can't start for enemies) when move from map with lot of enemies to the shop - need to add some check in enemies timers start to eliminate this erros
 3) player can jump and put crystals into fire near fontain
 4) sometimes map generates not very well ( one room went to another bounds
+5) check push functionality ( when explosion center near enemy - it's not pushed out.
 
 
 
@@ -28,3 +31,4 @@ BUGS:
 2025-04-11 add animation of skill cd, also add animation for dash cd... found problem with hands - need to remove.
 2025-04-12 fix cd, will just ignore problem with hands - it will be feature of the game ;) added bars text
 2025-04-13 add skeleton- throws bones, back to excel + translation
+2025-04-15 start work on fireball, need to finilize. 

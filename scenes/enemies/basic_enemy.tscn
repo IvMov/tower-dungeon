@@ -92,6 +92,22 @@ one_shot = true
 wait_time = 5.0
 one_shot = true
 
+[node name="OnFireTimer" type="Timer" parent="Timers"]
+wait_time = 4.0
+one_shot = true
+
+[node name="AcidTimer" type="Timer" parent="Timers"]
+wait_time = 5.0
+one_shot = true
+
+[node name="AcidDamageTimer" type="Timer" parent="Timers"]
+wait_time = 0.5
+one_shot = true
+
+[node name="OnFireDamageTimer" type="Timer" parent="Timers"]
+wait_time = 0.5
+one_shot = true
+
 [node name="Body" type="Node3D" parent="."]
 
 [node name="BarsBox" type="Node3D" parent="Body"]
@@ -137,3 +153,7 @@ health_component = NodePath("../StatsBox/HealthComponent")
 [connection signal="timeout" from="Timers/PushTimer" to="." method="_on_push_timer_timeout"]
 [connection signal="timeout" from="Timers/SpeedUpTimer" to="." method="_on_speed_up_timer_timeout"]
 [connection signal="timeout" from="Timers/SlowDownTimer" to="." method="_on_slow_down_timer_timeout"]
+[connection signal="timeout" from="Timers/OnFireTimer" to="." method="_on_on_fire_timer_timeout"]
+[connection signal="timeout" from="Timers/AcidTimer" to="." method="_on_acid_timer_timeout"]
+[connection signal="timeout" from="Timers/AcidDamageTimer" to="." method="_on_acid_damage_timer_timeout"]
+[connection signal="timeout" from="Timers/OnFireDamageTimer" to="." method="_on_on_fire_damage_timer_timeout"]

@@ -1,0 +1,91 @@
+[gd_scene load_steps=11 format=3 uid="uid://cg7tw2ouppnfs"]
+
+[ext_resource type="Script" uid="uid://bsstiluhq5lnb" path="res://scenes/projectiles/fireball_projectile.gd" id="1_w7ymy"]
+[ext_resource type="Material" uid="uid://dcekta5ndv7l7" path="res://scenes/projectiles/fireball_material.tres" id="2_hehgw"]
+[ext_resource type="Material" uid="uid://mxa00j82xxaw" path="res://particles/fire_particles.tres" id="3_0mthl"]
+[ext_resource type="SphereMesh" uid="uid://nou7grt4dl00" path="res://scenes/projectiles/fireball_projectile_particle_mesh.tres" id="4_0mthl"]
+[ext_resource type="Material" uid="uid://0ibbwc8fw2fa" path="res://particles/fire_projectile_particles.tres" id="5_0mthl"]
+[ext_resource type="Texture2D" uid="uid://bujwyohnq6yi4" path="res://assets/textures/fireball_texture.png" id="6_hehgw"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_yayuc"]
+material = ExtResource("2_hehgw")
+radius = 0.1
+height = 0.2
+radial_segments = 8
+rings = 4
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_8wdoi"]
+resource_local_to_scene = true
+radius = 0.11
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hehgw"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_color = Color(3, 3, 3, 0.05)
+albedo_texture = ExtResource("6_hehgw")
+
+[sub_resource type="SphereMesh" id="SphereMesh_th3n4"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_hehgw")
+radius = 0.3
+height = 0.2
+radial_segments = 16
+rings = 16
+
+[node name="FireballProjectile" type="Node3D"]
+script = ExtResource("1_w7ymy")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_energy = 0.5
+light_indirect_energy = 0.5
+distance_fade_enabled = true
+distance_fade_begin = 200.0
+distance_fade_length = 20.0
+omni_attenuation = 0.707107
+omni_shadow_mode = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_yayuc")
+
+[node name="Area3D" type="Area3D" parent="MeshInstance3D"]
+collision_layer = 4
+collision_mask = 5121
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
+shape = SubResource("SphereShape3D_8wdoi")
+
+[node name="LifeTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="ProjectileParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+transparency = 0.5
+cast_shadow = 0
+emitting = false
+amount = 30
+lifetime = 0.7
+process_material = ExtResource("3_0mthl")
+draw_pass_1 = ExtResource("4_0mthl")
+
+[node name="CollisionParticles" type="GPUParticles3D" parent="."]
+transparency = 0.5
+cast_shadow = 0
+emitting = false
+amount = 60
+lifetime = 0.8
+one_shot = true
+speed_scale = 1.5
+explosiveness = 0.7
+process_material = ExtResource("5_0mthl")
+draw_pass_1 = ExtResource("4_0mthl")
+
+[node name="VisualRadiusOfExsplosion" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("SphereMesh_th3n4")
+
+[connection signal="area_entered" from="MeshInstance3D/Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="body_entered" from="MeshInstance3D/Area3D" to="." method="_on_area_3d_body_entered"]

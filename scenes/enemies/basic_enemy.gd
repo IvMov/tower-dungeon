@@ -25,8 +25,14 @@ class_name BasicEnemy extends CharacterBody3D
 
 @onready var soul_component: SoulComponent = $SoulComponent
 @onready var souls_drop_component: SoulsDropComponent = $SoulsDropComponent
+
 @onready var push_timer: Timer = $Timers/PushTimer
 @onready var slow_down_timer: Timer = $Timers/SlowDownTimer
+@onready var on_fire_timer: Timer = $Timers/OnFireTimer
+@onready var acid_timer: Timer = $Timers/AcidTimer
+@onready var acid_damage_timer: Timer = $Timers/AcidDamageTimer
+@onready var on_fire_damage_timer: Timer = $Timers/OnFireDamageTimer
+
 
 @onready var chase_player_timer: Timer = $Timers/ChasePlayerTimer
 @onready var start_timer: Timer = $Timers/StartTimer
@@ -40,6 +46,8 @@ class_name BasicEnemy extends CharacterBody3D
 
 @export var enemy_name: String
 @export var speed: float
+@export_range(0, 1) var push_resist: float
+@export_range(0, 1) var dmg_resist: float
 @export var animation_player: AnimationPlayer
 
 var start_position: Vector3
@@ -65,6 +73,9 @@ var battle_distance: float = 0
 var battle_move_radius: float =  randf_range(2, 6)
 var battle_direction_when_radial: int = get_random_sign()
 
+var fire_damage_taken: float = 0
+var acid_damage_taken: float = 0
+
 var is_boss: bool = false
 var is_ranged: bool = false
 var is_flying: bool = false
@@ -75,6 +86,8 @@ var is_pushed: bool = false
 var is_dying: bool = false
 var is_fighting: bool = false
 var is_slowed_down: bool = false
+var is_on_fire: bool = false
+var is_on_acid: bool = false
 
 var is_battle_move: bool = false
 var is_side_move: bool = false
@@ -131,6 +144,8 @@ func multiply_characteristics() -> float:
 	mana_component.current_value *= rand
 	stamina_component.max_value *= rand
 	stamina_component.current_value *= rand
+	push_resist *= 3
+	dmg_resist *= 2
 	
 	return rand
 
@@ -143,12 +158,31 @@ func stop_damage() -> void:
 	# to be implemented in child regarding skills
 	pass
 
-func get_damage(damager_location: Vector3, value: float, push_power: float) -> bool:
+func get_damage(damager_location: Vector3, value: float, push_power: float, fire_dmg: float = 0.0, acid_dmg: float = 0.0) -> bool:
 	if push_power > 0:
 		push_back(damager_location, push_power)
 	elif push_power < 0: 
 		slow_down(push_power)
-	return health_component.minus(value)
+	if fire_dmg != 0:
+		set_in_fire(fire_dmg)
+	if acid_dmg != 0:
+		set_in_acid(acid_dmg)
+	
+	return health_component.minus(value * (1 - dmg_resist))
+
+func set_in_fire(fire_dmg: float) -> void:
+	effect_flash_component.start_on_fire()
+	on_fire_timer.start()
+	is_on_fire = true
+	fire_damage_taken = fire_dmg
+	on_fire_damage_timer.start()
+
+func set_in_acid(acid_dmg: float) -> void:
+	effect_flash_component.start_on_acid()
+	acid_timer.start()
+	is_on_acid = true
+	acid_damage_taken = acid_dmg
+	acid_damage_timer.start()
 
 func slow_down(slow_power: float) -> void:
 	effect_flash_component.start_slow_down()
@@ -156,9 +190,16 @@ func slow_down(slow_power: float) -> void:
 	is_slowed_down = true
 	current_speed = speed / 2
 
-func push_back(player_position: Vector3, push_power: float) -> void:
-	direction = global_position - player_position
-	current_speed = push_power
+func push_back(damage_position: Vector3, push_power: float) -> void:
+	var new_dir: Vector3 = global_position - damage_position
+	print(new_dir.normalized().length())
+	direction = new_dir.normalized() * 3
+	print("1 %s" % direction.length())
+	if new_dir.length() < 1.5:
+		direction = new_dir.normalized() * 4
+	else:
+		direction = new_dir.normalized() * 3
+	current_speed = push_power * (1 - push_resist)
 	is_pushed = true
 	push_timer.start()
 
@@ -287,3 +328,26 @@ func _on_slow_down_timer_timeout() -> void:
 	is_slowed_down = false
 	effect_flash_component.stop_slow_down()
 	current_speed = speed
+
+
+func _on_on_fire_timer_timeout() -> void:
+	on_fire_damage_timer.stop()
+	fire_damage_taken = 0.0
+	is_on_fire = false
+	effect_flash_component.stop_on_fire()
+
+func _on_on_fire_damage_timer_timeout() -> void:
+	if !on_fire_timer.is_stopped():
+		health_component.minus(fire_damage_taken * (1 - dmg_resist))
+		on_fire_damage_timer.start()
+
+func _on_acid_timer_timeout() -> void:
+	acid_damage_timer.stop()
+	acid_damage_taken = 0.0
+	is_on_acid = false
+	effect_flash_component.stop_on_acid()
+
+func _on_acid_damage_timer_timeout() -> void:
+	if !acid_timer.is_stopped():
+		health_component.minus(acid_damage_taken * (1 - dmg_resist))
+		acid_damage_timer.start()

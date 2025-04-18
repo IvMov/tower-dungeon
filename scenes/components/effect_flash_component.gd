@@ -7,6 +7,8 @@ const ANIMATION_TIME: float = 0.3
 @export var meshes: Array[MeshInstance3D]
 @onready var gpu_particles_3d = $GPUParticles3D
 @onready var slow_down_particles: GPUParticles3D = $SlowDownParticles
+@onready var on_fire_particles: GPUParticles3D = $OnFireParticles
+@onready var on_acid_particles: GPUParticles3D = $OnAcidParticles
 
 
 var tween: Tween
@@ -40,6 +42,7 @@ func add_text(value: float) -> void:
 	text.set_float(value, is_player)
 	await text.play(is_player)
 
+
 func start_slow_down() -> void:
 	if !slow_down_particles.emitting:
 		slow_down_particles.emitting = true
@@ -47,6 +50,23 @@ func start_slow_down() -> void:
 func stop_slow_down() -> void:
 	if slow_down_particles.emitting:
 		slow_down_particles.emitting = false
+
+func start_on_fire() -> void:
+	if !on_fire_particles.emitting:
+		on_fire_particles.emitting = true
+
+func stop_on_fire() -> void:
+	if on_fire_particles.emitting:
+		on_fire_particles.emitting = false
+
+func start_on_acid() -> void:
+	if !on_acid_particles.emitting:
+		on_acid_particles.emitting = true
+
+func stop_on_acid() -> void:
+	if on_acid_particles.emitting:
+		on_acid_particles.emitting = false
+
 
 
 func change_color_to(new_color: Color) -> void: 

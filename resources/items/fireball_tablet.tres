@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://dexj5x7ln0n5d"]
+
+[ext_resource type="Texture2D" uid="uid://cie1ol6h2s0sb" path="res://assets/2d/items/fireball_tablet.png" id="1_s2xsb"]
+[ext_resource type="Script" uid="uid://blbht47vwtj68" path="res://resources/items/item.gd" id="1_wr5nu"]
+[ext_resource type="PackedScene" uid="uid://bx0ydm3hsik0a" path="res://scenes/items/spark_tablet.tscn" id="2_a3xt6"]
+[ext_resource type="Resource" uid="uid://cpdev1frd8lib" path="res://resources/skills/fireball/fireball.tres" id="3_qc6be"]
+
+[resource]
+script = ExtResource("1_wr5nu")
+id = 9
+title = "fireball_skill_t"
+image = ExtResource("1_s2xsb")
+descrition = "fireball_skill_d"
+type = "item_type_skill"
+price = Vector3(0, 0, 0)
+scene = ExtResource("2_a3xt6")
+skill = ExtResource("3_qc6be")
+metadata/_custom_type_script = "uid://blbht47vwtj68"
