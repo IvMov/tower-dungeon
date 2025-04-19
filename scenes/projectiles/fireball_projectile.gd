@@ -1,6 +1,6 @@
 class_name FireballProjectile extends Node3D
 
-const FIRE_DMG: float = 1.0
+var fire_dmg: float = 1.0
 var direction: Vector3
 var speed: float
 var radius: float
@@ -75,13 +75,13 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 	var body: Node = area.get_parent().get_parent().get_parent();
 	if body is BasicEnemy:
 		handleb_body_collision()
-		if body.get_damage(global_position, damage, push_power, FIRE_DMG):
+		if body.get_damage(global_position, damage, push_power, fire_dmg):
 			PlayerParameters.add_skill_exp(skill_id, damage)
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	handleb_body_collision()
 	if body is BasicEnemy:
-		if body.get_damage(global_position, damage, push_power,  FIRE_DMG):
+		if body.get_damage(global_position, damage, push_power, fire_dmg):
 			PlayerParameters.add_skill_exp(skill_id, damage)
 	

@@ -1,7 +1,6 @@
-class_name FireballController extends BaseController
+class_name AcidMeteorController extends BaseController
 
 @export var projectile_packed: PackedScene
-@onready var projectiles_box: Node = get_tree().get_first_node_in_group("projectiles")
 
 var player: Player
 var cast_enabled: bool = false
@@ -46,9 +45,9 @@ func use_skill() -> void:
 	if !player:
 		print("NO OWNER NODE SETTED TO CONTROLLER")
 		return
-	var projectile: FireballProjectile = projectile_packed.instantiate()
+	var projectile: AcidMeteorProjectile = projectile_packed.instantiate()
 	var proj_direction: Vector3 = calc_projectile_direction()
-	projectiles_box.add_child(projectile)
+	Constants.PROJECTILES.add_child(projectile)
 	player.animation_player.play("attack-melee-right")
 	projectile.damage = calc_projectile_damage()
 	projectile.push_power = skill.base_push_value
@@ -56,21 +55,22 @@ func use_skill() -> void:
 	projectile.skill_id = skill.id
 	projectile.radius = calc_distance()
 	projectile.direction = proj_direction
-	projectile.fire_dmg = calc_fire_dmg()
+	projectile.acid_dmg = calc_acid_dmg()
 	var camera_position: Vector3 = player.camera_scene.get_camera_position()
 	var camera_distance: float = (player.global_position - camera_position).length()
 	projectile.global_position = camera_position + proj_direction * camera_distance * 0.95
+	projectile.apply_central_impulse(proj_direction * calc_projectile_speed())
 	super.cooldown()
-
 
 func calc_distance() -> float:
 	var skill_exp_data: Dictionary = PlayerParameters.get_skill_data(skill.id)
 	return skill.base_distance + (skill.distance_per_lvl * skill_exp_data["lvl"])
 
 
-func calc_fire_dmg() -> float:
+func calc_acid_dmg() -> float:
 	var skill_exp_data: Dictionary = PlayerParameters.get_skill_data(skill.id)
-	return skill.base_fire_dmg_value + (skill.base_fire_dmg_per_lvl * skill_exp_data["lvl"])
+	return skill.base_acid_dmg_value + (skill.base_acid_dmg_per_lvl * skill_exp_data["lvl"])
+
 
 func calc_projectile_speed() -> float:
 	#TODO: implement upgrade influence system

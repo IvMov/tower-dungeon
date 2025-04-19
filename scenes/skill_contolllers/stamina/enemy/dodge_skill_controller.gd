@@ -7,6 +7,8 @@ func _ready():
 	skill.base_energy_cost = 3
 
 func use_skill() -> void:
+	if randf() > 0.5: # 50/50 will dodge or not
+		return
 	if enemy.stamina_component.minus(skill.base_energy_cost): 
 		enemy.is_runing = true
 		enemy.is_dodging = true

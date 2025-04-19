@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://dpiiuwsrf8odi"]
+
+[ext_resource type="Texture2D" uid="uid://3sqjmtyuttl8" path="res://assets/2d/items/acid_meteor_tablet.png" id="1_b4366"]
+[ext_resource type="PackedScene" uid="uid://bx0ydm3hsik0a" path="res://scenes/items/spark_tablet.tscn" id="2_gn6pr"]
+[ext_resource type="Script" uid="uid://blbht47vwtj68" path="res://resources/items/item.gd" id="3_ikwlf"]
+[ext_resource type="Resource" uid="uid://w6js0gnwjryc" path="res://resources/skills/acid_meteor/acid_meteor.tres" id="4_3tqbj"]
+
+[resource]
+script = ExtResource("3_ikwlf")
+id = 10
+title = "acid_meteor_skill_t"
+image = ExtResource("1_b4366")
+descrition = "acid_meteor_skill_d"
+type = "item_type_skill"
+price = Vector3(0, 0, 0)
+scene = ExtResource("2_gn6pr")
+skill = ExtResource("4_3tqbj")
+metadata/_custom_type_script = "uid://blbht47vwtj68"

@@ -28,7 +28,7 @@ func calc_projectile_damage() -> float:
 
 func calc_value_exponentially()-> float:
 	var skill_exp_data: Dictionary = PlayerParameters.get_skill_data(skill.id)
-	return skill.base_value * pow(skill.value_per_lvl, skill_exp_data["lvl"])
+	return skill.base_value * pow(skill.value_per_lvl, skill_exp_data["lvl"]+1)
 
 func add_warning(text: String) -> void:
 	var text_holder: Text = Constants.TEXT.instantiate()

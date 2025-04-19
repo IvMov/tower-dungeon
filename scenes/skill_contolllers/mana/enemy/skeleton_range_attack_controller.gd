@@ -5,10 +5,13 @@ class_name SkeletonRangeAttackController extends BaseController
 
 @onready var projectiles_box: Node = get_tree().get_first_node_in_group("projectiles")
 
+var cast_time: float
+
 func _ready():
 	skill = Skill.new()
 	skill.base_value = randf_range(3, 5)
 	skill.base_energy_cost = 1
+	cast_time = cast_timer.wait_time
 
 func do_damage() -> float:
 	if enemy.is_dying:
@@ -71,6 +74,7 @@ func _on_cast_timer_timeout() -> void:
 		idle_timer.start()
 	elif enemy.player && enemy.navigation_agent_3d.distance_to_target() <= enemy.battle_distance:
 		do_damage()
+		cast_timer.wait_time = randf_range(cast_time/2, cast_time*2)
 		cast_timer.start()
 		if idle_timer.is_stopped():
 			idle_timer.start()

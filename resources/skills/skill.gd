@@ -23,6 +23,11 @@ class_name Skill extends Resource
 @export var base_duration: float
 @export var base_cooldown: float
 
+@export var base_fire_dmg_value: float
+@export var base_acid_dmg_value: float
+@export var base_fire_dmg_per_lvl: float
+@export var base_acid_dmg_per_lvl: float
+
 #if is_upgradable, then when skill uses - it should be upgraded with exp
 @export var value_per_lvl: float
 @export var push_value_per_lvl: float

@@ -192,9 +192,7 @@ func slow_down(slow_power: float) -> void:
 
 func push_back(damage_position: Vector3, push_power: float) -> void:
 	var new_dir: Vector3 = global_position - damage_position
-	print(new_dir.normalized().length())
 	direction = new_dir.normalized() * 3
-	print("1 %s" % direction.length())
 	if new_dir.length() < 1.5:
 		direction = new_dir.normalized() * 4
 	else:

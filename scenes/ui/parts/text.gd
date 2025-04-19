@@ -13,22 +13,23 @@ func set_text(text: String) -> void:
 	label.text = text
 
 func set_float(value: float, is_player: bool) -> void:
-	label.text = "%0.2f" % value
-	if !is_player:
-		if value <= tier_4:
-			label.add_theme_color_override("font_color", Color.ORANGE_RED)
-			label.add_theme_font_size_override("font_size", 32)
-		elif value <= tier_3:
-			label.add_theme_color_override("font_color", Color.ORANGE)
-			label.add_theme_font_size_override("font_size", 28)
-		elif value <= tier_2:
-			label.add_theme_color_override("font_color", Color.YELLOW)
-			label.add_theme_font_size_override("font_size", 22)
-		elif value <= tier_1:
-			label.add_theme_color_override("font_color", Color.SKY_BLUE)
-	else:
-		label.add_theme_color_override("font_color", Color.LIGHT_GRAY)
-		label.add_theme_font_size_override("font_size", 12)
+	if label:
+		label.text = "%0.2f" % value
+		if !is_player:
+			if value <= tier_4:
+				label.add_theme_color_override("font_color", Color.ORANGE_RED)
+				label.add_theme_font_size_override("font_size", 32)
+			elif value <= tier_3:
+				label.add_theme_color_override("font_color", Color.ORANGE)
+				label.add_theme_font_size_override("font_size", 28)
+			elif value <= tier_2:
+				label.add_theme_color_override("font_color", Color.YELLOW)
+				label.add_theme_font_size_override("font_size", 22)
+			elif value <= tier_1:
+				label.add_theme_color_override("font_color", Color.SKY_BLUE)
+		else:
+			label.add_theme_color_override("font_color", Color.LIGHT_GRAY)
+			label.add_theme_font_size_override("font_size", 12)
 
 
 func play(is_player: bool) -> void:

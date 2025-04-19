@@ -24,7 +24,8 @@ func _ready():
 
 
 func on_health_changed(value: float, _current_value: float) -> void:
-	
+	if !is_inside_tree():
+		return
 	if value < 0:
 		var damage_particles: GPUParticles3D = damage_particles_scene.instantiate()
 		add_child(damage_particles)
@@ -37,6 +38,8 @@ func on_health_changed(value: float, _current_value: float) -> void:
 		gpu_particles_3d.emitting = true
 
 func add_text(value: float) -> void:
+	if !is_inside_tree():
+		return
 	var text: Text = Constants.TEXT.instantiate()
 	add_child(text)
 	text.set_float(value, is_player)

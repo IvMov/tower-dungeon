@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7g1e5qvdpr5j"]
+
+[ext_resource type="PackedScene" uid="uid://jut3uwfl054l" path="res://scenes/skill_contolllers/base_controller.tscn" id="1_ofv1b"]
+[ext_resource type="Script" uid="uid://bavmhd81vs6c3" path="res://scenes/skill_contolllers/mana/player/acid_meteor_controller.gd" id="2_hwe70"]
+[ext_resource type="PackedScene" uid="uid://d0cwafscnf063" path="res://scenes/projectiles/acid_meteor_projectile.tscn" id="3_xcym1"]
+
+[node name="AcidMeteorController" instance=ExtResource("1_ofv1b")]
+script = ExtResource("2_hwe70")
+projectile_packed = ExtResource("3_xcym1")
