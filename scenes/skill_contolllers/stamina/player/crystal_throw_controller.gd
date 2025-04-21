@@ -2,7 +2,6 @@ class_name CrystalThrowController extends BaseController
 
 
 @export var projectile_pack: PackedScene
-@onready var projectiles_box: Node = get_tree().get_first_node_in_group("projectiles")
 var player: Player
 var cast_enabled: bool = false
 
@@ -49,7 +48,7 @@ func use_skill() -> void:
 	var projectile: CrystalProjectile = projectile_pack.instantiate()
 	var proj_direction: Vector3 = calc_projectile_direction()
 	
-	projectiles_box.add_child(projectile)
+	Constants.PROJECTILES.add_child(projectile)
 	player.animation_player.play("attack-melee-right")
 	projectile.radius = skill.base_distance
 	projectile.damage = calc_projectile_damage()

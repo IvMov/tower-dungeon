@@ -1,6 +1,5 @@
 class_name FontainFire extends Hoverable
 
-@onready var projectiles_box: Node = get_tree().get_first_node_in_group("projectiles")
 @onready var add_crystal_particles: GPUParticles3D = $AddCrystalParticles
 @onready var timer: Timer = $Timer
 @onready var mesh_wrap: Node3D = $MeshWrap
@@ -67,7 +66,7 @@ func _on_static_body_3d_mouse_entered() -> void:
 func _on_timer_timeout() -> void:
 	if wall_enemy:
 		var projectile: FireProjectile = Constants.FIRE_PROJECTILE.instantiate()
-		projectiles_box.add_child(projectile)
+		Constants.PROJECTILES.add_child(projectile)
 		projectile.global_position = global_position
 		projectile.global_position.y += 0.3
 		var target_pos: Vector3 = wall_enemy.global_position

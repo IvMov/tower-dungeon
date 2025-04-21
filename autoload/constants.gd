@@ -2,7 +2,8 @@ extends Node
 
 #parent locations
 @onready var PROJECTILES: Node = get_tree().get_first_node_in_group("projectiles")
-@onready var ENEMIES: Node = get_tree().get_first_node_in_group("projectiles")
+@onready var ENEMIES: Node = get_tree().get_first_node_in_group("enemies")
+@onready var SOULS: Node = get_tree().get_first_node_in_group("souls")
 
 
 #infrastructure

@@ -1,7 +1,6 @@
 class_name SparkController extends BaseController
 
 @export var spark_projectile: PackedScene
-@onready var projectiles_box: Node = get_tree().get_first_node_in_group("projectiles")
 var player: Player
 var cast_enabled: bool = false
 
@@ -46,7 +45,7 @@ func use_skill() -> void:
 		return
 	var projectile: SparkProjectile = spark_projectile.instantiate()
 	var proj_direction: Vector3 = calc_projectile_direction()
-	projectiles_box.add_child(projectile)
+	Constants.PROJECTILES.add_child(projectile)
 	player.animation_player.play("attack-melee-right")
 	projectile.damage = calc_projectile_damage()
 	projectile.push_power = skill.base_push_value

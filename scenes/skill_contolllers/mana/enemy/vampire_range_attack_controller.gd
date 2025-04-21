@@ -3,8 +3,6 @@ class_name VampireRangeAttackController extends BaseController
 @export var enemy: BasicEnemy
 @export var vampire_projectile: PackedScene
 
-@onready var projectiles_box: Node = get_tree().get_first_node_in_group("projectiles")
-
 var cast_time: float
 
 func _ready():
@@ -32,7 +30,7 @@ func damage_player() -> void:
 		player_position.y += 0.5
 		var projectile: VampireProjectile = vampire_projectile.instantiate()
 		
-		projectiles_box.add_child(projectile)
+		Constants.PROJECTILES.add_child(projectile)
 		enemy.animation_player.play("attack-melee-right")
 		projectile.damage = skill.base_value if !enemy.is_boss else skill.base_value * 2
 		projectile.push_power = 0

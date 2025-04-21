@@ -5,7 +5,6 @@ class_name SpawnEnemyController extends BaseController
 @export var enemies: Array[PackedScene]
 @export var projectile: PackedScene
 
-@onready var enemy_box: Node = get_tree().get_first_node_in_group("enemies")
 @onready var ray_cast_3d: RayCast3D = $RayCast3D
 
 var fast_cast: bool = false
@@ -58,7 +57,7 @@ func start_cast() -> void:
 		next_enemy_position = calc_enemy_position(owner_enemy.spawn_distance, owner_enemy.min_height, owner_enemy.max_height)
 		var tween = create_tween()
 		var proj_inst = projectile.instantiate()
-		enemy_box.add_child(proj_inst)
+		Constants.ENEMIES.add_child(proj_inst)
 		proj_inst.global_position = global_position
 		
 		proj_inst.life_timer.wait_time = skill.base_cast_time
@@ -87,7 +86,7 @@ func use_skill() -> void:
 	if !positions.is_empty():
 		var inst: BasicEnemy = enemy_packed.instantiate()
 		inst.is_boss = is_boss_spawner
-		enemy_box.add_child(inst)
+		Constants.ENEMIES.add_child(inst)
 		
 		inst.global_position = positions.pop_front()
 		if randf() < 0.5:
