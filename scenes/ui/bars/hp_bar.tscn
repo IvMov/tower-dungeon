@@ -5,3 +5,11 @@
 
 [node name="HPBar" instance=ExtResource("1_rfaug")]
 script = ExtResource("2_iabal")
+bar_color = Color(1, 1, 1, 1)
+
+[node name="SubViewport" parent="Sprite3D" index="0"]
+size = Vector2i(100, 6)
+
+[node name="EnemyProgressBar" parent="Sprite3D/SubViewport" index="0"]
+custom_minimum_size = Vector2(100, 6)
+offset_bottom = 6.0

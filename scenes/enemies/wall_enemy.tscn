@@ -168,7 +168,7 @@ skeleton = NodePath("../..")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Body/WallBody" index="0"]
 libraries = {
-"": SubResource("AnimationLibrary_h1kjm")
+&"": SubResource("AnimationLibrary_h1kjm")
 }
 
 [node name="EffectFlashComponent" parent="Body" index="4"]

@@ -1413,7 +1413,7 @@ collision_mask = 4
 shape = SubResource("SphereShape3D_t4dls")
 
 [node name="EffectFlashComponent" parent="Body" index="4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2729, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.44574, 0)
 
 [node name="Timer" type="Timer" parent="." index="9"]
 wait_time = 3.0

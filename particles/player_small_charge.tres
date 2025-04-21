@@ -14,5 +14,3 @@ radial_velocity_max = 2.0
 gravity = Vector3(0, 0, 0)
 damping_max = 2.505
 scale_min = 0.3
-hue_variation_min = -1.0
-hue_variation_max = 1.0

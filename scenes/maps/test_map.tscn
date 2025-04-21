@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://d38xfuyorpxgt" path="res://assets/textures/texture_13.png" id="2_jw0mm"]
 [ext_resource type="PackedScene" uid="uid://dikuuklrfrey4" path="res://scenes/maps/parts/8m/wall_8_1_16.tscn" id="5_lbi6g"]
 [ext_resource type="PackedScene" uid="uid://dcui50rm1jgnl" path="res://scenes/maps/parts/8m/tunel_8_8_4.tscn" id="6_du3fr"]
-[ext_resource type="PackedScene" uid="uid://3u5p44i1b8o0" path="res://scenes/maps/parts/torch.tscn" id="6_l6x2k"]
+[ext_resource type="PackedScene" uid="uid://3u5p44i1b8o0" path="res://particles/mesh/torch.tscn" id="6_l6x2k"]
 [ext_resource type="PackedScene" uid="uid://dsfklcrmsh38d" path="res://scenes/maps/parts/candle.tscn" id="8_k7svg"]
 [ext_resource type="PackedScene" uid="uid://dbv1lp0pn7xhc" path="res://scenes/enemies/tier_1_enemy.tscn" id="9_8y0lp"]
 

@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddhuyn1cn5mbu"]
+
+[ext_resource type="PackedScene" uid="uid://jut3uwfl054l" path="res://scenes/skill_contolllers/base_controller.tscn" id="1_7g68r"]
+[ext_resource type="Script" uid="uid://3jab3lco04io" path="res://scenes/skill_contolllers/mana/player/fire_blade_trap_controller.gd" id="2_myskj"]
+[ext_resource type="PackedScene" uid="uid://ca4cc1xyc25gm" path="res://scenes/projectiles/fire_blade_trap_projectile.tscn" id="3_7g68r"]
+
+[node name="FireBladeTrapController" instance=ExtResource("1_7g68r")]
+script = ExtResource("2_myskj")
+projectile_packed = ExtResource("3_7g68r")

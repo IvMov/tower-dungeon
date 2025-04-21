@@ -29,7 +29,7 @@ func draw_belt_items() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if !GameStage.is_stage(GameStage.Stage.INVENTORY) && cd_timer.is_stopped():
 		var key: int = int(event.as_text())
-		if key > 0 && event.is_released() && key < 6:
+		if key > 0 && event.is_released() && key < 7:
 			var item_view: ItemView = h_box_container.get_child(key-1).item_view
 			if item_view.item_bulk:
 				GameEvents.emit_item_to_hand(item_view)

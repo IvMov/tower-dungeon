@@ -6,7 +6,7 @@ func _ready():
 	GameEvents.item_remove.connect(on_item_remove)
 	GameEvents.item_add.connect(on_item_add)
 	id = 1
-	size = Vector2(0, 5) # x always 0 - for belt (1 row)
+	size = Vector2(0, 6) # x always 0 - for belt (1 row)
 	var item_bulk: ItemBulk = ItemBulk.new(SPARK_TABLET, 1)
 	items[Vector2(0,1)] = item_bulk
 	var item_bulkk: ItemBulk = ItemBulk.new(Constants.ACID_METEOR_TABLET, 1)
@@ -17,3 +17,5 @@ func _ready():
 	items[Vector2(0,0)] = item_bulk3
 	var item_bulk4: ItemBulk = ItemBulk.new(Constants.ITEM_SNOWBALL_TABLET, 1)
 	items[Vector2(0,4)] = item_bulk4
+	var item_bulk5: ItemBulk = ItemBulk.new(Constants.FIRE_BLADE_TRAP_TABLET, 1)
+	items[Vector2(0,5)] = item_bulk5

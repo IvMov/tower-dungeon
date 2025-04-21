@@ -71,6 +71,7 @@ func lost_target():
 func _on_chase_player_timer_timeout():
 	super._on_chase_player_timer_timeout();
 	if !is_target_detected:
+		hide_bars()
 		speed_up_timer.stop()
 		is_runing = false
 		reset_agr_area_size()

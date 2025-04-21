@@ -5,5 +5,7 @@
 [resource]
 resource_local_to_scene = true
 shading_mode = 0
-albedo_color = Color(5, 5, 0, 1)
+albedo_color = Color(10, 10, 0, 1)
 albedo_texture = ExtResource("1_xlfkl")
+albedo_texture_force_srgb = true
+disable_receive_shadows = true

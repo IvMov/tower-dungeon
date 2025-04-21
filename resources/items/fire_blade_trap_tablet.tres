@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://cl6ifis5pbfq2"]
+
+[ext_resource type="Texture2D" uid="uid://b1pic21lypaii" path="res://assets/2d/items/fire_blade_tablet.png" id="1_7uab1"]
+[ext_resource type="PackedScene" uid="uid://bx0ydm3hsik0a" path="res://scenes/items/spark_tablet.tscn" id="2_4k577"]
+[ext_resource type="Script" uid="uid://blbht47vwtj68" path="res://resources/items/item.gd" id="3_8eloy"]
+[ext_resource type="Resource" uid="uid://bi7cllwc32bgf" path="res://resources/skills/fire_blade_trap/fire_blade_trap.tres" id="4_7uab1"]
+
+[resource]
+script = ExtResource("3_8eloy")
+id = 11
+title = "fire_blade_trap_skill_t"
+image = ExtResource("1_7uab1")
+descrition = "fire_blade_trap_skill_d"
+type = "item_type_skill"
+price = Vector3(200, 200, 200)
+scene = ExtResource("2_4k577")
+skill = ExtResource("4_7uab1")
+metadata/_custom_type_script = "uid://blbht47vwtj68"

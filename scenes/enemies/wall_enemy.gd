@@ -28,6 +28,8 @@ func detect_target(_target_player: Player) -> void:
 	is_player_near = true
 
 func get_damage(_damager_location: Vector3, value: float, _push_power: float, fire_dmg: float = 0.0, acid_dmg: float = 0.0) -> bool:
+	if !bars_box.visible:
+		bars_box.visible = true
 	value = value if is_player_near else value/5
 	return health_component.minus(value)
 	if fire_dmg != 0:

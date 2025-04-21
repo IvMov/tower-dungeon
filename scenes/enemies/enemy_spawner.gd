@@ -45,6 +45,8 @@ func detect_target(_target_player: Player) -> void:
 	is_player_near = true
 
 func get_damage(_damager_location: Vector3, value: float, _push_power: float, fire_dmg: float = 0, acid_dmg: float = 0) -> bool:
+	if !bars_box.visible:
+		bars_box.visible = true
 	if boost_cast:
 		boost_cast = false
 		spawn_enemy_controller.start_boost_cast(boost_enemies_num)
@@ -61,6 +63,7 @@ func get_damage(_damager_location: Vector3, value: float, _push_power: float, fi
 func lost_target() -> void:
 	spawn_enemy_controller.stop_casting()
 	is_player_near = false
+	hide_bars()
 
 func spawn_and_disapear() -> void:
 	spawn_enemy_controller.is_boss_spawner = is_boss_spawner

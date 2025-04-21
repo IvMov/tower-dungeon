@@ -2314,7 +2314,7 @@ regen = 0.5
 
 [node name="ManaComponent" parent="Body/StatsBox" index="1"]
 max_value = 100.0
-current_value = 20.0
+current_value = 100.0
 regen = 1.0
 
 [node name="DodgeSkillController" parent="Body/SkillBox" index="0" node_paths=PackedStringArray("enemy") instance=ExtResource("3_62qlx")]

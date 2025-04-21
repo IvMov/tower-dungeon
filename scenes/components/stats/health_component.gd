@@ -12,8 +12,7 @@ func _ready() -> void:
 func minus(value: float) -> bool:
 	current_value = max(0, current_value - value)
 	emit_health_changed(-1 * value)
-	if owner_node is Tier0Enemy :
-		print("affffrrrr")
+	if owner_node is Tier0Enemy:
 		owner_node.agr_on_player()
 	if current_value == 0:
 		die()
@@ -44,6 +43,7 @@ func die() -> void:
 	owner_node.is_dying = true
 	owner_node.custom_death_actions()
 	if owner_node is BasicEnemy:
+		owner_node.bars_box.visible = false
 		owner_node.souls_drop_component.drop_soul()
 		GameEvents.emit_souls_dropped(owner_node.global_position, owner_node.soul_component.souls)
 		owner_node.agr_area.disable_mode = true
@@ -54,10 +54,10 @@ func die() -> void:
 
 func emit_health_changed(value: float) -> void:
 	if owner_node is BasicEnemy:
-		if owner_node.is_dying:
-			owner_node.hp_bar.disable()
-		else:
+		if !owner_node.is_dying:
 			owner_node.hp_bar.update(current_value, max_value)
+		if max_value - current_value < 0.5:
+			owner_node.bars_box.visible = false
 	health_changed.emit(value, current_value)
 
 

@@ -31,8 +31,9 @@ func _ready():
 func choose_position() -> void: 
 	var rand: float = randf_range(0.3, 2.5)
 	if !is_boss:
-		rand * 2
+		rand *= 2
 	character_ghost_2.global_position.y = global_position.y + rand
+	effect_flash_component.global_position.y = global_position.y + rand
 	range_attack_controller.global_position.y = global_position.y + rand
 	bars_box.global_position.y = global_position.y + rand - 0.05
 
@@ -60,6 +61,8 @@ func agr_on_player():
 
 
 func lost_target():
+	if is_dying:
+		return
 	speed_up_timer.stop()
 	is_runing = false
 	if agr_area.disable_mode: 
@@ -73,6 +76,7 @@ func _on_chase_player_timer_timeout():
 	super._on_chase_player_timer_timeout();
 	
 	if !is_target_detected:
+		hide_bars()
 		speed_up_timer.stop()
 		is_runing = false
 		reset_agr_area_size()
@@ -92,6 +96,8 @@ func _on_timer_timeout() -> void:
 
 	tween.tween_property(character_ghost_2, "global_position:y", global_position.y  + rand, 1.0)
 	tween.tween_property(range_attack_controller, "global_position:y", global_position.y + rand, 1.0)
+	var height: float = 3 if is_boss else 1
+	tween.tween_property(effect_flash_component, "global_position:y", global_position.y + rand + height, 1.0)
 	tween.tween_property(bars_box, "global_position:y", global_position.y + rand, 1.0)
 	await tween.finished
 	timer.start()

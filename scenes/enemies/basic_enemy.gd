@@ -102,7 +102,8 @@ func _ready():
 	hp_bar.update(health_component.current_value, health_component.max_value)
 	stamina_bar.update(stamina_component.current_value, stamina_component.max_value)
 	mana_bar.update(mana_component.current_value, mana_component.max_value)
-
+	bars_box.visible = false
+	
 func _physics_process(delta):
 	if is_dying:
 		return
@@ -159,6 +160,8 @@ func stop_damage() -> void:
 	pass
 
 func get_damage(damager_location: Vector3, value: float, push_power: float, fire_dmg: float = 0.0, acid_dmg: float = 0.0) -> bool:
+	if !bars_box.visible:
+		bars_box.visible = true
 	if push_power > 0:
 		push_back(damager_location, push_power)
 	elif push_power < 0: 
@@ -178,6 +181,8 @@ func set_in_fire(fire_dmg: float) -> void:
 	on_fire_damage_timer.start()
 
 func set_in_acid(acid_dmg: float) -> void:
+	if is_dying:
+		return
 	effect_flash_component.start_on_acid()
 	acid_timer.start()
 	is_on_acid = true
@@ -209,6 +214,9 @@ func detect_target(_target_player: Player) -> void:
 func lost_target() -> void:
 	# to be implemented in child regarding skills
 	pass
+
+func hide_bars() -> void:
+	bars_box.visible = false
 
 func agr_on_player() -> void:
 	if !is_ranged:

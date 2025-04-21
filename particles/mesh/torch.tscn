@@ -1,12 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://3u5p44i1b8o0"]
+[gd_scene load_steps=11 format=3 uid="uid://3u5p44i1b8o0"]
 
-[ext_resource type="Material" uid="uid://clptb0rjqplxi" path="res://assets/textures/brown_wood.tres" id="1_pgbnx"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hbob3"]
-albedo_color = Color(5, 5, 1, 1)
+[ext_resource type="CapsuleMesh" uid="uid://2pk8c2g6btim" path="res://particles/mesh/torch_body.tres" id="1_cwa23"]
+[ext_resource type="Material" uid="uid://cisk8kcrqgw17" path="res://particles/mesh/fontain_fire_material.tres" id="1_n8qc6"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_eu3do"]
-material = SubResource("StandardMaterial3D_hbob3")
+material = ExtResource("1_n8qc6")
 radius = 0.1
 height = 0.5
 radial_segments = 8
@@ -49,13 +47,6 @@ material = SubResource("StandardMaterial3D_o6835")
 size = Vector2(0.1, 0.1)
 orientation = 2
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_sm6id"]
-material = ExtResource("1_pgbnx")
-radius = 0.06
-height = 1.0
-radial_segments = 8
-rings = 4
-
 [node name="Torch" type="MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.214, 6.24808, 0.843736)
 
@@ -94,4 +85,4 @@ cast_shadow = 0
 visibility_range_end = 100.0
 visibility_range_end_margin = 15.0
 visibility_range_fade_mode = 1
-mesh = SubResource("CapsuleMesh_sm6id")
+mesh = ExtResource("1_cwa23")

@@ -1,9 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://d0cwafscnf063"]
+[gd_scene load_steps=13 format=3 uid="uid://d0cwafscnf063"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://cgwq52o87akpq" path="res://resources/materials/drop_physics_material.tres" id="1_puehy"]
 [ext_resource type="Script" uid="uid://uaaigo4e0dhr" path="res://scenes/projectiles/acid_meteor_projectile.gd" id="2_k84s0"]
-[ext_resource type="PrismMesh" uid="uid://c5x02ui4xuaqn" path="res://assets/3d/my/crystal_mesh.tres" id="3_kqc0w"]
 [ext_resource type="SphereMesh" uid="uid://bn06152qnqrjq" path="res://scenes/projectiles/acid_meteor_projectile_mesh.tres" id="3_sains"]
+[ext_resource type="Texture2D" uid="uid://b443iq2l0etca" path="res://assets/textures/my/acid_9.png" id="4_7xmfc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x6vv3"]
 size = Vector3(0.2, 0.2, 0.2)
@@ -15,34 +15,49 @@ radius = 0.17
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_t0fni"]
 gravity = Vector3(0, -1, 0)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vwjab"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ll78f"]
 shading_mode = 0
-albedo_color = Color(2, 2, 2, 1)
+albedo_texture = ExtResource("4_7xmfc")
+uv1_scale = Vector3(20, 20, 20)
+uv1_triplanar = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_arrt6"]
 lightmap_size_hint = Vector2i(2, 2)
-material = SubResource("StandardMaterial3D_vwjab")
+material = SubResource("StandardMaterial3D_ll78f")
 size = Vector2(0.03, 0.03)
 orientation = 2
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r8agw"]
 particle_flag_align_y = true
-emission_shape = 1
-emission_sphere_radius = 0.3
-direction = Vector3(1, 1, 1)
+emission_shape = 2
+emission_sphere_radius = 0.5
+direction = Vector3(0, 1, 0)
 spread = 180.0
 initial_velocity_min = 1.0
 initial_velocity_max = 3.0
-gravity = Vector3(0, 0, 0)
+gravity = Vector3(0, 6, 0)
 linear_accel_min = 0.999998
-linear_accel_max = 10.0
+linear_accel_max = 6.0
 scale_min = 0.2
 scale_max = 0.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sains"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0.276)
+albedo_texture = ExtResource("4_7xmfc")
+uv1_scale = Vector3(3, 3, 3)
+uv1_triplanar = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_7xmfc"]
+material = SubResource("StandardMaterial3D_sains")
+radial_segments = 8
+rings = 6
 
 [node name="AcidMeteorProjectile" type="RigidBody3D"]
 collision_layer = 4
 collision_mask = 5123
-mass = 0.5
+mass = 2.0
 physics_material_override = ExtResource("1_puehy")
 continuous_cd = true
 script = ExtResource("2_k84s0")
@@ -53,6 +68,10 @@ omni_range = 1.0
 omni_shadow_mode = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_x6vv3")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0.707107, 0.5, -0.5, 0, 0.707107, 0.707107, 0, 0, 0)
 shape = SubResource("BoxShape3D_x6vv3")
 
 [node name="Meteor" type="MeshInstance3D" parent="."]
@@ -82,13 +101,11 @@ draw_pass_1 = SubResource("PlaneMesh_arrt6")
 
 [node name="CollisionParticles" type="GPUParticles3D" parent="."]
 emitting = false
-amount = 60
+amount = 30
 lifetime = 0.5
-one_shot = true
-speed_scale = 1.5
-explosiveness = 1.0
+speed_scale = 0.2
 process_material = SubResource("ParticleProcessMaterial_r8agw")
-draw_pass_1 = ExtResource("3_kqc0w")
+draw_pass_1 = SubResource("SphereMesh_7xmfc")
 
 [node name="ExplosionTimer" type="Timer" parent="."]
 one_shot = true

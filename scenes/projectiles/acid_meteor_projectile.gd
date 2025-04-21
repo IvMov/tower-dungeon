@@ -34,24 +34,12 @@ func pre_explosion() -> void:
 	var tween: Tween = create_tween()
 	tween.set_parallel()
 	tween.set_ease(Tween.EASE_IN)
-	tween.tween_property(meteor.mesh, "radius", meteor.mesh.radius*2, before_explosion_time_unit)
-	tween.tween_property(meteor.mesh, "height", meteor.mesh.height*2, before_explosion_time_unit)
-	tween.chain()
-	tween.tween_property(meteor.mesh, "radius", meteor.mesh.radius/2 , before_explosion_time_unit)
-	tween.tween_property(meteor.mesh, "height", meteor.mesh.height/2 , before_explosion_time_unit)
-	tween.chain()
-	tween.tween_property(meteor.mesh, "radius", meteor.mesh.radius * 3, before_explosion_time_unit)
-	tween.tween_property(meteor.mesh, "height", meteor.mesh.height * 3, before_explosion_time_unit)
-	tween.chain()
-	tween.tween_property(meteor.mesh, "radius", meteor.mesh.radius / 3, before_explosion_time_unit)
-	tween.tween_property(meteor.mesh, "height", meteor.mesh.height / 3, before_explosion_time_unit)
-	tween.chain()
-	tween.tween_property(meteor.mesh, "radius", meteor.mesh.radius * 3, before_explosion_time_unit)
-	tween.tween_property(meteor.mesh, "height", meteor.mesh.height * 3, before_explosion_time_unit)
-	tween.chain()
-	tween.tween_property(meteor.mesh, "radius", meteor.mesh.radius / 3, before_explosion_time_unit)
-	tween.tween_property(meteor.mesh, "height", meteor.mesh.height / 3, before_explosion_time_unit)
 
+	tween.tween_property(meteor.mesh, "radius", meteor.mesh.radius * 3, before_explosion_time_unit)
+	tween.tween_property(meteor.mesh, "height", meteor.mesh.height * 3, before_explosion_time_unit)
+	tween.chain()
+	tween.tween_property(meteor.mesh, "radius", meteor.mesh.radius / 3, before_explosion_time_unit)
+	tween.tween_property(meteor.mesh, "height", meteor.mesh.height / 3, before_explosion_time_unit)
 	await tween.finished
 
 func do_explosion() -> void:
@@ -79,7 +67,7 @@ func do_explosion() -> void:
 	tween.tween_property(visual_radius_of_exsplosion.mesh.surface_get_material(0), "uv1_scale", Vector3.ONE * 0.1, 2)
 	
 	tween.chain()
-	tween.tween_property(visual_radius_of_exsplosion.mesh.surface_get_material(0), "uv1_scale", Vector3.ONE * 6, 2)
+	tween.tween_property(visual_radius_of_exsplosion.mesh.surface_get_material(0), "uv1_scale", Vector3.ONE * 6, before_explosion_time_unit)
 	tween.tween_property(visual_radius_of_exsplosion.mesh, "radius", 0.1, before_explosion_time_unit)
 	tween.tween_property(visual_radius_of_exsplosion.mesh, "height", 0.1 * 2, before_explosion_time_unit)
 	tween.tween_property(collision_shape_3d.shape, "radius", 0.1, before_explosion_time_unit)
@@ -92,6 +80,7 @@ func do_explosion() -> void:
 	area_3d.set_collision_mask_value(14, false)
 	area_3d.set_collision_mask_value(13, false)
 	visual_radius_of_exsplosion.get_active_material(0).albedo_color = Color(1, 1, 1, 1)
+	
 	life_timer.start(0.1)
 
 

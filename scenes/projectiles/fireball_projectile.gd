@@ -49,7 +49,7 @@ func do_explosion() -> void:
 	tween.tween_property(visual_radius_of_exsplosion.mesh, "radius", radius, 0.2)
 	tween.tween_property(visual_radius_of_exsplosion.mesh, "height", radius * 2, 0.2)
 	tween.tween_property(collision_shape_3d.shape, "radius", radius, 0.2)
-	tween.tween_property(visual_radius_of_exsplosion.mesh.surface_get_material(0), "uv1_scale", Vector3.ONE * 0.3, 0.2)
+	tween.tween_property(visual_radius_of_exsplosion.mesh.surface_get_material(0), "uv1_scale", Vector3.ONE * 0.1, 0.2)
 	
 	tween.chain()
 	tween.tween_property(visual_radius_of_exsplosion.mesh, "radius", 0.1, 0.2)

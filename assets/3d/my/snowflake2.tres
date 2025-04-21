@@ -1,6 +1,6 @@
 [gd_resource type="ArrayMesh" load_steps=2 format=4 uid="uid://xt6lvxh50qlw"]
 
-[ext_resource type="Material" uid="uid://dcekta5ndv7l7" path="res://scenes/projectiles/fireball_material.tres" id="1_r0rth"]
+[ext_resource type="Material" uid="uid://v2ucakdoggwa" path="res://scenes/projectiles/snowball_material.tres" id="1_r0rth"]
 
 [resource]
 resource_name = "snowflake2_Plane"

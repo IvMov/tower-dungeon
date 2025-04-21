@@ -6,7 +6,7 @@
 shading_mode = 0
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
-albedo_color = Color(3, 2, 2, 1)
+albedo_color = Color(6, 6, 6, 1)
 albedo_texture = ExtResource("1_08gcd")
 uv1_scale = Vector3(10, 10, 10)
 uv1_triplanar = true

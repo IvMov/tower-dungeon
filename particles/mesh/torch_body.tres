@@ -1,0 +1,10 @@
+[gd_resource type="CapsuleMesh" load_steps=2 format=3 uid="uid://2pk8c2g6btim"]
+
+[ext_resource type="Material" uid="uid://clptb0rjqplxi" path="res://assets/textures/brown_wood.tres" id="1_dfi1i"]
+
+[resource]
+material = ExtResource("1_dfi1i")
+radius = 0.06
+height = 1.0
+radial_segments = 8
+rings = 4

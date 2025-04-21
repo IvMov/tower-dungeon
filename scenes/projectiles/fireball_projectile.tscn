@@ -23,7 +23,7 @@ transparency = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
-albedo_color = Color(3, 3, 3, 0.05)
+albedo_color = Color(6, 6, 6, 0.1)
 albedo_texture = ExtResource("6_hehgw")
 
 [sub_resource type="SphereMesh" id="SphereMesh_th3n4"]
@@ -38,8 +38,8 @@ rings = 16
 script = ExtResource("1_w7ymy")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-light_energy = 0.5
-light_indirect_energy = 0.5
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0241353, 0)
+light_color = Color(2, 0.309804, 0, 1)
 distance_fade_enabled = true
 distance_fade_begin = 200.0
 distance_fade_length = 20.0

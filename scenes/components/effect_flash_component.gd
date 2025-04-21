@@ -36,6 +36,7 @@ func on_health_changed(value: float, _current_value: float) -> void:
 		damage_particles.queue_free()
 	if value > 0:
 		gpu_particles_3d.emitting = true
+		add_text(value)
 
 func add_text(value: float) -> void:
 	if !is_inside_tree():
@@ -43,7 +44,10 @@ func add_text(value: float) -> void:
 	var text: Text = Constants.TEXT.instantiate()
 	add_child(text)
 	text.set_float(value, is_player)
-	await text.play(is_player)
+	if value < 0:
+		await text.play(is_player)
+	else:
+		await text.play(is_player, 0.3, 1)
 
 
 func start_slow_down() -> void:

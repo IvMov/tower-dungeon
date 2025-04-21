@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5onrp6fq8enu"]
+[gd_scene load_steps=5 format=3 uid="uid://b5onrp6fq8enu"]
 
 [ext_resource type="Script" uid="uid://d41ux6yw8bcn" path="res://scenes/ui/bars/base_stat_bar.gd" id="1_bl6i0"]
 [ext_resource type="PackedScene" uid="uid://c7f2gax0157nl" path="res://scenes/ui/bars/2d_progress_bar.tscn" id="2_r1ms1"]
+[ext_resource type="Texture2D" uid="uid://b6kkvwviy24hs" path="res://assets/textures/my/bars2.png" id="3_se8uo"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_se8uo"]
+texture = ExtResource("3_se8uo")
 
 [node name="BaseStatBar" type="Node3D"]
 script = ExtResource("1_bl6i0")
@@ -17,3 +21,4 @@ transparent_bg = true
 size = Vector2i(100, 4)
 
 [node name="EnemyProgressBar" parent="Sprite3D/SubViewport" instance=ExtResource("2_r1ms1")]
+theme_override_styles/fill = SubResource("StyleBoxTexture_se8uo")

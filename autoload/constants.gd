@@ -18,6 +18,7 @@ const ITEM_CRYSTAL: Item = preload("res://resources/items/consumables/crystal.tr
 const ITEM_SNOWBALL_TABLET: Item = preload("res://resources/items/snowball_tablet.tres")
 const FIREBALL_TABLET = preload("res://resources/items/fireball_tablet.tres")
 const ACID_METEOR_TABLET = preload("res://resources/items/acid_meteor_tablet.tres")
+const FIRE_BLADE_TRAP_TABLET = preload("res://resources/items/fire_blade_trap_tablet.tres")
 
 #consumables 
 const HEAL_TABLET = preload("res://resources/items/consumables/heal_tablet.tres")

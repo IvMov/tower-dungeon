@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bxxa1p0mphroe" path="res://scenes/maps/parts/8m/wall_8_1_20.tscn" id="9_db3iy"]
 [ext_resource type="PackedScene" uid="uid://dikuuklrfrey4" path="res://scenes/maps/parts/8m/wall_8_1_16.tscn" id="10_emyw1"]
 [ext_resource type="PackedScene" uid="uid://cxn0cofct1v1b" path="res://scenes/maps/generator/torch_builder.tscn" id="12_gx14e"]
-[ext_resource type="PackedScene" uid="uid://3u5p44i1b8o0" path="res://scenes/maps/parts/torch.tscn" id="13_kpnu2"]
+[ext_resource type="PackedScene" uid="uid://3u5p44i1b8o0" path="res://particles/mesh/torch.tscn" id="13_kpnu2"]
 [ext_resource type="PackedScene" uid="uid://dowdei5kin5si" path="res://scenes/maps/generator/column_builder.tscn" id="14_45211"]
 [ext_resource type="PackedScene" uid="uid://dhiqjctihnpkm" path="res://scenes/maps/parts/column_1.tscn" id="15_fbdav"]
 [ext_resource type="PackedScene" uid="uid://3j1ghro251mo" path="res://scenes/items/stone.tscn" id="17_1shfc"]
@@ -28,7 +28,6 @@ has_ceil = true
 has_walls = true
 has_torches = true
 has_columns = true
-has_spawner = false
 ROOMS = 2
 DEADEND_INIT_POSSIBILITY = 1.0
 MIN_SIZE = 3
