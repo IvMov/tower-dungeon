@@ -1,5 +1,7 @@
 class_name Coin extends Node3D
 
+@onready var timer: Timer = $Timer
+
 var speed: float = randf_range(8, 14)
 var direction: Vector3
 
@@ -8,6 +10,7 @@ func _physics_process(delta: float) -> void:
 
 func collect() -> void:
 	direction = (PlayerParameters.get_position(0.5) - global_position).normalized()
+	timer.start()
 
 func _on_timer_timeout() -> void:
 	speed = min(speed+2, 25)

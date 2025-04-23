@@ -2,11 +2,25 @@ class_name SoulsDropComponent extends Node3D
 
 
 func drop_soul():
-	var soul_instance: Soul = Constants.SOUL.instantiate();
-	Constants.SOULS.add_child(soul_instance)
-	soul_instance.emit(get_parent().soul_component.souls)
-	soul_instance.global_position = get_parent().global_position + Vector3(randf_range(-1,1), 0, randf_range(-1,1))
-	soul_instance.global_position.y = 0.6
-	soul_instance.rotate_y(randf_range(-PI, PI))
-	soul_instance.rotate_x(randf_range(-PI, PI))
-	soul_instance.rotate_z(randf_range(-PI, PI))
+	var souls: Vector3 = get_parent().soul_component.souls
+	for i in souls.x:
+		var soul_instance: SoulPart = Constants.SOUL_PART.instantiate();
+		Constants.SOULS.add_child(soul_instance)
+		soul_instance.set_color(Constants.GREEN_SOUL_COLOR)
+		soul_instance.soul_type = Enums.SoulType.GREEN
+		soul_instance.global_position = global_position
+		soul_instance.collect()
+	for i in souls.y:
+		var soul_instance: SoulPart = Constants.SOUL_PART.instantiate();
+		Constants.SOULS.add_child(soul_instance)
+		soul_instance.set_color(Constants.BLUE_SOUL_COLOR)
+		soul_instance.soul_type = Enums.SoulType.BLUE
+		soul_instance.global_position = global_position
+		soul_instance.collect()
+	for i in souls.z:
+		var soul_instance: SoulPart = Constants.SOUL_PART.instantiate();
+		Constants.SOULS.add_child(soul_instance)
+		soul_instance.set_color(Constants.RED_SOUL_COLOR)
+		soul_instance.soul_type = Enums.SoulType.RED
+		soul_instance.global_position = global_position
+		soul_instance.collect()

@@ -2341,9 +2341,8 @@ meshes = [NodePath("../character-human/Skeleton3D/body-mesh"), NodePath("../char
 [node name="SoulComponent" parent="." instance=ExtResource("4_tt1bo")]
 souls = Vector3(100, 100, 100)
 
-[node name="SoulsCollectComponent" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_oucay")]
+[node name="SoulsCollectComponent" parent="." instance=ExtResource("5_oucay")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0225491, 0)
-player = NodePath("..")
 
 [node name="CoinsCollectComponent" parent="." instance=ExtResource("6_lgqa7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0580507, 0)

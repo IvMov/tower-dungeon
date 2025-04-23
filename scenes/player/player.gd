@@ -50,8 +50,7 @@ func _ready():
 	last_fontain_coordinates = global_position
 	GameEvents.emit_player_entered(self)
 	soul_component.is_player = true
-	soul_component.souls = Vector3.ONE * 100
-	GameEvents.emit_souls_update_view(soul_component.souls)
+	GameEvents.emit_souls_update_view(PlayerParameters.souls)
 
 
 func _physics_process(delta):

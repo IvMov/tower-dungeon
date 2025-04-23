@@ -23,8 +23,8 @@ var player: Player
 var inventory: Inventory
 var belt: Belt
 var hands: Hands
-var souls: SoulComponent
 
+var souls: Vector3 = Vector3.ZERO
 var coins: int
 var skill_expirience: Dictionary = {}
 
@@ -86,6 +86,16 @@ func add_coin() -> void:
 	coins += 1
 	print(coins)
 
+func add_soul(soul_type: Enums.SoulType) -> void:
+	if soul_type == Enums.SoulType.GREEN:
+		souls.x += 1
+	elif soul_type == Enums.SoulType.BLUE:
+		souls.y += 1
+	elif soul_type == Enums.SoulType.RED:
+		souls.z += 1
+	GameEvents.emit_souls_update_view(souls)
+	print(souls)
+
 func get_position(height: float = 0) -> Vector3:
 	if last_position != Vector3.ZERO:
 		return last_position
@@ -102,7 +112,6 @@ func on_player_entered(player: Player) -> void:
 	inventory = player.inventory
 	belt = player.belt
 	hands = player.hands
-	souls = player.soul_component
 
 
 

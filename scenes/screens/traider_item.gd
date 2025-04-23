@@ -37,7 +37,7 @@ func update_availability() -> void:
 
 func is_price_afordable() -> bool:
 	var expected: Vector3 = selected_quantity * price_of_one;
-	var real: Vector3 = PlayerParameters.souls.souls
+	var real: Vector3 = PlayerParameters.souls
 	print("%s %s" % [expected, real])
 	return (expected.x <= real.x && expected.y <= real.y && expected.z <= real.z)
 
@@ -74,8 +74,8 @@ func _on_option_button_item_selected(index: int) -> void:
 func _on_button_buy_pressed() -> void:
 	item_view_holder.item_view.item_bulk.quantity -= selected_quantity
 	GameEvents.emit_item_add(Vector3.ZERO, ItemBulk.new(item_view_holder.item_view.item_bulk.item, selected_quantity))
-	PlayerParameters.souls.souls -= price_of_one * selected_quantity
-	GameEvents.emit_souls_update_view(PlayerParameters.souls.souls)
+	PlayerParameters.souls -= price_of_one * selected_quantity
+	GameEvents.emit_souls_update_view(PlayerParameters.souls)
 	GameEvents.emit_update_items_prices()
 	if item_view_holder.item_view.item_bulk.quantity <= 0:
 		queue_free()
@@ -91,4 +91,4 @@ func _on_button_buy_gui_input(event: InputEvent) -> void:
 		var tween: Tween = create_tween()
 		tween.tween_property(total_price, "scale", Vector2.ONE * 1.2, 0.05)
 		tween.tween_property(total_price, "scale", Vector2.ONE, 0.05)
-		GameEvents.emit_souls_update_view(PlayerParameters.souls.souls)
+		GameEvents.emit_souls_update_view(PlayerParameters.souls)

@@ -1,7 +1,7 @@
 extends Node
 
-const SOUL = preload("res://scenes/dropable/soul.tscn")
 const COIN = preload("res://scenes/dropable/coin.tscn")
+const SOUL_PART = preload("res://scenes/dropable/soul_part.tscn")
 
 #parent locations
 @onready var PROJECTILES: Node = get_tree().get_first_node_in_group("projectiles")
@@ -33,3 +33,7 @@ const STAMINA_TABLET = preload("res://resources/items/consumables/stamina_tablet
 const CORE_TILE_SIZE: float = 8.0
 const TUNEL_PADDING: float = 1.0
 const WALL_HALF: float = 0.5
+
+const GREEN_SOUL_COLOR: Color = Color(0, 10, 0, 1)
+const BLUE_SOUL_COLOR: Color = Color(0, 5, 10, 1)
+const RED_SOUL_COLOR: Color = Color(0, 0, 10, 1)
