@@ -140,7 +140,7 @@ shape = SubResource("BoxShape3D_xtxey")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 shape = SubResource("CylinderShape3D_ou6pp")
 
-[node name="EnemyCollision" parent="." index="6"]
+[node name="EnemyCollision" parent="." index="7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 shape = SubResource("BoxShape3D_lfg2o")
 

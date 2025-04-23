@@ -19,11 +19,13 @@ var is_aiming: bool = false
 var is_runing: bool = false
 var last_position: Vector3 = Vector3.ZERO
 
+var player: Player
 var inventory: Inventory
 var belt: Belt
 var hands: Hands
 var souls: SoulComponent
 
+var coins: int
 var skill_expirience: Dictionary = {}
 
 
@@ -80,27 +82,28 @@ func lvl_up_skill(skill: Dictionary) -> bool:
 		skill["next_lvl_exp"] = skill["next_lvl_exp"] * skill["exp_multiplier"]
 		return true
 
-func get_position() -> Vector3:
+func add_coin() -> void:
+	coins += 1
+	print(coins)
+
+func get_position(height: float = 0) -> Vector3:
 	if last_position != Vector3.ZERO:
 		return last_position
-	var player: Player = get_tree().get_first_node_in_group("player")
-	if player:
+	if player && player.is_inside_tree():
 		last_position = player.global_position
-		timer = Timer.new()
-		add_child(timer)
-		timer.wait_time = 5
-		timer.timeout.connect(_on_remove_position_timer_timeout)
-		timer.start()
-		return last_position
+		last_position.y += height
+		$RemovePositionTimer.start()
 	else:
 		print("ERROR: NO PLAYER found in tree!")
-		return last_position
+	return last_position
 
 func on_player_entered(player: Player) -> void:
+	self.player = player
 	inventory = player.inventory
 	belt = player.belt
 	hands = player.hands
 	souls = player.soul_component
+
 
 
 func _on_remove_position_timer_timeout() -> void:

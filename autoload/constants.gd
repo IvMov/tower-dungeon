@@ -1,5 +1,8 @@
 extends Node
 
+const SOUL = preload("res://scenes/dropable/soul.tscn")
+const COIN = preload("res://scenes/dropable/coin.tscn")
+
 #parent locations
 @onready var PROJECTILES: Node = get_tree().get_first_node_in_group("projectiles")
 @onready var ENEMIES: Node = get_tree().get_first_node_in_group("enemies")

@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://ca0ysw5vmydwd"]
+[gd_scene load_steps=15 format=3 uid="uid://ca0ysw5vmydwd"]
 
 [ext_resource type="Script" uid="uid://b8cv1wh2endew" path="res://scenes/enemies/basic_enemy.gd" id="1_f284f"]
 [ext_resource type="PackedScene" uid="uid://d3xyibv2r68ev" path="res://scenes/components/soul_component.tscn" id="3_7qqhi"]
 [ext_resource type="PackedScene" uid="uid://brwji28kmyilf" path="res://scenes/components/stats/health_component.tscn" id="3_73i4a"]
 [ext_resource type="PackedScene" uid="uid://4eygpv6ar4kx" path="res://scenes/components/effect_flash_component.tscn" id="3_c5p53"]
 [ext_resource type="PackedScene" uid="uid://b3v2047p3daky" path="res://scenes/components/souls_drop_component.tscn" id="3_cpi08"]
+[ext_resource type="PackedScene" uid="uid://to5th2pajelk" path="res://scenes/components/coins_drop_component.tscn" id="3_qoibk"]
 [ext_resource type="PackedScene" uid="uid://bp1sun7nnmiix" path="res://scenes/components/stats/mana_component.tscn" id="4_y8djd"]
 [ext_resource type="PackedScene" uid="uid://cro6y6g0v3niq" path="res://scenes/ui/bars/hp_bar.tscn" id="5_ke8gu"]
 [ext_resource type="PackedScene" uid="uid://c5b0526vcqecl" path="res://scenes/components/stats/stamina_component.tscn" id="5_y26qn"]
@@ -36,6 +37,8 @@ script = ExtResource("1_f284f")
 speed = 150.0
 
 [node name="SoulsDropComponent" parent="." instance=ExtResource("3_cpi08")]
+
+[node name="CoinsDropComponent" parent="." instance=ExtResource("3_qoibk")]
 
 [node name="SoulComponent" parent="." instance=ExtResource("3_7qqhi")]
 souls = Vector3(20, 20, 20)

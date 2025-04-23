@@ -52,6 +52,7 @@ emitting = false
 amount = 1
 lifetime = 10.0
 interp_to_end = 1.0
+speed_scale = 1.5
 process_material = ExtResource("2_onyni")
 draw_pass_1 = ExtResource("3_cqmw1")
 
@@ -62,6 +63,7 @@ emitting = false
 amount = 1
 lifetime = 10.0
 interp_to_end = 1.0
+speed_scale = 1.5
 process_material = ExtResource("2_onyni")
 draw_pass_1 = SubResource("SphereMesh_s24hr")
 
@@ -72,10 +74,11 @@ emitting = false
 amount = 1
 lifetime = 10.0
 interp_to_end = 1.0
+speed_scale = 1.5
 process_material = ExtResource("2_onyni")
 draw_pass_1 = SubResource("SphereMesh_ikfpb")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-omni_range = 1.0
+omni_range = 3.0
 
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

@@ -11,6 +11,7 @@ var max_height: float = 1.5
 var spawn_rate: float = 0.4
 
 func _ready():
+	coins_drop_component.set_coins(randi_range(5,10))
 	agr_radius = 8
 
 func _physics_process(_delta):

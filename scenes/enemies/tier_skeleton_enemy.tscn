@@ -2295,7 +2295,7 @@ push_resist = 0.15
 dmg_resist = 0.3
 animation_player = NodePath("Body/character-skeleton2/AnimationPlayer")
 
-[node name="RayCast3D" parent="." index="3"]
+[node name="RayCast3D" parent="." index="4"]
 target_position = Vector3(0, 0, 10)
 
 [node name="CollisionShape3D" parent="CallEnemyAreaClient" index="0"]
@@ -2304,12 +2304,12 @@ shape = SubResource("CylinderShape3D_cqyx7")
 [node name="AgrCollision" parent="AgrArea" index="0"]
 shape = SubResource("CylinderShape3D_6njbg")
 
-[node name="EnemyCollision" parent="." index="6"]
+[node name="EnemyCollision" parent="." index="7"]
 shape = SubResource("CapsuleShape3D_j3l2d")
 
 [node name="HealthComponent" parent="Body/StatsBox" index="0"]
-max_value = 40.0
-current_value = 40.0
+max_value = 10.0
+current_value = 10.0
 regen = 0.5
 
 [node name="ManaComponent" parent="Body/StatsBox" index="1"]

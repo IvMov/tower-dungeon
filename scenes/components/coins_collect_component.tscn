@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://l4dfyhsbxvqi"]
+
+[ext_resource type="Script" uid="uid://d3navbx35ulb3" path="res://scenes/components/coins_collect_component.gd" id="1_mqbet"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6r2ns"]
+radius = 0.7
+
+[node name="CoinsCollectComponent" type="Node3D"]
+script = ExtResource("1_mqbet")
+
+[node name="CollectArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+collision_layer = 128
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CollectArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.254998, 0)
+shape = SubResource("SphereShape3D_6r2ns")

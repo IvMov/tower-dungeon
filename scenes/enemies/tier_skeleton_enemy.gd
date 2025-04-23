@@ -6,7 +6,6 @@ class_name TierSkeletonEnemy extends BasicEnemy
 @onready var idle_moving_controller: IdleMovingController = $Body/SkillBox/IdleMovingController
 @onready var call_other_enemies_controller: CallOtherEnemiesController = $Body/SkillBox/CallOtherEnemiesController
 @onready var skeleton_range_attack_controller: SkeletonRangeAttackController = $Body/SkillBox/SkeletonRangeAttackController
-
 @onready var body_mesh: MeshInstance3D = $"Body/character-skeleton2/character-skeleton/root/torso"
 
 func _ready():

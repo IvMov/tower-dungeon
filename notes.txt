@@ -38,3 +38,5 @@ BUGS:
 2025-04-18 end work on fire/acid dmg
 2025-04-19 add acid meteor skill
 2025-04-21 add fire blade skill, polish view and skill damage
+2025-04-23 add coins drop, collect and animation
+

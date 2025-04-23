@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://n30en7fquck6"]
+
+[ext_resource type="Script" uid="uid://d355ilalpckrm" path="res://scenes/dropable/coin.gd" id="1_51iou"]
+[ext_resource type="Texture2D" uid="uid://clf38no4m63s2" path="res://assets/textures/my/coin1.png" id="2_nt723"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jp5sc"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(2, 1.2, 1, 1)
+albedo_texture = ExtResource("2_nt723")
+albedo_texture_force_srgb = true
+uv1_scale = Vector3(2, 2, 2)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_51iou"]
+material = SubResource("StandardMaterial3D_jp5sc")
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.02
+radial_segments = 10
+rings = 2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_nt723"]
+radius = 0.3
+
+[node name="Coin" type="Node3D"]
+script = ExtResource("1_51iou")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_51iou")
+
+[node name="Area3D" type="Area3D" parent="MeshInstance3D"]
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
+shape = SubResource("SphereShape3D_nt723")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="area_entered" from="MeshInstance3D/Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

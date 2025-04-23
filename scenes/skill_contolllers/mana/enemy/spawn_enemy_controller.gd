@@ -87,7 +87,10 @@ func use_skill() -> void:
 		var inst: BasicEnemy = enemy_packed.instantiate()
 		inst.is_boss = is_boss_spawner
 		Constants.ENEMIES.add_child(inst)
-		
+		if inst.is_boss:
+			inst.coins_drop_component.set_coins(randi_range(10, 15))
+		else: 
+			inst.coins_drop_component.set_coins(randi_range(0, 2))
 		inst.global_position = positions.pop_front()
 		if randf() < 0.5:
 			inst.agr_on_player()

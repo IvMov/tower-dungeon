@@ -205,9 +205,17 @@ shape = SubResource("CylinderShape3D_v63dg")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 shape = SubResource("BoxShape3D_58i0a")
 
-[node name="EnemyCollision" parent="." index="6"]
+[node name="EnemyCollision" parent="." index="7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("SphereShape3D_c67ek")
+
+[node name="Timer" type="Timer" parent="." index="9"]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="CheckPlayer" type="Timer" parent="." index="10"]
+wait_time = 5.0
 
 [node name="BarsBox" parent="Body" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.71358, 0)
@@ -236,14 +244,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_h1kjm")
 }
 autoplay = "idle"
-
-[node name="Timer" type="Timer" parent="." index="9"]
-wait_time = 2.0
-one_shot = true
-autostart = true
-
-[node name="CheckPlayer" type="Timer" parent="." index="10"]
-wait_time = 5.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="CheckPlayer" to="." method="_on_check_player_timeout"]

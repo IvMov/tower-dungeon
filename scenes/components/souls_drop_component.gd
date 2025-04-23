@@ -2,7 +2,7 @@ class_name SoulsDropComponent extends Node3D
 
 
 func drop_soul():
-	var soul_instance: Soul = GameEvents.soul.instantiate();
+	var soul_instance: Soul = Constants.SOUL.instantiate();
 	Constants.SOULS.add_child(soul_instance)
 	soul_instance.emit(get_parent().soul_component.souls)
 	soul_instance.global_position = get_parent().global_position + Vector3(randf_range(-1,1), 0, randf_range(-1,1))

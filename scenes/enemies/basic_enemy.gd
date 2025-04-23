@@ -25,6 +25,8 @@ class_name BasicEnemy extends CharacterBody3D
 
 @onready var soul_component: SoulComponent = $SoulComponent
 @onready var souls_drop_component: SoulsDropComponent = $SoulsDropComponent
+@onready var coins_drop_component: CoinsDropComponent = $CoinsDropComponent
+
 
 @onready var push_timer: Timer = $Timers/PushTimer
 @onready var slow_down_timer: Timer = $Timers/SlowDownTimer

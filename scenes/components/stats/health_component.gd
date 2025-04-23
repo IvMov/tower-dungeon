@@ -45,6 +45,8 @@ func die() -> void:
 	if owner_node is BasicEnemy:
 		owner_node.bars_box.visible = false
 		owner_node.souls_drop_component.drop_soul()
+		
+		owner_node.coins_drop_component.drop()
 		GameEvents.emit_souls_dropped(owner_node.global_position, owner_node.soul_component.souls)
 		owner_node.agr_area.disable_mode = true
 		
