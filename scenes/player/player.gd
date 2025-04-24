@@ -58,8 +58,8 @@ func _physics_process(delta):
 		return
 	var input_direction: Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	move_direction = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
-	velocity.x = -move_direction.x * PlayerParameters.current_speed * delta
-	velocity.z = -move_direction.z * PlayerParameters.current_speed * delta
+	velocity.x = -move_direction.x * PlayerParameters.get_current_speed() * delta
+	velocity.z = -move_direction.z * PlayerParameters.get_current_speed() * delta
 	if !actions_animations.has(animation_player.get_current_animation()):
 	
 		if is_immune_to_damage && velocity.length() > 10:
@@ -169,7 +169,9 @@ func custom_death_actions():
 		#god of death consume all souls and paid you with some gold which can be spent to buy some heaks and bombs
 		return
 	PlayerParameters.lifes -= 1;
-	soul_component.minus(Vector3(soul_component.souls.x/2, soul_component.souls.y/2, soul_component.souls.z/2))
+	PlayerParameters.souls/=2
+	PlayerParameters.souls = round(PlayerParameters.souls)
+	GameEvents.emit_souls_update_view(PlayerParameters.souls)
 	is_dying = false
 	global_position = last_fontain_coordinates
 

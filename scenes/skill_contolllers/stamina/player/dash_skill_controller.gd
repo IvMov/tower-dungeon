@@ -23,7 +23,7 @@ func use_skill() -> void:
 		player.set_collision_mask_value(11, false)
 		player.set_collision_layer_value(10, false)
 		speed = PlayerParameters.current_speed
-		PlayerParameters.current_speed = PlayerParameters.BASE_SPEED * skill.base_value
+		PlayerParameters.current_speed = PlayerParameters.BASE_SPEED * skill.base_value / PlayerParameters.speed_boost
 		cast_timer.start()
 		
 

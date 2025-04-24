@@ -16,7 +16,10 @@ const FIRE_PROJECTILE: PackedScene = preload("res://scenes/projectiles/fire_proj
 const TRAIDER_ITEM: PackedScene = preload("res://scenes/screens/traider_item.tscn")
 const TEXT: PackedScene = preload("res://scenes/ui/parts/text.tscn")
 
+# deffensive
+const ZOOM_TABLET = preload("res://resources/items/zoom_tablet.tres")
 #weapons
+const SPARK_TABLET = preload("res://resources/items/spark_tablet.tres")
 const ITEM_STONE: Item = preload("res://resources/items/consumables/stone.tres")
 const ITEM_CRYSTAL: Item = preload("res://resources/items/consumables/crystal.tres")
 const ITEM_SNOWBALL_TABLET: Item = preload("res://resources/items/snowball_tablet.tres")
@@ -28,6 +31,8 @@ const FIRE_BLADE_TRAP_TABLET = preload("res://resources/items/fire_blade_trap_ta
 const HEAL_TABLET = preload("res://resources/items/consumables/heal_tablet.tres")
 const MANA_TABLET = preload("res://resources/items/consumables/mana_tablet.tres")
 const STAMINA_TABLET = preload("res://resources/items/consumables/stamina_tablet.tres")
+const DAMAGE_BOOST_TABLET = preload("res://resources/items/consumables/damage_boost_tablet.tres")
+const SPEED_BOOST_TABLET = preload("res://resources/items/consumables/speed_boost_tablet.tres")
 
 #map_generator
 const CORE_TILE_SIZE: float = 8.0

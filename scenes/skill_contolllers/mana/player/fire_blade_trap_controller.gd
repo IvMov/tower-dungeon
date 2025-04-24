@@ -5,7 +5,6 @@ class_name FireBladeTrapController extends BaseController
 var player: Player
 var cast_enabled: bool = false
 
-
 func start_cast() -> void:
 	cast_timer.wait_time = skill.base_cast_time
 	cooldown_timer.wait_time = skill.base_cooldown
@@ -45,6 +44,7 @@ func use_skill() -> void:
 	if !player:
 		print("NO OWNER NODE SETTED TO CONTROLLER")
 		return
+	damage_boost = PlayerParameters.damage_boost
 	var projectile: FireBladeTrapProjectile = projectile_packed.instantiate()
 	var proj_direction: Vector3 = calc_projectile_direction()
 	Constants.PROJECTILES.add_child(projectile)
@@ -75,7 +75,7 @@ func calc_speed() -> float:
 
 func calc_fire_dmg() -> float:
 	var skill_exp_data: Dictionary = PlayerParameters.get_skill_data(skill.id)
-	return skill.base_fire_dmg_value + (skill.base_fire_dmg_per_lvl * skill_exp_data["lvl"])
+	return (skill.base_fire_dmg_value + (skill.base_fire_dmg_per_lvl * skill_exp_data["lvl"])) * damage_boost
 
 
 func calc_projectile_speed() -> float:

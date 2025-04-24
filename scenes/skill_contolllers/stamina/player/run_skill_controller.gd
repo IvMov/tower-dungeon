@@ -28,7 +28,7 @@ func use_skill() -> void:
 		PlayerParameters.lock_stamina_skill = true
 		cooldown_timer.start()
 		PlayerParameters.current_speed = PlayerParameters.BASE_SPEED * PlayerParameters.MOVE_SPEED_UP_MOD
-		GameEvents.emit_run_player(PlayerParameters.current_speed)
+		GameEvents.emit_run_player(PlayerParameters.get_current_speed())
 
 func stop_skill() -> void:
 	if is_run:
@@ -37,7 +37,7 @@ func stop_skill() -> void:
 			cooldown_timer.stop()
 		PlayerParameters.lock_stamina_skill = false
 		PlayerParameters.current_speed = PlayerParameters.BASE_SPEED
-		GameEvents.emit_run_player(PlayerParameters.current_speed)
+		GameEvents.emit_run_player(PlayerParameters.get_current_speed())
 		
 
 func _on_cooldown_timer_timeout() -> void:

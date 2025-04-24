@@ -45,6 +45,7 @@ func use_skill() -> void:
 	if !player:
 		print("NO OWNER NODE SETTED TO CONTROLLER")
 		return
+	damage_boost = PlayerParameters.damage_boost
 	var projectile: FireballProjectile = projectile_packed.instantiate()
 	var proj_direction: Vector3 = calc_projectile_direction()
 	Constants.PROJECTILES.add_child(projectile)
@@ -69,7 +70,7 @@ func calc_distance() -> float:
 
 func calc_fire_dmg() -> float:
 	var skill_exp_data: Dictionary = PlayerParameters.get_skill_data(skill.id)
-	return skill.base_fire_dmg_value + (skill.base_fire_dmg_per_lvl * skill_exp_data["lvl"])
+	return (skill.base_fire_dmg_value + (skill.base_fire_dmg_per_lvl * skill_exp_data["lvl"])) * damage_boost
 
 func calc_projectile_speed() -> float:
 	#TODO: implement upgrade influence system

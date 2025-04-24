@@ -1,13 +1,11 @@
 class_name Belt extends Storage
 
-const SPARK_TABLET: Item = preload("res://resources/items/spark_tablet.tres")
-
 func _ready():
 	GameEvents.item_remove.connect(on_item_remove)
 	GameEvents.item_add.connect(on_item_add)
 	id = 1
 	size = Vector2(0, 6) # x always 0 - for belt (1 row)
-	var item_bulk: ItemBulk = ItemBulk.new(SPARK_TABLET, 1)
+	var item_bulk: ItemBulk = ItemBulk.new(Constants.DAMAGE_BOOST_TABLET, 1)
 	items[Vector2(0,1)] = item_bulk
 	var item_bulkk: ItemBulk = ItemBulk.new(Constants.ACID_METEOR_TABLET, 1)
 	items[Vector2(0,2)] = item_bulkk

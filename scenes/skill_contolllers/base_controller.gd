@@ -11,6 +11,7 @@ var skill_cast_finished: bool
 var is_on_cooldown: bool
 var is_idle: bool
 var hand: int = -1
+var damage_boost: float = 1
 
 
 func start_cast() -> void:
@@ -28,8 +29,11 @@ func calc_projectile_damage() -> float:
 
 func calc_value_exponentially()-> float:
 	var skill_exp_data: Dictionary = PlayerParameters.get_skill_data(skill.id)
-	return skill.base_value * pow(skill.value_per_lvl, skill_exp_data["lvl"]+1)
-
+	if skill.is_offensive:
+		return (skill.base_value * pow(skill.value_per_lvl, skill_exp_data["lvl"]+1)) * PlayerParameters.damage_boost
+	else:
+		return skill.base_value * pow(skill.value_per_lvl, skill_exp_data["lvl"]+1)
+		
 func add_warning(text: String) -> void:
 	var text_holder: Text = Constants.TEXT.instantiate()
 	add_child(text_holder)

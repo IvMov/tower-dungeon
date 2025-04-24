@@ -1,11 +1,15 @@
 class_name SpeedBoostController extends BaseController
 
+var player: Player
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+func start_cast() -> void:
+	cooldown_timer.wait_time = skill.base_cooldown
+	cast_timer.wait_time = skill.base_duration
+	PlayerParameters.speed_boost = skill.base_value
+	cast_timer.start()
+	GameEvents.emit_item_consumed(hand, skill.id)
+	cooldown()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _on_cast_timer_timeout() -> void:
+	PlayerParameters.speed_boost = 1

@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://cputsys2rqsjs"]
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://cputsys2rqsjs"]
 
 [ext_resource type="PackedScene" uid="uid://bx0ydm3hsik0a" path="res://scenes/items/spark_tablet.tscn" id="1_7reoh"]
 [ext_resource type="Texture2D" uid="uid://cgmxfwsyib28t" path="res://assets/2d/items/consumable/speed_boost_tablet.png" id="1_7w7xt"]
 [ext_resource type="Script" uid="uid://blbht47vwtj68" path="res://resources/items/item.gd" id="1_ql2m3"]
+[ext_resource type="Resource" uid="uid://bdh3wfq04muej" path="res://resources/skills/consumables/speed_boost_skill.tres" id="4_mx0kv"]
 
 [resource]
 script = ExtResource("1_ql2m3")
@@ -13,3 +14,4 @@ descrition = "speed_boost_skill_d"
 type = "item_type_consumable"
 price = Vector3(33, 33, 3)
 scene = ExtResource("1_7reoh")
+skill = ExtResource("4_mx0kv")

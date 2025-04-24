@@ -28,6 +28,12 @@ var souls: Vector3 = Vector3.ZERO
 var coins: int
 var skill_expirience: Dictionary = {}
 
+#boosters
+var damage_boost: float = 1
+var speed_boost: float = 1
+
+func get_current_speed() -> float:
+	return current_speed * speed_boost
 
 func _ready() -> void:
 	GameEvents.add_skill.connect(on_add_skill)

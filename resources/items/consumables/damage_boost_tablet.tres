@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://dop7chluwc2fd"]
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://dop7chluwc2fd"]
 
 [ext_resource type="Script" uid="uid://blbht47vwtj68" path="res://resources/items/item.gd" id="1_hl1kq"]
 [ext_resource type="Texture2D" uid="uid://vu71ue6nfrpv" path="res://assets/2d/items/consumable/damage_boost_tablet.png" id="1_seln2"]
 [ext_resource type="PackedScene" uid="uid://bx0ydm3hsik0a" path="res://scenes/items/spark_tablet.tscn" id="1_xrskh"]
+[ext_resource type="Resource" uid="uid://c4q7dyonn7wil" path="res://resources/skills/consumables/damage_boost_skill.tres" id="4_1fgmo"]
 
 [resource]
 script = ExtResource("1_hl1kq")
@@ -13,3 +14,4 @@ descrition = "damage_boost_skill_d"
 type = "item_type_consumable"
 price = Vector3(150, 150, 5)
 scene = ExtResource("1_xrskh")
+skill = ExtResource("4_1fgmo")
