@@ -34,6 +34,6 @@ const CORE_TILE_SIZE: float = 8.0
 const TUNEL_PADDING: float = 1.0
 const WALL_HALF: float = 0.5
 
-const GREEN_SOUL_COLOR: Color = Color(0, 10, 0, 1)
-const BLUE_SOUL_COLOR: Color = Color(0, 5, 10, 1)
-const RED_SOUL_COLOR: Color = Color(0, 0, 10, 1)
+const GREEN_SOUL_COLOR: Color = Color(0, 10, 0, 0.3)
+const BLUE_SOUL_COLOR: Color = Color(0, 0, 10, 0.3)
+const RED_SOUL_COLOR: Color = Color(10, 0, 0, 0.3)

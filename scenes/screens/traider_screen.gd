@@ -44,7 +44,7 @@ func resize_header() -> void:
 func change_margins() -> void:
 	add_theme_constant_override("margin_top", GameConfig.grid_block*1.3)
 	add_theme_constant_override("margin_left", GameConfig.grid_block * 2.1)
-	add_theme_constant_override("margin_bottom", GameConfig.grid_block*1.3)
+	add_theme_constant_override("margin_bottom", GameConfig.grid_block*2)
 	add_theme_constant_override("margin_right", GameConfig.grid_block/10)
 	
 	margin_container.add_theme_constant_override("margin_top", GameConfig.grid_block/4)

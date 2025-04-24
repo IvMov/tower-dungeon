@@ -4,7 +4,7 @@ class_name TraiderItem extends MarginContainer
 @onready var title: Label = $HBoxContainer/Title
 @onready var type: Label = $HBoxContainer/Type
 @onready var price: Label = $HBoxContainer/Price
-@onready var total_price: Label = $HBoxContainer/TotalPrice
+@onready var total_price: RichTextLabel = $HBoxContainer/TotalPrice
 @onready var option_button: OptionButton = $HBoxContainer/Quantity/OptionButton
 @onready var button_buy: Button = $HBoxContainer/ButtonBuy
 @onready var quantity: HBoxContainer = $HBoxContainer/Quantity
@@ -24,22 +24,38 @@ func build(item: ItemBulk) -> void:
 	recalc_prices()
 	update_option_buttons()
 	resize()
-	update_availability()
 
 func recalc_prices() -> void: 
 	self.price.text = "%d / %d / %d" % [price_of_one.x, price_of_one.y, price_of_one.z]
-	self.total_price.text = "%d / %d / %d" % [price_of_one.x * selected_quantity, price_of_one.y * selected_quantity, price_of_one.z * selected_quantity]
-	update_availability()
+	total_price.text = "".join(update_availability())
 
-func update_availability() -> void: 
-	button_buy.disabled = !is_price_afordable()
-	self.total_price.add_theme_color_override("font_color", Color.RED if button_buy.disabled else Color.WHITE)
 
-func is_price_afordable() -> bool:
-	var expected: Vector3 = selected_quantity * price_of_one;
-	var real: Vector3 = PlayerParameters.souls
-	print("%s %s" % [expected, real])
-	return (expected.x <= real.x && expected.y <= real.y && expected.z <= real.z)
+func update_availability() -> Array: 
+	var green_enough: bool = is_price_afordable(price_of_one.x, PlayerParameters.souls.x)
+	var blue_enough: bool = is_price_afordable(price_of_one.y, PlayerParameters.souls.y)
+	var red_enough: bool = is_price_afordable(price_of_one.z, PlayerParameters.souls.z)
+	button_buy.disabled = !red_enough || !blue_enough || !green_enough
+	var parts: Array = []
+	
+	parts.append("[color=white]" if green_enough else "[color=red]")
+	parts.append("%.0f" % (price_of_one.x * selected_quantity))
+	parts.append("[/color]")
+	parts.append(" / ")
+
+	parts.append("[color=white]" if blue_enough else "[color=red]")
+	parts.append("%.0f" % (price_of_one.y * selected_quantity))
+	parts.append("[/color]")
+	parts.append(" / ")
+	
+	parts.append("[color=white]" if red_enough else "[color=red]")
+	parts.append("%.0f" % (price_of_one.z * selected_quantity))
+	parts.append("[/color]")
+	
+	return parts
+
+func is_price_afordable(price_of_one_soul: int, real_souls: int) -> bool:
+	var expected: int = selected_quantity * price_of_one_soul;
+	return expected <= real_souls
 
 
 func resize() -> void:
@@ -81,9 +97,6 @@ func _on_button_buy_pressed() -> void:
 		queue_free()
 	else:
 		build(item_view_holder.item_view.item_bulk)
-		
-
-
 
 
 func _on_button_buy_gui_input(event: InputEvent) -> void:
@@ -91,4 +104,3 @@ func _on_button_buy_gui_input(event: InputEvent) -> void:
 		var tween: Tween = create_tween()
 		tween.tween_property(total_price, "scale", Vector2.ONE * 1.2, 0.05)
 		tween.tween_property(total_price, "scale", Vector2.ONE, 0.05)
-		GameEvents.emit_souls_update_view(PlayerParameters.souls)

@@ -81,8 +81,7 @@ vertical_alignment = 1
 
 [node name="Quantity" type="Label" parent="Shop/MarginContainer/ScrollContainer/TraiderItems/MarginContainer/HeaderOfTable"]
 layout_mode = 2
-text = "quantity
-"
+text = "quantity"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -94,7 +93,6 @@ vertical_alignment = 1
 
 [node name="Buy" type="Label" parent="Shop/MarginContainer/ScrollContainer/TraiderItems/MarginContainer/HeaderOfTable"]
 layout_mode = 2
-text = "buy
-"
+text = "buy"
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -65,9 +65,9 @@ popup/item_5/text = "all"
 popup/item_5/id = 100
 popup/item_5/disabled = true
 
-[node name="TotalPrice" type="Label" parent="HBoxContainer"]
+[node name="TotalPrice" type="RichTextLabel" parent="HBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 1
+bbcode_enabled = true
 text = "R: 5 B: 3 R:1"
 horizontal_alignment = 1
 vertical_alignment = 1

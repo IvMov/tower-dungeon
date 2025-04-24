@@ -97,12 +97,9 @@ func add_soul(soul_type: Enums.SoulType) -> void:
 	print(souls)
 
 func get_position(height: float = 0) -> Vector3:
-	if last_position != Vector3.ZERO:
-		return last_position
 	if player && player.is_inside_tree():
 		last_position = player.global_position
 		last_position.y += height
-		$RemovePositionTimer.start()
 	else:
 		print("ERROR: NO PLAYER found in tree!")
 	return last_position
@@ -113,10 +110,6 @@ func on_player_entered(player: Player) -> void:
 	belt = player.belt
 	hands = player.hands
 
-
-
-func _on_remove_position_timer_timeout() -> void:
-	last_position = Vector3.ZERO
 
 func on_add_skill(_hand:int, skill: Skill) -> void:
 	if skill.is_upgradable && !skill_expirience.has(skill.id):

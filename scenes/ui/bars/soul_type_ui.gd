@@ -12,3 +12,11 @@ class_name SoulTypeUi extends MarginContainer
 func _ready() -> void:
 	sprite.texture = image
 	quantity_label.text = str(quantity)
+
+
+func set_value(value: int) -> void:
+	if quantity == value:
+		return
+	animation_player.play("add" if quantity < value else "minus")
+	self.quantity = value
+	quantity_label.text = str(quantity)

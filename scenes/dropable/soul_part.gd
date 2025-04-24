@@ -29,6 +29,7 @@ func collect() -> void:
 
 func _on_timer_timeout() -> void:
 	speed = min(speed+2, 25)
+	timer.wait_time = max(timer.wait_time - 0.03, 0.15)
 	direction = (PlayerParameters.get_position(0.5) - global_position).normalized()
 
 #emited artificially from another area which find this area

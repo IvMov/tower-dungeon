@@ -2,8 +2,6 @@
 1) DONE: add skill cd animation( dodge and on itemviews)
 2) implement controllers for boost damage
 3) implement controllers for speed up
-3.1) add new weapon in shop? 
-3.2) move cold dmg weapon to shop
 3.3) skill on hand when ready -> then shown on left right side of player? 
 
 4) DONE: add skeleton ( ranged) 
@@ -15,7 +13,7 @@
 10) POLISH BALANCE for first 3-5 levels
 11) Add decorations? each wall flour have random elements? 
 12) progression, half souls lost after each death, after 3 lives you die and can invest souls in some item.  After 100% souls invested - item will be available in the shop.
-13) Add drop from spawner and boss enemies coins which required for invest new items. 
+13) Done: Add drop from spawner and boss enemies coins which required for invest new items. 
 
 
 BUGS: 
