@@ -8,6 +8,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var full_screen: bool = false
 # 1/N part of vertical screen to be sure that all blocks are alligned
 var grid_block: float
+#0 - normal, 1 - insane
+var game_difficulty: int = 0
 
 func _ready() -> void:
 	theme = preload("res://resources/main_theme.tres")

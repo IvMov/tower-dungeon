@@ -1,0 +1,116 @@
+[gd_scene load_steps=12 format=3 uid="uid://c726km373kt4c"]
+
+[ext_resource type="Script" uid="uid://b6fbucnpodrax" path="res://scenes/menu/properties_screen.gd" id="1_bykac"]
+[ext_resource type="PackedScene" uid="uid://dyfrlujou827f" path="res://scenes/ui/sound_button.tscn" id="2_hrqjc"]
+[ext_resource type="PackedScene" uid="uid://bblfwo8b6ntbk" path="res://scenes/components/audio/random_audio_player_component.tscn" id="3_teaws"]
+[ext_resource type="AudioStream" uid="uid://d2xtlsfk468h2" path="res://assets/audio/death/monster-death-grunt-131480.mp3" id="4_2f33o"]
+[ext_resource type="AudioStream" uid="uid://cp7qijxm7wu3g" path="res://assets/audio/ability/dodge-fast.ogg" id="5_kpigq"]
+[ext_resource type="AudioStream" uid="uid://rshnbr076vj4" path="res://assets/audio/hover/switch3.ogg" id="6_ck6a7"]
+[ext_resource type="AudioStream" uid="uid://bojqqdvlxt32l" path="res://assets/audio/hover/switch4.ogg" id="7_di00q"]
+[ext_resource type="AudioStream" uid="uid://bqyqts3m3i6ub" path="res://assets/audio/hover/switch5.ogg" id="8_57k6g"]
+[ext_resource type="AudioStream" uid="uid://bcqpg183enjyg" path="res://assets/audio/ability/sword.ogg" id="9_f83xm"]
+[ext_resource type="AudioStream" uid="uid://bmfcga6f1ikww" path="res://assets/audio/click/click4.ogg" id="10_g82jg"]
+[ext_resource type="AudioStream" uid="uid://bminkalbhpuh0" path="res://assets/audio/click/click5.ogg" id="11_nb55b"]
+
+[node name="PropertiesScreen" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_bykac")
+
+[node name="SfxRandomAudioPlayerComponent" parent="." instance=ExtResource("3_teaws")]
+bus = &"Master"
+streams = Array[AudioStream]([ExtResource("4_2f33o"), ExtResource("5_kpigq"), ExtResource("6_ck6a7"), ExtResource("7_di00q"), ExtResource("8_57k6g"), ExtResource("9_f83xm"), ExtResource("10_g82jg"), ExtResource("11_nb55b")])
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Bacground" type="ColorRect" parent="MarginContainer"]
+layout_mode = 2
+color = Color(0.427493, 0.427493, 0.427493, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Bacground"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MarginContainer/Bacground/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "Properties"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Bacground/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="SfxSound" type="VBoxContainer" parent="MarginContainer/Bacground/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/Bacground/VBoxContainer/VBoxContainer/SfxSound"]
+layout_mode = 2
+tooltip_text = "Hit, skill, death and other sounds"
+mouse_filter = 1
+text = "Effects volume"
+
+[node name="SfxSlider" type="HSlider" parent="MarginContainer/Bacground/VBoxContainer/VBoxContainer/SfxSound"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="MusicSound" type="VBoxContainer" parent="MarginContainer/Bacground/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/Bacground/VBoxContainer/VBoxContainer/MusicSound"]
+layout_mode = 2
+tooltip_text = "That shitty music volume"
+mouse_filter = 1
+text = "Music volume"
+
+[node name="MusicSlider" type="HSlider" parent="MarginContainer/Bacground/VBoxContainer/VBoxContainer/MusicSound"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Bacground/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Bacground/VBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/Bacground/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+tooltip_text = "Screen mode can be windoved or full screen. Sorry no other configuration for now"
+mouse_filter = 1
+text = "Screen mode"
+
+[node name="Empty" type="Label" parent="MarginContainer/Bacground/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="WindowButton" parent="MarginContainer/Bacground/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource("2_hrqjc")]
+custom_minimum_size = Vector2(184, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Full Screen"
+
+[node name="BackButton" parent="MarginContainer/Bacground/VBoxContainer" instance=ExtResource("2_hrqjc")]
+custom_minimum_size = Vector2(184, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Back"

@@ -1,0 +1,87 @@
+[gd_scene load_steps=3 format=3 uid="uid://isrxtbg8gliu"]
+
+[ext_resource type="Script" uid="uid://cibvsu8m5d7ki" path="res://scenes/menu/play_screen.gd" id="1_n2uvh"]
+[ext_resource type="PackedScene" uid="uid://dyfrlujou827f" path="res://scenes/ui/sound_button.tscn" id="2_p0nxr"]
+
+[node name="PlayScreen" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_n2uvh")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 0
+
+[node name="Bacground" type="ColorRect" parent="MarginContainer"]
+layout_mode = 2
+color = Color(0.427451, 0.427451, 0.427451, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Bacground"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MarginContainer/Bacground/VBoxContainer"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "Bla bla bla"
+horizontal_alignment = 1
+
+[node name="NewGameButton" parent="MarginContainer/Bacground/VBoxContainer" instance=ExtResource("2_p0nxr")]
+custom_minimum_size = Vector2(300, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+text = "New game"
+script = null
+
+[node name="ContinueGameButton" parent="MarginContainer/Bacground/VBoxContainer" instance=ExtResource("2_p0nxr")]
+custom_minimum_size = Vector2(300, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+text = "Continue game"
+script = null
+
+[node name="BackButton" parent="MarginContainer/Bacground/VBoxContainer" instance=ExtResource("2_p0nxr")]
+custom_minimum_size = Vector2(184, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Back"
+script = null
+
+[node name="Label3" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "Created by Erridan"
+
+[node name="Label2" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "v 0.0.1"
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "Thanks for everyone who played it!"
+
+[connection signal="pressed" from="MarginContainer/Bacground/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="MarginContainer/Bacground/VBoxContainer/ContinueGameButton" to="." method="_on_continue_game_button_pressed"]
+[connection signal="pressed" from="MarginContainer/Bacground/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

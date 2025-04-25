@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bblfwo8b6ntbk"]
+
+[ext_resource type="Script" uid="uid://dshtub72l447t" path="res://scenes/components/audio/random_audio_player_component.gd" id="1_raeox"]
+
+[node name="RandomAudioPlayerComponent" type="AudioStreamPlayer"]
+volume_db = -1.0
+bus = &"music"
+script = ExtResource("1_raeox")

@@ -26,6 +26,7 @@ var hands: Hands
 
 var souls: Vector3 = Vector3.ZERO
 var coins: int
+var kills: int = 0
 var skill_expirience: Dictionary = {}
 
 #boosters

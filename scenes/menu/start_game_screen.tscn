@@ -1,0 +1,121 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtr3klnn1dtoo"]
+
+[ext_resource type="Script" uid="uid://pxbdk4li6kf2" path="res://scenes/menu/start_game_screen.gd" id="1_kp67h"]
+[ext_resource type="PackedScene" uid="uid://dyfrlujou827f" path="res://scenes/ui/sound_button.tscn" id="2_l08v5"]
+
+[node name="StartGameScreen" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_kp67h")
+
+[node name="Bacground" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.427451, 0.427451, 0.427451, 1)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="DifficultyLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "Select Difficulty"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+text = "Please select game difficulty, it can be changed before  each game"
+autowrap_mode = 2
+
+[node name="Difficulties" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Difficulties"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Easy" parent="ScrollContainer/MarginContainer/VBoxContainer/Difficulties/MarginContainer" instance=ExtResource("2_l08v5")]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+toggle_mode = true
+text = "Easy
+"
+
+[node name="Normal" parent="ScrollContainer/MarginContainer/VBoxContainer/Difficulties/MarginContainer" instance=ExtResource("2_l08v5")]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+toggle_mode = true
+text = "Normal
+"
+
+[node name="Hard" parent="ScrollContainer/MarginContainer/VBoxContainer/Difficulties/MarginContainer" instance=ExtResource("2_l08v5")]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+toggle_mode = true
+text = "Hard"
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="StartButton" parent="ScrollContainer/MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("2_l08v5")]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Start"
+
+[node name="BackButton" parent="ScrollContainer/MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource("2_l08v5")]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Back "
+
+[node name="HowToPlayLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "How to play?"
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+bbcode_enabled = true
+text = "[b][color=orange]What to do:[/color][/b] At the beginning - choose your start weapon and try to survive 10 minutes to win in my game. All enemies will constantly and eventually spawn on map and trying to attack you.
+
+[b][color=orange]Move:[/color][/b] Use arrows on your keyboard or W, A, S, D buttons to move around.
+
+[b][color=orange]Active skill:[/color][/b] Press SPACE while moving - your character will dodge in desired direction or in random direction (if character not moving).
+
+[b][color=orange]Progress:[/color][/b] Each time you kill enemy they always drop [b]experience vials[/b] and sometimes [b]gold coins[/b]. and sometimes [b]gold coins[/b]. Experience vials collecting allows you to level up your character and gain some skill or character boosts. The coins collected will accumulate between runs adn can be used when game ends (losing, wining or giving up - no matter) in [b]Menu Shop[/b] where you can buy permanent upgrades which will affect each game run.  
+
+[b][color=orange]Interface:[/color][/b] On top of screen you can see fps counter, timer and some character information as Level, Coins collected in current run (all coins collected you can see only in shop), )Player speed, Health Points regeneration etc. 
+On the bottom - left corner you can see skills that you achieve or upgrade in level ups. Also there are 3 bars - Energy (used for dodging and bow shooting), HP (health - if it comes to 0 you died) and expirience bar - shows progress of expirience collecting. 
+
+Thats all what you need to jnow to play this game.  If you read/play it - thank you! Hope you enjoyed! "

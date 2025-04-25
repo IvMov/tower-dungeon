@@ -1,0 +1,86 @@
+[gd_scene load_steps=8 format=3 uid="uid://b3nh0takoj5ro"]
+
+[ext_resource type="Script" uid="uid://bsews23yklxlw" path="res://autoload/screen_transition.gd" id="1_frs5k"]
+[ext_resource type="Shader" uid="uid://dnqkp1ej26t5a" path="res://autoload/screen_transition.gdshader" id="1_h44ve"]
+[ext_resource type="Texture2D" uid="uid://brbmg8b7afa6e" path="res://assets/2d/ui/title_loading.png" id="3_s1tvq"]
+
+[sub_resource type="Animation" id="Animation_0haw5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/time")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.61]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_h6a2o"]
+resource_name = "default"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/time")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.61]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yigxg"]
+_data = {
+&"RESET": SubResource("Animation_0haw5"),
+&"default": SubResource("Animation_h6a2o")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fwtg1"]
+shader = ExtResource("1_h44ve")
+shader_parameter/time = 1.61
+shader_parameter/color = Color(0, 0, 0, 0.0862745)
+
+[node name="ScreenTransition" type="CanvasLayer"]
+process_mode = 3
+layer = 5
+script = ExtResource("1_frs5k")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_yigxg")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_fwtg1")
+texture = ExtResource("3_s1tvq")
+centered = false

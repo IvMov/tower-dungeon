@@ -1,0 +1,109 @@
+[gd_scene load_steps=3 format=3 uid="uid://dup7j4qs8oxdk"]
+
+[ext_resource type="PackedScene" uid="uid://dyfrlujou827f" path="res://scenes/ui/sound_button.tscn" id="1_lrbd7"]
+[ext_resource type="Script" uid="uid://db6jan177qgk" path="res://scenes/menu/menu_screen.gd" id="1_odjgd"]
+
+[node name="MenuScreen" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_odjgd")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 0
+
+[node name="Bacground" type="ColorRect" parent="MarginContainer"]
+layout_mode = 2
+color = Color(0.427451, 0.427451, 0.427451, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Bacground"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MarginContainer/Bacground/VBoxContainer"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "TOWER DUNGEON"
+horizontal_alignment = 1
+
+[node name="StartButton" parent="MarginContainer/Bacground/VBoxContainer" instance=ExtResource("1_lrbd7")]
+custom_minimum_size = Vector2(300, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+text = "Play"
+script = null
+
+[node name="RestartButton" parent="MarginContainer/Bacground/VBoxContainer" instance=ExtResource("1_lrbd7")]
+custom_minimum_size = Vector2(300, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+text = "Restart
+"
+script = null
+
+[node name="PropertiesButton" parent="MarginContainer/Bacground/VBoxContainer" instance=ExtResource("1_lrbd7")]
+custom_minimum_size = Vector2(300, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+text = "Properties"
+script = null
+
+[node name="ControlsButton" parent="MarginContainer/Bacground/VBoxContainer" instance=ExtResource("1_lrbd7")]
+custom_minimum_size = Vector2(300, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+text = "Controls"
+script = null
+
+[node name="GiveUpButton" parent="MarginContainer/Bacground/VBoxContainer" instance=ExtResource("1_lrbd7")]
+custom_minimum_size = Vector2(300, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+text = "Save & Give up "
+script = null
+
+[node name="QuitButton" parent="MarginContainer/Bacground/VBoxContainer" instance=ExtResource("1_lrbd7")]
+custom_minimum_size = Vector2(300, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+text = "Quit"
+script = null
+
+[node name="Label3" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "Created by Erridan"
+
+[node name="Label2" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "v 0.0.1"
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "Thanks for everyone who played it!"

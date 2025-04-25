@@ -1,0 +1,108 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtr3klnn1dtoo"]
+
+[ext_resource type="Script" path="res://scenes/menu/start_game_screen.gd" id="1_kp67h"]
+[ext_resource type="FontFile" uid="uid://bohi3uylgc1th" path="res://resources/fonts/Habbo.ttf" id="2_3xxie"]
+[ext_resource type="PackedScene" uid="uid://dyfrlujou827f" path="res://scenes/view/sound_button.tscn" id="2_l08v5"]
+
+[node name="StartGameScreen" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_kp67h")
+
+[node name="Bacground" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.427451, 0.427451, 0.427451, 1)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+clip_contents = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_top = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="DifficultyLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "Select Difficulty"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_3xxie")
+text = "Please select game difficulty, it can be changed before  each game"
+autowrap_mode = 2
+
+[node name="Difficulties" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/Difficulties"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Easy" parent="ScrollContainer/MarginContainer/VBoxContainer/Difficulties/MarginContainer" instance=ExtResource("2_l08v5")]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+toggle_mode = true
+text = "Easy
+"
+
+[node name="Normal" parent="ScrollContainer/MarginContainer/VBoxContainer/Difficulties/MarginContainer" instance=ExtResource("2_l08v5")]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+toggle_mode = true
+text = "Normal
+"
+
+[node name="Hard" parent="ScrollContainer/MarginContainer/VBoxContainer/Difficulties/MarginContainer" instance=ExtResource("2_l08v5")]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+toggle_mode = true
+text = "Hard"
+
+[node name="HowToPlayLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "How to play?"
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+text = "Move: use arrows on your keyboard or W, A, S, D buttons to move around.
+[b]Active skills:[/b] press SPACE + move in dirrection - your character will  dodge in desired dirrection or in random if no dirrection was pressed.
+"
+
+[node name="StartButton" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_l08v5")]
+layout_mode = 2
+text = "Start"
+
+[node name="QuitButton" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_l08v5")]
+layout_mode = 2
+text = "Save & Quit"

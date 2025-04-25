@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://yhkdwe5vcyqc"]
+
+[ext_resource type="Script" uid="uid://beis46ef8iifl" path="res://scenes/menu/permanent_upgrades/permanent_upgrade_card.gd" id="1_7gc6x"]
+[ext_resource type="PackedScene" uid="uid://dyfrlujou827f" path="res://scenes/ui/sound_button.tscn" id="2_f4pmv"]
+
+[node name="PermanentUpgrade" type="HBoxContainer"]
+script = ExtResource("1_7gc6x")
+
+[node name="NameLabel" type="Label" parent="."]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 0
+text = "HP regeneration +0.1 hp/sec"
+vertical_alignment = 1
+
+[node name="LvlLabel" type="Label" parent="."]
+custom_minimum_size = Vector2(50, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "0/3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PriceLabel" type="Label" parent="."]
+custom_minimum_size = Vector2(50, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0.960784, 0.666667, 0.219608, 1)
+text = "100 "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SoundButton" parent="." instance=ExtResource("2_f4pmv")]
+custom_minimum_size = Vector2(50, 20)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "BUY"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true

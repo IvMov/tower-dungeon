@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Tower dungeon"
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="uid://dup7j4qs8oxdk"
 config/features=PackedStringArray("4.4", "Forward Plus")
 run/max_fps=60
 config/icon="res://icon.svg"
@@ -24,6 +24,9 @@ GameEvents="*res://autoload/game_events.tscn"
 PlayerParameters="*res://autoload/player_parameters.tscn"
 EnemyParameters="*res://autoload/enemy_parameters.tscn"
 Constants="*res://autoload/constants.tscn"
+MusicPlayer="*res://autoload/music_player.tscn"
+ScreenTransition="*res://autoload/screen_transition.tscn"
+MetaProgression="*res://autoload/meta_progression.tscn"
 
 [debug]
 
