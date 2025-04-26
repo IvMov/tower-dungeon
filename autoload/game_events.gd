@@ -5,6 +5,8 @@ signal change_game_stage(game_stage)
 signal screen_resized()
 
 signal player_entered(player: Player)
+signal main_scene_loaded(main: MainScene)
+
 signal damage_player(damage: float)
 signal run_player(speed: float)
 signal aiming_player(aiming: bool)
@@ -46,6 +48,9 @@ func emit_screen_resized():
 
 func emit_player_entered(player: Player):
 	player_entered.emit(player)
+
+func emit_main_scene_loaded(main: MainScene):
+	main_scene_loaded.emit(main)
 
 func emit_damage_player(damage: float):
 	damage_player.emit(damage)

@@ -3,4 +3,5 @@
 [ext_resource type="Script" uid="uid://hef6c3wo0qes" path="res://autoload/enemy_parameters.gd" id="1_5hcbc"]
 
 [node name="EnemyParameters" type="Node"]
+process_mode = 3
 script = ExtResource("1_5hcbc")

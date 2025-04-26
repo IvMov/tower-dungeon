@@ -1,0 +1,151 @@
+[gd_scene load_steps=3 format=3 uid="uid://w2y4bvv8j838"]
+
+[ext_resource type="Script" uid="uid://o3f1y0srhv2e" path="res://scenes/menu/new_game_screen.gd" id="1_ihc7a"]
+[ext_resource type="PackedScene" uid="uid://dyfrlujou827f" path="res://scenes/ui/sound_button.tscn" id="2_4kiiy"]
+
+[node name="NewGameScreen" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_ihc7a")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 0
+
+[node name="Bacground" type="ColorRect" parent="MarginContainer"]
+layout_mode = 2
+color = Color(0.146802, 0.212975, 0.209198, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Bacground"]
+custom_minimum_size = Vector2(600, 500)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -250.0
+offset_right = 300.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MarginContainer/Bacground/VBoxContainer"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "new_game"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/Bacground/VBoxContainer"]
+custom_minimum_size = Vector2(300, 30)
+layout_mode = 2
+size_flags_vertical = 2
+placeholder_text = "Please enter your username"
+alignment = 1
+
+[node name="DifficultiesLabel" type="Label" parent="MarginContainer/Bacground/VBoxContainer"]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+text = "Please select game difficulty for your character"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Difficulties" type="HBoxContainer" parent="MarginContainer/Bacground/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Bacground/VBoxContainer/Difficulties"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Easy" parent="MarginContainer/Bacground/VBoxContainer/Difficulties/MarginContainer" instance=ExtResource("2_4kiiy")]
+custom_minimum_size = Vector2(130, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+toggle_mode = true
+text = "menu_easy_btn"
+
+[node name="Normal" parent="MarginContainer/Bacground/VBoxContainer/Difficulties/MarginContainer" instance=ExtResource("2_4kiiy")]
+custom_minimum_size = Vector2(130, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+toggle_mode = true
+text = "menu_normal_btn"
+
+[node name="Hard" parent="MarginContainer/Bacground/VBoxContainer/Difficulties/MarginContainer" instance=ExtResource("2_4kiiy")]
+custom_minimum_size = Vector2(130, 40)
+layout_mode = 2
+size_flags_horizontal = 8
+toggle_mode = true
+text = "menu_hard_btn"
+
+[node name="DifficultyDescription" type="Label" parent="MarginContainer/Bacground/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "The description of difficulty"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CreateButton" parent="MarginContainer/Bacground/VBoxContainer" instance=ExtResource("2_4kiiy")]
+custom_minimum_size = Vector2(300, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+text = "menu_create_new_character_btn"
+
+[node name="BackButton" parent="MarginContainer/Bacground/VBoxContainer" instance=ExtResource("2_4kiiy")]
+custom_minimum_size = Vector2(184, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+text = "menu_back_btn"
+
+[node name="ErrorLabel" type="Label" parent="MarginContainer/Bacground"]
+visible = false
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -275.0
+offset_top = -23.0
+offset_right = 275.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.999971, 0.714884, 0.669042, 1)
+text = "Character with same name already exists, please choose another name"
+
+[node name="Label3" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "Created by Erridan"
+
+[node name="Label2" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "v 0.0.1"
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "Thanks for everyone who played it!"
+
+[connection signal="text_changed" from="MarginContainer/Bacground/VBoxContainer/LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="text_submitted" from="MarginContainer/Bacground/VBoxContainer/LineEdit" to="." method="_on_line_edit_text_submitted"]
+[connection signal="pressed" from="MarginContainer/Bacground/VBoxContainer/Difficulties/MarginContainer/Easy" to="." method="_on_easy_pressed"]
+[connection signal="pressed" from="MarginContainer/Bacground/VBoxContainer/Difficulties/MarginContainer/Normal" to="." method="_on_normal_pressed"]
+[connection signal="pressed" from="MarginContainer/Bacground/VBoxContainer/Difficulties/MarginContainer/Hard" to="." method="_on_hard_pressed"]
+[connection signal="pressed" from="MarginContainer/Bacground/VBoxContainer/CreateButton" to="." method="_on_create_button_pressed"]
+[connection signal="pressed" from="MarginContainer/Bacground/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

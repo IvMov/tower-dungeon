@@ -3,4 +3,5 @@
 [ext_resource type="Script" uid="uid://ph02id8dv727" path="res://autoload/game_events.gd" id="1_fxpda"]
 
 [node name="GameEvents" type="Node"]
+process_mode = 3
 script = ExtResource("1_fxpda")

@@ -18,7 +18,7 @@ mouse_filter = 2
 
 [node name="ColorRect" type="ColorRect" parent="MarginContainer"]
 layout_mode = 2
-color = Color(0.427493, 0.427493, 0.427493, 1)
+color = Color(0.146802, 0.212975, 0.209198, 1)
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/ColorRect"]
 custom_minimum_size = Vector2(500, 0)
@@ -154,4 +154,5 @@ custom_minimum_size = Vector2(184, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Back"
-script = null
+
+[connection signal="pressed" from="MarginContainer/ColorRect/VBoxContainer2/BackButton" to="." method="_on_back_button_pressed"]

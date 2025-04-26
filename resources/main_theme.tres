@@ -1,7 +1,71 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://ds80lfmnl557w"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://ds80lfmnl557w"]
 
 [ext_resource type="Texture2D" uid="uid://i3mk82t3b2m8" path="res://assets/2d/Plate (37).png" id="1_posnr"]
 [ext_resource type="Texture2D" uid="uid://bxq7jag23obss" path="res://assets/2d/Plate (49).png" id="2_sy0yi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qjhx0"]
+bg_color = Color(0.462745, 0.596078, 0.513726, 0.780392)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.752941, 0.85098, 0.788235, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_biaja"]
+bg_color = Color(0.505882, 0.639216, 0.556863, 0.529412)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.506353, 0.637492, 0.556886, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x127s"]
+bg_color = Color(0.146802, 0.212975, 0.209198, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.506353, 0.637492, 0.556886, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vnc4k"]
+bg_color = Color(0.462951, 0.594255, 0.513457, 0.780392)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.754209, 0.850668, 0.789472, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m05l4"]
 texture = ExtResource("1_posnr")
@@ -21,6 +85,10 @@ texture_margin_right = 3.0
 texture_margin_bottom = 6.0
 
 [resource]
+Button/styles/focus = SubResource("StyleBoxFlat_qjhx0")
+Button/styles/hover = SubResource("StyleBoxFlat_biaja")
+Button/styles/normal = SubResource("StyleBoxFlat_x127s")
+Button/styles/pressed = SubResource("StyleBoxFlat_vnc4k")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_m05l4")
 PanelContainer2/base_type = &"PanelContainer"
 PanelContainer2/styles/panel = SubResource("StyleBoxTexture_rlp8o")

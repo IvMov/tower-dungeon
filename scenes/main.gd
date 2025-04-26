@@ -1,4 +1,4 @@
-extends Node
+class_name MainScene extends Node
 
 const TRAIDER_MAP: PackedScene = preload("res://scenes/maps/traider_map.tscn")
 
@@ -16,13 +16,17 @@ func _ready():
 	#map_generator.ROOMS = randi_range(3, 10)
 	var start_point: Vector3 = map_generator.generate_level()
 	player.global_position = start_point
-	
 	GameEvents.from_stage_to_shop.connect(on_from_stage_to_shop)
 	GameEvents.from_shop_to_stage.connect(on_from_shop_to_stage)
 	#GameEvents.emit_from_stage_to_shop()
+	Constants.SOULS = souls
+	Constants.ENEMIES = enemies
+	Constants.PROJECTILES = projectiles
+
 
 func _physics_process(_delta):
 	label.text = "FPS: %f" % Engine.get_frames_per_second()
+
 
 func on_from_stage_to_shop():
 	if maps.get_child(0):

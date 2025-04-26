@@ -1,11 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://isrxtbg8gliu"]
+[gd_scene load_steps=3 format=3 uid="uid://blfkt366176c"]
 
-[ext_resource type="Script" uid="uid://cibvsu8m5d7ki" path="res://scenes/menu/play_screen.gd" id="1_n2uvh"]
-[ext_resource type="PackedScene" uid="uid://dyfrlujou827f" path="res://scenes/ui/sound_button.tscn" id="2_p0nxr"]
+[ext_resource type="Script" uid="uid://choy2fjghdsp1" path="res://scenes/menu/continue_game_screen.gd" id="1_142qh"]
+[ext_resource type="PackedScene" uid="uid://dyfrlujou827f" path="res://scenes/ui/sound_button.tscn" id="2_chbv1"]
 
-[node name="PlayScreen" type="CanvasLayer"]
+[node name="ContinueGameScreen" type="CanvasLayer"]
 process_mode = 3
-script = ExtResource("1_n2uvh")
+script = ExtResource("1_142qh")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -33,26 +33,29 @@ offset_bottom = 200.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="NewGameButton" parent="MarginContainer/Bacground/VBoxContainer" instance=ExtResource("2_p0nxr")]
-custom_minimum_size = Vector2(300, 60)
+[node name="Label" type="Label" parent="MarginContainer/Bacground/VBoxContainer"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "continue_game"
+horizontal_alignment = 1
+
+[node name="Saves" type="ScrollContainer" parent="MarginContainer/Bacground/VBoxContainer"]
+custom_minimum_size = Vector2(600, 400)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 2
-text = "menu_new_game_btn"
 
-[node name="ContinueGameButton" parent="MarginContainer/Bacground/VBoxContainer" instance=ExtResource("2_p0nxr")]
-custom_minimum_size = Vector2(300, 60)
+[node name="Saves" type="VBoxContainer" parent="MarginContainer/Bacground/VBoxContainer/Saves"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 2
-text = "menu_continue_game_btn"
+size_flags_horizontal = 6
 
-[node name="BackButton" parent="MarginContainer/Bacground/VBoxContainer" instance=ExtResource("2_p0nxr")]
+[node name="BackButton" parent="MarginContainer/Bacground/VBoxContainer" instance=ExtResource("2_chbv1")]
 custom_minimum_size = Vector2(184, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 2
-text = "menu_back_btn"
+text = "Back"
 
 [node name="Label3" type="Label" parent="MarginContainer"]
 layout_mode = 2
@@ -72,6 +75,4 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "Thanks for everyone who played it!"
 
-[connection signal="pressed" from="MarginContainer/Bacground/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
-[connection signal="pressed" from="MarginContainer/Bacground/VBoxContainer/ContinueGameButton" to="." method="_on_continue_game_button_pressed"]
 [connection signal="pressed" from="MarginContainer/Bacground/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

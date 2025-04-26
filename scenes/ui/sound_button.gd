@@ -1,11 +1,6 @@
-extends Button
+class_name SoundButton extends Button
 
-@onready var random_audio_player_component = $RandomAudioPlayerComponent
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
-func _ready():
-	pressed.connect(on_pressed)
-	
-
-func on_pressed():
-	pass
-	#random_audio_player_component.play_random_stream()
+func _on_pressed() -> void:
+	SfxPlayer.click()

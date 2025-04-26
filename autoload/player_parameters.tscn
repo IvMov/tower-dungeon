@@ -3,4 +3,5 @@
 [ext_resource type="Script" uid="uid://v0lclawkfgrl" path="res://autoload/player_parameters.gd" id="1_3bgxe"]
 
 [node name="PlayerParameters" type="Node"]
+process_mode = 3
 script = ExtResource("1_3bgxe")

@@ -40,7 +40,6 @@ var last_fontain_coordinates: Vector3
 
 func _ready():
 	effect_flash_component.is_player = true
-	player_name = "test" # TODO: create simple creation screen with nickname
 	GameEvents.emit_change_game_stage(1)
 	agr_area.body_entered.connect(on_body_entered)
 	agr_area.body_exited.connect(on_body_exited)
@@ -48,6 +47,7 @@ func _ready():
 	agr_area.area_exited.connect(on_area_exited)
 	GameEvents.damage_player.connect(on_damage_player)
 	last_fontain_coordinates = global_position
+	print(player_name)
 	GameEvents.emit_player_entered(self)
 	soul_component.is_player = true
 	GameEvents.emit_souls_update_view(PlayerParameters.souls)

@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dmyuty1wm88ih" path="res://autoload/game_config.gd" id="1_qs85d"]
 
 [node name="GameConfig" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 0
 theme = ExtResource("1_1umou")

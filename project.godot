@@ -27,6 +27,7 @@ Constants="*res://autoload/constants.tscn"
 MusicPlayer="*res://autoload/music_player.tscn"
 ScreenTransition="*res://autoload/screen_transition.tscn"
 MetaProgression="*res://autoload/meta_progression.tscn"
+SfxPlayer="*res://autoload/sfx_player.tscn"
 
 [debug]
 

@@ -3,18 +3,13 @@ extends Node
 const COIN = preload("res://scenes/dropable/coin.tscn")
 const SOUL_PART = preload("res://scenes/dropable/soul_part.tscn")
 
-#parent locations
-@onready var PROJECTILES: Node = get_tree().get_first_node_in_group("projectiles")
-@onready var ENEMIES: Node = get_tree().get_first_node_in_group("enemies")
-@onready var SOULS: Node = get_tree().get_first_node_in_group("souls")
-
-
 #infrastructure
 const ITEM_VIEW_SCENE: PackedScene = preload("res://scenes/ui/item_view.tscn")
 const ITEM_VIEW_HOLDER: PackedScene = preload("res://scenes/ui/item_view_holder.tscn")
 const FIRE_PROJECTILE: PackedScene = preload("res://scenes/projectiles/fire_projectile.tscn")
 const TRAIDER_ITEM: PackedScene = preload("res://scenes/screens/traider_item.tscn")
 const TEXT: PackedScene = preload("res://scenes/ui/parts/text.tscn")
+const SOUND_BUTTON: PackedScene = preload("res://scenes/ui/sound_button.tscn")
 
 # deffensive
 const ZOOM_TABLET = preload("res://resources/items/zoom_tablet.tres")
@@ -42,3 +37,8 @@ const WALL_HALF: float = 0.5
 const GREEN_SOUL_COLOR: Color = Color(0, 10, 0, 0.3)
 const BLUE_SOUL_COLOR: Color = Color(0, 0, 10, 0.3)
 const RED_SOUL_COLOR: Color = Color(10, 0, 0, 0.3)
+
+#parent locations for main game
+var PROJECTILES: Node
+var ENEMIES: Node
+var SOULS: Node

@@ -1,13 +1,15 @@
 [gd_scene load_steps=3 format=3 uid="uid://dyfrlujou827f"]
 
-[ext_resource type="PackedScene" uid="uid://bblfwo8b6ntbk" path="res://scenes/components/audio/random_audio_player_component.tscn" id="1_4q71w"]
 [ext_resource type="Script" uid="uid://cmlaqy3fv88pw" path="res://scenes/ui/sound_button.gd" id="1_pcsh0"]
+[ext_resource type="AudioStream" uid="uid://bmfcga6f1ikww" path="res://assets/audio/click/click4.ogg" id="2_6ipwo"]
 
 [node name="SoundButton" type="Button"]
 offset_right = 6.0
 offset_bottom = 6.0
 script = ExtResource("1_pcsh0")
 
-[node name="RandomAudioPlayerComponent" parent="." instance=ExtResource("1_4q71w")]
-bus = &"Master"
-script = null
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_6ipwo")
+bus = &"sfx"
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

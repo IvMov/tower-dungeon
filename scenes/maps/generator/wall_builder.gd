@@ -4,7 +4,7 @@ class_name WallBuilder extends Node3D
 @onready var timer: Timer = $Timer
 
 # WallBuilder - can build walls around the room, avoiding tunels with height of 4 m
-const WALL_TUNEL_MARGIN: float = Constants.WALL_HALF + Constants.CORE_TILE_SIZE/2
+var WALL_TUNEL_MARGIN: float = Constants.WALL_HALF + Constants.CORE_TILE_SIZE/2
 
 @export var packed_wall_20: PackedScene
 @export var packed_wall_16: PackedScene

@@ -7,7 +7,7 @@ const BASE_AIR_SPEED: float = 250.0 # not work as need to adjust velocity in pro
 const MOVE_SPEED_UP_MOD: float = 2.0
 const JUMP_SPEED_UP_MOD: float = 1.2
 
-var timer: Timer
+var player_name: String
 var lifes: int = 3
 var current_speed: float = BASE_SPEED
 var current_air_speed: float = BASE_AIR_SPEED
@@ -113,6 +113,7 @@ func get_position(height: float = 0) -> Vector3:
 
 func on_player_entered(player: Player) -> void:
 	self.player = player
+	player.player_name = player_name
 	inventory = player.inventory
 	belt = player.belt
 	hands = player.hands

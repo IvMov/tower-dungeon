@@ -3,4 +3,5 @@
 [ext_resource type="Script" uid="uid://cg5lgp47wg587" path="res://autoload/constants.gd" id="1_k57il"]
 
 [node name="Constatns" type="Node"]
+process_mode = 3
 script = ExtResource("1_k57il")
