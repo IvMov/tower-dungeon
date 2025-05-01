@@ -18,6 +18,7 @@ var lock_mana_skill: bool = false
 var is_aiming: bool = false
 var is_runing: bool = false
 var last_position: Vector3 = Vector3.ZERO
+var start_game_time: float
 
 var player_data: Dictionary
 var player: Player
@@ -30,29 +31,48 @@ var hands: Hands
 var souls: Vector3 = Vector3.ZERO
 var coins: int
 var kills: int = 0
+var runs: int = 0
+var best_time: float = 0
 var skill_expirience: Dictionary = {}
 var meta_upgrades: Dictionary = {}
 
 #boosters
 var damage_boost: float = 1
 var speed_boost: float = 1
+var damage_resist_factor: float = 1
+var price_modifier: float = 1
+
+
 
 func _ready() -> void:
 	GameEvents.add_skill.connect(on_add_skill)
 	GameEvents.player_entered.connect(on_player_entered)
+
+func adjust_difficulty() -> void:
+	GameConfig.game_difficulty = player_data["difficulty"]
+	if GameConfig.game_difficulty == 2:
+		return
+	if GameConfig.game_difficulty == 1:
+		damage_resist_factor = 0.5
+		damage_boost = 1.5
+		price_modifier = 0.8
+	elif GameConfig.game_difficulty == 3: 
+		damage_resist_factor = 1.5
 
 func load_player_by_username(username: String) -> void: 
 	player_data = MetaProgression.get_by_username(username)
 	souls = player_data["souls"]
 	coins = player_data["coins"]
 	kills = player_data["kills"]
+	runs = player_data["runs"]
+	best_time = player_data["best_time"]
 	skill_expirience = player_data["skill_expirience"]
 	meta_upgrades = player_data[MetaProgression.META_UPGRADES_KEY]
 	load_props()
 
 func load_props() -> void:
 	var props: Dictionary = player_data[MetaProgression.PROPS_KEY]
-	lifes = props["lifes"]
+	lifes = props["lifes"] if player_data["current_time"] == 0.0 else player_data["max_lifes"]
 	max_jumps = props["max_jumps"]
 	BASE_SPEED = props["base_speed"]
 	BASE_JUMP_VELOCITY = props["base_jump"]
@@ -60,13 +80,29 @@ func load_props() -> void:
 	JUMP_SPEED_UP_MOD = props["jump_speed_up_mode"]
 	damage_boost = props["dmg_boost"]
 	speed_boost = props["speed_boost"]
+	damage_resist_factor = props["damage_resist_factor"]
+
+func save_run_time(time: float, game_over: bool) -> void:
+	if game_over:
+		player_data["current_time"] = 0.0
+		runs+=1
+		player_data["death"]+=1
+		if best_time > time: 
+			return
+		else:
+			best_time = time
+		#TODO: EMIT BEST TIME WINDOW shows
+	else:
+		player_data["current_time"] = time
 
 func prepare_to_save() -> void: 
 	#core
 	player_data["souls"] = souls
 	player_data["coins"] = coins
 	player_data["kills"] = kills
+	player_data["best_time"] = best_time
 	player_data["skill_expirience"] = skill_expirience
+	player_data["time_in_game_unix"] += Time.get_unix_time_from_system() - start_game_time
 	player_data[MetaProgression.META_UPGRADES_KEY] = meta_upgrades
 	#props
 	meta_upgrades = player_data[MetaProgression.META_UPGRADES_KEY]
@@ -78,6 +114,7 @@ func prepare_to_save() -> void:
 	player_data[MetaProgression.PROPS_KEY]["jump_speed_up_mode"] = JUMP_SPEED_UP_MOD 
 	player_data[MetaProgression.PROPS_KEY]["dmg_boost"] = damage_boost 
 	player_data[MetaProgression.PROPS_KEY]["speed_boost"] = speed_boost 
+	player_data[MetaProgression.PROPS_KEY]["damage_resist_factor"] = damage_resist_factor 
 	#storages
 	inventory.save_storage(player_data, inventory.NAME)
 	belt.save_storage(player_data, belt.NAME)
@@ -171,6 +208,11 @@ func get_position(height: float = 0) -> Vector3:
 
 func on_player_entered(player: Player) -> void:
 	player_name = player_data[MetaProgression.PLAYER_NAME_KEY]
+	player_data["time_in_game_unix"]
+	if player_data["time_in_game_unix"] == 0.0:
+		adjust_difficulty()
+	EnemyParameters.load_enemies_data(player_data)
+	start_game_time = Time.get_unix_time_from_system()
 	self.player = player
 	inventory = player.inventory
 	belt = player.belt

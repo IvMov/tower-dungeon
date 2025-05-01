@@ -134,21 +134,26 @@ func _physics_process(delta):
 		accelerate_to_player(delta)
 	move_and_slide()
 
-func multiply_characteristics() -> float:
-	var rand: float = randf_range(0.9, 1.5) if !is_boss else randf_range(3, 5)
+func multiply_characteristics(is_spawner: bool = false) -> float:
+	#TODO: if want some randomizing change ranges in randf
+	var rand: float = randf_range(1, 1) if !is_boss else randf_range(4, 4)
 	speed = speed / rand if !is_boss else speed *  2 / (1 + rand/10)
-	self.body.scale = Vector3.ONE * rand
-	enemy_collision.shape.height *= rand
-	enemy_collision.shape.radius *= (rand * 2 / 3)
-	enemy_collision.position.y = enemy_collision.shape.height / 2
-	health_component.max_value *= rand
-	health_component.current_value *= rand
+	if !is_spawner:
+		self.body.scale = Vector3.ONE * rand
+		enemy_collision.shape.height *= rand
+		enemy_collision.shape.radius *= (rand * 2 / 3)
+		enemy_collision.position.y = enemy_collision.shape.height / 2
+	health_component.max_value *= rand * EnemyParameters.hp_modifier
+	health_component.current_value *= rand * EnemyParameters.hp_modifier
+	health_component.regen *= EnemyParameters.hp_regen_modifier
 	mana_component.max_value *= rand
 	mana_component.current_value *= rand
-	stamina_component.max_value *= rand
-	stamina_component.current_value *= rand
-	push_resist *= 3
-	dmg_resist *= 2
+	stamina_component.max_value *= rand * EnemyParameters.stamina_modifier
+	stamina_component.current_value *= rand * EnemyParameters.stamina_modifier
+	stamina_component.regen *= EnemyParameters.stamina_regen_modifier
+	if is_boss:
+		push_resist *= 3
+		dmg_resist *= 2
 	
 	return rand
 
@@ -173,7 +178,7 @@ func get_damage(damager_location: Vector3, value: float, push_power: float, fire
 	if acid_dmg != 0:
 		set_in_acid(acid_dmg)
 	
-	return health_component.minus(value * (1 - dmg_resist))
+	return health_component.minus(value * (1 - dmg_resist) * EnemyParameters.dmg_resist_modifier)
 
 func set_in_fire(fire_dmg: float) -> void:
 	effect_flash_component.start_on_fire()

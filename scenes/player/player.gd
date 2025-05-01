@@ -166,6 +166,7 @@ func do_actions() -> bool:
 
 func custom_death_actions():
 	if PlayerParameters.lifes - 1 < 0:
+		GameEvents.emit_game_end()
 		#show game end screen - menu to back to game menu, and restart game. 
 		#god of death consume all souls and paid you with some gold which can be spent to buy some heaks and bombs
 		return

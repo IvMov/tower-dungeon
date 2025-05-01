@@ -9,6 +9,7 @@ var id_counter: int = 0
 
 func _ready() -> void:
 	GameEvents.item_to_map.connect(on_item_to_map)
+	GameEvents.emit_new_stage()
 
 func add_room(room: Room) -> Room:
 	if room.id == 0:

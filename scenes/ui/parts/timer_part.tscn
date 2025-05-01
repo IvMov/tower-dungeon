@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://sjoqyrnktxw1"]
+
+[ext_resource type="Script" uid="uid://bs5sc8d3k4hrs" path="res://scenes/ui/parts/timer_part.gd" id="1_hdndi"]
+
+[node name="Timer" type="MarginContainer"]
+custom_minimum_size = Vector2(100, 20)
+offset_right = 100.0
+offset_bottom = 31.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+script = ExtResource("1_hdndi")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="TimeLabel" type="Label" parent="."]
+layout_mode = 2
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

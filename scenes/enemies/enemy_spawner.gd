@@ -20,11 +20,13 @@ var max_height: float = 5
 var spawn_rate: float = 1
 
 func _ready():
-	coins_drop_component.set_coins(randi_range(5,10))
+	is_boss = true
+	coins_drop_component.set_coins(randi_range(5 * EnemyParameters.drop_modifier, 10 * EnemyParameters.drop_modifier))
 	if is_temporary:
 		check_player.wait_time = randf_range(4, 6)
 		check_player.start()
 	agr_radius = 8
+	multiply_characteristics(true)
 
 func _physics_process(_delta):
 	if !animation_player.is_playing():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bwggo1cxds18"]
+[gd_scene load_steps=10 format=3 uid="uid://bwggo1cxds18"]
 
 [ext_resource type="PackedScene" uid="uid://dh12qdjp1pf6y" path="res://scenes/ui/bars/player_bars_box.tscn" id="1_a0cn0"]
 [ext_resource type="Script" uid="uid://cdcwl13rv5p3j" path="res://scenes/ui/ui.gd" id="1_gs6v2"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bjtr2mltc47uu" path="res://scenes/ui/item_info_holder.tscn" id="6_nxa7a"]
 [ext_resource type="PackedScene" uid="uid://vtc4imj2ymwb" path="res://scenes/ui/bars/souls_ui.tscn" id="7_utqvu"]
 [ext_resource type="PackedScene" uid="uid://cygl6245k6ebu" path="res://scenes/screens/traider_screen.tscn" id="8_m0506"]
+[ext_resource type="PackedScene" uid="uid://sjoqyrnktxw1" path="res://scenes/ui/parts/timer_part.tscn" id="9_uegxj"]
 
 [node name="UI" type="Node2D" groups=["ui"]]
 script = ExtResource("1_gs6v2")
@@ -53,4 +54,7 @@ size_flags_vertical = 8
 
 [node name="TraiderScreen" parent="CanvasLayer/MarginContainer" instance=ExtResource("8_m0506")]
 visible = false
+layout_mode = 2
+
+[node name="Timer" parent="CanvasLayer/MarginContainer" instance=ExtResource("9_uegxj")]
 layout_mode = 2

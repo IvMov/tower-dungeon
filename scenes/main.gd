@@ -1,6 +1,7 @@
 class_name MainScene extends Node
 
 const TRAIDER_MAP: PackedScene = preload("res://scenes/maps/traider_map.tscn")
+const ENTRY_MAP: PackedScene = preload("res://scenes/maps/entry_map.tscn")
 
 @onready var label = $UIWrapper/Label
 @onready var map_generator: MapGenerator = $MapGenerator
@@ -12,12 +13,15 @@ const TRAIDER_MAP: PackedScene = preload("res://scenes/maps/traider_map.tscn")
 const PLAYER_START_POINT: Vector3 = Vector3(1, 0.2, -1)
 
 func _ready():
+	
 	#map_generator.ROOMS = randi_range(3, 10)
 	#var start_point: Vector3 = map_generator.generate_level()
 	
 	#player.global_position = start_point
-	const ENTRY_MAP = preload("res://scenes/maps/entry_map.tscn")
-	maps.add_child(ENTRY_MAP.instantiate())
+	if PlayerParameters.player_data["current_time"] != 0.0:
+		GameEvents.emit_change_game_stage(GameStage.Stage.TRAIDER)
+	var map = TRAIDER_MAP if PlayerParameters.player_data["current_time"] != 0.0 else ENTRY_MAP
+	maps.add_child(map.instantiate())
 	GameEvents.from_stage_to_shop.connect(on_from_stage_to_shop)
 	GameEvents.from_shop_to_stage.connect(on_from_shop_to_stage)
 	#GameEvents.emit_from_stage_to_shop()

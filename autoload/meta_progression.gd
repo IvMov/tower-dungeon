@@ -17,12 +17,16 @@ var EMPTY_METADATA: Dictionary = {
 
 var NEW_PLAYER: Dictionary = {
 	"player_name": "default name",
-	"difficulty": 1, # 1, 2, 3
+	"difficulty": 2, # 1, 2, 3
 	"kills": 0,
 	"death": 0,
+	"max_lifes": 3,
+	"current_time": 0.0,
+	"best_time": 0.0,
 	"runs": 0,
 	"coins": 0,
 	"souls": Vector3.ZERO,
+	"time_in_game_unix": 0.0,
 	PROPS_KEY: {
 		"lifes": 3,
 		"max_jumps": 2,
@@ -31,7 +35,9 @@ var NEW_PLAYER: Dictionary = {
 		"speed_up_mode": 2.0,
 		"jump_speed_up_mode": 1.2,
 		"dmg_boost": 1.0,
-		"speed_boost": 1.0
+		"speed_boost": 1.0,
+		"damage_resist_factor": 1.0,
+		"price_modifier": 1.0
 	},
 	STORAGES_KEY: {
 		"inventory": {
@@ -51,6 +57,7 @@ var NEW_PLAYER: Dictionary = {
 		}
 	},
 	"skill_expirience": {},
+	"enemy_expirience": {},
 	META_UPGRADES_KEY: {
 	},
 	CONFIG_KEY: {
@@ -65,7 +72,7 @@ var NEW_PLAYER: Dictionary = {
 		"graphics": {
 			"shaders": false 
 		}
-	},
+	}
 }
 
 var meta_upgrade: Dictionary = {
@@ -141,6 +148,7 @@ func add_player(username: String, difficulty: int) -> bool:
 		return false
 	else:
 		var new: Dictionary = NEW_PLAYER.duplicate(true)
+		new[PROPS_KEY]["lifes"] = new["max_lifes"]
 		new[PLAYER_NAME_KEY] = username
 		new["difficulty"] = difficulty
 		meta_data["players"].set(username, new)
@@ -150,11 +158,11 @@ func add_player(username: String, difficulty: int) -> bool:
 
 func save_game_on_quit() -> void: 
 	if PlayerParameters.player_name:
-		print("INFO: game saved actions started")
+		print("MetaData INFO: game saved actions started")
 		save_game()
 		$Timer.start()
 		await $Timer.timeout
-		print("INFO: game saved actions finished")
+		print("MetaData INFO: game saved actions finished")
 
 func save_game():
 	PlayerParameters.prepare_to_save()

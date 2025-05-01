@@ -7,7 +7,7 @@ class_name SoulComponent extends Node3D
 var is_player: bool = false
 
 func _ready():
-	souls = Vector3(randi_range(1,8), randi_range(0,5), randi_range(0, 2))
+	souls = Vector3(randi_range(1 * EnemyParameters.drop_modifier,8 * EnemyParameters.drop_modifier), randi_range(1, 5 * EnemyParameters.drop_modifier), randi_range(0, 2 * EnemyParameters.drop_modifier))
 
 # returns Vector3 if Vector contains - vaues - it shows tha operation is unsuccessfull
 # and negative values not enough, else -  operation successfull

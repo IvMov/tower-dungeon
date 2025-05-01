@@ -1,6 +1,15 @@
 extends Node
 var max_lvl: int = 10
 
+#persist
+var hp_modifier: float = 1.0
+var dmg_resist_modifier: float = 1.0
+var stamina_modifier: float = 1.0
+var hp_regen_modifier: float = 1.0
+var stamina_regen_modifier: float = 1.0
+var drop_modifier: float = 1
+
+var enemies_data: Dictionary = {}
 var enemy_expirience: Dictionary = {
 	"tier_1_enemy": {
 		"lvl": 0, 
@@ -10,6 +19,24 @@ var enemy_expirience: Dictionary = {
 	}
 }
 
+func load_enemies_data(player_data: Dictionary) -> void:
+	enemy_expirience = player_data["enemy_expirience"]
+	adjust_difficulty()
+
+func adjust_difficulty() -> void:
+	if GameConfig.game_difficulty == 2:
+		return
+	if GameConfig.game_difficulty == 1:
+		hp_modifier = 0.8
+		hp_regen_modifier = 0.5
+		stamina_regen_modifier = 0.5
+	elif GameConfig.game_difficulty == 3:
+		drop_modifier = 1.5
+		hp_modifier = 1.5
+		dmg_resist_modifier = 1.2
+		hp_regen_modifier = 1.5
+		stamina_modifier = 1.5
+		stamina_regen_modifier = 1.5
 
 func add_exp(enemy_name: String, value: float) -> void:
 	var enemy: Dictionary = get_enemy_data(enemy_name)
