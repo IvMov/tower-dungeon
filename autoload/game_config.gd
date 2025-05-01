@@ -16,8 +16,8 @@ func _ready() -> void:
 	recalculate_screen_grid_block()
 	resize_font()
 
-func _unhandled_input(event):
-	if event.is_action("full_screen") && event.is_released():
+func _unhandled_key_input(event: InputEvent) -> void:
+	if event.is_action_pressed("full_screen"):
 		resize_screen()
 
 func recalculate_screen_grid_block() -> void:

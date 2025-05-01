@@ -92,7 +92,7 @@ func do_explosion() -> void:
 
 
 func on_life_timer_timeout() -> void:
-	var item: ItemBulk = ItemBulk.new(Constants.ITEM_CRYSTAL, 1)
+	var item: ItemBulk = ItemBulk.new(Constants.get_item_by_id(Constants.ITEM_CRYSTAL_ID), 1)
 	global_position = global_position + Vector3(randf_range(-RAND, RAND), 0, randf_range(-RAND, RAND))
 	global_position.y = RAND
 	GameEvents.emit_item_add(Vector3(2, global_position.x, global_position.z), item, global_position)

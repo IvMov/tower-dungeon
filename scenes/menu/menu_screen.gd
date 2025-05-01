@@ -3,6 +3,7 @@ class_name MenuScreen extends CanvasLayer
 @onready var start_button: Button = $MarginContainer/Bacground/VBoxContainer/StartButton
 @onready var restart_button: Button = $MarginContainer/Bacground/VBoxContainer/RestartButton
 @onready var give_up_button: Button = $MarginContainer/Bacground/VBoxContainer/GiveUpButton
+@onready var v_box_container: VBoxContainer = $MarginContainer/Bacground/VBoxContainer
 @onready var bacground: ColorRect = $MarginContainer/Bacground
 
 func _ready():
@@ -34,13 +35,21 @@ func _on_restart_button_pressed() -> void:
 	GameEvents.emit_game_started()
 	get_tree().change_scene_to_packed(ScreenTransition.MAIN)
 	ScreenTransition.play_transition_back()
+	queue_free()
 
 func _on_properties_button_pressed() -> void:
-	get_parent().add_child(ScreenTransition.PROPERTIES_SCREEN.instantiate())
-
+	var scene = ScreenTransition.PROPERTIES_SCREEN.instantiate()
+	get_parent().add_child(scene)
+	scene.last_scene = self
+	bacground.color.a = 0
+	v_box_container.visible = false
 
 func _on_controls_button_pressed() -> void:
-	get_parent().add_child(ScreenTransition.CONTROL_SCREEN.instantiate())
+	var scene = ScreenTransition.CONTROL_SCREEN.instantiate()
+	get_parent().add_child(scene)
+	scene.last_scene = self
+	bacground.color.a = 0
+	v_box_container.visible = false
 
 func _on_give_up_button_pressed() -> void:
 	MetaProgression.save_game()

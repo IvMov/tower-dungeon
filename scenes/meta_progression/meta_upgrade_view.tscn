@@ -1,0 +1,104 @@
+[gd_scene load_steps=11 format=3 uid="uid://d36vkj8626jjg"]
+
+[ext_resource type="PackedScene" uid="uid://dgx4dmy8jeqee" path="res://scenes/ui/parts/hoverable.tscn" id="1_4i3kl"]
+[ext_resource type="Script" uid="uid://2pw3huxbcbbm" path="res://scenes/meta_progression/meta_upgrade_view.gd" id="2_rx8fx"]
+[ext_resource type="PackedScene" uid="uid://dcslrotbieria" path="res://scenes/ui/parts/flying_upgrade_view.tscn" id="3_altb8"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_4i3kl"]
+viewport_path = NodePath("Sprite3D/SubViewport")
+
+[sub_resource type="BoxMesh" id="BoxMesh_i8ukk"]
+size = Vector3(0.8, 0.7, 0.8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4i3kl"]
+size = Vector3(1.5, 3, 1.5)
+
+[sub_resource type="Animation" id="Animation_d6eq0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D/MetaUpgradeHolder:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3q3wc"]
+resource_name = "rotate"
+length = 10.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D/MetaUpgradeHolder:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c0kls"]
+_data = {
+&"RESET": SubResource("Animation_d6eq0"),
+&"rotate": SubResource("Animation_3q3wc")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rx8fx"]
+size = Vector3(0.8, 0.7, 0.8)
+
+[node name="MetaUpgradeView" instance=ExtResource("1_4i3kl")]
+script = ExtResource("2_rx8fx")
+
+[node name="FlyingUpgradeView" parent="." index="0" instance=ExtResource("3_altb8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6277, 0)
+
+[node name="FlyingText" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.80903, -0.180341)
+visible = false
+
+[node name="Sprite3D" parent="FlyingText" index="0"]
+texture = SubResource("ViewportTexture_4i3kl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="2"]
+mesh = SubResource("BoxMesh_i8ukk")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+collision_layer = 32
+collision_mask = 513
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.952266, 0)
+shape = SubResource("BoxShape3D_4i3kl")
+
+[node name="MetaUpgradeHolder" type="Node3D" parent="MeshInstance3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.481512, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+libraries = {
+&"": SubResource("AnimationLibrary_c0kls")
+}
+autoplay = "rotate"
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.57778, 0)
+collision_layer = 33
+collision_mask = 513
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.573637, 0)
+shape = SubResource("BoxShape3D_rx8fx")
+
+[connection signal="mouse_entered" from="MeshInstance3D/StaticBody3D" to="." method="_on_static_body_3d_mouse_entered"]
+[connection signal="mouse_exited" from="MeshInstance3D/StaticBody3D" to="." method="_on_static_body_3d_mouse_exited"]
+
+[editable path="FlyingText"]

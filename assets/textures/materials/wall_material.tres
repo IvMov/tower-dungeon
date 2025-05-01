@@ -3,8 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://cgo1exyp0iy2c" path="res://assets/textures/Brick 1 - 128x128.png" id="1_orxnw"]
 
 [resource]
-shading_mode = 0
 albedo_texture = ExtResource("1_orxnw")
-albedo_texture_force_srgb = true
 uv1_scale = Vector3(0.3, 0.3, 0.3)
 uv1_triplanar = true

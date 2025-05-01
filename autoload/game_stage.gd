@@ -14,10 +14,7 @@ func _ready():
 	GameEvents.change_game_stage.connect(on_change_game_stage)
 
 func _unhandled_input(event):
-	
 	if event.is_action_pressed("exit"):
-		print("eventEXIST")
-		print(current_game_stage)
 		if current_game_stage == Stage.INVENTORY:
 			GameEvents.emit_change_game_stage(Stage.GAME)
 		elif current_game_stage == Stage.TRAIDER:
@@ -25,7 +22,6 @@ func _unhandled_input(event):
 		elif current_game_stage == Stage.GAME:
 			GameEvents.emit_change_game_stage(Stage.MENU)
 		elif current_game_stage == Stage.MENU && PlayerParameters.player:
-			print("me?")
 			GameEvents.emit_change_game_stage(Stage.GAME)
 
 	if event.is_action_pressed("inventory"):

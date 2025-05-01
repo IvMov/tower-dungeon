@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="MetaUpgrade" load_steps=3 format=3 uid="uid://drac0puyo3j2"]
+
+[ext_resource type="Script" uid="uid://ckno8ho1jfj4a" path="res://resources/upgrades/meta_upgrade.gd" id="1_32f1l"]
+[ext_resource type="PackedScene" uid="uid://ca4cc1xyc25gm" path="res://scenes/projectiles/fire_blade_trap_projectile.tscn" id="1_qyo3n"]
+
+[resource]
+script = ExtResource("1_32f1l")
+id = 11
+is_skill = true
+object = ExtResource("1_qyo3n")
+title = "fire_blade_trap_skill_t"
+description = "fire_blade_trap_skill_d"
+price = Vector4(10, 10, 10, 2)
+metadata/_custom_type_script = "uid://ckno8ho1jfj4a"

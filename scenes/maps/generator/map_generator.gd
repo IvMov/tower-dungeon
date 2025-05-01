@@ -84,7 +84,6 @@ func reset() -> void:
 
 func set_random_color_for_stage() -> void:
 	var next_stage_color: Color = Color(rand_float_with_step(), rand_float_with_step(), rand_float_with_step())
-	print("random color %s" % next_stage_color)
 	if used_colors.has(next_stage_color) || (next_stage_color.r == next_stage_color.g && next_stage_color.b == next_stage_color.g):
 		set_random_color_for_stage()
 	else:

@@ -17,7 +17,7 @@ func _ready():
 	hard.pressed.connect(on_difficulty_pressed_hard)
 	toggle_buttons(current_difficulty)
 
-func _unhandled_input(event):
+func _unhandled_key_input(event):
 	if event.is_action_pressed("exit"):
 		on_back_button_pressed()
 

@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcslrotbieria"]
+
+[ext_resource type="Script" uid="uid://ba34qane0pn1l" path="res://scenes/ui/parts/flying_upgrade_view.gd" id="1_xbef6"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_lvu0g"]
+viewport_path = NodePath("Sprite3D/SubViewport")
+
+[node name="FlyingUpgradeView" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_xbef6")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_lvu0g")
+
+[node name="SubViewport" type="SubViewport" parent="Sprite3D"]
+transparent_bg = true
+sdf_oversize = 0
+sdf_scale = 2
+size = Vector2i(500, 400)
+
+[node name="MarginContainer" type="MarginContainer" parent="Sprite3D/SubViewport"]
+custom_minimum_size = Vector2(500, 400)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Sprite3D/SubViewport/MarginContainer"]
+custom_minimum_size = Vector2(500, 350)
+layout_mode = 2
+size_flags_vertical = 0
+bbcode_enabled = true
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="Sprite3D/SubViewport/MarginContainer"]
+visible = false
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+size_flags_vertical = 8
+horizontal_alignment = 1
+vertical_alignment = 2

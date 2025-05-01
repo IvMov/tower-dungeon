@@ -78,7 +78,6 @@ func emit_souls_collect(position: Vector3, value: Vector3):
 	souls_collect.emit(position, value)
 
 func emit_souls_update_view(value: Vector3):
-	print(value)
 	souls_update_view.emit(value)
 
 func emit_item_remove(from: Vector3, quantity: int):

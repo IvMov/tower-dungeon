@@ -55,7 +55,7 @@ custom_minimum_size = Vector2(184, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 2
-text = "Back"
+text = "menu_back_btn"
 
 [node name="Label3" type="Label" parent="MarginContainer"]
 layout_mode = 2

@@ -1,4 +1,4 @@
-class_name FireBladeTrapProjectile extends Node3D
+class_name FireBladeTrapProjectile extends RigidBody3D
 
 const RAND: float = 0.05
 var rotation_speed: int = 4
@@ -31,6 +31,12 @@ var before_explosion_time_unit: float = 0.2
 func _ready() -> void:
 	life_timer.timeout.connect(on_life_timer_timeout)
 	projectile_particles.emitting = true
+
+func set_disabled() -> void: 
+	life_timer.stop()
+	explosion_timer.stop()
+	collision_particles.emitting = true
+	projectile_particles.emitting = false
 
 func do_explosion() -> void:
 	if explosion:

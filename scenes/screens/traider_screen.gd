@@ -54,11 +54,11 @@ func change_margins() -> void:
 
 
 func load_items() -> void:
-	items.append(ItemBulk.new(Constants.ITEM_CRYSTAL, randi_range(1,20)))
-	items.append(ItemBulk.new(Constants.ITEM_STONE, randi_range(1,20)))
-	items.append(ItemBulk.new(Constants.HEAL_TABLET, randi_range(5,20)))
-	items.append(ItemBulk.new(Constants.MANA_TABLET, randi_range(5,20)))
-	items.append(ItemBulk.new(Constants.STAMINA_TABLET, randi_range(5,20)))
+	items.append(ItemBulk.new(Constants.get_item_by_id(Constants.ITEM_CRYSTAL_ID), randi_range(1,20)))
+	items.append(ItemBulk.new(Constants.get_item_by_id(Constants.ITEM_STONE_ID), randi_range(1,20)))
+	items.append(ItemBulk.new(Constants.get_item_by_id(Constants.ITEM_HEAL_ID), randi_range(5,20)))
+	items.append(ItemBulk.new(Constants.get_item_by_id(Constants.ITEM_MANA_ID), randi_range(5,20)))
+	items.append(ItemBulk.new(Constants.get_item_by_id(Constants.ITEM_STAMINA_ID), randi_range(5,20)))
 
 
 func prepare_view() -> void:

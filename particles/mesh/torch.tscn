@@ -67,8 +67,6 @@ shadow_blur = 5.0
 distance_fade_enabled = true
 distance_fade_begin = 80.0
 distance_fade_shadow = 60.0
-omni_range = 10.0
-omni_attenuation = 0.574349
 omni_shadow_mode = 0
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="Head"]

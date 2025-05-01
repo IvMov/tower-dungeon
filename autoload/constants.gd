@@ -10,24 +10,24 @@ const FIRE_PROJECTILE: PackedScene = preload("res://scenes/projectiles/fire_proj
 const TRAIDER_ITEM: PackedScene = preload("res://scenes/screens/traider_item.tscn")
 const TEXT: PackedScene = preload("res://scenes/ui/parts/text.tscn")
 const SOUND_BUTTON: PackedScene = preload("res://scenes/ui/sound_button.tscn")
+const META_UPGRADE_VIEW: PackedScene = preload("res://scenes/meta_progression/meta_upgrade_view.tscn")
 
-# deffensive
-const ZOOM_TABLET = preload("res://resources/items/zoom_tablet.tres")
-#weapons
-const SPARK_TABLET = preload("res://resources/items/spark_tablet.tres")
-const ITEM_STONE: Item = preload("res://resources/items/consumables/stone.tres")
-const ITEM_CRYSTAL: Item = preload("res://resources/items/consumables/crystal.tres")
-const ITEM_SNOWBALL_TABLET: Item = preload("res://resources/items/snowball_tablet.tres")
-const FIREBALL_TABLET = preload("res://resources/items/fireball_tablet.tres")
-const ACID_METEOR_TABLET = preload("res://resources/items/acid_meteor_tablet.tres")
-const FIRE_BLADE_TRAP_TABLET = preload("res://resources/items/fire_blade_trap_tablet.tres")
+# items
+const ITEM_SPARK_ID: int = 0
+const ITEM_ZOOM_ID: int = 1
+const ITEM_STONE_ID: int = 6
+const ITEM_CRYSTAL_ID: int = 7
+const ITEM_SNOWBALL_ID: int = 8
+const ITEM_FIREBALL_ID: int = 9
+const ITEM_ACID_METEOR_ID: int = 10
+const ITEM_FIRE_BLADE_TRAP_ID: int = 11
+const ITEM_HEAL_ID: int = 30
+const ITEM_MANA_ID: int = 31
+const ITEM_STAMINA_ID: int = 32
+const ITEM_DAMAGE_ID: int = 33
+const ITEM_SPEED_ID: int = 34
 
-#consumables 
-const HEAL_TABLET = preload("res://resources/items/consumables/heal_tablet.tres")
-const MANA_TABLET = preload("res://resources/items/consumables/mana_tablet.tres")
-const STAMINA_TABLET = preload("res://resources/items/consumables/stamina_tablet.tres")
-const DAMAGE_BOOST_TABLET = preload("res://resources/items/consumables/damage_boost_tablet.tres")
-const SPEED_BOOST_TABLET = preload("res://resources/items/consumables/speed_boost_tablet.tres")
+@export var items_pool: Dictionary[int, Item]
 
 #map_generator
 const CORE_TILE_SIZE: float = 8.0
@@ -42,3 +42,6 @@ const RED_SOUL_COLOR: Color = Color(10, 0, 0, 0.3)
 var PROJECTILES: Node
 var ENEMIES: Node
 var SOULS: Node
+
+func get_item_by_id(id: int) -> Item:
+	return items_pool.get(id)

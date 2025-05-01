@@ -54,7 +54,6 @@ func do_action() -> bool:
 
 
 func shoot_the_wall() -> void:
-	print("TODO: RUN ANIMATION OF SHOOTING THE WALL!")
 	timer.start()
 	
 

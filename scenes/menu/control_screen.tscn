@@ -18,7 +18,7 @@ mouse_filter = 2
 
 [node name="ColorRect" type="ColorRect" parent="MarginContainer"]
 layout_mode = 2
-color = Color(0.146802, 0.212975, 0.209198, 1)
+color = Color(0.145098, 0.211765, 0.207843, 0.505882)
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/ColorRect"]
 custom_minimum_size = Vector2(500, 0)

@@ -89,7 +89,7 @@ text = "menu_quit_btn"
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
-text = "created_by_erridan"
+text = "Created by Erridan"
 
 [node name="Label2" type="Label" parent="MarginContainer"]
 layout_mode = 2
@@ -101,7 +101,7 @@ text = "v 0.0.1"
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
-text = "Thanks everyone who played my game!"
+text = "Thanks for everyone who played it!"
 
 [connection signal="pressed" from="MarginContainer/Bacground/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MarginContainer/Bacground/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]

@@ -6,6 +6,7 @@ extends CanvasLayer
 @onready var window_button = $MarginContainer/Bacground/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/WindowButton
 @onready var sfx_random_audio_player_component = $SfxRandomAudioPlayerComponent
 
+var last_scene: CanvasLayer 
 
 
 func _ready():
@@ -16,11 +17,12 @@ func _ready():
 	#GameEvents.window_changed.connect(on_window_changed)
 	update_display()
 
-func _unhandled_input(event):
+func _unhandled_key_input(event):
 	if event.is_action_pressed("exit"):
 		on_back_button_pressed()
 		
-		
+
+
 func update_display():
 	window_button.text = "Windowed" if GameConfig.full_screen else "Full screen"
 	sfx_slider.value = get_bus_volume("sfx")
@@ -52,6 +54,8 @@ func on_audio_slider_changed(value: float, bus_name: String):
 
 
 func on_back_button_pressed():
+	last_scene.bacground.color.a = 0.5
+	last_scene.v_box_container.visible = true
 	queue_free()
 
 func on_window_changed():

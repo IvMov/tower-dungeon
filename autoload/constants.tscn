@@ -1,7 +1,36 @@
-[gd_scene load_steps=2 format=3 uid="uid://rhxioyluj45w"]
+[gd_scene load_steps=16 format=3 uid="uid://rhxioyluj45w"]
 
 [ext_resource type="Script" uid="uid://cg5lgp47wg587" path="res://autoload/constants.gd" id="1_k57il"]
+[ext_resource type="Script" uid="uid://blbht47vwtj68" path="res://resources/items/item.gd" id="2_dh5uh"]
+[ext_resource type="Resource" uid="uid://c4ecbn56algt1" path="res://resources/items/consumables/crystal.tres" id="3_fhm7h"]
+[ext_resource type="Resource" uid="uid://dop7chluwc2fd" path="res://resources/items/consumables/damage_boost_tablet.tres" id="4_2rcu4"]
+[ext_resource type="Resource" uid="uid://ked6b6st6u2v" path="res://resources/items/consumables/heal_tablet.tres" id="5_f5bv3"]
+[ext_resource type="Resource" uid="uid://chdejyqqv4uqp" path="res://resources/items/consumables/mana_tablet.tres" id="6_orrau"]
+[ext_resource type="Resource" uid="uid://cputsys2rqsjs" path="res://resources/items/consumables/speed_boost_tablet.tres" id="7_t15ty"]
+[ext_resource type="Resource" uid="uid://3pv08pvv3jmo" path="res://resources/items/consumables/stamina_tablet.tres" id="8_cdqwj"]
+[ext_resource type="Resource" uid="uid://8en0o1rnv7wk" path="res://resources/items/consumables/stone.tres" id="9_14spd"]
+[ext_resource type="Resource" uid="uid://dpiiuwsrf8odi" path="res://resources/items/acid_meteor_tablet.tres" id="10_7aghq"]
+[ext_resource type="Resource" uid="uid://dexj5x7ln0n5d" path="res://resources/items/fireball_tablet.tres" id="11_x1yqk"]
+[ext_resource type="Resource" uid="uid://cl6ifis5pbfq2" path="res://resources/items/fire_blade_trap_tablet.tres" id="12_vdgpf"]
+[ext_resource type="Resource" uid="uid://bitwfv1j10r77" path="res://resources/items/snowball_tablet.tres" id="13_2w2iw"]
+[ext_resource type="Resource" uid="uid://dvchjgjhfi6ra" path="res://resources/items/spark_tablet.tres" id="14_2bny1"]
+[ext_resource type="Resource" uid="uid://cw8ej827nieo2" path="res://resources/items/zoom_tablet.tres" id="15_2cawl"]
 
 [node name="Constatns" type="Node"]
 process_mode = 3
 script = ExtResource("1_k57il")
+items_pool = Dictionary[int, ExtResource("2_dh5uh")]({
+0: ExtResource("14_2bny1"),
+1: ExtResource("15_2cawl"),
+6: ExtResource("9_14spd"),
+7: ExtResource("3_fhm7h"),
+8: ExtResource("13_2w2iw"),
+9: ExtResource("11_x1yqk"),
+10: ExtResource("10_7aghq"),
+11: ExtResource("12_vdgpf"),
+30: ExtResource("5_f5bv3"),
+31: ExtResource("6_orrau"),
+32: ExtResource("8_cdqwj"),
+33: ExtResource("4_2rcu4"),
+34: ExtResource("7_t15ty")
+})

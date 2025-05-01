@@ -1,20 +1,23 @@
 class_name Inventory extends Storage
 
+const NAME: String = "inventory"
 
 func _ready():
 	GameEvents.item_remove.connect(on_item_remove)
 	GameEvents.item_add.connect(on_item_add)
-	id = 0
-	size = Vector2(4, 3)
-	
-	var item_bulk2: ItemBulk = ItemBulk.new(Constants.SPEED_BOOST_TABLET, 10)
-	var item_bulk3: ItemBulk = ItemBulk.new(Constants.DAMAGE_BOOST_TABLET, 5)
-	var item_bulk4: ItemBulk = ItemBulk.new(Constants.SPARK_TABLET, 1)
+	var data: Dictionary = PlayerParameters.player_data[MetaProgression.STORAGES_KEY]["inventory"]
+	load_storage(data)
 
-	items[Vector2(1,0)] = item_bulk2
-	items[Vector2(1,1)] = item_bulk3
-	items[Vector2(1,2)] = item_bulk4
-	
+func save_storage(player_data: Dictionary, storage_name: String) -> void:
+	#var item_bulk2: ItemBulk = ItemBulk.new(Constants.get_item_by_id(Constants.ITEM_SPEED_ID), 10)
+	#var item_bulk3: ItemBulk = ItemBulk.new(Constants.get_item_by_id(Constants.ITEM_DAMAGE_ID), 5)
+	#var item_bulk4: ItemBulk = ItemBulk.new(Constants.get_item_by_id(Constants.ITEM_SPARK_ID), 1)
+#
+	#items[Vector2(1,0)] = item_bulk2
+	#items[Vector2(1,1)] = item_bulk3
+	#items[Vector2(1,2)] = item_bulk4
+	super.save_storage(player_data, storage_name)
+
 
 func add(key: Vector3, item_bulk: ItemBulk) -> void:
 	var key_2d: Vector2 = Vector2(key.y, key.z)

@@ -19,7 +19,7 @@ func _ready() -> void:
 	
 func on_life_timer_timeout() -> void:
 	stone.visible = false
-	var item: ItemBulk = ItemBulk.new(Constants.ITEM_STONE, 1)
+	var item: ItemBulk = ItemBulk.new(Constants.get_item_by_id(Constants.ITEM_STONE_ID), 1)
 	global_position = global_position + Vector3(randf_range(-RAND, RAND), 0, randf_range(-RAND, RAND))
 	GameEvents.emit_item_add(Vector3(2, global_position.x, global_position.z), item, global_position)
 	queue_free()

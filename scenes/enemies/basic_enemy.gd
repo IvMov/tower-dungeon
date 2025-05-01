@@ -301,8 +301,7 @@ func reset_agr_area_size() -> void:
 
 # trash
 func custom_death_actions() -> void:
-	# required by health component, welcome to spagetti code
-	pass
+	PlayerParameters.kills+=1
 
 func get_random_sign() -> int:
 	return -1 if randf() <=0.5 else 1;

@@ -23,6 +23,10 @@ BUGS:
 3) player can jump and put crystals into fire near fontain
 4) sometimes map generates not very well ( one room went to another bounds
 5) check push functionality ( when explosion center near enemy - it's not pushed out.
+6) when item on cd, and drag and drop it - the view without item will still run timer of cd3
+7) when in shop not enough money for (buttons updates view but price left white)
+
+
 
 
 
@@ -40,3 +44,7 @@ BUGS:
 2025-04-23 add coins drop, collect and animation, add new souls - very good looks like
 2025-04-25 start migration of ui
 2025-04-26 add save logic for new players and templates, improve player saving and menu elements, connect menu to game, fix pause and autoload scenes
+2025-04-27 add some translations for new menu and skills
+2025-04-28 fix some translation issues
+2025-04-29 work on saves of game and upgrades hall - looks bad, much work waits
+2025-04-30 works on saves - refactor constants file - much work, but still not finished

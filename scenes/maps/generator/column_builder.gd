@@ -43,14 +43,14 @@ func add_crystals(is_deadend: bool, column: Node3D) -> void:
 			column.add_child(crystal)
 			crystal.rotate_random()
 			var crystal_position = column.global_position + Vector3(rand_sign() * 0.6, randf_range(0, 2),rand_sign() * 0.6)
-			var item_bulk: ItemBulk = ItemBulk.new(Constants.ITEM_CRYSTAL, randi_range(1, 5))
+			var item_bulk: ItemBulk = ItemBulk.new(Constants.items_pool[Constants.ITEM_CRYSTAL_ID], randi_range(1, 5))
 			GameEvents.emit_item_add(Vector3(2, 0, 0), item_bulk ,crystal_position)
 
 func add_stones(is_deadend: bool, column: Node3D) -> void:
 	if (is_deadend && randf() > 0.2) || (!is_deadend && randf() > 0.8): 
 		for i in randi_range(0, 7 if is_deadend else 2):
 			var stone_position = column.global_position + Vector3(rand_sign() * (0.55 + randf()), 0,rand_sign() * (0.55 + randf()))
-			var item_bulk: ItemBulk = ItemBulk.new(Constants.ITEM_STONE, randi_range(1, 20))
+			var item_bulk: ItemBulk = ItemBulk.new(Constants.items_pool[Constants.ITEM_CRYSTAL_ID], randi_range(1, 20))
 			GameEvents.emit_item_add(Vector3(2, 0, 0), item_bulk ,stone_position)
 
 

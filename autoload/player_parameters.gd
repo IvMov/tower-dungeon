@@ -1,11 +1,11 @@
 extends Node
-# TODO: after add saving and different players, add method to update var values from saving
 
-const BASE_SPEED: float = 400.0
-const BASE_JUMP_VELOCITY: float = 500.0
-const BASE_AIR_SPEED: float = 250.0 # not work as need to adjust velocity in process method for player
-const MOVE_SPEED_UP_MOD: float = 2.0
-const JUMP_SPEED_UP_MOD: float = 1.2
+#TODO: changed to vars but also need to change style
+var BASE_SPEED: float = 400.0
+var BASE_JUMP_VELOCITY: float = 500.0
+var BASE_AIR_SPEED: float = 250.0 # not work as need to adjust velocity in process method for player
+var MOVE_SPEED_UP_MOD: float = 2.0
+var JUMP_SPEED_UP_MOD: float = 1.2
 
 var player_name: String
 var lifes: int = 3
@@ -19,26 +19,72 @@ var is_aiming: bool = false
 var is_runing: bool = false
 var last_position: Vector3 = Vector3.ZERO
 
+var player_data: Dictionary
 var player: Player
 var inventory: Inventory
 var belt: Belt
 var hands: Hands
 
+
+
 var souls: Vector3 = Vector3.ZERO
 var coins: int
 var kills: int = 0
 var skill_expirience: Dictionary = {}
+var meta_upgrades: Dictionary = {}
 
 #boosters
 var damage_boost: float = 1
 var speed_boost: float = 1
 
-func get_current_speed() -> float:
-	return current_speed * speed_boost
-
 func _ready() -> void:
 	GameEvents.add_skill.connect(on_add_skill)
 	GameEvents.player_entered.connect(on_player_entered)
+
+func load_player_by_username(username: String) -> void: 
+	player_data = MetaProgression.get_by_username(username)
+	souls = player_data["souls"]
+	coins = player_data["coins"]
+	kills = player_data["kills"]
+	skill_expirience = player_data["skill_expirience"]
+	meta_upgrades = player_data[MetaProgression.META_UPGRADES_KEY]
+	load_props()
+
+func load_props() -> void:
+	var props: Dictionary = player_data[MetaProgression.PROPS_KEY]
+	lifes = props["lifes"]
+	max_jumps = props["max_jumps"]
+	BASE_SPEED = props["base_speed"]
+	BASE_JUMP_VELOCITY = props["base_jump"]
+	MOVE_SPEED_UP_MOD = props["speed_up_mode"]
+	JUMP_SPEED_UP_MOD = props["jump_speed_up_mode"]
+	damage_boost = props["dmg_boost"]
+	speed_boost = props["speed_boost"]
+
+func prepare_to_save() -> void: 
+	#core
+	player_data["souls"] = souls
+	player_data["coins"] = coins
+	player_data["kills"] = kills
+	player_data["skill_expirience"] = skill_expirience
+	player_data[MetaProgression.META_UPGRADES_KEY] = meta_upgrades
+	#props
+	meta_upgrades = player_data[MetaProgression.META_UPGRADES_KEY]
+	player_data[MetaProgression.PROPS_KEY]["lifes"] = lifes 
+	player_data[MetaProgression.PROPS_KEY]["max_jumps"] = max_jumps 
+	player_data[MetaProgression.PROPS_KEY]["base_speed"] = BASE_SPEED 
+	player_data[MetaProgression.PROPS_KEY]["base_jump"] = BASE_JUMP_VELOCITY 
+	player_data[MetaProgression.PROPS_KEY]["speed_up_mode"] = MOVE_SPEED_UP_MOD 
+	player_data[MetaProgression.PROPS_KEY]["jump_speed_up_mode"] = JUMP_SPEED_UP_MOD 
+	player_data[MetaProgression.PROPS_KEY]["dmg_boost"] = damage_boost 
+	player_data[MetaProgression.PROPS_KEY]["speed_boost"] = speed_boost 
+	#storages
+	inventory.save_storage(player_data, inventory.NAME)
+	belt.save_storage(player_data, belt.NAME)
+	hands.save_storage(player_data, hands.NAME)
+
+func get_current_speed() -> float:
+	return current_speed * speed_boost
 
 func add_skill_exp(skill_id: int, value: float) -> void:
 	var skill: Dictionary = get_skill_data(skill_id)
@@ -89,6 +135,7 @@ func lvl_up_skill(skill: Dictionary) -> bool:
 		skill["next_lvl_exp"] = skill["next_lvl_exp"] * skill["exp_multiplier"]
 		return true
 
+
 func add_coin() -> void:
 	coins += 1
 	print(coins)
@@ -103,6 +150,17 @@ func add_soul(soul_type: Enums.SoulType) -> void:
 	GameEvents.emit_souls_update_view(souls)
 	print(souls)
 
+#before close entry room save data for each meta data
+func add_meta_upgrade_val(key: int, value: Vector4) -> void:
+	if meta_upgrades.has(key):
+		var upgrade_data: Dictionary = meta_upgrades.get(key)
+		if value == upgrade_data["real"]:
+			return
+		upgrade_data["real"] = value
+		if upgrade_data["real"] >= upgrade_data["required"]:
+			upgrade_data["done"] = true
+
+
 func get_position(height: float = 0) -> Vector3:
 	if player && player.is_inside_tree():
 		last_position = player.global_position
@@ -112,8 +170,8 @@ func get_position(height: float = 0) -> Vector3:
 	return last_position
 
 func on_player_entered(player: Player) -> void:
+	player_name = player_data[MetaProgression.PLAYER_NAME_KEY]
 	self.player = player
-	player.player_name = player_name
 	inventory = player.inventory
 	belt = player.belt
 	hands = player.hands

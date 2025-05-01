@@ -1,6 +1,6 @@
 extends Node
 
-@export var permanent_upgrade_pool: Array[MetaUpgrade]
+@export var upgrade_pool: Dictionary[int, MetaUpgrade]
 
 const PLAYERS_KEY: String = "players"
 const PLAYER_NAME_KEY: String = "player_name"
@@ -8,7 +8,6 @@ const PROPS_KEY: String = "props"
 const STORAGES_KEY: String = "storages"
 const META_UPGRADES_KEY: String = "meta_upgrades"
 const CONFIG_KEY: String = "config"
-
 
 const FILE_PATH: String = "user://tower_dungeon.save"
 
@@ -46,13 +45,14 @@ var NEW_PLAYER: Dictionary = {
 			"items": {}
 		},
 		"hands": {
-			"id": 2,
+			"id": 3,
 			"size": Vector2(0, 1),
 			"items": {}
 		}
 	},
 	"skill_expirience": {},
-	META_UPGRADES_KEY: {},
+	META_UPGRADES_KEY: {
+	},
 	CONFIG_KEY: {
 		"sound": {
 			"sfx": 10.0,
@@ -73,41 +73,46 @@ var meta_upgrade: Dictionary = {
 	#upgradeJob runs ones when achieved and add some new to game - higher damage base or new belt section
 } 
 
-
-#wrapper object for all players and configs to be persist
+#parrent wrapper object for all players and configs to be persist
 var meta_data: Dictionary = {}
 
 
 func _ready() -> void:
 	meta_data = init_meta_data()
-	#reset_file()
+	#reset_file() #uncomit to erase all saves
 
-func load_available_meta_upgrades() -> void:
-	for upgrade in permanent_upgrade_pool:
-		meta_data[PLAYERS_KEY]\
-		.get(PlayerParameters.player.player_name)[META_UPGRADES_KEY]\
-		.set(upgrade.get("id"), upgrade)
-
-func get_players() -> Array[Dictionary]:
-	var result: Array[Dictionary] = []
-	for player in meta_data[PLAYERS_KEY].values():
-		result.append({
-			PLAYER_NAME_KEY: player[PLAYER_NAME_KEY],
-			"difficulty": player["difficulty"],
-			"kills": player["kills"]
-		})
-	return result
-
-func get_by_username(username: String) -> Dictionary:
-	var player = meta_data[PLAYERS_KEY].get(username)
-	return player if player else {}
-	
 func init_meta_data() -> Dictionary:
 	if !FileAccess.file_exists(FILE_PATH):
 		return EMPTY_METADATA.duplicate()
 	else:
 		meta_data = read_file()
 		return meta_data
+
+
+func load_available_meta_upgrades(username: String) -> void:
+	for id in upgrade_pool:
+		var meta_upgrade: Dictionary = {
+			"id": id,
+			"required": upgrade_pool[id].price,
+			"real": Vector4.ZERO,
+			"is_done": false
+		}
+		meta_data[PLAYERS_KEY][username][META_UPGRADES_KEY]\
+		.set(id, meta_upgrade)
+
+func get_players() -> Array[Dictionary]:
+	var result: Array[Dictionary] = []
+	for player in meta_data[PLAYERS_KEY]:
+		result.append({
+			PLAYER_NAME_KEY: player,
+			"difficulty": meta_data[PLAYERS_KEY][player]["difficulty"],
+			"kills": meta_data[PLAYERS_KEY][player]["kills"]
+		})
+	return result
+
+func get_by_username(username: String) -> Dictionary:
+	var player = meta_data[PLAYERS_KEY].get(username)
+	return player if player else {}
 
 
 func read_file() -> Dictionary:
@@ -129,7 +134,6 @@ func reset_file():
 	meta_data = EMPTY_METADATA.duplicate()
 	save_file()
 
-
 func add_player(username: String, difficulty: int) -> bool:
 	var player = get_by_username(username)
 	if player:
@@ -140,48 +144,20 @@ func add_player(username: String, difficulty: int) -> bool:
 		new[PLAYER_NAME_KEY] = username
 		new["difficulty"] = difficulty
 		meta_data["players"].set(username, new)
+		load_available_meta_upgrades(username)
 		save_file()
 		return true
 
-func save_player(user_name: String) -> void:
-	meta_data[PLAYERS_KEY]
-	
-func add_empty_upgrade(upgrade: MetaUpgrade):
-	return { "lvl": 0, "base": upgrade.base, "value": upgrade.value }
-	
-	
-func add_upgrade(upgrade: MetaUpgrade):
-	if meta_data["upgrades"][upgrade.id]["lvl"] < upgrade.max_lvl:
-		meta_data["upgrades"][upgrade.id]["lvl"] += 1
-		
-
-func on_game_started():
-	meta_data["runs"] += 1
-
-
-func on_game_win():
-	meta_data["win_runs"] += 1
-
 func save_game_on_quit() -> void: 
-	print("game saved actions started")
-	save_game()
-	$Timer.start()
-	await $Timer.timeout
-	print("game saved actions finished")
+	if PlayerParameters.player_name:
+		print("INFO: game saved actions started")
+		save_game()
+		$Timer.start()
+		await $Timer.timeout
+		print("INFO: game saved actions finished")
 
 func save_game():
-	
-	#meta_data["difficulty"] = GameConfig.game_difficulty
-	#meta_data["coins"] += PlayerParameters.coins
-	#meta_data["kills"] += PlayerParameters.kills
-	#meta_data["souls"] += PlayerParameters.souls
-	#var time_manager = get_tree().get_first_node_in_group("arena_time_manager") 
-	#if time_manager && meta_data["best_time"] < time_manager.get_time_elapsed():
-		#meta_data["best_time"] = time_manager.get_time_elapsed();
+	PlayerParameters.prepare_to_save()
+	print(PlayerParameters.player_data)
+	meta_data[PLAYERS_KEY].set(PlayerParameters.player_name, PlayerParameters.player_data)
 	save_file()
-
-
-
-func on_permanent_upgrade_buy(upgrade: MetaUpgrade):
-	add_upgrade(upgrade)
-	

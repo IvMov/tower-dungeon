@@ -1,8 +1,8 @@
 extends CanvasLayer
 
-const EASY_DESCRIPTION: String = "easy_difficulty_description"
-const NORMAL_DESCRIPTION: String = "nomal_difficulty_description"
-const HARD_DESCRIPTION: String= "hard_difficulty_description"
+const EASY_DESCRIPTION: String = "easy_difficulty_d"
+const NORMAL_DESCRIPTION: String = "normal_difficulty_d"
+const HARD_DESCRIPTION: String= "hard_difficulty_d"
 
 @onready var line_edit: LineEdit = $MarginContainer/Bacground/VBoxContainer/LineEdit
 @onready var easy: SoundButton = $MarginContainer/Bacground/VBoxContainer/Difficulties/MarginContainer/Easy
@@ -18,12 +18,9 @@ func _ready() -> void:
 	set_default_difficulty()
 
 func set_default_difficulty() -> void:
-	current_difficulty = 2
-	GameConfig.game_difficulty = current_difficulty
-	normal.button_pressed = true
-	difficulty_description.text = tr(NORMAL_DESCRIPTION)
+	toggle_buttons(2)
 	
-func  _unhandled_input(event):
+func  _unhandled_key_input(event):
 	if event.is_action_pressed("exit"):
 		_on_back_button_pressed()
 
@@ -33,25 +30,30 @@ func is_valid_name() -> bool:
 func toggle_buttons(difficulty: int):
 	if current_difficulty == difficulty:
 		return
-	
-	if current_difficulty == 1:
-		easy.button_pressed = !easy.button_pressed
-		difficulty_description.text = tr(EASY_DESCRIPTION)
-	if current_difficulty == 2:	
-		normal.button_pressed = !normal.button_pressed
-		difficulty_description.text = tr(NORMAL_DESCRIPTION)
-	if current_difficulty == 3:
-		hard.button_pressed = !hard.button_pressed
-		difficulty_description.text = tr(HARD_DESCRIPTION)
 	current_difficulty = difficulty
 	GameConfig.game_difficulty = current_difficulty
+	if current_difficulty == 1:
+		easy.button_pressed = true
+		normal.button_pressed = false
+		hard.button_pressed = false
+		difficulty_description.text = tr(EASY_DESCRIPTION)
+	if current_difficulty == 2:	
+		easy.button_pressed = false
+		normal.button_pressed = true
+		hard.button_pressed = false
+		difficulty_description.text = tr(NORMAL_DESCRIPTION)
+	if current_difficulty == 3:
+		easy.button_pressed = false
+		normal.button_pressed = false
+		hard.button_pressed = true
+		difficulty_description.text = tr(HARD_DESCRIPTION)
  
 func start_game():
 	MusicPlayer.stop()
 	await ScreenTransition.play_transition()
 	GameEvents.emit_change_game_stage(GameStage.Stage.GAME)
 	get_tree().change_scene_to_packed(ScreenTransition.MAIN)
-	PlayerParameters.player_name = user_name
+	PlayerParameters.load_player_by_username(user_name)
 	await ScreenTransition.play_transition_back()
 	queue_free()
 
