@@ -10,5 +10,5 @@ is_skill = true
 object = ExtResource("1_qyo3n")
 title = "fire_blade_trap_skill_t"
 description = "fire_blade_trap_skill_d"
-price = Vector4(10, 10, 10, 2)
+price = Vector4(10, 2, 3, 10)
 metadata/_custom_type_script = "uid://ckno8ho1jfj4a"

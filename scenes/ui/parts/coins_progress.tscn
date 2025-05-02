@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2l050u2m4cjc"]
+
+[ext_resource type="PackedScene" uid="uid://b5onrp6fq8enu" path="res://scenes/ui/bars/base_stat_bar.tscn" id="1_hn14o"]
+[ext_resource type="Script" uid="uid://dkef8qnluwrfu" path="res://scenes/ui/parts/coins_progress.gd" id="2_h481q"]
+
+[node name="CoinsProgress" instance=ExtResource("1_hn14o")]
+script = ExtResource("2_h481q")

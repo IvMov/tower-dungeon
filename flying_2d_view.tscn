@@ -1,0 +1,219 @@
+[gd_scene load_steps=9 format=3 uid="uid://cvokshrn3smhn"]
+
+[ext_resource type="Script" uid="uid://jgj7cvyaq3nt" path="res://flying_2d_view.gd" id="1_ifqv6"]
+[ext_resource type="Texture2D" uid="uid://b6kkvwviy24hs" path="res://assets/textures/my/bars2.png" id="2_uq8gf"]
+[ext_resource type="Texture2D" uid="uid://die0ad3peb6yx" path="res://assets/2d/ui/soul_2.png" id="3_wwdy1"]
+[ext_resource type="Texture2D" uid="uid://clf38no4m63s2" path="res://assets/textures/my/coin1.png" id="4_cqxdv"]
+[ext_resource type="Texture2D" uid="uid://ca3dk7ilbavr6" path="res://assets/2d/ui/soul_3.png" id="5_jo5c8"]
+[ext_resource type="Texture2D" uid="uid://da68ojgypdeav" path="res://assets/2d/ui/soul_1.png" id="6_o7rgw"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uq8gf"]
+resource_local_to_scene = true
+texture = ExtResource("2_uq8gf")
+modulate_color = Color(0, 0.729412, 0.690196, 0.85098)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ifqv6"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="Flying2dView" type="MarginContainer"]
+custom_minimum_size = Vector2(400, 400)
+offset_right = 651.0
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ifqv6")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(400, 220)
+layout_mode = 2
+size_flags_vertical = 0
+bbcode_enabled = true
+text = "long long description long long description long long description long long description long long description long long description long long description long long description long long description "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bars" type="VBoxContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(400, 150)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Header" type="Label" parent="Bars"]
+layout_mode = 2
+text = "research_progress_bars_header "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Coins" type="HBoxContainer" parent="Bars"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Bars/Coins"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+texture = ExtResource("4_cqxdv")
+expand_mode = 4
+flip_v = true
+
+[node name="Coins" type="ProgressBar" parent="Bars/Coins"]
+custom_minimum_size = Vector2(200, 8)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/fill = SubResource("StyleBoxTexture_uq8gf")
+max_value = 10.0
+step = 0.1
+value = 5.0
+show_percentage = false
+
+[node name="CoinsLabel" type="Label" parent="Bars/Coins/Coins"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.5
+offset_top = -11.5
+offset_right = 62.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "0 / 10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Green" type="HBoxContainer" parent="Bars"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Bars/Green"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+texture = ExtResource("6_o7rgw")
+expand_mode = 4
+flip_v = true
+
+[node name="SoulsGreen" type="ProgressBar" parent="Bars/Green"]
+custom_minimum_size = Vector2(200, 8)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/fill = SubResource("StyleBoxTexture_uq8gf")
+max_value = 10.0
+step = 0.1
+value = 5.0
+show_percentage = false
+
+[node name="SoulsGreenLabel" type="Label" parent="Bars/Green/SoulsGreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.5
+offset_top = -11.5
+offset_right = 62.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "0 / 10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Blue" type="HBoxContainer" parent="Bars"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Bars/Blue"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+texture = ExtResource("3_wwdy1")
+expand_mode = 4
+flip_v = true
+
+[node name="SoulsBlue" type="ProgressBar" parent="Bars/Blue"]
+custom_minimum_size = Vector2(200, 8)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/fill = SubResource("StyleBoxTexture_uq8gf")
+max_value = 10.0
+step = 0.1
+value = 5.0
+show_percentage = false
+
+[node name="SoulsBlueLabel" type="Label" parent="Bars/Blue/SoulsBlue"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.5
+offset_top = -11.5
+offset_right = 62.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "0 / 10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Red" type="HBoxContainer" parent="Bars"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Bars/Red"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+texture = ExtResource("5_jo5c8")
+expand_mode = 4
+flip_v = true
+
+[node name="SoulsRed" type="ProgressBar" parent="Bars/Red"]
+custom_minimum_size = Vector2(200, 8)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/fill = SubResource("StyleBoxTexture_uq8gf")
+max_value = 10.0
+step = 0.1
+value = 5.0
+show_percentage = false
+
+[node name="SoulsRedLabel" type="Label" parent="Bars/Red/SoulsRed"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.5
+offset_top = -11.5
+offset_right = 62.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "0 / 10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DoneLabelContainer" type="PanelContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_ifqv6")
+
+[node name="DoneLabel" type="RichTextLabel" parent="DoneLabelContainer"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+size_flags_vertical = 8
+bbcode_enabled = true
+text = "[b]Fireblade trap[/b]
+[color=green]RESEARCH FINISHED! 
+You can buy new item now in the shop![/color]"
+horizontal_alignment = 1
+vertical_alignment = 1

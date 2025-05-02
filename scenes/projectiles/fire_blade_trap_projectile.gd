@@ -37,6 +37,7 @@ func set_disabled() -> void:
 	explosion_timer.stop()
 	collision_particles.emitting = true
 	projectile_particles.emitting = false
+	set_collision_layer_value(1, true)
 
 func do_explosion() -> void:
 	if explosion:

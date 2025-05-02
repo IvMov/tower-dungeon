@@ -105,7 +105,6 @@ func prepare_to_save() -> void:
 	player_data["time_in_game_unix"] += Time.get_unix_time_from_system() - start_game_time
 	player_data[MetaProgression.META_UPGRADES_KEY] = meta_upgrades
 	#props
-	meta_upgrades = player_data[MetaProgression.META_UPGRADES_KEY]
 	player_data[MetaProgression.PROPS_KEY]["lifes"] = lifes 
 	player_data[MetaProgression.PROPS_KEY]["max_jumps"] = max_jumps 
 	player_data[MetaProgression.PROPS_KEY]["base_speed"] = BASE_SPEED 

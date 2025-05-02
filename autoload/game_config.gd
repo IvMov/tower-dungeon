@@ -37,7 +37,7 @@ func resize_screen() -> void:
 	GameEvents.emit_screen_resized()
 
 func resize_font() -> void:
-	theme.default_font_size = int(grid_block/5)
+	#theme.default_font_size = int(grid_block/6)
 	self.set_theme(theme)
 
 func get_mouse_sensetivity():

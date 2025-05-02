@@ -40,6 +40,8 @@ var NEW_PLAYER: Dictionary = {
 		"price_modifier": 1.0
 	},
 	STORAGES_KEY: {
+		"traider": {
+		},
 		"inventory": {
 			"id": 0,
 			"size": Vector2(3, 4),

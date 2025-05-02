@@ -6,7 +6,7 @@
 [ext_resource type="Material" uid="uid://cisk8kcrqgw17" path="res://particles/mesh/fontain_fire_material.tres" id="5_p78su"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x6vv3"]
-size = Vector3(0.3, 0.2, 0.3)
+size = Vector3(0.3, 0.3, 0.3)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_t0fni"]
 gravity = Vector3(0, -1, 0)
@@ -74,6 +74,7 @@ omni_range = 1.0
 omni_shadow_mode = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0482767, 0)
 shape = SubResource("BoxShape3D_x6vv3")
 
 [node name="LifeTimer" type="Timer" parent="."]

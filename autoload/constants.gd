@@ -10,8 +10,7 @@ const FIRE_PROJECTILE: PackedScene = preload("res://scenes/projectiles/fire_proj
 const TRAIDER_ITEM: PackedScene = preload("res://scenes/screens/traider_item.tscn")
 const TEXT: PackedScene = preload("res://scenes/ui/parts/text.tscn")
 const SOUND_BUTTON: PackedScene = preload("res://scenes/ui/sound_button.tscn")
-const META_UPGRADE_VIEW: PackedScene = preload("res://scenes/meta_progression/meta_upgrade_view.tscn")
-
+const META_UPGRADE_VIEW = preload("res://scenes/meta_progression/meta_upgrade_view.tscn")
 # items
 const ITEM_SPARK_ID: int = 0
 const ITEM_ZOOM_ID: int = 1
