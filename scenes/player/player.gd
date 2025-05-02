@@ -50,7 +50,7 @@ func _ready():
 	player_name = PlayerParameters.player_data[MetaProgression.PLAYER_NAME_KEY]
 	GameEvents.emit_player_entered(self)
 	soul_component.is_player = true
-	GameEvents.emit_souls_update_view(PlayerParameters.souls)
+	GameEvents.emit_souls_update_view()
 
 
 
@@ -173,7 +173,7 @@ func custom_death_actions():
 	PlayerParameters.lifes -= 1;
 	PlayerParameters.souls/=2
 	PlayerParameters.souls = round(PlayerParameters.souls)
-	GameEvents.emit_souls_update_view(PlayerParameters.souls)
+	GameEvents.emit_souls_update_view()
 	is_dying = false
 	global_position = last_fontain_coordinates
 

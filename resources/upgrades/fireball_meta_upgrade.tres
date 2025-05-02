@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="MetaUpgrade" load_steps=3 format=3 uid="uid://brsm41ut1vvas"]
+
+[ext_resource type="PackedScene" uid="uid://cg7tw2ouppnfs" path="res://scenes/projectiles/fireball_projectile.tscn" id="1_8vdin"]
+[ext_resource type="Script" uid="uid://ckno8ho1jfj4a" path="res://resources/upgrades/meta_upgrade.gd" id="2_h42rw"]
+
+[resource]
+script = ExtResource("2_h42rw")
+id = 9
+is_skill = true
+object = ExtResource("1_8vdin")
+title = "fireball_skill_d"
+description = "fireball_skill_d"
+price = Vector4(15, 15, 1, 15)
+metadata/_custom_type_script = "uid://ckno8ho1jfj4a"

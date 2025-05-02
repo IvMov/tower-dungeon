@@ -60,9 +60,9 @@ _data = {
 }
 
 [node name="SoulTypeUi" type="MarginContainer"]
-custom_minimum_size = Vector2(150, 0)
-offset_right = 150.0
-offset_bottom = 50.0
+custom_minimum_size = Vector2(100, 20)
+offset_right = 100.0
+offset_bottom = 23.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 script = ExtResource("1_6qooq")
@@ -73,14 +73,17 @@ libraries = {
 }
 
 [node name="Sprite" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 size_flags_horizontal = 0
+size_flags_vertical = 4
 texture = ExtResource("2_6qgr8")
-expand_mode = 1
+expand_mode = 2
 
 [node name="QuantityLabel" type="Label" parent="."]
 layout_mode = 2
 size_flags_horizontal = 8
-text = "100
-"
+theme_override_font_sizes/font_size = 16
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1

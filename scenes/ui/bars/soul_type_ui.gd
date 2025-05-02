@@ -14,9 +14,10 @@ func _ready() -> void:
 	quantity_label.text = str(quantity)
 
 
-func set_value(value: int) -> void:
+func set_value(value: int) -> bool:
 	if quantity == value:
-		return
+		return false
 	animation_player.play("add" if quantity < value else "minus")
 	self.quantity = value
 	quantity_label.text = str(quantity)
+	return true

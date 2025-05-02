@@ -183,8 +183,7 @@ func add_soul(soul_type: Enums.SoulType) -> void:
 		souls.y += 1
 	elif soul_type == Enums.SoulType.RED:
 		souls.z += 1
-	GameEvents.emit_souls_update_view(souls)
-	print(souls)
+	GameEvents.emit_souls_update_view()
 
 #before close entry room save data for each meta data
 func add_meta_upgrade_val(key: int, value: Vector4) -> void:

@@ -37,7 +37,7 @@ signal update_items_prices()
 
 signal souls_dropped(position: Vector3, value: Vector3)
 signal souls_collect(position: Vector3, value: Vector3)
-signal souls_update_view(value: Vector3)
+signal souls_update_view()
 
 func emit_game_end():
 	game_end.emit()
@@ -82,8 +82,8 @@ func emit_souls_dropped(position: Vector3, value: Vector3):
 func emit_souls_collect(position: Vector3, value: Vector3):
 	souls_collect.emit(position, value)
 
-func emit_souls_update_view(value: Vector3):
-	souls_update_view.emit(value)
+func emit_souls_update_view():
+	souls_update_view.emit()
 
 func emit_item_remove(from: Vector3, quantity: int):
 	item_remove.emit(from, quantity)

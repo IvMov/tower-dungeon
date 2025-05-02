@@ -18,12 +18,12 @@ func minus(value: Vector3) -> Vector3:
 	else: 
 		souls = Vector3(max(0, result.x),max(0, result.y), max(0, result.z))
 	if is_player:
-		GameEvents.emit_souls_update_view(souls)
+		GameEvents.emit_souls_update_view()
 	return result
 
 # can apply negative numbers (for example fake souls - which consume some amount of souls)
 func plus(value: Vector3) -> Vector3:
 	souls += value
 	if is_player:
-		GameEvents.emit_souls_update_view(souls)
+		GameEvents.emit_souls_update_view()
 	return souls

@@ -58,7 +58,7 @@ func add_to_axis(axis: int, upgrade_data: Dictionary, real: float, required: flo
 				PlayerParameters.souls.z-=1
 				upgrade_data[REAL].z+=1
 				flying_upgrade_view.set_red_souls_progress(upgrade_data[REAL].z, required)
-		GameEvents.emit_souls_update_view(PlayerParameters.souls)
+		GameEvents.emit_souls_update_view()
 		if upgrade_data[REAL] == upgrade_data[REQ]:
 			upgrade_data["is_done"] = true
 			flying_upgrade_view.set_is_done()

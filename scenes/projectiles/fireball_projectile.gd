@@ -30,6 +30,7 @@ func set_disabled() -> void:
 	life_timer.stop()
 	collision_particles.emitting = false
 	projectile_particles.emitting = true
+	area_3d.set_collision_layer_value(1, true)
 
 func handleb_body_collision() -> void:
 	if !is_explosing:

@@ -24,8 +24,8 @@ var NEW_PLAYER: Dictionary = {
 	"current_time": 0.0,
 	"best_time": 0.0,
 	"runs": 0,
-	"coins": 0,
-	"souls": Vector3.ZERO,
+	"coins": 100,
+	"souls": Vector3.ONE * 100,
 	"time_in_game_unix": 0.0,
 	PROPS_KEY: {
 		"lifes": 3,

@@ -91,7 +91,7 @@ func _on_button_buy_pressed() -> void:
 	item_view_holder.item_view.item_bulk.quantity -= selected_quantity
 	GameEvents.emit_item_add(Vector3.ZERO, ItemBulk.new(item_view_holder.item_view.item_bulk.item, selected_quantity))
 	PlayerParameters.souls -= price_of_one * selected_quantity
-	GameEvents.emit_souls_update_view(PlayerParameters.souls)
+	GameEvents.emit_souls_update_view()
 	GameEvents.emit_update_items_prices()
 	if item_view_holder.item_view.item_bulk.quantity <= 0:
 		queue_free()
