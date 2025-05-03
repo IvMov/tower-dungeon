@@ -1,15 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1jwvvt84srui"]
+[gd_scene load_steps=6 format=3 uid="uid://d1jwvvt84srui"]
 
-[ext_resource type="Script" uid="uid://bsketapch6sr7" path="res://autoload/meta_progression.gd" id="1_p8xll"]
+[ext_resource type="Script" uid="uid://bsketapch6sr7" path="res://resources/upgrades/meta_progression.gd" id="1_p8xll"]
 [ext_resource type="Script" uid="uid://ckno8ho1jfj4a" path="res://resources/upgrades/meta_upgrade.gd" id="2_8hrxo"]
 [ext_resource type="Resource" uid="uid://drac0puyo3j2" path="res://resources/upgrades/fire_blade_trap_meta_upgrade.tres" id="3_tsvhc"]
 [ext_resource type="Resource" uid="uid://brsm41ut1vvas" path="res://resources/upgrades/fireball_meta_upgrade.tres" id="4_m4sux"]
+[ext_resource type="Resource" uid="uid://c8ohqwpywhg25" path="res://resources/upgrades/acid_meteor_meta_upgrade.tres" id="5_8hrxo"]
 
 [node name="MetaProgression" type="Node"]
 process_mode = 3
 script = ExtResource("1_p8xll")
 upgrade_pool = Dictionary[int, ExtResource("2_8hrxo")]({
 9: ExtResource("4_m4sux"),
+10: ExtResource("5_8hrxo"),
 11: ExtResource("3_tsvhc")
 })
 

@@ -25,7 +25,7 @@ BUGS:
 5) check push functionality ( when explosion center near enemy - it's not pushed out.
 6) when item on cd, and drag and drop it - the view without item will still run timer of cd3
 7) when in shop not enough money for (buttons updates view but price left white)
-
+8) when in shop - buy an item - and save exit, then load - item again available in shop
 
 
 

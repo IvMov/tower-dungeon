@@ -1,9 +1,10 @@
-[gd_scene load_steps=56 format=4 uid="uid://b24j4s1u7ww1k"]
+[gd_scene load_steps=59 format=4 uid="uid://b24j4s1u7ww1k"]
 
 [ext_resource type="PackedScene" uid="uid://dituee6sehxvq" path="res://scenes/camera/camera_scene.tscn" id="1_52pv8"]
 [ext_resource type="Script" uid="uid://cgde56cq28sxu" path="res://scenes/player/player.gd" id="1_xn4w2"]
 [ext_resource type="Texture2D" uid="uid://c13tj2oeip7q3" path="res://assets/2d/colormap.png" id="3_t5qur"]
 [ext_resource type="PackedScene" uid="uid://4eygpv6ar4kx" path="res://scenes/components/effect_flash_component.tscn" id="3_v6oxs"]
+[ext_resource type="Material" uid="uid://caagj5obyyncs" path="res://particles/player_move.tres" id="4_8ydkj"]
 [ext_resource type="PackedScene" uid="uid://c4u0x0titwwsi" path="res://scenes/skill_contolllers/player_skill_controller.tscn" id="4_luhgc"]
 [ext_resource type="PackedScene" uid="uid://d3xyibv2r68ev" path="res://scenes/components/soul_component.tscn" id="4_tt1bo"]
 [ext_resource type="PackedScene" uid="uid://brwji28kmyilf" path="res://scenes/components/stats/health_component.tscn" id="5_68vlw"]
@@ -19,6 +20,18 @@
 [ext_resource type="PackedScene" uid="uid://biy8bohcnc57t" path="res://scenes/player/storage/hands.tscn" id="11_2y4ov"]
 [ext_resource type="PackedScene" uid="uid://com0vq1f7a8mc" path="res://scenes/skill_contolllers/stamina/player/push_enemy_skill_controller.tscn" id="13_vqp0o"]
 [ext_resource type="PackedScene" uid="uid://cma4sf7e6aj07" path="res://scenes/skill_contolllers/stamina/player/dash_skill_controller.tscn" id="18_vxj10"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lgqa7"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.961527, 0.887557, 0.847841, 0.166)
+
+[sub_resource type="SphereMesh" id="SphereMesh_lgqa7"]
+material = SubResource("StandardMaterial3D_lgqa7")
+radius = 0.1
+height = 0.07
+radial_segments = 6
+rings = 6
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_46ws3"]
 
@@ -2337,6 +2350,15 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.2, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.436412, 0)
 health_component = NodePath("../StatsBox/HealthComponent")
 meshes = [NodePath("../character-human/Skeleton3D/body-mesh"), NodePath("../character-human/Skeleton3D/head-mesh")]
+
+[node name="MoveParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00446258, 0.0416264, -0.0959053)
+amount = 5
+lifetime = 0.5
+preprocess = 0.1
+randomness = 0.5
+process_material = ExtResource("4_8ydkj")
+draw_pass_1 = SubResource("SphereMesh_lgqa7")
 
 [node name="SoulComponent" parent="." instance=ExtResource("4_tt1bo")]
 souls = Vector3(100, 100, 100)

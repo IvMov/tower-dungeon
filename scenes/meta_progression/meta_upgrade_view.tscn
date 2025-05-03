@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://2pw3huxbcbbm" path="res://scenes/meta_progression/meta_upgrade_view.gd" id="1_memg6"]
 [ext_resource type="PackedScene" uid="uid://dcslrotbieria" path="res://scenes/ui/parts/flying_upgrade_view.tscn" id="2_21tgk"]
 [ext_resource type="Texture2D" uid="uid://byivlgs4ro8tm" path="res://assets/textures/Tile 8 - 128x128.png" id="3_4abe2"]
+[ext_resource type="Material" uid="uid://d1vohwnraxmjt" path="res://particles/meta_upgrade_view_particles.tres" id="4_4i3kl"]
+[ext_resource type="Material" uid="uid://dp0ajpvhr6fig" path="res://particles/meta_upgrade_view_done_particles.tres" id="5_rx8fx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rx8fx"]
 albedo_texture = ExtResource("3_4abe2")
@@ -15,20 +17,13 @@ size = Vector3(0.8, 0.7, 0.8)
 [sub_resource type="BoxShape3D" id="BoxShape3D_31y7p"]
 size = Vector3(1.5, 3, 1.5)
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_altb8"]
-emission_shape = 1
-emission_sphere_radius = 1.0
-gravity = Vector3(0, 5, 0)
-scale_min = 0.1
-scale_max = 1.5
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4i3kl"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_altb8"]
 transparency = 1
 shading_mode = 0
 albedo_color = Color(12, 12, 0, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_rx8fx"]
-material = SubResource("StandardMaterial3D_4i3kl")
+material = SubResource("StandardMaterial3D_altb8")
 radius = 0.01
 height = 0.02
 radial_segments = 6
@@ -76,15 +71,6 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_goxjy"]
 size = Vector3(0.8, 0.7, 0.8)
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4i3kl"]
-emission_shape = 3
-emission_box_extents = Vector3(1, 1, 1)
-radial_velocity_min = -0.500022
-radial_velocity_max = 0.499978
-gravity = Vector3(0, 0.1, 0)
-scale_min = 0.1
-scale_max = 2.0
-
 [node name="MetaUpgradeView" type="Node3D"]
 script = ExtResource("1_memg6")
 
@@ -112,7 +98,7 @@ emitting = false
 amount = 20
 lifetime = 0.5
 one_shot = true
-process_material = SubResource("ParticleProcessMaterial_altb8")
+process_material = ExtResource("4_4i3kl")
 draw_pass_1 = SubResource("SphereMesh_rx8fx")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -135,7 +121,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.624814, 0)
 emitting = false
 amount = 10
 lifetime = 5.0
-process_material = SubResource("ParticleProcessMaterial_4i3kl")
+process_material = ExtResource("5_rx8fx")
 draw_pass_1 = SubResource("SphereMesh_rx8fx")
 
 [connection signal="mouse_entered" from="MeshInstance3D/StaticBody3D" to="." method="_on_static_body_3d_mouse_entered"]

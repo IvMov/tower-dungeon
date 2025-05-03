@@ -1,6 +1,7 @@
 class_name DashSkillController extends BaseController
 
 @export var player: Player;
+@onready var move_particles: GPUParticles3D = $MoveParticles
 
 var speed: float
 var is_dashing: bool 
@@ -18,6 +19,7 @@ func use_skill() -> void:
 	if !player.stamina_component.minus(skill.base_energy_cost):
 		GameEvents.emit_skill_call_failed(skill.id, Enums.SkillCallFailedReason.NO_STAMINA)
 	else:
+		move_particles.emitting = true
 		is_dashing = true
 		player.is_immune_to_damage = true
 		player.set_collision_mask_value(11, false)

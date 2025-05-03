@@ -10,7 +10,7 @@ const REQ = "required"
 
 var count: int = 0 
 var upgrade: MetaUpgrade 
-var rich_text_template: String  = "[b] %s [/b] \n \n %s"
+var rich_text_template: String  = "[b] %s [/b] \n\n %s \n\n [i]%s[/i]"
 var invested: Vector4 = Vector4.ZERO
 
 var test: int = 2
@@ -25,7 +25,9 @@ func prepare_view() -> void:
 	var obj: Node3D = upgrade.object.instantiate()
 	meta_upgrade_holder.add_child(obj)
 	obj.set_disabled()
-	flying_upgrade_view.set_rich_text(rich_text_template % [tr(upgrade.title), tr(upgrade.description)])
+	flying_upgrade_view.set_rich_text(rich_text_template % [tr(upgrade.title), tr(upgrade.description), tr(upgrade.target_text)])
+	if !PlayerParameters.meta_upgrades.has(upgrade.id):
+		PlayerParameters.meta_upgrades.set(upgrade.id, MetaProgression.build_meta_upgrade(upgrade.id))
 	var upgrade_data: Dictionary = PlayerParameters.meta_upgrades.get(upgrade.id)
 	
 	if upgrade_data["is_done"]:
@@ -48,7 +50,7 @@ func prepare_view() -> void:
 		flying_upgrade_view.set_green_souls_progress(upgrade_data[REAL].x, upgrade_data[REQ].x)
 		flying_upgrade_view.set_blue_souls_progress(upgrade_data[REAL].y, upgrade_data[REQ].y)
 		flying_upgrade_view.set_red_souls_progress(upgrade_data[REAL].z, upgrade_data[REQ].z)
-	
+		
 	
 func add_to_axis(axis: int, upgrade_data: Dictionary, real: float, required: float) -> bool:
 	if real + 1 > required:
@@ -91,6 +93,7 @@ func add_to_axis(axis: int, upgrade_data: Dictionary, real: float, required: flo
 		GameEvents.emit_souls_update_view()
 		if upgrade_data[REAL] == upgrade_data[REQ]:
 			upgrade_data["is_done"] = true
+			MetaProgression.apply_meta_upgrade(upgrade.id)
 			done_particles.emitting = true
 			flying_upgrade_view.set_is_done()
 		return true

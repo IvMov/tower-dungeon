@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b0mgbdjfxan1s" path="res://scenes/maps/generator/map_generator.gd" id="1_2pkgg"]
 [ext_resource type="PackedScene" uid="uid://cn4nsqghphlc0" path="res://scenes/enemies/enemy_spawner.tscn" id="2_w3y2w"]
 [ext_resource type="PackedScene" uid="uid://bvcrxg7s5jq4f" path="res://scenes/maps/parts/blank_map.tscn" id="3_2lv8p"]
-[ext_resource type="PackedScene" uid="uid://hivbwnh6ppe1" path="res://scenes/maps/parts/8m/floor_8_8.tscn" id="4_67k0v"]
+[ext_resource type="PackedScene" uid="uid://hivbwnh6ppe1" path="res://scenes/maps/parts/floor_8_8.tscn" id="4_67k0v"]
 [ext_resource type="PackedScene" uid="uid://dbv1lp0pn7xhc" path="res://scenes/enemies/tier_1_enemy.tscn" id="4_84v8g"]
 [ext_resource type="PackedScene" uid="uid://btey3yhuspcew" path="res://scenes/maps/parts/player_fontain.tscn" id="4_d5frl"]
 [ext_resource type="PackedScene" uid="uid://cl36vgk8bmilk" path="res://scenes/enemies/wall_enemy.tscn" id="4_i0wkv"]

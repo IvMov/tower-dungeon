@@ -1,10 +1,34 @@
-[gd_scene load_steps=3 format=3 uid="uid://cma4sf7e6aj07"]
+[gd_scene load_steps=6 format=3 uid="uid://cma4sf7e6aj07"]
 
 [ext_resource type="PackedScene" uid="uid://jut3uwfl054l" path="res://scenes/skill_contolllers/base_controller.tscn" id="1_72jvv"]
 [ext_resource type="Script" uid="uid://cmavtvotfssk5" path="res://scenes/skill_contolllers/stamina/player/dash_skill_controller.gd" id="2_c3c1p"]
+[ext_resource type="Material" uid="uid://cybkvm3sc6xm0" path="res://particles/dash_skill_controller.tres" id="3_ifia1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e0ycf"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.935963, 0.746687, 0.697772, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ifia1"]
+material = SubResource("StandardMaterial3D_e0ycf")
+radius = 0.12
+height = 0.1
+radial_segments = 8
+rings = 4
 
 [node name="DashSkillController" instance=ExtResource("1_72jvv")]
 script = ExtResource("2_c3c1p")
 
 [node name="CastTimer" parent="." index="0"]
 wait_time = 0.3
+
+[node name="MoveParticles" type="GPUParticles3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00446258, 0.0416264, -0.0959053)
+emitting = false
+amount = 20
+lifetime = 0.5
+one_shot = true
+preprocess = 0.1
+randomness = 0.5
+process_material = ExtResource("3_ifia1")
+draw_pass_1 = SubResource("SphereMesh_ifia1")

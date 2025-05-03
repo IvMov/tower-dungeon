@@ -1,0 +1,12 @@
+[gd_resource type="ParticleProcessMaterial" format=3 uid="uid://jmwue8qxpirk"]
+
+[resource]
+emission_shape = 3
+emission_box_extents = Vector3(1.5, 0.1, 1.5)
+orbit_velocity_min = 9.49949e-08
+orbit_velocity_max = 2.0
+radial_velocity_min = 0.999978
+radial_velocity_max = 1.99998
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 0.999998
+radial_accel_max = 5.0

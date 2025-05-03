@@ -58,11 +58,15 @@ func load_items() -> void:
 		load_saved()
 	else:
 		load_default()
+	save_last_items()
+	
+	
+func save_last_items() -> void:
 	var items_to_save: Dictionary[int, int] = {}
 	for item in items:
 		items_to_save.set(item.item.id, item.quantity)
 	PlayerParameters.player_data[MetaProgression.STORAGES_KEY]["traider"] = items_to_save
-	
+
 func load_saved() -> void:
 	var items_saved: Dictionary[int, int] = PlayerParameters.player_data[MetaProgression.STORAGES_KEY]["traider"]
 	for item_id in items_saved:
@@ -70,11 +74,9 @@ func load_saved() -> void:
 
 	
 func load_default() -> void:
-	items.append(ItemBulk.new(Constants.get_item_by_id(Constants.ITEM_CRYSTAL_ID), randi_range(1,20)))
-	items.append(ItemBulk.new(Constants.get_item_by_id(Constants.ITEM_STONE_ID), randi_range(1,20)))
-	items.append(ItemBulk.new(Constants.get_item_by_id(Constants.ITEM_HEAL_ID), randi_range(5,20)))
-	items.append(ItemBulk.new(Constants.get_item_by_id(Constants.ITEM_MANA_ID), randi_range(5,20)))
-	items.append(ItemBulk.new(Constants.get_item_by_id(Constants.ITEM_STAMINA_ID), randi_range(5,20)))
+	var items_default: Dictionary = PlayerParameters.player_data[MetaProgression.STORAGES_KEY]["traider_core"]
+	for item_id in items_default:
+		items.append(ItemBulk.new(Constants.get_item_by_id(item_id), items_default[item_id]))
 
 func prepare_view() -> void:
 	for item in items:

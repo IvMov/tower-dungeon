@@ -1,15 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://hivbwnh6ppe1"]
+[gd_scene load_steps=4 format=3 uid="uid://hivbwnh6ppe1"]
 
-[ext_resource type="Texture2D" uid="uid://cu1eweixkj7sb" path="res://assets/textures/Tile 24 - 128x128.png" id="1_ibxwt"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7jx6h"]
-albedo_texture = ExtResource("1_ibxwt")
-albedo_texture_force_srgb = true
-uv1_scale = Vector3(0.5, 0.5, 0.5)
-uv1_triplanar = true
+[ext_resource type="Material" uid="uid://de3hjukfgxgh" path="res://assets/textures/materials/floor_material.tres" id="1_rv4tn"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ejuje"]
-material = SubResource("StandardMaterial3D_7jx6h")
+material = ExtResource("1_rv4tn")
 size = Vector2(8, 8)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vjtjy"]

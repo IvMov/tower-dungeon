@@ -15,6 +15,7 @@ signal add_skill(hand: int, skill: Skill)
 signal remove_skill(hand: int)
 signal skill_call_failed(skill_id: int, reason: Enums)
 signal skill_on_cd(skill_id: int, time: float)
+signal skill_lvl_up(id: int)
 
 signal item_remove(from: Vector3, quantity: int)
 signal item_add(to: Vector3, item: ItemBulk, map_pos: Vector3)
@@ -38,6 +39,9 @@ signal update_items_prices()
 signal souls_dropped(position: Vector3, value: Vector3)
 signal souls_collect(position: Vector3, value: Vector3)
 signal souls_update_view()
+
+func emit_skill_lvl_up(id: int):
+	skill_lvl_up.emit(id)
 
 func emit_game_end():
 	game_end.emit()

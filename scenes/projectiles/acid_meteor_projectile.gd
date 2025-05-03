@@ -30,6 +30,13 @@ func _ready() -> void:
 	life_timer.timeout.connect(on_life_timer_timeout)
 	projectile_particles.emitting = true
 
+func set_disabled() ->void:
+	life_timer.stop()
+	projectile_particles.emitting = false
+	collision_particles.emitting = false
+	explosion_timer.stop()
+	area_3d.set_collision_layer_value(1, true)
+
 func pre_explosion() -> void:
 	var tween: Tween = create_tween()
 	tween.set_parallel()

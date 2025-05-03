@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://uaaigo4e0dhr" path="res://scenes/projectiles/acid_meteor_projectile.gd" id="2_k84s0"]
 [ext_resource type="SphereMesh" uid="uid://bn06152qnqrjq" path="res://scenes/projectiles/acid_meteor_projectile_mesh.tres" id="3_sains"]
 [ext_resource type="Texture2D" uid="uid://b443iq2l0etca" path="res://assets/textures/my/acid_9.png" id="4_7xmfc"]
+[ext_resource type="Material" uid="uid://lv687amg27wl" path="res://particles/acid_meteor_projectile_particles.tres" id="4_ll78f"]
+[ext_resource type="Material" uid="uid://dja4h5vnbcmef" path="res://particles/acid_meteor_projectile_colision_particles.tres" id="6_ny3q4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x6vv3"]
 size = Vector3(0.2, 0.2, 0.2)
@@ -11,9 +13,6 @@ size = Vector3(0.2, 0.2, 0.2)
 [sub_resource type="SphereShape3D" id="SphereShape3D_4k6pj"]
 resource_local_to_scene = true
 radius = 0.17
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_t0fni"]
-gravity = Vector3(0, -1, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ll78f"]
 shading_mode = 0
@@ -26,20 +25,6 @@ lightmap_size_hint = Vector2i(2, 2)
 material = SubResource("StandardMaterial3D_ll78f")
 size = Vector2(0.03, 0.03)
 orientation = 2
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r8agw"]
-particle_flag_align_y = true
-emission_shape = 2
-emission_sphere_radius = 0.5
-direction = Vector3(0, 1, 0)
-spread = 180.0
-initial_velocity_min = 1.0
-initial_velocity_max = 3.0
-gravity = Vector3(0, 6, 0)
-linear_accel_min = 0.999998
-linear_accel_max = 6.0
-scale_min = 0.2
-scale_max = 0.6
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sains"]
 transparency = 1
@@ -96,7 +81,7 @@ emitting = false
 amount = 10
 one_shot = true
 transform_align = 3
-process_material = SubResource("ParticleProcessMaterial_t0fni")
+process_material = ExtResource("4_ll78f")
 draw_pass_1 = SubResource("PlaneMesh_arrt6")
 
 [node name="CollisionParticles" type="GPUParticles3D" parent="."]
@@ -104,7 +89,7 @@ emitting = false
 amount = 30
 lifetime = 0.5
 speed_scale = 0.2
-process_material = SubResource("ParticleProcessMaterial_r8agw")
+process_material = ExtResource("6_ny3q4")
 draw_pass_1 = SubResource("SphereMesh_7xmfc")
 
 [node name="ExplosionTimer" type="Timer" parent="."]

@@ -42,6 +42,17 @@ var NEW_PLAYER: Dictionary = {
 	STORAGES_KEY: {
 		"traider": {
 		},
+		"traider_core": {
+			Constants.ITEM_ZOOM_ID: 1, #zoom
+			Constants.ITEM_STONE_ID: randi_range(5, 50), # stone
+			Constants.ITEM_CRYSTAL_ID: randi_range(5, 50), # crystals
+			Constants.ITEM_SNOWBALL_ID: 1, #snowball
+			Constants.ITEM_HEAL_ID: randi_range(1, 10), 
+			Constants.ITEM_MANA_ID: randi_range(1, 10), 
+			Constants.ITEM_STAMINA_ID: randi_range(1, 10), 
+			Constants.ITEM_DAMAGE_ID: randi_range(1, 5), 
+			Constants.ITEM_SPEED_ID: randi_range(1, 5), 
+		},
 		"inventory": {
 			"id": 0,
 			"size": Vector2(3, 4),
@@ -97,17 +108,28 @@ func init_meta_data() -> Dictionary:
 		meta_data = read_file()
 		return meta_data
 
+func apply_meta_upgrade(id: int) -> void:
+	match id:
+		Constants.ITEM_ACID_METEOR_ID:
+			PlayerParameters.player_data[MetaProgression.STORAGES_KEY]["traider_core"].set(Constants.ITEM_ACID_METEOR_ID, 1)
+		Constants.ITEM_FIREBALL_ID:
+			PlayerParameters.player_data[MetaProgression.STORAGES_KEY]["traider_core"].set(Constants.ITEM_FIREBALL_ID, 1)
+		Constants.ITEM_FIRE_BLADE_TRAP_ID:
+			PlayerParameters.player_data[MetaProgression.STORAGES_KEY]["traider_core"].set(Constants.ITEM_FIRE_BLADE_TRAP_ID, 1)
+		
+
+func build_meta_upgrade(id: int) -> Dictionary:
+	return {
+		"id": id,
+		"required": upgrade_pool[id].price,
+		"real": Vector4.ZERO,
+		"is_done": false
+	}
 
 func load_available_meta_upgrades(username: String) -> void:
 	for id in upgrade_pool:
-		var meta_upgrade: Dictionary = {
-			"id": id,
-			"required": upgrade_pool[id].price,
-			"real": Vector4.ZERO,
-			"is_done": false
-		}
 		meta_data[PLAYERS_KEY][username][META_UPGRADES_KEY]\
-		.set(id, meta_upgrade)
+		.set(id, build_meta_upgrade(id))
 
 func get_players() -> Array[Dictionary]:
 	var result: Array[Dictionary] = []

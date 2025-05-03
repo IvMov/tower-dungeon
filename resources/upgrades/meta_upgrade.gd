@@ -6,5 +6,6 @@ class_name MetaUpgrade extends Resource
 @export var object: PackedScene # view of upgrade, need method set_disabled()
 @export var title: String
 @export var description: String
+@export var target_text: String
 @export var done_text: String
 @export var price: Vector4

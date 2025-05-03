@@ -50,7 +50,7 @@ func add(new_item_bulk: ItemBulk) -> void:
 		on_skill_on_cd(new_item_bulk.item.id, new_item_bulk.active_cd_time)
 	else:
 		_on_cd_timer_timeout()
-		
+
 
 func clear() -> void:
 	dragged = false

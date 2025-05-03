@@ -1,0 +1,15 @@
+[gd_resource type="ParticleProcessMaterial" format=3 uid="uid://dja4h5vnbcmef"]
+
+[resource]
+particle_flag_align_y = true
+emission_shape = 2
+emission_sphere_radius = 0.5
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 3.0
+gravity = Vector3(0, 6, 0)
+linear_accel_min = 0.999998
+linear_accel_max = 6.0
+scale_min = 0.2
+scale_max = 0.6
