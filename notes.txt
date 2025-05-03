@@ -49,3 +49,5 @@ BUGS:
 2025-04-29 work on saves of game and upgrades hall - looks bad, much work waits
 2025-04-30 works on saves - refactor constants file - much work, but still not finished
 2025-05-01 saves work progress 70%, load shop or entry depends on timers, time counting added
+2025-05-02 - work on upgrades and saves
+2025-05-03 - add particles and polish meta upgrades

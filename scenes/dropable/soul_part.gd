@@ -2,6 +2,7 @@ class_name SoulPart extends Node3D
 
 @onready var mesh_instance_3d: MeshInstance3D = $MeshInstance3D
 @onready var timer: Timer = $Timer
+@onready var area_3d: Area3D = $MeshInstance3D/Area3D
 
 #need to be setted to distinguish soul type will be collected
 @export var soul_type: Enums.SoulType
@@ -12,6 +13,9 @@ var direction: Vector3
 
 var spread: float = randf_range(2, 4)
 
+func set_disabled() -> void:
+	area_3d.set_collision_mask_value(4, false)
+	timer.stop()
 
 func _physics_process(delta: float) -> void:
 	global_translate(direction * speed * delta)

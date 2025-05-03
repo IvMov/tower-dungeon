@@ -1,7 +1,7 @@
 extends Node
 
-const COIN = preload("res://scenes/dropable/coin.tscn")
-const SOUL_PART = preload("res://scenes/dropable/soul_part.tscn")
+const COIN: PackedScene = preload("res://scenes/dropable/coin.tscn")
+const SOUL_PART: PackedScene = preload("res://scenes/dropable/soul_part.tscn")
 
 #infrastructure
 const ITEM_VIEW_SCENE: PackedScene = preload("res://scenes/ui/item_view.tscn")

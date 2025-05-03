@@ -35,7 +35,7 @@ func _ready() -> void:
 func set_disabled() -> void: 
 	life_timer.stop()
 	explosion_timer.stop()
-	collision_particles.emitting = true
+	collision_particles.emitting = false
 	projectile_particles.emitting = false
 	set_collision_layer_value(1, true)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ckeq2umr17bg8"]
+[gd_scene load_steps=15 format=3 uid="uid://ckeq2umr17bg8"]
 
 [ext_resource type="Script" uid="uid://2pw3huxbcbbm" path="res://scenes/meta_progression/meta_upgrade_view.gd" id="1_memg6"]
 [ext_resource type="PackedScene" uid="uid://dcslrotbieria" path="res://scenes/ui/parts/flying_upgrade_view.tscn" id="2_21tgk"]
@@ -14,6 +14,25 @@ size = Vector3(0.8, 0.7, 0.8)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_31y7p"]
 size = Vector3(1.5, 3, 1.5)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_altb8"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3(0, 5, 0)
+scale_min = 0.1
+scale_max = 1.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4i3kl"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(12, 12, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_rx8fx"]
+material = SubResource("StandardMaterial3D_4i3kl")
+radius = 0.01
+height = 0.02
+radial_segments = 6
+rings = 4
 
 [sub_resource type="Animation" id="Animation_d6eq0"]
 length = 0.001
@@ -57,6 +76,15 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_goxjy"]
 size = Vector3(0.8, 0.7, 0.8)
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4i3kl"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+radial_velocity_min = -0.500022
+radial_velocity_max = 0.499978
+gravity = Vector3(0, 0.1, 0)
+scale_min = 0.1
+scale_max = 2.0
+
 [node name="MetaUpgradeView" type="Node3D"]
 script = ExtResource("1_memg6")
 
@@ -78,6 +106,15 @@ shape = SubResource("BoxShape3D_31y7p")
 [node name="MetaUpgradeHolder" type="Node3D" parent="MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.481512, 0)
 
+[node name="GPUParticles3D" type="GPUParticles3D" parent="MeshInstance3D/MetaUpgradeHolder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.110339, 0)
+emitting = false
+amount = 20
+lifetime = 0.5
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_altb8")
+draw_pass_1 = SubResource("SphereMesh_rx8fx")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_c0kls")
@@ -92,6 +129,14 @@ collision_mask = 513
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.573637, 0)
 shape = SubResource("BoxShape3D_goxjy")
+
+[node name="DoneParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.624814, 0)
+emitting = false
+amount = 10
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_4i3kl")
+draw_pass_1 = SubResource("SphereMesh_rx8fx")
 
 [connection signal="mouse_entered" from="MeshInstance3D/StaticBody3D" to="." method="_on_static_body_3d_mouse_entered"]
 [connection signal="mouse_exited" from="MeshInstance3D/StaticBody3D" to="." method="_on_static_body_3d_mouse_exited"]

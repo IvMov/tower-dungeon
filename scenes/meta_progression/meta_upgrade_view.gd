@@ -2,6 +2,8 @@ class_name MetaUpgradeView extends Node3D #Hoverable
 
 @onready var flying_upgrade_view: FlyingUpgradeView = $FlyingUpgradeView
 @onready var meta_upgrade_holder: Node3D = $MeshInstance3D/MetaUpgradeHolder
+@onready var gpu_particles_3d: GPUParticles3D = $MeshInstance3D/MetaUpgradeHolder/GPUParticles3D
+@onready var done_particles: GPUParticles3D = $DoneParticles
 
 const REAL = "real"
 const REQ = "required"
@@ -27,13 +29,27 @@ func prepare_view() -> void:
 	var upgrade_data: Dictionary = PlayerParameters.meta_upgrades.get(upgrade.id)
 	
 	if upgrade_data["is_done"]:
+		spawn_w()
+		spawn_x()
+		spawn_y()
+		spawn_z()
+		done_particles.emitting = true
 		flying_upgrade_view.set_is_done()
 	else:
+		if upgrade_data[REAL].w == upgrade_data[REQ].w:
+			spawn_w()
+		if upgrade_data[REAL].x == upgrade_data[REQ].x:
+			spawn_x()
+		if upgrade_data[REAL].y == upgrade_data[REQ].y:
+			spawn_y()
+		if upgrade_data[REAL].z == upgrade_data[REQ].z:
+			spawn_z()
 		flying_upgrade_view.set_coins_progress(upgrade_data[REAL].w, upgrade_data[REQ].w)
 		flying_upgrade_view.set_green_souls_progress(upgrade_data[REAL].x, upgrade_data[REQ].x)
 		flying_upgrade_view.set_blue_souls_progress(upgrade_data[REAL].y, upgrade_data[REQ].y)
 		flying_upgrade_view.set_red_souls_progress(upgrade_data[REAL].z, upgrade_data[REQ].z)
-
+	
+	
 func add_to_axis(axis: int, upgrade_data: Dictionary, real: float, required: float) -> bool:
 	if real + 1 > required:
 		return false
@@ -43,24 +59,39 @@ func add_to_axis(axis: int, upgrade_data: Dictionary, real: float, required: flo
 				PlayerParameters.coins-=1
 				upgrade_data[REAL].w+=1
 				flying_upgrade_view.set_coins_progress(upgrade_data[REAL].w, required)
-				print(PlayerParameters.coins)
-				print(upgrade_data[REAL])
-				print(upgrade_data[REQ])
+				
+				if required == upgrade_data[REAL].w:
+					spawn_w()
+					gpu_particles_3d.emitting = false
+					gpu_particles_3d.emitting = true
 			1: 
 				PlayerParameters.souls.x-=1
 				upgrade_data[REAL].x+=1
 				flying_upgrade_view.set_green_souls_progress(upgrade_data[REAL].x, required)
+				if required == upgrade_data[REAL].x:
+					spawn_x()
+					gpu_particles_3d.emitting = false
+					gpu_particles_3d.emitting = true
 			2: 
 				PlayerParameters.souls.y-=1
 				upgrade_data[REAL].y+=1
 				flying_upgrade_view.set_blue_souls_progress(upgrade_data[REAL].y, required)
+				if required == upgrade_data[REAL].y:
+					spawn_y()
+					gpu_particles_3d.emitting = false
+					gpu_particles_3d.emitting = true
 			3: 
 				PlayerParameters.souls.z-=1
 				upgrade_data[REAL].z+=1
 				flying_upgrade_view.set_red_souls_progress(upgrade_data[REAL].z, required)
+				if required == upgrade_data[REAL].z:
+					spawn_z()
+					gpu_particles_3d.emitting = false
+					gpu_particles_3d.emitting = true
 		GameEvents.emit_souls_update_view()
 		if upgrade_data[REAL] == upgrade_data[REQ]:
 			upgrade_data["is_done"] = true
+			done_particles.emitting = true
 			flying_upgrade_view.set_is_done()
 		return true
 
@@ -89,3 +120,28 @@ func do_action() -> bool:
 		return false
 
 	return true
+
+
+func spawn_w() -> void:
+	add_child_to_orbit(Constants.COIN)
+
+func spawn_x() -> void:
+	var child = add_child_to_orbit(Constants.SOUL_PART)
+	child.set_color(Constants.GREEN_SOUL_COLOR)
+
+func spawn_y() -> void:
+	var child = add_child_to_orbit(Constants.SOUL_PART)
+	child.set_color(Constants.BLUE_SOUL_COLOR)
+
+func spawn_z() -> void:
+	var child = add_child_to_orbit(Constants.SOUL_PART)
+	child.set_color(Constants.RED_SOUL_COLOR)
+
+func add_child_to_orbit(child_pack: PackedScene) -> Node3D:
+	var child = child_pack.instantiate()
+	meta_upgrade_holder.add_child(child)
+	child.rotate_x(PI/randf()*4)
+	child.global_position.y+=randf_range(.25, .5)
+	child.global_position.x+=randf_range(-.2, .2)
+	child.set_disabled()
+	return child

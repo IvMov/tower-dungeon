@@ -10,5 +10,6 @@ is_skill = true
 object = ExtResource("1_8vdin")
 title = "fireball_skill_d"
 description = "fireball_skill_d"
+done_text = "fireball_research_done"
 price = Vector4(15, 15, 1, 15)
 metadata/_custom_type_script = "uid://ckno8ho1jfj4a"
