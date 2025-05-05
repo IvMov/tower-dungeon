@@ -27,7 +27,7 @@ size = Vector2(0.04, 0.12)
 script = ExtResource("1_diwfx")
 damage_particles_scene = ExtResource("2_abops")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+[node name="HealParticles" type="GPUParticles3D" parent="."]
 transparency = 0.8
 cast_shadow = 0
 emitting = false

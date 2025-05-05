@@ -118,6 +118,7 @@ func prepare_to_save() -> void:
 	inventory.save_storage(player_data, inventory.NAME)
 	belt.save_storage(player_data, belt.NAME)
 	hands.save_storage(player_data, hands.NAME)
+	save_stats()
 
 func get_current_speed() -> float:
 	return current_speed * speed_boost
@@ -196,6 +197,27 @@ func add_meta_upgrade_val(key: int, value: Vector4) -> void:
 		if upgrade_data["real"] >= upgrade_data["required"]:
 			upgrade_data["done"] = true
 
+func read_stats(player: Player) -> void:
+	player.health_component.max_value = player_data[MetaProgression.STATS_KEY]["max_hp"]
+	player.health_component.current_value = player_data[MetaProgression.STATS_KEY]["current_hp"]
+	player.health_component.regen = player_data[MetaProgression.STATS_KEY]["regen_hp"]
+	player.mana_component.max_value = player_data[MetaProgression.STATS_KEY]["max_mana"]
+	player.mana_component.current_value = player_data[MetaProgression.STATS_KEY]["current_mana"]
+	player.mana_component.regen = player_data[MetaProgression.STATS_KEY]["regen_mana"]
+	player.stamina_component.max_value = player_data[MetaProgression.STATS_KEY]["max_stamina"]
+	player.stamina_component.current_value = player_data[MetaProgression.STATS_KEY]["current_stamina"]
+	player.stamina_component.regen = player_data[MetaProgression.STATS_KEY]["regen_stamina"]
+
+func save_stats() -> void:
+	player_data[MetaProgression.STATS_KEY]["max_hp"] = player.health_component.max_value
+	player_data[MetaProgression.STATS_KEY]["current_hp"] = player.health_component.current_value
+	player_data[MetaProgression.STATS_KEY]["regen_hp"] = player.health_component.regen
+	player_data[MetaProgression.STATS_KEY]["max_mana"] = player.mana_component.max_value
+	player_data[MetaProgression.STATS_KEY]["current_mana"] = player.mana_component.current_value
+	player_data[MetaProgression.STATS_KEY]["regen_mana"] = player.mana_component.regen
+	player_data[MetaProgression.STATS_KEY]["max_stamina"] = player.stamina_component.max_value
+	player_data[MetaProgression.STATS_KEY]["current_stamina"] = player.stamina_component.current_value
+	player_data[MetaProgression.STATS_KEY]["regen_stamina"] = player.stamina_component.regen
 
 func get_position(height: float = 0) -> Vector3:
 	if player && player.is_inside_tree():
@@ -207,6 +229,7 @@ func get_position(height: float = 0) -> Vector3:
 
 func on_player_entered(player: Player) -> void:
 	player_name = player_data[MetaProgression.PLAYER_NAME_KEY]
+	read_stats(player)
 	player_data["time_in_game_unix"]
 	if player_data["time_in_game_unix"] == 0.0:
 		adjust_difficulty()

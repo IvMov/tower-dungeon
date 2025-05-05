@@ -26,6 +26,11 @@ const ITEM_STAMINA_ID: int = 32
 const ITEM_DAMAGE_ID: int = 33
 const ITEM_SPEED_ID: int = 34
 
+const HP_UP_1_UPGRADE_ID: int = 60
+const HP_UP_2_UPGRADE_ID: int = 61
+const HP_REGEN_1_UPGRADE_ID: int = 62
+const HP_REGEN_2_UPGRADE_ID: int = 63
+
 @export var items_pool: Dictionary[int, Item]
 
 #map_generator

@@ -2,7 +2,7 @@ class_name EntryMap extends Node3D
 
 @onready var left: Node3D = $MetaUpgrades/Left
 var upgrade_position: Vector3 = Vector3(-4, 0.4, -18)
-var upgrade_step: float = 8.0
+var upgrade_step: float = 5.0
 
 func _ready() -> void:
 	for id in MetaProgression.upgrade_pool:

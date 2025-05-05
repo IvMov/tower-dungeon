@@ -24,6 +24,7 @@ func init(upgrade: MetaUpgrade, pos: Vector3) -> void:
 func prepare_view() -> void:
 	var obj: Node3D = upgrade.object.instantiate()
 	meta_upgrade_holder.add_child(obj)
+	obj.global_position = meta_upgrade_holder.global_position
 	obj.set_disabled()
 	flying_upgrade_view.set_rich_text(rich_text_template % [tr(upgrade.title), tr(upgrade.description), tr(upgrade.target_text)])
 	if !PlayerParameters.meta_upgrades.has(upgrade.id):

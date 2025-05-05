@@ -52,6 +52,9 @@ func on_max_value_changed(value: float, bar: ProgressBar) -> void:
 func on_value_changed(value: float, current_value: float, bar: ProgressBar) -> void:
 	recalc_bar_value(bar, current_value)
 
+func on_regen_changed(value: float, bar: ProgressBar) -> void:
+	bar.regen.text = "+%.2f / s" % value
+
 func on_player_entered(player: Player):
 	player.health_component.health_changed.connect(on_value_changed.bind(hp_bar))
 	player.mana_component.mana_changed.connect(on_value_changed.bind(mp_bar))
@@ -60,6 +63,10 @@ func on_player_entered(player: Player):
 	player.health_component.max_value_changed.connect(on_max_value_changed.bind(hp_bar))
 	player.mana_component.max_value_changed.connect(on_max_value_changed.bind(mp_bar))
 	player.stamina_component.max_value_changed.connect(on_max_value_changed.bind(stamina_bar))
+	
+	player.health_component.regen_changed.connect(on_regen_changed.bind(hp_bar))
+	player.mana_component.regen_changed.connect(on_regen_changed.bind(mp_bar))
+	player.stamina_component.regen_changed.connect(on_regen_changed.bind(stamina_bar))
 	
 	set_init_values(player)
 	

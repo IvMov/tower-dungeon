@@ -5,6 +5,7 @@ extends Node
 const PLAYERS_KEY: String = "players"
 const PLAYER_NAME_KEY: String = "player_name"
 const PROPS_KEY: String = "props"
+const STATS_KEY: String = "stats"
 const STORAGES_KEY: String = "storages"
 const META_UPGRADES_KEY: String = "meta_upgrades"
 const CONFIG_KEY: String = "config"
@@ -27,6 +28,17 @@ var NEW_PLAYER: Dictionary = {
 	"coins": 100,
 	"souls": Vector3.ONE * 100,
 	"time_in_game_unix": 0.0,
+	STATS_KEY: {
+		"max_hp": 50,
+		"current_hp": 20,
+		"regen_hp": 2,
+		"max_mana": 50,
+		"current_mana": 20,
+		"regen_mana": 1,
+		"max_stamina": 50,
+		"current_stamina": 20,
+		"regen_stamina": 1
+	},
 	PROPS_KEY: {
 		"lifes": 3,
 		"max_jumps": 2,
@@ -116,7 +128,14 @@ func apply_meta_upgrade(id: int) -> void:
 			PlayerParameters.player_data[MetaProgression.STORAGES_KEY]["traider_core"].set(Constants.ITEM_FIREBALL_ID, 1)
 		Constants.ITEM_FIRE_BLADE_TRAP_ID:
 			PlayerParameters.player_data[MetaProgression.STORAGES_KEY]["traider_core"].set(Constants.ITEM_FIRE_BLADE_TRAP_ID, 1)
-		
+		Constants.HP_UP_1_UPGRADE_ID, Constants.HP_UP_2_UPGRADE_ID:
+			PlayerParameters.player.health_component.max_value += MetaProgression.upgrade_pool[id].value
+			PlayerParameters.player.health_component.emit_max_value_changed(PlayerParameters.player.health_component.max_value)
+			PlayerParameters.player.health_component.minus(0)
+		Constants.HP_REGEN_1_UPGRADE_ID, Constants.HP_REGEN_2_UPGRADE_ID:
+			PlayerParameters.player.health_component.regen += MetaProgression.upgrade_pool[id].value
+			PlayerParameters.player.health_component.emit_regen_changed(PlayerParameters.player.health_component.regen)
+			
 
 func build_meta_upgrade(id: int) -> Dictionary:
 	return {

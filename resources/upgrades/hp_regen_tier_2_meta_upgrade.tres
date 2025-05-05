@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MetaUpgrade" load_steps=3 format=3 uid="uid://3tkqy07rnbyi"]
+
+[ext_resource type="PackedScene" uid="uid://cf6xj3qxe4dwt" path="res://assets/3d/meshes/hp_regen_up.tscn" id="1_gtl46"]
+[ext_resource type="Script" uid="uid://ckno8ho1jfj4a" path="res://resources/upgrades/meta_upgrade.gd" id="2_582wx"]
+
+[resource]
+script = ExtResource("2_582wx")
+id = 63
+is_skill = false
+object = ExtResource("1_gtl46")
+title = "hp_regen_2_meta_u_t"
+description = "hp_regen_2_meta_u_d"
+value = 5.0
+target_text = "hp_regen_2_meta_u_research_target"
+done_text = "hp_regen_2_meta_u_research_done"
+price = Vector4(3, 3, 3, 3)
+metadata/_custom_type_script = "uid://ckno8ho1jfj4a"

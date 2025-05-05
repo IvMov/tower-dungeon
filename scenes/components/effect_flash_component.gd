@@ -5,10 +5,10 @@ const ANIMATION_TIME: float = 0.3
 @export var damage_particles_scene: PackedScene
 @export var health_component: HealthComponent
 @export var meshes: Array[MeshInstance3D]
-@onready var gpu_particles_3d = $GPUParticles3D
 @onready var slow_down_particles: GPUParticles3D = $SlowDownParticles
 @onready var on_fire_particles: GPUParticles3D = $OnFireParticles
 @onready var on_acid_particles: GPUParticles3D = $OnAcidParticles
+@onready var gpu_particles_3d: GPUParticles3D = $HealParticles
 
 
 var tween: Tween
