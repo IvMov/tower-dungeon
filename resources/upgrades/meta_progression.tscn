@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d1jwvvt84srui"]
+[gd_scene load_steps=12 format=3 uid="uid://d1jwvvt84srui"]
 
 [ext_resource type="Script" uid="uid://bsketapch6sr7" path="res://resources/upgrades/meta_progression.gd" id="1_p8xll"]
 [ext_resource type="Script" uid="uid://ckno8ho1jfj4a" path="res://resources/upgrades/meta_upgrade.gd" id="2_8hrxo"]
@@ -9,6 +9,8 @@
 [ext_resource type="Resource" uid="uid://42qnevucb5kd" path="res://resources/upgrades/hp_up_tier_1_meta_upgrade.tres" id="7_m4sux"]
 [ext_resource type="Resource" uid="uid://cbgb3c4rgrul7" path="res://resources/upgrades/hp_regen_tier_1_meta_upgrade.tres" id="8_4jail"]
 [ext_resource type="Resource" uid="uid://3tkqy07rnbyi" path="res://resources/upgrades/hp_regen_tier_2_meta_upgrade.tres" id="9_k2g4x"]
+[ext_resource type="Resource" uid="uid://bywcrqk1sqvtw" path="res://resources/upgrades/dash_cd_1_meta_upgrade.tres" id="10_k2g4x"]
+[ext_resource type="Resource" uid="uid://db8aiipielbfk" path="res://resources/upgrades/dash_cd_2_meta_upgrade.tres" id="11_iwgdm"]
 
 [node name="MetaProgression" type="Node"]
 process_mode = 3
@@ -20,7 +22,9 @@ upgrade_pool = Dictionary[int, ExtResource("2_8hrxo")]({
 60: ExtResource("7_m4sux"),
 61: ExtResource("6_tsvhc"),
 62: ExtResource("8_4jail"),
-63: ExtResource("9_k2g4x")
+63: ExtResource("9_k2g4x"),
+104: ExtResource("10_k2g4x"),
+1004: ExtResource("11_iwgdm")
 })
 
 [node name="Timer" type="Timer" parent="."]

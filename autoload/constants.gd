@@ -31,6 +31,9 @@ const HP_UP_2_UPGRADE_ID: int = 61
 const HP_REGEN_1_UPGRADE_ID: int = 62
 const HP_REGEN_2_UPGRADE_ID: int = 63
 
+const DASH_CD_1_UPGRADE_ID: int = 104
+const DASH_CD_2_UPGRADE_ID: int = 1004
+
 @export var items_pool: Dictionary[int, Item]
 
 #map_generator

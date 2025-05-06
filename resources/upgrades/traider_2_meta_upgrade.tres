@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="MetaUpgrade" load_steps=2 format=3 uid="uid://b0egoswkr6rw4"]
+
+[ext_resource type="Script" uid="uid://ckno8ho1jfj4a" path="res://resources/upgrades/meta_upgrade.gd" id="1_bpmi3"]
+
+[resource]
+script = ExtResource("1_bpmi3")
+id = 71
+is_skill = false
+title = "traider_2_meta_u_t"
+description = "traider_2_meta_u_d"
+value = 1.5
+target_text = "traider_2_meta_u_research_target"
+done_text = "traider_2_meta_u_research_done"
+price = Vector4(2, 2, 2, 2)
+metadata/_custom_type_script = "uid://ckno8ho1jfj4a"

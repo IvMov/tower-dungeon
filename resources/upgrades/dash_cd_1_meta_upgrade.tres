@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MetaUpgrade" load_steps=3 format=3 uid="uid://bywcrqk1sqvtw"]
+
+[ext_resource type="PackedScene" uid="uid://dcg2ockv2y688" path="res://assets/3d/meshes/dash_mesh.tscn" id="1_lnwkw"]
+[ext_resource type="Script" uid="uid://ckno8ho1jfj4a" path="res://resources/upgrades/meta_upgrade.gd" id="1_ri4km"]
+
+[resource]
+script = ExtResource("1_ri4km")
+id = 104
+is_skill = false
+object = ExtResource("1_lnwkw")
+title = "dash_cd_1_meta_u_t"
+description = "dash_cd_1_meta_u_d"
+value = 0.8
+target_text = "dash_cd_1_meta_u_research_target"
+done_text = "dash_cd_1__meta_u_research_done"
+price = Vector4(2, 2, 2, 2)
+metadata/_custom_type_script = "uid://ckno8ho1jfj4a"

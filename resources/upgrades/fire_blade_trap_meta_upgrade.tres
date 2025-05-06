@@ -10,6 +10,7 @@ is_skill = true
 object = ExtResource("1_qyo3n")
 title = "fire_blade_trap_skill_t"
 description = "fire_blade_trap_skill_d"
+value = 0.0
 target_text = "fire_blade_trap_research_target"
 done_text = "fire_blade_trap_research_done"
 price = Vector4(10, 2, 3, 10)

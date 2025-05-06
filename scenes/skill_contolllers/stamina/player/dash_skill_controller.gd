@@ -5,10 +5,25 @@ class_name DashSkillController extends BaseController
 
 var speed: float
 var is_dashing: bool 
+var cd: float  
+var value: float
+var energy_cost: float
 
+#DONT USE SKILL USE META PROGRESSION instead
 func _ready() -> void:
 	skill = preload("res://resources/skills/stamina/dash.tres")
-	cast_timer.wait_time = skill.base_duration
+	GameEvents.dash_upgrade.connect(on_dash_upgrade)
+	value = PlayerParameters.player_data["dash"]["value"]
+	cast_timer.wait_time = PlayerParameters.player_data["dash"]["time"]
+	cooldown_timer.wait_time = PlayerParameters.player_data["dash"]["cd"]
+	energy_cost = PlayerParameters.player_data["dash"]["energy"]
+
+func set_cd(cd: float) -> void: 
+	cooldown_timer.wait_time = cd
+	print("cd new : %s" % cooldown_timer.wait_time) 
+
+func set_value(val: float) -> void: 
+	value = val
 
 func use_skill() -> void:
 	if player.move_direction == Vector3.ZERO:
@@ -16,7 +31,7 @@ func use_skill() -> void:
 	if !cooldown_timer.is_stopped() || !cast_timer.is_stopped():
 		GameEvents.emit_skill_call_failed(skill.id, Enums.SkillCallFailedReason.ON_CD)
 		return
-	if !player.stamina_component.minus(skill.base_energy_cost):
+	if !player.stamina_component.minus(energy_cost):
 		GameEvents.emit_skill_call_failed(skill.id, Enums.SkillCallFailedReason.NO_STAMINA)
 	else:
 		move_particles.emitting = true
@@ -25,7 +40,7 @@ func use_skill() -> void:
 		player.set_collision_mask_value(11, false)
 		player.set_collision_layer_value(10, false)
 		speed = PlayerParameters.current_speed
-		PlayerParameters.current_speed = PlayerParameters.BASE_SPEED * skill.base_value / PlayerParameters.speed_boost
+		PlayerParameters.current_speed = PlayerParameters.BASE_SPEED * value / PlayerParameters.speed_boost
 		cast_timer.start()
 		
 
@@ -42,4 +57,9 @@ func stop_skill() -> void:
 func _on_cast_timer_timeout() -> void:
 	stop_skill()
 	
-	
+
+func on_dash_upgrade(cd: float, val: float): 
+	if cd != 0: 
+		set_cd(cd)
+	else:
+		set_value(val)

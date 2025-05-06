@@ -75,7 +75,7 @@ func calc_speed() -> float:
 
 func calc_fire_dmg() -> float:
 	var skill_exp_data: Dictionary = PlayerParameters.get_skill_data(skill.id)
-	return (skill.base_fire_dmg_value + (skill.base_fire_dmg_per_lvl * skill_exp_data["lvl"])) * damage_boost
+	return (skill.base_fire_dmg_value + (skill.base_fire_dmg_per_lvl * skill_exp_data["lvl"])) * damage_boost * (1 + calc_num_of_items()/10)
 
 
 func calc_projectile_speed() -> float:

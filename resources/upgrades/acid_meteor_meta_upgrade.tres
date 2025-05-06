@@ -10,6 +10,7 @@ is_skill = true
 object = ExtResource("1_47und")
 title = "acid_meteor_skill_t"
 description = "acid_meteor_skill_d"
+value = 0.0
 target_text = "acid_meteor_research_target"
 done_text = "acid_meteor_research_done"
 price = Vector4(20, 20, 10, 100)

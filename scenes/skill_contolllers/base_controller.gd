@@ -25,8 +25,22 @@ func revert_cast() -> void:
 	cast_timer.stop()
 
 func calc_projectile_damage() -> float:
-	return calc_value_exponentially()
+	var result: float = 0.0
+	if skill.is_consumable:
+		result = calc_value_exponentially()
+	else: 
+		result = calc_value_exponentially() * (1.0 + calc_num_of_items()/10)
+	print("INFO: projectile dmg: %f" % result)
+	return result
 
+#includes number of items to calc damage
+func calc_num_of_items() -> float:
+	if PlayerParameters.hands.items.get(Vector2.ZERO).item && PlayerParameters.hands.items.get(Vector2.ZERO).item.id == skill.id:
+		return PlayerParameters.hands.items.get(Vector2.ZERO).quantity
+	else:
+		return PlayerParameters.hands.items.get(Vector2.DOWN).quantity
+		
+ 
 func calc_value_exponentially()-> float:
 	var skill_exp_data: Dictionary = PlayerParameters.get_skill_data(skill.id)
 	if skill.is_offensive:

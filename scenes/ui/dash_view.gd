@@ -16,6 +16,7 @@ var is_on_cd: bool = false
 func _ready() -> void:
 	GameEvents.skill_on_cd.connect(on_skill_on_cd)
 	GameEvents.skill_call_failed.connect(on_skill_call_failed)
+	GameEvents.dash_upgrade.connect(on_dash_upgrade)
 	set_text_color(MAIN_COLOR)
 	title.text = tr(dash.title)
 
@@ -54,3 +55,7 @@ func _on_cd_timer_timeout() -> void:
 func set_text_color(color: Color) -> void:
 	title.add_theme_color_override("font_color", color)
 	cd_label.add_theme_color_override("font_color", color)
+
+func on_dash_upgrade(cd: float, _value: float): 
+	if cd != 0: 
+		cd_timer.wait_time = cd

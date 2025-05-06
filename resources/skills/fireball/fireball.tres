@@ -1,8 +1,7 @@
-[gd_resource type="Resource" script_class="Skill" load_steps=4 format=3 uid="uid://cpdev1frd8lib"]
+[gd_resource type="Resource" script_class="Skill" load_steps=3 format=3 uid="uid://cpdev1frd8lib"]
 
 [ext_resource type="Script" uid="uid://csgbo4gx64rma" path="res://resources/skills/skill.gd" id="1_0t0fe"]
 [ext_resource type="PackedScene" uid="uid://vu5fwk36v4jf" path="res://scenes/skill_contolllers/mana/player/fireball_controller.tscn" id="1_qif4d"]
-[ext_resource type="PackedScene" uid="uid://cg7tw2ouppnfs" path="res://scenes/projectiles/fireball_projectile.tscn" id="2_jjvae"]
 
 [resource]
 script = ExtResource("1_0t0fe")
@@ -10,13 +9,12 @@ id = 9
 title = "fireball_skill_t"
 description = "fireball_skill_d"
 controller = ExtResource("1_qif4d")
-mesh = ExtResource("2_jjvae")
 is_maintainable = false
 is_offensive = true
 is_consumable = false
 is_upgradable = true
 parameter = ""
-base_value = 50.0
+base_value = 10.0
 base_push_value = 300.0
 base_speed = 25.0
 base_distance = 1.5

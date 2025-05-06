@@ -28,6 +28,12 @@ var NEW_PLAYER: Dictionary = {
 	"coins": 100,
 	"souls": Vector3.ONE * 100,
 	"time_in_game_unix": 0.0,
+	"dash" : {
+		"time": 0.3,
+		"cd": 1.5,
+		"value": 10,
+		"energy": 5.0
+	},
 	STATS_KEY: {
 		"max_hp": 50,
 		"current_hp": 20,
@@ -135,7 +141,10 @@ func apply_meta_upgrade(id: int) -> void:
 		Constants.HP_REGEN_1_UPGRADE_ID, Constants.HP_REGEN_2_UPGRADE_ID:
 			PlayerParameters.player.health_component.regen += MetaProgression.upgrade_pool[id].value
 			PlayerParameters.player.health_component.emit_regen_changed(PlayerParameters.player.health_component.regen)
-			
+		Constants.DASH_CD_1_UPGRADE_ID, Constants.DASH_CD_2_UPGRADE_ID:
+			var new_cd: float = PlayerParameters.player_data["dash"]["cd"] * MetaProgression.upgrade_pool[id].value
+			PlayerParameters.player_data["dash"]["cd"] = new_cd
+			GameEvents.emit_dash_upgrade(new_cd, 0)
 
 func build_meta_upgrade(id: int) -> Dictionary:
 	return {
