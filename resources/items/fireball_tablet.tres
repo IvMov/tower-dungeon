@@ -15,4 +15,6 @@ type = "item_type_skill"
 price = Vector3(0, 0, 0)
 scene = ExtResource("2_a3xt6")
 skill = ExtResource("3_qc6be")
+min_for_trade = 1
+max_for_trade = 3
 metadata/_custom_type_script = "uid://blbht47vwtj68"

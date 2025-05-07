@@ -15,3 +15,5 @@ type = "item_type_skill"
 price = Vector3(0, 0, 0)
 scene = ExtResource("2_kg2wo")
 skill = ExtResource("3_usb8g")
+min_for_trade = 1
+max_for_trade = 1

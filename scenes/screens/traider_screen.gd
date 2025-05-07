@@ -1,5 +1,8 @@
 extends MarginContainer
 
+const DELTA_SKILL: int = 2
+const DELTA_CONSUMABLE: int = 10
+
 var items: Array[ItemBulk]
 
 @onready var image: Label = $Shop/MarginContainer/ScrollContainer/TraiderItems/MarginContainer/HeaderOfTable/Image
@@ -76,7 +79,9 @@ func load_saved() -> void:
 func load_default() -> void:
 	var items_default: Dictionary = PlayerParameters.player_data[MetaProgression.STORAGES_KEY]["traider_core"]
 	for item_id in items_default:
-		items.append(ItemBulk.new(Constants.get_item_by_id(item_id), items_default[item_id]))
+		var item: Item = Constants.get_item_by_id(item_id)
+		print("traiderfactor %s" % PlayerParameters.player_data["traider_max_items_factor"] )
+		items.append(ItemBulk.new(item, randi_range(Constants.items_pool[item_id].min_for_trade, Constants.items_pool[item_id].max_for_trade * PlayerParameters.player_data["traider_max_items_factor"])))
 
 func prepare_view() -> void:
 	for item in items:

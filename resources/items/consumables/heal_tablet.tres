@@ -15,3 +15,5 @@ type = "item_type_consumable"
 price = Vector3(0, 20, 0)
 scene = ExtResource("1_sxga0")
 skill = ExtResource("4_wxr4b")
+min_for_trade = 3
+max_for_trade = 10

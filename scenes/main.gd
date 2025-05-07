@@ -15,6 +15,7 @@ const PLAYER_START_POINT: Vector3 = Vector3(1, 0.2, -1)
 func _ready():
 	GameEvents.from_stage_to_shop.connect(on_from_stage_to_shop)
 	GameEvents.from_shop_to_stage.connect(on_from_shop_to_stage)
+	GameEvents.game_end.connect(on_game_end)
 	#map_generator.ROOMS = randi_range(3, 10)
 	#var start_point: Vector3 = map_generator.generate_level()
 	
@@ -31,21 +32,32 @@ func _ready():
 func _physics_process(_delta):
 	label.text = "FPS: %f" % Engine.get_frames_per_second()
 
-
-func on_from_stage_to_shop():
-	if maps.get_child(0):
+func clean_map() -> void:
+	if !maps.get_children().is_empty() && maps.get_child(0):
 		maps.get_child(0).queue_free()
 	for enemy in enemies.get_children(): 
-		enemy.is_dying = true
+		if enemy is BasicEnemy:
+			enemy.is_dying = true
 		enemy.queue_free()
 	for soul in souls.get_children():
 		soul.queue_free()
 	for proj in projectiles.get_children():
 		proj.queue_free()
+
+func on_game_end():
+	clean_map()
+	var entry: Node3D = ENTRY_MAP.instantiate()
+	maps.add_child(entry)
+	PlayerParameters.player.global_position = PLAYER_START_POINT
+	PlayerParameters.player.rotate_y(PI/2)
+
+func on_from_stage_to_shop():
+	clean_map()
 	var shop: Node3D = TRAIDER_MAP.instantiate()
 	maps.add_child(shop)
 	PlayerParameters.player.global_position = PLAYER_START_POINT
 	PlayerParameters.player.rotate_y(PI/2)
+
 
 func on_from_shop_to_stage():
 	maps.get_child(0).queue_free()

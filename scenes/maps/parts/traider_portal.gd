@@ -5,6 +5,7 @@ var text: String = "Press E to finish stage \n & \nvisit the traider"
 
 func do_action() -> bool: 
 	GameEvents.emit_from_stage_to_shop()
+	PlayerParameters.player_data["game_lvl"]+=1
 	return false
 
 

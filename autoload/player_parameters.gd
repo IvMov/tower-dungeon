@@ -47,6 +47,7 @@ var price_modifier: float = 1
 func _ready() -> void:
 	GameEvents.add_skill.connect(on_add_skill)
 	GameEvents.player_entered.connect(on_player_entered)
+	GameEvents.game_end.connect(on_game_end)
 
 func adjust_difficulty() -> void:
 	GameConfig.game_difficulty = player_data["difficulty"]
@@ -85,8 +86,6 @@ func load_props() -> void:
 func save_run_time(time: float, game_over: bool) -> void:
 	if game_over:
 		player_data["current_time"] = 0.0
-		runs+=1
-		player_data["death"]+=1
 		if best_time > time: 
 			return
 		else:
@@ -240,6 +239,25 @@ func on_player_entered(player: Player) -> void:
 	belt = player.belt
 	hands = player.hands
 
+func on_game_end() -> void:
+	player_data["game_lvl"] = 0
+	skill_expirience = {}
+	player_data["skill_expirience"] = {}
+	EnemyParameters.enemy_expirience = {}
+	player_data["enemy_expirience"] = {}
+	player_data[MetaProgression.STORAGES_KEY]["traider"] = {}
+	inventory.items = {}
+	hands.items = {}
+	
+	player_data[MetaProgression.STORAGES_KEY]["hands"]["items"] = {}
+	player_data[MetaProgression.STORAGES_KEY]["inventory"]["items"] = {}
+	player_data[MetaProgression.STORAGES_KEY]["belt"]["items"] = {}
+	player_data[MetaProgression.STORAGES_KEY]["belt"]["items"].set(Vector2.ZERO, MetaProgression.START_SKILL)
+	belt.items = belt.load_items(player_data[MetaProgression.STORAGES_KEY]["belt"])
+	player_data["death"]+=1
+	lifes = player_data["max_lifes"]
+	player.is_dying = false
+	player.health_component.run_regen()
 
 func on_add_skill(_hand:int, skill: Skill) -> void:
 	if skill.is_upgradable && !skill_expirience.has(skill.id):

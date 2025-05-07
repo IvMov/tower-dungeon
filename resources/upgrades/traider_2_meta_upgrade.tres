@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="MetaUpgrade" load_steps=2 format=3 uid="uid://b0egoswkr6rw4"]
+[gd_resource type="Resource" script_class="MetaUpgrade" load_steps=3 format=3 uid="uid://b0egoswkr6rw4"]
 
 [ext_resource type="Script" uid="uid://ckno8ho1jfj4a" path="res://resources/upgrades/meta_upgrade.gd" id="1_bpmi3"]
+[ext_resource type="PackedScene" uid="uid://nl5k1r0lwm1r" path="res://assets/3d/meshes/traider_upgrade_mesh.tscn" id="1_xi3c0"]
 
 [resource]
 script = ExtResource("1_bpmi3")
 id = 71
 is_skill = false
+object = ExtResource("1_xi3c0")
 title = "traider_2_meta_u_t"
 description = "traider_2_meta_u_d"
 value = 1.5

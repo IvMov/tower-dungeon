@@ -15,7 +15,7 @@
 11) Add decorations? each wall flour have random elements? 
 12) progression, half souls lost after each death, after 3 lives you die and can invest souls in some item.  After 100% souls invested - item will be available in the shop.
 13) DONE: Add drop from spawner and boss enemies coins which required for invest new items. 
-
+14) music for each upgrade when buy ( like speed or etc)
 
 BUGS: 
 1) top down in tunel or min camera distance - projectiles flight through ground -_- (already 10th bug like this) fck

@@ -9,6 +9,7 @@ func _ready() -> void:
 	GameEvents.player_entered.connect(on_player_entered)
 	GameEvents.redraw_item.connect(on_redraw_item)
 	GameEvents.item_from_storage.connect(on_item_from_storage)
+	GameEvents.game_end.connect(on_game_end)
 		#add new BeltSections and fill them with data from inventory node 
 		#(for instance row 99 will be for belt, and then I can control its lengt)
 
@@ -35,6 +36,9 @@ func _unhandled_key_input(event: InputEvent) -> void:
 				GameEvents.emit_item_to_hand(item_view)
 				cd_timer.start()
 
+func clear() -> void:
+	for child in h_box_container.get_children():
+		child.item_view.clear()
 
 func resize() -> void:
 	for child in h_box_container.get_children():
@@ -56,3 +60,7 @@ func on_item_from_storage(from: Vector3):
 	if from.x != 1:
 		return
 	h_box_container.get_child(from.z).item_view.clear()
+
+func on_game_end():
+	clear()
+	draw_belt_items()

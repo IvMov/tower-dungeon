@@ -11,13 +11,17 @@ const META_UPGRADES_KEY: String = "meta_upgrades"
 const CONFIG_KEY: String = "config"
 
 const FILE_PATH: String = "user://tower_dungeon.save"
-
+const START_SKILL: Dictionary = {
+	"id": 0,
+	"quantity": 1
+}
 var EMPTY_METADATA: Dictionary = {
 	PLAYERS_KEY: {}
 }
 
 var NEW_PLAYER: Dictionary = {
 	"player_name": "default name",
+	"game_lvl": 0, # map stage level ( from 0 to N, after each shop, after M entry)
 	"difficulty": 2, # 1, 2, 3
 	"kills": 0,
 	"death": 0,
@@ -28,6 +32,7 @@ var NEW_PLAYER: Dictionary = {
 	"coins": 100,
 	"souls": Vector3.ONE * 100,
 	"time_in_game_unix": 0.0,
+	"traider_max_items_factor": 1.0,
 	"dash" : {
 		"time": 0.3,
 		"cd": 1.5,
@@ -35,9 +40,9 @@ var NEW_PLAYER: Dictionary = {
 		"energy": 5.0
 	},
 	STATS_KEY: {
-		"max_hp": 50,
-		"current_hp": 20,
-		"regen_hp": 2,
+		"max_hp": 5,
+		"current_hp": 5,
+		"regen_hp": 1,
 		"max_mana": 50,
 		"current_mana": 20,
 		"regen_mana": 1,
@@ -46,7 +51,7 @@ var NEW_PLAYER: Dictionary = {
 		"regen_stamina": 1
 	},
 	PROPS_KEY: {
-		"lifes": 3,
+		"lifes": 0,
 		"max_jumps": 2,
 		"base_speed": 400,
 		"base_jump": 500,
@@ -62,14 +67,14 @@ var NEW_PLAYER: Dictionary = {
 		},
 		"traider_core": {
 			Constants.ITEM_ZOOM_ID: 1, #zoom
-			Constants.ITEM_STONE_ID: randi_range(5, 50), # stone
-			Constants.ITEM_CRYSTAL_ID: randi_range(5, 50), # crystals
-			Constants.ITEM_SNOWBALL_ID: 1, #snowball
-			Constants.ITEM_HEAL_ID: randi_range(1, 10), 
-			Constants.ITEM_MANA_ID: randi_range(1, 10), 
-			Constants.ITEM_STAMINA_ID: randi_range(1, 10), 
-			Constants.ITEM_DAMAGE_ID: randi_range(1, 5), 
-			Constants.ITEM_SPEED_ID: randi_range(1, 5), 
+			Constants.ITEM_STONE_ID: randi_range(Constants.items_pool.get(Constants.ITEM_STONE_ID).min_for_trade, Constants.items_pool.get(Constants.ITEM_STONE_ID).max_for_trade), # stone
+			Constants.ITEM_CRYSTAL_ID: randi_range(Constants.items_pool.get(Constants.ITEM_CRYSTAL_ID).min_for_trade, Constants.items_pool.get(Constants.ITEM_CRYSTAL_ID).max_for_trade), # crystals
+			Constants.ITEM_SNOWBALL_ID: randi_range(Constants.items_pool.get(Constants.ITEM_SNOWBALL_ID).min_for_trade, Constants.items_pool.get(Constants.ITEM_SNOWBALL_ID).max_for_trade), #snowball
+			Constants.ITEM_HEAL_ID: randi_range(Constants.items_pool.get(Constants.ITEM_HEAL_ID).min_for_trade, Constants.items_pool.get(Constants.ITEM_HEAL_ID).max_for_trade), 
+			Constants.ITEM_MANA_ID: randi_range(Constants.items_pool.get(Constants.ITEM_MANA_ID).min_for_trade, Constants.items_pool.get(Constants.ITEM_MANA_ID).max_for_trade), 
+			Constants.ITEM_STAMINA_ID: randi_range(Constants.items_pool.get(Constants.ITEM_STAMINA_ID).min_for_trade, Constants.items_pool.get(Constants.ITEM_STAMINA_ID).max_for_trade), 
+			Constants.ITEM_DAMAGE_ID: randi_range(Constants.items_pool.get(Constants.ITEM_DAMAGE_ID).min_for_trade, Constants.items_pool.get(Constants.ITEM_DAMAGE_ID).max_for_trade), 
+			Constants.ITEM_SPEED_ID: randi_range(Constants.items_pool.get(Constants.ITEM_SPEED_ID).min_for_trade, Constants.items_pool.get(Constants.ITEM_SPEED_ID).max_for_trade), 
 		},
 		"inventory": {
 			"id": 0,
@@ -79,7 +84,9 @@ var NEW_PLAYER: Dictionary = {
 		"belt": {
 			"id": 1,
 			"size": Vector2(3, 4),
-			"items": {}
+			"items": {
+				Vector2.ZERO: START_SKILL
+			}
 		},
 		"hands": {
 			"id": 3,
@@ -127,6 +134,7 @@ func init_meta_data() -> Dictionary:
 		return meta_data
 
 func apply_meta_upgrade(id: int) -> void:
+	PlayerParameters.player.upgrade_done_particles.emitting = true
 	match id:
 		Constants.ITEM_ACID_METEOR_ID:
 			PlayerParameters.player_data[MetaProgression.STORAGES_KEY]["traider_core"].set(Constants.ITEM_ACID_METEOR_ID, 1)
@@ -145,7 +153,10 @@ func apply_meta_upgrade(id: int) -> void:
 			var new_cd: float = PlayerParameters.player_data["dash"]["cd"] * MetaProgression.upgrade_pool[id].value
 			PlayerParameters.player_data["dash"]["cd"] = new_cd
 			GameEvents.emit_dash_upgrade(new_cd, 0)
-
+		Constants.TRAIDER_1_UPGRADE_ID, Constants.TRAIDER_2_UPGRADE_ID:
+			var new_mod: float = PlayerParameters.player_data["traider_max_items_factor"] * MetaProgression.upgrade_pool[id].value
+			PlayerParameters.player_data["traider_max_items_factor"] = new_mod
+	
 func build_meta_upgrade(id: int) -> Dictionary:
 	return {
 		"id": id,
@@ -200,7 +211,8 @@ func add_player(username: String, difficulty: int) -> bool:
 		return false
 	else:
 		var new: Dictionary = NEW_PLAYER.duplicate(true)
-		new[PROPS_KEY]["lifes"] = new["max_lifes"]
+		new[PROPS_KEY]["lifes"] = 0 # temporary to fast death
+		#new[PROPS_KEY]["lifes"] = new["max_lifes"]
 		new[PLAYER_NAME_KEY] = username
 		new["difficulty"] = difficulty
 		meta_data["players"].set(username, new)

@@ -8,3 +8,5 @@ class_name Item extends Resource
 @export var price: Vector3
 @export var scene: PackedScene
 @export var skill: Skill
+@export var min_for_trade: int
+@export var max_for_trade: int

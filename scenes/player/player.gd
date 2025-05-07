@@ -11,6 +11,7 @@ class_name Player extends CharacterBody3D
 @onready var effect_flash_component: EffectFlashComponent = $EffectFlashComponent
 
 @onready var player_skill_controller: PlayerSkillController = $PlayerSkillController
+@onready var upgrade_done_particles: GPUParticles3D = $UpgradeDoneParticles
 
 @onready var health_component: HealthComponent = $StatsBox/HealthComponent
 @onready var mana_component: ManaComponent = $StatsBox/ManaComponent
@@ -165,17 +166,17 @@ func do_actions() -> bool:
 		return false
 
 func custom_death_actions():
-	if PlayerParameters.lifes - 1 < 0:
-		GameEvents.emit_game_end()
-		#show game end screen - menu to back to game menu, and restart game. 
-		#god of death consume all souls and paid you with some gold which can be spent to buy some heaks and bombs
-		return
-	PlayerParameters.lifes -= 1;
 	PlayerParameters.souls/=2
 	PlayerParameters.souls = round(PlayerParameters.souls)
 	GameEvents.emit_souls_update_view()
-	is_dying = false
+	
+	if PlayerParameters.lifes - 1 < 0:
+		GameEvents.emit_game_end()
+		return
+	
+	PlayerParameters.lifes -= 1;
 	global_position = last_fontain_coordinates
+	is_dying = false
 
 func get_damage(value: float) -> void:
 	if is_immune_to_damage:

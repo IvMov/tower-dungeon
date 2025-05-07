@@ -34,12 +34,16 @@ signal redraw_item(key: Vector3)
 
 signal new_stage()
 signal from_stage_to_shop()
+signal to_entry_stage()
 signal from_shop_to_stage()
 signal update_items_prices()
 
 signal souls_dropped(position: Vector3, value: Vector3)
 signal souls_collect(position: Vector3, value: Vector3)
 signal souls_update_view()
+
+func emit_to_entry_stage():
+	to_entry_stage.emit()
 
 func emit_dash_upgrade(cd: float, value: float):
 	dash_upgrade.emit(cd, value)

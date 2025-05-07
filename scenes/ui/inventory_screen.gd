@@ -12,6 +12,7 @@ func _ready() -> void:
 	GameEvents.redraw_item.connect(on_redraw_item)
 	GameEvents.item_from_storage.connect(on_item_from_storage)
 	GameEvents.player_entered.connect(on_player_entered)
+	GameEvents.game_end.connect(on_game_end)
 	config_drop_on_floor_box()
 
 
@@ -54,7 +55,12 @@ func resize() -> void:
 	label.add_theme_font_size_override("font_size", GameConfig.grid_block/4)
 	for row in rows.get_children():
 		for child in row.get_children():
-			child.custom_minimum_size =  Vector2(GameConfig.grid_block, GameConfig.grid_block)
+			child.custom_minimum_size = Vector2(GameConfig.grid_block, GameConfig.grid_block)
+
+func clear() -> void:
+	for row in rows.get_children():
+		for child in row.get_children():
+			child.item_view.clear()
 
 
 func on_change_game_stage(game_stage: GameStage.Stage):
@@ -86,3 +92,6 @@ func on_item_from_storage(from: Vector3):
 
 func on_player_entered(_player: Player):
 	do_done()
+
+func on_game_end():
+	clear()

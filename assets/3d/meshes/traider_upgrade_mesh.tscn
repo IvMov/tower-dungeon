@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://nl5k1r0lwm1r"]
+
+[ext_resource type="Script" uid="uid://b0hy7atp6fax7" path="res://assets/3d/meshes/traider_upgrade_mesh.gd" id="1_lb612"]
+[ext_resource type="PackedScene" uid="uid://n30en7fquck6" path="res://scenes/dropable/coin.tscn" id="2_lb612"]
+
+[node name="DashMesh" type="Node3D"]
+script = ExtResource("1_lb612")
+
+[node name="Coin" parent="." instance=ExtResource("2_lb612")]
+transform = Transform3D(1, 0, 0, 0, 0.905235, -0.424911, 0, 0.424911, 0.905235, 0, 0.0375573, 0.090153)
+
+[node name="Coin4" parent="." instance=ExtResource("2_lb612")]
+transform = Transform3D(1, 0, 0, 0, 0.0846343, -0.996412, 0, 0.996412, 0.0846343, 0, 0.0577829, -0.00984696)
+
+[node name="Coin2" parent="." instance=ExtResource("2_lb612")]
+transform = Transform3D(0.732589, 0.382158, 0.563267, -0.462507, 0.886616, 0, -0.499401, -0.260515, 0.826275, 0.073185, 0.0112598, -0.0443192)
+
+[node name="Coin3" parent="." instance=ExtResource("2_lb612")]
+transform = Transform3D(0.872965, -0.332602, -0.356803, 0.356037, 0.934472, 0, 0.333423, -0.127035, 0.93418, -0.0674753, 0.0261461, -0.0232492)
