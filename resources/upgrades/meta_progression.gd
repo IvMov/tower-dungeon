@@ -137,7 +137,7 @@ func apply_meta_upgrade(id: int) -> void:
 	PlayerParameters.player.upgrade_done_particles.emitting = true
 	var popup: PopUp = Constants.INFO_POPUP.instantiate()
 	get_parent().add_child(popup)
-	popup.set_text("Upgrade research finished! \n new tablet available in the shop")
+	popup.set_text("upgrade_research_finished \n upgrade_result")
 	match id:
 		Constants.ITEM_ACID_METEOR_ID:
 			PlayerParameters.player_data[MetaProgression.STORAGES_KEY]["traider_core"].set(Constants.ITEM_ACID_METEOR_ID, 1)

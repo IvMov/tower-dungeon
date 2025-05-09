@@ -35,7 +35,7 @@ func calc_projectile_damage() -> float:
 
 #includes number of items to calc damage
 func calc_num_of_items() -> float:
-	if PlayerParameters.hands.items.get(Vector2.ZERO).item && PlayerParameters.hands.items.get(Vector2.ZERO).item.id == skill.id:
+	if PlayerParameters.hands.items.get(Vector2.ZERO) && PlayerParameters.hands.items.get(Vector2.ZERO).item.id == skill.id:
 		return PlayerParameters.hands.items.get(Vector2.ZERO).quantity
 	else:
 		return PlayerParameters.hands.items.get(Vector2.DOWN).quantity

@@ -17,6 +17,7 @@ func _ready() -> void:
 func draw_items() -> void:
 	for coordinate in PlayerParameters.hands.items:
 		var item_bulk: ItemBulk = PlayerParameters.hands.items.get(coordinate)
+		on_item_add(Vector3(3, coordinate.x, coordinate.y), item_bulk, Vector3.ZERO)
 		var item_view: ItemView = hands.get_child(coordinate.y).item_view
 		item_view.item_bulk = item_bulk
 		item_view.draw_item()
