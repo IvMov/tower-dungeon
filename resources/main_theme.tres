@@ -85,10 +85,23 @@ texture_margin_right = 3.0
 texture_margin_bottom = 6.0
 
 [resource]
+Button/colors/font_color = Color(0.713726, 0.796078, 0.670588, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/constants/outline_size = 8
+Button/font_sizes/font_size = 22
 Button/styles/focus = SubResource("StyleBoxFlat_qjhx0")
 Button/styles/hover = SubResource("StyleBoxFlat_biaja")
 Button/styles/normal = SubResource("StyleBoxFlat_x127s")
 Button/styles/pressed = SubResource("StyleBoxFlat_vnc4k")
+Label/colors/font_color = Color(0.962792, 0.983733, 0.978196, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 8
+Label/font_sizes/font_size = 16
+Label_header/base_type = &"Label"
+Label_header/colors/font_color = Color(0.857678, 0.938259, 0.917619, 1)
+Label_header/colors/font_outline_color = Color(0.0784314, 0.121569, 0.0705882, 1)
+Label_header/constants/outline_size = 8
+Label_header/font_sizes/font_size = 24
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_m05l4")
 PanelContainer2/base_type = &"PanelContainer"
 PanelContainer2/styles/panel = SubResource("StyleBoxTexture_rlp8o")

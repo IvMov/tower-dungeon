@@ -49,5 +49,9 @@ BUGS:
 2025-04-29 work on saves of game and upgrades hall - looks bad, much work waits
 2025-04-30 works on saves - refactor constants file - much work, but still not finished
 2025-05-01 saves work progress 70%, load shop or entry depends on timers, time counting added
-2025-05-02 - work on upgrades and saves
-2025-05-03 - add particles and polish meta upgrades
+2025-05-02 work on upgrades and saves
+2025-05-03 add particles and polish meta upgrades
+2025-05-06 add new upgrades for dash and traider
+2025-05-07 add gameend and game stages levels
+2025-05-08 start work on popup screen, need to reuse on restart, exit to menu and quit
+2025-05-09 play with my ugly fonts) after it addede popup for the upgrades and lvlups

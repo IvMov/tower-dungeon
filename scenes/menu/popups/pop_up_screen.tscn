@@ -1,0 +1,77 @@
+[gd_scene load_steps=3 format=3 uid="uid://da7jxjudntq8"]
+
+[ext_resource type="Script" uid="uid://bd8c3xe313vf1" path="res://scenes/menu/popups/pop_up_screen.gd" id="1_nrfor"]
+[ext_resource type="PackedScene" uid="uid://dyfrlujou827f" path="res://scenes/ui/sound_button.tscn" id="2_q0me0"]
+
+[node name="PopUpScreen" type="CanvasLayer"]
+script = ExtResource("1_nrfor")
+metadata/_custom_type_script = "uid://b2ysldgbdm8sa"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColoredRect" type="ColorRect" parent="MarginContainer"]
+custom_minimum_size = Vector2(600, 300)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.145098, 0.219608, 0.207843, 0.870588)
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ColoredRect"]
+layout_mode = 2
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 596.0
+offset_bottom = 144.0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Label" type="Label" parent="MarginContainer/ColoredRect/MarginContainer"]
+custom_minimum_size = Vector2(200, 130)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Are you sure that you want to close the game. "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/ColoredRect"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -80.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="SoundButton" parent="MarginContainer/ColoredRect/MarginContainer2" instance=ExtResource("2_q0me0")]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 24
+text = "Yes"
+
+[node name="SoundButton2" parent="MarginContainer/ColoredRect/MarginContainer2" instance=ExtResource("2_q0me0")]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 24
+text = "No"
+
+[connection signal="pressed" from="MarginContainer/ColoredRect/MarginContainer2/SoundButton" to="." method="_on_sound_button_pressed"]
+[connection signal="pressed" from="MarginContainer/ColoredRect/MarginContainer2/SoundButton2" to="." method="_on_sound_button_2_pressed"]

@@ -132,6 +132,9 @@ func add_skill_exp(skill_id: int, value: float) -> void:
 	if required_exp <= value :
 		skill["exp"] = skill["next_lvl_exp"]
 		if lvl_up_skill(skill):
+			var popup: PopUp = Constants.INFO_POPUP.instantiate()
+			get_parent().add_child(popup)
+			popup.set_text("random text \n skill name and level")
 			GameEvents.emit_skill_lvl_up(skill_id)
 			add_skill_exp(skill_id, value - required_exp)
 	else:

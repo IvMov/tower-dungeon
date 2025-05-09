@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7pjb4tcmn4kg"]
+
+[ext_resource type="PackedScene" uid="uid://da7jxjudntq8" path="res://scenes/menu/popups/pop_up_screen.tscn" id="1_byx6j"]
+[ext_resource type="Script" uid="uid://8154q6p5suks" path="res://scenes/menu/popups/pop_up_quit.gd" id="2_b4bmu"]
+
+[node name="PopUpQuit" instance=ExtResource("1_byx6j")]
+script = ExtResource("2_b4bmu")
+
+[node name="MarginContainer2" parent="MarginContainer/ColoredRect" index="1"]
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_right = 40
