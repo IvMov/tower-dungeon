@@ -55,3 +55,4 @@ BUGS:
 2025-05-07 add gameend and game stages levels
 2025-05-08 start work on popup screen, need to reuse on restart, exit to menu and quit
 2025-05-09 play with my ugly fonts) after it addede popup for the upgrades and lvlups, fix bugs with save when in game and item on load to hand
+2025-05-10 add stamina and mana upgrades, add snowball upgrade

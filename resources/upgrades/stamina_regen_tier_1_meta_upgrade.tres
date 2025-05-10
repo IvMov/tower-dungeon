@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MetaUpgrade" load_steps=3 format=3 uid="uid://cvdtajcqrvplr"]
+
+[ext_resource type="PackedScene" uid="uid://djwqh0j87mqdv" path="res://assets/3d/meshes/stamina_regen_up.tscn" id="1_1utpk"]
+[ext_resource type="Script" uid="uid://ckno8ho1jfj4a" path="res://resources/upgrades/meta_upgrade.gd" id="1_88071"]
+
+[resource]
+script = ExtResource("1_88071")
+id = 70
+is_skill = false
+object = ExtResource("1_1utpk")
+title = "stamina_regen_1_meta_u_t"
+description = "stamina_regen_1_meta_u_d"
+value = 5.0
+target_text = "stamina_regen_1_meta_u_research_target"
+done_text = "stamina_regen_1_meta_u_research_done"
+price = Vector4(2, 2, 2, 2)
+metadata/_custom_type_script = "uid://ckno8ho1jfj4a"

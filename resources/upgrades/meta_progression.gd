@@ -68,8 +68,8 @@ var NEW_PLAYER: Dictionary = {
 		"traider_core": {
 			Constants.ITEM_ZOOM_ID: 1, #zoom
 			Constants.ITEM_STONE_ID: randi_range(Constants.items_pool.get(Constants.ITEM_STONE_ID).min_for_trade, Constants.items_pool.get(Constants.ITEM_STONE_ID).max_for_trade), # stone
+			Constants.ITEM_SPARK_ID: randi_range(Constants.items_pool.get(Constants.ITEM_SPARK_ID).min_for_trade, Constants.items_pool.get(Constants.ITEM_SPARK_ID).max_for_trade), # stone
 			Constants.ITEM_CRYSTAL_ID: randi_range(Constants.items_pool.get(Constants.ITEM_CRYSTAL_ID).min_for_trade, Constants.items_pool.get(Constants.ITEM_CRYSTAL_ID).max_for_trade), # crystals
-			Constants.ITEM_SNOWBALL_ID: randi_range(Constants.items_pool.get(Constants.ITEM_SNOWBALL_ID).min_for_trade, Constants.items_pool.get(Constants.ITEM_SNOWBALL_ID).max_for_trade), #snowball
 			Constants.ITEM_HEAL_ID: randi_range(Constants.items_pool.get(Constants.ITEM_HEAL_ID).min_for_trade, Constants.items_pool.get(Constants.ITEM_HEAL_ID).max_for_trade), 
 			Constants.ITEM_MANA_ID: randi_range(Constants.items_pool.get(Constants.ITEM_MANA_ID).min_for_trade, Constants.items_pool.get(Constants.ITEM_MANA_ID).max_for_trade), 
 			Constants.ITEM_STAMINA_ID: randi_range(Constants.items_pool.get(Constants.ITEM_STAMINA_ID).min_for_trade, Constants.items_pool.get(Constants.ITEM_STAMINA_ID).max_for_trade), 
@@ -139,6 +139,8 @@ func apply_meta_upgrade(id: int) -> void:
 	get_parent().add_child(popup)
 	popup.set_text("upgrade_research_finished \n upgrade_result")
 	match id:
+		Constants.ITEM_SNOWBALL_ID:
+			PlayerParameters.player_data[MetaProgression.STORAGES_KEY]["traider_core"].set(Constants.ITEM_SNOWBALL_ID, 1)
 		Constants.ITEM_ACID_METEOR_ID:
 			PlayerParameters.player_data[MetaProgression.STORAGES_KEY]["traider_core"].set(Constants.ITEM_ACID_METEOR_ID, 1)
 		Constants.ITEM_FIREBALL_ID:
@@ -152,6 +154,20 @@ func apply_meta_upgrade(id: int) -> void:
 		Constants.HP_REGEN_1_UPGRADE_ID, Constants.HP_REGEN_2_UPGRADE_ID:
 			PlayerParameters.player.health_component.regen += MetaProgression.upgrade_pool[id].value
 			PlayerParameters.player.health_component.emit_regen_changed(PlayerParameters.player.health_component.regen)
+		Constants.MANA_UP_1_UPGRADE_ID, Constants.MANA_UP_2_UPGRADE_ID:
+			PlayerParameters.player.mana_component.max_value += MetaProgression.upgrade_pool[id].value
+			PlayerParameters.player.mana_component.emit_max_value_changed(PlayerParameters.player.mana_component.max_value)
+			PlayerParameters.player.mana_component.minus(0)
+		Constants.MANA_REGEN_1_UPGRADE_ID, Constants.MANA_REGEN_2_UPGRADE_ID:
+			PlayerParameters.player.mana_component.regen += MetaProgression.upgrade_pool[id].value
+			PlayerParameters.player.mana_component.emit_regen_changed(PlayerParameters.player.mana_component.regen)
+		Constants.STAMINA_UP_1_UPGRADE_ID, Constants.STAMINA_UP_2_UPGRADE_ID:
+			PlayerParameters.player.stamina_component.max_value += MetaProgression.upgrade_pool[id].value
+			PlayerParameters.player.stamina_component.emit_max_value_changed(PlayerParameters.player.stamina_component.max_value)
+			PlayerParameters.player.stamina_component.minus(0)
+		Constants.STAMINA_REGEN_1_UPGRADE_ID, Constants.STAMINA_REGEN_2_UPGRADE_ID:
+			PlayerParameters.player.stamina_component.regen += MetaProgression.upgrade_pool[id].value
+			PlayerParameters.player.stamina_component.emit_regen_changed(PlayerParameters.player.stamina_component.regen)
 		Constants.DASH_CD_1_UPGRADE_ID, Constants.DASH_CD_2_UPGRADE_ID:
 			var new_cd: float = PlayerParameters.player_data["dash"]["cd"] * MetaProgression.upgrade_pool[id].value
 			PlayerParameters.player_data["dash"]["cd"] = new_cd

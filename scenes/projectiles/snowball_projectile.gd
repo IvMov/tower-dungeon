@@ -25,6 +25,10 @@ func _ready() -> void:
 func _physics_process(delta) -> void:
 	translate(direction * speed * delta)
 
+func set_disabled() -> void:
+	life_timer.stop()
+	collision_particles.emitting = true
+	collision_particles.emitting = false
 
 func handleb_body_collision() -> void:
 	if !is_explosing:

@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://cutl0nywh2rvo"]
+
+[ext_resource type="Script" uid="uid://bhogc0x2r0dql" path="res://assets/3d/meshes/hp_regen_up.gd" id="1_6fxhb"]
+[ext_resource type="Material" uid="uid://cgmec1v7lguua" path="res://particles/heal_particles.tres" id="2_vrkpm"]
+[ext_resource type="Material" uid="uid://bdxfg6h1188uj" path="res://resources/materials/blue_mana_material.tres" id="4_vrkpm"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_medmn"]
+material = ExtResource("4_vrkpm")
+size = Vector3(0.02, 0.02, 0.02)
+
+[sub_resource type="BoxMesh" id="BoxMesh_msof8"]
+material = ExtResource("4_vrkpm")
+size = Vector3(0.075, 0.025, 0.025)
+
+[node name="ManaRegenUp" type="Node3D"]
+script = ExtResource("1_6fxhb")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 5
+speed_scale = 0.3
+randomness = 1.0
+process_material = ExtResource("2_vrkpm")
+draw_pass_1 = SubResource("BoxMesh_medmn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.736711, 0, -0.676208, 0, 1, 0, 0.676208, 0, 0.736711, -0.0335672, 0, 0)
+mesh = SubResource("BoxMesh_msof8")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-3.22027e-08, 0.736711, -0.676208, -1, -4.37114e-08, 0, -2.9558e-08, 0.676208, 0.736711, -0.0335672, 0, 0)
+mesh = SubResource("BoxMesh_msof8")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.229251, 0, 0.973367, 0, 1, 0, -0.973367, 0, 0.229251, 0.0274575, 0.0341269, 0)
+mesh = SubResource("BoxMesh_msof8")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1.00209e-08, 0.229251, 0.973367, -1, -4.37114e-08, -3.37991e-15, 4.25472e-08, -0.973367, 0.229251, 0.0274575, 0.0341269, 0)
+mesh = SubResource("BoxMesh_msof8")

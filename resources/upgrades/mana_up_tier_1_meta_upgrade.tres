@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MetaUpgrade" load_steps=3 format=3 uid="uid://cjomg2sdbuc6s"]
+
+[ext_resource type="PackedScene" uid="uid://dik8bolbpkhis" path="res://assets/3d/meshes/mana_up.tscn" id="1_ysfrl"]
+[ext_resource type="Script" uid="uid://ckno8ho1jfj4a" path="res://resources/upgrades/meta_upgrade.gd" id="2_lyx6t"]
+
+[resource]
+script = ExtResource("2_lyx6t")
+id = 64
+is_skill = false
+object = ExtResource("1_ysfrl")
+title = "mana_up_1_meta_u_t"
+description = "mana_up_1_meta_u_d"
+value = 50.0
+target_text = "mana_up_1_meta_u_research_target"
+done_text = "mana_up_1_meta_u_research_done"
+price = Vector4(10, 1, 1, 10)
+metadata/_custom_type_script = "uid://ckno8ho1jfj4a"

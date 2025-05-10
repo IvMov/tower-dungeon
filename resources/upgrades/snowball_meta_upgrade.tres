@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MetaUpgrade" load_steps=3 format=3 uid="uid://cr57u1td1hmmj"]
+
+[ext_resource type="PackedScene" uid="uid://bfniguqvdt0mj" path="res://scenes/projectiles/snowball_projectile.tscn" id="1_qrxtd"]
+[ext_resource type="Script" uid="uid://ckno8ho1jfj4a" path="res://resources/upgrades/meta_upgrade.gd" id="2_sslvy"]
+
+[resource]
+script = ExtResource("2_sslvy")
+id = 8
+is_skill = true
+object = ExtResource("1_qrxtd")
+title = "snowball_skill_t"
+description = "snowball_skill_d"
+value = 0.0
+target_text = "snowball_research_target"
+done_text = "snowball_research_done"
+price = Vector4(10, 2, 3, 10)
+metadata/_custom_type_script = "uid://ckno8ho1jfj4a"

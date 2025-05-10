@@ -26,4 +26,3 @@ func emit_mana_changed(value: float) -> void:
 	if owner_node is BasicEnemy:
 		owner_node.mana_bar.update(current_value, max_value)
 	mana_changed.emit(value, current_value)
-

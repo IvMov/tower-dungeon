@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://5o5vlunlxqoi"]
+
+[ext_resource type="Script" uid="uid://8yncd1nw2cs7" path="res://assets/3d/meshes/hp_up.gd" id="1_lbrca"]
+[ext_resource type="Material" uid="uid://cgmec1v7lguua" path="res://particles/heal_particles.tres" id="2_t7qmy"]
+[ext_resource type="Material" uid="uid://blo01uak0ppj1" path="res://resources/materials/yellow_stamina_material.tres" id="4_t7qmy"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_medmn"]
+material = ExtResource("4_t7qmy")
+size = Vector3(0.02, 0.02, 0.02)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5g68l"]
+material = ExtResource("4_t7qmy")
+size = Vector3(0.25, 0.1, 0.1)
+
+[node name="StaminaUp" type="Node3D"]
+script = ExtResource("1_lbrca")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 5
+speed_scale = 0.3
+randomness = 1.0
+process_material = ExtResource("2_t7qmy")
+draw_pass_1 = SubResource("BoxMesh_medmn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_5g68l")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_5g68l")

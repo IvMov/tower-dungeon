@@ -31,9 +31,19 @@ const HP_UP_1_UPGRADE_ID: int = 60
 const HP_UP_2_UPGRADE_ID: int = 61
 const HP_REGEN_1_UPGRADE_ID: int = 62
 const HP_REGEN_2_UPGRADE_ID: int = 63
+const MANA_UP_1_UPGRADE_ID: int = 64
+const MANA_UP_2_UPGRADE_ID: int = 65
+const MANA_REGEN_1_UPGRADE_ID: int = 66
+const MANA_REGEN_2_UPGRADE_ID: int = 67
+const STAMINA_UP_1_UPGRADE_ID: int = 68
+const STAMINA_UP_2_UPGRADE_ID: int = 69
+const STAMINA_REGEN_1_UPGRADE_ID: int = 70
+const STAMINA_REGEN_2_UPGRADE_ID: int = 71
 
-const TRAIDER_1_UPGRADE_ID: int = 70
-const TRAIDER_2_UPGRADE_ID: int = 71
+
+
+const TRAIDER_1_UPGRADE_ID: int = 80
+const TRAIDER_2_UPGRADE_ID: int = 81
 
 const DASH_CD_1_UPGRADE_ID: int = 104
 const DASH_CD_2_UPGRADE_ID: int = 1004

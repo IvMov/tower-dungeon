@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_bpmi3")
-id = 71
+id = 81
 is_skill = false
 object = ExtResource("1_xi3c0")
 title = "traider_2_meta_u_t"

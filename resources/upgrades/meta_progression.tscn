@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d1jwvvt84srui"]
+[gd_scene load_steps=23 format=3 uid="uid://d1jwvvt84srui"]
 
 [ext_resource type="Script" uid="uid://bsketapch6sr7" path="res://resources/upgrades/meta_progression.gd" id="1_p8xll"]
 [ext_resource type="Script" uid="uid://ckno8ho1jfj4a" path="res://resources/upgrades/meta_upgrade.gd" id="2_8hrxo"]
@@ -13,11 +13,21 @@
 [ext_resource type="Resource" uid="uid://db8aiipielbfk" path="res://resources/upgrades/dash_cd_2_meta_upgrade.tres" id="11_iwgdm"]
 [ext_resource type="Resource" uid="uid://yw2ulu6wa23o" path="res://resources/upgrades/traider_1_meta_upgrade.tres" id="12_pfivj"]
 [ext_resource type="Resource" uid="uid://b0egoswkr6rw4" path="res://resources/upgrades/traider_2_meta_upgrade.tres" id="13_hb2aa"]
+[ext_resource type="Resource" uid="uid://cr57u1td1hmmj" path="res://resources/upgrades/snowball_meta_upgrade.tres" id="14_xy0uu"]
+[ext_resource type="Resource" uid="uid://cjomg2sdbuc6s" path="res://resources/upgrades/mana_up_tier_1_meta_upgrade.tres" id="15_jk46n"]
+[ext_resource type="Resource" uid="uid://tw8aj34q7loo" path="res://resources/upgrades/mana_up_tier_2_meta_upgrade.tres" id="16_8s0a8"]
+[ext_resource type="Resource" uid="uid://by8htfjamn3mn" path="res://resources/upgrades/mana_regen_tier_1_meta_upgrade.tres" id="17_pm3gn"]
+[ext_resource type="Resource" uid="uid://dlgrky4hpep0f" path="res://resources/upgrades/mana_regen_tier_2_meta_upgrade.tres" id="18_f8f8o"]
+[ext_resource type="Resource" uid="uid://c4nfbl7g86q6y" path="res://resources/upgrades/stamina_up_tier_1_meta_upgrade.tres" id="19_dcqdk"]
+[ext_resource type="Resource" uid="uid://ctgsk66kowteo" path="res://resources/upgrades/stamina_up_tier_2_meta_upgrade.tres" id="20_6jx3q"]
+[ext_resource type="Resource" uid="uid://cvdtajcqrvplr" path="res://resources/upgrades/stamina_regen_tier_1_meta_upgrade.tres" id="21_dcqdk"]
+[ext_resource type="Resource" uid="uid://debydcho8q18o" path="res://resources/upgrades/stamina_regen_tier_2_meta_upgrade.tres" id="22_6jx3q"]
 
 [node name="MetaProgression" type="Node"]
 process_mode = 3
 script = ExtResource("1_p8xll")
 upgrade_pool = Dictionary[int, ExtResource("2_8hrxo")]({
+8: ExtResource("14_xy0uu"),
 9: ExtResource("4_m4sux"),
 10: ExtResource("5_8hrxo"),
 11: ExtResource("3_tsvhc"),
@@ -25,8 +35,16 @@ upgrade_pool = Dictionary[int, ExtResource("2_8hrxo")]({
 61: ExtResource("6_tsvhc"),
 62: ExtResource("8_4jail"),
 63: ExtResource("9_k2g4x"),
-70: ExtResource("12_pfivj"),
-71: ExtResource("13_hb2aa"),
+64: ExtResource("15_jk46n"),
+65: ExtResource("16_8s0a8"),
+66: ExtResource("17_pm3gn"),
+67: ExtResource("18_f8f8o"),
+68: ExtResource("19_dcqdk"),
+69: ExtResource("20_6jx3q"),
+70: ExtResource("21_dcqdk"),
+71: ExtResource("22_6jx3q"),
+80: ExtResource("12_pfivj"),
+81: ExtResource("13_hb2aa"),
 104: ExtResource("10_k2g4x"),
 1004: ExtResource("11_iwgdm")
 })
