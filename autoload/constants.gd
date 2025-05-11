@@ -2,7 +2,7 @@ extends Node
 
 const COIN: PackedScene = preload("res://scenes/dropable/coin.tscn")
 const SOUL_PART: PackedScene = preload("res://scenes/dropable/soul_part.tscn")
-
+const SPARK_PERMANENT_CONTROLLER = preload("res://scenes/skill_contolllers/mana/player/spark_permanent_controller.tscn")
 #infrastructure
 const ITEM_VIEW_SCENE: PackedScene = preload("res://scenes/ui/item_view.tscn")
 const ITEM_VIEW_HOLDER: PackedScene = preload("res://scenes/ui/item_view_holder.tscn")

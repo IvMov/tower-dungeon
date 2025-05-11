@@ -33,6 +33,42 @@ var NEW_PLAYER: Dictionary = {
 	"souls": Vector3.ONE * 100,
 	"time_in_game_unix": 0.0,
 	"traider_max_items_factor": 1.0,
+	"statues": {
+		0: {
+			"is_done": false,
+			"stones": 0,
+			"stones_max": 10,
+			"crystals": 0,
+			"crystals_max": 10
+		},
+		1: {
+			"is_done": false,
+			"stones": 0,
+			"stones_max": 10,
+			"crystals": 0,
+			"crystals_max": 10
+		},
+		2: {
+			"is_done": false,
+			"stones": 0,
+			"stones_max": 10,
+			"crystals": 0,
+			"crystals_max": 10
+		},
+		3: {
+			"is_done": false,
+			"stones": 0,
+			"stones_max": 10,
+			"crystals": 0,
+			"crystals_max": 10
+		}
+	},
+	"spark_permanent": {
+		"quantity": 0,
+		"dmg": 5,
+		"cd": 1,
+		"distance": 15
+	},
 	"dash" : {
 		"time": 0.3,
 		"cd": 1.5,
@@ -40,8 +76,8 @@ var NEW_PLAYER: Dictionary = {
 		"energy": 5.0
 	},
 	STATS_KEY: {
-		"max_hp": 5,
-		"current_hp": 5,
+		"max_hp": 500,
+		"current_hp": 500,
 		"regen_hp": 1,
 		"max_mana": 50,
 		"current_mana": 20,

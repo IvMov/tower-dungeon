@@ -147,13 +147,13 @@ func get_skill_data(skill_id: int) -> Dictionary:
 	return skill_expirience[skill_id]
 
 func find_item(position: Vector3) -> ItemBulk:
-	var result: ItemBulk = inventory.items.get(position)
+	var result: ItemBulk
 	if position.x == 0:
-		result = inventory.items.get(position)
+		result = inventory.items.get(Vector2(position.y, position.z))
 	elif position.x == 1:
-		result = belt.items.get(position)
+		result = belt.items.get(Vector2(position.y, position.z))
 	elif position.x == 3:
-		result = hands.items.get(position)
+		result = hands.items.get(Vector2(position.y, position.z))
 	return result
 
 func find_item_position_by_id(item_id: int) -> Vector3:

@@ -1,6 +1,7 @@
-[gd_scene load_steps=29 format=3 uid="uid://dwmp17walymun"]
+[gd_scene load_steps=30 format=3 uid="uid://dwmp17walymun"]
 
 [ext_resource type="Material" uid="uid://de3hjukfgxgh" path="res://assets/textures/materials/floor_material.tres" id="1_7f42e"]
+[ext_resource type="Script" uid="uid://dcigipg7asa3s" path="res://scenes/maps/traider_map.gd" id="1_oce3y"]
 [ext_resource type="Material" uid="uid://cw8oxk75ogtt0" path="res://assets/textures/materials/wall_material.tres" id="2_4jseg"]
 [ext_resource type="PackedScene" uid="uid://dv8nvt63j6h3x" path="res://scenes/maps/parts/exit_from_traider.tscn" id="3_mfv7e"]
 [ext_resource type="PackedScene" uid="uid://dsfklcrmsh38d" path="res://scenes/maps/parts/candle.tscn" id="4_6qoet"]
@@ -80,6 +81,7 @@ points = PackedVector3Array(1, 0.5, 0.25, 1, 0.5, -0.25, -1, 0.5, 0.25, 1, -0.5,
 
 [node name="TraiderMap" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.179, 0, -9.84)
+script = ExtResource("1_oce3y")
 
 [node name="Floor" type="Node3D" parent="."]
 
@@ -261,3 +263,5 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.889
 
 [node name="TraiderButton" parent="Traider" instance=ExtResource("7_68n74")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="Items" type="Node3D" parent="."]

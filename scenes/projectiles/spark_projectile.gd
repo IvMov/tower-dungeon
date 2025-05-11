@@ -11,6 +11,7 @@ var push_power: float
 @onready var area_3d: Area3D = $MeshInstance3D/Area3D
 @onready var mesh_instance_3d: MeshInstance3D = $MeshInstance3D
 @onready var projectile_particles: GPUParticles3D = $ProjectileParticles
+@onready var omni_light_3d: OmniLight3D = $OmniLight3D
 
 @onready var collision_particles: GPUParticles3D = $CollisionParticles
 
@@ -21,6 +22,17 @@ func _ready() -> void:
 func _physics_process(delta) -> void:
 	translate(direction * speed * delta)
 
+func set_disabled() -> void: 
+	life_timer.stop()
+	projectile_particles.one_shot = false
+	projectile_particles.amount = 3
+	projectile_particles.emitting = true
+	collision_particles.emitting = false
+	omni_light_3d.visible = false
+	area_3d.set_collision_layer_value(3, false)
+	area_3d.set_collision_mask_value(11, false)
+	area_3d.set_collision_mask_value(13, false)
+	area_3d.set_collision_mask_value(1, false)
 
 func handleb_body_collision() -> void:
 	speed = 0

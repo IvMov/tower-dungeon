@@ -13,9 +13,13 @@
 10) POLISH SKILLS AND ENEMIES LVL UP
 10.1) POLISH BALANCE for first 3-5 levels 
 11) Add decorations? each wall flour have random elements? 
-12) progression, half souls lost after each death, after 3 lives you die and can invest souls in some item.  After 100% souls invested - item will be available in the shop.
+12) DONE: progression, half souls lost after each death, after 3 lives you die and can invest souls in some item.  After 100% souls invested - item will be available in the shop.
+12.1) add statue which can be build and gives static spark skill
 13) DONE: Add drop from spawner and boss enemies coins which required for invest new items. 
-14) music for each upgrade when buy ( like speed or etc)
+15) add notes on walls - can investigate -> gives tips in game and life/parts -> collect 7 lifeparts gives 1 life
+16) adjust timers for healing/etc to do updates each 0.1/0.2 sec
+17) add statues 2, 3, expand and resize EntryMap
+18) add light particles in all rooms to bring light around player( could be attached to player and move with him)
 
 BUGS: 
 1) top down in tunel or min camera distance - projectiles flight through ground -_- (already 10th bug like this) fck
@@ -56,3 +60,4 @@ BUGS:
 2025-05-08 start work on popup screen, need to reuse on restart, exit to menu and quit
 2025-05-09 play with my ugly fonts) after it addede popup for the upgrades and lvlups, fix bugs with save when in game and item on load to hand
 2025-05-10 add stamina and mana upgrades, add snowball upgrade
+2025-05-11 add statues 0, 1 looks great. TODO: add statues 2, 3, expand and resize EntryMap

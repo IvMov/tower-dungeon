@@ -40,6 +40,9 @@ var is_immune_to_damage: bool
 var last_fontain_coordinates: Vector3
 
 func _ready():
+	if PlayerParameters.player_data["spark_permanent"]["quantity"] > 0:
+		for i in PlayerParameters.player_data["spark_permanent"]["quantity"]:
+			add_permanent_spark(i)
 	effect_flash_component.is_player = true
 	GameEvents.emit_change_game_stage(1)
 	agr_area.body_entered.connect(on_body_entered)
@@ -151,6 +154,12 @@ func handle_back_to_fontain(event: InputEvent) -> void:
 		#removes life but teleports you to last fontain
 		custom_death_actions()
 
+func add_permanent_spark(i: int) -> void:
+	var spark_controller: SparkPermanentController = Constants.SPARK_PERMANENT_CONTROLLER.instantiate()
+	spark_controller.spark_position_factor = i
+	skill_box.add_child(spark_controller)
+	
+		
 
 #returns true if it's maintainable action, else false
 func do_actions() -> bool:

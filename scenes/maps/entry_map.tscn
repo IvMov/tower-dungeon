@@ -1,11 +1,13 @@
-[gd_scene load_steps=21 format=3 uid="uid://cltmpav5yxqp6"]
+[gd_scene load_steps=23 format=3 uid="uid://cltmpav5yxqp6"]
 
 [ext_resource type="Material" uid="uid://de3hjukfgxgh" path="res://assets/textures/materials/floor_material.tres" id="1_gc0tx"]
 [ext_resource type="Script" uid="uid://cbt3igqwi6k8o" path="res://scenes/maps/entry_map.gd" id="1_x1xmx"]
 [ext_resource type="Material" uid="uid://cw8oxk75ogtt0" path="res://assets/textures/materials/wall_material.tres" id="2_x1xmx"]
 [ext_resource type="PackedScene" uid="uid://dv8nvt63j6h3x" path="res://scenes/maps/parts/exit_from_traider.tscn" id="3_a0wnh"]
+[ext_resource type="PackedScene" uid="uid://6i650d5cqoxt" path="res://scenes/meta_progression/statue_0.tscn" id="3_gc0tx"]
 [ext_resource type="PackedScene" uid="uid://3u5p44i1b8o0" path="res://particles/mesh/torch.tscn" id="3_pkvw7"]
 [ext_resource type="PackedScene" uid="uid://dsfklcrmsh38d" path="res://scenes/maps/parts/candle.tscn" id="4_pkvw7"]
+[ext_resource type="PackedScene" uid="uid://bmskdfa6ufbjr" path="res://scenes/meta_progression/statue_1.tscn" id="8_x1xmx"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_b62fs"]
 material = ExtResource("1_gc0tx")
@@ -70,6 +72,9 @@ mesh = SubResource("PlaneMesh_b62fs")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/MeshInstance3D/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_gc0tx")
+
+[node name="Statue_0" parent="Floor" instance=ExtResource("3_gc0tx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9)
 
 [node name="Walls" type="Node3D" parent="."]
 
@@ -236,3 +241,8 @@ skeleton = NodePath("../..")
 [node name="Left" type="Node3D" parent="MetaUpgrades"]
 
 [node name="Right" type="Node3D" parent="MetaUpgrades"]
+
+[node name="Items" type="Node3D" parent="."]
+
+[node name="Statue_1" parent="." instance=ExtResource("8_x1xmx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.56668, 0, -9.01669)

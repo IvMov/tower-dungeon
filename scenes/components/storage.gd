@@ -54,7 +54,7 @@ func remove(key: Vector3,  quantity: int) -> void:
 	var key_2d: Vector2 = Vector2(key.y, key.z)
 	if items.has(key_2d) && items.get(key_2d).quantity > quantity:
 		items.get(key_2d).quantity -= quantity
-	elif quantity == items.get(key_2d).quantity:
+	elif items.has(key_2d) && quantity == items.get(key_2d).quantity:
 		items.erase(key_2d)
 		GameEvents.emit_item_from_storage(key)
 	GameEvents.emit_redraw_item(key)
