@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://rhxioyluj45w"]
+[gd_scene load_steps=32 format=3 uid="uid://rhxioyluj45w"]
 
 [ext_resource type="Script" uid="uid://cg5lgp47wg587" path="res://autoload/constants.gd" id="1_k57il"]
 [ext_resource type="Script" uid="uid://blbht47vwtj68" path="res://resources/items/item.gd" id="2_dh5uh"]
@@ -15,11 +15,22 @@
 [ext_resource type="Resource" uid="uid://bitwfv1j10r77" path="res://resources/items/snowball_tablet.tres" id="13_2w2iw"]
 [ext_resource type="Resource" uid="uid://dvchjgjhfi6ra" path="res://resources/items/spark_tablet.tres" id="14_2bny1"]
 [ext_resource type="Resource" uid="uid://cw8ej827nieo2" path="res://resources/items/zoom_tablet.tres" id="15_2cawl"]
-[ext_resource type="Texture2D" uid="uid://chagvobuyvrg5" path="res://assets/2d/signs/no_2.png" id="18_i4rcs"]
-[ext_resource type="Texture2D" uid="uid://2xess33mxww3" path="res://assets/2d/signs/no_3.png" id="19_smjni"]
-[ext_resource type="Texture2D" uid="uid://bdhluh2pkg7c3" path="res://assets/2d/signs/no_5.png" id="21_s56hd"]
-[ext_resource type="Texture2D" uid="uid://c88sx5qkwe1s4" path="res://assets/2d/signs/no_6.png" id="22_11ywg"]
-[ext_resource type="Texture2D" uid="uid://3x0cj5ni2euh" path="res://assets/2d/signs/no_7.png" id="23_a5ian"]
+[ext_resource type="Texture2D" uid="uid://qn4e3y35jwar" path="res://assets/2d/signs/new_1.png" id="16_qcilj"]
+[ext_resource type="Texture2D" uid="uid://bt5da0b8v1dp3" path="res://assets/2d/signs/new_2.png" id="17_i4rcs"]
+[ext_resource type="Texture2D" uid="uid://eoblepiklgnh" path="res://assets/2d/signs/new_3.png" id="18_smjni"]
+[ext_resource type="Texture2D" uid="uid://uk5s8yqaaot3" path="res://assets/2d/signs/new_4.png" id="19_mlsav"]
+[ext_resource type="Texture2D" uid="uid://diid0vacr4eea" path="res://assets/2d/signs/new_5.png" id="20_s56hd"]
+[ext_resource type="Texture2D" uid="uid://dpfhgc253w5qi" path="res://assets/2d/signs/new_6.png" id="21_11ywg"]
+[ext_resource type="Texture2D" uid="uid://cukt03mhvvsir" path="res://assets/2d/signs/new_7.png" id="22_a5ian"]
+[ext_resource type="Texture2D" uid="uid://dycek6m1x67bf" path="res://assets/2d/signs/new_8.png" id="23_ytbod"]
+[ext_resource type="Texture2D" uid="uid://c371i51xfc866" path="res://assets/2d/signs/new_9.png" id="24_00vnr"]
+[ext_resource type="Texture2D" uid="uid://54ltddx4esaf" path="res://assets/2d/signs/new_10.png" id="25_nbtt6"]
+[ext_resource type="Texture2D" uid="uid://dfcnbp5reifq8" path="res://assets/2d/signs/new_11.png" id="26_qbjnf"]
+[ext_resource type="Texture2D" uid="uid://dcl7sshhqwi74" path="res://assets/2d/signs/new_12.png" id="27_07hu6"]
+[ext_resource type="Texture2D" uid="uid://b7l22gy8ynk2f" path="res://assets/2d/signs/new_13.png" id="28_0tnq1"]
+[ext_resource type="Texture2D" uid="uid://drpsw712m8hhs" path="res://assets/2d/signs/new_14.png" id="29_ltool"]
+[ext_resource type="Texture2D" uid="uid://b08kdab4bxapr" path="res://assets/2d/signs/new_15.png" id="30_5qp18"]
+[ext_resource type="Texture2D" uid="uid://ddl5h138iynvt" path="res://assets/2d/signs/new_16.png" id="31_w2f0i"]
 
 [node name="Constatns" type="Node"]
 process_mode = 3
@@ -39,4 +50,4 @@ items_pool = Dictionary[int, ExtResource("2_dh5uh")]({
 33: ExtResource("4_2rcu4"),
 34: ExtResource("7_t15ty")
 })
-wall_signs = Array[Texture2D]([ExtResource("18_i4rcs"), ExtResource("19_smjni"), ExtResource("23_a5ian"), ExtResource("21_s56hd"), ExtResource("22_11ywg")])
+wall_signs = Array[Texture2D]([ExtResource("16_qcilj"), ExtResource("17_i4rcs"), ExtResource("18_smjni"), ExtResource("19_mlsav"), ExtResource("20_s56hd"), ExtResource("21_11ywg"), ExtResource("22_a5ian"), ExtResource("23_ytbod"), ExtResource("24_00vnr"), ExtResource("25_nbtt6"), ExtResource("26_qbjnf"), ExtResource("27_07hu6"), ExtResource("28_0tnq1"), ExtResource("29_ltool"), ExtResource("30_5qp18"), ExtResource("31_w2f0i")])

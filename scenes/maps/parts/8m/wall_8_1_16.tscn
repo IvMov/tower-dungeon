@@ -2,7 +2,7 @@
 
 [ext_resource type="Material" uid="uid://cw8oxk75ogtt0" path="res://assets/textures/materials/wall_material.tres" id="1_bu2j4"]
 [ext_resource type="Script" uid="uid://cnkhcqrerl85i" path="res://scenes/maps/parts/8m/wall_8_1_16.gd" id="1_cmt7e"]
-[ext_resource type="Texture2D" uid="uid://28by2s8bhlsf" path="res://assets/2d/signs/wall_text.png" id="2_rr2sx"]
+[ext_resource type="Texture2D" uid="uid://1iwtsat6ygpj" path="res://assets/2d/wall/wall_decor.png" id="3_cmt7e"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_pgaev"]
 resource_local_to_scene = true
@@ -26,5 +26,5 @@ mesh = SubResource("BoxMesh_pgaev")
 shape = SubResource("BoxShape3D_n0l5a")
 
 [node name="Decal" type="Decal" parent="MeshInstance3D"]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, -8, 0)
-texture_albedo = ExtResource("2_rr2sx")
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, -6.44328, 0)
+texture_albedo = ExtResource("3_cmt7e")

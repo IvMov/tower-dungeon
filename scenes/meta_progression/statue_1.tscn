@@ -95,11 +95,11 @@ _data = {
 &"rotation": SubResource("Animation_fc3xa")
 }
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_44psv"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vcxbw"]
 albedo_color = Color(0, 5, 4, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_sfy64"]
-material = SubResource("StandardMaterial3D_44psv")
+material = SubResource("StandardMaterial3D_vcxbw")
 radius = 0.01
 height = 0.02
 radial_segments = 6
