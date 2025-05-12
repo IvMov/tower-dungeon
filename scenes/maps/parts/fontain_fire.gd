@@ -40,10 +40,9 @@ func do_action() -> bool:
 		GameEvents.emit_item_update_hand_view(crystal_position.z)
 	if success:
 		add_crystal_particles.emitting = true
-		flying_text.set_text("Press E to put the items. \n Crystals %d / %d" % [crystals, MAX_CRYSTALS])
+		flying_text.set_text(tr("crystall_add_template") % [crystals, MAX_CRYSTALS])
 	else:
-		pass
-		flying_text.set_text("Press E to put the items. \n Crystals %d / %d \n No crystals in inventory!" % [crystals, MAX_CRYSTALS])
+		flying_text.set_text(tr("no_crystalls_template") % [crystals, MAX_CRYSTALS])
 	if crystals == MAX_CRYSTALS:
 		mesh_wrap.scale = Vector3.ONE * 3
 		mesh_instance_3d_4.get_active_material(0)
@@ -59,7 +58,7 @@ func shoot_the_wall() -> void:
 
 func _on_static_body_3d_mouse_entered() -> void:
 	super._on_static_body_3d_mouse_entered()
-	flying_text.set_text("Press E to put the items. \n Crystals %d / %d" % [crystals, MAX_CRYSTALS])
+	flying_text.set_text(tr("crystall_add_template") % [crystals, MAX_CRYSTALS])
 
 
 func _on_timer_timeout() -> void:

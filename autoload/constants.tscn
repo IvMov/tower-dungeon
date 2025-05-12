@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://rhxioyluj45w"]
+[gd_scene load_steps=21 format=3 uid="uid://rhxioyluj45w"]
 
 [ext_resource type="Script" uid="uid://cg5lgp47wg587" path="res://autoload/constants.gd" id="1_k57il"]
 [ext_resource type="Script" uid="uid://blbht47vwtj68" path="res://resources/items/item.gd" id="2_dh5uh"]
@@ -15,6 +15,11 @@
 [ext_resource type="Resource" uid="uid://bitwfv1j10r77" path="res://resources/items/snowball_tablet.tres" id="13_2w2iw"]
 [ext_resource type="Resource" uid="uid://dvchjgjhfi6ra" path="res://resources/items/spark_tablet.tres" id="14_2bny1"]
 [ext_resource type="Resource" uid="uid://cw8ej827nieo2" path="res://resources/items/zoom_tablet.tres" id="15_2cawl"]
+[ext_resource type="Texture2D" uid="uid://chagvobuyvrg5" path="res://assets/2d/signs/no_2.png" id="18_i4rcs"]
+[ext_resource type="Texture2D" uid="uid://2xess33mxww3" path="res://assets/2d/signs/no_3.png" id="19_smjni"]
+[ext_resource type="Texture2D" uid="uid://bdhluh2pkg7c3" path="res://assets/2d/signs/no_5.png" id="21_s56hd"]
+[ext_resource type="Texture2D" uid="uid://c88sx5qkwe1s4" path="res://assets/2d/signs/no_6.png" id="22_11ywg"]
+[ext_resource type="Texture2D" uid="uid://3x0cj5ni2euh" path="res://assets/2d/signs/no_7.png" id="23_a5ian"]
 
 [node name="Constatns" type="Node"]
 process_mode = 3
@@ -34,3 +39,4 @@ items_pool = Dictionary[int, ExtResource("2_dh5uh")]({
 33: ExtResource("4_2rcu4"),
 34: ExtResource("7_t15ty")
 })
+wall_signs = Array[Texture2D]([ExtResource("18_i4rcs"), ExtResource("19_smjni"), ExtResource("23_a5ian"), ExtResource("21_s56hd"), ExtResource("22_11ywg")])

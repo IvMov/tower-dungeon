@@ -49,7 +49,7 @@ const DASH_CD_1_UPGRADE_ID: int = 104
 const DASH_CD_2_UPGRADE_ID: int = 1004
 
 @export var items_pool: Dictionary[int, Item]
-
+@export var wall_signs: Array[Texture2D]
 #map_generator
 const CORE_TILE_SIZE: float = 8.0
 const TUNEL_PADDING: float = 1.0

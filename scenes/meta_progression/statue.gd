@@ -18,6 +18,7 @@ var crystals: int
 
 var stone_position: Vector3
 var crystal_position: Vector3
+var is_ready: bool = false
 
 func common_ready(ID: int) -> void:
 	stones = PlayerParameters.player_data["statues"][ID]["stones"]
@@ -35,7 +36,7 @@ func add_crystals(ID: int) -> bool:
 		set_is_done(ID)
 		return false
 	elif crystals == MAX_CRYSTALS && stones != MAX_STONES:
-			flying_text.set_text("Stones %d / %d \n Crystals %d / %d \n No stones & crystalls in inventory!" % [stones, MAX_STONES, crystals, MAX_CRYSTALS])
+			flying_text.set_text(tr("statue_no_stones_and_crystals_template") % [stones, MAX_STONES, crystals, MAX_CRYSTALS])
 			return false
 	if crystals == MAX_CRYSTALS:
 		return false
@@ -56,11 +57,12 @@ func add_crystals(ID: int) -> bool:
 	if success:
 		PlayerParameters.player_data["statues"][ID]["crystals"] = crystals
 		add_crystal_particles.emitting = true
-		flying_text.set_text("Press E to put the items. \n Stones %d / %d \n Crystals %d / %d" % [stones, MAX_STONES, crystals, MAX_CRYSTALS])
+		flying_text.set_text(tr("statue_common_info_template") % [stones, MAX_STONES, crystals, MAX_CRYSTALS])
 	else:
-		flying_text.set_text("Stones %d / %d \n Crystals %d / %d \n No stones & crystals in inventory!" % [stones, MAX_STONES, crystals, MAX_CRYSTALS])
+		flying_text.set_text(tr("statue_no_stones_and_crystals_template") % [stones, MAX_STONES, crystals, MAX_CRYSTALS])
 	if crystals == MAX_CRYSTALS && stones == MAX_STONES:
 		set_is_done(ID)
+		return true
 	elif crystals == MAX_CRYSTALS && stones != MAX_STONES:
 		statue.transparency = 0.5
 	return true
@@ -87,9 +89,10 @@ func add_stones(ID: int) ->bool:
 		add_stone_particles.emitting = true
 		if crystals == MAX_CRYSTALS && stones == MAX_STONES:
 			set_is_done(ID)
+			return false
 		elif stones == MAX_STONES:
 			statue.transparency = 0.5
-		flying_text.set_text("Press E to put the items. \n Stones %d / %d \n Crystals %d / %d" % [stones, MAX_STONES, crystals, MAX_CRYSTALS])
+		flying_text.set_text(tr("statue_common_info_template") % [stones, MAX_STONES, crystals, MAX_CRYSTALS])
 	return success
 
 func set_is_done(ID: int) -> void:
@@ -97,13 +100,20 @@ func set_is_done(ID: int) -> void:
 		PlayerParameters.player_data["statues"][ID]["is_done"] = true
 		PlayerParameters.player_data["spark_permanent"]["quantity"]+=1
 		PlayerParameters.player.add_permanent_spark(ID)
+	is_ready = true
 	statue.transparency = 0
 	static_body_3d.set_collision_layer_value(1, true)
 	static_body_3d.set_collision_layer_value(6, false)
 	animation_player.play("rotation")
 	done_particles.emitting = true
 	flying_text.visible = true
-	flying_text.set_text("+1 autoattack sparks you have!")
+	flying_text.set_text(tr("statue_done_text"))
+	print("SetISFCKING FONE")
+	flying_text.visible = true
 
 func set_text_on_hover() -> void:
-	flying_text.set_text("Press E to put the items. \n Stones %d / %d \n Crystals %d / %d" % [stones, MAX_STONES, crystals, MAX_CRYSTALS])
+	flying_text.set_text(tr("statue_common_info_template") % [stones, MAX_STONES, crystals, MAX_CRYSTALS])
+
+func _on_static_body_3d_mouse_exited() -> void:
+	if !is_ready:
+		flying_text.visible = false

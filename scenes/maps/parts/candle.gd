@@ -6,7 +6,7 @@ class_name Candle extends Node3D
 
 
 func _ready() -> void:
-	flying_text.set_text("I'm just candle... \n Press E")
+	flying_text.set_text(tr("candle_joke"))
 
 func do_action() -> bool: 
 	head.visible = !head.visible

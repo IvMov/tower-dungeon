@@ -17,7 +17,7 @@
 12.1) add statue which can be build and gives static spark skill
 13) DONE: Add drop from spawner and boss enemies coins which required for invest new items. 
 15) add notes on walls - can investigate -> gives tips in game and life/parts -> collect 7 lifeparts gives 1 life
-16) adjust timers for healing/etc to do updates each 0.1/0.2 sec
+16) DONE: adjust timers for healing/etc to do updates each 0.1/0.2 sec
 17) add statues 2, 3, expand and resize EntryMap
 18) add light particles in all rooms to bring light around player( could be attached to player and move with him)
 
@@ -30,6 +30,7 @@ BUGS:
 6) when item on cd, and drag and drop it - the view without item will still run timer of cd3
 7) when in shop not enough money for (buttons updates view but price left white)
 8) when in shop - buy an item - and save exit, then load - item again available in shop
+9) when in shop/entry - sometimes can't pickup items - after pickup item not in inventory
 
 
 
@@ -61,3 +62,4 @@ BUGS:
 2025-05-09 play with my ugly fonts) after it addede popup for the upgrades and lvlups, fix bugs with save when in game and item on load to hand
 2025-05-10 add stamina and mana upgrades, add snowball upgrade
 2025-05-11 add statues 0, 1 looks great. TODO: add statues 2, 3, expand and resize EntryMap
+2025-05-12 fix timers for heal, add decoration for walls (need to paint more)

@@ -33,10 +33,10 @@ func do_action() -> bool:
 		GameEvents.emit_item_update_hand_view(stone_position.z)
 	if success:
 		add_stone_particles.emitting = true
-		flying_text.set_text("Press E to put the items. \n Stones %d / %d" % [stones, MAX_STONES])
+		flying_text.set_text(tr("stones_add_template") % [stones, MAX_STONES])
 	else:
 		pass
-		flying_text.set_text("Press E to put the items. \n Stones %d / %d \n No stones in inventory!" % [stones, MAX_STONES])
+		flying_text.set_text(tr("no_crystalls_template") % [stones, MAX_STONES])
 	if stones == MAX_STONES:
 		timer.stop()
 		if tween:
@@ -57,4 +57,4 @@ func _on_timer_timeout() -> void:
 
 func _on_static_body_3d_mouse_entered() -> void:
 	super._on_static_body_3d_mouse_entered()
-	flying_text.set_text("Press E to put the items. \n Stones %d / %d" % [stones, MAX_STONES])
+	flying_text.set_text(tr("stones_add_template") % [stones, MAX_STONES])

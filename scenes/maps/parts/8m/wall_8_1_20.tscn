@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxxa1p0mphroe"]
+[gd_scene load_steps=6 format=3 uid="uid://bxxa1p0mphroe"]
 
 [ext_resource type="Material" uid="uid://cw8oxk75ogtt0" path="res://assets/textures/materials/wall_material.tres" id="1_6uqnl"]
+[ext_resource type="Script" uid="uid://dpjrrm25v4p2g" path="res://scenes/maps/parts/8m/wall_8_1_20.gd" id="1_lxr1b"]
+[ext_resource type="Texture2D" uid="uid://28by2s8bhlsf" path="res://assets/2d/signs/wall_text.png" id="2_m4rkh"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_pgaev"]
 resource_local_to_scene = true
@@ -12,6 +14,7 @@ resource_local_to_scene = true
 size = Vector3(1, 20, 8)
 
 [node name="Wall8_1_20" type="Node3D"]
+script = ExtResource("1_lxr1b")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
@@ -21,3 +24,12 @@ mesh = SubResource("BoxMesh_pgaev")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("BoxShape3D_n0l5a")
+
+[node name="Decal" type="Decal" parent="MeshInstance3D"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 6.92032, 0)
+size = Vector3(3, 1.2, 8)
+texture_albedo = ExtResource("2_m4rkh")
+
+[node name="Decal2" type="Decal" parent="MeshInstance3D"]
+transform = Transform3D(-4.37114e-08, -1, 0, -4.37114e-08, 1.91069e-15, -1, 1, -4.37114e-08, -4.37114e-08, 0, -5.85685, 0)
+size = Vector3(4.025, 2, 3.25)

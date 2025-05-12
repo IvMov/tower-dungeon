@@ -12,6 +12,7 @@ func _on_static_body_3d_mouse_entered() -> void:
 
 
 func _on_static_body_3d_mouse_exited() -> void:
+	print("MMM?")
 	flying_text.visible = false
 
 #return false if not maintainable action and true if action can be repeated if button is hold

@@ -24,7 +24,7 @@ func plus(value: float) -> bool:
 
 func run_regen() -> void:
 	if can_regen && regen_timer.is_stopped() && regen > 0 && max_value > current_value:
-		plus(regen)
+		plus(regen/10)
 		regen_timer.start()
 
 func _on_regen_timer_timeout() -> void:

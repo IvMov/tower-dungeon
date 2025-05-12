@@ -31,8 +31,8 @@ func plus(value: float) -> bool:
 	return is_health_changed
 
 func play_damage_animation() -> void:
-	var animaiton_name = "take-damage-1" if randf() > 0.5 else "take-damage-2"
-	if randf() > 0:
+	var animaiton_name = "take-damage-1" if randf() > .5 else "take-damage-2"
+	if randf() > .5:
 		owner_node.animation_player.play(animaiton_name)
 	else:
 		owner_node.animation_player.play_backwards(animaiton_name)

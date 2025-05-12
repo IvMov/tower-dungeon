@@ -32,11 +32,9 @@ func on_health_changed(value: float, _current_value: float) -> void:
 		damage_particles.emitting = true
 		add_text(value)
 		await get_tree().create_timer(damage_particles.lifetime*2).timeout
-		
 		damage_particles.queue_free()
 	if value > 0:
 		gpu_particles_3d.emitting = true
-		add_text(value)
 
 func add_text(value: float) -> void:
 	if !is_inside_tree():

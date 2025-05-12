@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://darkyqw48k8nh" path="res://assets/textures/Grass 15 - 128x128.png" id="1_qjemo"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xa4cd"]
-shading_mode = 0
 albedo_texture = ExtResource("1_qjemo")
 albedo_texture_force_srgb = true
 uv1_scale = Vector3(0.5, 0.5, 0.5)
