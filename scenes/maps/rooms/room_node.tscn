@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://d16g8q8ji08rd"]
+
+[ext_resource type="Script" uid="uid://c21x280bipgng" path="res://scenes/maps/rooms/room_node.gd" id="1_kigey"]
+[ext_resource type="Material" uid="uid://dswf78qymert4" path="res://particles/room_particles.tres" id="3_pdjc8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v6022"]
+shading_mode = 0
+albedo_color = Color(3, 5, 5, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ts5qx"]
+material = SubResource("StandardMaterial3D_v6022")
+radius = 0.01
+height = 0.02
+radial_segments = 4
+rings = 3
+
+[node name="RoomNode" type="Node3D"]
+script = ExtResource("1_kigey")
+
+[node name="Particles" type="GPUParticles3D" parent="."]
+amount = 30
+lifetime = 10.0
+process_material = ExtResource("3_pdjc8")
+draw_pass_1 = SubResource("SphereMesh_ts5qx")

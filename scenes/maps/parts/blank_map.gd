@@ -1,9 +1,13 @@
 class_name  BlankMap extends Node3D
 
+const ROOM_NODE: PackedScene = preload("res://scenes/maps/rooms/room_node.tscn")
+
 @onready var navigation_region_3d: NavigationRegion3D = $NavigationRegion3D
 @onready var environment: Node3D = $Environment
 @onready var items: Node3D = $Items
 
+
+var rooms_nodes: Array[RoomNode]
 var rooms: Dictionary
 var id_counter: int = 0
 
@@ -11,6 +15,13 @@ func _ready() -> void:
 	GameEvents.item_to_map.connect(on_item_to_map)
 	GameEvents.emit_new_stage()
 
+func add_room_node(room: Room) -> void:
+	var room_node: RoomNode = ROOM_NODE.instantiate()
+	environment.add_child(room_node)
+	room_node.global_position = Vector3(room.start_point.x+(Constants.CORE_TILE_SIZE * room.size.x/2) - Constants.CORE_TILE_SIZE/2, 0, room.start_point.y+(Constants.CORE_TILE_SIZE * room.size.y/2) - Constants.CORE_TILE_SIZE/2)
+	room_node.room = room
+	rooms_nodes.append(room_node)
+	
 func add_room(room: Room) -> Room:
 	if room.id == 0:
 		room.id = id_counter

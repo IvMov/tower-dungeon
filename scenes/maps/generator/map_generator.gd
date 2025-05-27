@@ -176,6 +176,7 @@ func generate_room() -> void:
 	
 	# saved room required to build walls - to check all deadends and etc
 	room = map.add_room(room)
+	map.add_room_node(room)
 	
 	if has_walls:
 		wall_builder.add_walls(room, map)
@@ -213,7 +214,9 @@ func save_deadend_room_to_map() -> Room:
 	new_room.size = deadend_ROOM_SIZE
 	new_room.start_point = deadend_root_room_position
 	new_room.floor_height = 0
-	return map.add_room(new_room)
+	var room: Room = map.add_room(new_room)
+	map.add_room_node(room)
+	return room
 
 
 func create_common_room() -> void:

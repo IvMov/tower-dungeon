@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://ccl06jblai5cf"]
+[gd_scene load_steps=6 format=3 uid="uid://ccl06jblai5cf"]
 
 [ext_resource type="Script" uid="uid://b6uwgl8r1p6wx" path="res://scenes/maps/parts/8m/ceil_8_8.gd" id="1_46jiu"]
 [ext_resource type="Texture2D" uid="uid://darkyqw48k8nh" path="res://assets/textures/Grass 15 - 128x128.png" id="1_qjemo"]
-[ext_resource type="Material" uid="uid://dp0ajpvhr6fig" path="res://particles/meta_upgrade_view_done_particles.tres" id="4_v6022"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xa4cd"]
 albedo_texture = ExtResource("1_qjemo")
@@ -17,17 +16,6 @@ size = Vector2(8, 8)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_k2xv2"]
 data = PackedVector3Array(4, 0, 4, -4, 0, 4, 4, 0, -4, -4, 0, 4, -4, 0, -4, 4, 0, -4)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v6022"]
-shading_mode = 0
-albedo_color = Color(1.04314, 2, 4, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_csnlr"]
-material = SubResource("StandardMaterial3D_v6022")
-radius = 0.01
-height = 0.02
-radial_segments = 6
-rings = 4
-
 [node name="Ceil8_8" type="Node3D"]
 script = ExtResource("1_46jiu")
 
@@ -39,11 +27,3 @@ mesh = SubResource("PlaneMesh_uc8mi")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_k2xv2")
-
-[node name="DoneParticles" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.16966, 0)
-emitting = false
-amount = 5
-lifetime = 15.0
-process_material = ExtResource("4_v6022")
-draw_pass_1 = SubResource("SphereMesh_csnlr")

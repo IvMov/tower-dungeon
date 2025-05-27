@@ -1,0 +1,11 @@
+[gd_resource type="ParticleProcessMaterial" format=3 uid="uid://dswf78qymert4"]
+
+[resource]
+emission_shape = 3
+emission_box_extents = Vector3(20, 5, 20)
+spread = 180.0
+radial_velocity_min = -0.200022
+radial_velocity_max = 0.199978
+gravity = Vector3(0, 0.1, 0)
+scale_min = 0.1
+scale_max = 2.0

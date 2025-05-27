@@ -89,7 +89,7 @@ var NEW_PLAYER: Dictionary = {
 	PROPS_KEY: {
 		"lifes": 0,
 		"max_jumps": 2,
-		"base_speed": 400,
+		"base_speed": 900,
 		"base_jump": 500,
 		"speed_up_mode": 2.0,
 		"jump_speed_up_mode": 1.2,

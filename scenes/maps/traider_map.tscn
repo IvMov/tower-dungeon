@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dwmp17walymun"]
+[gd_scene load_steps=33 format=3 uid="uid://dwmp17walymun"]
 
 [ext_resource type="Material" uid="uid://de3hjukfgxgh" path="res://assets/textures/materials/floor_material.tres" id="1_7f42e"]
 [ext_resource type="Script" uid="uid://dcigipg7asa3s" path="res://scenes/maps/traider_map.gd" id="1_oce3y"]
@@ -8,6 +8,7 @@
 [ext_resource type="Material" uid="uid://clptb0rjqplxi" path="res://assets/textures/brown_wood.tres" id="5_eetjb"]
 [ext_resource type="PackedScene" uid="uid://cti1xk3if4l7g" path="res://scenes/npc/traider_wizard.tscn" id="6_h0s7e"]
 [ext_resource type="PackedScene" uid="uid://mn8seb7clfaa" path="res://scenes/maps/parts/traider_button.tscn" id="7_68n74"]
+[ext_resource type="Material" uid="uid://dswf78qymert4" path="res://particles/room_particles.tres" id="9_w6i3q"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_b62fs"]
 material = ExtResource("1_7f42e")
@@ -78,6 +79,17 @@ points = PackedVector3Array(1, 0.5, 0.25, 1, 0.5, -0.25, -1, 0.5, 0.25, 1, -0.5,
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hg54l"]
 points = PackedVector3Array(1, 0.5, 0.25, 1, 0.5, -0.25, -1, 0.5, 0.25, 1, -0.5, 0.25, 1, -0.5, -0.25, -1, 0.5, -0.25, -1, -0.5, 0.25, -1, -0.5, -0.25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v6022"]
+shading_mode = 0
+albedo_color = Color(3, 5, 5, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_4ac75"]
+material = SubResource("StandardMaterial3D_v6022")
+radius = 0.01
+height = 0.02
+radial_segments = 4
+rings = 3
 
 [node name="TraiderMap" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.179, 0, -9.84)
@@ -265,3 +277,9 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.889
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
 
 [node name="Items" type="Node3D" parent="."]
+
+[node name="Particles" type="GPUParticles3D" parent="."]
+amount = 30
+lifetime = 10.0
+process_material = ExtResource("9_w6i3q")
+draw_pass_1 = SubResource("SphereMesh_4ac75")

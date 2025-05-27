@@ -76,6 +76,7 @@ func load_props() -> void:
 	lifes = props["lifes"] if player_data["current_time"] == 0.0 else player_data["max_lifes"]
 	max_jumps = props["max_jumps"]
 	BASE_SPEED = props["base_speed"]
+	current_speed = BASE_SPEED
 	BASE_JUMP_VELOCITY = props["base_jump"]
 	MOVE_SPEED_UP_MOD = props["speed_up_mode"]
 	JUMP_SPEED_UP_MOD = props["jump_speed_up_mode"]

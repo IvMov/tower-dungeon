@@ -13,6 +13,7 @@ var game_difficulty: int = 0
 
 func _ready() -> void:
 	theme = preload("res://resources/main_theme.tres")
+	TranslationServer.set_locale("lt")
 	recalculate_screen_grid_block()
 	resize_font()
 

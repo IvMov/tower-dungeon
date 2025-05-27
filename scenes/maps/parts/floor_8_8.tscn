@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://hivbwnh6ppe1"]
+[gd_scene load_steps=5 format=3 uid="uid://hivbwnh6ppe1"]
 
 [ext_resource type="Script" uid="uid://brphcde5rd5ab" path="res://scenes/maps/parts/floor_8_8.gd" id="1_jpr4c"]
 [ext_resource type="Material" uid="uid://de3hjukfgxgh" path="res://assets/textures/materials/floor_material.tres" id="1_rv4tn"]
-[ext_resource type="Material" uid="uid://dp0ajpvhr6fig" path="res://particles/meta_upgrade_view_done_particles.tres" id="2_bmpf8"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ejuje"]
 material = ExtResource("1_rv4tn")
@@ -10,17 +9,6 @@ size = Vector2(8, 8)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vjtjy"]
 size = Vector3(8, 0.01, 8)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_44psv"]
-shading_mode = 0
-albedo_color = Color(0, 2, 8, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_jpr4c"]
-material = SubResource("StandardMaterial3D_44psv")
-radius = 0.005
-height = 0.01
-radial_segments = 6
-rings = 4
 
 [node name="Floor8_8" type="Node3D"]
 script = ExtResource("1_jpr4c")
@@ -34,11 +22,3 @@ collision_layer = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("BoxShape3D_vjtjy")
-
-[node name="DoneParticles" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.12561, 0)
-emitting = false
-amount = 3
-lifetime = 10.0
-process_material = ExtResource("2_bmpf8")
-draw_pass_1 = SubResource("SphereMesh_jpr4c")
