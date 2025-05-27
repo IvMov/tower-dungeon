@@ -3,12 +3,12 @@
 [ext_resource type="Script" uid="uid://c21x280bipgng" path="res://scenes/maps/rooms/room_node.gd" id="1_kigey"]
 [ext_resource type="Material" uid="uid://dswf78qymert4" path="res://particles/room_particles.tres" id="3_pdjc8"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v6022"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_as5n1"]
 shading_mode = 0
 albedo_color = Color(3, 5, 5, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_ts5qx"]
-material = SubResource("StandardMaterial3D_v6022")
+material = SubResource("StandardMaterial3D_as5n1")
 radius = 0.01
 height = 0.02
 radial_segments = 4
@@ -22,3 +22,8 @@ amount = 30
 lifetime = 10.0
 process_material = ExtResource("3_pdjc8")
 draw_pass_1 = SubResource("SphereMesh_ts5qx")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

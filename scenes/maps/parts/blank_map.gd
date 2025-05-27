@@ -19,7 +19,7 @@ func add_room_node(room: Room) -> void:
 	var room_node: RoomNode = ROOM_NODE.instantiate()
 	environment.add_child(room_node)
 	room_node.global_position = Vector3(room.start_point.x+(Constants.CORE_TILE_SIZE * room.size.x/2) - Constants.CORE_TILE_SIZE/2, 0, room.start_point.y+(Constants.CORE_TILE_SIZE * room.size.y/2) - Constants.CORE_TILE_SIZE/2)
-	room_node.room = room
+	room_node.set_room(room)
 	rooms_nodes.append(room_node)
 	
 func add_room(room: Room) -> Room:

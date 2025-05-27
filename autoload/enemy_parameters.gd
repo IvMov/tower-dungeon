@@ -8,6 +8,7 @@ var stamina_modifier: float = 1.0
 var hp_regen_modifier: float = 1.0
 var stamina_regen_modifier: float = 1.0
 var drop_modifier: float = 1
+var random_enemy_spawn_chance: float = 0.5
 
 var enemies_data: Dictionary = {}
 var enemy_expirience: Dictionary = {
@@ -19,10 +20,20 @@ var enemy_expirience: Dictionary = {
 	}
 }
 
+
+
 func load_enemies_data(player_data: Dictionary) -> void:
 	enemy_expirience = player_data["enemy_expirience"]
+	random_enemy_spawn_chance = calc_random_enemy_spawn_chance()
 	adjust_difficulty()
 
+func calc_random_enemy_spawn_chance() -> float:
+	#TODO: implement when gameStage will be present
+	#some calculation to get float 0-1 
+	#GameConfig.game_difficulty
+	#GameConfig.game_stage (represents stage of game)
+	return 0.5
+	
 func adjust_difficulty() -> void:
 	if GameConfig.game_difficulty == 2:
 		return

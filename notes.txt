@@ -63,3 +63,4 @@ BUGS:
 2025-05-10 add stamina and mana upgrades, add snowball upgrade
 2025-05-11 add statues 0, 1 looks great. TODO: add statues 2, 3, expand and resize EntryMap
 2025-05-12 fix timers for heal, add decoration for walls (need to paint more)
+2025-05-27 particles emit now in rooms, in rooms randomly after some time spawns tier_0 enemies
