@@ -18,8 +18,6 @@ var is_boss_spawner: bool = false
 func _ready():
 	skill = Skill.new()
 	
-	#skill.base_cast_time = 3
-	#skill.base_cooldown = 2
 	skill.base_energy_cost = 5
 	
 	skill.base_cast_time = owner_enemy.spawn_rate * 2

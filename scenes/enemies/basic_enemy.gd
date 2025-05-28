@@ -62,7 +62,8 @@ var actions_animations: Array[String] = [
 	"take-damage-2", 
 	"die", 
 	"sprint", 
-	"fall"]
+	"fall"
+	,"do_damage"]
 
 var player: Player
 var direction: Vector3

@@ -1,0 +1,14 @@
+[gd_scene load_steps=5 format=3 uid="uid://drudc3rqspswn"]
+
+[ext_resource type="PackedScene" uid="uid://jut3uwfl054l" path="res://scenes/skill_contolllers/base_controller.tscn" id="1_3rubk"]
+[ext_resource type="Script" uid="uid://de18cith273b2" path="res://scenes/skill_contolllers/mana/enemy/spawner_damage_controller.gd" id="2_x60e5"]
+[ext_resource type="PackedScene" uid="uid://c3xcmqxe5g3vg" path="res://scenes/projectiles/boss_projectile_square.tscn" id="4_kn82u"]
+[ext_resource type="PackedScene" uid="uid://vuxpj223tonm" path="res://scenes/projectiles/boss_projectile_circle.tscn" id="4_uicke"]
+
+[node name="SpawnerDamageController" instance=ExtResource("1_3rubk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+script = ExtResource("2_x60e5")
+projectiles = Array[PackedScene]([ExtResource("4_kn82u"), ExtResource("4_uicke")])
+
+[node name="CastTimer" parent="." index="0"]
+autostart = true

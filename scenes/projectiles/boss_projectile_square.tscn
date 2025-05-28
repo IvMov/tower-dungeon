@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://c3xcmqxe5g3vg"]
+
+[ext_resource type="Script" uid="uid://jhuuw7sfjbn4" path="res://scenes/projectiles/boss_projectile_square.gd" id="1_0cems"]
+[ext_resource type="Texture2D" uid="uid://ccv8x22q5u2c4" path="res://assets/2d/zones/square_full.png" id="2_0cems"]
+[ext_resource type="Texture2D" uid="uid://dewjm0y3tppoh" path="res://assets/2d/zones/square_empty.png" id="3_0cems"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0cems"]
+resource_local_to_scene = true
+size = Vector3(0, 0, 0)
+
+[node name="BossProjectileSquare" type="Node3D"]
+script = ExtResource("1_0cems")
+
+[node name="DamageDecal" type="Decal" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.824, 0)
+visible = false
+texture_albedo = ExtResource("2_0cems")
+modulate = Color(5, 0, 0, 1)
+
+[node name="Decal" type="Decal" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.412, 0)
+texture_albedo = ExtResource("3_0cems")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.157531, 0)
+visible = false
+light_color = Color(5, 0, 0, 1)
+light_energy = 2.0
+omni_range = 4.0
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 16384
+collision_mask = 512
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_0cems")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

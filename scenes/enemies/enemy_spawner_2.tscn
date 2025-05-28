@@ -1,0 +1,303 @@
+[gd_scene load_steps=26 format=3 uid="uid://btwa8j816mvtt"]
+
+[ext_resource type="PackedScene" uid="uid://ca0ysw5vmydwd" path="res://scenes/enemies/basic_enemy.tscn" id="1_ptfuy"]
+[ext_resource type="Script" uid="uid://b0symkiclan03" path="res://scenes/enemies/enemy_spawner_2.gd" id="2_ptfuy"]
+[ext_resource type="PackedScene" uid="uid://cum81aptelhj7" path="res://scenes/skill_contolllers/mana/enemy/spawn_enemy_controller.tscn" id="3_5wmox"]
+[ext_resource type="PackedScene" uid="uid://b64al2yi4ofhh" path="res://scenes/enemies/tier_vampire_enemy.tscn" id="4_516fa"]
+[ext_resource type="PackedScene" uid="uid://banbap6p0glja" path="res://scenes/enemies/tier_0_enemy.tscn" id="5_tj16i"]
+[ext_resource type="PackedScene" uid="uid://dbv1lp0pn7xhc" path="res://scenes/enemies/tier_1_enemy.tscn" id="6_6lvsb"]
+[ext_resource type="PackedScene" uid="uid://t52mgui2nfrf" path="res://scenes/enemies/tier_skeleton_enemy.tscn" id="7_5000w"]
+[ext_resource type="PackedScene" uid="uid://drudc3rqspswn" path="res://scenes/skill_contolllers/mana/enemy/spawner_damage_controller.tscn" id="8_54teu"]
+[ext_resource type="Material" uid="uid://c1ug8bb6pokoh" path="res://resources/materials/spawner_texture.tres" id="8_ptfuy"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_v63dg"]
+resource_local_to_scene = true
+height = 0.2
+radius = 0.2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_58i0a"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_c67ek"]
+radius = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_54teu"]
+material = ExtResource("8_ptfuy")
+
+[sub_resource type="Animation" id="Animation_ywfkp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.68766, 0, 0.785398)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../OmniLight3D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_m3v5j"]
+resource_name = "attack-melee-left"
+
+[sub_resource type="Animation" id="Animation_42t1t"]
+resource_name = "attack-melee-right"
+
+[sub_resource type="Animation" id="Animation_4m6oe"]
+resource_name = "die"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.68766, 0, 0.785398), Vector3(3.14159, 3.14159, 0), Vector3(0, 6.28319, 3.14159), Vector3(6.28319, 6.28319, 6.28319)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1.5, 1.5, 1.5), Vector3(0.8, 0.8, 0.8), Vector3(0.3, 0.3, 0.3)]
+}
+
+[sub_resource type="Animation" id="Animation_54teu"]
+resource_name = "do_damage"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.68766, 0, 0.785398), Vector3(0.68766, 6.37045, 0.785398)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(2, 2, 2), Vector3(1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../OmniLight3D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_2o4dt"]
+resource_name = "fall"
+
+[sub_resource type="Animation" id="Animation_5b5u4"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.68766, 0, 0.785398), Vector3(0.68766, 6.28319, 0.785398)]
+}
+
+[sub_resource type="Animation" id="Animation_8xtam"]
+resource_name = "sprint"
+
+[sub_resource type="Animation" id="Animation_86a61"]
+resource_name = "take-damage-1"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1.2, 1.2, 1.2), Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.68766, 0, 0.785398), Vector3(1.0472, 0, 0.785398), Vector3(0.68766, 0, 0.785398)]
+}
+
+[sub_resource type="Animation" id="Animation_15hg1"]
+resource_name = "take-damage-2"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1.2, 1.2, 1.2), Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.68766, 0, 0.785398), Vector3(0.68766, 0, 1.13446), Vector3(0.68766, 0, 0.785398)]
+}
+
+[sub_resource type="Animation" id="Animation_jdfxs"]
+resource_name = "walk"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h1kjm"]
+_data = {
+&"RESET": SubResource("Animation_ywfkp"),
+&"attack-melee-left": SubResource("Animation_m3v5j"),
+&"attack-melee-right": SubResource("Animation_42t1t"),
+&"die": SubResource("Animation_4m6oe"),
+&"do_damage": SubResource("Animation_54teu"),
+&"fall": SubResource("Animation_2o4dt"),
+&"idle": SubResource("Animation_5b5u4"),
+&"sprint": SubResource("Animation_8xtam"),
+&"take-damage-1": SubResource("Animation_86a61"),
+&"take-damage-2": SubResource("Animation_15hg1"),
+&"walk": SubResource("Animation_jdfxs")
+}
+
+[node name="EnemySpawner2" node_paths=PackedStringArray("animation_player") instance=ExtResource("1_ptfuy")]
+collision_layer = 4096
+script = ExtResource("2_ptfuy")
+enemy_name = "enemy_spanwer_2"
+speed = 0.0
+dmg_resist = 0.5
+animation_player = NodePath("Body/SpawnerBody/AnimationPlayer")
+
+[node name="CollisionShape3D" parent="CallEnemyAreaClient" index="0"]
+shape = SubResource("CylinderShape3D_v63dg")
+
+[node name="AgrCollision" parent="AgrArea" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+shape = SubResource("BoxShape3D_58i0a")
+
+[node name="EnemyCollision" parent="." index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_c67ek")
+
+[node name="Timer" type="Timer" parent="." index="9"]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="CheckPlayer" type="Timer" parent="." index="10"]
+wait_time = 5.0
+
+[node name="BarsBox" parent="Body" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.71358, 0)
+
+[node name="HealthComponent" parent="Body/StatsBox" index="0"]
+max_value = 100.0
+current_value = 100.0
+regen = 1.0
+
+[node name="ManaComponent" parent="Body/StatsBox" index="1"]
+max_value = 100.0
+current_value = 100.0
+regen = 1.0
+
+[node name="SpawnEnemyController" parent="Body/SkillBox" index="0" node_paths=PackedStringArray("owner_enemy") instance=ExtResource("3_5wmox")]
+owner_enemy = NodePath("../../..")
+enemies = Array[PackedScene]([ExtResource("4_516fa"), ExtResource("5_tj16i"), ExtResource("6_6lvsb"), ExtResource("7_5000w")])
+
+[node name="SpawnerDamageController" parent="Body/SkillBox" index="1" node_paths=PackedStringArray("owner_enemy") instance=ExtResource("8_54teu")]
+owner_enemy = NodePath("../../..")
+
+[node name="SpawnerBody" type="MeshInstance3D" parent="Body" index="3"]
+transform = Transform3D(0.707107, -0.707107, 0, 0.546405, 0.546405, -0.634731, 0.448822, 0.448822, 0.772733, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_54teu")
+skeleton = NodePath("../..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Body/SpawnerBody" index="0"]
+libraries = {
+&"": SubResource("AnimationLibrary_h1kjm")
+}
+autoplay = "idle"
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="12"]
+visible = false
+light_color = Color(5, 0, 0, 1)
+light_energy = 2.0
+omni_range = 3.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="CheckPlayer" to="." method="_on_check_player_timeout"]

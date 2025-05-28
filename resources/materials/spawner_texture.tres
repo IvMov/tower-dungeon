@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c1ug8bb6pokoh"]
+
+[ext_resource type="Texture2D" uid="uid://du4kwq2r1x0ru" path="res://assets/textures/Brick 25 - 128x128.png" id="1_8n5hi"]
+
+[resource]
+shading_mode = 0
+albedo_color = Color(2, 1, 1, 1)
+albedo_texture = ExtResource("1_8n5hi")
+albedo_texture_force_srgb = true
+uv1_triplanar = true
