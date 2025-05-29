@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://dup7j4qs8oxdk"]
+[gd_scene load_steps=6 format=3 uid="uid://dup7j4qs8oxdk"]
 
 [ext_resource type="PackedScene" uid="uid://dyfrlujou827f" path="res://scenes/ui/sound_button.tscn" id="1_lrbd7"]
 [ext_resource type="Script" uid="uid://db6jan177qgk" path="res://scenes/menu/menu_screen.gd" id="1_odjgd"]
+[ext_resource type="Texture2D" uid="uid://bw8infrq5ydhw" path="res://assets/2d/flags/gb.svg" id="3_8l8cv"]
+[ext_resource type="Texture2D" uid="uid://caw64fnlcf0c7" path="res://assets/2d/flags/ua.svg" id="4_ewyt1"]
+[ext_resource type="Texture2D" uid="uid://c14o7i12vucth" path="res://assets/2d/flags/lt.svg" id="5_ewyt1"]
 
 [node name="MenuScreen" type="CanvasLayer"]
 process_mode = 3
@@ -13,7 +16,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_top = 0
 
 [node name="Bacground" type="ColorRect" parent="MarginContainer"]
 layout_mode = 2
@@ -48,6 +50,8 @@ custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 2
+tooltip_text = "menu_play_btn_d"
+shortcut_in_tooltip = false
 text = "menu_play_btn"
 
 [node name="RestartButton" parent="MarginContainer/Bacground/VBoxContainer" instance=ExtResource("1_lrbd7")]
@@ -55,6 +59,8 @@ custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 2
+tooltip_text = "menu_restart_btn_d"
+shortcut_in_tooltip = false
 text = "menu_restart_btn"
 
 [node name="PropertiesButton" parent="MarginContainer/Bacground/VBoxContainer" instance=ExtResource("1_lrbd7")]
@@ -62,6 +68,8 @@ custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 2
+tooltip_text = "menu_properties_btn_d"
+shortcut_in_tooltip = false
 text = "menu_properties_btn"
 
 [node name="ControlsButton" parent="MarginContainer/Bacground/VBoxContainer" instance=ExtResource("1_lrbd7")]
@@ -69,6 +77,8 @@ custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 2
+tooltip_text = "menu_controls_btn_d"
+shortcut_in_tooltip = false
 text = "menu_controls_btn"
 
 [node name="GiveUpButton" parent="MarginContainer/Bacground/VBoxContainer" instance=ExtResource("1_lrbd7")]
@@ -76,6 +86,8 @@ custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 2
+tooltip_text = "menu_give_up_btn_d"
+shortcut_in_tooltip = false
 text = "menu_give_up_btn"
 
 [node name="QuitButton" parent="MarginContainer/Bacground/VBoxContainer" instance=ExtResource("1_lrbd7")]
@@ -83,25 +95,52 @@ custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 2
+tooltip_text = "menu_quit_btn_d"
+shortcut_in_tooltip = false
 text = "menu_quit_btn"
 
-[node name="Label3" type="Label" parent="MarginContainer"]
+[node name="Version" type="Label" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
-text = "created_by_erridan"
+text = "v 0.0.1"
 
-[node name="Label2" type="Label" parent="MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(180, 82)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-text = "v 0.0.1"
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="Label" type="Label" parent="MarginContainer"]
+[node name="English" parent="MarginContainer/MarginContainer" instance=ExtResource("1_lrbd7")]
+custom_minimum_size = Vector2(40, 30)
 layout_mode = 2
 size_flags_horizontal = 8
-size_flags_vertical = 8
-text = "Thanks everyone who played my game!"
+size_flags_vertical = 4
+icon = ExtResource("3_8l8cv")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Ukrainian" parent="MarginContainer/MarginContainer" instance=ExtResource("1_lrbd7")]
+custom_minimum_size = Vector2(40, 30)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+icon = ExtResource("4_ewyt1")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Lithuanian" parent="MarginContainer/MarginContainer" instance=ExtResource("1_lrbd7")]
+custom_minimum_size = Vector2(40, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon = ExtResource("5_ewyt1")
+icon_alignment = 1
+expand_icon = true
 
 [connection signal="pressed" from="MarginContainer/Bacground/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MarginContainer/Bacground/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
@@ -109,3 +148,6 @@ text = "Thanks everyone who played my game!"
 [connection signal="pressed" from="MarginContainer/Bacground/VBoxContainer/ControlsButton" to="." method="_on_controls_button_pressed"]
 [connection signal="pressed" from="MarginContainer/Bacground/VBoxContainer/GiveUpButton" to="." method="_on_give_up_button_pressed"]
 [connection signal="pressed" from="MarginContainer/Bacground/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/English" to="." method="_on_english_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/Ukrainian" to="." method="_on_ukrainian_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/Lithuanian" to="." method="_on_lithuanian_pressed"]

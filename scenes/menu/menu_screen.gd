@@ -15,10 +15,10 @@ func _ready():
 	if get_tree().paused:
 		restart_button.visible = true
 		give_up_button.visible = true
-		start_button.text = tr("menu_back_to_game_btn")
+		start_button.text = "menu_back_to_game_btn"
+		start_button.tooltip_text = "menu_back_to_game_btn_d"
 	if !MusicPlayer.playing:
 		MusicPlayer.play()
-
 
 func _on_start_button_pressed() -> void:
 	if !get_tree().paused:
@@ -68,3 +68,15 @@ func on_game_stage_changed(game_stage: GameStage.Stage) -> void:
 		MusicPlayer.stop()
 		queue_free()
 	
+
+
+func _on_english_pressed() -> void:
+	TranslationServer.set_locale("en")
+
+
+func _on_ukrainian_pressed() -> void:
+	TranslationServer.set_locale("uk")
+
+
+func _on_lithuanian_pressed() -> void:
+	TranslationServer.set_locale("lt")

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://w2y4bvv8j838"]
+[gd_scene load_steps=4 format=3 uid="uid://w2y4bvv8j838"]
 
 [ext_resource type="Script" uid="uid://o3f1y0srhv2e" path="res://scenes/menu/new_game_screen.gd" id="1_ihc7a"]
 [ext_resource type="PackedScene" uid="uid://dyfrlujou827f" path="res://scenes/ui/sound_button.tscn" id="2_4kiiy"]
+[ext_resource type="Shortcut" uid="uid://b6h1co6kwvill" path="res://scenes/menu/shortcat_escape.tres" id="3_4kiiy"]
 
 [node name="NewGameScreen" type="CanvasLayer"]
 process_mode = 3
@@ -100,6 +101,7 @@ custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 2
+tooltip_text = "menu_create_new_character_btn_d"
 text = "menu_create_new_character_btn"
 
 [node name="BackButton" parent="MarginContainer/Bacground/VBoxContainer" instance=ExtResource("2_4kiiy")]
@@ -107,6 +109,9 @@ custom_minimum_size = Vector2(184, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
+tooltip_text = "menu_back_btn_d"
+shortcut = ExtResource("3_4kiiy")
+shortcut_in_tooltip = false
 text = "menu_back_btn"
 
 [node name="ErrorLabel" type="Label" parent="MarginContainer/Bacground"]
@@ -125,24 +130,6 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0.999971, 0.714884, 0.669042, 1)
 text = "Character with same name already exists, please choose another name"
-
-[node name="Label3" type="Label" parent="MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-text = "Created by Erridan"
-
-[node name="Label2" type="Label" parent="MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-text = "v 0.0.1"
-
-[node name="Label" type="Label" parent="MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-text = "Thanks for everyone who played it!"
 
 [connection signal="text_changed" from="MarginContainer/Bacground/VBoxContainer/LineEdit" to="." method="_on_line_edit_text_changed"]
 [connection signal="text_submitted" from="MarginContainer/Bacground/VBoxContainer/LineEdit" to="." method="_on_line_edit_text_submitted"]

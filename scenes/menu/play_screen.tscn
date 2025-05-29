@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://isrxtbg8gliu"]
+[gd_scene load_steps=4 format=3 uid="uid://isrxtbg8gliu"]
 
 [ext_resource type="Script" uid="uid://cibvsu8m5d7ki" path="res://scenes/menu/play_screen.gd" id="1_n2uvh"]
 [ext_resource type="PackedScene" uid="uid://dyfrlujou827f" path="res://scenes/ui/sound_button.tscn" id="2_p0nxr"]
+[ext_resource type="Shortcut" uid="uid://b6h1co6kwvill" path="res://scenes/menu/shortcat_escape.tres" id="3_p0nxr"]
 
 [node name="PlayScreen" type="CanvasLayer"]
 process_mode = 3
@@ -38,6 +39,7 @@ custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 2
+tooltip_text = "menu_new_game_btn_d"
 text = "menu_new_game_btn"
 
 [node name="ContinueGameButton" parent="MarginContainer/Bacground/VBoxContainer" instance=ExtResource("2_p0nxr")]
@@ -45,6 +47,7 @@ custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 2
+tooltip_text = "menu_continue_game_btn_d"
 text = "menu_continue_game_btn"
 
 [node name="BackButton" parent="MarginContainer/Bacground/VBoxContainer" instance=ExtResource("2_p0nxr")]
@@ -52,25 +55,9 @@ custom_minimum_size = Vector2(184, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 2
+tooltip_text = "back_btn_d"
+shortcut = ExtResource("3_p0nxr")
 text = "menu_back_btn"
-
-[node name="Label3" type="Label" parent="MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-text = "Created by Erridan"
-
-[node name="Label2" type="Label" parent="MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-text = "v 0.0.1"
-
-[node name="Label" type="Label" parent="MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-text = "Thanks for everyone who played it!"
 
 [connection signal="pressed" from="MarginContainer/Bacground/VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="MarginContainer/Bacground/VBoxContainer/ContinueGameButton" to="." method="_on_continue_game_button_pressed"]

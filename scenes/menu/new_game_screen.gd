@@ -19,10 +19,6 @@ func _ready() -> void:
 
 func set_default_difficulty() -> void:
 	toggle_buttons(2)
-	
-func  _unhandled_key_input(event):
-	if event.is_action_pressed("exit"):
-		_on_back_button_pressed()
 
 func is_valid_name() -> bool: 
 	return user_name && !user_name.strip_edges().is_empty()

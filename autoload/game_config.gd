@@ -13,9 +13,10 @@ var game_difficulty: int = 0
 
 func _ready() -> void:
 	theme = preload("res://resources/main_theme.tres")
-	TranslationServer.set_locale("lt")
 	recalculate_screen_grid_block()
 	resize_font()
+	print(TranslationServer.get_locale_name("lt"))
+	TranslationServer.set_locale("lt")
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("full_screen"):

@@ -207,7 +207,7 @@ dash={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://assets/translation/text.en.translation", "res://assets/translation/text.lt.translation", "res://assets/translation/text.ua.translation")
+locale/translations=PackedStringArray("res://assets/translation/text.en.translation", "res://assets/translation/text.lt.translation", "res://assets/translation/text.uk.translation")
 
 [layer_names]
 

@@ -4,10 +4,6 @@ func _ready() -> void:
 	GameEvents.change_game_stage.connect(on_game_stage_changed)
 
 
-func  _unhandled_key_input(event):
-	if event.is_action_pressed("exit"):
-		_on_back_button_pressed()
-
 func _on_new_game_button_pressed() -> void:
 	get_parent().add_child(ScreenTransition.NEW_GAME_SCREEN.instantiate())
 
