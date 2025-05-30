@@ -1,6 +1,7 @@
 class_name EntryMap extends Node3D
 
 @onready var items: Node3D = $Items
+@onready var exit_from_shop: Node3D = $Walls/ExitFromShop
 
 @onready var right: Node3D = $MetaUpgrades/Right
 @onready var left: Node3D = $MetaUpgrades/Left
@@ -9,6 +10,7 @@ var upgrade_position: Vector3 = Vector3(-4, 0.4, 18)
 var upgrade_step: float = 4.0
 
 func _ready() -> void:
+	exit_from_shop.is_traider = false
 	GameEvents.item_to_map.connect(on_item_to_map)
 	for id in MetaProgression.upgrade_pool:
 		add_upgrade(MetaProgression.upgrade_pool[id])

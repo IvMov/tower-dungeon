@@ -15,7 +15,6 @@ func _ready() -> void:
 	theme = preload("res://resources/main_theme.tres")
 	recalculate_screen_grid_block()
 	resize_font()
-	print(TranslationServer.get_locale_name("lt"))
 	TranslationServer.set_locale("lt")
 
 func _unhandled_key_input(event: InputEvent) -> void:

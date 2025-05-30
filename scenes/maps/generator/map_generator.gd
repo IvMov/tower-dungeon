@@ -103,6 +103,7 @@ func rand_float_with_step(step: float = 0.2) -> float:
 #returns coordinates of start point of the level
 func generate_level() -> Vector3:
 	deadend_possibility = DEADEND_INIT_POSSIBILITY
+	choose_rooms_num()
 	prepare_blank_map()
 	var entrance: Vector3
 	#pay attention rooms temporarry setted in main scene for random diapasone (in two places main.gd)
@@ -113,7 +114,6 @@ func generate_level() -> Vector3:
 		if i == 0:
 			#level entrance
 			entrance = create_level_entrance()
-			create_level_entrance()
 		#this must be called here because: 
 			#deadend room and entrance should not be blocked to spawn in oposite direction of next room
 		update_available_directions(get_oposite_direction(next_room_direction))
@@ -129,9 +129,26 @@ func generate_level() -> Vector3:
 	#ResourceSaver.save(scene, "res://MyScene.tscn")
 	return entrance
 
+func choose_rooms_num() -> void:
+	#ROOMS =  1
+	match  PlayerParameters.player_data["game_lvl"]:
+		0:
+			ROOMS = 2
+		1:
+			ROOMS = 3
+		2, 3, 4: 
+			ROOMS = 4 + randi_range(0,1)
+		5, 6, 7: 
+			ROOMS = 6 + randi_range(0,2)
+		8, 9, 10:
+			ROOMS = 8 + randi_range(0,2)
+		11, 12:
+			ROOMS = 10 + randi_range(0,3)
 
 func create_level_entrance() -> Vector3:
 	var entrance_dir: Vector2 = pick_random()
+	#var entrance_dir: Vector2 = Vector2.LEFT
+	print("lets say we have %s dirrection" % entrance_dir)
 	var start: Vector4 = tunel_builder.add_tunel(2, entrance_dir, room, map)
 	var entrance = preload("res://scenes/maps/parts/entrance_to_stage.tscn").instantiate()
 	map.add_tile(entrance)
@@ -141,9 +158,13 @@ func create_level_entrance() -> Vector3:
 		Vector2.LEFT: 
 			entrance.rotate_y(PI/2)
 		Vector2.RIGHT:
-			entrance.rotate_y(PI + PI/2)
+			PlayerParameters.next_rotation = PI
+			entrance.rotate_y(-PI/2)
 		Vector2.DOWN:
+			PlayerParameters.next_rotation = PI/2
 			entrance.rotate_y(PI)	
+		Vector2.UP:
+			PlayerParameters.next_rotation = -PI/2
 	entrance.global_position = Vector3(start.z, 0, start.w)
 	update_available_directions(entrance_dir, 1)
 	return entrance.global_position
@@ -193,8 +214,8 @@ func generate_room() -> void:
 	if room.deadend_exit != Vector2.ZERO:
 		blocked_room = true
 
+
 func generate_portal_to_traider() -> void:
-	
 	var portal: Hoverable = preload("res://scenes/maps/parts/traider_portal.tscn").instantiate()
 	map.add_tile(portal)
 	match next_room_direction:

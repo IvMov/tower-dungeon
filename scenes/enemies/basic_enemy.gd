@@ -75,6 +75,7 @@ var current_angle: float
 var battle_distance: float = 0
 var battle_move_radius: float =  randf_range(2, 6)
 var battle_direction_when_radial: int = get_random_sign()
+var game_stage_factor: float
 
 var fire_damage_taken: float = 0
 var acid_damage_taken: float = 0
@@ -106,7 +107,9 @@ func _ready():
 	stamina_bar.update(stamina_component.current_value, stamina_component.max_value)
 	mana_bar.update(mana_component.current_value, mana_component.max_value)
 	bars_box.visible = false
-	
+	game_stage_factor = PlayerParameters.player_data["game_lvl"] * 0.12
+	print("set some factor which increase params by %d game stage %f factor" % [PlayerParameters.player_data["game_lvl"], game_stage_factor])
+
 func _physics_process(delta):
 	if is_dying:
 		return
@@ -137,6 +140,9 @@ func _physics_process(delta):
 
 func multiply_characteristics(is_spawner: bool = false) -> float:
 	#TODO: if want some randomizing change ranges in randf
+	game_stage_factor = PlayerParameters.player_data["game_lvl"] * 0.12
+	print("set some factor which increase params by %d game stage %f factor" % [PlayerParameters.player_data["game_lvl"], game_stage_factor])
+
 	var rand: float = randf_range(1, 1) if !is_boss else randf_range(4, 4)
 	speed = speed / rand if !is_boss else speed *  2 / (1 + rand/10)
 	if !is_spawner:

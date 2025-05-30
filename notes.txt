@@ -31,6 +31,7 @@ BUGS:
 7) when in shop not enough money for (buttons updates view but price left white)
 8) when in shop - buy an item - and save exit, then load - item again available in shop
 9) when in shop/entry - sometimes can't pickup items - after pickup item not in inventory
+10)FIXED: when in game press esc, than press quit, and than esc -> popup window left (handeled by gamestage, need to fix!)
 
 
 
@@ -66,3 +67,4 @@ BUGS:
 2025-05-27 particles emit now in rooms, in rooms randomly after some time spawns tier_0 enemies, add new spawner which has ground attack
 2025-05-28 add new spawner/boss, fix localization works, add buttons
 2025-05-29 menu adjustments and buttons and translation
+2025-05-30 adjust player rotation during chain room-traider-entry, create chain and adjust with game lvl

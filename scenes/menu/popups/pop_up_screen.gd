@@ -13,7 +13,6 @@ func set_texts(lbl: String, btn1: String, btn2: String) -> void:
 
 
 func _on_sound_button_pressed() -> void:
-	print("?")
 	action()
 
 

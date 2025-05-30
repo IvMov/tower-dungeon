@@ -15,6 +15,7 @@ const PLAYER_START_POINT: Vector3 = Vector3(1, 0.2, -1)
 func _ready():
 	GameEvents.from_stage_to_shop.connect(on_from_stage_to_shop)
 	GameEvents.from_shop_to_stage.connect(on_from_shop_to_stage)
+	GameEvents.to_entry_stage.connect(on_to_entry_stage)
 	GameEvents.game_end.connect(on_game_end)
 	#map_generator.ROOMS = randi_range(3, 10)
 	#var start_point: Vector3 = map_generator.generate_level()
@@ -49,20 +50,26 @@ func on_game_end():
 	var entry: Node3D = ENTRY_MAP.instantiate()
 	maps.add_child(entry)
 	PlayerParameters.player.global_position = PLAYER_START_POINT
-	PlayerParameters.player.rotate_y(PI/2)
+	PlayerParameters.player.rotation.y = 0
 
 func on_from_stage_to_shop():
 	clean_map()
 	var shop: Node3D = TRAIDER_MAP.instantiate()
 	maps.add_child(shop)
 	PlayerParameters.player.global_position = PLAYER_START_POINT
-	PlayerParameters.player.rotate_y(PI/2)
-
+	PlayerParameters.player.rotation.y = PI
 
 func on_from_shop_to_stage():
 	maps.get_child(0).queue_free()
 	PlayerParameters.player_data[MetaProgression.STORAGES_KEY]["traider"] = {}
 	map_generator.reset()
-	#map_generator.ROOMS = randi_range(3, 10)
 	var start_point: Vector3 = map_generator.generate_level()
 	PlayerParameters.player.global_position = start_point
+	PlayerParameters.player.rotation.y = PlayerParameters.next_rotation
+
+func on_to_entry_stage():
+	maps.get_child(0).queue_free()
+	var entry: Node3D = ENTRY_MAP.instantiate()
+	maps.add_child(entry)
+	PlayerParameters.player.global_position = PLAYER_START_POINT
+	PlayerParameters.player.rotation.y = 0

@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://8154q6p5suks" path="res://scenes/menu/popups/pop_up_quit.gd" id="2_b4bmu"]
 
 [node name="PopUpQuit" instance=ExtResource("1_byx6j")]
+layer = 2
 script = ExtResource("2_b4bmu")
 
 [node name="MarginContainer2" parent="MarginContainer/ColoredRect" index="1"]

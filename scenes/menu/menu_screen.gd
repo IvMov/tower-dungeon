@@ -60,15 +60,13 @@ func _on_quit_button_pressed() -> void:
 	#await MetaProgression.save_game_on_quit()
 	const POP_UP_QUIT = preload("res://scenes/menu/popups/pop_up_quit.tscn")
 	var pop = POP_UP_QUIT.instantiate()
-	get_parent().add_child(pop)
+	add_child(pop)
 	pop.set_texts("quit_confirm_text", "yes", "no")
 
 func on_game_stage_changed(game_stage: GameStage.Stage) -> void:
 	if game_stage == GameStage.Stage.GAME:
 		MusicPlayer.stop()
 		queue_free()
-	
-
 
 func _on_english_pressed() -> void:
 	TranslationServer.set_locale("en")

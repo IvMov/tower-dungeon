@@ -108,7 +108,6 @@ func set_is_done(ID: int) -> void:
 	done_particles.emitting = true
 	flying_text.visible = true
 	flying_text.set_text(tr("statue_done_text"))
-	print("SetISFCKING FONE")
 	flying_text.visible = true
 
 func set_text_on_hover() -> void:

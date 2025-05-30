@@ -59,7 +59,7 @@ points = PackedVector3Array(-7.18898, 0.188939, -24.1842, 7.17323, 0.188939, 24.
 size = Vector2(14, 21)
 
 [node name="EntryMap" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.179, 0, -9.84)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.179, 0, 32.1945)
 script = ExtResource("1_x1xmx")
 
 [node name="Floor" type="Node3D" parent="."]

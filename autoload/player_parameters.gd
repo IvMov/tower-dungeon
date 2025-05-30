@@ -19,6 +19,7 @@ var is_aiming: bool = false
 var is_runing: bool = false
 var last_position: Vector3 = Vector3.ZERO
 var start_game_time: float
+var next_rotation: float
 
 var player_data: Dictionary
 var player: Player
@@ -179,7 +180,6 @@ func lvl_up_skill(skill: Dictionary) -> bool:
 
 func add_coin() -> void:
 	coins += 1
-	print(coins)
 
 func add_soul(soul_type: Enums.SoulType) -> void:
 	if soul_type == Enums.SoulType.GREEN:
@@ -231,6 +231,7 @@ func get_position(height: float = 0) -> Vector3:
 	return last_position
 
 func on_player_entered(player: Player) -> void:
+	print("INFO: Player entered, next game level: %d" % player_data["game_lvl"])
 	player_name = player_data[MetaProgression.PLAYER_NAME_KEY]
 	read_stats(player)
 	player_data["time_in_game_unix"]

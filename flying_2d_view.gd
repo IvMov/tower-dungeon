@@ -17,8 +17,6 @@ class_name Flying2dView extends MarginContainer
 func set_coins(real: int, expected:int) -> void: 
 	coins.max_value = expected
 	coins.value = real
-	print("%d %d" % [real, expected])
-	print("%d %d" % [coins.value, coins.max_value])
 	coins_label.text = "%d / %d" % [real, expected]
 
 func set_green_souls(real: int, expected: int) -> void:
