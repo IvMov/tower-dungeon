@@ -1,7 +1,7 @@
 extends Node
 var max_lvl: int = 10
 
-#persist
+#persist - nope no persist, just recalculate based on difficulty
 var hp_modifier: float = 1.0
 var dmg_resist_modifier: float = 1.0
 var stamina_modifier: float = 1.0
@@ -9,6 +9,7 @@ var hp_regen_modifier: float = 1.0
 var stamina_regen_modifier: float = 1.0
 var drop_modifier: float = 1
 var random_enemy_spawn_chance: float = 0.5
+var game_stage_factor: float = 1.0
 
 var enemies_data: Dictionary = {}
 var enemy_expirience: Dictionary = {
@@ -20,12 +21,26 @@ var enemy_expirience: Dictionary = {
 	}
 }
 
-
+func _ready() -> void:
+	GameEvents.from_shop_to_stage.connect(on_from_shop_to_stage)
 
 func load_enemies_data(player_data: Dictionary) -> void:
 	enemy_expirience = player_data["enemy_expirience"]
 	random_enemy_spawn_chance = calc_random_enemy_spawn_chance()
 	adjust_difficulty()
+
+func recalc_game_stage_factor() -> void:
+	
+	match PlayerParameters.player_data["game_lvl"]:
+		3, 4, 5: 
+			game_stage_factor = 1.5
+		6, 7, 8: 
+			game_stage_factor = 2
+		9, 10, 11: 
+			game_stage_factor = 2.5
+		12:
+			game_stage_factor = 3.0
+	print("%f called recalc_game_stage" % game_stage_factor)
 
 func calc_random_enemy_spawn_chance() -> float:
 	#TODO: implement when gameStage will be present
@@ -35,6 +50,7 @@ func calc_random_enemy_spawn_chance() -> float:
 	return 0.5
 	
 func adjust_difficulty() -> void:
+	recalc_game_stage_factor()
 	if GameConfig.game_difficulty == 2:
 		return
 	if GameConfig.game_difficulty == 1:
@@ -79,3 +95,6 @@ func lvl_up(enemy: Dictionary) -> bool:
 		enemy["exp"] = 0.0
 		enemy["next_lvl_exp"] = enemy["next_lvl_exp"] + (enemy["lvl"] * enemy["max_lvl"]) + enemy["max_lvl"]
 		return true
+
+func on_from_shop_to_stage():
+	recalc_game_stage_factor()

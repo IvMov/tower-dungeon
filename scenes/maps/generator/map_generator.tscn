@@ -24,7 +24,7 @@
 
 [node name="MapGenerator" type="Node3D"]
 script = ExtResource("1_2pkgg")
-has_spawner = false
+has_walls = true
 ROOMS = 2
 DEADEND_INIT_POSSIBILITY = 0.1
 MIN_SIZE = 3

@@ -66,14 +66,14 @@ func _physics_process(delta):
 	velocity.x = -move_direction.x * PlayerParameters.get_current_speed() * delta
 	velocity.z = -move_direction.z * PlayerParameters.get_current_speed() * delta
 	if !actions_animations.has(animation_player.get_current_animation()):
-	
 		if is_immune_to_damage && velocity.length() > 10:
 			animation_player.play("crouch")
 		elif is_on_floor():
 			animation_player.play("walk" if move_direction else "idle")
 		else:
 			animation_player.play("fall")
-			velocity.y -= GameConfig.gravity * delta
+	if !is_on_floor():
+		velocity.y -= GameConfig.gravity * delta 
 	move_and_slide()
 
 
@@ -191,8 +191,8 @@ func get_damage(value: float) -> void:
 	if is_immune_to_damage:
 		GameEvents.emit_skill_call_failed(-100, Enums.SkillCallFailedReason.IMMUNE_TO_DAMAGE)
 		return
-	health_component.minus(value)
-	camera_scene.start_shake(0.1, 8)
+	health_component.minus(value * EnemyParameters.game_stage_factor)
+	camera_scene.start_shake(0.05, 8)
 
 func _on_action_hold_timer_timeout() -> void:
 	do_actions()

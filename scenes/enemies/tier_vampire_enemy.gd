@@ -6,7 +6,7 @@ class_name TierVampireEnemy extends BasicEnemy
 @onready var call_other_enemies_controller: CallOtherEnemiesController = $Body/SkillBox/CallOtherEnemiesController
 @onready var vampire_range_attack_controller: VampireRangeAttackController = $Body/SkillBox/VampireRangeAttackController
 
-@onready var body_mesh: MeshInstance3D = $"Body/character-vampire2/character-vampire/root/torso"
+@onready var cape: MeshInstance3D = $"Body/character-vampire2/character-vampire/root/torso/cape"
 
 func _ready():
 	is_ranged = true
@@ -20,7 +20,7 @@ func _ready():
 	hp_bar.update(health_component.current_value, health_component.max_value)
 	stamina_bar.update(stamina_component.current_value, stamina_component.max_value)
 	mana_bar.update(mana_component.current_value, mana_component.max_value)
-	#choose_color()
+	choose_color()
 	vampire_range_attack_controller.cooldown_timer.start()
 	vampire_range_attack_controller.skill.base_value *= multiply_characteristics()
 	print("INFO: tier_vampire instantiated, speed: %s, health: %s, damage %s " % [speed, health_component.current_value, vampire_range_attack_controller.skill.base_value])
@@ -31,8 +31,7 @@ func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 
 func choose_color() -> void:
-	var material = body_mesh.get_surface_override_material(0)
-	material.albedo_color = Color(randf(), randf(), randf())	
+	cape.mesh.surface_get_material(0).albedo_color = Color(randf(), randf(), randf())
 
 
 # targeting and movement
@@ -59,12 +58,15 @@ func push_back(player_position: Vector3, push_power: float) -> void:
 	super.push_back(player_position, push_power)
 	
 func lost_target():
+	if is_dying:
+		return
 	speed_up_timer.stop()
 	is_runing = false
 	if agr_area.disable_mode: 
 		return
 	is_target_detected = false
-	chase_player_timer.start()
+	if chase_player_timer.is_inside_tree():
+		chase_player_timer.start()
 
 
 # timeout and area signals handling

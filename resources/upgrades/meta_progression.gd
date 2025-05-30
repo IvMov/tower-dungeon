@@ -21,7 +21,7 @@ var EMPTY_METADATA: Dictionary = {
 
 var NEW_PLAYER: Dictionary = {
 	"player_name": "default name",
-	"game_lvl": 0, # map stage level ( from 0 to N, after each shop, after M entry)
+	"game_lvl": 12, # map stage level ( from 0 to N, after each shop, after M entry)
 	"difficulty": 2, # 1, 2, 3
 	"kills": 0,
 	"death": 0,

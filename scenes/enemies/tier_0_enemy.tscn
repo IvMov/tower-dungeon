@@ -22,18 +22,20 @@ resource_local_to_scene = true
 radius = 0.3
 height = 3.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cv16q"]
-resource_name = "colormap"
-cull_mode = 2
-texture_filter = 2
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5iijq"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0.381)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_e6kgg"]
+resource_local_to_scene = true
 _surfaces = [{
 "aabb": AABB(-0.156, -0.111172, -0.156, 0.312, 0.631172, 0.312),
 "format": 34896613377,
 "index_count": 318,
 "index_data": PackedByteArray("AgAAAAEAAQADAAIAAAACAAEAAwABAAIABgAEAAUABQAHAAYABAAGAAUABwAFAAYACgAIAAkACQALAAoACAAKAAkACwAJAAoADgAMAA0ADQAPAA4ADAAOAA0ADwANAA4AAQAEAAYABgADAAEABAABAAYAAwAGAAEADwANAAQABAABAA8ADQAPAAQAAQAEAA8ACAAQABEAEQAJAAgAEQAMAAkADAANAAkADAARABIAEAAIABEACQARAAgADAARAAkAEQAMABIADQAMAAkABwAFAAAAAAACAAcABQAHAAAAAgAAAAcABgAHAAIAAgADAAYABQAJAAsACwAAAAUACQAFAAsAAAALAAUABAANAAkACQAFAAQADQAEAAkABQAJAAQACgATABQAFAALAAoAFAAOAAsADgAPAAsADgAUABUAEwAKABQACwAUAAoADgAUAAsAFAAOABUADwAOAAsAFwAWAAAAGAAXAAAAAAAWAAsAAAABABgAFgAZAAsADwALABkAGgAZABYAGwAaABYAGQAcAA8AHQAbABYAHAAeAA8AAQAPAB4AGwAeABwAHwABAB4AGAABAB8AIAAeABsAIAAbAB0AHwAhABgAIAAdACEAGAAhAB0AFgAXAAAAFwAYAAAAFgAAAAsAAQAAABgAGQAWAAsACwAPABkAGQAaABYAGgAbABYAHAAZAA8AGwAdABYAHgAcAA8ADwABAB4AHgAbABwAAQAfAB4AAQAYAB8AHgAgABsAGwAgAB0AIQAfABgAHQAgACEAIQAYAB0AJAAiACMAIwAlACQAKAAmACcAJwApACgALAAqACsAKwAtACwAMAAuAC8ALwAxADAA"),
 "lods": [0.0480612, PackedByteArray("AgAAAAEAAQADAAIAAQAAABYAAQAWAB4ADwABAB4AFgAAAAsAGQAeABYAHgAZAA8AGQAWAAsACwAPABkADgAPAAsAFAAOAAsAFAALAAoAAAACAAEAAwABAAIAAAABABYAFgABAB4AAQAPAB4AAAAWAAsAHgAZABYAGQAeAA8AFgAZAAsADwALABkADwAOAAsADgAUAAsACwAUAAoABgAEAAUABQAHAAYACQAFAAQABAANAAkABAAGAAUABwAFAAYABQAJAAQADQAEAAkACgAIAAkACQALAAoACAAKAAkACwAJAAoADgAMAA0ADQAPAA4ADwANAAQABAABAA8AAQAEAAYABgADAAEADAAOAA0ADwANAA4ADQAPAAQAAQAEAA8ABAABAAYAAwAGAAEAEQAJAAgAEQAMAAkADAANAAkACQARAAgADAARAAkADQAMAAkABwAFAAAAAAACAAcACwAAAAUABQAJAAsABQAHAAAAAgAAAAcAAAALAAUACQAFAAsABgAHAAIAAgADAAYAJAAiACMAIwAlACQAKAAmACcAJwApACgALAAqACsAKwAtACwAMAAuAC8ALwAxADAA")],
+"material": SubResource("StandardMaterial3D_5iijq"),
 "name": "colormap",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -43,6 +45,7 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_yfbok"]
+resource_local_to_scene = true
 resource_name = "character-ghost_torso"
 _surfaces = [{
 "aabb": AABB(-0.156, -0.111172, -0.156, 0.312, 0.631172, 0.312),
@@ -51,7 +54,6 @@ _surfaces = [{
 "index_count": 318,
 "index_data": PackedByteArray("AgAAAAEAAQADAAIABgAEAAUABwAFAAQACgAIAAkACQALAAoADgAMAA0ADwANAAwAEgAQABEAEQATABIAFgAUABUAFwAVABQAGgAYABkAGQAbABoAHgAcAB0AHwAdABwAIgAgACEAIQAjACIAJgAkACUAJwAlACQAKgAoACkAKQArACoALgAsAC0ALwAtACwAMgAwADEAMQAzADIAMQA0ADMANAA1ADMANAAxADYAOQA3ADgAOgA4ADcAOwA4ADoAOAA7ADwAPQA7ADoAQAA+AD8APwBBAEAARABCAEMARQBDAEIASABGAEcARwBJAEgATABKAEsASwBNAEwAUABOAE8AUQBPAE4AVABSAFMAUwBVAFQAWABWAFcAWQBXAFYAXABaAFsAWwBdAFwAWwBeAF0AXgBfAF0AXgBbAGAAYwBhAGIAZABiAGEAZQBiAGQAYgBlAGYAZwBlAGQAagBoAGkAawBqAGkAaQBoAGwAaQBtAGsAaABuAGwAbwBsAG4AcABuAGgAcQBwAGgAbgByAG8AcwBxAGgAcgB0AG8AbQBvAHQAcQB0AHIAdQBtAHQAawBtAHUAdgB0AHEAdgBxAHMAdQB3AGsAdgBzAHcAawB3AHMAegB4AHkAeAB7AHkAegB5AHwAfQB5AHsAfgB6AHwAfAB/AH4AfgCAAHoAgACBAHoAggB+AH8AgQCDAHoAhACCAH8AfwB9AIQAhACBAIIAfQCFAIQAfQB7AIUAhACGAIEAgQCGAIMAhwCFAHsAgwCGAIcAhwB7AIMAigCIAIkAiQCLAIoAjgCMAI0AjQCPAI4AkgCQAJEAkQCTAJIAlgCUAJUAlQCXAJYA"),
 "lods": [0.0480612, PackedByteArray("AgAAAAEAAQADAAIAAQAAAHoAAQB6AIQAXwABAIQAegAAAF0AfgCEAHoAhAB+AF8AfgB6AF0AXQBfAH4AXgBfAF0AWwBeAF0AWwBdAFwABgAEAAUABwAFAAQABgAFAGgAaAAFAHQABQBnAHQABgBoAGQAdABuAGgAbgB0AGcAaABuAGQAZwBkAG4AZwBlAGQAZQBiAGQAZABiAGEACgAIAAkACQALAAoAUwAJAAgACABSAFMADgAMAA0ADwANAAwADQBXAA4AWAAOAFcAEgAQABEAEQATABIAFgAUABUAFwAVABQAGgAYABkAGQAbABoAGwAZACAAIAAiABsAIgAgACEAIQAjACIAHgAcAB0AHwAdABwAHQAfACYAJAAmAB8AJgAkACUAJwAlACQAMQAzADIAMQA0ADMANAA1ADMAOgA4ADcAOwA4ADoAPQA7ADoAQAA+AD8APwBBAEAASwA/AD4APgBKAEsARABCAEMARQBDAEIAQwBPAEQAUABEAE8AmgCbAJgAmACZAJoAigCIAIkAiQCLAIoAjgCMAI0AjQCPAI4AkgCQAJEAkQCTAJIAlgCUAJUAlQCXAJYA")],
-"material": SubResource("StandardMaterial3D_cv16q"),
 "name": "colormap",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -62,7 +64,11 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_e6kgg")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uhite"]
+resource_local_to_scene = true
+transparency = 1
+vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("6_irtrv")
+albedo_texture_force_srgb = true
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_006hn"]
 _surfaces = [{
@@ -80,6 +86,7 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_068p1"]
+resource_local_to_scene = true
 resource_name = "character-ghost_arm-left"
 _surfaces = [{
 "aabb": AABB(-0.05, -0.025, -0.055796, 0.336318, 0.081592, 0.156692),
@@ -88,7 +95,6 @@ _surfaces = [{
 "index_count": 84,
 "index_data": PackedByteArray("AgAAAAEAAQADAAIAAwAEAAIAAwAFAAQACAAGAAcABwAJAAgABwAKAAkADQALAAwADAAOAA0ADAAPAA4AEgAQABEAEQATABIAFgAUABUAFQAXABYAFwAYABYAGwAZABoAGgAcABsAHwAdAB4AHgAgAB8AIwAhACIAIgAkACMAJwAlACYAJgAoACcAKAApACcALAAqACsAKwAtACwAKwAuAC0ALgAvAC0A"),
 "lods": [0.141182, PackedByteArray("CAAGAAcABwAUAAgADQALACcAJwAlAA0AGwAZABoAGgAcABsAHgAgABwAMAAaAB4ALAAqACsAKwAtACwAKwAuAC0ALgAvAC0A")],
-"material": SubResource("StandardMaterial3D_cv16q"),
 "name": "colormap",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -99,7 +105,10 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_006hn")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y08au"]
+resource_local_to_scene = true
+transparency = 1
 albedo_texture = ExtResource("6_irtrv")
+albedo_texture_force_srgb = true
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_lljt3"]
 _surfaces = [{
@@ -117,6 +126,7 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_vdllo"]
+resource_local_to_scene = true
 resource_name = "character-ghost_arm-right"
 _surfaces = [{
 "aabb": AABB(-0.286318, -0.025, -0.055796, 0.336318, 0.081592, 0.156692),
@@ -125,7 +135,6 @@ _surfaces = [{
 "index_count": 84,
 "index_data": PackedByteArray("AgAAAAEAAQADAAIABgAEAAUABQAHAAYABQAIAAcACwAJAAoACgAMAAsADwANAA4ADgAQAA8AEAARAA8AEQASAA8AFQATABQAFAAWABUAFgAXABUAGgAYABkAGQAbABoAGwAcABoAGwAdABwAIAAeAB8AHwAhACAAHwAiACEAJQAjACQAJAAmACUAKQAnACgAKAAqACkAKgArACkALgAsAC0ALQAvAC4A"),
 "lods": [0.136647, PackedByteArray("AgASADEAEgAwAA4AMgADAAIABgAEAAUABQAXAAYAFwATAAYACwAJAAoACgAzAAsAGgAYABkAGQAbABoAGwAcABoAGwAdABwAIAAeACsAKwAnACAA")],
-"material": SubResource("StandardMaterial3D_cv16q"),
 "name": "colormap",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -136,7 +145,10 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_lljt3")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j80gf"]
+resource_local_to_scene = true
+transparency = 1
 albedo_texture = ExtResource("6_irtrv")
+albedo_texture_force_srgb = true
 
 [sub_resource type="Animation" id="Animation_n14pq"]
 length = 0.001
@@ -1356,6 +1368,11 @@ wait_time = 3.0
 one_shot = true
 autostart = true
 
+[node name="TimerDisapear" type="Timer" parent="." index="10"]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
 [node name="HealthComponent" parent="Body/StatsBox" index="0"]
 max_value = 20.0
 current_value = 20.0
@@ -1421,3 +1438,5 @@ shape = SubResource("SphereShape3D_t4dls")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.44574, 0)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="TimerDisapear" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="TimerDisapear" to="." method="_on_timer_disapear_timeout"]

@@ -8,8 +8,8 @@ func _ready():
 	gpu_particles_3d.process_material.emission_shape = ParticleProcessMaterial.EMISSION_SHAPE_POINT
 	gpu_particles_3d.process_material.direction = Vector3.FORWARD
 	skill = Skill.new()
-	skill.base_value = randf_range(0.5, 2)
-	skill.base_energy_cost = 0.3
+	skill.base_value = randf_range(0.7, 0.8)
+	skill.base_energy_cost = skill.base_value/2
 
 func do_damage() -> float:
 	if enemy.is_dying:

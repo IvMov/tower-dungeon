@@ -4,8 +4,8 @@ class_name KickSkillController extends BaseController
 
 func _ready():
 	skill = Skill.new()
-	skill.base_value = randf_range(2, 5)
-	skill.base_energy_cost = 1
+	skill.base_value = randf_range(6, 6.2)
+	skill.base_energy_cost = skill.base_value/4
 
 func do_damage() -> float:
 	if enemy.is_dying:

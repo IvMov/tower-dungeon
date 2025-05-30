@@ -67,4 +67,4 @@ BUGS:
 2025-05-27 particles emit now in rooms, in rooms randomly after some time spawns tier_0 enemies, add new spawner which has ground attack
 2025-05-28 add new spawner/boss, fix localization works, add buttons
 2025-05-29 menu adjustments and buttons and translation
-2025-05-30 adjust player rotation during chain room-traider-entry, create chain and adjust with game lvl
+2025-05-30 adjust player rotation during chain room-traider-entry, create chain and adjust with game lvl, some enemies balance and recolors, tier_0 now disappear sometime

@@ -20,7 +20,6 @@ func _ready():
 	hp_bar.update(health_component.current_value, health_component.max_value)
 	stamina_bar.update(stamina_component.current_value, stamina_component.max_value)
 	mana_bar.update(mana_component.current_value, mana_component.max_value)
-	#choose_color()
 	skeleton_range_attack_controller.cooldown_timer.start()
 	skeleton_range_attack_controller.skill.base_value *= multiply_characteristics()
 	print("INFO: tier_skeleton instantiated, speed: %s, health: %s, damage %s " % [speed, health_component.current_value, skeleton_range_attack_controller.skill.base_value])
@@ -29,11 +28,6 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	is_runing = false
 	super._physics_process(delta)
-
-func choose_color() -> void:
-	var material = body_mesh.get_surface_override_material(0)
-	material.albedo_color = Color(randf(), randf(), randf())	
-
 
 # targeting and movement
 func detect_target(target_player: Player):
@@ -59,6 +53,8 @@ func push_back(player_position: Vector3, push_power: float) -> void:
 	super.push_back(player_position, push_power)
 	
 func lost_target():
+	if is_dying:
+		return
 	speed_up_timer.stop()
 	is_runing = false
 	if agr_area.disable_mode: 

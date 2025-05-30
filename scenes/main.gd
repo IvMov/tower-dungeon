@@ -17,10 +17,7 @@ func _ready():
 	GameEvents.from_shop_to_stage.connect(on_from_shop_to_stage)
 	GameEvents.to_entry_stage.connect(on_to_entry_stage)
 	GameEvents.game_end.connect(on_game_end)
-	#map_generator.ROOMS = randi_range(3, 10)
-	#var start_point: Vector3 = map_generator.generate_level()
 	
-	#player.global_position = start_point
 	if PlayerParameters.player_data["current_time"] != 0.0:
 		GameEvents.emit_from_stage_to_shop()
 	else:

@@ -25,9 +25,12 @@ radius = 0.4
 height = 0.8
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q22wy"]
+resource_local_to_scene = true
 resource_name = "colormap"
 cull_mode = 2
+diffuse_mode = 3
 albedo_texture = ExtResource("2_oxj6t")
+albedo_texture_force_srgb = true
 texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_dmigc"]
@@ -206,6 +209,7 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_3a3qp"]
+resource_local_to_scene = true
 resource_name = "character-vampire_cape"
 _surfaces = [{
 "aabb": AABB(-0.19, -0.483184, -0.118897, 0.38, 0.568184, 0.118897),
@@ -2494,7 +2498,7 @@ push_resist = 0.1
 dmg_resist = 0.2
 animation_player = NodePath("Body/character-vampire2/AnimationPlayer")
 
-[node name="RayCast3D" parent="." index="3"]
+[node name="RayCast3D" parent="." index="4"]
 target_position = Vector3(0, 0, 10)
 
 [node name="CollisionShape3D" parent="CallEnemyAreaClient" index="0"]
@@ -2503,7 +2507,7 @@ shape = SubResource("CylinderShape3D_cqyx7")
 [node name="AgrCollision" parent="AgrArea" index="0"]
 shape = SubResource("CylinderShape3D_6njbg")
 
-[node name="EnemyCollision" parent="." index="6"]
+[node name="EnemyCollision" parent="." index="7"]
 shape = SubResource("CapsuleShape3D_j3l2d")
 
 [node name="HealthComponent" parent="Body/StatsBox" index="0"]

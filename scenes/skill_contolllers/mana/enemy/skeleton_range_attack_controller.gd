@@ -7,8 +7,8 @@ var cast_time: float
 
 func _ready():
 	skill = Skill.new()
-	skill.base_value = randf_range(3, 5)
-	skill.base_energy_cost = 1
+	skill.base_value = randf_range(8, 8.4)
+	skill.base_energy_cost = skill.base_value/3
 	cast_time = cast_timer.wait_time
 
 func do_damage() -> float:

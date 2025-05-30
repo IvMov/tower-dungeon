@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bvcrxg7s5jq4f"]
 
 [ext_resource type="Script" uid="uid://d2hv6gl7hk0hr" path="res://scenes/maps/parts/blank_map.gd" id="1_ko6yf"]
-[ext_resource type="PackedScene" uid="uid://btwa8j816mvtt" path="res://scenes/enemies/enemy_spawner_2.tscn" id="2_7n0r0"]
+[ext_resource type="PackedScene" uid="uid://b64al2yi4ofhh" path="res://scenes/enemies/tier_vampire_enemy.tscn" id="3_vecaj"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ia46o"]
 agent_height = 1.0
@@ -19,5 +19,11 @@ navigation_mesh = SubResource("NavigationMesh_ia46o")
 
 [node name="Items" type="Node3D" parent="."]
 
-[node name="EnemySpawner2" parent="." instance=ExtResource("2_7n0r0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.82477, 0)
+[node name="TierVampireEnemy" parent="." instance=ExtResource("3_vecaj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.365941, 0.139267, 0)
+
+[node name="TierVampireEnemy2" parent="." instance=ExtResource("3_vecaj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.92277, 0.147066, 0)
+
+[node name="TierVampireEnemy3" parent="." instance=ExtResource("3_vecaj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.89952, 0.147066, 0)

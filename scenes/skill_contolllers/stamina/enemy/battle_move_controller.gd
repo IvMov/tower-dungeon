@@ -37,7 +37,7 @@ func _on_cooldown_timer_timeout() -> void:
 		enemy.is_back_move = false
 		enemy.is_side_move = false
 		enemy.is_front_move = true
-		cooldown_timer.wait_time = randf_range(1, 6)
+		cooldown_timer.wait_time = randf_range(4, 8)
 
 func _on_cast_timer_timeout() -> void:
 	if !enemy.player:
@@ -47,7 +47,7 @@ func _on_cast_timer_timeout() -> void:
 		enemy.is_side_move = false
 		enemy.is_front_move = false
 		idle_timer.start()
-		cast_timer.wait_time = randf_range(3, 6)
+		cast_timer.wait_time = randf_range(2, 4)
 
 
 func _on_idle_timer_timeout():

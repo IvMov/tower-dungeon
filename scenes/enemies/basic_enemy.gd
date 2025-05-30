@@ -75,7 +75,6 @@ var current_angle: float
 var battle_distance: float = 0
 var battle_move_radius: float =  randf_range(2, 6)
 var battle_direction_when_radial: int = get_random_sign()
-var game_stage_factor: float
 
 var fire_damage_taken: float = 0
 var acid_damage_taken: float = 0
@@ -107,8 +106,6 @@ func _ready():
 	stamina_bar.update(stamina_component.current_value, stamina_component.max_value)
 	mana_bar.update(mana_component.current_value, mana_component.max_value)
 	bars_box.visible = false
-	game_stage_factor = PlayerParameters.player_data["game_lvl"] * 0.12
-	print("set some factor which increase params by %d game stage %f factor" % [PlayerParameters.player_data["game_lvl"], game_stage_factor])
 
 func _physics_process(delta):
 	if is_dying:
@@ -140,9 +137,6 @@ func _physics_process(delta):
 
 func multiply_characteristics(is_spawner: bool = false) -> float:
 	#TODO: if want some randomizing change ranges in randf
-	game_stage_factor = PlayerParameters.player_data["game_lvl"] * 0.12
-	print("set some factor which increase params by %d game stage %f factor" % [PlayerParameters.player_data["game_lvl"], game_stage_factor])
-
 	var rand: float = randf_range(1, 1) if !is_boss else randf_range(4, 4)
 	speed = speed / rand if !is_boss else speed *  2 / (1 + rand/10)
 	if !is_spawner:
@@ -150,14 +144,14 @@ func multiply_characteristics(is_spawner: bool = false) -> float:
 		enemy_collision.shape.height *= rand
 		enemy_collision.shape.radius *= (rand * 2 / 3)
 		enemy_collision.position.y = enemy_collision.shape.height / 2
-	health_component.max_value *= rand * EnemyParameters.hp_modifier
-	health_component.current_value *= rand * EnemyParameters.hp_modifier
-	health_component.regen *= EnemyParameters.hp_regen_modifier
-	mana_component.max_value *= rand
-	mana_component.current_value *= rand
-	stamina_component.max_value *= rand * EnemyParameters.stamina_modifier
-	stamina_component.current_value *= rand * EnemyParameters.stamina_modifier
-	stamina_component.regen *= EnemyParameters.stamina_regen_modifier
+	health_component.max_value *= rand * EnemyParameters.hp_modifier * EnemyParameters.game_stage_factor
+	health_component.current_value *= rand * EnemyParameters.hp_modifier * EnemyParameters.game_stage_factor
+	health_component.regen *= EnemyParameters.hp_regen_modifier * EnemyParameters.game_stage_factor
+	mana_component.max_value *= rand * EnemyParameters.game_stage_factor
+	mana_component.current_value *= rand * EnemyParameters.game_stage_factor
+	stamina_component.max_value *= rand * EnemyParameters.stamina_modifier * EnemyParameters.game_stage_factor
+	stamina_component.current_value *= rand * EnemyParameters.stamina_modifier * EnemyParameters.game_stage_factor
+	stamina_component.regen *= EnemyParameters.stamina_regen_modifier * EnemyParameters.game_stage_factor
 	if is_boss:
 		push_resist *= 3
 		dmg_resist *= 2
@@ -226,8 +220,8 @@ func detect_target(_target_player: Player) -> void:
 	pass
 
 func lost_target() -> void:
-	# to be implemented in child regarding skills
-	pass
+	if !is_inside_tree() || is_queued_for_deletion() || is_dying:
+		return
 
 func hide_bars() -> void:
 	bars_box.visible = false

@@ -62,6 +62,8 @@ func push_back(player_position: Vector3, push_power: float) -> void:
 	super.push_back(player_position, push_power)
 	
 func lost_target():
+	if is_dying:
+		return
 	speed_up_timer.stop()
 	is_runing = false
 	if agr_area.disable_mode: 

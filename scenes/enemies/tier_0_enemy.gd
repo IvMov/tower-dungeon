@@ -5,9 +5,16 @@ class_name Tier0Enemy extends BasicEnemy
 @onready var call_other_enemies_controller: CallOtherEnemiesController = $Body/SkillBox/CallOtherEnemiesController
 @onready var character_ghost_2: Node3D = $"Body/character-ghost2"
 @onready var timer: Timer = $Timer
+@onready var timer_disapear: Timer = $TimerDisapear
+
 @onready var area_3d: Area3D = $"Body/character-ghost2/Area3D"
 @onready var collision_shape_3d: CollisionShape3D = $"Body/character-ghost2/Area3D/CollisionShape3D"
 
+@onready var torso: MeshInstance3D = $"Body/character-ghost2/character-ghost/root/torso"
+@onready var arm_left: MeshInstance3D = $"Body/character-ghost2/character-ghost/root/torso/arm-left"
+@onready var arm_right: MeshInstance3D = $"Body/character-ghost2/character-ghost/root/torso/arm-right"
+
+var rand_a: float
 
 func _ready():  
 	is_ranged = true
@@ -20,7 +27,7 @@ func _ready():
 	hp_bar.update(health_component.current_value, health_component.max_value)
 	stamina_bar.update(stamina_component.current_value, stamina_component.max_value)
 	mana_bar.update(mana_component.current_value, mana_component.max_value)
-	#choose_color()
+	choose_color()
 	range_attack_controller.cooldown_timer.start()
 	if is_boss:
 		range_attack_controller.skill.base_distance *= 2
@@ -38,9 +45,11 @@ func choose_position() -> void:
 	bars_box.global_position.y = global_position.y + rand - 0.05
 
 
-#func choose_color() -> void:
-	#var material = body_mesh.get_surface_override_material(0)
-	#material.albedo_color = Color(randf(), randf(), randf())	
+func choose_color() -> void:
+	var rand_color: Color = Color(randf_range(0.7,1.0), randf_range(0.7,1.0), randf_range(0.7,1.0), randf_range(0.4, 0.8))
+	torso.get_surface_override_material(0).albedo_color = rand_color
+	arm_left.get_surface_override_material(0).albedo_color = rand_color
+	arm_right.get_surface_override_material(0).albedo_color = rand_color
 
 
 # targeting and movement
@@ -68,7 +77,8 @@ func lost_target():
 	if agr_area.disable_mode: 
 		return
 	is_target_detected = false
-	chase_player_timer.start()
+	if chase_player_timer.is_inside_tree():
+		chase_player_timer.start()
 
 
 # timeout and area signals handling
@@ -101,4 +111,16 @@ func _on_timer_timeout() -> void:
 	tween.tween_property(bars_box, "global_position:y", global_position.y + rand, 1.0)
 	await tween.finished
 	timer.start()
+	
+
+
+func _on_timer_disapear_timeout() -> void:
+	rand_a = 0.01 if rand_a != 0.01 else randf_range(0.4,0.8)
+	var tween: Tween = create_tween().set_parallel().set_ease(Tween.EASE_IN)
+	tween.tween_property(torso.get_surface_override_material(0), "albedo_color:a", rand_a, 0.5)
+	tween.tween_property(arm_left.get_surface_override_material(0), "albedo_color:a", rand_a, 0.5)
+	tween.tween_property(arm_right.get_surface_override_material(0), "albedo_color:a", rand_a, 0.5)
+	await tween.finished
+	timer_disapear.wait_time = randf_range(1, 4) if rand_a == 0.01 else randf_range(6, 12)
+	timer_disapear.start()
 	
