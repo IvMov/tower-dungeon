@@ -1,5 +1,6 @@
 extends Node
 
+signal end_game()
 signal game_end()
 signal change_game_stage(game_stage)
 signal screen_resized()
@@ -41,6 +42,9 @@ signal update_items_prices()
 signal souls_dropped(position: Vector3, value: Vector3)
 signal souls_collect(position: Vector3, value: Vector3)
 signal souls_update_view()
+
+func emit_end_game():
+	end_game.emit()
 
 func emit_to_entry_stage():
 	to_entry_stage.emit()

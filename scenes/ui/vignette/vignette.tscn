@@ -5,13 +5,13 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eos71"]
 shader = ExtResource("1_q7nh0")
-shader_parameter/vignette_intensity = 0.4
-shader_parameter/vignette_opacity = 0.5
-shader_parameter/vignette_rgb = Color(0.19, 0.17746, 0.1691, 1)
+shader_parameter/vignette_intensity = 0.5
+shader_parameter/vignette_opacity = 0.1
+shader_parameter/vignette_rgb = Color(0.0988842, 0.344821, 0.266093, 1)
 
 [node name="Vignette" type="CanvasLayer"]
 script = ExtResource("1_au8g5")
-vignette_opacity = 0.5
+vignette_opacity = 0.74
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_eos71")
@@ -21,3 +21,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

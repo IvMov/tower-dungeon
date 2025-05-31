@@ -1,7 +1,7 @@
 extends Node
 
 
-enum  Stage {MENU = 0, GAME = 1, INVENTORY = 2, TRAIDER = 3, GAME_PAUSED = 8, GAME_END = 9}
+enum  Stage {MENU = 0, GAME = 1, INVENTORY = 2, TRAIDER = 3, GAME_PAUSED = 8, END_GAME = 9}
 
 
 const TRAIDER_SCREEN = preload("res://scenes/screens/traider_screen.tscn")
@@ -31,6 +31,9 @@ func _unhandled_input(event):
 			GameEvents.emit_change_game_stage(Stage.INVENTORY)
 
 func on_change_game_stage(game_stage: Stage):
+	if game_stage == Stage.END_GAME:
+		get_tree().change_scene_to_packed(ScreenTransition.MENU_SCREEN) #replace with stats and creds screen
+		get_parent().add_child(Constants.END_GAME_SCREEN.instantiate())
 	if game_stage == Stage.MENU:
 		get_tree().paused = true
 		get_parent().add_child(ScreenTransition.MENU_SCREEN.instantiate())
@@ -42,9 +45,9 @@ func on_change_game_stage(game_stage: Stage):
 
 func update_cursor():
 	match current_game_stage:
-		1, 9: 
+		1: 
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		0, 2, 3, 8: 
+		0, 2, 3, 8, 9: 
 			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 
 func is_stage(stage: Stage) -> bool:

@@ -1,0 +1,101 @@
+[gd_scene load_steps=3 format=3 uid="uid://buwqc2caexwnj"]
+
+[ext_resource type="PackedScene" uid="uid://dyfrlujou827f" path="res://scenes/ui/sound_button.tscn" id="1_14pp6"]
+[ext_resource type="Script" uid="uid://cjvb14hlr7p51" path="res://scenes/menu/end_game_screen.gd" id="1_warmq"]
+
+[node name="EndGameScreen" type="CanvasLayer"]
+layer = 3
+script = ExtResource("1_warmq")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Bacground" type="ColorRect" parent="MarginContainer"]
+layout_mode = 2
+color = Color(0.145, 0.212, 0.208, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Bacground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="Label" parent="MarginContainer/Bacground/MarginContainer"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "game_finished_text"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Bacground/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="MarginContainer/Bacground/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "asdasdasdadada"
+
+[node name="Label2" type="Label" parent="MarginContainer/Bacground/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "asdasdasdadada"
+
+[node name="Label3" type="Label" parent="MarginContainer/Bacground/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "asdasdasdadada"
+
+[node name="Label4" type="Label" parent="MarginContainer/Bacground/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "asdasdasdadada"
+
+[node name="Label5" type="Label" parent="MarginContainer/Bacground/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "asdasdasdadada"
+
+[node name="BackToMenu" parent="MarginContainer/Bacground/MarginContainer" instance=ExtResource("1_14pp6")]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "back_to_menu"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/Bacground/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="MarginContainer/Bacground/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+text = "asdasdasdadada"
+
+[node name="Label2" type="Label" parent="MarginContainer/Bacground/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+text = "asdasdasdadada"
+
+[node name="Label3" type="Label" parent="MarginContainer/Bacground/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+text = "asdasdasdadada"
+
+[node name="Label4" type="Label" parent="MarginContainer/Bacground/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+text = "asdasdasdadada"
+
+[node name="Label5" type="Label" parent="MarginContainer/Bacground/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+text = "asdasdasdadada"
+
+[connection signal="pressed" from="MarginContainer/Bacground/MarginContainer/BackToMenu" to="." method="_on_back_to_menu_pressed"]

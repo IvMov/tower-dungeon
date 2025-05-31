@@ -1,0 +1,74 @@
+[gd_scene load_steps=13 format=3 uid="uid://cjklfdgm5gow1"]
+
+[ext_resource type="Material" uid="uid://cw8oxk75ogtt0" path="res://assets/textures/materials/wall_material.tres" id="1_dl4dv"]
+[ext_resource type="Script" uid="uid://bkshs7p6ds8bu" path="res://scenes/maps/kube_map.gd" id="1_yere7"]
+[ext_resource type="PackedScene" uid="uid://c5cpifl7vhf2k" path="res://scenes/maps/parts/decor/decorations.tscn" id="2_j2746"]
+[ext_resource type="Material" uid="uid://c1ug8bb6pokoh" path="res://resources/materials/spawner_texture.tres" id="3_jahep"]
+[ext_resource type="PrismMesh" uid="uid://c5x02ui4xuaqn" path="res://assets/3d/my/crystal_mesh.tres" id="4_0mibu"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_p620k"]
+material = ExtResource("1_dl4dv")
+size = Vector3(100, 100, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dl4dv"]
+size = Vector3(100, 100, 100)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yere7"]
+material = ExtResource("3_jahep")
+size = Vector3(15, 15, 15)
+
+[sub_resource type="MultiMesh" id="MultiMesh_mdabv"]
+transform_format = 1
+mesh = SubResource("BoxMesh_yere7")
+
+[sub_resource type="SphereMesh" id="SphereMesh_yoru6"]
+material = ExtResource("3_jahep")
+radius = 10.0
+height = 20.0
+radial_segments = 8
+rings = 6
+
+[sub_resource type="MultiMesh" id="MultiMesh_yere7"]
+transform_format = 1
+mesh = SubResource("SphereMesh_yoru6")
+
+[sub_resource type="MultiMesh" id="MultiMesh_k34vf"]
+transform_format = 1
+mesh = ExtResource("4_0mibu")
+
+[node name="KubeMap" type="Node3D"]
+script = ExtResource("1_yere7")
+radius_min = null
+radius_max = null
+height_range_near = null
+height_range_far = null
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
+mesh = SubResource("BoxMesh_p620k")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_dl4dv")
+
+[node name="Decorations" parent="MeshInstance3D" instance=ExtResource("2_j2746")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -50, 0, 0)
+
+[node name="Decorations2" parent="MeshInstance3D" instance=ExtResource("2_j2746")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 0)
+
+[node name="Decorations3" parent="MeshInstance3D" instance=ExtResource("2_j2746")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 50, 0, 0)
+
+[node name="Decorations4" parent="MeshInstance3D" instance=ExtResource("2_j2746")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -50)
+
+[node name="Kubes" type="MultiMeshInstance3D" parent="."]
+multimesh = SubResource("MultiMesh_mdabv")
+
+[node name="Spheres" type="MultiMeshInstance3D" parent="."]
+multimesh = SubResource("MultiMesh_yere7")
+
+[node name="Crystals" type="MultiMeshInstance3D" parent="."]
+multimesh = SubResource("MultiMesh_k34vf")

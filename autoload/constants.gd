@@ -1,6 +1,7 @@
 extends Node
 
-const TIER_0_ENEMY = preload("res://scenes/enemies/tier_0_enemy.tscn")
+const END_GAME_SCREEN: PackedScene = preload("res://scenes/menu/end_game_screen.tscn")
+const TIER_0_ENEMY: PackedScene = preload("res://scenes/enemies/tier_0_enemy.tscn")
 
 const COIN: PackedScene = preload("res://scenes/dropable/coin.tscn")
 const SOUL_PART: PackedScene = preload("res://scenes/dropable/soul_part.tscn")

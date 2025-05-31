@@ -28,7 +28,6 @@ var belt: Belt
 var hands: Hands
 
 
-
 var souls: Vector3 = Vector3.ZERO
 var coins: int
 var kills: int = 0
@@ -60,6 +59,11 @@ func adjust_difficulty() -> void:
 		price_modifier = 0.8
 	elif GameConfig.game_difficulty == 3: 
 		damage_resist_factor = 1.5
+
+func reset_player() -> void:
+	player_name = ""
+	player = null
+	player_data = {}
 
 func load_player_by_username(username: String) -> void: 
 	player_data = MetaProgression.get_by_username(username)

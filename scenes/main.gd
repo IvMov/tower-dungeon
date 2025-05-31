@@ -21,7 +21,8 @@ func _ready():
 	if PlayerParameters.player_data["current_time"] != 0.0:
 		GameEvents.emit_from_stage_to_shop()
 	else:
-		maps.add_child(ENTRY_MAP.instantiate())
+		#maps.add_child(ENTRY_MAP.instantiate())
+		maps.add_child(preload("res://scenes/maps/kube_map.tscn").instantiate())
 	Constants.SOULS = souls
 	Constants.ENEMIES = enemies
 	Constants.PROJECTILES = projectiles

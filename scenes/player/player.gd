@@ -38,6 +38,7 @@ var actions_animations: Array[String] = [
 var is_dying: bool = false
 var is_immune_to_damage: bool 
 var last_fontain_coordinates: Vector3
+var is_end: bool = false
 
 func _ready():
 	if PlayerParameters.player_data["spark_permanent"]["quantity"] > 0:
@@ -72,10 +73,19 @@ func _physics_process(delta):
 			animation_player.play("walk" if move_direction else "idle")
 		else:
 			animation_player.play("fall")
-	if !is_on_floor():
+	if !is_on_floor() && !is_end:
 		velocity.y -= GameConfig.gravity * delta 
+	if is_end:
+		velocity.y+=delta*2
 	move_and_slide()
 
+func set_is_end() -> void:
+	is_end = true
+	velocity = Vector3.UP
+	$MoveParticles.emitting = false
+	PlayerParameters.current_speed = 50
+	GameEvents.emit_end_game()
+	
 
 func _unhandled_input(event):
 	if !GameStage.is_stage(GameStage.Stage.GAME):

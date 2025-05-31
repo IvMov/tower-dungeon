@@ -55,7 +55,7 @@ text = "LABas"
 [node name="Maps" type="Node3D" parent="." groups=["maps"]]
 
 [node name="Vignette" parent="." instance=ExtResource("6_f0ant")]
-visible = false
+layer = 0
 vignette_opacity = 0.3
 
 [node name="MapStorage" parent="." instance=ExtResource("8_ng268")]

@@ -1,5 +1,7 @@
 class_name MenuScreen extends CanvasLayer
 
+const POP_UP_QUIT: PackedScene = preload("res://scenes/menu/popups/pop_up_quit.tscn")
+
 @onready var start_button: Button = $MarginContainer/Bacground/VBoxContainer/StartButton
 @onready var restart_button: Button = $MarginContainer/Bacground/VBoxContainer/RestartButton
 @onready var give_up_button: Button = $MarginContainer/Bacground/VBoxContainer/GiveUpButton
@@ -57,8 +59,6 @@ func _on_give_up_button_pressed() -> void:
 	get_tree().change_scene_to_packed(ScreenTransition.MENU_SCREEN)
 
 func _on_quit_button_pressed() -> void:
-	#await MetaProgression.save_game_on_quit()
-	const POP_UP_QUIT = preload("res://scenes/menu/popups/pop_up_quit.tscn")
 	var pop = POP_UP_QUIT.instantiate()
 	add_child(pop)
 	pop.set_texts("quit_confirm_text", "yes", "no")
